@@ -1,21 +1,22 @@
 import { 
   Text,
   View,
-  Image,
   TouchableOpacity,
 } from "react-native";
 
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import Thumbnail from "../components/Thumbnail";
 import useGlobal from '../core/global';
 import Colors from "../assets/Colors";
 
 
 function ProfileImage() {
 
-  const uploadImage = useGlobal(state => state.uploadImage)
+  const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
   const image = useGlobal(state => state.image)
+  const user = useGlobal(state => state.user)
 
   return (
     <TouchableOpacity
@@ -24,22 +25,14 @@ function ProfileImage() {
         launchImageLibrary({ includeBase64:true, }, (response) => {
           if (response.didCancel) return
           const file = response.assets[0]
-          uploadImage(file)
+          uploadThumbnail(file)
         })
       }}
     >
-      { image ? (
-        <Image 
-          source={{ uri:image }}
-          style={{ width:180, height:180, borderRadius:90, borderWidth:1, borderColor:Colors.descGrey }}
-        />
-      ) : (
-        <Image 
-          source={require('../assets/images/profile.png')}
-          style={{ width:180, height:180, borderRadius:90, backgroundColor:'#e0e0e0', borderWidth:1, borderColor:Colors.descGrey }}
-        />
-      )}
-      
+      <Thumbnail
+				url={user.thumbnail}
+				size={180}
+			/>
       <View
         style={{
           position:"absolute",

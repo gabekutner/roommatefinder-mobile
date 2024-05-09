@@ -5,10 +5,19 @@ import {
 import { create } from 'zustand';
 
 import secure from './secure';
-import api from './api';
+import api, { ADDRESS } from './api';
 
 
-const useGlobal = create((set) => ({
+//-------------------------------------
+//  Socket receive message handlers
+//-------------------------------------
+function responseThumbnail(set, get, data) {
+  set((state) => ({
+    user:data
+  }))
+}
+
+const useGlobal = create((set, get) => ({
 
   //-------------------
   //  Initialization
@@ -34,6 +43,9 @@ const useGlobal = create((set) => ({
 
         const created = response.data.name == null ? false : true
 
+        const tokens = {'access': response.data.access, 'refresh': response.data.refresh}
+        secure.set('tokens', tokens)
+
         set((state) => ({
           initialized:true,
           authenticated:true,
@@ -57,8 +69,9 @@ const useGlobal = create((set) => ({
   authenticated: false,
   user: {},
 
-  login: (credentials,  user) => {
+  login: (credentials, user, tokens ) => {
     secure.set('credentials', credentials)
+    secure.set('tokens', tokens)
     set((state) => ({
       authenticated:true,
       user:user,
@@ -157,6 +170,65 @@ const useGlobal = create((set) => ({
   },
 
   //-------------------
+  //    Websocket
+  //-------------------
+  socket: null,
+
+  socketConnect: async () => {
+    const tokens = await secure.get('tokens')
+    
+    const socket = new WebSocket(
+      `ws://${ADDRESS}/chat/?token=${tokens.access}`
+    )
+
+    socket.onopen = () => {
+      console.log('socket.onopen')
+    }
+    socket.onmessage = (event) => {
+      // convert data to js object
+      const parsed = JSON.parse(event.data)
+
+      console.log('onmessage. ', parsed)
+
+      const responses = {
+        'thumbnail': responseThumbnail
+      }
+      const resp = responses[parsed.source]
+      if (!resp) {
+        console.log('parsed.source "' + parsed.source + '" not found')
+        return
+      }
+      // call resp function
+      resp(set, get, parsed.data)
+    }
+    socket.onerror = (e) => {
+      console.log('socket.onerror: ', e.message)
+    }
+    socket.onclose = () => {
+      console.log('socket.onclose')
+    }
+    set((state) => ({
+      socket:socket
+    }))
+  },
+
+  socketDisconnect: async () => {
+
+  },
+
+  //-------------------
+  //    Thumbnail
+  //-------------------
+  uploadThumbnail: (file) => {
+    socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'thumbnail',
+      base64: file.base64,
+      filename: file.fileName
+    }))
+  },
+
+  //-------------------
   //      Search
   //-------------------
   searchList: null,
@@ -165,10 +237,7 @@ const useGlobal = create((set) => ({
     if (query) {
       
     }
-  }
-
-
-
+  },
 }))
 
 

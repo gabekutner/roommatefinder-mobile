@@ -12,11 +12,25 @@ import Friends from "./Friends";
 import Profile from "./Profile";
 
 import Colors from "../assets/Colors";
+import useGlobal from "../core/global";
+import { useEffect } from "react";
 
 const Tab = createBottomTabNavigator()
 
 
 export default function HomeScreen() {
+
+  const socketConnect = useGlobal(state => state.socketConnect)
+  const socketDisconnect = useGlobal(state => state.socketDisconnect)
+
+
+  useEffect(() => {
+    socketConnect()
+    return () => {
+      socketDisconnect()
+    }
+  }, [])
+
   return (
     <Tab.Navigator
       screenOptions={({ route, navigation }) => ({
