@@ -26,7 +26,6 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
@@ -48,5 +47,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Glegoo-Bold.ttf</string>
+		<string>Glegoo-Regular.ttf</string>
+		<string>NotoSans_Condensed-Regular.ttf</string>
+	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Users are allowed to upload images.</string>
 </dict>
 </plist>

@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Glegoo-Bold.ttf",
+      "sha1": "68eaa8ea3edff45c7710341f8c8f6784c58df2a5"
+    },
+    {
+      "path": "src/assets/fonts/Glegoo-Regular.ttf",
+      "sha1": "85cb19c0a38cf24ee845589078968ed97aab8a17"
+    },
+    {
+      "path": "src/assets/fonts/NotoSans_Condensed-Regular.ttf",
+      "sha1": "e8da78b2c0105dfe4d76bba6baf2f298746eaaf9"
+    },
+    {
+      "path": "src/assets/images/image_part_001.png",
+      "sha1": "eb247415ea92f1671fc6d39808553d20f16c2cf0"
+    },
+    {
+      "path": "src/assets/images/image_part_002.png",
+      "sha1": "19a4cca0997da812dbcdf3de5f1726c773a6d35e"
+    },
+    {
+      "path": "src/assets/images/image_part_003.png",
+      "sha1": "15d56892ef9084f17cb8d45166af528aad07be32"
+    },
+    {
+      "path": "src/assets/images/profile.png",
+      "sha1": "f8e7131f1c9850806ba7d6725b75341d9729e877"
+    }
+  ]
+}
