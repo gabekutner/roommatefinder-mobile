@@ -69,6 +69,7 @@ export default function CreateProfile({ navigation }) {
   const create = useGlobal(state => state.create)
   const uploadImage = useGlobal(state => state.uploadImage)
   const user = useGlobal(state => state.user)
+  const setProfileCreated = useGlobal(state => state.setProfileCreated)
 
   const dayRef = useRef(null)
   const yearRef = useRef(null)
@@ -110,7 +111,16 @@ export default function CreateProfile({ navigation }) {
         NO INFORMATION PROVIDED HERE WILL BE SENT TO THE UNIVERSITY OF UTAH
       </Text>
 
-      <ProgressSteps
+      <TouchableOpacity
+        onPress={setProfileCreated()}
+      >
+
+        <Text>
+          Skip for now ...
+        </Text>
+      </TouchableOpacity>
+
+      {/* <ProgressSteps
         borderWidth={3}
         activeStepIconBorderColor={Colors.utahRed}
         progressBarColor={Colors.utahGranitePeak}
@@ -313,7 +323,7 @@ export default function CreateProfile({ navigation }) {
         onCancel={() => {
           setOpen(false)
         }}
-      />
+      /> */}
     </SafeAreaView>
   )
 }

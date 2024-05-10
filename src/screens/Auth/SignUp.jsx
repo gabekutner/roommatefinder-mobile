@@ -53,6 +53,7 @@ export default function SignUp({ navigation }) {
       login(
         credentials,
         response.data,
+        { 'access': response.data.access, 'refresh': response.data.refresh }
       )
     }).catch((error) => {
       if (error.response) {

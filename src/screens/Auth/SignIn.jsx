@@ -48,6 +48,7 @@ export default function SignIn({ navigation }) {
       login(
         credentials,
         response.data,
+        { 'access': response.data.access, 'refresh': response.data.refresh }
       )
     }).catch((error) => {
       // https://axios-http.com/docs/handling_errors

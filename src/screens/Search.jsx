@@ -1,33 +1,37 @@
-import { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  TextInput,
-  FlatList, 
-  TouchableOpacity,
-} from 'react-native';
+import { useEffect, useState } from "react";
+import { 
+	FlatList,
+	SafeAreaView, 
+	Text, 
+	TextInput, 
+	TouchableOpacity, 
+	View 
+} from "react-native";
 
-import Thumbnail from '../components/Thumbnail';
-import Empty from '../components/Empty';
-import Cell from '../components/Cell';
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import useGlobal from '../core/global';
+import Empty from "../components/Empty";
+import Thumbnail from "../components/Thumbnail";
+import useGlobal from "../core/global";
+import Cell from "../components/Cell";
+
 
 
 function SearchButton({ user }) {
+	// Add tick if user is already  connected
 	if (user.status === 'connected') {
-		return  (
+		return (
 			<FontAwesomeIcon
 				icon='circle-check'
 				size={30}
 				color='#20d080'
-				style={{ marginRight: 10 }}
+				style={{
+					marginRight: 10
+				}}
 			/>
 		)
 	}
-  
+
 	const requestConnect = useGlobal(state => state.requestConnect)
 	
 	const data = {}
@@ -36,7 +40,7 @@ function SearchButton({ user }) {
 		case 'no-connection':
 			data.text = 'Connect'
 			data.disabled = false
-			data.onPress = () => requestConnect(user.username)
+			data.onPress = () => requestConnect(user.id)
 			break
 		case 'pending-them':
 			data.text = 'Pending'
@@ -78,7 +82,6 @@ function SearchButton({ user }) {
 
 
 function SearchRow({ user }) {
-
 	return (
 		<Cell>
 			<Thumbnail
@@ -99,57 +102,23 @@ function SearchRow({ user }) {
 					}}
 				>
 					{user.name}
-				</Text>
-				<Text
-					style={{
-						color: '#606060',
-					}}
-				>
-					{user.username}
-				</Text>
+				</Text>	
 			</View>
 			<SearchButton user={user} />
 		</Cell>
 	)
 }
 
-export default function SearchScreen() {
+
+export default function Search() {
 	const [query, setQuery] = useState('')
 
-	// const searchList = useGlobal(state => state.searchList)
-	// const searchUsers = useGlobal(state => state.searchUsers)
+	const searchList = useGlobal(state => state.searchList)
+	const searchUsers = useGlobal(state => state.searchUsers)
 
-	// useEffect(() => {
-	// 	searchUsers(query)
-	// }, [query]) 
-
-
-	const searchList = [
-		{
-			thumbnail: null,
-			name: 'Silly Name',
-			username: 'sillyn',
-			status: 'pending-them'
-		},
-		{
-			thumbnail: null,
-			name: 'Silly Something',
-			username: 'sillya',
-			status: 'pending-me'
-		},
-		{
-			thumbnail: null,
-			name: 'Silly Red',
-			username: 'sillyb',
-			status: 'connected'
-		},
-		{
-			thumbnail: null,
-			name: 'Silly Blue',
-			username: 'sillyc',
-			status: 'no-connection'
-		}
-	]
+	useEffect(() => {
+		searchUsers(query)
+	}, [query]) 
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -206,7 +175,7 @@ export default function SearchScreen() {
 					renderItem={({ item }) => (
 						<SearchRow user={item} />
 					)}
-					keyExtractor={item => item.username}
+					keyExtractor={item => item.id}
 				/>
 			)}
 		</SafeAreaView>
