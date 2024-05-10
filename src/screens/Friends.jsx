@@ -15,8 +15,6 @@ import utils from "../core/utils";
 import useGlobal from "../core/global";
 
 
-
-
 function FriendRow({ navigation, item }) {
 	return (
 		<TouchableOpacity onPress={() => {

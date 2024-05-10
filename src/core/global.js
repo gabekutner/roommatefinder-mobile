@@ -17,14 +17,67 @@ function responseFriendList(set, get, friendList) {
   }))
 }
 
+function responseFriendNew(set, get, friend) {
+	const friendList = [friend, ...get().friendList]
+	set((state) => ({
+		friendList: friendList
+	}))
+}
+
+function responseMessageList(set, get, data) {
+	set((state) => ({
+		messagesList: [...get().messagesList, ...data.messages],
+		messagesNext: data.next,
+		messagesId: data.friend.id
+	}))
+}
+
+function responseMessageSend(set, get, data) {
+	const id = data.friend.id
+	// Move friendList item for this friend to the start of 
+	// list, update the preview text and update the time stamp
+	const friendList = [...get().friendList]
+	const friendIndex = friendList.findIndex(
+		item => item.friend.id === id
+	)
+	if (friendIndex >= 0) {
+		const item = friendList[friendIndex]
+		item.preview = data.message.text
+		item.updated = data.message.created
+		friendList.splice(friendIndex, 1)
+		friendList.unshift(item)
+		set((state) => ({
+			friendList: friendList
+		}))
+	}
+	// If the message data does not belong to this friend then 
+	// dont update the message list, as a fresh messageList will 
+	// be loaded the next time the user opens the correct chat window
+	if (id !== get().messagesId) {
+		return
+	}
+	const messagesList = [data.message, ...get().messagesList]
+	set((state) => ({
+		messagesList: messagesList,
+		messagesTyping: null
+	}))
+}
+
+function responseMessageType(set, get, data) {
+	if (data.id !== get().messagesId) return
+	set((state) => ({
+		messagesTyping: new Date()
+	}))
+}
+
 function responseRequestConnect(set, get, connection) {
 	const user = get().user
 	// If i was the one that made the connect request, 
 	// update the search list row
-	if (user.username === connection.sender.username) {
+	if (user.id === connection.sender.id) {
 		const searchList = [...get().searchList]
 		const searchIndex = searchList.findIndex(
-			request => request.username === connection.receiver.username
+			request => request.id === connection.receiver.id
 		)
 		if (searchIndex >= 0) {
 			searchList[searchIndex].status = 'pending-them'
@@ -302,11 +355,15 @@ const useGlobal = create((set, get) => ({
 
       const responses = {
         'friend.list': responseFriendList,
-        'request.connect': responseRequestConnect,
-        'request.accept': responseRequestAccept,
-        'request.list': responseRequestList,
-        'search': responseSearch,
-        'thumbnail': responseThumbnail
+				'friend.new': responseFriendNew,
+				'message.list': responseMessageList,
+				'message.send': responseMessageSend,
+				'message.type':    responseMessageType,
+				'request.accept': responseRequestAccept,
+				'request.connect': responseRequestConnect,
+				'request.list': responseRequestList,
+				'search': responseSearch,
+				'thumbnail': responseThumbnail
       }
       const resp = responses[parsed.source]
       if (!resp) {
@@ -394,6 +451,52 @@ const useGlobal = create((set, get) => ({
   //    Friend List
   //-------------------
   friendList: null,
+
+  //---------------------
+	//     Messages
+	//---------------------
+	messagesList: [],
+	messagesNext: null,
+	messagesTyping: null,
+	messagesId: null,
+
+	messageList: (connectionId, page=0) => {
+		if (page === 0) {
+			set((state) => ({
+				messagesList: [],
+				messagesNext: null,
+				messagesTyping: null,
+				messagesId: null
+			}))
+		} else {
+			set((state) => ({
+				messagesNext: null
+			}))
+		}
+		const socket = get().socket
+		socket.send(JSON.stringify({
+			source: 'message.list',
+			connectionId: connectionId,
+			page: page
+		}))
+	},
+
+	messageSend: (connectionId, message) => {
+		const socket = get().socket
+		socket.send(JSON.stringify({
+			source: 'message.send',
+			connectionId: connectionId,
+			message: message
+		}))
+	},
+
+	messageType: (id) => {
+		const socket = get().socket
+		socket.send(JSON.stringify({
+			source: 'message.type',
+			id: id
+		}))
+	},
 
 
 }))
