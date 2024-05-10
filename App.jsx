@@ -1,10 +1,15 @@
 import 'react-native-gesture-handler';
 import { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { 
+  StatusBar,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 
 import './src/core/fontawesome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import SplashScreen from './src/screens/SplashScreen';
 import SignIn from './src/screens/Auth/SignIn';
@@ -16,6 +21,7 @@ import Onboarding from './src/screens/Onboarding';
 import CreateProfile from './src/screens/CreateProfile';
 
 import useGlobal from './src/core/global';
+import Colors from './src/assets/Colors';
 
 
 const Stack = createNativeStackNavigator()

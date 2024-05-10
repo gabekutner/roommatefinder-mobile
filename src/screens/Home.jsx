@@ -67,7 +67,12 @@ export default function HomeScreen() {
       <Tab.Screen 
         name="requests" 
         component={Requests} 
-        options={{ headerShown:false }}
+        options={() => ({
+          title: '',
+          headerStyle: {
+            backgroundColor:'transparent'
+          }
+        })}
       />
       <Tab.Screen 
         name="friends" 
@@ -77,7 +82,7 @@ export default function HomeScreen() {
             <TouchableOpacity onPress={() => navigation.navigate('search')}>
               <FontAwesomeIcon 
                 icon="magnifying-glass"
-                style={{ marginRight:25 }}
+                style={{ marginRight:35, marginTop:15 }}
                 size={22}
                 color={Colors.labelBlack}
               />

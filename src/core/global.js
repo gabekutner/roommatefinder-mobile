@@ -11,6 +11,12 @@ import api, { ADDRESS } from './api';
 //-------------------------------------
 //  Socket receive message handlers
 //-------------------------------------
+function responseFriendList(set, get, friendList) {
+  set((state) => ({
+    friendList: friendList
+  }))
+}
+
 function responseRequestConnect(set, get, connection) {
 	const user = get().user
 	// If i was the one that made the connect request, 
@@ -284,6 +290,9 @@ const useGlobal = create((set, get) => ({
       socket.send(JSON.stringify({
         source: 'request.list'
       }))
+      socket.send(JSON.stringify({
+        source: 'friend.list'
+      }))
     }
     socket.onmessage = (event) => {
       // convert data to js object
@@ -292,6 +301,7 @@ const useGlobal = create((set, get) => ({
       console.log('onmessage. ', parsed)
 
       const responses = {
+        'friend.list': responseFriendList,
         'request.connect': responseRequestConnect,
         'request.accept': responseRequestAccept,
         'request.list': responseRequestList,
@@ -379,6 +389,13 @@ const useGlobal = create((set, get) => ({
 			id: id
 		}))
 	},
+
+  //-------------------
+  //    Friend List
+  //-------------------
+  friendList: null,
+
+
 }))
 
 

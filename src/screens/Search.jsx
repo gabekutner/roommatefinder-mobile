@@ -5,7 +5,7 @@ import {
 	Text, 
 	TextInput, 
 	TouchableOpacity, 
-	View 
+	View
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -14,6 +14,7 @@ import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
 import useGlobal from "../core/global";
 import Cell from "../components/Cell";
+import Colors from "../assets/Colors";
 
 
 
@@ -110,7 +111,7 @@ function SearchRow({ user }) {
 }
 
 
-export default function Search() {
+export default function Search({ navigation }) {
 	const [query, setQuery] = useState('')
 
 	const searchList = useGlobal(state => state.searchList)
@@ -121,7 +122,7 @@ export default function Search() {
 	}, [query]) 
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex:1 }}>
 			<View
 				style={{
 					padding: 16,
@@ -129,6 +130,19 @@ export default function Search() {
 					borderColor: '#f0f0f0'
 				}}
 			>
+				<TouchableOpacity 
+					onPress={() => navigation.goBack()}
+					style={{
+						paddingLeft:16,
+						paddingBottom:16,
+					}}
+				>
+					<FontAwesomeIcon 
+						icon='arrow-left'
+						size={22}
+						color={Colors.labelBlack}
+					/>
+				</TouchableOpacity>
 				<View>
 					<TextInput
 						style={{

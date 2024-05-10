@@ -85,11 +85,12 @@ function RequestRow({ item }) {
 
 
 export default function Requests() {
+
 	const requestList = useGlobal(state => state.requestList)
 
 	if (requestList === null) {
 		return  (
-			<ActivityIndicator style={{ flex: 1 }} />
+			<ActivityIndicator style={{ flex:1 }} />
 		)
 	}
 
@@ -100,7 +101,7 @@ export default function Requests() {
 	}
 
 	return (
-		<SafeAreaView style={{ flex:1, marginTop:25 }}>
+		<SafeAreaView style={{ flex:1 }}>
 			<FlatList
 				data={requestList}
 				renderItem={({ item }) => (
