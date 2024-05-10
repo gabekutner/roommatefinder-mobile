@@ -17,6 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 
 function RequestAccept({ item }) {
+
 	const requestAccept = useGlobal(state => state.requestAccept)
 
 	return (
@@ -29,13 +30,14 @@ function RequestAccept({ item }) {
 				alignItems: 'center',
 				justifyContent: 'center'
 			}}
-			onPress={() => requestAccept(item.sender.username)}
+			onPress={() => {
+        requestAccept(item.sender.id)
+      }}
 		>
 			<Text style={{ color: 'white', fontWeight: 'bold' }}>Accept</Text>
 		</TouchableOpacity>
 	)
 }
-
 
 
 

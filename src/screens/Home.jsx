@@ -77,7 +77,7 @@ export default function HomeScreen() {
             <TouchableOpacity onPress={() => navigation.navigate('search')}>
               <FontAwesomeIcon 
                 icon="magnifying-glass"
-                style={{ marginRight:16 }}
+                style={{ marginRight:25 }}
                 size={22}
                 color={Colors.labelBlack}
               />

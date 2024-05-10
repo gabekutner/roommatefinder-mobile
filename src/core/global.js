@@ -42,6 +42,51 @@ function responseRequestConnect(set, get, connection) {
 	}
 }
 
+function responseRequestAccept(set, get, connection) {
+  const user = get().user
+	// If I was the one that accepted the request, remove 
+	// request from the  requestList
+	if (user.id === connection.receiver.id) {
+		const requestList = [...get().requestList]
+		const requestIndex = requestList.findIndex(
+			request => request.id === connection.id
+		)
+		if (requestIndex >= 0) {
+			requestList.splice(requestIndex, 1)
+			set((state) => ({
+				requestList: requestList
+			}))
+		}
+	} 
+	// If the corresponding user is contained within the  
+	// searchList for the  acceptor or the  acceptee, update 
+	// the state of the searchlist item
+	const sl = get().searchList
+	if (sl === null) {
+		return
+	}
+	const searchList = [...sl]
+
+	let  searchIndex = -1
+	// If this user  accepted
+	if (user.id === connection.receiver.id) {
+		searchIndex = searchList.findIndex(
+			user => user.id === connection.sender.id
+		)
+	// If the other user accepted
+	} else {
+		searchIndex = searchList.findIndex(
+			user => user.id === connection.receiver.id
+		)
+	}
+	if (searchIndex >= 0) {
+		searchList[searchIndex].status = 'connected'
+		set((state) => ({
+			searchList: searchList
+		}))
+	}
+}
+
 function responseRequestList(set, get, requestList) {
   set((state) => ({
     requestList: requestList
@@ -59,7 +104,6 @@ function responseThumbnail(set, get, data) {
     user:data
   }))
 }
-
 
 
 const useGlobal = create((set, get) => ({
@@ -107,7 +151,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
 	//   Authentication
 	//---------------------
@@ -144,40 +187,42 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-  create: async (form, user) => {
+  // EDIT LATER ON, thumnbail attribute has been added, so create-profile request should happen once
 
-    if(user.token) {
-      try {
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/profiles/actions/create-profile/',
-          data: {
-            birthday: form.birthday,
-            dorm_building: form.dorm,
-            sex: form.sex,
-            interests: form.interests,
-          },
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
+  // create: async (form, user) => {
 
-        if (response.status !== 200) {
-          throw 'Authentication error'
-        }
-        console.log('create-profile success')
-        set((state) => ({
-          profileCreated:true,
-          user:response.data,
-        }))
+  //   if(user.token) {
+  //     try {
+  //       const response = await api({
+  //         method: 'post',
+  //         url: '/api/v1/profiles/actions/create-profile/',
+  //         data: {
+  //           birthday: form.birthday,
+  //           dorm_building: form.dorm,
+  //           sex: form.sex,
+  //           interests: form.interests,
+  //         },
+  //         headers: {"Authorization": `Bearer ${user.token}`},
+  //       })
 
-      } catch(error) {
-        console.log('useGlobal.create: ', error.response)
-      }
-    }
+  //       if (response.status !== 200) {
+  //         throw 'Authentication error'
+  //       }
+  //       console.log('create-profile success')
+  //       set((state) => ({
+  //         profileCreated:true,
+  //         user:response.data,
+  //       }))
 
-    set((state) => ({
-      profileCreated:true,
-    }))
-  },
+  //     } catch(error) {
+  //       console.log('useGlobal.create: ', error.response)
+  //     }
+  //   }
+
+  //   set((state) => ({
+  //     profileCreated:true,
+  //   }))
+  // },
 
   //---------------------
 	//     Image Upload
@@ -248,6 +293,7 @@ const useGlobal = create((set, get) => ({
 
       const responses = {
         'request.connect': responseRequestConnect,
+        'request.accept': responseRequestAccept,
         'request.list': responseRequestList,
         'search': responseSearch,
         'thumbnail': responseThumbnail
@@ -333,7 +379,6 @@ const useGlobal = create((set, get) => ({
 			id: id
 		}))
 	},
-
 }))
 
 
