@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import { useEffect } from 'react';
 import { 
   StatusBar,
-  View,
   TouchableOpacity,
 } from 'react-native';
 
@@ -19,9 +18,10 @@ import Message from './src/screens/Message';
 import Search from './src/screens/Search';
 import Onboarding from './src/screens/Onboarding';
 import CreateProfile from './src/screens/CreateProfile';
+import Requests from './src/screens/Requests';
 
 import useGlobal from './src/core/global';
-import Colors from './src/assets/Colors';
+import { colors as c } from './src/assets/config';
 
 
 const Stack = createNativeStackNavigator()
@@ -33,6 +33,8 @@ export default function App() {
   const authenticated = useGlobal(state => state.authenticated)
   const profileCreated = useGlobal(state => state.profileCreated)
   const init = useGlobal(state => state.init)
+  const theme = useGlobal(state => state.theme)
+  const activeColors = c[theme]
 
   useEffect(() => {
     init()
@@ -40,7 +42,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar barStyle={activeColors.primary === '#1f2937' ? 'light-content' : 'dark-content'} />
 
       <Stack.Navigator>
         {!initialized ? (
@@ -90,7 +92,26 @@ export default function App() {
             <Stack.Screen 
               name='messages' 
               component={Message} 
-              options={{ headerShown:false }}
+            />
+            <Stack.Screen 
+              name='requests' 
+              component={Requests} 
+              options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <FontAwesomeIcon 
+                      icon='arrow-left'
+                      size={22}
+                      color={activeColors.tint}
+                    />
+                  </TouchableOpacity>
+                ), 
+                title: 'Friend Requests',
+                headerTitleStyle: { color:activeColors.tint },
+                headerStyle: {
+                  backgroundColor:activeColors.primary,
+                }
+              })}
             />
           </>
         ) }

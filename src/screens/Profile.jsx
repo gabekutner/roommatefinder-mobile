@@ -9,13 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Thumbnail from "../components/Thumbnail";
 import useGlobal from '../core/global';
-import Colors from "../assets/Colors";
+import { colors as c } from "../assets/config";
 
 
-function ProfileImage() {
+function ProfileImage({ colors, theme }) {
 
   const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
-  const image = useGlobal(state => state.image)
   const user = useGlobal(state => state.user)
 
   return (
@@ -32,26 +31,27 @@ function ProfileImage() {
       <Thumbnail
 				url={user.thumbnail}
 				size={180}
+        borderColor={colors.secondary}
 			/>
       <View
         style={{
           position:"absolute",
           bottom:0,
           right:0,
-          backgroundColor:'#202020',
+          backgroundColor: colors.tint === '#f9fafb' ? colors.secondary : colors.tertiary,
           width:40,
           height:40,
           borderRadius:20,
           alignItems:'center',
           justifyContent:'center',
           borderWidth:3,
-          borderColor:'#fff'
+          borderColor: colors.primary,
         }}
       >
         <FontAwesomeIcon 
           icon='pencil'
           size={15}
-          color="#d0d0d0"
+          color='#f9fafb'
         />
       </View>
     </TouchableOpacity>
@@ -59,7 +59,7 @@ function ProfileImage() {
 }
 
 
-function ProfileLogout() {
+function ProfileLogout({ colors }) {
 
   const logout = useGlobal(state => state.logout)
 
@@ -73,17 +73,17 @@ function ProfileLogout() {
         alignItems:'center',
         justifyContent:'center',
         paddingHorizontal:26,
-        backgroundColor:Colors.utahRedRocks,
-        marginTop: 20
+        backgroundColor:colors.accent,
+        marginTop:20
       }}
     >
       <FontAwesomeIcon 
         icon='right-from-bracket'
         size={20}
-        color={Colors.bg}
+        color='#fff'
         style={{ marginRight:12 }}
       />
-      <Text style={{ fontWeight:'500', color:Colors.bg }}>Logout</Text>
+      <Text style={{ fontWeight:'500', color:'#fff' }}>Logout</Text>
     </TouchableOpacity>
   )
 }
@@ -91,20 +91,16 @@ function ProfileLogout() {
 export default function ProfileScreen() {
 
   const user = useGlobal(state => state.user)
+  const theme = useGlobal(state => state.theme)
+  let activeColors = c[theme]
 
   return (
-    <View
-      style={{
-        flex:1,
-        alignItems:'center',
-        paddingTop:100,
-      }}
-    >
-      <ProfileImage />
+    <View style={{ flex:1, alignItems:'center', paddingTop:100, backgroundColor:activeColors.primary }} >
+      <ProfileImage colors={activeColors} />
       <Text
         style={{
           textAlign:'center',
-          color:Colors.labelBlack,
+          color:activeColors.tint,
           fontSize:20,
           fontWeight:'500',
           marginBottom:6,
@@ -124,18 +120,18 @@ export default function ProfileScreen() {
           marginTop: 20
         }}
       >
-        <View style={{ marginRight:12, padding:8, backgroundColor:Colors.lightGrey, borderRadius:25 }}>
+        <View style={{ marginRight:12, padding:8, backgroundColor:activeColors.secondary, borderRadius:25 }}>
           <FontAwesomeIcon 
             icon='id-badge'
             size={25}
-            color={Colors.labelBlack}
+            color={activeColors.tint}
           />
         </View>
         
-        <Text style={{ fontWeight:'500', color:Colors.labelBlack, fontSize:19 }}>Profile</Text>
+        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19 }}>Profile</Text>
       </TouchableOpacity>
 
-      <ProfileLogout />
+      <ProfileLogout colors={activeColors} />
     </View>
   )
 } 

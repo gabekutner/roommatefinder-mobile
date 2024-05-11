@@ -498,6 +498,16 @@ const useGlobal = create((set, get) => ({
 		}))
 	},
 
+  //---------------------
+	//       Theme
+	//---------------------
+  theme: 'dark',
+
+  setTheme: () => {
+    set((state) => ({
+      theme: get().theme === 'dark' ? 'light' : 'dark'
+    }))
+  },
 
 }))
 

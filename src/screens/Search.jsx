@@ -14,21 +14,18 @@ import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
 import useGlobal from "../core/global";
 import Cell from "../components/Cell";
-import Colors from "../assets/Colors";
+import { colors as c} from '../assets/config'; 
 
 
-
-function SearchButton({ user }) {
+function SearchButton({ user, colors }) {
 	// Add tick if user is already  connected
 	if (user.status === 'connected') {
 		return (
 			<FontAwesomeIcon
 				icon='circle-check'
 				size={30}
-				color='#20d080'
-				style={{
-					marginRight: 10
-				}}
+				color='#6CC24A'
+				style={{ marginRight: 10 }}
 			/>
 		)
 	}
@@ -59,7 +56,7 @@ function SearchButton({ user }) {
 	return (
 		<TouchableOpacity
 			style={{
-				backgroundColor: data.disabled ? '#505055' : '#202020',
+				backgroundColor: data.disabled ? '#708E99' : '#3ABFC0',
 				paddingHorizontal: 14,
 				height: 36,
 				alignItems: 'center',
@@ -71,8 +68,8 @@ function SearchButton({ user }) {
 		>
 			<Text
 				style={{
-					color: data.disabled ? '#808080' : 'white',
-					fontWeight: 'bold'
+					color: colors.primary,
+					fontWeight: '600'
 				}}
 			>
 				{data.text}
@@ -82,30 +79,20 @@ function SearchButton({ user }) {
 }
 
 
-function SearchRow({ user }) {
+function SearchRow({ user, colors }) {
 	return (
-		<Cell>
+		<Cell colors={colors}>
 			<Thumbnail
 				url={user.thumbnail}
 				size={76}
+				borderColor={colors.secondary}
 			/>
-			<View
-				style={{
-					flex: 1,
-					paddingHorizontal: 16
-				}}
-			>
-				<Text
-					style={{
-						fontWeight: 'bold',
-						color: '#202020',
-						marginBottom: 4
-					}}
-				>
+			<View style={{ flex:1, paddingHorizontal:16 }}>
+				<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 					{user.name}
 				</Text>	
 			</View>
-			<SearchButton user={user} />
+			<SearchButton user={user} colors={colors} />
 		</Cell>
 	)
 }
@@ -116,18 +103,20 @@ export default function Search({ navigation }) {
 
 	const searchList = useGlobal(state => state.searchList)
 	const searchUsers = useGlobal(state => state.searchUsers)
+	const theme = useGlobal(state => state.theme)
+	const activeColors = c[theme]
 
 	useEffect(() => {
 		searchUsers(query)
 	}, [query]) 
 
 	return (
-		<SafeAreaView style={{ flex:1 }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
 			<View
 				style={{
 					padding: 16,
-					borderBottomWidth: 1,
-					borderColor: '#f0f0f0'
+					borderBottomWidth: .5,
+					borderColor: activeColors.tertiary
 				}}
 			>
 				<TouchableOpacity 
@@ -140,13 +129,13 @@ export default function Search({ navigation }) {
 					<FontAwesomeIcon 
 						icon='arrow-left'
 						size={22}
-						color={Colors.labelBlack}
+						color={activeColors.tint}
 					/>
 				</TouchableOpacity>
 				<View>
 					<TextInput
 						style={{
-							backgroundColor: '#e1e2e4',
+							backgroundColor: activeColors.secondary,
 							height: 52,
 							borderRadius: 26,
 							padding: 16,
@@ -156,12 +145,13 @@ export default function Search({ navigation }) {
 						value={query}
 						onChangeText={setQuery}
 						placeholder='Search...'
-						placeholderTextColor='#b0b0b0'
+						color={activeColors.tint}
+						placeholderTextColor={activeColors.tint}
 					/>
 					<FontAwesomeIcon
 						icon='magnifying-glass'
 						size={20}
-						color='#505050'
+						color={activeColors.tint}
 						style={{
 							position: 'absolute',
 							left: 18,
@@ -176,18 +166,20 @@ export default function Search({ navigation }) {
 					icon='magnifying-glass'
 					message='Search for friends'
 					centered={false}
+					colors={activeColors}
 				/>
 			) : searchList.length === 0 ? (
 				<Empty
 					icon='triangle-exclamation'
 					message={'No users found for "' + query + '"'}
 					centered={false}
+					colors={activeColors}
 				/>
 			) : (
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
-						<SearchRow user={item} />
+						<SearchRow user={item} colors={activeColors} />
 					)}
 					keyExtractor={item => item.id}
 				/>

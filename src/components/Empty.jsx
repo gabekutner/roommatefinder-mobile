@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
-export default function Empty({ icon, message, centered=true }) {
+export default function Empty({ icon, message, centered=true, colors }) {
   return (
     <View
       style={{
@@ -14,11 +14,12 @@ export default function Empty({ icon, message, centered=true }) {
         justifyContent:centered?'center' : 'flex-start',
         alignItems:'center',
         paddingVertical:120,
+        backgroundColor:colors.primary,
       }}
     >
       <FontAwesomeIcon 
         icon={icon}
-        color='#d0d0d0'
+        color={colors.tertiary}
         size={90}
         style={{
           marginBottom:16,
@@ -26,7 +27,7 @@ export default function Empty({ icon, message, centered=true }) {
       />
       <Text
         style={{
-          color:'#c3c3c3',
+          color:colors.tertiary,
           fontSize:16,
         }}
       >

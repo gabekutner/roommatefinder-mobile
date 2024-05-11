@@ -13,39 +13,26 @@ import Thumbnail from "../components/Thumbnail";
 
 import utils from "../core/utils";
 import useGlobal from "../core/global";
+import { colors as c } from "../assets/config";
 
 
-function FriendRow({ navigation, item }) {
+function FriendRow({ navigation, item, colors }) {
 	return (
 		<TouchableOpacity onPress={() => {
 			navigation.navigate('messages', item)
 		}}>
-			<Cell>
+			<Cell colors={colors}>
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={76}
+					borderColor={colors.secondary}
 				/>
-				<View
-					style={{
-						flex: 1,
-						paddingHorizontal: 16
-					}}
-				>
-					<Text
-						style={{
-							fontWeight: 'bold',
-							color: '#202020',
-							marginBottom: 4
-						}}
-					>
+				<View style={{ flex:1, paddingHorizontal: 16 }}>
+					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 						{item.friend.name}
 					</Text>
-					<Text
-						style={{
-							color: '#606060',
-						}}
-					>
-						{item.preview} <Text style={{ color: '#909090', fontSize: 13 }}>
+					<Text style={{ color: colors.tertiary }}>
+						{item.preview} <Text style={{ color: colors.tertiary, fontSize: 13 }}>
 							{utils.formatTime(item.updated)}
 						</Text>
 					</Text>
@@ -57,21 +44,21 @@ function FriendRow({ navigation, item }) {
 
 
 export default function Friends({ navigation }) {
-	const friendList = useGlobal(state => state.friendList)
-  // const friendList = []
 
-	// Show loading indicator
+	const friendList = useGlobal(state => state.friendList)
+	const theme = useGlobal(state => state.theme)
+  const activeColors = c[theme]
+
 	if (friendList === null) {
 		return  (
-			<ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center' }} />
+			<ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:activeColors.primary }} />
 		)
 	}
 
-	// Show empty if no requests
 	if (friendList.length === 0) {
 		return (
-      <SafeAreaView style={{ flex:1 }}>
-			  <Empty icon='inbox' message='No messages yet' />
+      <SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+			  <Empty icon='inbox' message='No messages yet' colors={activeColors} />
       </SafeAreaView>
       
 		)
@@ -79,11 +66,11 @@ export default function Friends({ navigation }) {
 
 	// Show request list
 	return (
-		<SafeAreaView style={{ flex:1 }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
 			<FlatList
 				data={friendList}
 				renderItem={({ item }) => (
-					<FriendRow navigation={navigation} item={item} />
+					<FriendRow navigation={navigation} item={item} colors={activeColors} />
 				)}
 				keyExtractor={item => item.id}
 			/>

@@ -1,19 +1,21 @@
+import { useEffect, useState } from "react";
 import { 
-  StyleSheet,
   TouchableOpacity,
   View,
+  Text,
+  Switch
 } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Requests from "./Requests";
 import Friends from "./Friends";
 import Profile from "./Profile";
+import Swipe from "./SwipeScreen";
 
-import Colors from "../assets/Colors";
 import useGlobal from "../core/global";
-import { useEffect } from "react";
+import {colors as c} from '../assets/config';
+
 
 const Tab = createBottomTabNavigator()
 
@@ -22,7 +24,15 @@ export default function HomeScreen() {
 
   const socketConnect = useGlobal(state => state.socketConnect)
   const socketDisconnect = useGlobal(state => state.socketDisconnect)
+  const setTheme = useGlobal(state => state.setTheme)
+  const theme = useGlobal(state => state.theme)
+  const activeColors = c[theme]
 
+  const [isEnabled, setIsEnabled] = useState(false)
+  const toggleSwitch = () => {
+    setIsEnabled(previousState => !previousState)
+    setTheme()
+  }
 
   useEffect(() => {
     socketConnect()
@@ -33,11 +43,11 @@ export default function HomeScreen() {
 
   return (
     <Tab.Navigator
-      screenOptions={({ route, navigation }) => ({
+      screenOptions={({ route }) => ({
         // https://fontawesome.com/search
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color }) => {
 					const icons = {
-						requests: 'bell',
+						swipe: 'home',
 						friends: 'inbox',
 						profile: 'user'
 					}
@@ -48,7 +58,7 @@ export default function HomeScreen() {
             </View>
 					)
 				},
-				tabBarActiveTintColor: '#be0000',
+				tabBarActiveTintColor: activeColors.accent,
 				tabBarShowLabel: false,
         initialRouteName:'friends',
         tabBarHideOnKeyboard:true,
@@ -60,17 +70,38 @@ export default function HomeScreen() {
           left:0, //20
           elevation:0, 
           height:110,
-          backgroundColor:'transparent',
+          backgroundColor:activeColors.primary,
         }
       })}
     >
       <Tab.Screen 
-        name="requests" 
-        component={Requests} 
-        options={() => ({
+        name="swipe" 
+        component={Swipe} 
+        options={({ navigation }) => ({
+          headerRight: () => (
+            <View style={{ flexDirection:'row', gap:15 }}>
+              <Switch 
+                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
+                trackColor={{false: 'red', true: '#6CC24A'}}
+                thumbColor={isEnabled ? 'white' : 'white'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+              <TouchableOpacity onPress={() => navigation.navigate('requests_')}>
+                <FontAwesomeIcon 
+                  icon="bell"
+                  size={22}
+                  style={{ marginRight:20 }}
+                  color={activeColors.tint}
+                />
+              </TouchableOpacity>
+            </View>
+            
+          ),
           title: '',
           headerStyle: {
-            backgroundColor:'transparent'
+            backgroundColor:activeColors.primary,
           }
         })}
       />
@@ -82,15 +113,27 @@ export default function HomeScreen() {
             <TouchableOpacity onPress={() => navigation.navigate('search')}>
               <FontAwesomeIcon 
                 icon="magnifying-glass"
-                style={{ marginRight:35, marginTop:15 }}
+                style={{ marginRight:20 }}
                 size={22}
-                color={Colors.labelBlack}
+                color={activeColors.tint}
               />
             </TouchableOpacity>
           ),
+          headerLeft: () => (
+            <Text 
+              style={{
+                marginLeft:20,
+                color:activeColors.tint,
+                fontSize:20,
+                fontWeight:'500'
+              }}
+            >
+              Friends
+            </Text>
+          ),
           title: '',
           headerStyle: {
-            backgroundColor:'transparent'
+            backgroundColor:activeColors.primary,
           }
         })}
       />

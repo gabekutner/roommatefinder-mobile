@@ -9,13 +9,11 @@ import {
   Easing, 
   FlatList, 
   InputAccessoryView, 
-  Keyboard, 
   Platform, 
   SafeAreaView, 
   Text, 
   TextInput, 
   TouchableOpacity, 
-  TouchableWithoutFeedback, 
   View 
 } from "react-native";
 
@@ -23,24 +21,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Thumbnail from "../components/Thumbnail"
 import useGlobal from "../core/global";
+import Colors from "../assets/Colors";
+import { colors as c } from '../assets/config';
 
 
-function MessageHeader({ friend }) {
+function MessageHeader({ navigation, friend, colors }) {
 	return  (
 		<View
 			style={{
 				flex: 1, 
 				flexDirection: 'row', 
-				alignItems: 'center'
+				alignItems: 'center',
 			}}
 		>
+			<TouchableOpacity
+				onPress={() => navigation.goBack()}
+				style={{ marginRight:25 }}
+			>
+				<FontAwesomeIcon 
+					icon='arrow-left'
+					size={22}
+					color={colors.tint}
+				/>
+			</TouchableOpacity>
 			<Thumbnail
 				url={friend.thumbnail}
 				size={30}
 			/>
 			<Text
 				style={{
-					color: '#202020',
+					color: colors.tint,
 					marginLeft: 10,
 					fontSize: 18,
 					fontWeight: 'bold'
@@ -53,7 +63,7 @@ function MessageHeader({ friend }) {
 }
 
 
-function MessageBubbleMe({ text }) {
+function MessageBubbleMe({ text, colors }) {
 	return (
 		<View
 			style={{
@@ -62,7 +72,7 @@ function MessageBubbleMe({ text }) {
 				paddingRight: 12
 			}}
 		>
-			<View style={{ flex: 1}} />
+			<View style={{ flex:1}} />
 			<View
 				style={{
 					backgroundColor: '#303040',
@@ -143,7 +153,7 @@ function MessageTypingAnimation({ offset }) {
 }
 
 
-function MessageBubbleFriend({ text='', friend, typing=false }) {
+function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 	return (
 		<View
 			style={{
@@ -193,7 +203,7 @@ function MessageBubbleFriend({ text='', friend, typing=false }) {
 }
 
 
-function MessageBubble({ index, message, friend }) {
+function MessageBubble({ index, message, friend, colors }) {
 	const [showTyping, setShowTyping] = useState(false)
 
 	const messagesTyping = useGlobal(state => state.messagesTyping)
@@ -218,51 +228,52 @@ function MessageBubble({ index, message, friend }) {
 
 	if (index === 0) {
 		if (showTyping) {
-			return <MessageBubbleFriend friend={friend} typing={true} />
+			return <MessageBubbleFriend friend={friend} typing={true} colors={colors} />
 		}
 		return
 	}
 
 	return message.is_me ? (
-		<MessageBubbleMe text={message.text} />
+		<MessageBubbleMe text={message.text} colors={colors} />
 	) : (
-		<MessageBubbleFriend text={message.text} friend={friend} />
+		<MessageBubbleFriend text={message.text} friend={friend} colors={colors} />
 	)
 }
 
 
 
-function MessageInput({ message, setMessage, onSend }) {
+function MessageInput({ message, setMessage, onSend, colors }) {
 	return (
 		<View
 			style={{
 				paddingHorizontal: 10,
 				paddingBottom: 10,
-				backgroundColor: 'white',
 				flexDirection: 'row',
 				alignItems: 'center'
 			}}
 		>
 			<TextInput
 				placeholder="Message..."
-				placeholderTextColor='#909090'
+				placeholderTextColor={colors.tint}
 				value={message}
 				onChangeText={setMessage}
+				autoComplete={false}
 				style={{
 					flex: 1,
 					paddingHorizontal: 18,
 					borderWidth: 1,
 					borderRadius: 25,
-					borderColor: '#d0d0d0',
-					backgroundColor: 'white',
-					height: 50
+					borderColor: colors.tertiary,
+					backgroundColor: colors.secondary,
+					height: 50,
+					color:colors.tint
 				}}
 			/>
 			<TouchableOpacity onPress={onSend}>
 				<FontAwesomeIcon
 					icon='paper-plane'
 					size={22}
-					color={'#303040'}
+					color={colors.tint}
 					style={{
 						marginHorizontal: 12
 					}}
@@ -279,10 +290,11 @@ export default function Message({ navigation, route }) {
 
 	const messagesList = useGlobal(state => state.messagesList)
 	const messagesNext = useGlobal(state => state.messagesNext)
-
 	const messageList = useGlobal(state => state.messageList)
 	const messageSend = useGlobal(state => state.messageSend)
 	const messageType = useGlobal(state => state.messageType)
+	const theme = useGlobal(state => state.theme)
+	const activeColors = c[theme]
 
 	const connectionId = route.params.id
 	const friend = route.params.friend
@@ -290,9 +302,12 @@ export default function Message({ navigation, route }) {
 	// Update the header 
 	useLayoutEffect(() => {
 		navigation.setOptions({
-			headerTitle: () => (
-				<MessageHeader friend={friend} />
-			)
+			headerLeft: () => (
+				<MessageHeader navigation={navigation} friend={friend} colors={activeColors} />
+			),
+			headerStyle: {
+				backgroundColor:activeColors.primary,
+			}
 		})
 	}, [])
 
@@ -313,14 +328,9 @@ export default function Message({ navigation, route }) {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			
-			<View
-				style={{
-					flex: 1,
-					marginBottom: Platform.OS === 'ios' ? 60 : 0
-				}}
-			>
+		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+
+			<View style={{ flex:1, marginBottom: Platform.OS === 'ios' ? 60 : 0 }} >
 				<FlatList
 					automaticallyAdjustKeyboardInsets={true}
 					contentContainerStyle={{
@@ -339,18 +349,19 @@ export default function Message({ navigation, route }) {
 							index={index}
 							message={item}
 							friend={friend}
+							colors={activeColors}
 						/>
 					)}
 				/>
 			</View>
 			
-
 			{Platform.OS === 'ios' ? (
 				<InputAccessoryView>
 					<MessageInput 
 						message={message}
 						setMessage={onType}
 						onSend={onSend}
+						colors={activeColors}
 					/>
 				</InputAccessoryView>
 			) : (
@@ -358,9 +369,10 @@ export default function Message({ navigation, route }) {
 					message={message}
 					setMessage={onType}
 					onSend={onSend}
+					colors={activeColors}
 				/>
 			)}
-			
+
 		</SafeAreaView>
 	)
 }
