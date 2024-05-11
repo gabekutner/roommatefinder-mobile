@@ -253,6 +253,7 @@ function MessageInput({ message, setMessage, onSend, colors }) {
 			}}
 		>
 			<TextInput
+				keyboardAppearance={colors.primary === '#1f2937' ? 'dark' : 'light'}
 				placeholder="Message..."
 				placeholderTextColor={colors.tint}
 				value={message}

@@ -135,13 +135,18 @@ export default function Search({ navigation }) {
 				<View>
 					<TextInput
 						style={{
-							backgroundColor: activeColors.secondary,
 							height: 52,
 							borderRadius: 26,
 							padding: 16,
 							fontSize: 16,
-							paddingLeft: 50
+							paddingLeft: 50,
+							paddingHorizontal: 18,
+							borderWidth: 1,
+							borderColor: activeColors.tertiary,
+							backgroundColor: activeColors.secondary,
+							color:activeColors.tint
 						}}
+						keyboardAppearance={activeColors.primary === '#1f2937' ? 'dark' : 'light'}
 						value={query}
 						onChangeText={setQuery}
 						placeholder='Search...'

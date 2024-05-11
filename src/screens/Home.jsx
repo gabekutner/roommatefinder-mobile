@@ -20,6 +20,16 @@ import {colors as c} from '../assets/config';
 const Tab = createBottomTabNavigator()
 
 
+function HeaderLogo({ logoColor }) {
+  return (
+    <View style={{ flex:1, flexDirection:'row', flexWrap:'wrap', alignItems:'center', marginLeft:20 }}>
+      <View style={{ width:30, height:30, backgroundColor:'#be0000' }} />
+      <Text style={{ padding:5, fontSize:19, color:logoColor }}>roommatefinder</Text>
+    </View>
+  )
+}
+
+
 export default function HomeScreen() {
 
   const socketConnect = useGlobal(state => state.socketConnect)
@@ -43,7 +53,9 @@ export default function HomeScreen() {
 
   return (
     <Tab.Navigator
+      initialRouteName="swipe"
       screenOptions={({ route }) => ({
+
         // https://fontawesome.com/search
         tabBarIcon: ({ color }) => {
 					const icons = {
@@ -60,7 +72,6 @@ export default function HomeScreen() {
 				},
 				tabBarActiveTintColor: activeColors.accent,
 				tabBarShowLabel: false,
-        initialRouteName:'friends',
         tabBarHideOnKeyboard:true,
         tabBarStyle: {
           borderTopWidth:0,
@@ -78,20 +89,21 @@ export default function HomeScreen() {
         name="swipe" 
         component={Swipe} 
         options={({ navigation }) => ({
+          headerLeft: () => <HeaderLogo logoColor={activeColors.tint}/>,
           headerRight: () => (
             <View style={{ flexDirection:'row', gap:15 }}>
               <Switch 
-                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
-                trackColor={{false: 'red', true: '#6CC24A'}}
-                thumbColor={isEnabled ? 'white' : 'white'}
+                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }], alignSelf:'center' }}
+                trackColor={{ true:activeColors.accent }}
+                thumbColor='#fff'
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
               />
-              <TouchableOpacity onPress={() => navigation.navigate('requests_')}>
+              <TouchableOpacity onPress={() => navigation.navigate('requests')}>
                 <FontAwesomeIcon 
                   icon="bell"
-                  size={22}
+                  size={27}
                   style={{ marginRight:20 }}
                   color={activeColors.tint}
                 />
@@ -114,7 +126,7 @@ export default function HomeScreen() {
               <FontAwesomeIcon 
                 icon="magnifying-glass"
                 style={{ marginRight:20 }}
-                size={22}
+                size={27}
                 color={activeColors.tint}
               />
             </TouchableOpacity>
