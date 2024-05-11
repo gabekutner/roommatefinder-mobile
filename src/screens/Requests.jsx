@@ -5,6 +5,7 @@ import {
   Text, 
   TouchableOpacity 
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import Empty from "../components/Empty";
 import Cell from "../components/Cell";
@@ -12,33 +13,29 @@ import Thumbnail from "../components/Thumbnail";
 
 import useGlobal from "../core/global";
 import utils from "../core/utils";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { colors as c } from '../assets/config';
 
 
-function RequestAccept({ item, colors, theme }) {
+function RequestAccept({ item, colors }) {
 
 	const requestAccept = useGlobal(state => state.requestAccept)
 
 	return (
 		<TouchableOpacity
+			onPress={() => {requestAccept(item.sender.id)}}
 			style={{
-				backgroundColor: '#3ABFC0',
-				paddingHorizontal: 14,
-				height: 36,
-				borderRadius: 18,
-				alignItems: 'center',
-				justifyContent: 'center'
+				backgroundColor:'#3ABFC0',
+				paddingHorizontal:14,
+				height:36,
+				borderRadius:18,
+				alignItems:'center',
+				justifyContent:'center'
 			}}
-			onPress={() => {
-        requestAccept(item.sender.id)
-      }}
 		>
-			<Text style={{ color: colors.primary, fontWeight: 'bold' }}>Accept</Text>
+			<Text style={{ color:colors.primary, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' }}>Accept</Text>
 		</TouchableOpacity>
 	)
 }
-
 
 
 function RequestRow({ item, colors }) {
@@ -51,11 +48,11 @@ function RequestRow({ item, colors }) {
 				size={76}
 			/>
 			<View style={{ flex: 1, paddingHorizontal: 16 }} >
-				<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
+				<Text style={{ fontWeight:'600', fontFamily:'NotoSans_Condensed-Regular', fontSize:17, color:colors.tint, marginBottom:4 }}>
 					{item.sender.name}
 				</Text>
-				<Text style={{ color: colors.tertiary }}>
-					{message} <Text style={{ color: colors.tertiary, fontSize: 13 }}>
+				<Text style={{ color:colors.tertiary, fontFamily:'NotoSans_Condensed-Regular' }}>
+					{message} <Text style={{ color:colors.tertiary, fontSize:13, fontFamily:'NotoSans_Condensed-Regular' }}>
 						{utils.formatTime(item.created)}
 					</Text>
 				</Text>

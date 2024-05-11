@@ -21,7 +21,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Thumbnail from "../components/Thumbnail"
 import useGlobal from "../core/global";
-import Colors from "../assets/Colors";
 import { colors as c } from '../assets/config';
 
 
@@ -29,9 +28,9 @@ function MessageHeader({ navigation, friend, colors }) {
 	return  (
 		<View
 			style={{
-				flex: 1, 
-				flexDirection: 'row', 
-				alignItems: 'center',
+				flex:1, 
+				flexDirection:'row', 
+				alignItems:'center',
 			}}
 		>
 			<TouchableOpacity
@@ -53,7 +52,8 @@ function MessageHeader({ navigation, friend, colors }) {
 					color: colors.tint,
 					marginLeft: 10,
 					fontSize: 18,
-					fontWeight: 'bold'
+					fontWeight: '500',
+					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
 				{friend.name}

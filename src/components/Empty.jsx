@@ -29,6 +29,7 @@ export default function Empty({ icon, message, centered=true, colors }) {
         style={{
           color:colors.tertiary,
           fontSize:16,
+          fontFamily:'NotoSans_Condensed-Regular',
         }}
       >
         {message}

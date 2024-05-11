@@ -83,7 +83,7 @@ function ProfileLogout({ colors }) {
         color='#fff'
         style={{ marginRight:12 }}
       />
-      <Text style={{ fontWeight:'500', color:'#fff' }}>Logout</Text>
+      <Text style={{ fontWeight:'600', fontSize:18, color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
     </TouchableOpacity>
   )
 }
@@ -104,6 +104,7 @@ export default function ProfileScreen() {
           fontSize:20,
           fontWeight:'500',
           marginBottom:6,
+          fontFamily:'NotoSans_Condensed-Regular'
         }}
       >
         {user.name}
@@ -127,11 +128,11 @@ export default function ProfileScreen() {
             color={activeColors.tint}
           />
         </View>
-        
-        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19 }}>Profile</Text>
+        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19, fontFamily:'NotoSans_Condensed-Regular' }}>Profile</Text>
       </TouchableOpacity>
 
       <ProfileLogout colors={activeColors} />
+
     </View>
   )
 } 

@@ -107,10 +107,11 @@ export default function App() {
                   </TouchableOpacity>
                 ), 
                 title: 'Friend Requests',
-                headerTitleStyle: { color:activeColors.tint },
+                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
                 headerStyle: {
                   backgroundColor:activeColors.primary,
-                }
+                },
+                headerShadowVisible: false, // border bottom invisible
               })}
             />
           </>

@@ -18,9 +18,7 @@ import { colors as c } from "../assets/config";
 
 function FriendRow({ navigation, item, colors }) {
 	return (
-		<TouchableOpacity onPress={() => {
-			navigation.navigate('messages', item)
-		}}>
+		<TouchableOpacity onPress={() => navigation.navigate('messages', item)} >
 			<Cell colors={colors}>
 				<Thumbnail
 					url={item.friend.thumbnail}
@@ -31,8 +29,8 @@ function FriendRow({ navigation, item, colors }) {
 					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 						{item.friend.name}
 					</Text>
-					<Text style={{ color: colors.tertiary }}>
-						{item.preview} <Text style={{ color: colors.tertiary, fontSize: 13 }}>
+					<Text style={{ color:colors.tertiary, fontFamily:'NotoSans_Condensed-Regular' }}>
+						{item.preview} <Text style={{ color:colors.tertiary, fontSize:13, fontFamily:'NotoSans_Condensed-Regular' }}>
 							{utils.formatTime(item.updated)}
 						</Text>
 					</Text>
@@ -60,7 +58,6 @@ export default function Friends({ navigation }) {
       <SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
 			  <Empty icon='inbox' message='No messages yet' colors={activeColors} />
       </SafeAreaView>
-      
 		)
 	}
 

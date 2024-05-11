@@ -25,7 +25,7 @@ function SearchButton({ user, colors }) {
 				icon='circle-check'
 				size={30}
 				color='#6CC24A'
-				style={{ marginRight: 10 }}
+				style={{ marginRight:10 }}
 			/>
 		)
 	}
@@ -57,19 +57,20 @@ function SearchButton({ user, colors }) {
 		<TouchableOpacity
 			style={{
 				backgroundColor: data.disabled ? '#708E99' : '#3ABFC0',
-				paddingHorizontal: 14,
-				height: 36,
-				alignItems: 'center',
-				justifyContent: 'center',
-				borderRadius: 18
+				paddingHorizontal:14,
+				height:36,
+				alignItems:'center',
+				justifyContent:'center',
+				borderRadius:18
 			}}
 			disabled={data.disabled}
 			onPress={data.onPress}
 		>
 			<Text
 				style={{
-					color: colors.primary,
-					fontWeight: '600'
+					color:colors.primary,
+					fontWeight:'600',
+					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
 				{data.text}
@@ -112,13 +113,7 @@ export default function Search({ navigation }) {
 
 	return (
 		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
-			<View
-				style={{
-					padding: 16,
-					borderBottomWidth: .5,
-					borderColor: activeColors.tertiary
-				}}
-			>
+			<View style={{	padding: 16	}} >
 				<TouchableOpacity 
 					onPress={() => navigation.goBack()}
 					style={{
@@ -144,7 +139,8 @@ export default function Search({ navigation }) {
 							borderWidth: 1,
 							borderColor: activeColors.tertiary,
 							backgroundColor: activeColors.secondary,
-							color:activeColors.tint
+							color:activeColors.tint,
+							fontFamily:'NotoSans_Condensed-Regular',
 						}}
 						keyboardAppearance={activeColors.primary === '#1f2937' ? 'dark' : 'light'}
 						value={query}
