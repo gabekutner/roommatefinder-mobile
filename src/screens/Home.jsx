@@ -29,6 +29,27 @@ function HeaderLogo({ logoColor }) {
   )
 }
 
+function ThemeSwitch({ colors, theme, onChange }) {
+  return (
+    <TouchableOpacity
+      onPress={onChange}
+    >
+      { theme === 'dark' ? 
+        <FontAwesomeIcon 
+          icon='sun'
+          size={27}
+          color={colors.tint}
+        /> 
+        : 
+        <FontAwesomeIcon 
+          icon='moon'
+          size={27}
+        />
+      }
+    </TouchableOpacity>
+  )
+}
+
 
 export default function HomeScreen() {
 
@@ -92,14 +113,16 @@ export default function HomeScreen() {
           headerLeft: () => <HeaderLogo logoColor={activeColors.tint}/>,
           headerRight: () => (
             <View style={{ flexDirection:'row', gap:15, marginRight:20 }}>
-              <Switch 
+              {/* <Switch 
                 style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }], alignSelf:'center' }}
                 trackColor={{ true:activeColors.accent }}
                 thumbColor='#fff'
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-              />
+              /> */}
+              <ThemeSwitch colors={activeColors} theme={theme} onChange={toggleSwitch} />
+
               <TouchableOpacity onPress={() => navigation.navigate('requests')}>
                 <FontAwesomeIcon 
                   icon="bell"
