@@ -11,7 +11,7 @@ import styles from '../styles/auth';
 export default function Input(props) {
   return (
     <View style={styles.inputFieldWrapper}>
-      <Text style={[styles.inputFieldLabel, { fontFamily:'NotoSans_Condensed-Regular' }]}>
+      <Text style={[styles.inputFieldLabel, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tint }]}>
         { props.label }
       </Text>
       <TextInput 
@@ -22,7 +22,12 @@ export default function Input(props) {
         keyboardType={props.keyboardType}
         placeholder={props.placeholder}
         placeholderTextColor={Colors.lightGrey}
-        style={[styles.inputField, { fontFamily:'NotoSans_Condensed-Regular' }]}
+        style={[styles.inputField, { 
+          fontFamily:'NotoSans_Condensed-Regular', 
+          color:props.colors.tint, 
+          backgroundColor:props.colors.secondary, 
+          borderColor:props.colors.tertiary 
+        }]}
         value={props.value}
         onChangeText={props.onChangeText}
         onPress={props.onPress}

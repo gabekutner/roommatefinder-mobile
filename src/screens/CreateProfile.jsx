@@ -67,7 +67,6 @@ function InterestsItem({title, id, handleOnClick}) {
 export default function CreateProfile({ navigation }) {
 
   const create = useGlobal(state => state.create)
-  const uploadImage = useGlobal(state => state.uploadImage)
   const user = useGlobal(state => state.user)
   const setProfileCreated = useGlobal(state => state.setProfileCreated)
 

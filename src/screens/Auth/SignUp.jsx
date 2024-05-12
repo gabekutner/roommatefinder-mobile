@@ -16,11 +16,14 @@ import Colors from '../../assets/Colors';
 import styles from '../../styles/auth';
 import api from '../../core/api';
 import useGlobal from '../../core/global';
+import { colors as c } from '../../assets/config';
 
 
 export default function SignUp({ navigation }) {
 
   const login = useGlobal(state => state.login)
+  const theme = useGlobal(state => state.theme)
+  const activeColors = c[theme]
 
   const [form, setForm] = useState({
     email: '',
@@ -32,7 +35,7 @@ export default function SignUp({ navigation }) {
 
   function onSignUp() {
     // form validation here
-    if (!form.email || !form.password || !form.rpassword) {
+    if (!form.name || !form.email || !form.password || !form.rpassword) {
       return
     }
 
@@ -70,14 +73,14 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}> 
+    <SafeAreaView style={[styles.container, { backgroundColor:activeColors.primary }]}> 
       <KeyboardAvoidingView behavior='height' style={{ flex:1 }}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
           <View style={styles.wrapper}>
 
             <View style={styles.header}>
-              <Title text='roommatefinder' color={Colors.labelBlack} />
-              <Text style={[styles.headerDesc, { fontFamily:'NotoSans_Condensed-Regular' }]}>
+              <Title text='roommatefinder' color={activeColors.tint} />
+              <Text style={[styles.headerDesc, { fontFamily:'NotoSans_Condensed-Regular', color:activeColors.tertiary }]}>
                 Sign up to find your future roommate!
               </Text>
             </View>
@@ -89,6 +92,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'Gabe Kutner'} 
                 value={form.name} 
                 onChangeText={name => setForm({ ...form, name })}  
+                colors={activeColors}
               />
 
               <Input 
@@ -98,7 +102,8 @@ export default function SignUp({ navigation }) {
                 keyboardType={'email-address'} 
                 placeholder={'gabe@example.com'} 
                 value={form.email} 
-                onChangeText={email => setForm({ ...form, email })}  
+                onChangeText={email => setForm({ ...form, email })} 
+                colors={activeColors}
               />
 
               <Input 
@@ -107,6 +112,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
+                colors={activeColors}
               />
 
               <Input 
@@ -115,6 +121,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'********'} 
                 value={form.rpassword} 
                 onChangeText={rpassword => setForm({ ...form, rpassword })} 
+                colors={activeColors}
               />
 
               <Button
@@ -123,6 +130,7 @@ export default function SignUp({ navigation }) {
                 onLinkPress={() => navigation.navigate('signin')}
                 linkQuestion={"Have an account?"}
                 linkDirectTo={'Sign in'}
+                colors={activeColors}
               />
             </View>
 

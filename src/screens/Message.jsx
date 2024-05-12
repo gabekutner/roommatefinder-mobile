@@ -49,10 +49,10 @@ function MessageHeader({ navigation, friend, colors }) {
 			/>
 			<Text
 				style={{
-					color: colors.tint,
-					marginLeft: 10,
-					fontSize: 18,
-					fontWeight: '500',
+					color:colors.tint,
+					marginLeft:10,
+					fontSize:18,
+					fontWeight:'500',
 					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
@@ -67,29 +67,30 @@ function MessageBubbleMe({ text, colors }) {
 	return (
 		<View
 			style={{
-				flexDirection: 'row',
-				padding: 4,
-				paddingRight: 12
+				flexDirection:'row',
+				padding:4,
+				paddingRight:12
 			}}
 		>
 			<View style={{ flex:1}} />
 			<View
 				style={{
-					backgroundColor: '#303040',
-					borderRadius: 21,
-					maxWidth: '75%',
-					paddingHorizontal: 16,
-					paddingVertical: 12,
-					justifyContent: 'center',
-					marginRight: 8,
-					minHeight: 42
+					backgroundColor:'#303040',
+					borderRadius:21,
+					maxWidth:'75%',
+					paddingHorizontal:16,
+					paddingVertical:12,
+					justifyContent:'center',
+					marginRight:8,
+					minHeight:42,
 				}}
 			>
 				<Text
 					style={{
-						color: 'white',
-						fontSize: 16,
-						lineHeight: 18
+						color:'white',
+						fontSize:16,
+						lineHeight:18,
+						fontFamily:'NotoSans_Condensed-Regular',
 					}}
 				>
 					{text}
@@ -113,16 +114,16 @@ function MessageTypingAnimation({ offset }) {
 			Animated.sequence([
 				Animated.delay(bump * offset),
 				Animated.timing(y, {
-					toValue: 1,
-					duration: bump,
-					easing: Easing.linear,
-					useNativeDriver: true
+					toValue:1,
+					duration:bump,
+					easing:Easing.linear,
+					useNativeDriver:true
 				}),
 				Animated.timing(y, {
-					toValue: 0,
-					duration: bump,
-					easing: Easing.linear,
-					useNativeDriver: true
+					toValue:0,
+					duration:bump,
+					easing:Easing.linear,
+					useNativeDriver:true
 				}),
 				Animated.delay(total - bump * 2 - bump * offset),
 			])
@@ -141,12 +142,12 @@ function MessageTypingAnimation({ offset }) {
 	return (
 		<Animated.View
 			style={{
-				width: 8,
-				height: 8,
-				marginHorizontal: 1.5,
-				borderRadius: 4,
-				backgroundColor: '#606060',
-				transform: [{ translateY }]
+				width:8,
+				height:8,
+				marginHorizontal:1.5,
+				borderRadius:4,
+				backgroundColor:'#606060',
+				transform:[{ translateY }]
 			}}
 		/>
 	)
@@ -157,9 +158,9 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 	return (
 		<View
 			style={{
-				flexDirection: 'row',
-				padding: 4,
-				paddingLeft: 16
+				flexDirection:'row',
+				padding:4,
+				paddingLeft:16
 			}}
 		>
 			<Thumbnail
@@ -168,18 +169,18 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 			/>
 			<View
 				style={{
-					backgroundColor: '#d0d2db',
-					borderRadius: 21,
-					maxWidth: '75%',
-					paddingHorizontal: 16,
-					paddingVertical: 12,
-					justifyContent: 'center',
-					marginLeft: 8,
-					minHeight: 42
+					backgroundColor:'#d0d2db',
+					borderRadius:21,
+					maxWidth:'75%',
+					paddingHorizontal:16,
+					paddingVertical:12,
+					justifyContent:'center',
+					marginLeft:8,
+					minHeight:42
 				}}
 			>
 				{typing ? (
-					<View style={{ flexDirection: 'row' }}>
+					<View style={{ flexDirection:'row' }}>
 						<MessageTypingAnimation offset={0} />
 						<MessageTypingAnimation offset={1} />
 						<MessageTypingAnimation offset={2} />
@@ -187,9 +188,10 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 				) : (
 					<Text
 						style={{
-							color: '#202020',
-							fontSize: 16,
-							lineHeight: 18
+							color:'#202020',
+							fontSize:16,
+							lineHeight:18,
+							fontFamily:'NotoSans_Condensed-Regular',
 						}}
 					>
 						{text}
@@ -197,7 +199,7 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 				)}
 				
 			</View>
-			<View style={{ flex: 1}} />
+			<View style={{ flex:1}} />
 		</View>
 	)
 }
@@ -246,10 +248,10 @@ function MessageInput({ message, setMessage, onSend, colors }) {
 	return (
 		<View
 			style={{
-				paddingHorizontal: 10,
-				paddingBottom: 10,
-				flexDirection: 'row',
-				alignItems: 'center'
+				paddingHorizontal:10,
+				paddingBottom:10,
+				flexDirection:'row',
+				alignItems:'center'
 			}}
 		>
 			<TextInput
@@ -261,13 +263,14 @@ function MessageInput({ message, setMessage, onSend, colors }) {
 				autoComplete={false}
 				style={{
 					flex: 1,
-					paddingHorizontal: 18,
-					borderWidth: 1,
-					borderRadius: 25,
-					borderColor: colors.tertiary,
-					backgroundColor: colors.secondary,
-					height: 50,
-					color:colors.tint
+					paddingHorizontal:18,
+					borderWidth:1,
+					borderRadius:25,
+					borderColor:colors.tertiary,
+					backgroundColor:colors.secondary,
+					height:50,
+					color:colors.tint,
+					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			/>
 			<TouchableOpacity onPress={onSend}>

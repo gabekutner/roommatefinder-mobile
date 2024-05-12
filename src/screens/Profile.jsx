@@ -38,20 +38,20 @@ function ProfileImage({ colors, theme }) {
           position:"absolute",
           bottom:0,
           right:0,
-          backgroundColor: colors.tint === '#f9fafb' ? colors.secondary : colors.tertiary,
+          backgroundColor:colors.secondary, //'#E8ECF4'
           width:40,
           height:40,
           borderRadius:20,
           alignItems:'center',
           justifyContent:'center',
           borderWidth:3,
-          borderColor: colors.primary,
+          borderColor:colors.primary,
         }}
       >
         <FontAwesomeIcon 
           icon='pencil'
           size={15}
-          color='#f9fafb'
+          color={colors.tint}
         />
       </View>
     </TouchableOpacity>

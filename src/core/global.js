@@ -246,6 +246,34 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+  createProfile: async (form, user) => {
+    if (user.token) {
+      try {
+        const response = api({
+          method: 'post',
+          url: '/api/v1/profiles/actions/create-profile/',
+          data: {
+            birthday: form.birthday,
+            sex: form.sex,
+            dorm_building: form.dorm_building,
+            interests: form.interests,
+            thumbnail: form.thumbnail,
+          },
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+
+        if (response.status !== 200) {
+          throw 'create-profile error'
+        }
+
+
+
+      } catch(error) {
+        console.log('useGlobal.createProfile: ', error)
+      }
+    }
+  },
+
   // EDIT LATER ON, thumnbail attribute has been added, so create-profile request should happen once
 
   // create: async (form, user) => {
@@ -283,47 +311,50 @@ const useGlobal = create((set, get) => ({
   //   }))
   // },
 
-  //---------------------
-	//     Image Upload
-	//---------------------
-  uploadImage: async (file, user) => {
+  // ----------------------------------------------*/
+  // needed for profile updating 
 
-    if (user.token) {
-      try {
-        const dataForm = new FormData()
-        const imageUri = file.uri
-        const fileName = imageUri.split('/').pop()
-        const fileType = fileName.split('.')[1]
+  // //---------------------
+	// //     Image Upload
+	// //---------------------
+  // uploadImage: async (file, user) => {
 
-        dataForm.append('image', {
-          name: fileName,
-          type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
-          uri:
-            Platform.OS === 'android'
-              ? file.uri
-              : file.uri.replace('file://', ''),
-        })
+  //   if (user.token) {
+  //     try {
+  //       const dataForm = new FormData()
+  //       const imageUri = file.uri
+  //       const fileName = imageUri.split('/').pop()
+  //       const fileType = fileName.split('.')[1]
 
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/photos/',
-          data: dataForm,
-          headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
-        })
+  //       dataForm.append('image', {
+  //         name: fileName,
+  //         type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
+  //         uri:
+  //           Platform.OS === 'android'
+  //             ? file.uri
+  //             : file.uri.replace('file://', ''),
+  //       })
 
-        if (response.status !== 200) {
-          throw 'Authentication error'
-        }
-        console.log('create-photo success')
-        set((state) => ({
-          image:imageUri
-        }))
+  //       const response = await api({
+  //         method: 'post',
+  //         url: '/api/v1/photos/',
+  //         data: dataForm,
+  //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
+  //       })
 
-      } catch(error) {
-        console.log('Global.uploadImage error: ', error)
-      }
-    }
-  },
+  //       if (response.status !== 200) {
+  //         throw 'Authentication error'
+  //       }
+  //       console.log('create-photo success')
+  //       set((state) => ({
+  //         image:imageUri
+  //       }))
+
+  //     } catch(error) {
+  //       console.log('Global.uploadImage error: ', error)
+  //     }
+  //   }
+  // },
 
   //---------------------
 	//      Websocket
@@ -501,7 +532,7 @@ const useGlobal = create((set, get) => ({
   //---------------------
 	//       Theme
 	//---------------------
-  theme: 'light',
+  theme: 'dark',
 
   setTheme: () => {
     set((state) => ({
