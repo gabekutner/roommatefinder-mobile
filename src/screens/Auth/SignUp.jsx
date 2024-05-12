@@ -32,7 +32,6 @@ export default function SignUp({ navigation }) {
     name: '',
   })
   
-
   function onSignUp() {
     // form validation here
     if (!form.name || !form.email || !form.password || !form.rpassword) {
@@ -125,7 +124,7 @@ export default function SignUp({ navigation }) {
               />
 
               <Button
-                onButtonPress={onSignUp()}
+                onButtonPress={() => {onSignUp()}}
                 buttonText={'Sign up'}
                 onLinkPress={() => navigation.navigate('signin')}
                 linkQuestion={"Have an account?"}

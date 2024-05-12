@@ -113,16 +113,11 @@ export default function HomeScreen() {
           headerLeft: () => <HeaderLogo logoColor={activeColors.tint}/>,
           headerRight: () => (
             <View style={{ flexDirection:'row', gap:15, marginRight:20 }}>
-              {/* <Switch 
-                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }], alignSelf:'center' }}
-                trackColor={{ true:activeColors.accent }}
-                thumbColor='#fff'
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-              /> */}
-              <ThemeSwitch colors={activeColors} theme={theme} onChange={toggleSwitch} />
-
+              <ThemeSwitch 
+                colors={activeColors} 
+                theme={theme} 
+                onChange={toggleSwitch} 
+              />
               <TouchableOpacity onPress={() => navigation.navigate('requests')}>
                 <FontAwesomeIcon 
                   icon="bell"

@@ -63,3 +63,46 @@ export const interestsData = [
   {"id": "49", "interest": "Rock Climbing"},
   {"id": "50", "interest": "Nature"},
 ]
+
+export default slides = [
+  {
+    id: "1",
+    title: "Birthday",
+    label: "My birthday is",
+    keyboardType: "numeric",
+    placeholder: "MM-DD-YYYY",
+    nonInput:false,
+  },
+  {
+    id: "2",
+    title: "Sex",
+    label: "I am a",
+    keyboardType: "default",
+    placeholder: "Guy",
+    nonInput:true,
+  },
+  {
+    id: "3",
+    title: "Dorm",
+    label: "I'm staying at",
+    keyboardType: "default",
+    placeholder: "Kahlert Village",
+    nonInput:false,
+  },
+  {
+    id: "4",
+    title: "Interests",
+    label: "Passions",
+    keyboardType: "default",
+    placeholder: "",
+    nonInput:true,
+  },
+  {
+    id: "5",
+    title: "Thumbnail",
+    label: "Add your first photo",
+    keyboardType: "default",
+    placeholder: "",
+    nonInput:true,
+  }
+]

@@ -219,6 +219,7 @@ const useGlobal = create((set, get) => ({
   login: (credentials, user, tokens) => {
     secure.set('credentials', credentials)
     secure.set('tokens', tokens)
+    console.log(user.has_account)
     set((state) => ({
       authenticated:true,
       user:user,
@@ -230,7 +231,9 @@ const useGlobal = create((set, get) => ({
     secure.wipe()
     set((state) => ({
       authenticated:false,
-      user:{}
+      user:{},
+      profileCreated:false,
+      theme:'light',
     }))
   },
 
@@ -265,8 +268,6 @@ const useGlobal = create((set, get) => ({
         if (response.status !== 200) {
           throw 'create-profile error'
         }
-
-
 
       } catch(error) {
         console.log('useGlobal.createProfile: ', error)
@@ -532,7 +533,7 @@ const useGlobal = create((set, get) => ({
   //---------------------
 	//       Theme
 	//---------------------
-  theme: 'dark',
+  theme: 'light',
 
   setTheme: () => {
     set((state) => ({

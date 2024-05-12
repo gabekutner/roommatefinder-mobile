@@ -102,6 +102,8 @@ export default function CreateProfile({ navigation }) {
     fontSize:17,
     fontWeight:'500',
   }
+
+  // birthday, sex, dorm, interests, thumbnail
   
   return (
     <SafeAreaView style={{ flex:1 }}>
@@ -111,9 +113,8 @@ export default function CreateProfile({ navigation }) {
       </Text>
 
       <TouchableOpacity
-        onPress={setProfileCreated()}
+        onPress={() => {setProfileCreated()}}
       >
-
         <Text>
           Skip for now ...
         </Text>
