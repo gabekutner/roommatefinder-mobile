@@ -160,23 +160,20 @@ function Item({ item, colors, form, setForm }) {
   }
 
   if (item.title === 'Interests') {
-    return (
-      <Interests colors={colors} form={form} setForm={setForm} />
-    )
+    return <Interests colors={colors} form={form} setForm={setForm} />
   }
 
   if (item.title === 'Thumbnail') {
-    return (
-      <Thumbnail colors={colors} form={form} setForm={setForm} />
-    )
+    return <Thumbnail colors={colors} form={form} setForm={setForm} />
   }  
 }
+
 
 function SubmitButton({ colors, form }) {
   const setProfileCreated = useGlobal(state => state.setProfileCreated)
   return (
     <Button 
-      onButtonPress={() => console.log(form)}
+      onButtonPress={() => console.log(form.interests)}
       colors={colors}
       buttonText="All Done"
       linkQuestion={"                                      "}

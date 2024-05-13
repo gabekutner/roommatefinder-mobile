@@ -16,7 +16,7 @@ export default function Button(props) {
           <Text style={[styles.buttonText, { fontFamily:'NotoSans_Condensed-Regular', color:'#f9fafb' }]}>{props.buttonText}</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={{ marginTop:30 }} onPress={props.onLinkPress}>
+      <TouchableOpacity style={{ marginTop:'7%' }} onPress={props.onLinkPress}>
         <Text style={[styles.navigateToOppositeText, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tertiary }]}>
           {props.linkQuestion}{' '}
           {/* check again, if tertiary is d1d5db (dark) then color is .tint else 405DE6 */}

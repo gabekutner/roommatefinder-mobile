@@ -11,7 +11,7 @@ export default StyleSheet.create({
     justifyContent:'center'
   },
   header: {
-    marginVertical:50,
+    marginVertical:'10%',
   },
   headerDesc: {
     marginVertical:10,
@@ -42,7 +42,7 @@ export default StyleSheet.create({
   },
   // buttons + navigate to opposite
   buttonWrapper: {
-    marginVertical:24
+    marginVertical:'5%'
   },
   button: { 
     borderRadius:8, 

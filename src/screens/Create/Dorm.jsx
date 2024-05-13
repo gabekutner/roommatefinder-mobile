@@ -12,20 +12,26 @@ import { dormsData } from '../../assets/Dictionary';
 export default function Dorm({ colors, form, setForm }) {
 
   return (
-    <FlatList 
-      showsVerticalScrollIndicator={false}
-      data={dormsData}
-      style={{ marginBottom:110, borderBottomColor:colors.tint, borderBottomWidth:.5 }}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => setForm({...form, dorm:item.id })}
-          style={[styles.option, { borderColor:colors.accent }]}
-        >
-          <Text style={[styles.text, { color:colors.tint }]}>{item.dorm}</Text>
-        </TouchableOpacity>
-      )}
-      keyExtractor={item => item.id}
-    />
+    <>
+      <FlatList 
+        showsVerticalScrollIndicator={false}
+        data={dormsData}
+        style={{ marginBottom:10, borderBottomColor:colors.tint, borderBottomWidth:.5 }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => setForm({...form, dorm:item.id })}
+            style={[styles.option, { borderColor:colors.accent }]}
+          >
+            <Text style={[styles.text, { color:colors.tint }]}>{item.dorm}</Text>
+          </TouchableOpacity>
+        )}
+        keyExtractor={item => item.id}
+      />
+      <Text style={{ marginBottom:80, marginHorizontal:35, color:activeColors.tertiary  }}>
+        Your age will be public.
+      </Text>
+    </>
+    
   )
 }
 

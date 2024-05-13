@@ -12,7 +12,7 @@ import useGlobal from '../core/global';
 import { colors as c } from "../assets/config";
 
 
-function ProfileImage({ colors, theme }) {
+function ProfileImage({ colors }) {
 
   const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
   const user = useGlobal(state => state.user)

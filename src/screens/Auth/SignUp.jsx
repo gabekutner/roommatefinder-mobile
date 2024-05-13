@@ -5,6 +5,9 @@ import {
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
+  Platform,
+  InputAccessoryView,
+  ScrollView,
   View,
 } from 'react-native';
 
@@ -12,7 +15,6 @@ import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import Colors from '../../assets/Colors';
 import styles from '../../styles/auth';
 import api from '../../core/api';
 import useGlobal from '../../core/global';
@@ -73,7 +75,8 @@ export default function SignUp({ navigation }) {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor:activeColors.primary }]}> 
-      <KeyboardAvoidingView behavior='height' style={{ flex:1 }}>
+            
+      {/* <InputAccessoryView> */}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
           <View style={styles.wrapper}>
 
@@ -85,7 +88,6 @@ export default function SignUp({ navigation }) {
             </View>
 
             <View style={styles.inputWrapper}>
-
               <Input 
                 label={'Full Name'}
                 placeholder={'Gabe Kutner'} 
@@ -113,7 +115,6 @@ export default function SignUp({ navigation }) {
                 onChangeText={password => setForm({ ...form, password })}
                 colors={activeColors}
               />
-
               <Input 
                 label={'Confirm Password'} 
                 secureTextEntry={true} 
@@ -132,10 +133,10 @@ export default function SignUp({ navigation }) {
                 colors={activeColors}
               />
             </View>
-
+          
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+      {/* </InputAccessoryView> */}
     </SafeAreaView>
   )
 }

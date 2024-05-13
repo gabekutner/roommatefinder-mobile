@@ -63,7 +63,7 @@ function MessageHeader({ navigation, friend, colors }) {
 }
 
 
-function MessageBubbleMe({ text, colors }) {
+function MessageBubbleMe({ text }) {
 	return (
 		<View
 			style={{
@@ -96,11 +96,9 @@ function MessageBubbleMe({ text, colors }) {
 					{text}
 				</Text>
 			</View>
-			
 		</View>
 	)
 }
-
 
 
 function MessageTypingAnimation({ offset }) {
@@ -197,9 +195,8 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 						{text}
 					</Text>
 				)}
-				
 			</View>
-			<View style={{ flex:1}} />
+			<View style={{ flex:1 }} />
 		</View>
 	)
 }
@@ -227,7 +224,6 @@ function MessageBubble({ index, message, friend, colors }) {
 		return () => clearInterval(check)
 	}, [messagesTyping])
 
-
 	if (index === 0) {
 		if (showTyping) {
 			return <MessageBubbleFriend friend={friend} typing={true} colors={colors} />
@@ -241,7 +237,6 @@ function MessageBubble({ index, message, friend, colors }) {
 		<MessageBubbleFriend text={message.text} friend={friend} colors={colors} />
 	)
 }
-
 
 
 function MessageInput({ message, setMessage, onSend, colors }) {
@@ -288,7 +283,6 @@ function MessageInput({ message, setMessage, onSend, colors }) {
 }
 
 
-
 export default function Message({ navigation, route }) {
 	const [message, setMessage] = useState('')
 
@@ -303,7 +297,7 @@ export default function Message({ navigation, route }) {
 	const connectionId = route.params.id
 	const friend = route.params.friend
 
-	// Update the header 
+	// update the header 
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
@@ -333,7 +327,6 @@ export default function Message({ navigation, route }) {
 
 	return (
 		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
-
 			<View style={{ flex:1, marginBottom: Platform.OS === 'ios' ? 60 : 0 }} >
 				<FlatList
 					automaticallyAdjustKeyboardInsets={true}
