@@ -1,15 +1,45 @@
-export const dormsData = {
-  "1": "Chapel Glen",
-  "2": "Gateway Heights",
-  "3": "Impact and Prosperity Epicenter",
-  "4": "Kahlert Village",
-  "5": "Lassonde Studios",
-  "6": "Officers Circle",
-  "7": "Sage Point",
-  "8": "Marriott Honors Community",
-  "9": "Guest House",
-  "10": "I don't know 🤷‍♂️",
-}
+export const dormsData = [
+  {
+    "id": "1",
+    "dorm": "Chapel Glen"
+  },
+  {
+    "id": "2",
+    "dorm": "Gateway Heights"
+  },
+  {
+    "id": "3",
+    "dorm": "Impact and Prosperity Epicenter"
+  },
+  {
+    "id": "4",
+    "dorm": "Kahlert Village"
+  },
+  {
+    "id": "5",
+    "dorm": "Lassonde Studios"
+  },
+  {
+    "id": "6",
+    "dorm": "Officers Circle"
+  },
+  {
+    "id": "7",
+    "dorm": "Sage Point"
+  },
+  {
+    "id": "8",
+    "dorm": "Marriott Honors Community"
+  },
+  {
+    "id": "9",
+    "dorm": "Guest House"
+  },
+  {
+    "id": "10",
+    "dorm": "I don't know 🤷‍♂️"
+  },
+]
 
 export const interestsData = [
   {"id": "1", "interest": "Hanging out with friends"},

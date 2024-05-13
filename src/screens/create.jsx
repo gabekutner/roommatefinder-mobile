@@ -14,7 +14,12 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Input from "../components/Input";
+import Button from '../components/Button';
+import Birthday from "./Create/Birthday";
+import Sex from "./Create/Sex";
+import Dorm from "./Create/Dorm";
+import Interests from "./Create/Interests";
+import Thumbnail from "./Create/Thumbnail";
 
 import slides, { interestsData } from '../assets/Dictionary';
 import useGlobal from "../core/global";
@@ -45,107 +50,137 @@ function Paginator({ colors, data, scrollX }) {
   )
 }
 
-function InterestsItem({ item, colors }) {
+// function InterestsItem({ item, colors }) {
+//   return (
+//     <TouchableOpacity 
+//       style={[styles.inputSelect, { 
+//         backgroundColor:colors.accent, 
+//         borderColor:colors.tertiary, 
+//         borderWidth:1,
+//         width:'auto',
+//         marginBottom:7,
+//       }]}
+//     >
+//       <Text style={[styles.inputSelectText, { color:colors.primary }]}>{item.interest}</Text>
+//     </TouchableOpacity>
+//   )
+// }
+
+// function InputSelect({ colors, which }) {
+//   return (
+//     which === 'Sex' ? (
+//       <>
+//         <Text style={{ marginBottom:6 }} />
+//         <View style={{ flexDirection:'row', gap:20 }}>
+//           <TouchableOpacity style={[styles.inputSelect, { backgroundColor:colors.accent, borderColor:colors.tertiary, borderWidth:1 }]}>
+//             <Text style={[styles.inputSelectText, { color:colors.primary }]}>Guy</Text>
+//           </TouchableOpacity>
+//           <TouchableOpacity style={[styles.inputSelect, { backgroundColor:colors.accent, borderColor:colors.tertiary, borderWidth:1 }]}>
+//             <Text style={[styles.inputSelectText, { color:colors.primary }]}>Girl</Text>
+//           </TouchableOpacity>
+//         </View>
+//       </>
+//     ) : (
+//       which === 'Interests' ? (
+//         <View style={{ marginBottom:100 }}>
+//           <Text style={{ marginBottom:6 }} />
+//           <FlatList 
+//             vertical
+//             scrollEnabled
+//             showsVerticalScrollIndicator={false}
+//             data={interestsData}
+//             renderItem={({ item }) => <InterestsItem item={item} colors={colors} />}
+//             keyExtractor={(item) => item.id}
+//           />
+//         </View>
+//       ) : (
+//         <TouchableOpacity
+//           style={{
+//             width:180, 
+//             height:180, 
+//             borderRadius:90,
+//             backgroundColor:'transparent',
+//             borderWidth:1,
+//             borderColor:colors.tertiary,
+//             borderStyle:'dashed',
+//             justifyContent:'center'
+//           }}
+//           onPress={() => {
+//             launchImageLibrary({ includeBase64:true, }, (response) => {
+//               if (response.didCancel) return
+//               const file = response.assets[0]
+//               // set thumbnail here
+//             })
+//           }}
+//         >
+//           <FontAwesomeIcon 
+//             icon="image"
+//             size={25}
+//             color={colors.tertiary}
+//             style={{ alignSelf:'center' }}
+//           />
+//         </TouchableOpacity>
+//       )
+//     )
+//   )
+// }
+
+function NextButton({ colors }) {
   return (
-    <TouchableOpacity 
-      style={[styles.inputSelect, { 
-        backgroundColor:colors.accent, 
-        borderColor:colors.tertiary, 
-        borderWidth:1,
-        width:'auto',
-        marginBottom:7,
-      }]}
+    <TouchableOpacity
+      style={{ 
+        marginTop:12,
+        backgroundColor:colors.accent,
+        padding:12,
+        borderRadius:24,
+      }}
     >
-      <Text style={[styles.inputSelectText, { color:colors.primary }]}>{item.interest}</Text>
+      <FontAwesomeIcon 
+        icon="arrow-right"
+        size={25}
+        color='#f3f4f6'
+      />
     </TouchableOpacity>
   )
 }
 
-function InputSelect({ colors, which }) {
-  return (
-    which === 'Sex' ? (
-      <>
-        <Text style={{ marginBottom:6 }} />
-        <View style={{ flexDirection:'row', gap:20 }}>
-          <TouchableOpacity style={[styles.inputSelect, { backgroundColor:colors.accent, borderColor:colors.tertiary, borderWidth:1 }]}>
-            <Text style={[styles.inputSelectText, { color:colors.primary }]}>Guy</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.inputSelect, { backgroundColor:colors.accent, borderColor:colors.tertiary, borderWidth:1 }]}>
-            <Text style={[styles.inputSelectText, { color:colors.primary }]}>Girl</Text>
-          </TouchableOpacity>
-        </View>
-      </>
-    ) : (
-      which === 'Interests' ? (
-        <View style={{ marginBottom:100 }}>
-          <Text style={{ marginBottom:6 }} />
-          <FlatList 
-            vertical
-            scrollEnabled
-            showsVerticalScrollIndicator={false}
-            data={interestsData}
-            renderItem={({ item }) => <InterestsItem item={item} colors={colors} />}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
-      ) : (
-        <TouchableOpacity
-          style={{
-            width:180, 
-            height:180, 
-            borderRadius:90,
-            backgroundColor:'transparent',
-            borderWidth:1,
-            borderColor:colors.tertiary,
-            borderStyle:'dashed',
-            justifyContent:'center'
-          }}
-          onPress={() => {
-            launchImageLibrary({ includeBase64:true, }, (response) => {
-              if (response.didCancel) return
-              const file = response.assets[0]
-              // set thumbnail here
-            })
-          }}
-        >
-          <FontAwesomeIcon 
-            icon="image"
-            size={25}
-            color={colors.tertiary}
-            style={{ alignSelf:'center' }}
-          />
-        </TouchableOpacity>
-      )
+
+function Item({ item, colors, form, setForm }) {
+
+  if (item.title === 'Birthday') {
+    return <Birthday form={form} setForm={setForm} />
+  }
+
+  if (item.title === 'Sex') {
+    return <Sex colors={colors} form={form} setForm={setForm} />
+  }
+
+  if (item.title === 'Dorm') {
+    return <Dorm colors={colors} form={form} setForm={setForm} />
+  }
+
+  if (item.title === 'Interests') {
+    return (
+      <Interests colors={colors} form={form} setForm={setForm} />
     )
-  )
+  }
+
+  if (item.title === 'Thumbnail') {
+    return (
+      <Thumbnail colors={colors} form={form} setForm={setForm} />
+    )
+  }  
 }
 
-
-function Item({ item, value, onChange }) {
+function SubmitButton({ colors, form }) {
+  const setProfileCreated = useGlobal(state => state.setProfileCreated)
   return (
-    <View style={{ flex:1, marginTop:75, alignItems:'center', width:window.width }}>
-        <Text style={styles.label}>
-          {item.label}
-        </Text>
-
-        { item.nonInput ? (
-          <InputSelect 
-            which={item.title} 
-            colors={activeColors}
-          />
-        ) : (
-          <Input
-            label={''}
-            autoCapitalize={'none'} 
-            autoCorrect={false}  
-            keyboardType={item.keyboardType} 
-            placeholder={item.placeholder} 
-            value={value} 
-            onChangeText={val => onChange(val)} 
-            colors={activeColors}
-          />
-        ) }
-    </View>
+    <Button 
+      onButtonPress={() => console.log(form)}
+      colors={colors}
+      buttonText="All Done"
+      linkQuestion={"                                      "}
+    />
   )
 }
 
@@ -155,13 +190,17 @@ export default function CreateProfileScreen() {
   const theme = useGlobal(state => state.theme)
   activeColors = c[theme]
 
+  const [form, setForm] = useState({
+    birthday: new Date(),
+    sex: "",
+    dorm: "",
+    interests: [],
+    thumbnail: null
+  })
+
   const [currentIndex, setCurrentIndex] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current
   const slidesRef = useRef(null)
-
-  // delete later, set for now
-  const [value, setValue] = useState(null)
-
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index)
@@ -186,7 +225,14 @@ export default function CreateProfileScreen() {
         <FlatList 
           horizontal
           data={slides}
-          renderItem={({ item }) => <Item item={item} value={value} onChange={setValue} />}
+          renderItem={({ item }) => (
+            <View style={{ flex:1, marginTop:75, alignItems:'center', width:window.width }}>
+              <Text style={styles.label}>
+                {item.label}
+              </Text>
+              <Item item={item} colors={activeColors} form={form} setForm={setForm} />
+            </View>
+          )}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           bounces={false}
@@ -200,6 +246,8 @@ export default function CreateProfileScreen() {
           ref={slidesRef}
         />
       </View>
+
+      {currentIndex === 4 ? <SubmitButton colors={activeColors} form={form} /> : <></>}
       
     </SafeAreaView>
    )
