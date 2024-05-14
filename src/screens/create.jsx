@@ -173,7 +173,7 @@ function SubmitButton({ colors, form }) {
   const setProfileCreated = useGlobal(state => state.setProfileCreated)
   return (
     <Button 
-      onButtonPress={() => console.log(form.interests)}
+      onButtonPress={() => console.log(form)}
       colors={colors}
       buttonText="All Done"
       linkQuestion={"                                      "}
@@ -205,7 +205,7 @@ export default function CreateProfileScreen() {
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold : 50 }).current
 
-  return (   
+  return (
     <SafeAreaView style={{ flex:1, alignItems:'center' }}>
       
       <Text style={{ marginVertical:50, textAlign:'center', color:activeColors.tertiary }}>

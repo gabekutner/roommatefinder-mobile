@@ -122,7 +122,7 @@ export default slides = [
   {
     id: "4",
     title: "Interests",
-    label: "Passions",
+    label: "Interests",
     keyboardType: "default",
     placeholder: "",
     nonInput:true,

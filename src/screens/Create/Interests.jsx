@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -8,21 +9,25 @@ import {
 import { interestsData } from '../../assets/Dictionary';
 
 
-function handleOnClick(id, form, setForm) {
-  const arr = [...form.interests]
-  if (arr.length < 5) {
-    if (arr.includes(id)) {
-      const index = arr.indexOf(id)
-      arr.splice(index, 1)
-    }
-    arr.push(id)
-    setForm({ ...form, interests:arr})
-  } else {
-    return
-  }
-}
 
 export default function Interests({ colors, form, setForm }) {
+
+  function handleOnClick(id, form, setForm) {
+    const arr = [...form.interests]
+    const uniqueId = `item_${id}`
+    if (arr.length < 5) {
+      if (arr.includes(id)) {
+        const index = arr.indexOf(id)
+        arr.splice(index, 1)
+      } else {
+        arr.push(id)
+      } 
+      setForm({ ...form, interests:arr})
+    } else {
+      return
+    }
+  }
+
   return (
     <>
       <FlatList 
@@ -32,9 +37,15 @@ export default function Interests({ colors, form, setForm }) {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => handleOnClick(item.id, form, setForm)}
-            style={[styles.option, { borderColor:colors.accent }]}
+            style={[
+              styles.option, 
+              {
+                borderColor: colors.accent,
+                backgroundColor: Object.values(form.interests).includes(item.id) ? colors.accent : 'transparent'
+              }
+            ]}
           >
-            <Text style={[styles.text, { color:colors.tint }]}>{item.interest}</Text>
+            <Text style={[styles.text, { color: Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint }]}>{item.interest}</Text>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}

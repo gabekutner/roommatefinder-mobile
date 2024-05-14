@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import {
   Text,
-  View,
   TouchableOpacity,
   StyleSheet,
   FlatList,
@@ -11,6 +11,13 @@ import { dormsData } from '../../assets/Dictionary';
 
 export default function Dorm({ colors, form, setForm }) {
 
+  const [selected, setSelected] = useState("")
+
+  function toggleSelected(key) {
+    setSelected(key)
+    setForm({ ...form, dorm:key })
+  }
+
   return (
     <>
       <FlatList 
@@ -19,10 +26,16 @@ export default function Dorm({ colors, form, setForm }) {
         style={{ marginBottom:10, borderBottomColor:colors.tint, borderBottomWidth:.5 }}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => setForm({...form, dorm:item.id })}
-            style={[styles.option, { borderColor:colors.accent }]}
+            onPress={() => toggleSelected(item.id)}
+            style={[
+              styles.option, 
+              { 
+                borderColor: colors.accent,
+                backgroundColor: selected === item.id ? colors.accent : 'transparent'
+              }
+            ]}
           >
-            <Text style={[styles.text, { color:colors.tint }]}>{item.dorm}</Text>
+            <Text style={[styles.text, { color: selected === item.id ? '#f3f4f6' : colors.tint }]}>{item.dorm}</Text>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
