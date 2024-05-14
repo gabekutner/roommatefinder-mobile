@@ -17,10 +17,8 @@ import Home from './src/screens/Home';
 import Message from './src/screens/Message';
 import Search from './src/screens/Search';
 import Onboarding from './src/screens/Onboarding';
-import CreateProfile from './src/screens/CreateProfile';
 import Requests from './src/screens/Requests';
-
-import CreateProfileScreen from './src/screens/create';
+import CreateProfile from './src/screens/CreateProfile';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -75,7 +73,7 @@ export default function App() {
           <>
              <Stack.Screen 
               name='create-profile'
-              component={CreateProfileScreen}
+              component={CreateProfile}
               options={{ headerShown:false }}
             />  
           </>

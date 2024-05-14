@@ -219,7 +219,6 @@ const useGlobal = create((set, get) => ({
   login: (credentials, user, tokens) => {
     secure.set('credentials', credentials)
     secure.set('tokens', tokens)
-    console.log(user.has_account)
     set((state) => ({
       authenticated:true,
       user:user,
@@ -241,13 +240,6 @@ const useGlobal = create((set, get) => ({
 	//    Create Profile
 	//---------------------
   profileCreated: false,
-
-  // delete later ...
-  setProfileCreated: () => {
-    set((state) => ({
-      profileCreated:true
-    }))
-  },
 
   createProfile: async (form, user) => {
     if (user.token) {
@@ -307,43 +299,6 @@ const useGlobal = create((set, get) => ({
       }
     }
   },
-
-  // EDIT LATER ON, thumnbail attribute has been added, so create-profile request should happen once
-
-  // create: async (form, user) => {
-
-  //   if(user.token) {
-  //     try {
-  //       const response = await api({
-  //         method: 'post',
-  //         url: '/api/v1/profiles/actions/create-profile/',
-  //         data: {
-  //           birthday: form.birthday,
-  //           dorm_building: form.dorm,
-  //           sex: form.sex,
-  //           interests: form.interests,
-  //         },
-  //         headers: {"Authorization": `Bearer ${user.token}`},
-  //       })
-
-  //       if (response.status !== 200) {
-  //         throw 'Authentication error'
-  //       }
-  //       console.log('create-profile success')
-  //       set((state) => ({
-  //         profileCreated:true,
-  //         user:response.data,
-  //       }))
-
-  //     } catch(error) {
-  //       console.log('useGlobal.create: ', error.response)
-  //     }
-  //   }
-
-  //   set((state) => ({
-  //     profileCreated:true,
-  //   }))
-  // },
 
   // ----------------------------------------------*/
   // needed for profile updating 
@@ -575,7 +530,6 @@ const useGlobal = create((set, get) => ({
   },
 
 }))
-
 
 
 export default useGlobal
