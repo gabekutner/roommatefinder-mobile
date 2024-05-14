@@ -170,10 +170,13 @@ function Item({ item, colors, form, setForm }) {
 
 
 function SubmitButton({ colors, form }) {
-  const setProfileCreated = useGlobal(state => state.setProfileCreated)
+
+  const user = useGlobal(state => state.user)
+  const createProfile = useGlobal(state => state.createProfile)
+
   return (
     <Button 
-      onButtonPress={() => console.log(form)}
+      onButtonPress={() => createProfile(form, user)}
       colors={colors}
       buttonText="All Done"
       linkQuestion={"                                      "}

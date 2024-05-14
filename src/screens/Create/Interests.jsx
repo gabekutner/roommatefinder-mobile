@@ -14,7 +14,6 @@ export default function Interests({ colors, form, setForm }) {
 
   function handleOnClick(id, form, setForm) {
     const arr = [...form.interests]
-    const uniqueId = `item_${id}`
     if (arr.length < 5) {
       if (arr.includes(id)) {
         const index = arr.indexOf(id)
