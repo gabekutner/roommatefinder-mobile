@@ -88,7 +88,7 @@ function ProfileLogout({ colors }) {
   )
 }
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const theme = useGlobal(state => state.theme)
@@ -111,6 +111,7 @@ export default function ProfileScreen() {
       </Text>
 
       <TouchableOpacity
+        onPress={() => navigation.navigate('edit-profile')}
         style={{
           flexDirection:'row',
           height:52,

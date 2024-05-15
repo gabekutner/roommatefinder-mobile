@@ -26,11 +26,15 @@ export default function Input(props) {
           fontFamily:'NotoSans_Condensed-Regular', 
           color:props.colors.tint, 
           backgroundColor:props.colors.secondary, 
-          borderColor:props.colors.tertiary 
+          borderColor:props.colors.tertiary,
+          width:props.width,
+          height:props.height,
+          paddingTop:props.paddingTop
         }]}
         value={props.value}
         onChangeText={props.onChangeText}
         onPress={props.onPress}
+        multiline={props.multiline}
       />
     </View>
   )

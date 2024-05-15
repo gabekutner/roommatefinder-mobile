@@ -19,6 +19,7 @@ import Search from './src/screens/Search';
 import Onboarding from './src/screens/Onboarding';
 import Requests from './src/screens/Requests';
 import CreateProfile from './src/screens/CreateProfile';
+import EditProfile from './src/screens/EditProfile';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -107,6 +108,27 @@ export default function App() {
                   </TouchableOpacity>
                 ), 
                 title: 'Friend Requests',
+                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+                headerStyle: {
+                  backgroundColor:activeColors.primary,
+                },
+                headerShadowVisible: false, // border bottom invisible
+              })}
+            />
+            <Stack.Screen 
+              name='edit-profile'
+              component={EditProfile}
+              options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <FontAwesomeIcon 
+                      icon='arrow-left'
+                      size={22}
+                      color={activeColors.tint}
+                    />
+                  </TouchableOpacity>
+                ), 
+                title: 'Edit Profile',
                 headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
                 headerStyle: {
                   backgroundColor:activeColors.primary,
