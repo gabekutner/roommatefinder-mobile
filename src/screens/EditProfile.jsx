@@ -15,7 +15,7 @@ import useGlobal from '../core/global';
 import { colors as c } from '../assets/config';
 
 
-export default function EditProfile({ navigation }) {
+export default function EditProfile() {
 
   const user = useGlobal(state => state.user)
   const editProfile = useGlobal(state => state.editProfile)
