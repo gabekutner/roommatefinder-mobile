@@ -2,7 +2,6 @@ import { useState } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   ScrollView
 } from 'react-native';
@@ -18,6 +17,8 @@ import { colors as c } from '../assets/config';
 
 export default function EditProfile({ navigation }) {
 
+  const user = useGlobal(state => state.user)
+  const editProfile = useGlobal(state => state.editProfile)
   const theme = useGlobal(state => state.theme)
   activeColors = c[theme] 
 
@@ -48,7 +49,7 @@ export default function EditProfile({ navigation }) {
               label="Name"
               editable={true}
               secureTextEntry={false}
-              autoCapitalize={true}
+              autoCapitalize={false}
               autoCorrect={false}
               keyboardType="default"
               placeholder="Gabe Kutner"
@@ -193,13 +194,21 @@ export default function EditProfile({ navigation }) {
       </ScrollView>
 
       <View style={{ paddingHorizontal:45 }}>  
-        <Button 
+        <Button
           colors={activeColors}
           buttonText="All Done"
+          onButtonPress={() => {
+            const resp = editProfile(form, user).then(_ => {
+              if (_.status == 200) {
+                // success handling
+                navigation.navigate('profile')
+              } else {
+                // error handling
+              }
+            })
+          }}
         />
       </View>
-      <Text>test</Text>
-      
 
     </SafeAreaView>
   )

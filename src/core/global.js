@@ -300,6 +300,37 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+  //---------------------
+	//    Edit Profile
+	//---------------------
+  editProfile: async (form, user) => {
+    if(user.token) {
+      try {
+
+        const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
+
+        const response = await api({
+          method: 'put',
+          url: `/api/v1/profiles/${user.id}/`,
+          data: cleanedForm,
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+  
+        if (response.status !== 200) {
+          throw 'create-profile error'
+        }
+  
+        console.log('edit-profile success')
+
+        return response
+
+      } catch(error) {
+        console.log(error.response)
+      }
+    }
+  },  
+
+
   // ----------------------------------------------*/
   // needed for profile updating 
 
