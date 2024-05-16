@@ -8,6 +8,8 @@ export const colors = {
     accentDark: '#890000', // brand color
 
     tint: '#111827', // text
+
+    constWhite: '#f3f4f6' // constant white
   },
   dark: {
     primary: '#1f2937', // background
@@ -18,6 +20,8 @@ export const colors = {
     accentDark: '#890000', // brand color
 
     tint: '#f9fafb', // text
+
+    constWhite: '#f3f4f6' // constant white
   }
 }
 

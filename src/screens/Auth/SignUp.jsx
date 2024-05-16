@@ -94,6 +94,7 @@ export default function SignUp({ navigation }) {
                 value={form.name} 
                 onChangeText={name => setForm({ ...form, name })}  
                 colors={activeColors}
+                height={55}
               />
 
               <Input 
@@ -105,6 +106,7 @@ export default function SignUp({ navigation }) {
                 value={form.email} 
                 onChangeText={email => setForm({ ...form, email })} 
                 colors={activeColors}
+                height={55}
               />
 
               <Input 
@@ -114,6 +116,7 @@ export default function SignUp({ navigation }) {
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={activeColors}
+                height={55}
               />
               <Input 
                 label={'Confirm Password'} 
@@ -122,6 +125,7 @@ export default function SignUp({ navigation }) {
                 value={form.rpassword} 
                 onChangeText={rpassword => setForm({ ...form, rpassword })} 
                 colors={activeColors}
+                height={55}
               />
 
               <Button

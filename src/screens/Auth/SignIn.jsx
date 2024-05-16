@@ -8,11 +8,12 @@ import {
   View,
 } from 'react-native';
 
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-// import Colors from '../../assets/Colors';
 import styles from '../../styles/auth';
 import api from '../../core/api';
 import useGlobal from '../../core/global';
@@ -92,6 +93,7 @@ export default function SignIn({ navigation }) {
                 value={form.email} 
                 onChangeText={email => setForm({ ...form, email })} 
                 colors={activeColors}
+                height={55}
               />
 
               <Input 
@@ -101,6 +103,7 @@ export default function SignIn({ navigation }) {
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}  
                 colors={activeColors}
+                height={55}
               />
 
               <Button 

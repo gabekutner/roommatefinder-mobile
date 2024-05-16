@@ -9,10 +9,17 @@ import {
   Dimensions,
 } from 'react-native';
 
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 import Colors from '../assets/Colors';
+import useGlobal from '../core/global';
+import { colors as c} from '../assets/config';
 
 
 export default function Onboarding({ navigation }) {
+
+  const theme = useGlobal(state => state.theme)
+  activeColors = c[theme]
 
   const [screen, setScreen] = useState(0)
   const slides = [
@@ -48,18 +55,8 @@ export default function Onboarding({ navigation }) {
   ])
 
   return (
-    <View 
-      style={{
-        flex:1, 
-        backgroundColor:Colors.utahRedRocks,
-      }}
-    >
-      <View 
-        style={{
-          flex:0.8,
-          backgroundColor:Colors.bg,
-        }}
-      >
+    <View style={{ flex:1, backgroundColor:activeColors.accentDark }}>
+      <View style={{ flex:0.8, backgroundColor:activeColors.constWhite }}>
         <FlatList
           data={slides}
           horizontal={true}
@@ -133,23 +130,18 @@ export default function Onboarding({ navigation }) {
             justifyContent:'center',
           }}
         >
-          <View style={[styles.dot, { backgroundColor: screen === 1 ? Colors.utahRed : Colors.bg }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 2 ? Colors.utahRed : Colors.bg }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 3 ? Colors.utahRed : Colors.bg }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 1 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 2 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 3 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
         </View>
       </View>
 
-      <View 
-        style={{
-          flex:0.2,
-          marginBottom: 25,
-        }}
-      >
+      <View style={{ flex:0.2, marginBottom: 25 }}>
         <TouchableOpacity 
           onPress={() => navigation.navigate("signin")}
           style={{
-            backgroundColor:Colors.bg,
-            padding:20,
+            backgroundColor:activeColors.constWhite,
+            padding:17,
             marginHorizontal:20,
             marginVertical:5,
             justifyContent:'center',
@@ -158,15 +150,15 @@ export default function Onboarding({ navigation }) {
             marginTop:20,
           }}
         >
-          <Text style={styles.buttonText}>Log in</Text>
+          <Text style={[styles.buttonText, { color:activeColors.accentDark }]}>Log in</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           onPress={() => navigation.navigate("signup")}
           style={{
             borderWidth:1,
-            borderColor:Colors.bg,
-            padding:20,
+            borderColor:activeColors.constWhite,
+            padding:17,
             marginHorizontal:20,
             marginVertical:5,
             justifyContent:'center',
@@ -174,7 +166,7 @@ export default function Onboarding({ navigation }) {
             borderRadius:5,
           }}
         >
-          <Text style={[styles.buttonText, {color:Colors.bg}]}>Create an Account</Text>
+          <Text style={[styles.buttonText, {color:activeColors.constWhite}]}>Create an Account</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -185,16 +177,14 @@ const styles = StyleSheet.create({
   dot: {
     width:12,
     height:12, 
-    backgroundColor:Colors.bg,
     borderRadius:50,
     marginHorizontal:5,
     borderWidth:1,
-    borderColor:Colors.bg,
   },
   buttonText: {
     fontWeight:'bold',
     fontSize:17,
-    color:Colors.utahRedRocks,
+    // color:Colors.utahRedRocks,
     fontFamily:'NotoSans_Condensed-Regular',
   },
 })

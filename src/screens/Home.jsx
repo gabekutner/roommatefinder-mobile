@@ -3,11 +3,11 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Switch
 } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 import Friends from "./Friends";
 import Profile from "./Profile";
@@ -22,9 +22,9 @@ const Tab = createBottomTabNavigator()
 
 function HeaderLogo({ logoColor }) {
   return (
-    <View style={{ flexDirection:'row', flexWrap:'wrap', alignItems:'center', marginLeft:20, width:'110%' }}>
+    <View style={{ flexDirection:'row', flexWrap:'wrap', alignItems:'center', marginLeft:17, width:'110%' }}>
       <View style={{ width:30, height:30, backgroundColor:'#be0000' }} />
-      <Text style={{ padding:5, fontWeight:'500', fontSize:20, color:logoColor, fontFamily:'Glegoo-Bold' }}>roommatefinder</Text>
+      <Text style={{ padding:5, fontSize:scale(16), color:logoColor, fontFamily:'Glegoo-Bold' }}>roommatefinder</Text>
     </View>
   )
 }
@@ -112,7 +112,7 @@ export default function HomeScreen() {
         options={({ navigation }) => ({
           headerLeft: () => <HeaderLogo logoColor={activeColors.tint}/>,
           headerRight: () => (
-            <View style={{ flexDirection:'row', gap:15, marginRight:20 }}>
+            <View style={{ flexDirection:'row', gap:15, marginRight:17 }}>
               <ThemeSwitch 
                 colors={activeColors} 
                 theme={theme} 
@@ -143,7 +143,7 @@ export default function HomeScreen() {
             <TouchableOpacity onPress={() => navigation.navigate('search')}>
               <FontAwesomeIcon 
                 icon="magnifying-glass"
-                style={{ marginRight:20 }}
+                style={{ marginRight:17 }}
                 size={27}
                 color={activeColors.tint}
               />
