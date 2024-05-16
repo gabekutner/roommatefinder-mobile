@@ -11,7 +11,6 @@ import {
 
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
-import Colors from '../assets/Colors';
 import useGlobal from '../core/global';
 import { colors as c} from '../assets/config';
 
@@ -141,7 +140,7 @@ export default function Onboarding({ navigation }) {
           onPress={() => navigation.navigate("signin")}
           style={{
             backgroundColor:activeColors.constWhite,
-            padding:17,
+            padding:20,
             marginHorizontal:20,
             marginVertical:5,
             justifyContent:'center',
@@ -158,7 +157,7 @@ export default function Onboarding({ navigation }) {
           style={{
             borderWidth:1,
             borderColor:activeColors.constWhite,
-            padding:17,
+            padding:20,
             marginHorizontal:20,
             marginVertical:5,
             justifyContent:'center',

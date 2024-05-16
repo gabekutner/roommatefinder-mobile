@@ -9,7 +9,10 @@ export const colors = {
 
     tint: '#111827', // text
 
-    constWhite: '#f3f4f6' // constant white
+    // constants
+    constWhite: '#f3f4f6', // constant white
+    constBlack: '#111827', // constant black
+    green: '#6CC24A', 
   },
   dark: {
     primary: '#1f2937', // background
@@ -20,8 +23,11 @@ export const colors = {
     accentDark: '#890000', // brand color
 
     tint: '#f9fafb', // text
-
-    constWhite: '#f3f4f6' // constant white
+    
+    // constants
+    constWhite: '#f3f4f6', // constant white
+    constBlack: '#111827', // constant black
+    green: '#6CC24A', 
   }
 }
 

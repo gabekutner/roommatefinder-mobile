@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,10 +9,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import Input from '../components/Input';
 import Button from '../components/Button';
+import SnackBar from '../components/SnackBarMessage';
 
 import useGlobal from '../core/global';
 import { colors as c } from '../assets/config';
-
 
 
 export default function EditProfile({ navigation }) {
@@ -21,6 +21,9 @@ export default function EditProfile({ navigation }) {
   const editProfile = useGlobal(state => state.editProfile)
   const theme = useGlobal(state => state.theme)
   activeColors = c[theme] 
+
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   const [form, setForm] = useState({
     name: "",
@@ -34,6 +37,17 @@ export default function EditProfile({ navigation }) {
     interests: [],
     graduation_year: ""
   })
+
+  // show snackbar
+  useEffect(() => {
+    if (showSuccess || showError) {
+      const toRef = setTimeout(() => {
+        setShowSuccess(false)
+        setShowError(false)
+        clearTimeout(toRef)
+      }, 3000)
+    }
+  }, [showSuccess, showError])
 
   return (
     <SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
@@ -52,7 +66,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={false}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="Gabe Kutner"
+              placeholder={user.name}
               value={form.name}
               onChangeText={name => setForm({ ...form, name })}
               width={300}
@@ -69,7 +83,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={true}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="@gabekutner"
+              placeholder={user.instagram ? user.instagram : "@"}
               value={form.instagram}
               onChangeText={instagram => setForm({ ...form, instagram })}
               width={300}
@@ -86,7 +100,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={true}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="@gkutner34"
+              placeholder={user.snapchat ? user.snapchat : "@"}
               value={form.snapchat}
               onChangeText={snapchat => setForm({ ...form, snapchat })}
               width={300}
@@ -103,7 +117,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={true}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="Computer Engineering"
+              placeholder={user.major ? user.major : "..."}
               value={form.major}
               onChangeText={major => setForm({ ...form, major })}
               width={300}
@@ -122,7 +136,7 @@ export default function EditProfile({ navigation }) {
                 autoCapitalize={true}
                 autoCorrect={false}
                 keyboardType="default"
-                placeholder="San Francisco"
+                placeholder={user.city ? user.city : "San Francisco"}
                 value={form.city}
                 onChangeText={city => setForm({ ...form, city })}
                 width={230}
@@ -139,7 +153,7 @@ export default function EditProfile({ navigation }) {
                 autoCapitalize={true}
                 autoCorrect={false}
                 keyboardType="default"
-                placeholder="CA"
+                placeholder={user.state ? user.state : "CA"}
                 value={form.state}
                 onChangeText={state => setForm({ ...form, state })}
                 width={70}
@@ -158,7 +172,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={true}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="2028"
+              placeholder={user.graduation_year ? user.graduation_year : "2028"}
               value={form.graduation_year}
               onChangeText={graduation_year => setForm({ ...form, graduation_year })}
               width={300}
@@ -175,7 +189,7 @@ export default function EditProfile({ navigation }) {
               autoCapitalize={false}
               autoCorrect={false}
               keyboardType="default"
-              placeholder="A little about me ..."
+              placeholder={user.description ? user.description : "A little bit about me ..."}
               value={form.description}
               onChangeText={description => setForm({ ...form, description })}
               width={300}
@@ -201,14 +215,19 @@ export default function EditProfile({ navigation }) {
             const resp = editProfile(form, user).then(_ => {
               if (_.status == 200) {
                 // success handling
-                navigation.navigate('profile')
+                setShowSuccess(true)
+                
               } else {
                 // error handling
+                setShowError(true)
               }
             })
           }}
         />
       </View>
+
+      { showSuccess ? <SnackBar colors={activeColors} message={"Profile updated successfully!"} icon={"square-check"} type={'success'} /> : <></> }
+      { showError ? <SnackBar colors={activeColors} message={"Profile update failed"} icon={"square-xmark"} type={'error'} /> : <></> }
 
     </SafeAreaView>
   )
