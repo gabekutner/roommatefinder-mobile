@@ -288,7 +288,6 @@ const useGlobal = create((set, get) => ({
         }
 
         console.log('create-profile success')
-
         set((state) => ({
           profileCreated:true,
           user:response.data,
@@ -321,7 +320,6 @@ const useGlobal = create((set, get) => ({
         }
   
         console.log('edit-profile success')
-
         return response
 
       } catch(error) {
@@ -348,13 +346,13 @@ const useGlobal = create((set, get) => ({
   
         console.log('get-swipe success')
         return response
+
       } catch(error) {
         if (error.response.status === 404) {
           return 404
         } else {
           console.log(error)
         }
-        
       }
     }
   },

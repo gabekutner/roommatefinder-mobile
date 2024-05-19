@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
+  ActivityIndicator,
   Animated,
   Dimensions,
   LayoutAnimation,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 
 import Empty from '../components/Empty';
+import CardItem from '../components/Card';
 
 import useGlobal from '../core/global';
 import { colors as c } from '../assets/config'; 
@@ -26,7 +28,7 @@ export default function Swipe() {
   const colors = c[theme]
 
   const opacity = useRef(new Animated.Value(0)).current
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [page, setPage] = useState(1)
 
@@ -39,6 +41,7 @@ export default function Swipe() {
       const response = await getSwipe(user, page)
       if (response === 404) {
         // what to do if user has scrolled through all the users
+        // set to 0, will render a 'ran out of profiles' message
         setData([])
       } else {
         const userData = await response.data.results
@@ -58,18 +61,26 @@ export default function Swipe() {
       // if newData.length is 0, we ran out of users so fetch 
       // more data on the next page
       if (newData.length === 0) {
-        setLoading(true)
+        // setLoading(true)
         setPage(prevPage => prevPage + 1)
-        setLoading(false)
+        // setLoading(false)
       }
 
       return newData
     })
   }
   
+  // if (loading) {
+  //   return (
+  //     <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>  
+  //       <ActivityIndicator size="large" />
+  //     </View> 
+  //   )
+  // }
+
   if (data.length === 0) {
 		return (
-			<Empty icon='hourglass' message='You ran out of people.' colors={colors} />
+	  	<Empty icon='hourglass' message='You ran out of people.' colors={colors} />
 		)
 	}
 
@@ -147,7 +158,7 @@ const Card = ({ item, data, index, colors, removeItem }) => {
         styles.center,
         {
           zIndex: data.length - index,
-          marginBottom:150,
+          marginBottom:75,
         },
       ]}
     >
@@ -164,13 +175,12 @@ const Card = ({ item, data, index, colors, removeItem }) => {
             ],
             width: 90 - index * 1 + '%',
             marginTop: index * 10,
-            height:600,
+            height:680,
           },
         ]}
       >
         {/* card content */}
-        <Text style={{color: colors.tint, fontSize: 25}}>Swipe left or right</Text>
-        <Text style={{color: colors.tint, fontSize: 18}}>{item.name}</Text>
+        <CardItem item={item} colors={colors} />
       </Animated.View>
     </Animated.View>
   )
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#00000055',
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
+    // alignItems: 'center',
+    // justifyContent: 'space-evenly',
   },
 })
