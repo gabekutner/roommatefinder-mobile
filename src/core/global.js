@@ -328,7 +328,34 @@ const useGlobal = create((set, get) => ({
         console.log(error.response)
       }
     }
-  },  
+  },
+
+  //---------------------
+	//        Swipe
+	//---------------------
+  getSwipe: async (user, page) => {
+    if(user.token) {
+      try {
+
+        const response = await api({
+          method: 'get',
+          url: `/api/v1/swipe/?page=1`,
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+  
+        if (response.status !== 200) {
+          throw 'get-swipe error'
+        }
+  
+        console.log('get-swipe success')
+
+        return response
+
+      } catch(error) {
+        console.log(error.response)
+      }
+    }
+  },
 
 
   // ----------------------------------------------*/

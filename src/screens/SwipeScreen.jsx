@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Animated,
   Dimensions,
@@ -16,28 +16,33 @@ const { width } = Dimensions.get('window')
 const offset = width / 5
 
 
-
-const random = () => parseInt(Math.random() * 150);
-const randomColor = () =>
-  'rgb(' + random() + ',' + random() + ' , ' + random() + ')';
-let _data = []
-for (let i = 0; i < 10; i += 1) {
-  _data.push(randomColor())
-}
-
-
 export default function Swipe() {
 
+  const user = useGlobal(state => state.user)
+  const getSwipe = useGlobal(state => state.getSwipe)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
   const opacity = useRef(new Animated.Value(0)).current
-  const [data, setData] = useState(_data)
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async() => {
+    try {
+      const response = await getSwipe(user, 1)
+      const userData = await response.data.results
+      setData(userData)
+    } catch(error) {
+      console.log('Swipe.fetchData error: ', error)
+    }
+  }
 
   const removeItem = () => {
     let newData = [...data]
     newData.splice(0, 1)
-    newData = [...newData, randomColor()]
     LayoutAnimation.easeInEaseOut()
     setData(newData)
   }
@@ -51,7 +56,7 @@ export default function Swipe() {
       <View style={styles.container}>
         {data.map((item, index) => (
           <Card
-            key={item}
+            key={item.id}
             item={item}
             data={data}
             index={index}
@@ -138,7 +143,7 @@ const Card = ({ item, data, index, colors, removeItem }) => {
       >
         {/* card content */}
         <Text style={{color: colors.tint, fontSize: 25}}>Swipe left or right</Text>
-        {/* <Text style={{color: colors.tint, fontSize: 18}}>{item}</Text> */}
+        <Text style={{color: colors.tint, fontSize: 18}}>{item.name}</Text>
       </Animated.View>
     </Animated.View>
   );
