@@ -20,6 +20,7 @@ import Onboarding from './src/screens/Onboarding';
 import Requests from './src/screens/Requests';
 import CreateProfile from './src/screens/CreateProfile';
 import EditProfile from './src/screens/EditProfile';
+import Settings from './src/screens/Settings';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -136,6 +137,12 @@ export default function App() {
                 headerShadowVisible: false, // border bottom invisible
               })}
             />
+            <Stack.Screen 
+              name="settings"
+              component={Settings}
+              options={{ headerShown:false }}
+            />
+            
           </>
         ) }
       </Stack.Navigator>

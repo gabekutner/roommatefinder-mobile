@@ -59,9 +59,7 @@ export default function HomeScreen() {
   const theme = useGlobal(state => state.theme)
   const activeColors = c[theme]
 
-  const [isEnabled, setIsEnabled] = useState(false)
   const toggleSwitch = () => {
-    setIsEnabled(previousState => !previousState)
     setTheme()
   }
 

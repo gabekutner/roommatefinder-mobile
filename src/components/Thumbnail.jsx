@@ -4,7 +4,7 @@ import {
 import utils from "../core/utils";
 
 
-function Thumbnail({ url, size, borderColor }) {
+export default function Thumbnail({ url, size, borderColor }) {
 	return (
 		<Image 
 			source={utils.thumbnail(url)}
@@ -19,5 +19,3 @@ function Thumbnail({ url, size, borderColor }) {
 		/>
 	)
 }
-
-export default Thumbnail

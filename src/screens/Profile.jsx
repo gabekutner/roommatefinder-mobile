@@ -110,6 +110,8 @@ export default function ProfileScreen({ navigation }) {
         {user.name}
       </Text>
 
+      <View style={{ justifyContent:'flex-start' }}>
+
       <TouchableOpacity
         onPress={() => navigation.navigate('edit-profile')}
         style={{
@@ -117,7 +119,6 @@ export default function ProfileScreen({ navigation }) {
           height:52,
           borderRadius:26,
           alignItems:'center',
-          justifyContent:'center',
           paddingHorizontal:26,
           marginTop: 20
         }}
@@ -131,6 +132,32 @@ export default function ProfileScreen({ navigation }) {
         </View>
         <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19, fontFamily:'NotoSans_Condensed-Regular' }}>Profile</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('settings')}
+        style={{
+          flexDirection:'row',
+          height:52,
+          borderRadius:26,
+          alignItems:'center',
+          paddingHorizontal:26,
+          marginTop: 10
+        }}
+      >
+        <View style={{ marginRight:12, padding:8, backgroundColor:activeColors.secondary, borderRadius:25 }}>
+          <FontAwesomeIcon 
+            icon='gear'
+            size={25}
+            color={activeColors.tint}
+          />
+        </View>
+        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19, fontFamily:'NotoSans_Condensed-Regular' }}>Settings</Text>
+      </TouchableOpacity>
+
+
+      </View>
+
+      
 
       <ProfileLogout colors={activeColors} />
 
