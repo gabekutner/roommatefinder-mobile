@@ -20,7 +20,7 @@ const { width } = Dimensions.get('window')
 const offset = width / 5
 
 
-export default function Swipe() {
+export default function Swipe({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const getSwipe = useGlobal(state => state.getSwipe)
@@ -28,7 +28,6 @@ export default function Swipe() {
   const colors = c[theme]
 
   const opacity = useRef(new Animated.Value(0)).current
-  // const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
   const [page, setPage] = useState(1)
 
@@ -61,22 +60,12 @@ export default function Swipe() {
       // if newData.length is 0, we ran out of users so fetch 
       // more data on the next page
       if (newData.length === 0) {
-        // setLoading(true)
         setPage(prevPage => prevPage + 1)
-        // setLoading(false)
       }
 
       return newData
     })
   }
-  
-  // if (loading) {
-  //   return (
-  //     <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>  
-  //       <ActivityIndicator size="large" />
-  //     </View> 
-  //   )
-  // }
 
   if (data.length === 0) {
 		return (
@@ -100,6 +89,7 @@ export default function Swipe() {
             index={index}
             colors={colors}
             removeItem={removeItem}
+            navigation={navigation}
           />
         ))}
       </View>
@@ -107,7 +97,7 @@ export default function Swipe() {
   )
 }
 
-const Card = ({ item, data, index, colors, removeItem }) => {
+const Card = ({ item, data, index, colors, removeItem, navigation}) => {
   const pan = useRef(new Animated.ValueXY({x: 0, y: 0})).current
   const rotate = pan.x.interpolate({
     inputRange: [-width, 0, width],
@@ -180,7 +170,7 @@ const Card = ({ item, data, index, colors, removeItem }) => {
         ]}
       >
         {/* card content */}
-        <CardItem item={item} colors={colors} />
+        <CardItem navigation={navigation} item={item} colors={colors} />
       </Animated.View>
     </Animated.View>
   )

@@ -21,6 +21,7 @@ import Requests from './src/screens/Requests';
 import CreateProfile from './src/screens/CreateProfile';
 import EditProfile from './src/screens/EditProfile';
 import Settings from './src/screens/Settings';
+import SwipeProfile from './src/screens/SwipeProfile';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -141,6 +142,27 @@ export default function App() {
               name="settings"
               component={Settings}
               options={{ headerShown:false }}
+            />
+            <Stack.Screen 
+              name="swipe-profile"
+              component={SwipeProfile}
+              options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <FontAwesomeIcon 
+                      icon='arrow-left'
+                      size={22}
+                      color={activeColors.tint}
+                    />
+                  </TouchableOpacity>
+                ), 
+                title: '',
+                // headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+                headerStyle: {
+                  backgroundColor:activeColors.primary,
+                },
+                headerShadowVisible: false, // border bottom invisible
+              })}
             />
             
           </>
