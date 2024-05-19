@@ -3,9 +3,11 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -15,7 +17,7 @@ import useGlobal from '../core/global';
 import { colors as c } from '../assets/config';
 
 
-export default function EditProfile() {
+export default function EditProfile({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const editProfile = useGlobal(state => state.editProfile)
@@ -202,7 +204,37 @@ export default function EditProfile() {
           <View style={styles.section}>
             {/* make this a separate screen / component
              that can be shared with create-profile */}
-            <Text>interests</Text>
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('edit-interests', { form:form, setForm:setForm })}
+              style={{
+                paddingHorizontal:20,
+                height: 55,
+                backgroundColor:activeColors.secondary,
+                width:300,
+                padding: 12,
+                borderWidth:1,
+                borderRadius: 12,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                borderColor:activeColors.tertiary,
+              }}
+            >
+              <Text 
+                style={{ 
+                    marginRight:'auto', 
+                    fontSize:17,
+                    fontWeight:'500',
+                    color:activeColors.tint
+                  }}>
+                  Interests
+                </Text>
+              <FontAwesomeIcon
+                color={activeColors.tertiary}
+                icon="chevron-right"
+                size={22} 
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -216,7 +248,6 @@ export default function EditProfile() {
               if (_.status == 200) {
                 // success handling
                 setShowSuccess(true)
-                
               } else {
                 // error handling
                 setShowError(true)

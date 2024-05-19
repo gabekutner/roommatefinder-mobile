@@ -22,6 +22,7 @@ import CreateProfile from './src/screens/CreateProfile';
 import EditProfile from './src/screens/EditProfile';
 import Settings from './src/screens/Settings';
 import SwipeProfile from './src/screens/SwipeProfile';
+import Interests from './src/screens/Interests';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -157,16 +158,34 @@ export default function App() {
                   </TouchableOpacity>
                 ), 
                 title: '',
-                // headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
                 headerStyle: {
                   backgroundColor:activeColors.primary,
                 },
                 headerShadowVisible: false, // border bottom invisible
               })}
             />
-            
+            <Stack.Screen 
+              name="edit-interests"
+              component={Interests}
+              options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <FontAwesomeIcon 
+                      icon='arrow-left'
+                      size={22}
+                      color={activeColors.tint}
+                    />
+                  </TouchableOpacity>
+                ), 
+                title: '',
+                headerStyle: {
+                  backgroundColor:activeColors.primary,
+                },
+                headerShadowVisible: false, // border bottom invisible
+              })}
+            />
           </>
-        ) }
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   )
