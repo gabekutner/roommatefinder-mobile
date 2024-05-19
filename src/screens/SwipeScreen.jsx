@@ -175,7 +175,7 @@ const Card = ({ item, data, index, colors, removeItem }) => {
             ],
             width: 90 - index * 1 + '%',
             marginTop: index * 10,
-            height:680,
+            height:600,
           },
         ]}
       >

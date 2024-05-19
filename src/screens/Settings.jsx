@@ -105,7 +105,7 @@ export default function Settings({ navigation }) {
                     value={form.emailNotifications} />
                 </View>
               </View>
-              <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
+              {/* <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
                 <View style={styles.row}>
                   <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Push Notifications</Text>
                   <View style={styles.rowSpacer} />
@@ -116,7 +116,7 @@ export default function Settings({ navigation }) {
                     style={{ transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }] }}
                     value={form.pushNotifications} />
                 </View>
-              </View>
+              </View> */}
               <View style={[styles.rowWrapper, styles.rowLast, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
                 <View style={styles.row}>
                   <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Dark Mode</Text>
@@ -155,7 +155,7 @@ export default function Settings({ navigation }) {
                 </TouchableOpacity>
               </View>
 
-              <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
+              {/* <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
@@ -170,9 +170,9 @@ export default function Settings({ navigation }) {
                     icon="chevron-right"
                     size={19} />
                 </TouchableOpacity>
-              </View>
+              </View> */}
 
-              <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
+              <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
@@ -229,7 +229,7 @@ export default function Settings({ navigation }) {
             </View>
           </View>
 
-          <Text style={[styles.contentFooter, { color:colors.tertiary }]}>App Version 1.0.0 #28</Text>
+          <Text style={[styles.contentFooter, { color:colors.tertiary }]}>App Version 1.0.0 #100</Text>
         </ScrollView>
       </View>
     </SafeAreaView>
