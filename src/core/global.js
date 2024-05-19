@@ -336,10 +336,9 @@ const useGlobal = create((set, get) => ({
   getSwipe: async (user, page) => {
     if(user.token) {
       try {
-
         const response = await api({
           method: 'get',
-          url: `/api/v1/swipe/?page=1`,
+          url: `/api/v1/swipe/?page=${page}`,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
   
@@ -348,11 +347,14 @@ const useGlobal = create((set, get) => ({
         }
   
         console.log('get-swipe success')
-
         return response
-
       } catch(error) {
-        console.log(error.response)
+        if (error.response.status === 404) {
+          return 404
+        } else {
+          console.log(error)
+        }
+        
       }
     }
   },

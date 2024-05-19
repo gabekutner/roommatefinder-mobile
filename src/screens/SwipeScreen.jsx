@@ -9,6 +9,8 @@ import {
   View,
 } from 'react-native';
 
+import Empty from '../components/Empty';
+
 import useGlobal from '../core/global';
 import { colors as c } from '../assets/config'; 
 
@@ -24,31 +26,56 @@ export default function Swipe() {
   const colors = c[theme]
 
   const opacity = useRef(new Animated.Value(0)).current
+  const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData(page)
+  }, [page])
 
-  const fetchData = async() => {
+  const fetchData = async(page) => {
     try {
-      const response = await getSwipe(user, 1)
-      const userData = await response.data.results
-      setData(userData)
+      const response = await getSwipe(user, page)
+      if (response === 404) {
+        // what to do if user has scrolled through all the users
+        setData([])
+      } else {
+        const userData = await response.data.results
+        setData(userData)
+      }
     } catch(error) {
-      console.log('Swipe.fetchData error: ', error)
+      console.log(error)
     }
   }
 
   const removeItem = () => {
-    let newData = [...data]
-    newData.splice(0, 1)
-    LayoutAnimation.easeInEaseOut()
-    setData(newData)
+    setData(prevData => {
+      // remove the first item from the previous data array
+      const newData = prevData.slice(1)
+      LayoutAnimation.easeInEaseOut()
+
+      // if newData.length is 0, we ran out of users so fetch 
+      // more data on the next page
+      if (newData.length === 0) {
+        setLoading(true)
+        setPage(prevPage => prevPage + 1)
+        setLoading(false)
+      }
+
+      return newData
+    })
   }
+  
+  if (data.length === 0) {
+		return (
+			<Empty icon='hourglass' message='You ran out of people.' colors={colors} />
+		)
+	}
 
   return (
     <View style={[styles.container, { backgroundColor:colors.primary }]}>
+
       <Animated.View
         style={[StyleSheet.absoluteFill, {opacity: opacity}]}
         ref={e => (this.containerRef = e)}
@@ -92,10 +119,10 @@ const Card = ({ item, data, index, colors, removeItem }) => {
             toValue: {x: width * 2 * (gestureState.dx < 0 ? -1 : 1), y: 0},
             useNativeDriver: true,
             bounciness: 0,
-          }).start();
+          }).start()
           setTimeout(() => {
             removeItem()
-          }, 100);
+          }, 100)
         } else {
           Animated.spring(pan, {
             toValue: {x: 0, y: 0},
@@ -146,7 +173,7 @@ const Card = ({ item, data, index, colors, removeItem }) => {
         <Text style={{color: colors.tint, fontSize: 18}}>{item.name}</Text>
       </Animated.View>
     </Animated.View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
