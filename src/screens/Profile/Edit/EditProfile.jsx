@@ -204,7 +204,7 @@ export default function EditProfile({ navigation }) {
             {/* make this a separate screen / component
              that can be shared with create-profile */}
             <TouchableOpacity 
-              onPress={() => navigation.navigate('edit-interests', { form:form, setForm:setForm })}
+              onPress={() => navigation.navigate('edit-interests', { form:form, set:setForm })}
               style={{
                 paddingHorizontal:20,
                 height: 55,

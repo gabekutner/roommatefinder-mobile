@@ -34,7 +34,7 @@ function responseMessageList(set, get, data) {
 
 function responseMessageSend(set, get, data) {
 	const id = data.friend.id
-	// Move friendList item for this friend to the start of 
+	// move friendList item for this friend to the start of 
 	// list, update the preview text and update the time stamp
 	const friendList = [...get().friendList]
 	const friendIndex = friendList.findIndex(
@@ -50,7 +50,7 @@ function responseMessageSend(set, get, data) {
 			friendList: friendList
 		}))
 	}
-	// If the message data does not belong to this friend then 
+	// if the message data does not belong to this friend then 
 	// dont update the message list, as a fresh messageList will 
 	// be loaded the next time the user opens the correct chat window
 	if (id !== get().messagesId) {
@@ -72,7 +72,8 @@ function responseMessageType(set, get, data) {
 
 function responseRequestConnect(set, get, connection) {
 	const user = get().user
-	// If i was the one that made the connect request, 
+
+	// if i was the one that made the connect request, 
 	// update the search list row
 	if (user.id === connection.sender.id) {
 		const searchList = [...get().searchList]
@@ -85,7 +86,7 @@ function responseRequestConnect(set, get, connection) {
 				searchList: searchList
 			}))
 		}
-	// If they were the one  that sent the connect 
+	// if they were the one  that sent the connect 
 	// request, add request to request list
 	} else {
 		const requestList = [...get().requestList]
@@ -101,9 +102,10 @@ function responseRequestConnect(set, get, connection) {
 	}
 }
 
+
 function responseRequestAccept(set, get, connection) {
   const user = get().user
-	// If I was the one that accepted the request, remove 
+	// if I was the one that accepted the request, remove 
 	// request from the  requestList
 	if (user.id === connection.receiver.id) {
 		const requestList = [...get().requestList]
@@ -127,12 +129,12 @@ function responseRequestAccept(set, get, connection) {
 	const searchList = [...sl]
 
 	let  searchIndex = -1
-	// If this user  accepted
+	// if this user  accepted
 	if (user.id === connection.receiver.id) {
 		searchIndex = searchList.findIndex(
 			user => user.id === connection.sender.id
 		)
-	// If the other user accepted
+	// if the other user accepted
 	} else {
 		searchIndex = searchList.findIndex(
 			user => user.id === connection.receiver.id
@@ -513,11 +515,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
 	//     Search
 	//---------------------
-	searchList: null,
+	searchList: [],
 
 	searchUsers: (query) => {
 		if (query) {
@@ -528,7 +529,7 @@ const useGlobal = create((set, get) => ({
 			}))
 		} else {
 			set((state) => ({
-				searchList: null
+				searchList: []
 			}))
 		}
 	},

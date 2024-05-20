@@ -42,7 +42,7 @@ export default function SwipeProfile({ route, navigation }) {
           position:'absolute',
           top:10,
           right:10,
-          backgroundColor:colors.primary,
+          backgroundColor:colors.secondary,
           width:42,
           height:42,
           borderRadius:21,
@@ -185,12 +185,8 @@ export default function SwipeProfile({ route, navigation }) {
           : <></>
         }
 
-        
         <View style={{ borderColor:colors.tertiary, borderWidth:.5, width:'90%' }} />
 
-
-        
-        
       </View>
 
     </ScrollView>
