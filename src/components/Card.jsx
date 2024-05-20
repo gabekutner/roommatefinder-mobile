@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { 
+import React from 'react';
+import {
   View,
   Text, 
   Image, 
@@ -17,10 +17,6 @@ import { interestsData, dormsData } from '../assets/Dictionary';
 export default function CardItem({ navigation, item, colors }) {
 
   const requestConnect = useGlobal(state => state.requestConnect)
-
-  useEffect(() => {
-    console.log(item.id)
-  }, [item])
 
   return (
     <View style={{ flex: 1 }}>
@@ -59,7 +55,10 @@ export default function CardItem({ navigation, item, colors }) {
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: moderateVerticalScale(10) }}>
         <Text style={{ color: colors.tint, fontSize: moderateVerticalScale(17), fontWeight: 'bold' }}>{item.name}</Text>
         <Text style={{ color: colors.tertiary, fontSize: moderateVerticalScale(14) }}>{dormsData[item.dorm_building - 1].dorm}</Text>
-        <Text style={{ color: colors.tertiary, fontSize: moderateVerticalScale(14) }}>San Francisco, CA</Text>
+        { item.city && item.state 
+          ? <Text style={{ color: colors.tertiary, fontSize: moderateVerticalScale(14) }}>{item.city}, {item.state}</Text>
+          : <></>
+        }
       </View>
 
       <View style={{ marginTop: moderateVerticalScale(10), justifyContent: 'center', alignItems: 'center', flex: 1 }}>
