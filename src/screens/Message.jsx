@@ -1,4 +1,4 @@
-import { 
+import React, { 
   useEffect,
   useLayoutEffect, 
   useRef, 
@@ -19,12 +19,14 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Thumbnail from "../components/Thumbnail"
+import Thumbnail from "../components/Thumbnail";
+
 import useGlobal from "../core/global";
-import { colors as c } from '../assets/config';
+import { colors as c } from "../assets/config";
 
 
 function MessageHeader({ navigation, friend, colors }) {
+
 	return  (
 		<View
 			style={{
@@ -43,21 +45,30 @@ function MessageHeader({ navigation, friend, colors }) {
 					color={colors.tint}
 				/>
 			</TouchableOpacity>
-			<Thumbnail
-				url={friend.thumbnail}
-				size={30}
-			/>
-			<Text
+			<TouchableOpacity 
+				// onPress={() => navigation.navigate('swipe-profile', { profile: })}
 				style={{
-					color:colors.tint,
-					marginLeft:10,
-					fontSize:18,
-					fontWeight:'500',
-					fontFamily:'NotoSans_Condensed-Regular',
+					flexDirection:'row',
+					alignItems:'center'
 				}}
 			>
-				{friend.name}
-			</Text>
+				<Thumbnail
+					url={friend.thumbnail}
+					size={30}
+				/>
+				<Text
+					style={{
+						color:colors.tint,
+						marginLeft:10,
+						fontSize:18,
+						fontWeight:'500',
+						fontFamily:'NotoSans_Condensed-Regular',
+					}}
+				>
+					{friend.name}
+				</Text>
+			</TouchableOpacity>
+			
 		</View>
 	)
 }

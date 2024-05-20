@@ -22,7 +22,7 @@ import CreateProfile from './src/screens/Profile/CreateProfile';
 import EditProfile from './src/screens/Profile/Edit/EditProfile';
 import Settings from './src/screens/Settings';
 import SwipeProfile from './src/screens/Profile/SwipeProfile';
-import Interests from './src/screens/Profile/Edit/Interests';
+import InterestsPage from './src/screens/Profile/Edit/Interests';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -166,7 +166,7 @@ export default function App() {
             />
             <Stack.Screen 
               name="edit-interests"
-              component={Interests}
+              component={InterestsPage}
               options={({ navigation }) => ({
                 headerLeft: () => (
                   <TouchableOpacity onPress={() => navigation.goBack()}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import { interestsData } from '../../../assets/Dictionary';
-
 
 
 export default function Interests({ colors, form, setForm }) {

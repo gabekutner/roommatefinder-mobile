@@ -357,6 +357,35 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+  //---------------------
+	//    Swipe Profile
+	//---------------------
+  getSwipeProfile: async (user, id) => {
+    if(user.token) {
+      try {
+        const response = await api({
+          method: 'get',
+          url: `/api/v1/swipe/${id}/`,
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+  
+        if (response.status !== 200) {
+          throw 'get-swipe-profile error'
+        }
+  
+        console.log('get-swipe-profile success')
+        return response
+
+      } catch(error) {
+        if (error.response.status === 404) {
+          return 404
+        } else {
+          console.log(error)
+        }
+      }
+    }
+  },
+
 
   // ----------------------------------------------*/
   // needed for profile updating 
