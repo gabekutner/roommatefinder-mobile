@@ -164,7 +164,6 @@ export default function EditProfile({ navigation }) {
             </View>
           </View>
           
-
           <View style={styles.section}>
             <Input 
               colors={activeColors}

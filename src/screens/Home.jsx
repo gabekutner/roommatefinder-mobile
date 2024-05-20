@@ -83,7 +83,7 @@ export default function HomeScreen() {
 					}
 					const icon = icons[route.name]
 					return (
-            <View style={{ alignItems:'center', justifyContent:'center', top:10 }}>
+            <View style={{ alignItems:'center', justifyContent:'center', top:verticalScale(10) }}>
               <FontAwesomeIcon icon={icon} size={28} color={color} />
             </View>
 					)
@@ -99,7 +99,7 @@ export default function HomeScreen() {
           right:0, //20
           left:0, //20
           elevation:0, 
-          height:110,
+          height:verticalScale(70),
           backgroundColor:activeColors.primary,
         }
       })}

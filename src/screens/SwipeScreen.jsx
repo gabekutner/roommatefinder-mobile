@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native';
 
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
 import Empty from '../components/Empty';
 import CardItem from '../components/Card';
 
@@ -18,7 +20,6 @@ import { colors as c } from '../assets/config';
 
 const { width } = Dimensions.get('window')
 const offset = width / 5
-
 
 export default function Swipe({ navigation }) {
 
@@ -56,26 +57,23 @@ export default function Swipe({ navigation }) {
       // remove the first item from the previous data array
       const newData = prevData.slice(1)
       LayoutAnimation.easeInEaseOut()
-
       // if newData.length is 0, we ran out of users so fetch 
       // more data on the next page
       if (newData.length === 0) {
         setPage(prevPage => prevPage + 1)
       }
-
       return newData
     })
   }
 
   if (data.length === 0) {
-		return (
-	  	<Empty icon='hourglass' message='You ran out of people.' colors={colors} />
-		)
-	}
+    return (
+      <Empty icon='hourglass' message='You ran out of people.' colors={colors} />
+    )
+  }
 
   return (
-    <View style={[styles.container, { backgroundColor:colors.primary }]}>
-
+    <View style={[styles.container, { backgroundColor: colors.primary }]}>
       <Animated.View
         style={[StyleSheet.absoluteFill, {opacity: opacity}]}
         ref={e => (this.containerRef = e)}
@@ -98,6 +96,7 @@ export default function Swipe({ navigation }) {
 }
 
 const Card = ({ item, data, index, colors, removeItem, navigation}) => {
+
   const pan = useRef(new Animated.ValueXY({x: 0, y: 0})).current
   const rotate = pan.x.interpolate({
     inputRange: [-width, 0, width],
@@ -148,7 +147,7 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
         styles.center,
         {
           zIndex: data.length - index,
-          marginBottom:75,
+          marginBottom: verticalScale(68), // Adjusted margin bottom
         },
       ]}
     >
@@ -157,19 +156,18 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
           styles.item,
           {
             backgroundColor: colors.secondary,
-            borderColor:colors.tint,
-            borderWidth:.5,
+            borderColor: colors.tint,
+            borderWidth: 0.5,
             transform: [
               { translateX: pan.x },
               { rotate: rotate },
             ],
             width: 90 - index * 1 + '%',
             marginTop: index * 10,
-            height:600,
+            height: verticalScale(500),
           },
         ]}
       >
-        {/* card content */}
         <CardItem navigation={navigation} item={item} colors={colors} />
       </Animated.View>
     </Animated.View>
@@ -189,7 +187,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#00000055',
     borderRadius: 10,
-    // alignItems: 'center',
-    // justifyContent: 'space-evenly',
   },
 })
