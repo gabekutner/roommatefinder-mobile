@@ -13,19 +13,19 @@ This is the React Native frontend repository. Here's the link for the [**backend
 - 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters) (scaling app UI)
 
 ## Features
-# Basic
+### Basic
 - Login and registration with JWT Bearer Token
 - Create Profile
-# Your profile
+### Your profile
 - Update your profile information
 - Add photos
-# Swipe profiles
+### Swipe profiles
 - Send message requests
 - View full profile
-# Chat
+### Chat
 - Chat with other users
 - Search for users
-# Swipe deck algorithm
+### Swipe deck algorithm
 List based on:
 - Sex
 - Dorm
