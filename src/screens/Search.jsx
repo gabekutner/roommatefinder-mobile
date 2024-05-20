@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { 
 	FlatList,
 	SafeAreaView, 
@@ -12,13 +12,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
-import useGlobal from "../core/global";
 import Cell from "../components/Cell";
+
+import useGlobal from "../core/global";
 import { colors as c} from '../assets/config'; 
 
 
 function SearchButton({ user, colors }) {
-	// Add tick if user is already  connected
+	// add tick if user is already connected
 	if (user.status === 'connected') {
 		return (
 			<FontAwesomeIcon

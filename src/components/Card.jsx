@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   View,
   Text, 
   Image, 
   TouchableOpacity, 
-  StyleSheet 
+  StyleSheet,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 
+import useGlobal from '../core/global';
 import { interestsData, dormsData } from '../assets/Dictionary';
 
 
 export default function CardItem({ navigation, item, colors }) {
+
+  const requestConnect = useGlobal(state => state.requestConnect)
+
+  useEffect(() => {
+    console.log(item.id)
+  }, [item])
 
   return (
     <View style={{ flex: 1 }}>
@@ -28,6 +35,26 @@ export default function CardItem({ navigation, item, colors }) {
           borderColor: colors.tertiary
         }}
       />
+      <TouchableOpacity 
+        onPress={() => requestConnect(item.id)}
+        style={{ 
+          position:'absolute',
+          top:10,
+          right:10,
+          backgroundColor:colors.primary,
+          width:42,
+          height:42,
+          borderRadius:21,
+          justifyContent:'center',
+          alignItems:'center'
+        }}
+      >
+        <FontAwesomeIcon 
+          icon="plus"
+          size={22}
+          color={colors.accent}
+        />
+      </TouchableOpacity>
 
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: moderateVerticalScale(10) }}>
         <Text style={{ color: colors.tint, fontSize: moderateVerticalScale(17), fontWeight: 'bold' }}>{item.name}</Text>
