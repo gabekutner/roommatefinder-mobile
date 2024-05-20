@@ -31,6 +31,9 @@ List based on:
 - Dorm
 - Interests
 
+## Swipe deck algorithm
+The algorithm is responsible for determining what profiles a user sees on the home page. The algorithm is implemented once a user renders the home page.  
+
 
 
 
