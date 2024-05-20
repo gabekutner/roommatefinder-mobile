@@ -12,4 +12,26 @@ This is the React Native frontend repository. Here's the link for the [**backend
 - 🕹️ [**Font Awesome Icons**](https://fontawesome.com/)
 - 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters) (scaling app UI)
 
-<!-- >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding. -->
+## Features
+# Basic
+- Login and registration with JWT Bearer Token
+- Create Profile
+# Your profile
+- Update your profile information
+- Add photos
+# Swipe profiles
+- Send message requests
+- View full profile
+# Chat
+- Chat with other users
+- Search for users
+# Swipe deck algorithm
+List based on:
+- Sex
+- Dorm
+- Interests
+
+
+
+
+
