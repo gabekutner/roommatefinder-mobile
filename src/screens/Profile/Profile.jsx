@@ -1,3 +1,4 @@
+import React from 'react';
 import { 
   Text,
   View,
@@ -7,9 +8,9 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Thumbnail from "../components/Thumbnail";
-import useGlobal from '../core/global';
-import { colors as c } from "../assets/config";
+import Thumbnail from "../../components/Thumbnail";
+import useGlobal from '../../core/global';
+import { colors as c } from "../../assets/config";
 
 
 function ProfileImage({ colors }) {

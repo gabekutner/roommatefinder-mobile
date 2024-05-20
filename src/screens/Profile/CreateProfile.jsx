@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { 
   View,
   FlatList,
@@ -9,16 +9,16 @@ import {
   StyleSheet,
  } from "react-native";
 
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import Birthday from "./Create/Birthday";
 import Sex from "./Create/Sex";
 import Dorm from "./Create/Dorm";
 import Interests from "./Create/Interests";
 import Thumbnail from "./Create/Thumbnail";
 
-import slides from '../assets/Dictionary';
-import useGlobal from "../core/global";
-import { colors as c } from '../assets/config';
+import slides from '../../assets/Dictionary';
+import useGlobal from "../../core/global";
+import { colors as c } from '../../assets/config';
 
 const window = Dimensions.get('window')
 

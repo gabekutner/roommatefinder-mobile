@@ -6,7 +6,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import { dormsData } from '../../assets/Dictionary';
+import { dormsData } from '../../../assets/Dictionary';
 
 
 export default function Dorm({ colors, form, setForm }) {

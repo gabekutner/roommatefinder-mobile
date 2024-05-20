@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { 
   TouchableOpacity,
   View,
@@ -7,10 +7,10 @@ import {
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 import Friends from "./Friends";
-import Profile from "./Profile";
+import Profile from "./Profile/Profile";
 import Swipe from "./SwipeScreen";
 
 import useGlobal from "../core/global";

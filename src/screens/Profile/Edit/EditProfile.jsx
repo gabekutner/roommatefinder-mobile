@@ -9,12 +9,12 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-import Input from '../components/Input';
-import Button from '../components/Button';
-import SnackBar from '../components/SnackBarMessage';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
+import SnackBar from '../../../components/SnackBarMessage';
 
-import useGlobal from '../core/global';
-import { colors as c } from '../assets/config';
+import useGlobal from '../../../core/global';
+import { colors as c } from '../../../assets/config';
 
 
 export default function EditProfile({ navigation }) {

@@ -6,7 +6,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import { interestsData } from '../../assets/Dictionary';
+import { interestsData } from '../../../assets/Dictionary';
 
 
 

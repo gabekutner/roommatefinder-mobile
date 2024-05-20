@@ -18,11 +18,11 @@ import Message from './src/screens/Message';
 import Search from './src/screens/Search';
 import Onboarding from './src/screens/Onboarding';
 import Requests from './src/screens/Requests';
-import CreateProfile from './src/screens/CreateProfile';
-import EditProfile from './src/screens/EditProfile';
+import CreateProfile from './src/screens/Profile/CreateProfile';
+import EditProfile from './src/screens/Profile/Edit/EditProfile';
 import Settings from './src/screens/Settings';
 import SwipeProfile from './src/screens/SwipeProfile';
-import Interests from './src/screens/Interests';
+import Interests from './src/screens/Profile/Edit/Interests';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
