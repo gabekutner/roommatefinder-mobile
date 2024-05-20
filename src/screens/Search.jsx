@@ -81,20 +81,33 @@ function SearchButton({ user, colors }) {
 }
 
 
-function SearchRow({ user, colors }) {
+function SearchRow({ navigation, item, colors }) {
+
+	const user = useGlobal(state => state.user)
+	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+
 	return (
 		<Cell colors={colors}>
-			<Thumbnail
-				url={user.thumbnail}
-				size={76}
-				borderColor={colors.secondary}
-			/>
+			<TouchableOpacity 
+				onPress={async() => {
+					const profile = await getSwipeProfile(user, item.id)
+					const userData = await profile.data
+					navigation.navigate('swipe-profile', { profile: userData })
+				}}
+			>
+				<Thumbnail
+					url={item.thumbnail}
+					size={76}
+					borderColor={colors.secondary}
+				/>
+				
+			</TouchableOpacity>
 			<View style={{ flex:1, paddingHorizontal:16 }}>
-				<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
-					{user.name}
-				</Text>	
-			</View>
-			<SearchButton user={user} colors={colors} />
+					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
+						{item.name}
+					</Text>	
+				</View>
+			<SearchButton user={item} colors={colors} />
 		</Cell>
 	)
 }
@@ -181,7 +194,7 @@ export default function Search({ navigation }) {
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
-						<SearchRow user={item} colors={activeColors} />
+						<SearchRow navigation={navigation} item={item} colors={activeColors} />
 					)}
 					keyExtractor={item => item.id}
 				/>

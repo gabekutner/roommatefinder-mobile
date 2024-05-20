@@ -17,15 +17,28 @@ import { colors as c } from "../assets/config";
 
 
 function FriendRow({ navigation, item, colors }) {
+
+	const user = useGlobal(state => state.user)
+	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+
 	return (
-		<TouchableOpacity onPress={() => navigation.navigate('messages', item)} >
-			<Cell colors={colors}>
+		<Cell colors={colors}>
+			<TouchableOpacity
+				onPress={async() => {
+					const profile = await getSwipeProfile(user, item.friend.id)
+					const userData = await profile.data
+					navigation.navigate('swipe-profile', { profile: userData })
+				}}
+			>
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={76}
 					borderColor={colors.secondary}
 				/>
-				<View style={{ flex:1, paddingHorizontal: 16 }}>
+			</TouchableOpacity>
+			
+			<TouchableOpacity onPress={() => navigation.navigate('messages', item)}>
+				<View style={{ flex:1, paddingHorizontal: 16, justifyContent:'center' }}>
 					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 						{item.friend.name}
 					</Text>
@@ -35,8 +48,8 @@ function FriendRow({ navigation, item, colors }) {
 						</Text>
 					</Text>
 				</View>
-			</Cell>
-		</TouchableOpacity>
+			</TouchableOpacity>
+		</Cell>
 	)
 }
 

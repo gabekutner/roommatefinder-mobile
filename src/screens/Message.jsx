@@ -45,30 +45,21 @@ function MessageHeader({ navigation, friend, colors }) {
 					color={colors.tint}
 				/>
 			</TouchableOpacity>
-			<TouchableOpacity 
-				// onPress={() => navigation.navigate('swipe-profile', { profile: })}
+			<Thumbnail
+				url={friend.thumbnail}
+				size={30}
+			/>
+			<Text
 				style={{
-					flexDirection:'row',
-					alignItems:'center'
+					color:colors.tint,
+					marginLeft:10,
+					fontSize:18,
+					fontWeight:'500',
+					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
-				<Thumbnail
-					url={friend.thumbnail}
-					size={30}
-				/>
-				<Text
-					style={{
-						color:colors.tint,
-						marginLeft:10,
-						fontSize:18,
-						fontWeight:'500',
-						fontFamily:'NotoSans_Condensed-Regular',
-					}}
-				>
-					{friend.name}
-				</Text>
-			</TouchableOpacity>
-			
+				{friend.name}
+			</Text>			
 		</View>
 	)
 }
