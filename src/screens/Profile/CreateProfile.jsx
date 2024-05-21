@@ -112,9 +112,9 @@ export default function CreateProfile() {
   return (
     <SafeAreaView style={{ flex:1, alignItems:'center' }}>
       
-      <Text style={{ marginVertical:50, textAlign:'center', color:activeColors.tertiary }}>
-        NO INFORMATION PROVIDED HERE WILL BE SENT TO THE UNIVERSITY OF UTAH
-      </Text>
+      <Text style={{ marginVertical:50, textAlign:'center', color:activeColors.tertiary }} />
+        {/* NO INFORMATION PROVIDED HERE WILL BE SENT TO THE UNIVERSITY OF UTAH
+      </Text> */}
 
       <Paginator 
         colors={activeColors}

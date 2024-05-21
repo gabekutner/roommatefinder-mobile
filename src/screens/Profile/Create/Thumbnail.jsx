@@ -13,11 +13,11 @@ export default function Thumbnail({ colors, form, setForm }) {
       style={{
         width:180, 
         height:180, 
-        borderRadius:90,
+        borderRadius:10,
         backgroundColor:'transparent',
         borderWidth:1,
         borderColor:colors.tertiary,
-        borderStyle:'dashed',
+        borderStyle: form.thumbnail ? 'none' : 'dashed',
         justifyContent:'center'
       }}
       onPress={() => {
@@ -31,7 +31,7 @@ export default function Thumbnail({ colors, form, setForm }) {
       { form.thumbnail ? (
         <Image 
           src={form.thumbnail.uri}
-          style={{ width:'100%', height:'100%', borderRadius:90 }}
+          style={{ width:'100%', height:'100%', borderRadius:9 }}
         />
       ) : (
         <FontAwesomeIcon 
