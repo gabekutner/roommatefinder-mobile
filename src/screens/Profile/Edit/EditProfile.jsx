@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import SnackBar from '../../../components/SnackBarMessage';
+import Interests from '../Create/Interests';
 
+import { interestsData } from '../../../assets/Dictionary';
 import useGlobal from '../../../core/global';
 import { colors as c } from '../../../assets/config';
 
@@ -201,39 +204,7 @@ export default function EditProfile({ navigation }) {
           </View>
 
           <View style={styles.section}>
-            {/* make this a separate screen / component
-             that can be shared with create-profile */}
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('edit-interests', { form:form, set:setForm })}
-              style={{
-                paddingHorizontal:20,
-                height: 55,
-                backgroundColor:activeColors.secondary,
-                width:300,
-                padding: 12,
-                borderWidth:1,
-                borderRadius: 12,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                borderColor:activeColors.tertiary,
-              }}
-            >
-              <Text 
-                style={{ 
-                    marginRight:'auto', 
-                    fontSize:17,
-                    fontWeight:'500',
-                    color:activeColors.tint
-                  }}>
-                  Interests
-                </Text>
-              <FontAwesomeIcon
-                color={activeColors.tertiary}
-                icon="chevron-right"
-                size={22} 
-              />
-            </TouchableOpacity>
+            {/* interests here */}
           </View>
         </View>
       </ScrollView>

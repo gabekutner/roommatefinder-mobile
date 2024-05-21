@@ -22,7 +22,6 @@ import CreateProfile from './src/screens/Profile/CreateProfile';
 import EditProfile from './src/screens/Profile/Edit/EditProfile';
 import Settings from './src/screens/Settings';
 import SwipeProfile from './src/screens/Profile/SwipeProfile';
-import InterestsPage from './src/screens/Profile/Edit/Interests';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -147,26 +146,6 @@ export default function App() {
             <Stack.Screen 
               name="swipe-profile"
               component={SwipeProfile}
-              options={({ navigation }) => ({
-                headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <FontAwesomeIcon 
-                      icon='arrow-left'
-                      size={22}
-                      color={activeColors.tint}
-                    />
-                  </TouchableOpacity>
-                ), 
-                title: '',
-                headerStyle: {
-                  backgroundColor:activeColors.primary,
-                },
-                headerShadowVisible: false, // border bottom invisible
-              })}
-            />
-            <Stack.Screen 
-              name="edit-interests"
-              component={InterestsPage}
               options={({ navigation }) => ({
                 headerLeft: () => (
                   <TouchableOpacity onPress={() => navigation.goBack()}>
