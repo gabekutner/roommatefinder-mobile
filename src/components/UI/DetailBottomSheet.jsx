@@ -23,6 +23,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         <View style={styles.nameTextContainer}>
           <Text style={[styles.nameText, { color:colors.tint }]}>{`${item.name}, ${item.age}`}</Text>
         </View>
+        
         <TouchableOpacity onPress={() => setShow(false)} style={[styles.closeContainer, { backgroundColor:colors.secondary }]}>
           <FontAwesomeIcon 
             icon="arrow-down"
@@ -32,52 +33,65 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity>
-        <Text>add</Text>
+      <TouchableOpacity 
+        style={{ 
+          backgroundColor:colors.secondary,
+          padding:10,
+          alignItems:'center',
+          justifyContent:'center',
+          flex:1,
+          borderRadius:10,
+          borderWidth:1,
+          borderColor:colors.accent,
+        }}
+      >
+        {/* depends on status, maybe send through prop -- just like the search bar  */}
+        <Text style={{ fontSize:18, color:colors.accent, fontWeight:'bold' }}>Friend Request 👋</Text>
       </TouchableOpacity>
+
 
       <View style={[styles.line, { borderColor:colors.tertiary }]} />
 
       <View style={styles.descriptionContainer}>
-        <Text style={{ fontSize: 18,fontWeight: '500', marginBottom: 4, color:colors.tint }}>
-          About
-        </Text>
-        <Text style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</Text>
+
+        { item.description 
+          ? 
+            <View>
+              <Text style={{ fontSize: 18,fontWeight: '500', marginBottom: 4, color:colors.tint }}>
+                About
+              </Text>
+              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</Text>
+            </View>
+          : <></> 
+        }
+
+        { item.instagram 
+          ? 
+            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+              <FontAwesomeIcon 
+                icon="camera"
+                size={22}
+                color={colors.tint}
+              />
+              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.instagram}</Text>
+            </View>
+          : <></> 
+        }
+
+        { item.snapchat 
+          ? 
+            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+              <FontAwesomeIcon 
+                icon="ghost"
+                size={22}
+                color={colors.tint}
+              />
+              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.snapchat}</Text>
+            </View>
+          : <></> 
+        }
+        
       </View>
-
-      {/* preview means open as match or member of group, so no need of like buttons */}
-      {/* {!preview && (
-        <>
-          <View style={styles.line} />
-          <SwipeButtons
-            rewind={false}
-            onLeft={handleDislike}
-            onRight={handleLike}
-          />
-        </>
-      )} */}
-
-      {/* if  is my profile review, then don't give the option to block my profile */}
-      {/* {!isMyProfile && (
-        <>
-          <View style={styles.line} />
-          <View style={styles.reportContainer}>
-            <TouchableOpacity
-              style={styles.blockButton}
-              onPress={blockProfileAlert}
-            >
-              <Text style={styles.blockButtonText}>Block Profile</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.blockButton}
-              onPress={reportProfileAlert}
-            >
-              <Text style={styles.blockButtonText}>Report Profile</Text>
-            </TouchableOpacity>
-          </View>
-        </>
-      )} */}
     </ScrollView>
   )
 }
@@ -129,6 +143,9 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     margin: 3,
+    flexDirection:'column',
+    gap:20,
+
   },
   descriptionText: {
     fontSize: 15,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -15,8 +15,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import utils from '../core/utils';
 import useGlobal from '../core/global';
 import { colors as c } from '../assets/config';
-
-
 
 
 export default function Settings({ navigation }) {

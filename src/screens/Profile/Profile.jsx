@@ -7,6 +7,7 @@ import {
 
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import Thumbnail from "../../components/Thumbnail";
 import useGlobal from '../../core/global';
@@ -73,18 +74,18 @@ function ProfileLogout({ colors }) {
         borderRadius:26,
         alignItems:'center',
         justifyContent:'center',
-        paddingHorizontal:26,
+        paddingHorizontal:moderateScale(22),
         backgroundColor:colors.accent,
-        marginTop:20
+        marginTop:verticalScale(18)
       }}
     >
       <FontAwesomeIcon 
         icon='right-from-bracket'
         size={20}
         color='#fff'
-        style={{ marginRight:12 }}
+        style={{ marginRight:moderateScale(10) }}
       />
-      <Text style={{ fontWeight:'600', fontSize:18, color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
+      <Text style={{ fontWeight:'600', fontSize:verticalScale(15), color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
     </TouchableOpacity>
   )
 }
@@ -104,7 +105,7 @@ export default function ProfileScreen({ navigation }) {
           color:activeColors.tint,
           fontSize:20,
           fontWeight:'500',
-          marginBottom:6,
+          marginBottom:verticalScale(6),
           fontFamily:'NotoSans_Condensed-Regular'
         }}
       >
@@ -113,55 +114,71 @@ export default function ProfileScreen({ navigation }) {
 
       <View style={{ justifyContent:'flex-start' }}>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('edit-profile')}
-        style={{
-          flexDirection:'row',
-          height:52,
-          borderRadius:26,
-          alignItems:'center',
-          paddingHorizontal:26,
-          marginTop: 20
-        }}
-      >
-        <View style={{ marginRight:12, padding:8, backgroundColor:activeColors.secondary, borderRadius:25 }}>
-          <FontAwesomeIcon 
-            icon='id-badge'
-            size={25}
-            color={activeColors.tint}
-          />
-        </View>
-        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19, fontFamily:'NotoSans_Condensed-Regular' }}>Profile</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('edit-profile')}
+          style={{
+            flexDirection:'row',
+            height:verticalScale(52),
+            borderRadius:26,
+            alignItems:'center',
+            paddingHorizontal:moderateScale(26),
+            marginTop:verticalScale(15)
+          }}
+        >
+          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+            <FontAwesomeIcon 
+              icon='id-badge'
+              size={verticalScale(20)}
+              color={activeColors.tint}
+            />
+          </View>
+          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Profile</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate('settings')}
-        style={{
-          flexDirection:'row',
-          height:52,
-          borderRadius:26,
-          alignItems:'center',
-          paddingHorizontal:26,
-          marginTop: 10
-        }}
-      >
-        <View style={{ marginRight:12, padding:8, backgroundColor:activeColors.secondary, borderRadius:25 }}>
-          <FontAwesomeIcon 
-            icon='gear'
-            size={25}
-            color={activeColors.tint}
-          />
-        </View>
-        <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:19, fontFamily:'NotoSans_Condensed-Regular' }}>Settings</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('settings')}
+          style={{
+            flexDirection:'row',
+            height:verticalScale(52),
+            borderRadius:26,
+            alignItems:'center',
+            paddingHorizontal:moderateScale(26),
+            marginTop: moderateScale(5)
+          }}
+        >
+          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+            <FontAwesomeIcon 
+              icon='gear'
+              size={verticalScale(20)}
+              color={activeColors.tint}
+            />
+          </View>
+          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Settings</Text>
+        </TouchableOpacity>
 
+        <TouchableOpacity
+          // onPress={() => navigation.navigate('settings')}
+          style={{
+            flexDirection:'row',
+            height:verticalScale(52),
+            borderRadius:26,
+            alignItems:'center',
+            paddingHorizontal:moderateScale(26),
+            marginTop: moderateScale(5)
+          }}
+        >
+          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+            <FontAwesomeIcon 
+              icon='camera'
+              size={verticalScale(20)}
+              color={activeColors.tint}
+            />
+          </View>
+          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Add photos</Text>
+        </TouchableOpacity>
 
       </View>
-
-      
-
       <ProfileLogout colors={activeColors} />
-
     </View>
   )
 } 
