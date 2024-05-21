@@ -99,7 +99,7 @@ export default function HomeScreen() {
           right:0, //20
           left:0, //20
           elevation:0, 
-          height:verticalScale(70),
+          height:verticalScale(90),
           backgroundColor:activeColors.primary,
         }
       })}
