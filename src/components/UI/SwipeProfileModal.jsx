@@ -1,8 +1,6 @@
 import React from "react";
 import {
   View,
-  TouchableOpacity,
-  Text,
   StyleSheet
 } from "react-native";
 
@@ -11,11 +9,9 @@ import FastImage from "react-native-fast-image";
 import DetailBottomSheet from "./DetailBottomSheet";
 
 
-
 export default function SwipeProfileModal({ item, setShow, colors }) {
   return (
     <View style={{ flex: 1, backgroundColor:colors.secondary }}>
-
       <FastImage
         key={item.id}
         style={styles.image}
@@ -31,26 +27,20 @@ export default function SwipeProfileModal({ item, setShow, colors }) {
         setShow={setShow}
         colors={colors}
       />
-
-      {/* <Text>{item.name}</Text>
-      <TouchableOpacity onPress={() => setShow(false)}>
-        <Text>close</Text>
-      </TouchableOpacity> */}
-      
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   image: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    flexDirection: 'row',
+    flex:1,
+    width:'100%',
+    height:'100%',
+    justifyContent:'space-between',
+    alignItems:'flex-end',
+    flexDirection:'row',
   },
   imageStyle: {
-    height: '100%',
+    height:'100%',
   },
-});
+})

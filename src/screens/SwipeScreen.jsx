@@ -79,17 +79,23 @@ export default function Swipe({ navigation }) {
         ref={e => (this.containerRef = e)}
       />
       <View style={styles.container}>
-        {data.map((item, index) => (
-          <Card
-            key={item.id}
-            item={item}
-            data={data}
-            index={index}
-            colors={colors}
-            removeItem={removeItem}
-            navigation={navigation}
-          />
-        ))}
+        { data.length !== 0 
+          ? 
+            <>
+              {data.map((item, index) => (
+                <Card
+                  key={item.id}
+                  item={item}
+                  data={data}
+                  index={index}
+                  colors={colors}
+                  removeItem={removeItem}
+                  navigation={navigation}
+                />
+              ))}
+            </>
+          : <></> 
+        }
       </View>
     </View>
   )

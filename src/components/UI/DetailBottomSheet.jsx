@@ -4,9 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  // Button,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -14,80 +12,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export default function DetailBottomSheet({ item, setShow, colors }) {
 
-  // const details = [
-  //   {
-  //     detail: university,
-  //     icon: '🎓',
-  //     iconName: 'location',
-  //   },
-  //   {
-  //     detail: occupation,
-  //     icon: '😎',
-  //     iconName: 'location',
-  //   },
-  //   {
-  //     detail: live_in,
-  //     icon: '📍',
-  //     iconName: 'location',
-  //   },
-  //   {
-  //     detail: city,
-  //     icon: '📍',
-  //     iconName: 'location',
-  //   },
-  //   {
-  //     detail: from,
-  //     icon: '🏡',
-  //     iconName: 'location',
-  //   },
-  // ];
-
-  // const filtered = details.filter(
-  //   (obj) => obj.detail && obj.detail !== undefined
-  // );
-
   return (
     <ScrollView
-      style={styles.screen}
+      style={[styles.screen, { backgroundColor:colors.primary }]}
       contentContainerStyle={styles.scrollview}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
     >
       <View style={styles.container1}>
         <View style={styles.nameTextContainer}>
-          <Text style={styles.nameText}>{`${item.name}, ${item.age}`}</Text>
-          {/* {props.isGroup && (
-            <Text style={styles.toogetherGroupText}>Toogether group</Text>
-          )} */}
+          <Text style={[styles.nameText, { color:colors.tint }]}>{`${item.name}, ${item.age}`}</Text>
         </View>
-        <TouchableOpacity onPress={() => setShow(false)} style={styles.closeContainer}>
+        <TouchableOpacity onPress={() => setShow(false)} style={[styles.closeContainer, { backgroundColor:colors.secondary }]}>
           <FontAwesomeIcon 
             icon="arrow-down"
             size={22}
             color={colors.accent}
           />
-          {/* <Image
-            source={require('../assets/images/red-arrow-down.png')}
-            style={{ width: '100%', height: '100%' }}
-          /> */}
         </TouchableOpacity>
       </View>
 
-      {/* {filtered &&
-        filtered.map((obj) => (
-          <View style={styles.infoWrapper} key={obj.detail}>
-            <Text style={{ fontSize: 17 }}>{obj.icon}</Text>
-            <Text style={styles.text}>{obj.detail}</Text>
-          </View>
-        ))} */}
+      <TouchableOpacity>
+        <Text>add</Text>
+      </TouchableOpacity>
 
-      <View style={styles.line} />
+      <View style={[styles.line, { borderColor:colors.tertiary }]} />
 
       <View style={styles.descriptionContainer}>
-        <Text style={{ fontSize: 18, fontWeight: '500', marginBottom: 4 }}>
+        <Text style={{ fontSize: 18,fontWeight: '500', marginBottom: 4, color:colors.tint }}>
           About
         </Text>
-        <Text style={styles.descriptionText}>{item.description}</Text>
+        <Text style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</Text>
       </View>
 
       {/* preview means open as match or member of group, so no need of like buttons */}
@@ -132,19 +87,10 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     overflow: 'hidden',
-    // backgroundColor: Colors.white,
     padding: 20,
     borderRadius: 10,
     minHeight: '30%',
     maxHeight: '40%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
   },
   scrollview: {},
   container1: {
@@ -169,7 +115,6 @@ const styles = StyleSheet.create({
   },
   toogetherGroupText: {
     fontSize: 15,
-    // color: Colors.orange,
   },
   infoWrapper: {
     flexDirection: 'row',
@@ -189,7 +134,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   line: {
-    // borderBottomColor: Colors.placeholder,
     borderBottomWidth: 0.8,
     margin: 10,
   },
@@ -204,10 +148,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   blockButtonText: {
-    // color: Colors.red,
     fontSize: 15,
   },
-  // redText: {
-  //   color: Colors.red,
-  // },
-});
+})
