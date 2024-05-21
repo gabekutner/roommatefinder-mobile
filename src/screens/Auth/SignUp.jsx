@@ -1,21 +1,18 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Keyboard,
-  KeyboardAvoidingView,
   SafeAreaView,
   Text,
   TouchableWithoutFeedback,
-  Platform,
-  InputAccessoryView,
-  ScrollView,
   View,
+  StyleSheet,
+  KeyboardAvoidingView
 } from 'react-native';
 
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import styles from '../../styles/auth';
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
@@ -74,42 +71,45 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor:activeColors.primary }]}> 
-            
-      {/* <InputAccessoryView> */}
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
-          <View style={styles.wrapper}>
+    <SafeAreaView style={[styles.container, { backgroundColor: activeColors.primary }]}>
+      <KeyboardAvoidingView
+        style={styles.wrapper}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -100}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.innerWrapper}>
 
             <View style={styles.header}>
               <Title text='roommatefinder' color={activeColors.tint} />
-              <Text style={[styles.headerDesc, { fontFamily:'NotoSans_Condensed-Regular', color:activeColors.tertiary }]}>
+              <Text style={[styles.headerDesc, { fontFamily: 'NotoSans_Condensed-Regular', color: activeColors.tertiary }]}>
                 Sign up to find your future roommate!
               </Text>
             </View>
 
             <View style={styles.inputWrapper}>
-              <Input 
+              <Input
                 label={'Full Name'}
-                placeholder={'Gabe Kutner'} 
-                value={form.name} 
-                onChangeText={name => setForm({ ...form, name })}  
+                placeholder={'Gabe Kutner'}
+                value={form.name}
+                onChangeText={name => setForm({ ...form, name })}
                 colors={activeColors}
                 height={55}
               />
 
-              <Input 
+              <Input
                 label={'Email Address'}
-                autoCapitalize={'none'} 
-                autoCorrect={false}  
-                keyboardType={'email-address'} 
-                placeholder={'gabe@example.com'} 
-                value={form.email} 
-                onChangeText={email => setForm({ ...form, email })} 
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                keyboardType={'email-address'}
+                placeholder={'gabe@example.com'}
+                value={form.email}
+                onChangeText={email => setForm({ ...form, email })}
                 colors={activeColors}
                 height={55}
               />
 
-              <Input 
+              <Input
                 label={'Password'}
                 secureTextEntry={true}
                 placeholder={'********'}
@@ -118,18 +118,18 @@ export default function SignUp({ navigation }) {
                 colors={activeColors}
                 height={55}
               />
-              <Input 
-                label={'Confirm Password'} 
-                secureTextEntry={true} 
-                placeholder={'********'} 
-                value={form.rpassword} 
-                onChangeText={rpassword => setForm({ ...form, rpassword })} 
+              <Input
+                label={'Confirm Password'}
+                secureTextEntry={true}
+                placeholder={'********'}
+                value={form.rpassword}
+                onChangeText={rpassword => setForm({ ...form, rpassword })}
                 colors={activeColors}
                 height={55}
               />
 
               <Button
-                onButtonPress={() => {onSignUp()}}
+                onButtonPress={() => { onSignUp() }}
                 buttonText={'Sign up'}
                 onLinkPress={() => navigation.navigate('signin')}
                 linkQuestion={"Have an account?"}
@@ -137,10 +137,37 @@ export default function SignUp({ navigation }) {
                 colors={activeColors}
               />
             </View>
-          
+
           </View>
         </TouchableWithoutFeedback>
-      {/* </InputAccessoryView> */}
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  innerWrapper: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  header: {
+    marginBottom: 20,
+  },
+  headerDesc: {
+    fontSize: 15,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  inputWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+})

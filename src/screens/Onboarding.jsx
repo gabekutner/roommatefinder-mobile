@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { scale, verticalScale, moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 
 import useGlobal from '../core/global';
 import { colors as c} from '../assets/config';
@@ -140,13 +140,13 @@ export default function Onboarding({ navigation }) {
           onPress={() => navigation.navigate("signin")}
           style={{
             backgroundColor:activeColors.constWhite,
-            padding:20,
-            marginHorizontal:20,
-            marginVertical:5,
+            padding:moderateVerticalScale(20),
+            marginHorizontal:moderateScale(20),
+            marginVertical:moderateVerticalScale(5),
             justifyContent:'center',
             alignItems:'center',
             borderRadius:5,
-            marginTop:20,
+            marginTop:moderateScale(15),
           }}
         >
           <Text style={[styles.buttonText, { color:activeColors.accentDark }]}>Log in</Text>
@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight:'bold',
     fontSize:17,
-    // color:Colors.utahRedRocks,
     fontFamily:'NotoSans_Condensed-Regular',
   },
 })
