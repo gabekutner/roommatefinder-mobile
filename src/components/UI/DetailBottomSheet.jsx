@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
 } from 'react-native';
@@ -36,6 +35,11 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
       </View>
 
       <TouchableOpacity 
+        onPress={() => {
+          // send friend req
+
+          // show snackbar
+        }}
         style={{ 
           backgroundColor:colors.secondary,
           padding:10,
@@ -94,6 +98,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         }
         
       </View>
+
     </ScrollView>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, act } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Modal,
-  Text,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
@@ -317,7 +316,7 @@ export default function EditProfile({ navigation }) {
               messageStyle={{ fontWeight:'bold' }} // adjust message text styling
               actionTextStyle={{ }} // customize action text styling
             />
-          : <></> 
+          : null
         }
         { showError 
           ?
@@ -336,7 +335,7 @@ export default function EditProfile({ navigation }) {
               messageStyle={{ fontWeight:'bold' }} // adjust message text styling
               actionTextStyle={{ }} // customize action text styling
             /> 
-          : <></> 
+          : null
         }
       </KeyboardAvoidingView>
     </SafeAreaView>
