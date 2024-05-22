@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, act } from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
   SafeAreaView,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Modal,
+  Text,
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
+import CustomText from '../../../components/UI/Custom/CustomText';
 import Input from '../../../components/UI/Input';
 import Button from '../../../components/Button';
 import SnackBar from '../../../components/SnackBarMessage';
+import Interests from '../Create/Interests';
 
 import useGlobal from '../../../core/global';
 import { colors as c } from '../../../assets/config';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
+const { width, height } = Dimensions.get('window')
 
 
 export default function EditProfile({ navigation }) {
@@ -23,6 +32,7 @@ export default function EditProfile({ navigation }) {
   const theme = useGlobal(state => state.theme)
   activeColors = c[theme] 
 
+  const [show, setShow] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showError, setShowError] = useState(false)
 
@@ -122,14 +132,13 @@ export default function EditProfile({ navigation }) {
                 autoCapitalize={true}
                 autoCorrect={false}
                 keyboardType="default"
-                placeholder={user.major ? user.major : "..."}
+                placeholder={user.major ? user.major : "Undecided"}
                 value={form.major}
                 onChangeText={major => setForm({ ...form, major })}
                 width={300}
                 height={55}
               />
             </View>
-
 
             <View style={{ flexDirection:'row', gap:10 }}>
               <View style={styles.section}>
@@ -203,9 +212,86 @@ export default function EditProfile({ navigation }) {
               />
             </View>
 
-            <View style={styles.section}>
-              {/* interests here */}
+            <View style={[styles.section, { marginBottom:0 }]}>
+              <TouchableOpacity
+                onPress={() => setShow(true)}
+                style={{ 
+                  backgroundColor:activeColors.secondary,
+                  paddingHorizontal:20,
+                  height:55,
+                  width:300,
+                  borderRadius:12,
+                  fontSize:17,
+                  fontWeight:'500',
+                  borderWidth:1,
+                  borderColor:activeColors.tertiary,
+                  justifyContent:'space-between',
+                  alignItems:'center',
+                  flexDirection:'row',
+                }}
+              >
+                <CustomText 
+                  style={{ 
+                    fontSize:17, 
+                    fontWeight:'600', 
+                  }}
+                >
+                  Interests
+                </CustomText>
+                <FontAwesomeIcon 
+                  icon="chevron-right"
+                  size={22}
+                  color={activeColors.accent}
+                />
+              </TouchableOpacity>           
+              { setShow 
+                ? 
+                  <Modal 
+                    animationType="slide" 
+                    visible={show}
+                    presentationStyle='pageSheet'
+                  >
+                    <View
+                      style={{
+                        marginTop:30,
+                        flex:1,
+                        alignItems:'center',
+                        justifyContent:'center'
+                      }}
+                    >
+                      <View
+                        style={{
+                          width:width * .7,
+                          justifyContent:'center',
+                          alignItems:'center'
+                        }}
+                      >
+                        <CustomText
+                          style={{
+                            marginVertical:20,
+                            fontSize:20, 
+                            fontWeight:'600', 
+                          }}
+                        >
+                          Interests
+                        </CustomText>
+                        <View style={{ height:height*.6 }} >
+                          <Interests colors={activeColors} form={form} setForm={setForm} />
+                        </View>
+                        <Button
+                          colors={activeColors}
+                          buttonText="All Done"
+                          buttonStyle={{ padding:45 }}
+                          onButtonPress={() => setShow(false)}
+                        />
+                      </View>
+                    </View>
+                  </Modal>
+                : <></> 
+              }
             </View>
+
+            
             
           </View>
         </ScrollView>

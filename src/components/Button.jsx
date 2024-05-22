@@ -14,7 +14,7 @@ export default function Button(props) {
     <View style={styles.buttonWrapper}>
       <TouchableOpacity 
         onPress={props.onButtonPress}>
-        <View style={[styles.button, { backgroundColor:props.colors.accent }]}>
+        <View style={[styles.button, { backgroundColor:props.colors.accent, ...props.buttonStyle }]}>
           <CustomText style={[styles.buttonText, { color:'#f9fafb' }]}>{props.buttonText}</CustomText>
         </View>
       </TouchableOpacity>

@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
 } from 'react-native';
+
+import CustomText from '../../../components/UI/Custom/CustomText';
 
 import { interestsData } from '../../../assets/Dictionary';
 
@@ -38,19 +39,19 @@ export default function Interests({ colors, form, setForm }) {
             style={[
               styles.option, 
               {
-                borderColor: colors.accent,
-                backgroundColor: Object.values(form.interests).includes(item.id) ? colors.accent : 'transparent'
+                borderColor:colors.accent,
+                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : 'transparent'
               }
             ]}
           >
-            <Text style={[styles.text, { color: Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint }]}>{item.interest}</Text>
+            <CustomText style={[styles.text, { color:Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint }]}>{item.interest}</CustomText>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
       />
-      <Text style={{ marginBottom:80, marginHorizontal:35, color:activeColors.tertiary  }}>
+      <CustomText style={{ marginBottom:80, marginHorizontal:35, color:activeColors.tertiary  }}>
         Pick 1 to 5.
-      </Text>
+      </CustomText>
     </>
   )
 }
@@ -64,8 +65,5 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:20,
   },
-  text: {
-    fontFamily:'NotoSans_Condensed-Regular',
-    fontSize:17,
-  }
+  text: { fontSize:17 },
 })
