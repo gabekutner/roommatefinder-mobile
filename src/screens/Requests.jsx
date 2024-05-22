@@ -1,12 +1,13 @@
+import React from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
   View, 
-  Text, 
-  TouchableOpacity 
+  TouchableOpacity,
+	SafeAreaView
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
+import CustomText from '../components/UI/Custom/CustomText';
 import Empty from "../components/Empty";
 import Cell from "../components/Cell";
 import Thumbnail from "../components/Thumbnail";
@@ -32,7 +33,7 @@ function RequestAccept({ item, colors }) {
 				justifyContent:'center'
 			}}
 		>
-			<Text style={{ color:colors.primary, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' }}>Accept</Text>
+			<CustomText style={{ color:colors.primary, fontWeight:'500' }}>Accept</CustomText>
 		</TouchableOpacity>
 	)
 }
@@ -47,15 +48,15 @@ function RequestRow({ item, colors }) {
 				url={item.sender.thumbnail}
 				size={76}
 			/>
-			<View style={{ flex: 1, paddingHorizontal: 16 }} >
-				<Text style={{ fontWeight:'600', fontFamily:'NotoSans_Condensed-Regular', fontSize:17, color:colors.tint, marginBottom:4 }}>
+			<View style={{ flex:1, paddingHorizontal:16 }} >
+				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
 					{item.sender.name}
-				</Text>
-				<Text style={{ color:colors.tertiary, fontFamily:'NotoSans_Condensed-Regular' }}>
-					{message} <Text style={{ color:colors.tertiary, fontSize:13, fontFamily:'NotoSans_Condensed-Regular' }}>
+				</CustomText>
+				<CustomText style={{ color:colors.tertiary }}>
+					{message} <CustomText style={{ color:colors.tertiary, fontSize:13 }}>
 						{utils.formatTime(item.created)}
-					</Text>
-				</Text>
+					</CustomText>
+				</CustomText>
 			</View>
 
 			<RequestAccept item={item} colors={colors} />
@@ -68,26 +69,26 @@ export default function Requests() {
 
 	const requestList = useGlobal(state => state.requestList)
 	const theme = useGlobal(state => state.theme)
-	const activeColors = c[theme]
+	const colors = c[theme]
 
 	if (requestList === null) {
 		return  (
-			<ActivityIndicator style={{ flex:1, backgroundColor:activeColors.primary }} />
+			<ActivityIndicator style={{ flex:1, backgroundColor:colors.primary }} />
 		)
 	}
 
 	if (requestList.length === 0) {
 		return (
-			<Empty icon='bell' message='No requests' colors={activeColors} />
+			<Empty icon='bell' message='No requests' colors={colors} />
 		)
 	}
 
 	return (
-		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
 			<FlatList
 				data={requestList}
 				renderItem={({ item }) => (
-					<RequestRow item={item} colors={activeColors} />
+					<RequestRow item={item} colors={colors} />
 				)}
 				keyExtractor={item => item.sender.id}
 			/>

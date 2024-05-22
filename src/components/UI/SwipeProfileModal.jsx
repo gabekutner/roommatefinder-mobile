@@ -40,7 +40,5 @@ const styles = StyleSheet.create({
     alignItems:'flex-end',
     flexDirection:'row',
   },
-  imageStyle: {
-    height:'100%',
-  },
+  imageStyle: { height:'100%' },
 })

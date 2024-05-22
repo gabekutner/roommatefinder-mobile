@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -7,11 +7,15 @@ import {
   Text,
 } from 'react-native';
 
-import Title from '../components/Title';
-import Colors from '../assets/Colors';
+import Title from '../components/UI/Title';
+import useGlobal from '../core/global';
+import { colors as c } from '../assets/config';
 
 
 export default function SplashScreen() {
+
+	const theme = useGlobal(state => state.theme)
+	const colors = c[theme]
 
   const translateY = new Animated.Value(0)
 	const duration = 2000
@@ -36,15 +40,23 @@ export default function SplashScreen() {
   return (
 		<SafeAreaView
 			style={{
-				flex: 1,
-				alignItems: 'center',
-				justifyContent: 'center',
-				backgroundColor: Colors.utahRed
+				flex:1,
+				alignItems:'center',
+				justifyContent:'center',
+				backgroundColor:colors.accent
 			}}
 		>
 			<StatusBar barStyle='light-content' />
 			<Animated.View style={[{ transform: [{ translateY }] }]}>
-				<Title text='roommatefinder' color={Colors.utahWhite} />
+				<Title 
+					text='roommatefinder' 
+					style={{ 
+						color:colors.constWhite,
+						textAlign:'center',
+						fontSize:34,
+						fontFamily:'Glegoo-Bold' 
+					}} 
+				/>
 			</Animated.View>
       <View 
         style={{ 
@@ -56,7 +68,7 @@ export default function SplashScreen() {
       >
         <Text 
           style={{ 
-            color:Colors.utahWhite,
+            color:colors.constWhite,
             textAlign:'center',
             fontSize:16,
             fontFamily:'Glegoo-Bold' 

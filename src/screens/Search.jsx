@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { 
 	FlatList,
 	SafeAreaView, 
-	Text, 
 	TextInput, 
 	TouchableOpacity, 
 	View
@@ -10,6 +9,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import CustomText from '../components/UI/Custom/CustomText';
 import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
 import Cell from "../components/Cell";
@@ -67,15 +67,14 @@ function SearchButton({ user, colors }) {
 			disabled={data.disabled}
 			onPress={data.onPress}
 		>
-			<Text
+			<CustomText
 				style={{
 					color:colors.primary,
 					fontWeight:'600',
-					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
 				{data.text}
-			</Text>
+			</CustomText>
 		</TouchableOpacity>
 	)
 }
@@ -103,9 +102,9 @@ function SearchRow({ navigation, item, colors }) {
 				
 			</TouchableOpacity>
 			<View style={{ flex:1, paddingHorizontal:16 }}>
-					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
+					<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 						{item.name}
-					</Text>	
+					</CustomText>	
 				</View>
 			<SearchButton user={item} colors={colors} />
 		</Cell>
@@ -119,14 +118,14 @@ export default function Search({ navigation }) {
 	const searchList = useGlobal(state => state.searchList)
 	const searchUsers = useGlobal(state => state.searchUsers)
 	const theme = useGlobal(state => state.theme)
-	const activeColors = c[theme]
+	const colors = c[theme]
 
 	useEffect(() => {
 		searchUsers(query)
 	}, [query]) 
 
 	return (
-		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
 			<View style={{	padding: 16	}} >
 				<TouchableOpacity 
 					onPress={() => navigation.goBack()}
@@ -138,7 +137,7 @@ export default function Search({ navigation }) {
 					<FontAwesomeIcon 
 						icon='arrow-left'
 						size={22}
-						color={activeColors.tint}
+						color={colors.tint}
 					/>
 				</TouchableOpacity>
 				<View>
@@ -151,22 +150,22 @@ export default function Search({ navigation }) {
 							paddingLeft: 50,
 							paddingHorizontal: 18,
 							borderWidth: 1,
-							borderColor: activeColors.tertiary,
-							backgroundColor: activeColors.secondary,
-							color:activeColors.tint,
+							borderColor: colors.tertiary,
+							backgroundColor: colors.secondary,
+							color:colors.tint,
 							fontFamily:'NotoSans_Condensed-Regular',
 						}}
-						keyboardAppearance={activeColors.primary === '#1f2937' ? 'dark' : 'light'}
+						keyboardAppearance={colors.primary === '#1f2937' ? 'dark' : 'light'}
 						value={query}
 						onChangeText={setQuery}
 						placeholder='Search...'
-						color={activeColors.tint}
-						placeholderTextColor={activeColors.tint}
+						color={colors.tint}
+						placeholderTextColor={colors.tint}
 					/>
 					<FontAwesomeIcon
 						icon='magnifying-glass'
 						size={20}
-						color={activeColors.tint}
+						color={colors.tint}
 						style={{
 							position: 'absolute',
 							left: 18,
@@ -181,20 +180,20 @@ export default function Search({ navigation }) {
 					icon='magnifying-glass'
 					message='Search for friends'
 					centered={false}
-					colors={activeColors}
+					colors={colors}
 				/>
 			) : searchList.length === 0 ? (
 				<Empty
 					icon='triangle-exclamation'
 					message={'No users found for "' + query + '"'}
 					centered={false}
-					colors={activeColors}
+					colors={colors}
 				/>
 			) : (
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
-						<SearchRow navigation={navigation} item={item} colors={activeColors} />
+						<SearchRow navigation={navigation} item={item} colors={colors} />
 					)}
 					keyExtractor={item => item.id}
 				/>

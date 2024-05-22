@@ -1,9 +1,11 @@
 import { 
   View,
   Text,
- } from "react-native";
+} from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+import CustomText from "./UI/Custom/CustomText";
 
 
 export default function Empty({ icon, message, centered=true, colors }) {
@@ -25,15 +27,14 @@ export default function Empty({ icon, message, centered=true, colors }) {
           marginBottom:16,
         }}
       />
-      <Text
+      <CustomText
         style={{
           color:colors.tertiary,
           fontSize:16,
-          fontFamily:'NotoSans_Condensed-Regular',
         }}
       >
         {message}
-      </Text>
+      </CustomText>
     </View>
   )
 }

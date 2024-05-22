@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   Dimensions,
   LayoutAnimation,
   PanResponder,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { verticalScale } from 'react-native-size-matters';
 
 import Empty from '../components/Empty';
 import CardItem from '../components/Card';
@@ -20,6 +18,7 @@ import { colors as c } from '../assets/config';
 
 const { width } = Dimensions.get('window')
 const offset = width / 5
+
 
 export default function Swipe({ navigation }) {
 

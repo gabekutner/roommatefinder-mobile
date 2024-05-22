@@ -4,6 +4,8 @@ import {
   Text,
 } from "react-native";
 
+import CustomText from "./UI/Custom/CustomText";
+
 import styles from '../styles/auth';
 
 
@@ -13,15 +15,15 @@ export default function Button(props) {
       <TouchableOpacity 
         onPress={props.onButtonPress}>
         <View style={[styles.button, { backgroundColor:props.colors.accent }]}>
-          <Text style={[styles.buttonText, { fontFamily:'NotoSans_Condensed-Regular', color:'#f9fafb' }]}>{props.buttonText}</Text>
+          <CustomText style={[styles.buttonText, { color:'#f9fafb' }]}>{props.buttonText}</CustomText>
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={{ marginTop:'7%' }} onPress={props.onLinkPress}>
-        <Text style={[styles.navigateToOppositeText, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tertiary }]}>
+        <CustomText style={[styles.navigateToOppositeText, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tertiary }]}>
           {props.linkQuestion}{' '}
           {/* check again, if tertiary is d1d5db (dark) then color is .tint else 405DE6 */}
-          <Text style={{ textDecorationLine:'underline', color:props.colors.tertiary === '#d1d5db' ? props.colors.tint : '#405DE6', fontFamily:'NotoSans_Condensed-Regular' }}>{props.linkDirectTo}</Text>
-        </Text>
+          <CustomText style={{ textDecorationLine:'underline', color:props.colors.tertiary === '#d1d5db' ? props.colors.tint : '#405DE6' }}>{props.linkDirectTo}</CustomText>
+        </CustomText>
       </TouchableOpacity>
     </View>
   )

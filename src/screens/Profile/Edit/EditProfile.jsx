@@ -8,7 +8,7 @@ import {
   Platform
 } from 'react-native';
 
-import Input from '../../../components/Input';
+import Input from '../../../components/UI/Input';
 import Button from '../../../components/Button';
 import SnackBar from '../../../components/SnackBarMessage';
 

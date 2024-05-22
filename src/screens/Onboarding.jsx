@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   View, 
   Text, 
@@ -9,16 +9,20 @@ import {
   Dimensions,
 } from 'react-native';
 
-import { scale, verticalScale, moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+
+import CustomText from '../components/UI/Custom/CustomText';
 
 import useGlobal from '../core/global';
 import { colors as c} from '../assets/config';
+
+const { width, height } = Dimensions.get('window')
 
 
 export default function Onboarding({ navigation }) {
 
   const theme = useGlobal(state => state.theme)
-  activeColors = c[theme]
+  const colors = c[theme]
 
   const [screen, setScreen] = useState(0)
   const slides = [
@@ -31,16 +35,16 @@ export default function Onboarding({ navigation }) {
     },
     {
       id:2,
-      title:'Title', 
-      subtitle:`WELCOME TO`,
-      description:`Some description text ...`, 
+      title:'title',
+      subtitle:'...',
+      description:'some description text...',
       imagePath: require('../assets/images/image_part_002.png')
     },
     {
       id:3,
-      title:'Title', 
-      subtitle:'WELCOME TO',
-      description:`Some description text ...`, 
+      title:'title',
+      subtitle:'...',
+      description:'some description text...',
       imagePath: require('../assets/images/image_part_003.png')
     }
   ]
@@ -54,8 +58,8 @@ export default function Onboarding({ navigation }) {
   ])
 
   return (
-    <View style={{ flex:1, backgroundColor:activeColors.accentDark }}>
-      <View style={{ flex:0.8, backgroundColor:activeColors.constWhite }}>
+    <View style={{ flex:1, backgroundColor:colors.accentDark }}>
+      <View style={{ flex:0.8, backgroundColor:colors.constWhite }}>
         <FlatList
           data={slides}
           horizontal={true}
@@ -69,22 +73,21 @@ export default function Onboarding({ navigation }) {
             return(
               <View 
                 style={{
-                  width:Dimensions.get('window').width,
+                  width:width,
                   justifyContent:'flex-end'
                 }}
               >
                 <Image 
                   style={{
-                    width:Dimensions.get('window').width,
-                    height:Dimensions.get('window').height,
+                    width:width,
+                    height:height,
                   }} 
                   source={item.imagePath} 
                 />
-
                 <View  
                   style={{
                     position:'absolute', 
-                    top:0, 
+                    top:0,
                     left:0, 
                     right:0, 
                     bottom:300, 
@@ -93,27 +96,30 @@ export default function Onboarding({ navigation }) {
                     padding:20,
                   }}
                 >
-                  <Text 
-                    style={{
-                      fontWeight:'bold',
+                  <CustomText 
+                    style={[styles.bold, {
                       fontSize:12,
                       paddingBottom:15,
-                      fontFamily:'NotoSans_Condensed-Regular'
-                    }}>{item.subtitle}</Text>
-                  <Text 
-                    style={{
-                      fontWeight:'bold',
+                    }]}
+                  >
+                    {item.subtitle}
+                  </CustomText>
+                  <CustomText 
+                    style={[styles.bold, {
                       fontSize:22,
-                      fontFamily:'NotoSans_Condensed-Regular'
-                    }}>{item.title}</Text>
-                  <Text 
-                    style={{
-                      fontWeight:'bold',
+                    }]}
+                  >
+                    {item.title}
+                  </CustomText>
+                  <CustomText 
+                    style={[styles.bold, {
                       fontSize:14,
                       textAlign:'center',
                       paddingTop: 5,
-                      fontFamily:'NotoSans_Condensed-Regular'
-                    }}>{item.description}</Text>
+                    }]}
+                  >
+                    {item.description}
+                  </CustomText>
                 </View>
               </View>
             )
@@ -129,9 +135,9 @@ export default function Onboarding({ navigation }) {
             justifyContent:'center',
           }}
         >
-          <View style={[styles.dot, { backgroundColor: screen === 1 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 2 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 3 ? activeColors.accent : activeColors.constWhite, borderColor:activeColors.constWhite }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 1 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 2 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
+          <View style={[styles.dot, { backgroundColor: screen === 3 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
         </View>
       </View>
 
@@ -139,7 +145,7 @@ export default function Onboarding({ navigation }) {
         <TouchableOpacity 
           onPress={() => navigation.navigate("signin")}
           style={{
-            backgroundColor:activeColors.constWhite,
+            backgroundColor:colors.constWhite,
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
@@ -149,14 +155,14 @@ export default function Onboarding({ navigation }) {
             marginTop:moderateScale(15),
           }}
         >
-          <Text style={[styles.buttonText, { color:activeColors.accentDark }]}>Log in</Text>
+          <Text style={[styles.buttonText, styles.bold, { color:colors.accentDark }]}>Log in</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           onPress={() => navigation.navigate("signup")}
           style={{
             borderWidth:1,
-            borderColor:activeColors.constWhite,
+            borderColor:colors.constWhite,
             padding:20,
             marginHorizontal:20,
             marginVertical:5,
@@ -165,7 +171,7 @@ export default function Onboarding({ navigation }) {
             borderRadius:5,
           }}
         >
-          <Text style={[styles.buttonText, {color:activeColors.constWhite}]}>Create an Account</Text>
+          <Text style={[styles.buttonText, styles.bold, {color:colors.constWhite}]}>Create an Account</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -173,16 +179,13 @@ export default function Onboarding({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bold: { fontWeight:'bold' },
   dot: {
     width:12,
-    height:12, 
+    height:12,
     borderRadius:50,
     marginHorizontal:5,
     borderWidth:1,
   },
-  buttonText: {
-    fontWeight:'bold',
-    fontSize:17,
-    fontFamily:'NotoSans_Condensed-Regular',
-  },
+  buttonText: { fontSize:17 },
 })

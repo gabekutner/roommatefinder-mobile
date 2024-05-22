@@ -5,6 +5,7 @@ import {
   View 
 } from 'react-native';
 
+import CustomText from './UI/Custom/CustomText';
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import { dormsData } from '../assets/Dictionary';
@@ -17,11 +18,11 @@ export default function InfoCard(props) {
   return (
     <View style={{ ...styles.cardShadow, backgroundColor:colors.secondary }}>
       <View style={styles.textContainer}>
-        <Text style={[styles.name, { color:colors.tint }]}>{`${name}, ${age}`}</Text>
+        <CustomText style={[styles.name, { color:colors.tint }]}>{`${name}, ${age}`}</CustomText>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={{ fontSize: 16 }}>🏡</Text>
-        <Text style={[styles.text, { color:colors.tertiary }]}>{dormsData[dorm-1].dorm}</Text>
+        <CustomText style={{ fontSize: 16 }}>🏡</CustomText>
+        <CustomText style={[styles.text, { color:colors.tertiary }]}>{dormsData[dorm-1].dorm}</CustomText>
       </View>
     </View>
   )

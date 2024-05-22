@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { scale, verticalScale } from 'react-native-size-matters';
 
+import Title from '../components/UI/Title';
 import Friends from "./Friends";
 import Profile from "./Profile/Profile";
 import Swipe from "./SwipeScreen";
@@ -24,7 +25,16 @@ function HeaderLogo({ logoColor }) {
   return (
     <View style={{ flexDirection:'row', flexWrap:'wrap', alignItems:'center', marginLeft:17, width:'110%' }}>
       <View style={{ width:30, height:30, backgroundColor:'#be0000' }} />
-      <Text style={{ padding:5, fontSize:scale(16), color:logoColor, fontFamily:'Glegoo-Bold' }}>roommatefinder</Text>
+      <Title 
+        text="roommatefinder"
+        style={{
+          padding:5, 
+          fontSize:scale(16), 
+          color:logoColor, 
+          fontFamily:'Glegoo-Bold'
+        }}
+      />
+      {/* <Text style={{ padding:5, fontSize:scale(16), color:logoColor, fontFamily:'Glegoo-Bold' }}>roommatefinder</Text> */}
     </View>
   )
 }

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import {
   Keyboard,
   SafeAreaView,
-  Text,
   TouchableWithoutFeedback,
   View,
   StyleSheet,
   KeyboardAvoidingView
 } from 'react-native';
 
-import Title from '../../components/Title';
-import Input from '../../components/Input';
+import CustomText from '../../components/UI/Custom/CustomText';
+import Title from '../../components/UI/Title';
+import Input from '../../components/UI/Input';
 import Button from '../../components/Button';
 
 import api from '../../core/api';
@@ -22,7 +22,7 @@ export default function SignUp({ navigation }) {
 
   const login = useGlobal(state => state.login)
   const theme = useGlobal(state => state.theme)
-  const activeColors = c[theme]
+  const colors = c[theme]
 
   const [form, setForm] = useState({
     email: '',
@@ -71,7 +71,7 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: activeColors.primary }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.primary }]}>
       <KeyboardAvoidingView
         style={styles.wrapper}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -81,10 +81,18 @@ export default function SignUp({ navigation }) {
           <View style={styles.innerWrapper}>
 
             <View style={styles.header}>
-              <Title text='roommatefinder' color={activeColors.tint} />
-              <Text style={[styles.headerDesc, { fontFamily: 'NotoSans_Condensed-Regular', color: activeColors.tertiary }]}>
+              <Title 
+                text='roommatefinder' 
+                style={{ 
+                  color:colors.tint,
+                  textAlign:'center',
+                  fontSize:34,
+                  fontFamily:'Glegoo-Bold' 
+                }}
+              />
+              <CustomText style={[styles.headerDesc, { color: colors.tertiary }]}>
                 Sign up to find your future roommate!
-              </Text>
+              </CustomText>
             </View>
 
             <View style={styles.inputWrapper}>
@@ -93,7 +101,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'Gabe Kutner'}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
-                colors={activeColors}
+                colors={colors}
                 height={55}
               />
 
@@ -105,7 +113,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
-                colors={activeColors}
+                colors={colors}
                 height={55}
               />
 
@@ -115,7 +123,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
-                colors={activeColors}
+                colors={colors}
                 height={55}
               />
               <Input
@@ -124,7 +132,7 @@ export default function SignUp({ navigation }) {
                 placeholder={'********'}
                 value={form.rpassword}
                 onChangeText={rpassword => setForm({ ...form, rpassword })}
-                colors={activeColors}
+                colors={colors}
                 height={55}
               />
 
@@ -134,7 +142,7 @@ export default function SignUp({ navigation }) {
                 onLinkPress={() => navigation.navigate('signin')}
                 linkQuestion={"Have an account?"}
                 linkDirectTo={'Sign in'}
-                colors={activeColors}
+                colors={colors}
               />
             </View>
 
@@ -147,9 +155,7 @@ export default function SignUp({ navigation }) {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   wrapper: {
     flex: 1,
     justifyContent: 'center',
@@ -158,9 +164,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
-  header: {
-    marginBottom: 20,
-  },
+  header: { marginBottom: 20 },
   headerDesc: {
     fontSize: 15,
     fontWeight: '500',

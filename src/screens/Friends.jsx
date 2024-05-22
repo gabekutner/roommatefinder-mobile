@@ -1,12 +1,13 @@
+import React from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
   SafeAreaView, 
-  Text,
   TouchableOpacity, 
   View 
 } from "react-native";
 
+import CustomText from '../components/UI/Custom/CustomText';
 import Cell from "../components/Cell";
 import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
@@ -39,14 +40,14 @@ function FriendRow({ navigation, item, colors }) {
 			
 			<TouchableOpacity onPress={() => navigation.navigate('messages', item)}>
 				<View style={{ flex:1, paddingHorizontal: 16, justifyContent:'center' }}>
-					<Text style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
+					<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 						{item.friend.name}
-					</Text>
-					<Text style={{ color:colors.tertiary, fontFamily:'NotoSans_Condensed-Regular' }}>
-						{item.preview} <Text style={{ color:colors.tertiary, fontSize:13, fontFamily:'NotoSans_Condensed-Regular' }}>
+					</CustomText>
+					<CustomText style={{ color:colors.tertiary }}>
+						{item.preview} <CustomText style={{ color:colors.tertiary, fontSize:13 }}>
 							{utils.formatTime(item.updated)}
-						</Text>
-					</Text>
+						</CustomText>
+					</CustomText>
 				</View>
 			</TouchableOpacity>
 		</Cell>
@@ -58,29 +59,28 @@ export default function Friends({ navigation }) {
 
 	const friendList = useGlobal(state => state.friendList)
 	const theme = useGlobal(state => state.theme)
-  const activeColors = c[theme]
+  const colors = c[theme]
 
 	if (friendList === null) {
 		return  (
-			<ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:activeColors.primary }} />
+			<ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.primary }} />
 		)
 	}
 
 	if (friendList.length === 0) {
 		return (
-      <SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
-			  <Empty icon='inbox' message='No messages yet' colors={activeColors} />
+      <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+			  <Empty icon='inbox' message='No messages yet' colors={colors} />
       </SafeAreaView>
 		)
 	}
 
-	// Show request list
 	return (
-		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
 			<FlatList
 				data={friendList}
 				renderItem={({ item }) => (
-					<FriendRow navigation={navigation} item={item} colors={activeColors} />
+					<FriendRow navigation={navigation} item={item} colors={colors} />
 				)}
 				keyExtractor={item => item.id}
 			/>

@@ -9,6 +9,8 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import CustomText from './Custom/CustomText';
+
 
 export default function DetailBottomSheet({ item, setShow, colors }) {
 
@@ -21,7 +23,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
     >
       <View style={styles.container1}>
         <View style={styles.nameTextContainer}>
-          <Text style={[styles.nameText, { color:colors.tint }]}>{`${item.name}, ${item.age}`}</Text>
+          <CustomText style={[styles.nameText, { color:colors.tint }]}>{`${item.name}, ${item.age}`}</CustomText>
         </View>
         
         <TouchableOpacity onPress={() => setShow(false)} style={[styles.closeContainer, { backgroundColor:colors.secondary }]}>
@@ -46,7 +48,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         }}
       >
         {/* depends on status, maybe send through prop -- just like the search bar  */}
-        <Text style={{ fontSize:18, color:colors.accent, fontWeight:'bold' }}>Friend Request 👋</Text>
+        <CustomText style={{ fontSize:18, color:colors.accent, fontWeight:'bold' }}>Friend Request 👋</CustomText>
       </TouchableOpacity>
 
 
@@ -57,10 +59,10 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         { item.description 
           ? 
             <View>
-              <Text style={{ fontSize: 18,fontWeight: '500', marginBottom: 4, color:colors.tint }}>
+              <CustomText style={{ fontSize:18,fontWeight:'500', marginBottom:4, color:colors.tint }}>
                 About
-              </Text>
-              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</Text>
+              </CustomText>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</CustomText>
             </View>
           : <></> 
         }
@@ -73,7 +75,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
                 size={22}
                 color={colors.tint}
               />
-              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.instagram}</Text>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.instagram}</CustomText>
             </View>
           : <></> 
         }
@@ -86,7 +88,7 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
                 size={22}
                 color={colors.tint}
               />
-              <Text style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.snapchat}</Text>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.snapchat}</CustomText>
             </View>
           : <></> 
         }
@@ -134,9 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 3,
   },
-  icon: {
-    fontSize: 20,
-  },
+  icon: { fontSize: 20 },
   text: {
     fontSize: 15,
     marginLeft: 10,

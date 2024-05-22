@@ -1,19 +1,19 @@
+import React from "react";
 import { 
   View, 
-  Text, 
   TextInput,
 } from "react-native";
 
-import Colors from "../assets/Colors";
-import styles from '../styles/auth';
+import CustomText from "./Custom/CustomText";
+import styles from '../../styles/auth';
 
 
 export default function Input(props) {
   return (
     <View style={styles.inputFieldWrapper}>
-      <Text style={[styles.inputFieldLabel, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tint }]}>
+      <CustomText style={[styles.inputFieldLabel, { color:props.colors.tint }]}>
         { props.label }
-      </Text>
+      </CustomText>
       <TextInput 
         editable={props.editable}
         secureTextEntry={props.secureTextEntry}
@@ -21,7 +21,7 @@ export default function Input(props) {
         autoCorrect={props.autoCorrect}
         keyboardType={props.keyboardType}
         placeholder={props.placeholder}
-        placeholderTextColor={Colors.lightGrey}
+        placeholderTextColor={props.colors.tertiary}
         style={[styles.inputField, { 
           fontFamily:'NotoSans_Condensed-Regular', 
           color:props.colors.tint, 

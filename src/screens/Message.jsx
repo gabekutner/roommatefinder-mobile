@@ -19,6 +19,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import CustomText from '../components/UI/Custom/CustomText';
 import Thumbnail from "../components/Thumbnail";
 
 import useGlobal from "../core/global";
@@ -49,17 +50,16 @@ function MessageHeader({ navigation, friend, colors }) {
 				url={friend.thumbnail}
 				size={30}
 			/>
-			<Text
+			<CustomText
 				style={{
 					color:colors.tint,
 					marginLeft:10,
 					fontSize:18,
 					fontWeight:'500',
-					fontFamily:'NotoSans_Condensed-Regular',
 				}}
 			>
 				{friend.name}
-			</Text>			
+			</CustomText>			
 		</View>
 	)
 }
@@ -87,16 +87,15 @@ function MessageBubbleMe({ text }) {
 					minHeight:42,
 				}}
 			>
-				<Text
+				<CustomText
 					style={{
 						color:'white',
 						fontSize:16,
 						lineHeight:18,
-						fontFamily:'NotoSans_Condensed-Regular',
 					}}
 				>
 					{text}
-				</Text>
+				</CustomText>
 			</View>
 		</View>
 	)
@@ -186,16 +185,15 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 						<MessageTypingAnimation offset={2} />
 					</View>
 				) : (
-					<Text
+					<CustomText
 						style={{
 							color:'#202020',
 							fontSize:16,
 							lineHeight:18,
-							fontFamily:'NotoSans_Condensed-Regular',
 						}}
 					>
 						{text}
-					</Text>
+					</CustomText>
 				)}
 			</View>
 			<View style={{ flex:1 }} />
@@ -294,7 +292,7 @@ export default function Message({ navigation, route }) {
 	const messageSend = useGlobal(state => state.messageSend)
 	const messageType = useGlobal(state => state.messageType)
 	const theme = useGlobal(state => state.theme)
-	const activeColors = c[theme]
+	const colors = c[theme]
 
 	const connectionId = route.params.id
 	const friend = route.params.friend
@@ -303,10 +301,10 @@ export default function Message({ navigation, route }) {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
-				<MessageHeader navigation={navigation} friend={friend} colors={activeColors} />
+				<MessageHeader navigation={navigation} friend={friend} colors={colors} />
 			),
 			headerStyle: {
-				backgroundColor:activeColors.primary,
+				backgroundColor:colors.primary,
 			}
 		})
 	}, [])
@@ -328,7 +326,7 @@ export default function Message({ navigation, route }) {
 	}
 
 	return (
-		<SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
 			<View style={{ flex:1, marginBottom: Platform.OS === 'ios' ? 60 : 0 }} >
 				<FlatList
 					automaticallyAdjustKeyboardInsets={true}
@@ -348,7 +346,7 @@ export default function Message({ navigation, route }) {
 							index={index}
 							message={item}
 							friend={friend}
-							colors={activeColors}
+							colors={colors}
 						/>
 					)}
 				/>
@@ -360,7 +358,7 @@ export default function Message({ navigation, route }) {
 						message={message}
 						setMessage={onType}
 						onSend={onSend}
-						colors={activeColors}
+						colors={colors}
 					/>
 				</InputAccessoryView>
 			) : (
@@ -368,10 +366,9 @@ export default function Message({ navigation, route }) {
 					message={message}
 					setMessage={onType}
 					onSend={onSend}
-					colors={activeColors}
+					colors={colors}
 				/>
 			)}
-
 		</SafeAreaView>
 	)
 }
