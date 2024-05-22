@@ -11,7 +11,6 @@ import {
   InputAccessoryView, 
   Platform, 
   SafeAreaView, 
-  Text, 
   TextInput, 
   TouchableOpacity, 
   View 

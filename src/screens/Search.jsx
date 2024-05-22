@@ -91,7 +91,7 @@ function SearchRow({ navigation, item, colors }) {
 				onPress={async() => {
 					const profile = await getSwipeProfile(user, item.id)
 					const userData = await profile.data
-					navigation.navigate('swipe-profile', { profile: userData })
+					// open modal for swipe profile
 				}}
 			>
 				<Thumbnail

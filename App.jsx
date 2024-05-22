@@ -21,7 +21,7 @@ import Requests from './src/screens/Requests';
 import CreateProfile from './src/screens/Profile/CreateProfile';
 import EditProfile from './src/screens/Profile/Edit/EditProfile';
 import Settings from './src/screens/Settings';
-import SwipeProfile from './src/screens/Profile/SwipeProfile';
+import PhotoUpload from './src/screens/PhotoUpload';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -144,8 +144,8 @@ export default function App() {
               options={{ headerShown:false }}
             />
             <Stack.Screen 
-              name="swipe-profile"
-              component={SwipeProfile}
+              name='photo-upload'
+              component={PhotoUpload}
               options={({ navigation }) => ({
                 headerLeft: () => (
                   <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -156,7 +156,8 @@ export default function App() {
                     />
                   </TouchableOpacity>
                 ), 
-                title: '',
+                title: 'Upload Photos',
+                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
                 headerStyle: {
                   backgroundColor:activeColors.primary,
                 },

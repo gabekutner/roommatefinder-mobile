@@ -157,7 +157,7 @@ export default function ProfileScreen({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          // onPress={() => navigation.navigate('settings')}
+          onPress={() => navigation.navigate('photo-upload')}
           style={{
             flexDirection:'row',
             height:verticalScale(52),
