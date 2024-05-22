@@ -15,8 +15,9 @@ import {
 import CustomText from '../../../components/UI/Custom/CustomText';
 import Input from '../../../components/UI/Input';
 import Button from '../../../components/Button';
-import SnackBar from '../../../components/SnackBarMessage';
 import Interests from '../Create/Interests';
+import Snackbar from '../../../components/UI/SnackBar';
+
 
 import useGlobal from '../../../core/global';
 import { colors as c } from '../../../assets/config';
@@ -30,7 +31,7 @@ export default function EditProfile({ navigation }) {
   const user = useGlobal(state => state.user)
   const editProfile = useGlobal(state => state.editProfile)
   const theme = useGlobal(state => state.theme)
-  activeColors = c[theme] 
+  const colors = c[theme] 
 
   const [show, setShow] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
@@ -49,19 +50,9 @@ export default function EditProfile({ navigation }) {
     graduation_year: ""
   })
 
-  // show snackbar
-  useEffect(() => {
-    if (showSuccess || showError) {
-      const toRef = setTimeout(() => {
-        setShowSuccess(false)
-        setShowError(false)
-        clearTimeout(toRef)
-      }, 3000)
-    }
-  }, [showSuccess, showError])
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:activeColors.primary }}>
+    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
@@ -74,7 +65,7 @@ export default function EditProfile({ navigation }) {
 
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Name"
                 editable={true}
                 secureTextEntry={false}
@@ -91,7 +82,7 @@ export default function EditProfile({ navigation }) {
 
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Instagram"
                 editable={true}
                 secureTextEntry={false}
@@ -108,7 +99,7 @@ export default function EditProfile({ navigation }) {
 
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Snapchat"
                 editable={true}
                 secureTextEntry={false}
@@ -125,7 +116,7 @@ export default function EditProfile({ navigation }) {
 
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Major"
                 editable={true}
                 secureTextEntry={false}
@@ -143,7 +134,7 @@ export default function EditProfile({ navigation }) {
             <View style={{ flexDirection:'row', gap:10 }}>
               <View style={styles.section}>
                 <Input 
-                  colors={activeColors}
+                  colors={colors}
                   label="Hometown"
                   editable={true}
                   secureTextEntry={false}
@@ -160,7 +151,7 @@ export default function EditProfile({ navigation }) {
 
               <View style={styles.section}>
                 <Input 
-                  colors={activeColors}
+                  colors={colors}
                   label="State"
                   editable={true}
                   secureTextEntry={false}
@@ -178,7 +169,7 @@ export default function EditProfile({ navigation }) {
             
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Graduation Year"
                 editable={true}
                 secureTextEntry={false}
@@ -195,7 +186,7 @@ export default function EditProfile({ navigation }) {
 
             <View style={styles.section}>
               <Input 
-                colors={activeColors}
+                colors={colors}
                 label="Bio"
                 editable={true}
                 secureTextEntry={false}
@@ -216,7 +207,7 @@ export default function EditProfile({ navigation }) {
               <TouchableOpacity
                 onPress={() => setShow(true)}
                 style={{ 
-                  backgroundColor:activeColors.secondary,
+                  backgroundColor:colors.secondary,
                   paddingHorizontal:20,
                   height:55,
                   width:300,
@@ -224,7 +215,7 @@ export default function EditProfile({ navigation }) {
                   fontSize:17,
                   fontWeight:'500',
                   borderWidth:1,
-                  borderColor:activeColors.tertiary,
+                  borderColor:colors.tertiary,
                   justifyContent:'space-between',
                   alignItems:'center',
                   flexDirection:'row',
@@ -241,7 +232,7 @@ export default function EditProfile({ navigation }) {
                 <FontAwesomeIcon 
                   icon="chevron-right"
                   size={22}
-                  color={activeColors.accent}
+                  color={colors.accent}
                 />
               </TouchableOpacity>           
               { setShow 
@@ -276,10 +267,10 @@ export default function EditProfile({ navigation }) {
                           Interests
                         </CustomText>
                         <View style={{ height:height*.6 }} >
-                          <Interests colors={activeColors} form={form} setForm={setForm} />
+                          <Interests colors={colors} form={form} setForm={setForm} />
                         </View>
                         <Button
-                          colors={activeColors}
+                          colors={colors}
                           buttonText="All Done"
                           buttonStyle={{ padding:45 }}
                           onButtonPress={() => setShow(false)}
@@ -290,23 +281,18 @@ export default function EditProfile({ navigation }) {
                 : <></> 
               }
             </View>
-
-            
-            
           </View>
         </ScrollView>
 
         <View style={{ paddingHorizontal:45 }}>  
           <Button
-            colors={activeColors}
+            colors={colors}
             buttonText="All Done"
             onButtonPress={() => {
               const resp = editProfile(form, user).then(_ => {
                 if (_.status == 200) {
-                  // success handling
                   setShowSuccess(true)
                 } else {
-                  // error handling
                   setShowError(true)
                 }
               })
@@ -314,9 +300,44 @@ export default function EditProfile({ navigation }) {
           />
         </View>
 
-        { showSuccess ? <SnackBar colors={activeColors} message={"Profile updated successfully!"} icon={"square-check"} type={'success'} /> : <></> }
-        { showError ? <SnackBar colors={activeColors} message={"Profile update failed"} icon={"square-xmark"} type={'error'} /> : <></> }
-
+        { showSuccess
+          ? 
+            <Snackbar
+              message="Successfully updated profile"
+              actionText="Dismiss"
+              onActionPress={() => {
+                setShowSuccess(false)
+              }}
+              duration={5000} // customize duration
+              position="top" // change the position to 'top'/'bottom'
+              backgroundColor={colors.green} // customize background color
+              textColor={colors.constWhite} // change text color
+              actionTextColor={colors.constWhite} // customize action text color
+              containerStyle={{ marginHorizontal:12 }} // apply additional styling
+              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+              actionTextStyle={{ }} // customize action text styling
+            />
+          : <></> 
+        }
+        { showError 
+          ?
+            <Snackbar
+              message="Error updating profile"
+              actionText="Dismiss"
+              onActionPress={() => {
+                setShowError(false)
+              }}
+              duration={5000} // customize duration
+              position="top" // change the position to 'top'/'bottom'
+              backgroundColor={colors.accent} // customize background color
+              textColor={colors.constWhite} // change text color
+              actionTextColor={colors.constWhite} // customize action text color
+              containerStyle={{ marginHorizontal:12 }} // apply additional styling
+              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+              actionTextStyle={{ }} // customize action text styling
+            /> 
+          : <></> 
+        }
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
