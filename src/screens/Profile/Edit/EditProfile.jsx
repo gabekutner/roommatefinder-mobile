@@ -224,6 +224,7 @@ export default function EditProfile({ navigation }) {
                   style={{ 
                     fontSize:17, 
                     fontWeight:'600', 
+                    color:colors.tint
                   }}
                 >
                   Interests
