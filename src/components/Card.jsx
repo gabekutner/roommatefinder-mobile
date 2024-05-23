@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   TouchableOpacity, 
@@ -15,7 +15,7 @@ import SwipeProfileModal from './UI/SwipeProfileModal';
 import useGlobal from '../core/global';
 
 
-export default function CardItem({ navigation, item, colors }) {
+export default function CardItem({ item, colors }) {
 
   const requestConnect = useGlobal(state => state.requestConnect)
 

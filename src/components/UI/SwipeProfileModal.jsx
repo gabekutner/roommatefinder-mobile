@@ -2,12 +2,13 @@ import React from "react";
 import {
   View,
   StyleSheet,
-  Modal,
+  Modal
 } from "react-native";
 
 import FastImage from "react-native-fast-image";
 
 import DetailBottomSheet from "./DetailBottomSheet";
+import utils from "../../core/utils";
 
 
 export default function SwipeProfileModal({ 
@@ -26,10 +27,7 @@ export default function SwipeProfileModal({
           key={item.id}
           style={styles.image}
           imageStyle={styles.imageStyle}
-          source={{
-            uri: item.thumbnail,
-            priority: FastImage.priority.high,
-          }}
+          source={utils.thumbnail(item.thumbnail)}
           resizeMode={FastImage.resizeMode.cover}
         />
         <DetailBottomSheet 
