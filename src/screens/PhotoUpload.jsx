@@ -10,7 +10,6 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 
 import Snackbar from "../components/UI/SnackBar";
-import CustomText from "../components/UI/Custom/CustomText";
 import Button from "../components/Button";
 
 import useGlobal from "../core/global";
@@ -18,8 +17,33 @@ import { colors as c } from "../assets/config";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
+
+function PhotoNumber({ number, colors }) {
+  return (
+    <View
+      style={{
+        position:'absolute',
+        top:-10,
+        left:-10,
+        padding:10,
+        backgroundColor:colors.secondary,
+        borderRadius:60
+      }}
+    >
+      <FontAwesomeIcon 
+        icon={number}
+        size={22}
+        color={colors.accent}
+      />
+    </View>
+  )
+}
+
+
 export default function PhotoUpload({}) {
 
+  const uploadImage = useGlobal(state => state.uploadImage)
+  const user = useGlobal(state => state.user)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
@@ -38,97 +62,109 @@ export default function PhotoUpload({}) {
       <View style={{ marginVertical:30 }}>
         
         <View style={styles.wrapper}>
-          <TouchableOpacity 
-            style={[styles.upload, { borderColor:colors.tertiary }]}
-            onPress={() => {
-              launchImageLibrary({ includeBase64:true, }, (response) => {
-                if (response.didCancel) return
-                const file = response.assets[0]
-                setForm({ ...form, picture_one:file })
-              })
-            }}
-          >
-            { form.picture_one 
-              ? <Image 
-                  src={form.picture_one.uri}
-                  style={{ height:'100%', width:'100%', borderRadius:10 }}
-                />
-              : <FontAwesomeIcon 
-                  icon="image"
-                  size={22}
-                  color={colors.tertiary}
-                /> 
-            }
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.upload, { borderColor:colors.tertiary }]}
-            onPress={() => {
-              launchImageLibrary({ includeBase64:true, }, (response) => {
-                if (response.didCancel) return
-                const file = response.assets[0]
-                setForm({ ...form, picture_two:file })
-              })
-            }}
-          >
-            { form.picture_two 
-              ? <Image 
-                  src={form.picture_two.uri}
-                  style={{ height:'100%', width:'100%', borderRadius:10 }}
-                />
-              : <FontAwesomeIcon 
-                  icon="image"
-                  size={22}
-                  color={colors.tertiary}
-                /> 
-            }
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity 
+              style={[styles.upload, { borderColor:colors.tertiary }]}
+              onPress={() => {
+                launchImageLibrary({ includeBase64:true, }, (response) => {
+                  if (response.didCancel) return
+                  const file = response.assets[0]
+                  setForm({ ...form, picture_one:file })
+                })
+              }}
+            >
+              { form.picture_one 
+                ? <Image 
+                    src={form.picture_one.uri}
+                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                  />
+                : <FontAwesomeIcon 
+                    icon="image"
+                    size={22}
+                    color={colors.tertiary}
+                  /> 
+              }
+            </TouchableOpacity>
+            <PhotoNumber number="1" colors={colors} />
+          </View>
+          <View>
+            <TouchableOpacity 
+              style={[styles.upload, { borderColor:colors.tertiary }]}
+              onPress={() => {
+                launchImageLibrary({ includeBase64:true, }, (response) => {
+                  if (response.didCancel) return
+                  const file = response.assets[0]
+                  setForm({ ...form, picture_two:file })
+                })
+              }}
+            >
+              { form.picture_two 
+                ? <Image 
+                    src={form.picture_two.uri}
+                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                  />
+                : <FontAwesomeIcon 
+                    icon="image"
+                    size={22}
+                    color={colors.tertiary}
+                  /> 
+              }
+            </TouchableOpacity>
+            <PhotoNumber number="2" colors={colors} />
+          </View>
         </View>
 
         <View style={styles.wrapper}>
-          <TouchableOpacity 
-            style={[styles.upload, { borderColor:colors.tertiary }]}
-            onPress={() => {
-              launchImageLibrary({ includeBase64:true, }, (response) => {
-                if (response.didCancel) return
-                const file = response.assets[0]
-                setForm({ ...form, picture_three:file })
-              })
-            }}
-          >
-            { form.picture_three 
-              ? <Image 
-                  src={form.picture_three.uri}
-                  style={{ height:'100%', width:'100%', borderRadius:10 }}
-                />
-              : <FontAwesomeIcon 
-                  icon="image"
-                  size={22}
-                  color={colors.tertiary}
-                /> 
-            }
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.upload, { borderColor:colors.tertiary }]}
-            onPress={() => {
-              launchImageLibrary({ includeBase64:true, }, (response) => {
-                if (response.didCancel) return
-                const file = response.assets[0]
-                setForm({ ...form, picture_four:file })
-              })
-            }}
-          >
-            { form.picture_four 
-              ? <Image 
-                  src={form.picture_four.uri}
-                  style={{ height:'100%', width:'100%', borderRadius:10 }}
-                />
-              : <FontAwesomeIcon 
-                  icon="image"
-                  size={22}
-                  color={colors.tertiary}
-                /> 
-            }
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity 
+              style={[styles.upload, { borderColor:colors.tertiary }]}
+              onPress={() => {
+                launchImageLibrary({ includeBase64:true, }, (response) => {
+                  if (response.didCancel) return
+                  const file = response.assets[0]
+                  setForm({ ...form, picture_three:file })
+                })
+              }}
+            >
+              { form.picture_three 
+                ? <Image 
+                    src={form.picture_three.uri}
+                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                  />
+                : <FontAwesomeIcon 
+                    icon="image"
+                    size={22}
+                    color={colors.tertiary}
+                  /> 
+              }
+            </TouchableOpacity>
+            <PhotoNumber number="3" colors={colors} />
+          </View>
+          <View>
+            <TouchableOpacity 
+              style={[styles.upload, { borderColor:colors.tertiary }]}
+              onPress={() => {
+                launchImageLibrary({ includeBase64:true, }, (response) => {
+                  if (response.didCancel) return
+                  const file = response.assets[0]
+                  setForm({ ...form, picture_four:file })
+                })
+              }}
+            >
+              { form.picture_four 
+                ? <Image 
+                    src={form.picture_four.uri}
+                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                  />
+                : <FontAwesomeIcon 
+                    icon="image"
+                    size={22}
+                    color={colors.tertiary}
+                  /> 
+              }
+            </TouchableOpacity>
+            <PhotoNumber number="4" colors={colors} />
+          </View>
         </View>
       </View>
       
@@ -138,7 +174,11 @@ export default function PhotoUpload({}) {
           buttonText="All Done"
           onButtonPress={() => {
             // handle button press
-
+            for (var prop in form) {
+              if (form[prop] !== null) {
+                uploadImage(form[prop], user)
+              }
+            }
             // show snackbar
             setShowSuccess(true)
           }}
@@ -183,7 +223,6 @@ export default function PhotoUpload({}) {
             /> 
           : null
         }
-
     </SafeAreaView>
   )
 }

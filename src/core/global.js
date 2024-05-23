@@ -388,14 +388,50 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+  //---------------------
+	//     Image Upload
+	//---------------------
+  image: null,
 
-  // ----------------------------------------------*/
-  // needed for profile updating 
+  uploadImage: async (file, user) => {
+    if (user.token) {
+      try {
 
-  // //---------------------
-	// //     Image Upload
-	// //---------------------
-  // uploadImage: async (file, user) => {
+        const dataForm = new FormData()
+        const imageUri = file.uri
+        const fileName = imageUri.split('/').pop()
+        const fileType = fileName.split('.')[1]
+        dataForm.append('image', {
+          name: fileName,
+          type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
+          uri:
+            Platform.OS === 'android'
+              ? file.uri
+              : file.uri.replace('file://', ''),
+        })
+
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/photos/',
+          data: dataForm,
+          headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
+        })
+        
+        if (response.status !== 200) {
+          throw 'Authentication error'
+        }
+
+        console.log('upload-photo success')
+
+        set((state) => ({
+          image:imageUri
+        }))
+        
+      } catch(error) {
+        console.log('Global.uploadImage error: ', error)
+      }
+    }
+  },
 
   //   if (user.token) {
   //     try {
