@@ -4,21 +4,23 @@ import {
   KeyboardAvoidingView,
   SafeAreaView,
   TouchableWithoutFeedback,
+  Pressable,
   View,
+  StyleSheet,
 } from 'react-native';
 
 import CustomText from '../../components/UI/Custom/CustomText';
+import CustomButton from '../../components/UI/Custom/CustomButton';
 import Title from '../../components/UI/Title';
 import Input from '../../components/UI/Input';
-import Button from '../../components/Button';
 
-import styles from '../../styles/auth';
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
 
 
 export default function SignIn({ navigation }) {
+
   const login = useGlobal(state => state.login)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
@@ -60,27 +62,35 @@ export default function SignIn({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.primary }]}>
+    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={styles.wrapper}>
+          <View style={{ flex:1, paddingHorizontal:20, justifyContent:'center' }}>
 
-            <View style={styles.header}>
+            <View style={{ marginVertical:'10%' }}>
               <Title 
-                text='roommatefinder' 
-                style={{ 
+                text='roommatefinder'
+                style={{
                   color:colors.tint,
                   textAlign:'center',
                   fontSize:34,
-                  fontFamily:'Glegoo-Bold' 
+                  fontFamily:'Glegoo-Bold'
                 }}
               />
-              <CustomText style={[styles.headerDesc, { color: colors.tertiary }]}>
+              <CustomText 
+                style={{ 
+                  color: colors.tertiary,
+                  marginVertical:10,
+                  fontSize:15,
+                  fontWeight:'500', 
+                  textAlign:'center'
+                }}
+              >
                 Welcome back!
               </CustomText>
             </View>
 
-            <View style={styles.inputWrapper}>
+            <View style={{ flex:1, marginBottom:24 }}>
               <Input
                 label={'Email Address'}
                 autoCapitalize={'none'}
@@ -101,14 +111,33 @@ export default function SignIn({ navigation }) {
                 colors={colors}
                 height={55}
               />
-              <Button
-                onButtonPress={() => { onSignIn() }}
-                buttonText={'Log in'}
-                onLinkPress={() => navigation.navigate('signup')}
-                linkQuestion={"Don't have an account?"}
-                linkDirectTo={'Sign up'}
-                colors={colors}
-              />
+
+              <CustomButton
+                onClick={() => onSignIn()}
+                style={{
+                  backgroundColor:colors.accent,
+                }}
+              >
+                <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Log in</CustomText>
+              </CustomButton>
+
+              <Pressable 
+                onPress={() => navigation.navigate('signup')}
+                style={{
+                  flexDirection:'row',
+                  gap:5,
+                  marginTop:20,
+                  justifyContent:'center',
+                }}
+              >
+                <CustomText style={[styles.text, { color:colors.tint }]}>
+                  Don't have an account?{' '}
+                  <CustomText style={[styles.text, { color:colors.tint, textDecorationLine:'underline' }]}>
+                    Sign up
+                  </CustomText>
+                </CustomText>
+              </Pressable>
+
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -116,3 +145,13 @@ export default function SignIn({ navigation }) {
     </SafeAreaView>
   )
 }
+
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize:17, 
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
+  }
+})

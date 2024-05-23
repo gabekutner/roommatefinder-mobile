@@ -19,7 +19,7 @@ export default function Button(props) {
         </View>
       </TouchableOpacity>
       <TouchableOpacity style={{ marginTop:'7%' }} onPress={props.onLinkPress}>
-        <CustomText style={[styles.navigateToOppositeText, { fontFamily:'NotoSans_Condensed-Regular', color:props.colors.tertiary }]}>
+        <CustomText style={[styles.navigateToOppositeText, { color:props.colors.tertiary }]}>
           {props.linkQuestion}{' '}
           {/* check again, if tertiary is d1d5db (dark) then color is .tint else 405DE6 */}
           <CustomText style={{ textDecorationLine:'underline', color:props.colors.tertiary === '#d1d5db' ? props.colors.tint : '#405DE6' }}>{props.linkDirectTo}</CustomText>

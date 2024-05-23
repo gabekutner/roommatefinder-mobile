@@ -5,13 +5,14 @@ import {
   TouchableWithoutFeedback,
   View,
   StyleSheet,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Pressable,
 } from 'react-native';
 
 import CustomText from '../../components/UI/Custom/CustomText';
+import CustomButton from '../../components/UI/Custom/CustomButton';
 import Title from '../../components/UI/Title';
 import Input from '../../components/UI/Input';
-import Button from '../../components/Button';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
@@ -136,16 +137,33 @@ export default function SignUp({ navigation }) {
                 height={55}
               />
 
-              <Button
-                onButtonPress={() => { onSignUp() }}
-                buttonText={'Sign up'}
-                onLinkPress={() => navigation.navigate('signin')}
-                linkQuestion={"Have an account?"}
-                linkDirectTo={'Sign in'}
-                colors={colors}
-              />
-            </View>
+              <CustomButton
+                onClick={() => onSignUp()}
+                style={{
+                  backgroundColor:colors.accent,
+                }}
+              >
+                <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Sign up</CustomText>
+              </CustomButton>
 
+              <Pressable 
+                onPress={() => navigation.navigate('signin')}
+                style={{
+                  flexDirection:'row',
+                  gap:5,
+                  marginTop:20,
+                  justifyContent:'center',
+                }}
+              >
+                <CustomText style={[styles.text, { color:colors.tint }]}>
+                  Already have an account?{' '}
+                  <CustomText style={[styles.text, { color:colors.tint, textDecorationLine:'underline' }]}>
+                    Sign in
+                  </CustomText>
+                </CustomText>
+              </Pressable>
+
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -174,4 +192,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  text: {
+    fontSize:17, 
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
+  }
 })

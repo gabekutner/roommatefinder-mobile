@@ -21,7 +21,7 @@ export default function CustomButton({
         justifyContent:'center',
         ...style,
       }}
-      onPress={() => onClick()}
+      onPress={onClick}
       activeOpacity={0.6}
     >
       {children}
