@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
@@ -7,6 +7,7 @@ import {
 	SafeAreaView
 } from "react-native";
 
+import SwipeProfileModal from "../components/UI/SwipeProfileModal";
 import CustomText from '../components/UI/Custom/CustomText';
 import Empty from "../components/Empty";
 import Cell from "../components/Cell";
@@ -40,14 +41,33 @@ function RequestAccept({ item, colors }) {
 
 
 function RequestRow({ item, colors }) {
+
+	const user = useGlobal(state => state.user)
+	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+
+	const [show, setShow] = useState(false)
+	const [profile, setProfile] = useState()
+
+	useEffect(() => {
+		async function fetchData() {
+			const profile = await getSwipeProfile(user, item.sender.id)
+			const userData = await profile.data
+			setProfile(userData)
+		}
+		fetchData()
+	}, [getSwipeProfile, user, item])
+
 	const message = 'Requested to connect with you'
 
 	return (
 		<Cell colors={colors}>
-			<Thumbnail
-				url={item.sender.thumbnail}
-				size={76}
-			/>
+			<TouchableOpacity onPress={() => setShow(true)}>
+				<Thumbnail
+					url={item.sender.thumbnail}
+					size={76}
+				/>
+			</TouchableOpacity>
+			
 			<View style={{ flex:1, paddingHorizontal:16 }} >
 				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
 					{item.sender.name}
@@ -60,6 +80,18 @@ function RequestRow({ item, colors }) {
 			</View>
 
 			<RequestAccept item={item} colors={colors} />
+
+			{ show
+			  ? 
+					<SwipeProfileModal 
+						item={profile}
+						colors={colors}
+						isVisible={show}
+						setIsVisible={setShow}
+					/>
+				: null 
+			}
+
 		</Cell>
 	)
 }
