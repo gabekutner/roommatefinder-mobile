@@ -40,8 +40,8 @@ export default function Dorm({ colors, form, setForm }) {
         )}
         keyExtractor={item => item.id}
       />
-      <Text style={{ marginBottom:80, marginHorizontal:35, color:activeColors.tertiary  }}>
-        Your age will be public.
+      <Text style={{ marginBottom:80, marginHorizontal:35, color:colors.tertiary  }}>
+        Not official, where you think you'll be living.
       </Text>
     </>
     

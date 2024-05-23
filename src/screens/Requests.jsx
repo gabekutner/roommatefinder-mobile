@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
@@ -72,15 +72,11 @@ export default function Requests() {
 	const colors = c[theme]
 
 	if (requestList === null) {
-		return  (
-			<ActivityIndicator style={{ flex:1, backgroundColor:colors.primary }} />
-		)
+		return <ActivityIndicator style={{ flex:1, backgroundColor:colors.primary }} />
 	}
 
 	if (requestList.length === 0) {
-		return (
-			<Empty icon='bell' message='No requests' colors={colors} />
-		)
+		return <Empty icon='bell' message='No requests' colors={colors} />
 	}
 
 	return (

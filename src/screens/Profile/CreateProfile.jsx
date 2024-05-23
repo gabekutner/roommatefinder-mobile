@@ -48,7 +48,7 @@ function Paginator({ colors, data, scrollX }) {
 function Item({ item, colors, form, setForm }) {
 
   if (item.title === 'Birthday') {
-    return <Birthday form={form} setForm={setForm} />
+    return <Birthday colors={colors} form={form} setForm={setForm} />
   }
 
   if (item.title === 'Sex') {

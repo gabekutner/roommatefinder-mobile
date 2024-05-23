@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
@@ -62,9 +62,7 @@ export default function Friends({ navigation }) {
   const colors = c[theme]
 
 	if (friendList === null) {
-		return  (
-			<ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.primary }} />
-		)
+		return <ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.primary }} />
 	}
 
 	if (friendList.length === 0) {

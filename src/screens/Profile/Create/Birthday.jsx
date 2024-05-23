@@ -6,7 +6,7 @@ import {
 import DatePicker from 'react-native-date-picker';
 
 
-export default function Birthday({ form, setForm }) {
+export default function Birthday({ colors, form, setForm }) {
   return (
     <View style={{ alignItems:'center' }}>
       <DatePicker
@@ -15,7 +15,7 @@ export default function Birthday({ form, setForm }) {
         mode={'date'}
         onDateChange={birthday => setForm({ ...form, birthday })}
       />
-      <Text style={{ marginVertical:15, marginHorizontal:35, color:activeColors.tertiary  }}>
+      <Text style={{ marginVertical:15, marginHorizontal:35, color:colors.tertiary  }}>
         Your age will be public.
       </Text>
     </View>

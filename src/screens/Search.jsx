@@ -9,6 +9,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import SwipeProfileModal from "../components/UI/SwipeProfileModal";
 import CustomText from '../components/UI/Custom/CustomText';
 import Empty from "../components/Empty";
 import Thumbnail from "../components/Thumbnail";
@@ -80,26 +81,31 @@ function SearchButton({ user, colors }) {
 }
 
 
-function SearchRow({ navigation, item, colors }) {
+function SearchRow({ item, colors }) {
 
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+	
+	const [show, setShow] = useState(false)
+	const [profile, setProfile] = useState()
+
+	useEffect(() => {
+		async function fetchData() {
+			const profile = await getSwipeProfile(user, item.id)
+			const userData = await profile.data
+			setProfile(userData)
+		}
+		fetchData()
+	}, [getSwipeProfile, user, item])
 
 	return (
 		<Cell colors={colors}>
-			<TouchableOpacity 
-				onPress={async() => {
-					const profile = await getSwipeProfile(user, item.id)
-					const userData = await profile.data
-					// open modal for swipe profile
-				}}
-			>
+			<TouchableOpacity onPress={() => setShow(true)}>
 				<Thumbnail
 					url={item.thumbnail}
 					size={76}
 					borderColor={colors.secondary}
 				/>
-				
 			</TouchableOpacity>
 			<View style={{ flex:1, paddingHorizontal:16 }}>
 					<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
@@ -107,6 +113,17 @@ function SearchRow({ navigation, item, colors }) {
 					</CustomText>	
 				</View>
 			<SearchButton user={item} colors={colors} />
+
+			{ show
+			  ? 
+					<SwipeProfileModal 
+						item={profile}
+						colors={colors}
+						isVisible={show}
+						setIsVisible={setShow}
+					/>
+				: null 
+			}
 		</Cell>
 	)
 }
@@ -193,7 +210,7 @@ export default function Search({ navigation }) {
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
-						<SearchRow navigation={navigation} item={item} colors={colors} />
+						<SearchRow item={item} colors={colors} />
 					)}
 					keyExtractor={item => item.id}
 				/>
