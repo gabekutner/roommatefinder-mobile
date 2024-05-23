@@ -7,6 +7,7 @@ import {
   View 
 } from "react-native";
 
+import SwipeProfileModal from "../components/UI/SwipeProfileModal";
 import CustomText from '../components/UI/Custom/CustomText';
 import Cell from "../components/Cell";
 import Empty from "../components/Empty";
@@ -22,13 +23,17 @@ function FriendRow({ navigation, item, colors }) {
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
 
+	const [show, setShow] = useState(false)
+	const [profile, setProfile] = useState()
+
 	return (
 		<Cell colors={colors}>
 			<TouchableOpacity
 				onPress={async() => {
 					const profile = await getSwipeProfile(user, item.friend.id)
 					const userData = await profile.data
-					navigation.navigate('swipe-profile', { profile: userData })
+					setProfile(userData)
+					setShow(true)
 				}}
 			>
 				<Thumbnail
@@ -50,6 +55,18 @@ function FriendRow({ navigation, item, colors }) {
 					</CustomText>
 				</View>
 			</TouchableOpacity>
+
+			{ show
+				? 
+					<SwipeProfileModal 
+						item={profile}
+						colors={colors}
+						isVisible={show}
+						setIsVisible={setShow}
+					/>
+				: null
+			}
+				
 		</Cell>
 	)
 }
