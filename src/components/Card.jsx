@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   TouchableOpacity, 
-  Modal,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -50,7 +49,6 @@ export default function CardItem({ navigation, item, colors }) {
         source={{ uri:item.thumbnail }}
       >
         <TouchableOpacity
-
           onPress={() => {
             // send friend req
             requestConnect(item.id)
@@ -103,11 +101,14 @@ export default function CardItem({ navigation, item, colors }) {
         </TouchableOpacity>
       </FastImageBackground>
 
-      { show 
-        ?  
-          <Modal animationType="slide" visible={show}>
-            <SwipeProfileModal item={item} setShow={setShow} colors={colors} />
-          </Modal>
+      { show
+        ?
+          <SwipeProfileModal 
+            item={item}
+            colors={colors}
+            isVisible={show}
+            setIsVisible={setShow}
+          />
         : null
       }
 

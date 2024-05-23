@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -10,8 +10,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import CustomText from './Custom/CustomText';
 
+import useGlobal from '../../core/global';
+import { dormsData, interestsData } from '../../assets/Dictionary';
+
 
 export default function DetailBottomSheet({ item, setShow, colors }) {
+
+  const requestConnect = useGlobal(state => state.requestConnect)
 
   return (
     <ScrollView
@@ -37,10 +42,10 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
       <TouchableOpacity 
         onPress={() => {
           // send friend req
-
+          requestConnect(item.id)
           // show snackbar
         }}
-        style={{ 
+        style={{
           backgroundColor:colors.secondary,
           padding:10,
           alignItems:'center',
@@ -52,50 +57,115 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         }}
       >
         {/* depends on status, maybe send through prop -- just like the search bar  */}
-        <CustomText style={{ fontSize:18, color:colors.accent, fontWeight:'bold' }}>Friend Request 👋</CustomText>
+        <CustomText style={{ fontSize:18, color:colors.tint, fontWeight:'bold' }}>Friend Request</CustomText>
       </TouchableOpacity>
 
 
       <View style={[styles.line, { borderColor:colors.tertiary }]} />
 
-      <View style={styles.descriptionContainer}>
+      <View style={[styles.descriptionContainer, { marginBottom:75 } ]}>
+
+        { item.dorm_building
+          ? 
+            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
+                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>🏡</CustomText>
+              </View>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{dormsData[item.dorm_building-1].dorm}</CustomText>
+            </View>
+          : null
+        }
+
+        { item.city
+          ? 
+            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
+                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>📍</CustomText>
+              </View>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>
+                {item.city},{' '}
+                { item.state
+                  ? item.state
+                  : null
+                }
+              </CustomText>
+            </View>
+          : null
+        } 
 
         { item.description 
           ? 
             <View>
-              <CustomText style={{ fontSize:18,fontWeight:'500', marginBottom:4, color:colors.tint }}>
+              <CustomText style={{ fontSize:22,fontWeight:'500', marginBottom:4, color:colors.tint }}>
                 About
               </CustomText>
               <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</CustomText>
             </View>
-          : <></> 
+          : null
         }
 
         { item.instagram 
           ? 
             <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <FontAwesomeIcon 
-                icon="camera"
-                size={22}
-                color={colors.tint}
-              />
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.instagram}</CustomText>
+              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
+                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>📸</CustomText>
+              </View>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.instagram}</CustomText>
             </View>
-          : <></> 
+          : null
         }
 
         { item.snapchat 
           ? 
             <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <FontAwesomeIcon 
-                icon="ghost"
-                size={22}
-                color={colors.tint}
-              />
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>@{item.snapchat}</CustomText>
+              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
+                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>👻</CustomText>
+              </View>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.snapchat}</CustomText>
             </View>
-          : <></> 
+          : null
         }
+
+        { item.major 
+          ? 
+            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
+                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>🎓</CustomText>
+              </View>
+              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.major}</CustomText>
+            </View>
+          : null
+        }
+
+        { item.interests 
+          ? 
+            <View>
+              <CustomText style={{ fontSize:22,fontWeight:'500', marginBottom:4, color:colors.tint }}>
+                Interests
+              </CustomText>
+              { item.interests.map((number) => (
+                <View 
+                  key={number}
+                  style={{
+                    paddingVertical:10,
+                    paddingHorizontal:20,
+                    borderRadius:10,
+                    borderWidth:1,
+                    alignItems:'center',
+                    marginBottom:10,
+                    borderColor:colors.accent
+                  }}
+                >
+                  <CustomText style={[styles.descriptionText, { color:colors.tint }]}>{interestsData[number-1].interest}</CustomText>
+                </View>
+                
+              ))}
+              
+            </View>
+          : null
+        }
+
+
         
       </View>
 
@@ -134,14 +204,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: '500',
   },
-  toogetherGroupText: {
-    fontSize: 15,
-  },
   infoWrapper: {
     flexDirection: 'row',
     margin: 3,
   },
-  icon: { fontSize: 20 },
+  iconWrapper: {
+    padding:10,
+    borderRadius:60
+  },  
+  icon: { fontSize:20 },
   text: {
     fontSize: 15,
     marginLeft: 10,
@@ -150,26 +221,12 @@ const styles = StyleSheet.create({
     margin: 3,
     flexDirection:'column',
     gap:20,
-
   },
   descriptionText: {
-    fontSize: 15,
+    fontSize:20,
   },
   line: {
     borderBottomWidth: 0.8,
     margin: 10,
-  },
-  reportContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    marginBottom: 50,
-  },
-  blockButton: {
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-  },
-  blockButtonText: {
-    fontSize: 15,
   },
 })

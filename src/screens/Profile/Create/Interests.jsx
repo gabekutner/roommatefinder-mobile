@@ -49,7 +49,7 @@ export default function Interests({ colors, form, setForm }) {
         )}
         keyExtractor={item => item.id}
       />
-      <CustomText style={{ marginBottom:80, marginHorizontal:35, color:activeColors.tertiary  }}>
+      <CustomText style={{ marginBottom:80, marginHorizontal:35, color:colors.tertiary  }}>
         Pick 1 to 5.
       </CustomText>
     </>
