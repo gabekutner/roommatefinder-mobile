@@ -49,7 +49,7 @@ export default StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'center',
-    paddingVertical:15, 
+    paddingVertical:15,
   },
   buttonText: {
     fontSize:20,
