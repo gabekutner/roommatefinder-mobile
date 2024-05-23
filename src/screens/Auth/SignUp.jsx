@@ -72,16 +72,16 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.primary }]}>
+    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <KeyboardAvoidingView
-        style={styles.wrapper}
+        style={{ flex:1, justifyContent:'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -100}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.innerWrapper}>
+          <View style={{ flex:1, paddingHorizontal:20, justifyContent:'center' }}>
 
-            <View style={styles.header}>
+            <View style={{ marginVertical:'10%' }}>
               <Title 
                 text='roommatefinder' 
                 style={{ 
@@ -91,12 +91,20 @@ export default function SignUp({ navigation }) {
                   fontFamily:'Glegoo-Bold' 
                 }}
               />
-              <CustomText style={[styles.headerDesc, { color: colors.tertiary }]}>
+              <CustomText 
+                style={{ 
+                  color: colors.tertiary,
+                  marginVertical:10,
+                  fontSize:15,
+                  fontWeight:'500', 
+                  textAlign:'center'
+                }}
+              >
                 Sign up to find your future roommate!
               </CustomText>
             </View>
 
-            <View style={styles.inputWrapper}>
+            <View style={{ marginBottom:24 }}>
               <Input
                 label={'Full Name'}
                 placeholder={'Gabe Kutner'}
@@ -139,9 +147,7 @@ export default function SignUp({ navigation }) {
 
               <CustomButton
                 onClick={() => onSignUp()}
-                style={{
-                  backgroundColor:colors.accent,
-                }}
+                style={{ backgroundColor:colors.accent }}
               >
                 <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Sign up</CustomText>
               </CustomButton>
@@ -173,25 +179,6 @@ export default function SignUp({ navigation }) {
 
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  wrapper: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  innerWrapper: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  header: { marginBottom: 20 },
-  headerDesc: {
-    fontSize: 15,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  inputWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-  },
   text: {
     fontSize:17, 
     fontWeight:'600',

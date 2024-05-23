@@ -9,7 +9,10 @@ import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
+import CustomButton from '../../components/UI/Custom/CustomButton';
+import CustomText from '../../components/UI/Custom/CustomText';
 import Thumbnail from "../../components/Thumbnail";
+
 import useGlobal from '../../core/global';
 import { colors as c } from "../../assets/config";
 
@@ -66,16 +69,14 @@ function ProfileLogout({ colors }) {
   const logout = useGlobal(state => state.logout)
 
   return (
-    <TouchableOpacity
-      onPress={logout}
+    <CustomButton
+      onClick={() => logout()}
       style={{
         flexDirection:'row',
-        height:52,
-        borderRadius:26,
+        backgroundColor:colors.accent,
+        paddingHorizontal:moderateScale(22),
         alignItems:'center',
         justifyContent:'center',
-        paddingHorizontal:moderateScale(22),
-        backgroundColor:colors.accent,
         marginTop:verticalScale(18)
       }}
     >
@@ -85,8 +86,29 @@ function ProfileLogout({ colors }) {
         color='#fff'
         style={{ marginRight:moderateScale(10) }}
       />
-      <Text style={{ fontWeight:'600', fontSize:verticalScale(15), color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
-    </TouchableOpacity>
+      <CustomText style={{ fontWeight:'600', fontSize:verticalScale(15), color:colors.constWhite }}>Logout</CustomText>
+    </CustomButton>
+    // <TouchableOpacity
+    //   onPress={logout}
+    //   style={{
+    //     flexDirection:'row',
+    //     height:52,
+    //     borderRadius:26,
+    //     alignItems:'center',
+    //     justifyContent:'center',
+    //     paddingHorizontal:moderateScale(22),
+    //     backgroundColor:colors.accent,
+    //     marginTop:verticalScale(18)
+    //   }}
+    // >
+    //   <FontAwesomeIcon 
+    //     icon='right-from-bracket'
+    //     size={20}
+    //     color='#fff'
+    //     style={{ marginRight:moderateScale(10) }}
+    //   />
+    //   <Text style={{ fontWeight:'600', fontSize:verticalScale(15), color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
+    // </TouchableOpacity>
   )
 }
 

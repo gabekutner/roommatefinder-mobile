@@ -8,6 +8,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import CustomButton from './Custom/CustomButton';
 import CustomText from './Custom/CustomText';
 
 import useGlobal from '../../core/global';
@@ -38,28 +39,16 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
           />
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity 
-        onPress={() => {
-          // send friend req
-          requestConnect(item.id)
-          // show snackbar
-        }}
+      
+      <CustomButton
+        onClick={() => requestConnect(item.id)}
         style={{
-          backgroundColor:colors.secondary,
-          padding:10,
-          alignItems:'center',
-          justifyContent:'center',
-          flex:1,
-          borderRadius:10,
-          borderWidth:1,
           borderColor:colors.accent,
+          backgroundColor:colors.secondary
         }}
       >
-        {/* depends on status, maybe send through prop -- just like the search bar  */}
         <CustomText style={{ fontSize:18, color:colors.tint, fontWeight:'bold' }}>Friend Request</CustomText>
-      </TouchableOpacity>
-
+      </CustomButton>
 
       <View style={[styles.line, { borderColor:colors.tertiary }]} />
 

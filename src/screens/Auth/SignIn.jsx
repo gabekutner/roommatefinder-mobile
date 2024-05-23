@@ -90,7 +90,7 @@ export default function SignIn({ navigation }) {
               </CustomText>
             </View>
 
-            <View style={{ flex:1, marginBottom:24 }}>
+            <View style={{ marginBottom:24 }}>
               <Input
                 label={'Email Address'}
                 autoCapitalize={'none'}
@@ -114,9 +114,7 @@ export default function SignIn({ navigation }) {
 
               <CustomButton
                 onClick={() => onSignIn()}
-                style={{
-                  backgroundColor:colors.accent,
-                }}
+                style={{ backgroundColor:colors.accent }}
               >
                 <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Log in</CustomText>
               </CustomButton>
