@@ -17,7 +17,6 @@ import { colors as c } from "../assets/config";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
-
 function PhotoNumber({ number, colors }) {
   return (
     <View
@@ -51,7 +50,7 @@ export default function PhotoUpload({}) {
     picture_one: null,
     picture_two: null,
     picture_three: null,
-    picture_four: null
+    picture_four: null,
   })
 
   const [showSuccess, setShowSuccess] = useState(false)
@@ -176,7 +175,16 @@ export default function PhotoUpload({}) {
             // handle button press
             for (var prop in form) {
               if (form[prop] !== null) {
-                uploadImage(form[prop], user)
+
+                const match = prop.match(/_(\w+)$/);
+                const keys = {one:"1", two:"2", three:"3", four:"4"}
+
+                let key = keys[match[1]]
+
+                console.log(key)
+
+
+                uploadImage(form[prop], key, user)
               }
             }
             // show snackbar

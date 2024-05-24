@@ -393,7 +393,7 @@ const useGlobal = create((set, get) => ({
 	//---------------------
   image: null,
 
-  uploadImage: async (file, user) => {
+  uploadImage: async (file, key, user) => {
     if (user.token) {
       try {
 
@@ -409,6 +409,8 @@ const useGlobal = create((set, get) => ({
               ? file.uri
               : file.uri.replace('file://', ''),
         })
+
+        dataForm.append('key', key)
 
         const response = await api({
           method: 'post',
