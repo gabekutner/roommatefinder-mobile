@@ -141,7 +141,7 @@ export default function Onboarding({ navigation }) {
         </View>
       </View>
 
-      <View style={{ flex:0.2, marginBottom: 25 }}>
+      <View style={{ flex:0.2, marginBottom:25 }}>
         <TouchableOpacity 
           onPress={() => navigation.navigate("signin")}
           style={{
@@ -155,7 +155,7 @@ export default function Onboarding({ navigation }) {
             marginTop:moderateScale(15),
           }}
         >
-          <Text style={[styles.buttonText, styles.bold, { color:colors.accentDark }]}>Log in</Text>
+          <CustomText style={[styles.buttonText, styles.bold, { color:colors.accentDark }]}>Log in</CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -171,7 +171,7 @@ export default function Onboarding({ navigation }) {
             borderRadius:5,
           }}
         >
-          <Text style={[styles.buttonText, styles.bold, {color:colors.constWhite}]}>Create an Account</Text>
+          <CustomText style={[styles.buttonText, styles.bold, {color:colors.constWhite}]}>Create an Account</CustomText>
         </TouchableOpacity>
       </View>
     </View>

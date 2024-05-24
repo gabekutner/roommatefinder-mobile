@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+  Dimensions,
   StyleSheet, 
   View 
 } from 'react-native';
@@ -9,13 +10,15 @@ import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import { dormsData } from '../assets/Dictionary';
 
+const { width } = Dimensions.get('window')
+
 
 
 export default function InfoCard(props) {
   const { name, age, dorm, colors } = props
 
   return (
-    <View style={{ ...styles.cardShadow, backgroundColor:colors.secondary }}>
+    <View style={{ ...styles.cardShadow, backgroundColor:colors.secondary, maxWidth:width * .6 }}>
       <View style={styles.textContainer}>
         <CustomText style={[styles.name, { color:colors.tint }]}>{`${name}, ${age}`}</CustomText>
       </View>

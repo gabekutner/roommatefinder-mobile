@@ -8,7 +8,6 @@ import {
 import FastImage from "react-native-fast-image";
 
 import DetailBottomSheet from "./DetailBottomSheet";
-import utils from "../../core/utils";
 
 
 export default function SwipeProfileModal({ 
@@ -27,7 +26,7 @@ export default function SwipeProfileModal({
           key={item.id}
           style={styles.image}
           imageStyle={styles.imageStyle}
-          source={utils.thumbnail(item.thumbnail)}
+          source={{ uri:item.thumbnail }}
           resizeMode={FastImage.resizeMode.cover}
         />
         <DetailBottomSheet 

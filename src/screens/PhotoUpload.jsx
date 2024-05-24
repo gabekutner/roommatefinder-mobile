@@ -66,7 +66,12 @@ export default function PhotoUpload({}) {
         <View style={styles.wrapper}>
           <View>
             <TouchableOpacity 
-              style={[styles.upload, { borderColor:colors.tertiary }]}
+              style={[
+                styles.upload, 
+                { 
+                  borderColor:colors.tertiary 
+                }
+              ]}
               onPress={() => {
                 launchImageLibrary({ includeBase64:true, }, (response) => {
                   if (response.didCancel) return
@@ -90,8 +95,13 @@ export default function PhotoUpload({}) {
             <PhotoNumber number="1" colors={colors} />
           </View>
           <View>
-            <TouchableOpacity 
-              style={[styles.upload, { borderColor:colors.tertiary }]}
+          <TouchableOpacity 
+              style={[
+                styles.upload, 
+                { 
+                  borderColor:colors.tertiary 
+                }
+              ]}
               onPress={() => {
                 launchImageLibrary({ includeBase64:true, }, (response) => {
                   if (response.didCancel) return
@@ -119,7 +129,12 @@ export default function PhotoUpload({}) {
         <View style={styles.wrapper}>
           <View>
             <TouchableOpacity 
-              style={[styles.upload, { borderColor:colors.tertiary }]}
+              style={[
+                styles.upload, 
+                { 
+                  borderColor:colors.tertiary 
+                }
+              ]}
               onPress={() => {
                 launchImageLibrary({ includeBase64:true, }, (response) => {
                   if (response.didCancel) return
@@ -144,7 +159,12 @@ export default function PhotoUpload({}) {
           </View>
           <View>
             <TouchableOpacity 
-              style={[styles.upload, { borderColor:colors.tertiary }]}
+              style={[
+                styles.upload, 
+                { 
+                  borderColor:colors.tertiary 
+                }
+              ]}
               onPress={() => {
                 launchImageLibrary({ includeBase64:true, }, (response) => {
                   if (response.didCancel) return
@@ -156,7 +176,11 @@ export default function PhotoUpload({}) {
               { form.picture_four 
                 ? <Image 
                     src={form.picture_four.uri}
-                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                    style={{ 
+                      height:'100%', 
+                      width:'100%', 
+                      borderRadius:10
+                    }}
                   />
                 : <FontAwesomeIcon 
                     icon="image"

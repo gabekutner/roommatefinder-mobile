@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { scale, verticalScale } from 'react-native-size-matters';
 
+import CustomText from "../components/UI/Custom/CustomText";
 import Title from '../components/UI/Title';
 import Friends from "./Friends";
 import Profile from "./Profile/Profile";
@@ -34,7 +35,6 @@ function HeaderLogo({ logoColor }) {
           fontFamily:'Glegoo-Bold'
         }}
       />
-      {/* <Text style={{ padding:5, fontSize:scale(16), color:logoColor, fontFamily:'Glegoo-Bold' }}>roommatefinder</Text> */}
     </View>
   )
 }
@@ -158,17 +158,16 @@ export default function HomeScreen() {
             </TouchableOpacity>
           ),
           headerLeft: () => (
-            <Text 
+            <CustomText 
               style={{
                 marginLeft:20,
                 color:activeColors.tint,
                 fontSize:20,
                 fontWeight:'500',
-                fontFamily: 'NotoSans_Condensed-Regular',
               }}
             >
               Friends
-            </Text>
+            </CustomText>
           ),
           title: '',
           headerStyle: {
