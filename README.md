@@ -9,10 +9,10 @@ Built using:
 This is the React Native frontend repository. Here's the link for the [**backend**](https://github.com/gabekutner/roommatefinder-backend).
 
 ##  Tech used
-- 🐻 [**Zustand**](https://github.com/pmndrs/zustand) (state management)
+- 🐻 [**Zustand**](https://github.com/pmndrs/zustand)
 - 🚩 [**react-native-fast-image**](https://github.com/DylanVann/react-native-fast-image)
 - 🕹️ [**Font Awesome Icons**](https://fontawesome.com/)
-- 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters) (scaling app UI)
+- 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters)
 
 ## Features
 ### Basic
