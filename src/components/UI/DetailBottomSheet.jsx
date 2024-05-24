@@ -20,28 +20,43 @@ import { dormsData, interestsData } from '../../assets/Dictionary';
 const { width } = Dimensions.get('window')
 
 
-export default function DetailBottomSheet({ item, setShow, colors }) {
-
+export default function DetailBottomSheet({ 
+  item, 
+  setShow, 
+  colors 
+}) {
   const requestConnect = useGlobal(state => state.requestConnect)
-
-  console.log(item)
 
   return (
     <ScrollView
-      style={[styles.screen, { backgroundColor:colors.primary }]}
+      style={{ 
+        backgroundColor:colors.primary,
+        flex:1,
+        overflow:'hidden',
+        padding:20,
+        borderRadius:10,
+        minHeight:'30%',
+        maxHeight:'40%',
+      }}
       contentContainerStyle={styles.scrollview}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
     >
-      <View style={styles.container1}>
-        <View style={styles.nameTextContainer}>
+      <View 
+        style={{
+          flexDirection:'row',
+          justifyContent:'space-between',
+          alignItems:'center',
+          marginBottom:10,
+        }}
+      >
+        <View style={{ flexDirection:'column' }}>
           <CustomText 
-            style={[
-              styles.nameText, 
-              { 
-                color:colors.tint 
-              }
-            ]}
+            style={{ 
+              color:colors.tint,
+              fontSize:25,
+              fontWeight:'500',
+            }}
           >
             {`${item.name}, ${item.age}`}
           </CustomText>
@@ -49,13 +64,14 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         
         <TouchableOpacity 
           onPress={() => setShow(false)} 
-          style={[
-            styles.closeContainer, 
-            { 
-              backgroundColor:colors.secondary 
-            }
-          ]}
-        >
+          style={{ 
+            backgroundColor:colors.secondary,
+            borderRadius:100,
+            height:40,
+            width:40,
+            justifyContent:'center',
+            alignItems:'center',
+          }}>
           <FontAwesomeIcon 
             icon="arrow-down"
             size={22}
@@ -85,29 +101,53 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
       <View style={[styles.line, { borderColor:colors.tertiary }]} />
 
       <View 
-        style={[
-          styles.descriptionContainer, 
-          { 
-            marginBottom:75 
-          } 
-        ]}
+        style={{ 
+          marginBottom:75,
+          margin: 3,
+          flexDirection:'column',
+          gap:20,
+        }}
       >
 
         { item.dorm_building
           ? 
-            <View 
-              style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
-                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>🏡</CustomText>
+            <View style={styles.textContainer}>
+              <View 
+                style={[
+                  styles.iconWrapper, 
+                  { 
+                    backgroundColor:colors.secondary 
+                  }
+                ]}
+              >
+                <CustomText 
+                  style={[
+                    styles.descriptionText, 
+                    { 
+                      color:colors.tertiary 
+                    }
+                  ]}
+                >
+                  🏡
+                </CustomText>
               </View>
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{dormsData[item.dorm_building-1].dorm}</CustomText>
+              <CustomText 
+                style={[
+                  styles.descriptionText, 
+                  { 
+                    color:colors.tertiary 
+                  }
+                ]}
+              >
+                {dormsData[item.dorm_building-1].dorm}
+              </CustomText>
             </View>
           : null
         }
 
         { item.city
           ? 
-            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+            <View style={styles.textContainer}>
               <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
                 <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>📍</CustomText>
               </View>
@@ -125,43 +165,134 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         { item.description 
           ? 
             <View>
-              <CustomText style={{ fontSize:22,fontWeight:'500', marginBottom:4, color:colors.tint }}>
+              <CustomText 
+                style={{ 
+                  fontSize:22,
+                  fontWeight:'500',
+                  marginBottom:4, 
+                  color:colors.tint 
+                }}
+              >
                 About
               </CustomText>
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.description}</CustomText>
+              <CustomText 
+                style={[
+                  styles.descriptionText, 
+                  { 
+                    color:colors.tertiary 
+                  }
+                ]}
+              >
+                {item.description}
+              </CustomText>
             </View>
           : null
         }
 
         { item.instagram 
           ? 
-            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
-                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>📸</CustomText>
+            <View style={styles.textContainer}>
+              <View 
+                style={[
+                  styles.iconWrapper, 
+                  { 
+                    backgroundColor:colors.secondary 
+                  }
+                ]}
+              >
+                <CustomText 
+                  style={[
+                    styles.descriptionText, 
+                    { 
+                      color:colors.tertiary 
+                    }
+                  ]}
+                >
+                  📸
+                </CustomText>
               </View>
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.instagram}</CustomText>
+              <CustomText 
+                style={[
+                  styles.descriptionText, 
+                  { 
+                    color:colors.tertiary 
+                  }
+                ]}
+              >
+                {item.instagram}
+              </CustomText>
             </View>
           : null
         }
 
         { item.snapchat 
           ? 
-            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
-                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>👻</CustomText>
+            <View style={styles.textContainer}>
+              <View 
+                style={[
+                  styles.iconWrapper, 
+                  { 
+                    backgroundColor:colors.secondary 
+                  }
+                ]}
+              >
+                <CustomText 
+                  style={[
+                    styles.descriptionText, 
+                    { 
+                      color:colors.tertiary 
+                    }
+                  ]}
+                >
+                  👻
+                </CustomText>
               </View>
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.snapchat}</CustomText>
+              <CustomText 
+                style={[
+                  styles.descriptionText, 
+                  { 
+                    color:colors.tertiary 
+                  }
+                ]}
+              >
+                {item.snapchat}
+              </CustomText>
             </View>
           : null
         }
 
         { item.major 
           ? 
-            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
-              <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
-                <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>🎓</CustomText>
+            <View style={styles.textContainer}>
+              <View 
+                style={[
+                  styles.iconWrapper, 
+                  { 
+                    backgroundColor:colors.secondary 
+                  }
+                ]}
+              >
+                <CustomText 
+                  style={[
+                    styles.descriptionText, 
+                    { 
+                      color:colors.tertiary 
+                    }
+                  ]}
+                >
+                  🎓
+                </CustomText>
               </View>
-              <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>{item.major}</CustomText>
+              <CustomText 
+                style={[
+                  styles.descriptionText, 
+                  { 
+                    color:colors.tertiary
+                  }
+                ]}
+              >
+                {item.major}
+              </CustomText>
             </View>
           : null
         }
@@ -169,7 +300,13 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
         { item.interests 
           ? 
             <View>
-              <CustomText style={{ fontSize:22,fontWeight:'500', marginBottom:4, color:colors.tint }}>
+              <CustomText style={{ 
+                  fontSize:22,
+                  fontWeight:'500', 
+                  marginBottom:4, 
+                  color:colors.tint 
+                }}
+              >
                 Interests
               </CustomText>
               { item.interests.map((number) => (
@@ -185,7 +322,15 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
                     borderColor:colors.accent
                   }}
                 >
-                  <CustomText style={[styles.descriptionText, { color:colors.tint }]}>{interestsData[number-1].interest}</CustomText>
+                  <CustomText 
+                    style={[
+                      styles.descriptionText, 
+                      { 
+                        color:colors.tint 
+                      }
+                    ]}>
+                      {interestsData[number-1].interest}
+                    </CustomText>
                 </View>
                 
               ))}
@@ -222,7 +367,6 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
                     style={{ 
                       width:'100%',
                       height:'100%',
-                      // borderWidth:1,
                       borderRadius:10,
                       borderWidth:.5,
                       borderColor:colors.tertiary
@@ -248,58 +392,22 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
 
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    overflow: 'hidden',
-    padding: 20,
-    borderRadius: 10,
-    minHeight: '30%',
-    maxHeight: '40%',
-  },
-  scrollview: {},
-  container1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  nameTextContainer: {
-    flexDirection: 'column',
-  },
-  closeContainer: {
-    borderRadius: 100,
-    height: 40,
-    width: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nameText: {
-    fontSize: 25,
-    fontWeight: '500',
-  },
-  infoWrapper: {
-    flexDirection: 'row',
-    margin: 3,
-  },
   iconWrapper: {
     padding:10,
     borderRadius:60
-  },  
-  icon: { fontSize:20 },
+  }, 
   text: {
     fontSize: 15,
     marginLeft: 10,
   },
-  descriptionContainer: {
-    margin: 3,
-    flexDirection:'column',
-    gap:20,
-  },
-  descriptionText: {
-    fontSize:20,
-  },
+  descriptionText: { fontSize:20 },
   line: {
     borderBottomWidth: 0.8,
     margin: 10,
   },
+  textContainer: {
+    flexDirection:'row', 
+    alignItems:'center', 
+    gap:20,
+  }
 })
