@@ -12,7 +12,7 @@ import utils from "../../core/utils";
 
 
 export default function SwipeProfileModal({ 
-  item, 
+  item,
   colors,
   setIsVisible,
   isVisible,

@@ -32,6 +32,7 @@ function FriendRow({ navigation, item, colors }) {
 				onPress={async() => {
 					const profile = await getSwipeProfile(user, item.friend.id)
 					const userData = await profile.data
+					// sometimes error here
 					setProfile(userData)
 					setShow(true)
 				}}
@@ -44,8 +45,21 @@ function FriendRow({ navigation, item, colors }) {
 			</TouchableOpacity>
 			
 			<TouchableOpacity onPress={() => navigation.navigate('messages', item)}>
-				<View style={{ flex:1, paddingHorizontal: 16, justifyContent:'center' }}>
-					<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
+				<View 
+					style={{ 
+						flex:1, 
+						paddingHorizontal:16, 
+						justifyContent:'center' 
+					}}
+				>
+					<CustomText 
+						style={{ 
+							fontWeight:'600', 
+							fontSize:17, 
+							color:colors.tint, 
+							marginBottom:4 
+						}} 
+					>
 						{item.friend.name}
 					</CustomText>
 					<CustomText style={{ color:colors.tertiary }}>
@@ -79,19 +93,36 @@ export default function Friends({ navigation }) {
   const colors = c[theme]
 
 	if (friendList === null) {
-		return <ActivityIndicator style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.primary }} />
+		return <ActivityIndicator 
+			style={{ 
+				flex:1, 
+				justifyContent:'center', 
+				alignItems:'center', 
+				backgroundColor:colors.primary 
+			}} 
+		/>
 	}
 
 	if (friendList.length === 0) {
 		return (
-      <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+      <SafeAreaView 
+				style={{ 
+					flex:1, 
+					backgroundColor:colors.primary 
+				}}
+			>
 			  <Empty icon='inbox' message='No messages yet' colors={colors} />
       </SafeAreaView>
 		)
 	}
 
 	return (
-		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+		<SafeAreaView 
+			style={{ 
+				flex:1, 
+				backgroundColor:colors.primary 
+			}}
+		>
 			<FlatList
 				data={friendList}
 				renderItem={({ item }) => (

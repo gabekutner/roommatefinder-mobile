@@ -17,10 +17,9 @@ import useGlobal from '../../core/global';
 import { colors as c } from "../../assets/config";
 
 
-function ProfileImage({ colors }) {
+function ProfileImage({ user, colors }) {
 
   const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
-  const user = useGlobal(state => state.user)
 
   return (
     <TouchableOpacity
@@ -86,29 +85,16 @@ function ProfileLogout({ colors }) {
         color='#fff'
         style={{ marginRight:moderateScale(10) }}
       />
-      <CustomText style={{ fontWeight:'600', fontSize:verticalScale(15), color:colors.constWhite }}>Logout</CustomText>
+      <CustomText 
+        style={{ 
+          fontWeight:'600', 
+          fontSize:verticalScale(15), 
+          color:colors.constWhite 
+        }}
+      >
+        Logout
+      </CustomText>
     </CustomButton>
-    // <TouchableOpacity
-    //   onPress={logout}
-    //   style={{
-    //     flexDirection:'row',
-    //     height:52,
-    //     borderRadius:26,
-    //     alignItems:'center',
-    //     justifyContent:'center',
-    //     paddingHorizontal:moderateScale(22),
-    //     backgroundColor:colors.accent,
-    //     marginTop:verticalScale(18)
-    //   }}
-    // >
-    //   <FontAwesomeIcon 
-    //     icon='right-from-bracket'
-    //     size={20}
-    //     color='#fff'
-    //     style={{ marginRight:moderateScale(10) }}
-    //   />
-    //   <Text style={{ fontWeight:'600', fontSize:verticalScale(15), color:'#fff', fontFamily:'NotoSans_Condensed-Regular' }}>Logout</Text>
-    // </TouchableOpacity>
   )
 }
 
@@ -116,26 +102,31 @@ export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const theme = useGlobal(state => state.theme)
-  let activeColors = c[theme]
+  const colors = c[theme]
 
   return (
-    <View style={{ flex:1, alignItems:'center', paddingTop:100, backgroundColor:activeColors.primary }} >
-      <ProfileImage colors={activeColors} />
-      <Text
+    <View 
+      style={{ 
+        flex:1, 
+        alignItems:'center', 
+        paddingTop:100, 
+        backgroundColor:colors.primary 
+      }} 
+    >
+      <ProfileImage user={user} colors={colors} />
+      <CustomText
         style={{
           textAlign:'center',
-          color:activeColors.tint,
+          color:colors.tint,
           fontSize:20,
           fontWeight:'500',
           marginBottom:verticalScale(6),
-          fontFamily:'NotoSans_Condensed-Regular'
         }}
       >
         {user.name}
-      </Text>
+      </CustomText>
 
       <View style={{ justifyContent:'flex-start' }}>
-
         <TouchableOpacity
           onPress={() => navigation.navigate('edit-profile')}
           style={{
@@ -147,14 +138,29 @@ export default function ProfileScreen({ navigation }) {
             marginTop:verticalScale(15)
           }}
         >
-          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+          <View 
+            style={{ 
+              marginRight:moderateScale(11), 
+              padding:verticalScale(6), 
+              backgroundColor:colors.secondary, 
+              borderRadius:25 
+            }}
+          >
             <FontAwesomeIcon 
               icon='id-badge'
               size={verticalScale(20)}
-              color={activeColors.tint}
+              color={colors.tint}
             />
           </View>
-          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Profile</Text>
+          <CustomText
+            style={{
+              fontWeight:'500', 
+              color:colors.tint, 
+              fontSize:verticalScale(15)
+            }}
+          >
+            Profile
+          </CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -168,14 +174,29 @@ export default function ProfileScreen({ navigation }) {
             marginTop: moderateScale(5)
           }}
         >
-          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+          <View 
+            style={{ 
+              marginRight:moderateScale(11), 
+              padding:verticalScale(6), 
+              backgroundColor:colors.secondary, 
+              borderRadius:25 
+            }}
+          >
             <FontAwesomeIcon 
               icon='gear'
               size={verticalScale(20)}
-              color={activeColors.tint}
+              color={colors.tint}
             />
           </View>
-          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Settings</Text>
+          <CustomText
+            style={{
+              fontWeight:'500', 
+              color:colors.tint, 
+              fontSize:verticalScale(15)
+            }}
+          >
+            Settings
+          </CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -189,18 +210,32 @@ export default function ProfileScreen({ navigation }) {
             marginTop: moderateScale(5)
           }}
         >
-          <View style={{ marginRight:moderateScale(11), padding:verticalScale(6), backgroundColor:activeColors.secondary, borderRadius:25 }}>
+          <View 
+            style={{ 
+              marginRight:moderateScale(11), 
+              padding:verticalScale(6), 
+              backgroundColor:colors.secondary, 
+              borderRadius:25 
+            }}
+          >
             <FontAwesomeIcon 
               icon='camera'
               size={verticalScale(20)}
-              color={activeColors.tint}
+              color={colors.tint}
             />
           </View>
-          <Text style={{ fontWeight:'500', color:activeColors.tint, fontSize:verticalScale(15), fontFamily:'NotoSans_Condensed-Regular' }}>Add photos</Text>
+          <CustomText
+            style={{
+              fontWeight:'500', 
+              color:colors.tint, 
+              fontSize:verticalScale(15)
+            }}
+          >
+            Add Photos
+          </CustomText>
         </TouchableOpacity>
-
       </View>
-      <ProfileLogout colors={activeColors} />
+      <ProfileLogout colors={colors} />
     </View>
   )
 } 
