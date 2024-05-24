@@ -1,7 +1,7 @@
+import React from "react";
 import { 
   View, 
   TouchableOpacity,
-  Text,
 } from "react-native";
 
 import CustomText from "./UI/Custom/CustomText";

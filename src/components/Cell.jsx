@@ -1,6 +1,7 @@
+import React from "react";
 import { 
   View,
- } from "react-native"
+ } from "react-native";
 
 export default function Cell({ children, colors }) {
 	return (

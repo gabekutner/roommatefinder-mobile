@@ -4,20 +4,27 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
+import FastImage from 'react-native-fast-image';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import CustomButton from './Custom/CustomButton';
 import CustomText from './Custom/CustomText';
 
+import utils from '../../core/utils';
 import useGlobal from '../../core/global';
 import { dormsData, interestsData } from '../../assets/Dictionary';
+
+const { width } = Dimensions.get('window')
 
 
 export default function DetailBottomSheet({ item, setShow, colors }) {
 
   const requestConnect = useGlobal(state => state.requestConnect)
+
+  console.log(item)
 
   return (
     <ScrollView
@@ -28,10 +35,27 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
     >
       <View style={styles.container1}>
         <View style={styles.nameTextContainer}>
-          <CustomText style={[styles.nameText, { color:colors.tint }]}>{`${item.name}, ${item.age}`}</CustomText>
+          <CustomText 
+            style={[
+              styles.nameText, 
+              { 
+                color:colors.tint 
+              }
+            ]}
+          >
+            {`${item.name}, ${item.age}`}
+          </CustomText>
         </View>
         
-        <TouchableOpacity onPress={() => setShow(false)} style={[styles.closeContainer, { backgroundColor:colors.secondary }]}>
+        <TouchableOpacity 
+          onPress={() => setShow(false)} 
+          style={[
+            styles.closeContainer, 
+            { 
+              backgroundColor:colors.secondary 
+            }
+          ]}
+        >
           <FontAwesomeIcon 
             icon="arrow-down"
             size={22}
@@ -47,16 +71,32 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
           backgroundColor:colors.secondary
         }}
       >
-        <CustomText style={{ fontSize:18, color:colors.tint, fontWeight:'bold' }}>Friend Request</CustomText>
+        <CustomText 
+          style={{ 
+            fontSize:18, 
+            color:colors.tint, 
+            fontWeight:'bold' 
+          }}
+        >
+          Friend Request
+        </CustomText>
       </CustomButton>
 
       <View style={[styles.line, { borderColor:colors.tertiary }]} />
 
-      <View style={[styles.descriptionContainer, { marginBottom:75 } ]}>
+      <View 
+        style={[
+          styles.descriptionContainer, 
+          { 
+            marginBottom:75 
+          } 
+        ]}
+      >
 
         { item.dorm_building
           ? 
-            <View style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
+            <View 
+              style={{ flexDirection:'row', alignItems:'center', gap:20 }}>
               <View style={[styles.iconWrapper, { backgroundColor:colors.secondary }]}>
                 <CustomText style={[styles.descriptionText, { color:colors.tertiary }]}>🏡</CustomText>
               </View>
@@ -148,6 +188,50 @@ export default function DetailBottomSheet({ item, setShow, colors }) {
                   <CustomText style={[styles.descriptionText, { color:colors.tint }]}>{interestsData[number-1].interest}</CustomText>
                 </View>
                 
+              ))}
+              
+            </View>
+          : null
+        }
+
+        { item.photos.length !== 0
+          ?
+            <View>
+              <CustomText 
+                style={{ 
+                  fontSize:22,
+                  fontWeight:'500', 
+                  marginBottom:4, 
+                  color:colors.tint 
+                }}
+              >
+                Photos
+              </CustomText>
+              { item.photos.map((photo) => (
+                <View
+                  key={photo.id}
+                  style={{
+                    alignSelf:'center',
+                    width:width*.8,
+                    height:width * .8,
+                    marginBottom:15
+                  }}
+                >
+                  <FastImage
+                    key={photo.id}
+                    style={{ 
+                      width:'100%',
+                      height:'100%',
+                      // borderWidth:1,
+                      borderRadius:10,
+                      borderWidth:.5,
+                      borderColor:colors.tertiary
+                    }}
+                    source={utils.thumbnail(photo.image)}
+                    resizeMode={FastImage.resizeMode.cover}
+                  />
+
+                </View>
               ))}
               
             </View>
