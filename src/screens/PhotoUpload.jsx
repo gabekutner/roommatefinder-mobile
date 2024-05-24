@@ -8,13 +8,14 @@ import {
 } from 'react-native';
 
 import { launchImageLibrary } from "react-native-image-picker";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Snackbar from "../components/UI/SnackBar";
 import Button from "../components/Button";
 
+import utils from "../core/utils";
 import useGlobal from "../core/global";
 import { colors as c } from "../assets/config";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 function PhotoNumber({ number, colors }) {
@@ -45,12 +46,14 @@ export default function PhotoUpload({}) {
   const user = useGlobal(state => state.user)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+  
+  const keys = user.photos.map(photo => photo.key)
 
   const [form, setForm] = useState({
-    picture_one: null,
-    picture_two: null,
-    picture_three: null,
-    picture_four: null,
+    picture_one: keys.includes(1) ? utils.thumbnail(user.photos.find(photo => photo.key === 1).image) : null,
+    picture_two: keys.includes(2) ? utils.thumbnail(user.photos.find(photo => photo.key === 2).image) : null,
+    picture_three: keys.includes(3) ? utils.thumbnail(user.photos.find(photo => photo.key === 3).image) : null,
+    picture_four: keys.includes(4) ? utils.thumbnail(user.photos.find(photo => photo.key === 4).image) : null,
   })
 
   const [showSuccess, setShowSuccess] = useState(false)
@@ -175,15 +178,9 @@ export default function PhotoUpload({}) {
             // handle button press
             for (var prop in form) {
               if (form[prop] !== null) {
-
                 const match = prop.match(/_(\w+)$/);
                 const keys = {one:"1", two:"2", three:"3", four:"4"}
-
                 let key = keys[match[1]]
-
-                console.log(key)
-
-
                 uploadImage(form[prop], key, user)
               }
             }
