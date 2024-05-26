@@ -16,3 +16,33 @@ This is the React Native frontend repository. Here's the link for the [**backend
 
 ## Preview
 ![preview](https://github.com/gabekutner/roommatefinder-mobile/blob/main/preview.png)
+
+## Initialization
+
+Clone repository
+
+```bash
+git clone https://github.com/gabekutner/roommatefinder-mobile.git
+cd roommatefinder-mobile
+```
+
+Install requirements
+
+```bash
+npm i
+```
+
+Pod install
+
+```bash
+npx pod-install ios
+```
+
+And run 
+
+```bash
+npm start
+```
+
+
+
