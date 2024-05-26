@@ -19,6 +19,8 @@ This is the React Native frontend repository. Here's the link for the [**backend
 
 ## Initialization
 
+>NOTE: Some initialization requirements are still hardcoded: (ip address). The IP address is configured in `src/core/api`, simply edit the ADDRESS variable.
+
 Clone repository
 
 ```bash
