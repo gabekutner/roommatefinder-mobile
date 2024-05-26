@@ -11,16 +11,16 @@ import {
   Dimensions
 } from 'react-native';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
 import CustomText from '../../../components/UI/Custom/CustomText';
 import Input from '../../../components/UI/Input';
 import Button from '../../../components/Button';
 import Interests from '../Create/Interests';
 import Snackbar from '../../../components/UI/SnackBar';
 
-
 import useGlobal from '../../../core/global';
 import { colors as c } from '../../../assets/config';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const { width, height } = Dimensions.get('window')
 
@@ -51,7 +51,12 @@ export default function EditProfile({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.primary 
+      }}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
@@ -60,7 +65,12 @@ export default function EditProfile({ navigation }) {
           showsVerticalScrollIndicator={false} 
           style={{ padding:30 }}
         >
-          <View style={{ alignItems:'center', marginBottom:50 }}>
+          <View 
+            style={{ 
+              alignItems:'center', 
+              marginBottom:50 
+            }}
+          >
 
             <View style={styles.section}>
               <Input 
@@ -130,7 +140,12 @@ export default function EditProfile({ navigation }) {
               />
             </View>
 
-            <View style={{ flexDirection:'row', gap:10 }}>
+            <View 
+              style={{ 
+                flexDirection:'row', 
+                gap:10 
+              }}
+            >
               <View style={styles.section}>
                 <Input 
                   colors={colors}

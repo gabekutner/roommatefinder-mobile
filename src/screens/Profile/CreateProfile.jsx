@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import CustomText from "../../components/UI/Custom/CustomText";
-import Button from '../../components/Button';
+import CustomButton from "../../components/UI/Custom/CustomButton";
 import Birthday from "./Create/Birthday";
 import Sex from "./Create/Sex";
 import Dorm from "./Create/Dorm";
@@ -90,12 +90,24 @@ function SubmitButton({ colors, form }) {
   const createProfile = useGlobal(state => state.createProfile)
 
   return (
-    <Button 
-      onButtonPress={() => createProfile(form, user)}
-      colors={colors}
-      buttonText="All Done"
-      linkQuestion={"                                      "}
-    />
+    <CustomButton 
+      onClick={() => createProfile(form, user)}
+      style={{
+        width:200,
+        marginBottom:10,
+        backgroundColor:colors.accent
+      }}
+    >
+      <CustomText 
+        style={{ 
+          fontSize:20, 
+          fontWeight:'600', 
+          color:colors.constWhite 
+        }}
+      >
+        All Done
+      </CustomText>
+    </CustomButton>
   )
 }
 

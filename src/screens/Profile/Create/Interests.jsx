@@ -32,7 +32,11 @@ export default function Interests({ colors, form, setForm }) {
       <FlatList 
         showsVerticalScrollIndicator={false}
         data={interestsData}
-        style={{ marginBottom:10, borderBottomColor:colors.tint, borderBottomWidth:.5 }}
+        style={{ 
+          marginBottom:10, 
+          borderBottomColor:colors.tint, 
+          borderBottomWidth:.5
+        }}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => handleOnClick(item.id, form, setForm)}
@@ -44,12 +48,27 @@ export default function Interests({ colors, form, setForm }) {
               }
             ]}
           >
-            <CustomText style={[styles.text, { color:Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint }]}>{item.interest}</CustomText>
+            <CustomText 
+              style={[
+                styles.text, 
+                { 
+                  color:Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint 
+                }
+              ]}
+            >
+              {item.interest}
+            </CustomText>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
       />
-      <CustomText style={{ marginBottom:80, marginHorizontal:35, color:colors.tertiary  }}>
+      <CustomText
+        style={{ 
+          marginBottom:80, 
+          marginHorizontal:35, 
+          color:colors.tertiary 
+        }}
+      >
         Pick 1 to 5.
       </CustomText>
     </>

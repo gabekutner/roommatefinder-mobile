@@ -10,8 +10,9 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import CustomButton from "../components/UI/Custom/CustomButton";
+import CustomText from "../components/UI/Custom/CustomText";
 import Snackbar from "../components/UI/SnackBar";
-import Button from "../components/Button";
 
 import utils from "../core/utils";
 import useGlobal from "../core/global";
@@ -88,7 +89,7 @@ export default function PhotoUpload({}) {
               { form.picture_one 
                 ? <Image 
                     src={form.picture_one.uri}
-                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                    style={styles.imageStyle}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -118,7 +119,7 @@ export default function PhotoUpload({}) {
               { form.picture_two 
                 ? <Image 
                     src={form.picture_two.uri}
-                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                    style={styles.imageStyle}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -151,7 +152,7 @@ export default function PhotoUpload({}) {
               { form.picture_three 
                 ? <Image 
                     src={form.picture_three.uri}
-                    style={{ height:'100%', width:'100%', borderRadius:10 }}
+                    style={styles.imageStyle}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -181,11 +182,7 @@ export default function PhotoUpload({}) {
               { form.picture_four 
                 ? <Image 
                     src={form.picture_four.uri}
-                    style={{ 
-                      height:'100%', 
-                      width:'100%', 
-                      borderRadius:10
-                    }}
+                    style={styles.imageStyle}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -199,11 +196,15 @@ export default function PhotoUpload({}) {
         </View>
       </View>
       
-      <View style={{ paddingHorizontal:45 }}>  
-        <Button
-          colors={colors}
-          buttonText="All Done"
-          onButtonPress={() => {
+      <View 
+        style={{ 
+          flex:1, 
+          alignItems:'center', 
+          justifyContent:'center' 
+        }}
+      >  
+        <CustomButton 
+          onClick={() => {
             // handle button press
             for (var prop in form) {
               if (form[prop] !== null) {
@@ -216,7 +217,22 @@ export default function PhotoUpload({}) {
             // show snackbar
             setShowSuccess(true)
           }}
-        />
+          style={{
+            width:200,
+            marginBottom:10,
+            backgroundColor:colors.accent
+          }}
+        >
+          <CustomText 
+            style={{ 
+              fontSize:20, 
+              fontWeight:'600', 
+              color:colors.constWhite 
+            }}
+          >
+            All Done
+          </CustomText>
+        </CustomButton>
       </View>
 
       { showSuccess
@@ -278,5 +294,10 @@ const styles = StyleSheet.create({
     width:160,
     justifyContent:'center',
     alignItems:'center'
-  } 
+  },
+  imageStyle: {
+    height:'100%', 
+    width:'100%', 
+    borderRadius:10
+  }
 })

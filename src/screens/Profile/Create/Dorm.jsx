@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   TouchableOpacity,
   StyleSheet,
   FlatList,
 } from 'react-native';
+
+import CustomText from '../../../components/UI/Custom/CustomText';
 
 import { dormsData } from '../../../assets/Dictionary';
 
@@ -23,7 +25,11 @@ export default function Dorm({ colors, form, setForm }) {
       <FlatList 
         showsVerticalScrollIndicator={false}
         data={dormsData}
-        style={{ marginBottom:10, borderBottomColor:colors.tint, borderBottomWidth:.5 }}
+        style={{ 
+          marginBottom:10, 
+          borderBottomColor:colors.tint, 
+          borderBottomWidth:.5 
+        }}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => toggleSelected(item.id)}
@@ -35,14 +41,29 @@ export default function Dorm({ colors, form, setForm }) {
               }
             ]}
           >
-            <Text style={[styles.text, { color: selected === item.id ? '#f3f4f6' : colors.tint }]}>{item.dorm}</Text>
+            <CustomText 
+              style={[
+                styles.text, 
+                { 
+                  color: selected === item.id ? '#f3f4f6' : colors.tint 
+                }
+              ]}
+            >
+              {item.dorm}
+            </CustomText>
           </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
       />
-      <Text style={{ marginBottom:80, marginHorizontal:35, color:colors.tertiary  }}>
+      <CustomText 
+        style={{ 
+          marginBottom:80, 
+          marginHorizontal:35, 
+          color:colors.tertiary  
+        }}
+      >
         Not official, where you think you'll be living.
-      </Text>
+      </CustomText>
     </>
     
   )
@@ -57,8 +78,5 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:20,
   },
-  text: {
-    fontFamily:'NotoSans_Condensed-Regular',
-    fontSize:17,
-  }
+  text: { fontSize:17 }
 })

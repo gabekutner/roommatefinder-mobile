@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Text,
   View,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+
+import CustomText from '../../../components/UI/Custom/CustomText';
 
 
 export default function Sex({ colors, form, setForm }) {
@@ -29,7 +30,16 @@ export default function Sex({ colors, form, setForm }) {
           }
         ]}
       >
-        <Text style={[styles.text, { color: selected === "M" ? '#f3f4f6' : colors.tint }]}>Guy</Text>
+        <CustomText 
+          style={[
+            styles.text, 
+            { 
+              color: selected === "M" ? '#f3f4f6' : colors.tint 
+            }
+          ]}
+        >
+          Guy
+        </CustomText>
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -42,7 +52,16 @@ export default function Sex({ colors, form, setForm }) {
           }
         ]}
       >
-        <Text style={[styles.text, { color: selected === "F" ? '#f3f4f6' : colors.tint }]}>Girl</Text>
+        <CustomText 
+          style={[
+            styles.text, 
+            { 
+              color: selected === "F" ? '#f3f4f6' : colors.tint 
+            }
+          ]}
+        >
+          Girl
+        </CustomText>
       </TouchableOpacity>
       
     </View>
@@ -56,8 +75,5 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth:1,
   },
-  text: {
-    fontFamily:'NotoSans_Condensed-Regular',
-    fontSize:17,
-  }
+  text: { fontSize:17 }
 })
