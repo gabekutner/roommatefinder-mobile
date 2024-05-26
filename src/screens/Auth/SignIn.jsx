@@ -13,26 +13,12 @@ import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
 import Title from '../../components/UI/Title';
+import CustomLabel from '../../components/UI/Label';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
 
-
-function Label({ colors, label }) {
-  return (
-    <CustomText 
-      style={{ 
-        color:colors.tint,
-        fontSize:17, 
-        fontWeight:'600', 
-        marginBottom:6
-      }}
-    >
-      { label }
-    </CustomText>
-  )
-}
 
 export default function SignIn({ navigation }) {
 
@@ -118,7 +104,7 @@ export default function SignIn({ navigation }) {
 
             <View style={{ marginBottom:24 }}>
 
-              <Label colors={colors} label={'Email Address'} />
+              <CustomLabel colors={colors} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
@@ -136,7 +122,7 @@ export default function SignIn({ navigation }) {
                 }}
               />
 
-              <Label colors={colors} label={'Email Address'} />
+              <CustomLabel colors={colors} label={'Email Address'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}

@@ -14,26 +14,12 @@ import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
 import Title from '../../components/UI/Title';
 import Snackbar from "../../components/UI/SnackBar";
+import CustomLabel from '../../components/UI/Label';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
 
-
-function Label({ colors, label }) {
-  return (
-    <CustomText 
-      style={{ 
-        color:colors.tint,
-        fontSize:17, 
-        fontWeight:'600', 
-        marginBottom:6
-      }}
-    >
-      { label }
-    </CustomText>
-  )
-}
 
 export default function SignUp({ navigation }) {
 
@@ -157,7 +143,7 @@ export default function SignUp({ navigation }) {
 
             <View style={{ marginBottom:24 }}>
 
-              <Label colors={colors} label={'Full Name'} />
+              <CustomLabel colors={colors} label={'Full Name'} />
               <CustomTextInput 
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'Gabe Kutner'}
@@ -172,7 +158,7 @@ export default function SignUp({ navigation }) {
                 }}
               />
 
-              <Label colors={colors} label={'Email Address'} />
+              <CustomLabel colors={colors} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
@@ -190,7 +176,7 @@ export default function SignUp({ navigation }) {
                 }}
               />
 
-              <Label colors={colors} label={'Password'} />
+              <CustomLabel colors={colors} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
@@ -205,8 +191,8 @@ export default function SignUp({ navigation }) {
                   color:colors.tint
                 }}
               />
-
-              <Label colors={colors} label={'Confirm Password'} />
+              
+              <CustomLabel colors={colors} label={'Confirm Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}

@@ -14,7 +14,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import CustomText from '../../../components/UI/Custom/CustomText';
-import Input from '../../../components/UI/Input';
+import CustomTextInput from '../../../components/UI/Custom/CustomInput';
+import CustomLabel from '../../../components/UI/Label';
 import Button from '../../../components/Button';
 import Interests from '../Create/Interests';
 import Snackbar from '../../../components/UI/SnackBar';
@@ -72,133 +73,145 @@ export default function EditProfile({ navigation }) {
             }}
           >
 
-            <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Name"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={false}
-                autoCorrect={false}
-                keyboardType="default"
+            <View>
+              <CustomLabel colors={colors} label={'Full Name'} />
+              <CustomTextInput 
                 placeholder={user.name}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
-                width={300}
-                height={55}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
             </View>
+            
 
-            <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Instagram"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={true}
-                autoCorrect={false}
-                keyboardType="default"
-                placeholder={user.instagram ? user.instagram : "@"}
+            <View>
+              <CustomLabel colors={colors} label={'Instagram'} />
+              <CustomTextInput 
+                autoCapitalize={false}
+                placeholder={'@'}
                 value={form.instagram}
                 onChangeText={instagram => setForm({ ...form, instagram })}
-                width={300}
-                height={55}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
             </View>
 
-            <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Snapchat"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={true}
-                autoCorrect={false}
-                keyboardType="default"
-                placeholder={user.snapchat ? user.snapchat : "@"}
+            <View>
+              <CustomLabel colors={colors} label={'Snapchat'} />
+              <CustomTextInput 
+                autoCapitalize={false}
+                placeholder={'@'}
                 value={form.snapchat}
                 onChangeText={snapchat => setForm({ ...form, snapchat })}
-                width={300}
-                height={55}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
             </View>
 
-            <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Major"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={true}
-                autoCorrect={false}
-                keyboardType="default"
-                placeholder={user.major ? user.major : "Undecided"}
+            <View>
+              <CustomLabel colors={colors} label={'Major'} />
+              <CustomTextInput 
+                placeholder={user.major}
                 value={form.major}
                 onChangeText={major => setForm({ ...form, major })}
-                width={300}
-                height={55}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
             </View>
 
             <View 
               style={{ 
                 flexDirection:'row', 
-                gap:10 
+                gap:10
               }}
             >
-              <View style={styles.section}>
-                <Input 
-                  colors={colors}
-                  label="Hometown"
-                  editable={true}
-                  secureTextEntry={false}
-                  autoCapitalize={true}
-                  autoCorrect={false}
-                  keyboardType="default"
-                  placeholder={user.city ? user.city : "San Francisco"}
+              <View>
+                <CustomLabel colors={colors} label={'Hometown'} />
+                <CustomTextInput 
+                  autoCapitalize={false}
+                  placeholder={'...'}
                   value={form.city}
                   onChangeText={city => setForm({ ...form, city })}
-                  width={230}
-                  height={55}
+                  colors={colors}
+                  keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                  style={{
+                    width:225,
+                    height:55,
+                    marginBottom:16,
+                    backgroundColor:colors.secondary,
+                    color:colors.tint
+                  }}
                 />
               </View>
-
-              <View style={styles.section}>
-                <Input 
-                  colors={colors}
-                  label="State"
-                  editable={true}
-                  secureTextEntry={false}
-                  autoCapitalize={true}
-                  autoCorrect={false}
-                  keyboardType="default"
-                  placeholder={user.state ? user.state : "CA"}
+              <View>
+                <CustomLabel colors={colors} label={'State'} />
+                <CustomTextInput 
+                  autoCapitalize={false}
+                  placeholder={'...'}
                   value={form.state}
                   onChangeText={state => setForm({ ...form, state })}
-                  width={70}
-                  height={55}
+                  colors={colors}
+                  keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                  style={{
+                    width:65,
+                    height:55,
+                    marginBottom:16,
+                    backgroundColor:colors.secondary,
+                    color:colors.tint
+                  }}
                 />
               </View>
             </View>
-            
-            <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Graduation Year"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={true}
-                autoCorrect={false}
-                keyboardType="default"
-                placeholder={user.graduation_year ? user.graduation_year : "2028"}
+
+            <View>
+              <CustomLabel colors={colors} label={'Graduation Year'} />
+              <CustomTextInput 
+                autoCapitalize={false}
+                placeholder={'2028'}
                 value={form.graduation_year}
                 onChangeText={graduation_year => setForm({ ...form, graduation_year })}
-                width={300}
-                height={55}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
             </View>
 
-            <View style={styles.section}>
+            {/* <View style={styles.section}>
               <Input 
                 colors={colors}
                 label="Bio"
@@ -214,6 +227,26 @@ export default function EditProfile({ navigation }) {
                 height={200}
                 paddingTop={15}
                 multiline={true}
+              />
+            </View> */}
+            <View>
+              <CustomLabel colors={colors} label={'Bio'} />
+              <CustomTextInput 
+                multiline={true}
+                autoCapitalize={false}
+                placeholder={'A little bit about me ...'}
+                value={form.description}
+                onChangeText={description => setForm({ ...form, description })}
+                colors={colors}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  width:300,
+                  height:200,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint,
+                  paddingTop:15
+                }}
               />
             </View>
 
@@ -360,5 +393,9 @@ export default function EditProfile({ navigation }) {
 
 
 const styles = StyleSheet.create({
-  section: {}
+  section: {
+    flex:1, 
+    alignItems:'flex-start', 
+    justifyContent:'flex-start',
+  }
 })
