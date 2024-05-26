@@ -14,29 +14,5 @@ This is the React Native frontend repository. Here's the link for the [**backend
 - 🕹️ [**Font Awesome Icons**](https://fontawesome.com/)
 - 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters)
 
-## Features
-### Basic
-- Login and registration with JWT Bearer Token
-- Create Profile
-### Your profile
-- Update your profile information
-- Add photos
-### Swipe profiles
-- Send message requests
-- View full profile
-### Chat
-- Chat with other users
-- Search for users
-### Swipe deck algorithm
-List based on:
-- Sex
-- Dorm
-- Interests
-
-## Swipe deck algorithm
-The algorithm is responsible for determining what profiles a user sees on the home page. The algorithm is implemented once a user renders the home page.  
-
-
-
-
-
+## Preview
+![preview](https://github.com/gabekutner/roommatefinder-mobile/blob/main/preview.png)
