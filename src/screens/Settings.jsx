@@ -7,12 +7,13 @@ import {
   Text,
   TouchableOpacity,
   Switch,
-  Image,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-import utils from '../core/utils';
+import CustomText from '../components/UI/Custom/CustomText';
+import Thumbnail from '../components/Thumbnail';
+
 import useGlobal from '../core/global';
 import { colors as c } from '../assets/config';
 
@@ -31,12 +32,15 @@ export default function Settings({ navigation }) {
     theme: true ? theme === 'dark' : false, // true -> dark mode, false -> light mode
   })
 
-  const toggleSwitch = () => {
-    setTheme()
-  }
+  const toggleSwitch = () => { setTheme() }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.primary }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.primary 
+      }}
+    >
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerAction}>
@@ -49,7 +53,16 @@ export default function Settings({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <Text style={[styles.headerTitle, { color:colors.tint }]}>Settings</Text>
+          <CustomText 
+            style={[
+              styles.headerTitle, 
+              { 
+                color:colors.tint 
+              }
+            ]}
+          >
+            Settings
+          </CustomText>
 
           <View style={[styles.headerAction, { alignItems: 'flex-end' }]} />
         </View>
@@ -61,19 +74,43 @@ export default function Settings({ navigation }) {
             <View style={styles.sectionBody}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('edit-profile')}
-                style={[styles.profile, { backgroundColor:colors.secondary, borderColor:colors.tint }]}
+                style={[
+                  styles.profile, 
+                  { 
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint 
+                  }
+                ]}
               >
-                <Image
-                  source={utils.thumbnail(user.thumbnail)}
-                  style={styles.profileAvatar} 
+                <Thumbnail 
+                  url={user.thumbnail}
+                  size={70}
+                  borderColor={colors.secondary}
+                  style={styles.profileAvatar}
                 />
               
                 <View style={styles.profileBody}>
-                  <Text style={[styles.profileName, { color:colors.tint }]}>{user.name}</Text>
+                  <CustomText 
+                    style={[
+                      styles.profileName, 
+                      { 
+                        color:colors.tint 
+                      }
+                    ]}
+                  >
+                    {user.name}
+                  </CustomText>
 
-                  <Text style={[styles.profileHandle, { color:colors.tertiary }]}>
+                  <CustomText 
+                    style={[
+                      styles.profileHandle, 
+                      { 
+                        color:colors.tertiary 
+                      }
+                    ]}
+                  >
                     {user.email}
-                  </Text>
+                  </CustomText>
                 </View>
 
                 <FontAwesomeIcon
@@ -87,11 +124,41 @@ export default function Settings({ navigation }) {
         
           {/* preferences */}
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color:colors.tertiary }]}>Preferences</Text>
+            <CustomText 
+              style={[
+                styles.sectionTitle, 
+                { 
+                  color:colors.tertiary 
+                }
+              ]}
+            >
+              Preferences
+            </CustomText>
             <View style={styles.sectionBody}>
-              <View style={[styles.rowWrapper, styles.rowFirst, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
+              <View 
+                style={[
+                  styles.rowWrapper, 
+                  styles.rowFirst, 
+                  { 
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint, 
+                    borderWidth:.2, 
+                    borderTopWidth:.2 
+                  }
+                ]}
+              >
                 <View style={styles.row}>
-                  <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Email Notifications</Text>
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      { 
+                        color:colors.tint, 
+                        fontWeight:'500' 
+                      }
+                    ]}
+                  >
+                    Email Notifications
+                  </CustomText>
 
                   <View style={styles.rowSpacer} />
 
@@ -115,9 +182,30 @@ export default function Settings({ navigation }) {
                     value={form.pushNotifications} />
                 </View>
               </View> */}
-              <View style={[styles.rowWrapper, styles.rowLast, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
+              <View 
+                style={[
+                  styles.rowWrapper, 
+                  styles.rowLast, 
+                  { 
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint, 
+                    borderWidth:.2, 
+                    borderTopWidth:.1 
+                  }
+                ]}
+              >
                 <View style={styles.row}>
-                  <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Dark Mode</Text>
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      { 
+                        color:colors.tint, 
+                        fontWeight:'500' 
+                      }
+                    ]}
+                  >
+                    Dark Mode
+                  </CustomText>
                   <View style={styles.rowSpacer} />
                   <Switch
                     onValueChange={theme => {
@@ -133,16 +221,46 @@ export default function Settings({ navigation }) {
 
           {/* resources */}
           <View style={styles.section}>
-            <Text style={[styles.sectionTitle, { color:colors.tertiary }]}>Resources</Text>
+            <CustomText 
+              style={[
+                styles.sectionTitle, 
+                { 
+                  color:colors.tertiary 
+                }
+              ]}
+            >
+              Resources
+            </CustomText>
 
             <View style={styles.sectionBody}>
-              <View style={[styles.rowWrapper, styles.rowFirst, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
+              <View 
+                style={[
+                  styles.rowWrapper, 
+                  styles.rowFirst, 
+                  { 
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint, 
+                    borderWidth:.2, 
+                    borderTopWidth:.2 
+                  }
+                ]}
+              >
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
                   }}
                   style={styles.row}>
-                  <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Contact Us</Text>
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      { 
+                        color:colors.tint, 
+                        fontWeight:'500'
+                      }
+                    ]}
+                  >
+                    Contact Us
+                  </CustomText>
 
                   <View style={styles.rowSpacer} />
 
@@ -170,13 +288,34 @@ export default function Settings({ navigation }) {
                 </TouchableOpacity>
               </View> */}
 
-              <View style={[styles.rowWrapper, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 }]}>
+              <View 
+                style={[
+                  styles.rowWrapper, 
+                  { 
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint, 
+                    borderWidth:.2, 
+                    borderTopWidth:.2 
+                  }
+                ]}
+              >
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
                   }}
-                  style={styles.row}>
-                  <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Rate in App Store</Text>
+                  style={styles.row}
+                >
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      { 
+                        color:colors.tint, 
+                        fontWeight:'500' 
+                      }
+                    ]}
+                  >
+                    Rate in App Store
+                  </CustomText>
 
                   <View style={styles.rowSpacer} />
 
@@ -187,13 +326,35 @@ export default function Settings({ navigation }) {
                 </TouchableOpacity>
               </View>
 
-              <View style={[styles.rowWrapper, styles.rowLast, { backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.1 }]}>
+              <View 
+                style={[
+                  styles.rowWrapper, 
+                  styles.rowLast, 
+                  { 
+                    backgroundColor:colors.secondary,
+                    borderColor:colors.tint,
+                    borderWidth:.2, 
+                    borderTopWidth:.1 
+                  }
+                ]}
+              >
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
                   }}
-                  style={styles.row}>
-                  <Text style={[styles.rowLabel, { color:colors.tint, fontWeight:'500' }]}>Terms and Privacy</Text>
+                  style={styles.row}
+                >
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      { 
+                        color:colors.tint, 
+                        fontWeight:'500' 
+                      }
+                    ]}
+                  >
+                    Terms and Privacy
+                  </CustomText>
 
                   <View style={styles.rowSpacer} />
 
@@ -213,25 +374,49 @@ export default function Settings({ navigation }) {
                   styles.rowWrapper,
                   styles.rowFirst,
                   styles.rowLast,
-                  { alignItems: 'center', backgroundColor:colors.secondary, borderColor:colors.tint, borderWidth:.2, borderTopWidth:.2 },
-                ]}>
+                  { 
+                    alignItems: 'center',
+                    backgroundColor:colors.secondary, 
+                    borderColor:colors.tint, 
+                    borderWidth:.2, 
+                    borderTopWidth:.2 
+                  },
+                ]}
+              >
                 <TouchableOpacity
                   onPress={() => logout()}
                   style={styles.row}
                 >
-                  <Text style={[styles.rowLabel, styles.rowLabelLogout, { color:colors.accent }]}>
+                  <CustomText 
+                    style={[
+                      styles.rowLabel, 
+                      styles.rowLabelLogout, 
+                      { 
+                        color:colors.accent 
+                      }
+                    ]}
+                  >
                     Log Out
-                  </Text>
+                  </CustomText>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
 
-          <Text style={[styles.contentFooter, { color:colors.tertiary }]}>App Version 1.0.0 #100</Text>
+          <CustomText 
+            style={[
+              styles.contentFooter, 
+              { 
+                color:colors.tertiary 
+              }
+            ]}
+          >
+            App Version 1.0.0 #100
+          </CustomText>
         </ScrollView>
       </View>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

@@ -72,14 +72,28 @@ export default function SignUp({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.primary 
+      }}
+    >
       <KeyboardAvoidingView
-        style={{ flex:1, justifyContent:'center' }}
+        style={{ 
+          flex:1, 
+          justifyContent:'center' 
+        }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -100}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={{ flex:1, paddingHorizontal:20, justifyContent:'center' }}>
+          <View 
+            style={{ 
+              flex:1, 
+              paddingHorizontal:20, 
+              justifyContent:'center' 
+            }}
+          >
 
             <View style={{ marginVertical:'10%' }}>
               <Title 
@@ -112,6 +126,7 @@ export default function SignUp({ navigation }) {
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
                 height={55}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
               />
 
               <Input
@@ -124,6 +139,7 @@ export default function SignUp({ navigation }) {
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
                 height={55}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
               />
 
               <Input
@@ -134,6 +150,7 @@ export default function SignUp({ navigation }) {
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
                 height={55}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
               />
               <Input
                 label={'Confirm Password'}
@@ -143,13 +160,22 @@ export default function SignUp({ navigation }) {
                 onChangeText={rpassword => setForm({ ...form, rpassword })}
                 colors={colors}
                 height={55}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
               />
 
               <CustomButton
                 onClick={() => onSignUp()}
                 style={{ backgroundColor:colors.accent }}
               >
-                <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Sign up</CustomText>
+                <CustomText 
+                  style={{ 
+                    fontSize:20, 
+                    fontWeight:'600', 
+                    color:colors.constWhite 
+                  }}
+                >
+                  Sign up
+                </CustomText>
               </CustomButton>
 
               <Pressable 
@@ -161,14 +187,28 @@ export default function SignUp({ navigation }) {
                   justifyContent:'center',
                 }}
               >
-                <CustomText style={[styles.text, { color:colors.tint }]}>
+                <CustomText 
+                  style={[
+                    styles.text, 
+                    { 
+                      color:colors.tint 
+                    }
+                  ]}
+                >
                   Already have an account?{' '}
-                  <CustomText style={[styles.text, { color:colors.tint, textDecorationLine:'underline' }]}>
+                  <CustomText 
+                    style={[
+                      styles.text, 
+                      { 
+                        color:colors.tint,
+                        textDecorationLine:'underline' 
+                      }
+                    ]}
+                  >
                     Sign in
                   </CustomText>
                 </CustomText>
               </Pressable>
-
             </View>
           </View>
         </TouchableWithoutFeedback>

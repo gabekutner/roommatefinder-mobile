@@ -30,5 +30,3 @@ export const colors = {
     green: '#6CC24A', 
   }
 }
-
-// #0891b2

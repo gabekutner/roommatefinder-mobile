@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { 
   View, 
-  Text, 
   TouchableOpacity, 
   StyleSheet, 
   FlatList, 
@@ -9,7 +8,10 @@ import {
   Dimensions,
 } from 'react-native';
 
-import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+import { 
+  moderateScale, 
+  moderateVerticalScale 
+} from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
 
@@ -28,7 +30,7 @@ export default function Onboarding({ navigation }) {
   const slides = [
     {
       id:1,
-      title:'roommatefinder.com', 
+      title:'roommatefinder', 
       subtitle:'WELCOME TO',
       description:`Find your future dorm roommates!`, 
       imagePath: require('../assets/images/image_part_001.png'),
@@ -49,17 +51,22 @@ export default function Onboarding({ navigation }) {
     }
   ]
 
-  const onViewableItemsChanged = ({ viewableItems }) => {
-    setScreen(viewableItems[0].key)
-  }
-
-  const viewabilityConfigCallbackPairs = useRef([
-    { onViewableItemsChanged },
-  ])
+  const onViewableItemsChanged = ({ viewableItems }) => { setScreen(viewableItems[0].key) }
+  const viewabilityConfigCallbackPairs = useRef([ { onViewableItemsChanged } ])
 
   return (
-    <View style={{ flex:1, backgroundColor:colors.accentDark }}>
-      <View style={{ flex:0.8, backgroundColor:colors.constWhite }}>
+    <View 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.accentDark 
+      }}
+    >
+      <View 
+        style={{ 
+          flex:0.8, 
+          backgroundColor:colors.constWhite 
+        }}
+      >
         <FlatList
           data={slides}
           horizontal={true}
@@ -155,7 +162,17 @@ export default function Onboarding({ navigation }) {
             marginTop:moderateScale(15),
           }}
         >
-          <CustomText style={[styles.buttonText, styles.bold, { color:colors.accentDark }]}>Log in</CustomText>
+          <CustomText 
+            style={[
+              styles.buttonText, 
+              styles.bold, 
+              { 
+                color:colors.accentDark
+              }
+            ]}
+          >
+            Log in
+          </CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -171,7 +188,17 @@ export default function Onboarding({ navigation }) {
             borderRadius:5,
           }}
         >
-          <CustomText style={[styles.buttonText, styles.bold, {color:colors.constWhite}]}>Create an Account</CustomText>
+          <CustomText 
+            style={[
+              styles.buttonText, 
+              styles.bold, 
+              {
+                color:colors.constWhite
+              }
+            ]}
+          >
+            Create an Account
+          </CustomText>
         </TouchableOpacity>
       </View>
     </View>

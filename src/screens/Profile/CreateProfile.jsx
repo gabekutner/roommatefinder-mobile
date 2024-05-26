@@ -1,4 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { 
+  useState, 
+  useRef 
+} from "react";
 import { 
   View,
   FlatList,
@@ -38,17 +41,29 @@ function Paginator({ colors, data, scrollX }) {
           extrapolate: 'clamp'
         })
 
-        return <Animated.View style={{ height:10, borderRadius:5, backgroundColor:colors.accent, marginHorizontal:8, width:dotWidth, opacity, }} key={i.toString()} />
+        return (
+          <Animated.View 
+            style={{ 
+              height:10, 
+              borderRadius:5, 
+              backgroundColor:colors.accent, 
+              marginHorizontal:8, 
+              width:dotWidth, 
+              opacity
+            }} 
+            key={i.toString()}
+          />
+        )
       })}
     </View>
   )
 }
 
 
-function Item({ item, colors, form, setForm }) {
+function Item({ item, theme, colors, form, setForm }) {
 
   if (item.title === 'Birthday') {
-    return <Birthday colors={colors} form={form} setForm={setForm} />
+    return <Birthday theme={theme} colors={colors} form={form} setForm={setForm} />
   }
 
   if (item.title === 'Sex') {
@@ -109,7 +124,13 @@ export default function CreateProfile() {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold : 50 }).current
 
   return (
-    <SafeAreaView style={{ flex:1, alignItems:'center' }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        alignItems:'center',
+        backgroundColor:colors.primary
+      }}
+    >
       
       <CustomText style={{ marginVertical:50, textAlign:'center', color:colors.tertiary }} />
         {/* NO INFORMATION PROVIDED HERE WILL BE SENT TO THE UNIVERSITY OF UTAH
@@ -132,11 +153,12 @@ export default function CreateProfile() {
                   fontSize:25, 
                   fontWeight:'500', 
                   marginBottom:30,
+                  color:colors.tint,
                 }}
               >
                 {item.label}
               </CustomText>
-              <Item item={item} colors={colors} form={form} setForm={setForm} />
+              <Item item={item} theme={theme} colors={colors} form={form} setForm={setForm} />
             </View>
           )}
           showsHorizontalScrollIndicator={false}

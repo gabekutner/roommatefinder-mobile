@@ -35,6 +35,7 @@ export default function Input(props) {
         onChangeText={props.onChangeText}
         onPress={props.onPress}
         multiline={props.multiline}
+        keyboardAppearance={props.keyboardAppearance}
       />
     </View>
   )

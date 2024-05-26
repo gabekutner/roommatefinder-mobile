@@ -62,10 +62,21 @@ export default function SignIn({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.primary 
+      }}
+    >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={{ flex:1, paddingHorizontal:20, justifyContent:'center' }}>
+          <View 
+            style={{ 
+              flex:1, 
+              paddingHorizontal:20, 
+              justifyContent:'center' 
+            }}
+          >
 
             <View style={{ marginVertical:'10%' }}>
               <Title 
@@ -96,6 +107,7 @@ export default function SignIn({ navigation }) {
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
@@ -105,6 +117,7 @@ export default function SignIn({ navigation }) {
               <Input
                 label={'Password'}
                 secureTextEntry={true}
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
@@ -116,7 +129,15 @@ export default function SignIn({ navigation }) {
                 onClick={() => onSignIn()}
                 style={{ backgroundColor:colors.accent }}
               >
-                <CustomText style={{ fontSize:20, fontWeight:'600', color:colors.constWhite }}>Log in</CustomText>
+                <CustomText 
+                  style={{ 
+                    fontSize:20, 
+                    fontWeight:'600', 
+                    color:colors.constWhite 
+                  }}
+                >
+                  Log in
+                </CustomText>
               </CustomButton>
 
               <Pressable 
@@ -128,14 +149,28 @@ export default function SignIn({ navigation }) {
                   justifyContent:'center',
                 }}
               >
-                <CustomText style={[styles.text, { color:colors.tint }]}>
+                <CustomText 
+                  style={[
+                    styles.text,
+                    { 
+                      color:colors.tint
+                    }
+                  ]}
+                >
                   Don't have an account?{' '}
-                  <CustomText style={[styles.text, { color:colors.tint, textDecorationLine:'underline' }]}>
+                  <CustomText 
+                    style={[
+                      styles.text, 
+                      { 
+                        color:colors.tint, 
+                        textDecorationLine:'underline' 
+                      }
+                    ]}
+                  >
                     Sign up
                   </CustomText>
                 </CustomText>
               </Pressable>
-
             </View>
           </View>
         </TouchableWithoutFeedback>

@@ -73,7 +73,7 @@ function MessageBubbleMe({ text }) {
 				paddingRight:12
 			}}
 		>
-			<View style={{ flex:1}} />
+			<View style={{ flex:1 }} />
 			<View
 				style={{
 					backgroundColor:'#303040',

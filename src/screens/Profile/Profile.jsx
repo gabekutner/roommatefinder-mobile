@@ -1,13 +1,15 @@
 import React from 'react';
 import { 
-  Text,
   View,
   TouchableOpacity,
 } from "react-native";
 
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { verticalScale, moderateScale } from 'react-native-size-matters';
+import { 
+  verticalScale, 
+  moderateScale 
+} from 'react-native-size-matters';
 
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';

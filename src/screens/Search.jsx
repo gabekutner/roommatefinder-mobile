@@ -26,7 +26,7 @@ function SearchButton({ user, colors }) {
 			<FontAwesomeIcon
 				icon='circle-check'
 				size={30}
-				color='#6CC24A'
+				color={colors.green}
 				style={{ marginRight:10 }}
 			/>
 		)
@@ -58,7 +58,7 @@ function SearchButton({ user, colors }) {
 	return (
 		<TouchableOpacity
 			style={{
-				backgroundColor: data.disabled ? '#708E99' : '#3ABFC0',
+				backgroundColor: data.disabled ? '#708E99' : colors.accent,
 				paddingHorizontal:14,
 				height:36,
 				alignItems:'center',
@@ -70,7 +70,7 @@ function SearchButton({ user, colors }) {
 		>
 			<CustomText
 				style={{
-					color:colors.primary,
+					color:colors.constWhite,
 					fontWeight:'600',
 				}}
 			>
@@ -113,7 +113,6 @@ function SearchRow({ item, colors }) {
 					</CustomText>	
 				</View>
 			<SearchButton user={item} colors={colors} />
-
 			{ show
 			  ? 
 					<SwipeProfileModal 
@@ -143,7 +142,7 @@ export default function Search({ navigation }) {
 
 	return (
 		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
-			<View style={{	padding: 16	}} >
+			<View style={{padding: 16	}} >
 				<TouchableOpacity 
 					onPress={() => navigation.goBack()}
 					style={{
@@ -172,7 +171,7 @@ export default function Search({ navigation }) {
 							color:colors.tint,
 							fontFamily:'NotoSans_Condensed-Regular',
 						}}
-						keyboardAppearance={colors.primary === '#1f2937' ? 'dark' : 'light'}
+						keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
 						value={query}
 						onChangeText={setQuery}
 						placeholder='Search...'
@@ -184,9 +183,9 @@ export default function Search({ navigation }) {
 						size={20}
 						color={colors.tint}
 						style={{
-							position: 'absolute',
-							left: 18,
-							top: 17
+							position:'absolute',
+							left:18,
+							top:17
 						}}
 					/>
 				</View>

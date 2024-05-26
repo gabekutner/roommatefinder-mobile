@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { 
   TouchableOpacity,
   View,
-  Text,
 } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { scale, verticalScale } from 'react-native-size-matters';
+import { 
+  scale, 
+  verticalScale 
+} from 'react-native-size-matters';
 
 import CustomText from "../components/UI/Custom/CustomText";
 import Title from '../components/UI/Title';
@@ -16,22 +18,36 @@ import Profile from "./Profile/Profile";
 import Swipe from "./SwipeScreen";
 
 import useGlobal from "../core/global";
-import {colors as c} from '../assets/config';
+import { colors as c } from '../assets/config';
 
 
 const Tab = createBottomTabNavigator()
 
 
-function HeaderLogo({ logoColor }) {
+function HeaderLogo({ colors }) {
   return (
-    <View style={{ flexDirection:'row', flexWrap:'wrap', alignItems:'center', marginLeft:17, width:'110%' }}>
-      <View style={{ width:30, height:30, backgroundColor:'#be0000' }} />
+    <View 
+      style={{ 
+        flexDirection:'row', 
+        flexWrap:'wrap', 
+        alignItems:'center', 
+        marginLeft:17, 
+        width:'110%' 
+      }}
+    >
+      <View 
+        style={{ 
+          width:30, 
+          height:30, 
+          backgroundColor:colors.accent
+        }} 
+      />
       <Title 
         text="roommatefinder"
         style={{
           padding:5, 
           fontSize:scale(16), 
-          color:logoColor, 
+          color:colors.tint, 
           fontFamily:'Glegoo-Bold'
         }}
       />
@@ -67,7 +83,7 @@ export default function HomeScreen() {
   const socketDisconnect = useGlobal(state => state.socketDisconnect)
   const setTheme = useGlobal(state => state.setTheme)
   const theme = useGlobal(state => state.theme)
-  const activeColors = c[theme]
+  const colors = c[theme]
 
   const toggleSwitch = () => {
     setTheme()
@@ -93,12 +109,18 @@ export default function HomeScreen() {
 					}
 					const icon = icons[route.name]
 					return (
-            <View style={{ alignItems:'center', justifyContent:'center', top:verticalScale(10) }}>
+            <View 
+              style={{ 
+                alignItems:'center', 
+                justifyContent:'center', 
+                top:verticalScale(10) 
+              }}
+            >
               <FontAwesomeIcon icon={icon} size={28} color={color} />
             </View>
 					)
 				},
-				tabBarActiveTintColor: activeColors.accent,
+				tabBarActiveTintColor: colors.accent,
         headerShadowVisible: false, // border bottom invisible
 				tabBarShowLabel: false,
         tabBarHideOnKeyboard:true,
@@ -110,7 +132,7 @@ export default function HomeScreen() {
           left:0, //20
           elevation:0, 
           height:verticalScale(90),
-          backgroundColor:activeColors.primary,
+          backgroundColor:colors.primary,
         }
       })}
     >
@@ -118,11 +140,17 @@ export default function HomeScreen() {
         name="swipe" 
         component={Swipe} 
         options={({ navigation }) => ({
-          headerLeft: () => <HeaderLogo logoColor={activeColors.tint}/>,
+          headerLeft: () => <HeaderLogo colors={colors}/>,
           headerRight: () => (
-            <View style={{ flexDirection:'row', gap:15, marginRight:17 }}>
+            <View 
+              style={{ 
+                flexDirection:'row', 
+                gap:15, 
+                marginRight:17 
+              }}
+            >
               <ThemeSwitch 
-                colors={activeColors} 
+                colors={colors} 
                 theme={theme} 
                 onChange={toggleSwitch} 
               />
@@ -130,7 +158,7 @@ export default function HomeScreen() {
                 <FontAwesomeIcon 
                   icon="bell"
                   size={27}
-                  color={activeColors.tint}
+                  color={colors.tint}
                 />
               </TouchableOpacity>
             </View>
@@ -138,7 +166,7 @@ export default function HomeScreen() {
           ),
           title: '',
           headerStyle: {
-            backgroundColor:activeColors.primary,
+            backgroundColor:colors.primary,
           },
           headerShadowVisible: false, // border bottom invisible
         })}
@@ -153,7 +181,7 @@ export default function HomeScreen() {
                 icon="magnifying-glass"
                 style={{ marginRight:17 }}
                 size={27}
-                color={activeColors.tint}
+                color={colors.tint}
               />
             </TouchableOpacity>
           ),
@@ -161,7 +189,7 @@ export default function HomeScreen() {
             <CustomText 
               style={{
                 marginLeft:20,
-                color:activeColors.tint,
+                color:colors.tint,
                 fontSize:20,
                 fontWeight:'500',
               }}
@@ -171,7 +199,7 @@ export default function HomeScreen() {
           ),
           title: '',
           headerStyle: {
-            backgroundColor:activeColors.primary,
+            backgroundColor:colors.primary,
           },
           headerShadowVisible: false, // border bottom invisible
         })}

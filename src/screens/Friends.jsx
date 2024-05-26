@@ -63,13 +63,18 @@ function FriendRow({ navigation, item, colors }) {
 						{item.friend.name}
 					</CustomText>
 					<CustomText style={{ color:colors.tertiary }}>
-						{item.preview} <CustomText style={{ color:colors.tertiary, fontSize:13 }}>
+						{item.preview} 
+						<CustomText 
+							style={{ 
+								color:colors.tertiary, 
+								fontSize:13 
+							}}
+						>
 							{utils.formatTime(item.updated)}
 						</CustomText>
 					</CustomText>
 				</View>
 			</TouchableOpacity>
-
 			{ show
 				? 
 					<SwipeProfileModal 
@@ -80,7 +85,6 @@ function FriendRow({ navigation, item, colors }) {
 					/>
 				: null
 			}
-				
 		</Cell>
 	)
 }

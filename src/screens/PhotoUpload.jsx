@@ -60,7 +60,12 @@ export default function PhotoUpload({}) {
   const [showError, setShowError] = useState(false)
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+    <SafeAreaView 
+      style={{ 
+        flex:1, 
+        backgroundColor:colors.primary 
+      }}
+    >
       <View style={{ marginVertical:30 }}>
         
         <View style={styles.wrapper}>
@@ -215,43 +220,43 @@ export default function PhotoUpload({}) {
       </View>
 
       { showSuccess
-          ? 
-            <Snackbar
-              message="Successfully uploaded photos"
-              actionText="Dismiss"
-              onActionPress={() => {
-                setShowSuccess(false)
-              }}
-              duration={5000} // customize duration
-              position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.green} // customize background color
-              textColor={colors.constWhite} // change text color
-              actionTextColor={colors.constWhite} // customize action text color
-              containerStyle={{ marginHorizontal:12 }} // apply additional styling
-              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-              actionTextStyle={{ }} // customize action text styling
-            />
-          : null
-        }
-        { showError 
-          ?
-            <Snackbar
-              message="Error uploading photos"
-              actionText="Dismiss"
-              onActionPress={() => {
-                setShowError(false)
-              }}
-              duration={5000} // customize duration
-              position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.accent} // customize background color
-              textColor={colors.constWhite} // change text color
-              actionTextColor={colors.constWhite} // customize action text color
-              containerStyle={{ marginHorizontal:12 }} // apply additional styling
-              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-              actionTextStyle={{ }} // customize action text styling
-            /> 
-          : null
-        }
+        ? 
+          <Snackbar
+            message="Successfully uploaded photos"
+            actionText="Dismiss"
+            onActionPress={() => {
+              setShowSuccess(false)
+            }}
+            duration={5000} // customize duration
+            position="top" // change the position to 'top'/'bottom'
+            backgroundColor={colors.green} // customize background color
+            textColor={colors.constWhite} // change text color
+            actionTextColor={colors.constWhite} // customize action text color
+            containerStyle={{ marginHorizontal:12 }} // apply additional styling
+            messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+            actionTextStyle={{ }} // customize action text styling
+          />
+        : null
+      }
+      { showError 
+        ?
+          <Snackbar
+            message="Error uploading photos"
+            actionText="Dismiss"
+            onActionPress={() => {
+              setShowError(false)
+            }}
+            duration={5000} // customize duration
+            position="top" // change the position to 'top'/'bottom'
+            backgroundColor={colors.accent} // customize background color
+            textColor={colors.constWhite} // change text color
+            actionTextColor={colors.constWhite} // customize action text color
+            containerStyle={{ marginHorizontal:12 }} // apply additional styling
+            messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+            actionTextStyle={{ }} // customize action text styling
+          /> 
+        : null
+      }
     </SafeAreaView>
   )
 }

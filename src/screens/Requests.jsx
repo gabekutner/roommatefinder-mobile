@@ -26,7 +26,7 @@ function RequestAccept({ item, colors }) {
 		<TouchableOpacity
 			onPress={() => {requestAccept(item.sender.id)}}
 			style={{
-				backgroundColor:'#3ABFC0',
+				backgroundColor:colors.accent,
 				paddingHorizontal:14,
 				height:36,
 				borderRadius:18,
@@ -34,7 +34,7 @@ function RequestAccept({ item, colors }) {
 				justifyContent:'center'
 			}}
 		>
-			<CustomText style={{ color:colors.primary, fontWeight:'500' }}>Accept</CustomText>
+			<CustomText style={{ color:colors.constWhite, fontWeight:'500' }}>Accept</CustomText>
 		</TouchableOpacity>
 	)
 }
