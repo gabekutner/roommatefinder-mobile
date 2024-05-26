@@ -11,13 +11,28 @@ import {
 
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
+import CustomTextInput from '../../components/UI/Custom/CustomInput';
 import Title from '../../components/UI/Title';
-import Input from '../../components/UI/Input';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
 
+
+function Label({ colors, label }) {
+  return (
+    <CustomText 
+      style={{ 
+        color:colors.tint,
+        fontSize:17, 
+        fontWeight:'600', 
+        marginBottom:6
+      }}
+    >
+      { label }
+    </CustomText>
+  )
+}
 
 export default function SignIn({ navigation }) {
 
@@ -102,8 +117,9 @@ export default function SignIn({ navigation }) {
             </View>
 
             <View style={{ marginBottom:24 }}>
-              <Input
-                label={'Email Address'}
+
+              <Label colors={colors} label={'Email Address'} />
+              <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
@@ -112,22 +128,35 @@ export default function SignIn({ navigation }) {
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
-                height={55}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
-              <Input
-                label={'Password'}
+
+              <Label colors={colors} label={'Email Address'} />
+              <CustomTextInput 
                 secureTextEntry={true}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
-                height={55}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
 
               <CustomButton
                 onClick={() => onSignIn()}
-                style={{ backgroundColor:colors.accent }}
+                style={{ 
+                  backgroundColor:colors.accent 
+                }}
               >
                 <CustomText 
                   style={{ 

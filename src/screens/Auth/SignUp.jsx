@@ -11,19 +11,37 @@ import {
 
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
+import CustomTextInput from '../../components/UI/Custom/CustomInput';
 import Title from '../../components/UI/Title';
-import Input from '../../components/UI/Input';
+import Snackbar from "../../components/UI/SnackBar";
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
 import { colors as c } from '../../assets/config';
 
 
+function Label({ colors, label }) {
+  return (
+    <CustomText 
+      style={{ 
+        color:colors.tint,
+        fontSize:17, 
+        fontWeight:'600', 
+        marginBottom:6
+      }}
+    >
+      { label }
+    </CustomText>
+  )
+}
+
 export default function SignUp({ navigation }) {
 
   const login = useGlobal(state => state.login)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+
+  const [show, setShow] = useState(false)
 
   const [form, setForm] = useState({
     email: '',
@@ -68,6 +86,7 @@ export default function SignUp({ navigation }) {
         console.log('Error', error.message)
       }
       console.log(error.config)
+      setShow(true)
     })
   }
 
@@ -94,7 +113,25 @@ export default function SignUp({ navigation }) {
               justifyContent:'center' 
             }}
           >
-
+            { show
+              ? 
+                <Snackbar 
+                  message="This profile already exists"
+                  actionText="Dismiss"
+                  onActionPress={() => {
+                    setShow(false)
+                  }}
+                  duration={5000} // customize duration
+                  position="top" // change the position to 'top'/'bottom'
+                  backgroundColor={colors.accent} // customize background color
+                  textColor={colors.constWhite} // change text color
+                  actionTextColor={colors.constWhite} // customize action text color
+                  containerStyle={{ marginHorizontal:12 }} // apply additional styling
+                  messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+                  actionTextStyle={{ }} // customize action text styling
+                />
+              : null
+            }
             <View style={{ marginVertical:'10%' }}>
               <Title 
                 text='roommatefinder' 
@@ -119,18 +156,24 @@ export default function SignUp({ navigation }) {
             </View>
 
             <View style={{ marginBottom:24 }}>
-              <Input
-                label={'Full Name'}
+
+              <Label colors={colors} label={'Full Name'} />
+              <CustomTextInput 
+                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'Gabe Kutner'}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
-                height={55}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
 
-              <Input
-                label={'Email Address'}
+              <Label colors={colors} label={'Email Address'} />
+              <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
@@ -138,29 +181,45 @@ export default function SignUp({ navigation }) {
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
-                height={55}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
 
-              <Input
-                label={'Password'}
+              <Label colors={colors} label={'Password'} />
+              <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
-                height={55}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
-              <Input
-                label={'Confirm Password'}
+
+              <Label colors={colors} label={'Confirm Password'} />
+              <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
                 value={form.rpassword}
                 onChangeText={rpassword => setForm({ ...form, rpassword })}
                 colors={colors}
-                height={55}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                style={{
+                  height:55,
+                  marginBottom:16,
+                  backgroundColor:colors.secondary,
+                  color:colors.tint
+                }}
               />
 
               <CustomButton
@@ -214,6 +273,8 @@ export default function SignUp({ navigation }) {
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
+
+    
   )
 }
 
