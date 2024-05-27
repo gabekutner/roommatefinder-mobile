@@ -65,8 +65,15 @@ function FriendRow({ navigation, item, colors }) {
 						{item.friend.name}
 					</CustomText>
 					
-					<CustomText style={{ color:colors.tertiary }}>
-						{item.preview} 
+					<View
+						style={{
+							flexDirection:'row',
+							gap:5
+						}}
+					>
+						<CustomText style={{ color:colors.tertiary }}>
+							{item.preview} 
+						</CustomText>
 						<CustomText 
 							style={{ 
 								color:colors.tertiary, 
@@ -75,7 +82,8 @@ function FriendRow({ navigation, item, colors }) {
 						>
 							{utils.formatTime(item.updated)}
 						</CustomText>
-					</CustomText>
+					</View>
+					
 					
 				</View>
 			</TouchableOpacity>

@@ -76,7 +76,7 @@ export default function EditProfile({ navigation }) {
             <View>
               <CustomLabel colors={colors} label={'Full Name'} />
               <CustomTextInput 
-                placeholder={user.name}
+                placeholder={'👤'}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
@@ -133,7 +133,7 @@ export default function EditProfile({ navigation }) {
             <View>
               <CustomLabel colors={colors} label={'Major'} />
               <CustomTextInput 
-                placeholder={user.major}
+                placeholder={'🎓'}
                 value={form.major}
                 onChangeText={major => setForm({ ...form, major })}
                 colors={colors}
@@ -158,7 +158,7 @@ export default function EditProfile({ navigation }) {
                 <CustomLabel colors={colors} label={'Hometown'} />
                 <CustomTextInput 
                   autoCapitalize={false}
-                  placeholder={'...'}
+                  placeholder={'📍'}
                   value={form.city}
                   onChangeText={city => setForm({ ...form, city })}
                   colors={colors}
@@ -176,7 +176,7 @@ export default function EditProfile({ navigation }) {
                 <CustomLabel colors={colors} label={'State'} />
                 <CustomTextInput 
                   autoCapitalize={false}
-                  placeholder={'...'}
+                  placeholder={''}
                   value={form.state}
                   onChangeText={state => setForm({ ...form, state })}
                   colors={colors}
@@ -196,7 +196,7 @@ export default function EditProfile({ navigation }) {
               <CustomLabel colors={colors} label={'Graduation Year'} />
               <CustomTextInput 
                 autoCapitalize={false}
-                placeholder={'2028'}
+                placeholder={'📆'}
                 value={form.graduation_year}
                 onChangeText={graduation_year => setForm({ ...form, graduation_year })}
                 colors={colors}
@@ -292,10 +292,10 @@ export default function EditProfile({ navigation }) {
                   >
                     <View
                       style={{
-                        marginTop:30,
                         flex:1,
                         alignItems:'center',
-                        justifyContent:'center'
+                        justifyContent:'center',
+                        backgroundColor:colors.primary
                       }}
                     >
                       <View
@@ -310,6 +310,7 @@ export default function EditProfile({ navigation }) {
                             marginVertical:20,
                             fontSize:20, 
                             fontWeight:'600', 
+                            color:colors.tint
                           }}
                         >
                           Interests
@@ -337,13 +338,11 @@ export default function EditProfile({ navigation }) {
             colors={colors}
             buttonText="All Done"
             onButtonPress={() => {
-              const resp = editProfile(form, user).then(_ => {
-                if (_.status == 200) {
-                  setShowSuccess(true)
-                } else {
-                  setShowError(true)
-                }
-              })
+              const updateProfile = async() => {
+                await editProfile(form, user)                
+              }
+              updateProfile()
+              setShowSuccess(true)
             }}
           />
         </View>
@@ -367,7 +366,7 @@ export default function EditProfile({ navigation }) {
             />
           : null
         }
-        { showError 
+        {/* { showError 
           ?
             <Snackbar
               message="Error updating profile"
@@ -385,7 +384,7 @@ export default function EditProfile({ navigation }) {
               actionTextStyle={{ }} // customize action text styling
             /> 
           : null
-        }
+        } */}
       </KeyboardAvoidingView>
     </SafeAreaView>
   )

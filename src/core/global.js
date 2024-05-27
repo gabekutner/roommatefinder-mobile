@@ -307,8 +307,8 @@ const useGlobal = create((set, get) => ({
   //---------------------
 	//    Edit Profile
 	//---------------------
-  editProfile: async (form, user) => {
-    if(user.token) {
+  editProfile: async(form, user) => {
+    if (user.token) {
       try {
 
         const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
@@ -325,7 +325,9 @@ const useGlobal = create((set, get) => ({
         }
   
         console.log('edit-profile success')
-        return response
+        set((state) => ({
+          user:response.data,
+        }))
 
       } catch(error) {
         console.log(error.response)
