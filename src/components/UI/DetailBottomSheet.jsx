@@ -21,9 +21,11 @@ const { width } = Dimensions.get('window');
 
 
 export default function DetailBottomSheet({ 
+  navigation,
   item, 
   setShow, 
-  colors 
+  colors,
+  message,
 }) {
   
   const requestConnect = useGlobal(state => state.requestConnect)
@@ -82,7 +84,17 @@ export default function DetailBottomSheet({
       </View>
       
       <CustomButton
-        onClick={() => requestConnect(item.id)}
+        onClick={
+          () => {
+            if (message === "Friend Request") {
+              requestConnect(item.id)
+            } else if (message === "Message") {
+              return
+            } else if (message === "Pending") {
+              return
+            }
+          }
+        }
         style={{
           borderColor:colors.accent,
           backgroundColor:colors.secondary
@@ -95,7 +107,7 @@ export default function DetailBottomSheet({
             fontWeight:'bold' 
           }}
         >
-          Friend Request
+          {message}
         </CustomText>
       </CustomButton>
 

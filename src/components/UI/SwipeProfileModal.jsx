@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -8,14 +8,39 @@ import {
 import FastImage from "react-native-fast-image";
 
 import DetailBottomSheet from "./DetailBottomSheet";
+import useGlobal from "../../core/global";
 
 
 export default function SwipeProfileModal({ 
+  navigation,
   item,
   colors,
   setIsVisible,
   isVisible,
 }) {
+
+  const user = useGlobal(state => state.user)
+
+  const [actionMessage, setActionMessage] = useState('Friend Request')
+
+  useEffect(() => {
+    // dynamic action button
+    for (let x of item.received_connections) {
+      if (user.id === x.sender && x.accepted === true) {
+        setActionMessage('Accepted')
+      } else if (user.id === x.sender && x.accepted === false) {
+        setActionMessage('Pending')
+      }
+    }
+    for (let x of item.sent_connections) {
+      if (user.id === x.receiver && x.accepted === true) {
+        setActionMessage('Accepted')
+      } else if (user.id === x.receiver && x.accepted === false) {
+        setActionMessage('Pending')
+      }
+    }
+  }, [item, user])
+
 
   return (
     <Modal
@@ -34,6 +59,7 @@ export default function SwipeProfileModal({
           item={item}
           setShow={setIsVisible}
           colors={colors}
+          message={actionMessage}
         />
       </View>
     </Modal>
