@@ -4,7 +4,8 @@ import {
   FlatList, 
   SafeAreaView, 
   TouchableOpacity, 
-  View 
+  View,
+	RefreshControl
 } from "react-native";
 
 import SwipeProfileModal from "../components/UI/SwipeProfileModal";
@@ -22,9 +23,10 @@ function FriendRow({ navigation, item, colors }) {
 
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
-
+	
 	const [show, setShow] = useState(false)
 	const [profile, setProfile] = useState()
+
 
 	return (
 		<Cell colors={colors}>
@@ -95,8 +97,19 @@ function FriendRow({ navigation, item, colors }) {
 export default function Friends({ navigation }) {
 
 	const friendList = useGlobal(state => state.friendList)
+	const refreshFriendList = useGlobal(state => state.refreshFriendList)
 	const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+
+	const [refreshing, setRefreshing] = useState(false)
+
+	const onRefresh = React.useCallback(() => {
+    setRefreshing(true)
+		refreshFriendList()
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 2000)
+  }, [])
 
 	if (friendList === null) {
 		return <ActivityIndicator 
@@ -135,6 +148,14 @@ export default function Friends({ navigation }) {
 					<FriendRow navigation={navigation} item={item} colors={colors} />
 				)}
 				keyExtractor={item => item.id}
+				refreshControl={
+					<RefreshControl
+						colors={colors.tertiary}
+						tintColor={colors.tertiary}
+						refreshing={refreshing}
+						onRefresh={onRefresh} 
+					/>
+				}
 			/>
 		</SafeAreaView>
 	)
