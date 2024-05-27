@@ -289,6 +289,9 @@ const useGlobal = create((set, get) => ({
           throw 'create-profile error'
         }
 
+        const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
+        secure.set('tokens', tokens)
+
         console.log('create-profile success')
         set((state) => ({
           profileCreated:true,
@@ -442,7 +445,7 @@ const useGlobal = create((set, get) => ({
 
   socketConnect: async () => {
     const tokens = await secure.get('tokens')
-    
+
     const socket = new WebSocket(
       `ws://${ADDRESS}/chat/?token=${tokens.access}`
     )
