@@ -5,8 +5,16 @@ import {
 
 import FastImage from 'react-native-fast-image';
 
+import utils from '../../core/utils';
 
-export default function FastImageBackground({ containerStyle, imageStyle, source, resizeMode, children }) {
+
+export default function FastImageBackground({ 
+  containerStyle, 
+  imageStyle, 
+  url, 
+  resizeMode, 
+  children 
+}) {
   return (
     <View style={{ flex:1, padding:0, margin:0, ...containerStyle }}>
       <FastImage
@@ -18,7 +26,7 @@ export default function FastImageBackground({ containerStyle, imageStyle, source
           bottom:0,
           ...imageStyle,
         }}
-        source={source}
+        source={{uri:url}}
         resizeMode={resizeMode}
       />
       {children}

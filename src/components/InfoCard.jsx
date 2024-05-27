@@ -10,8 +10,7 @@ import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import { dormsData } from '../assets/Dictionary';
 
-const { width } = Dimensions.get('window')
-
+const { width } = Dimensions.get('window');
 
 
 export default function InfoCard(props) {

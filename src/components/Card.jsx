@@ -46,7 +46,7 @@ export default function CardItem({ item, colors }) {
           height:'100%',
         }}
         resizeMode={FastImage.resizeMode.cover}
-        source={{ uri:item.thumbnail }}
+        url={item.thumbnail}
       >
         <TouchableOpacity
           onPress={() => {

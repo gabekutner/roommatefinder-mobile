@@ -17,7 +17,7 @@ import utils from '../../core/utils';
 import useGlobal from '../../core/global';
 import { dormsData, interestsData } from '../../assets/Dictionary';
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 
 
 export default function DetailBottomSheet({ 
@@ -25,6 +25,7 @@ export default function DetailBottomSheet({
   setShow, 
   colors 
 }) {
+  
   const requestConnect = useGlobal(state => state.requestConnect)
 
   return (
