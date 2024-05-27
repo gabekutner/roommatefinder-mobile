@@ -13,8 +13,10 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import SwipeProfileModal from '../../../components/UI/SwipeProfileModal';
 import CustomText from '../../../components/UI/Custom/CustomText';
 import CustomTextInput from '../../../components/UI/Custom/CustomInput';
+import CustomButton from '../../../components/UI/Custom/CustomButton';
 import CustomLabel from '../../../components/UI/Label';
 import Button from '../../../components/Button';
 import Interests from '../Create/Interests';
@@ -30,12 +32,15 @@ export default function EditProfile({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const editProfile = useGlobal(state => state.editProfile)
+  const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme] 
 
   const [show, setShow] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [showError, setShowError] = useState(false)
+  const [showPreview, setShowPreview] = useState(false) 
+  const [profile, setProfile] = useState()
+  
 
   const [form, setForm] = useState({
     name: "",
@@ -72,6 +77,39 @@ export default function EditProfile({ navigation }) {
               marginBottom:50 
             }}
           >
+            <CustomButton
+              onClick={() => {
+                const getData = async() => {
+                  const profile = await getSwipeProfile(user, user.id)
+                  const userData = await profile.data
+                  setProfile(userData)
+                  setShowPreview(true)
+                  console.log(userData)
+                }
+                getData()
+                // sometimes error here
+                // setProfile(userData)
+                // console.log(userData)
+                // setShowPreview(true)
+              }}
+              style={{
+                width:300,
+                height:55,
+                marginBottom:16,
+                backgroundColor:colors.secondary,
+                borderColor:colors.accent
+              }}
+            >
+              <CustomText 
+                style={{ 
+                  fontSize:20, 
+                  fontWeight:'600', 
+                  color:colors.constWhite 
+                }}
+              >
+                Preview Profile
+              </CustomText>
+            </CustomButton>
 
             <View>
               <CustomLabel colors={colors} label={'Full Name'} />
@@ -211,24 +249,6 @@ export default function EditProfile({ navigation }) {
               />
             </View>
 
-            {/* <View style={styles.section}>
-              <Input 
-                colors={colors}
-                label="Bio"
-                editable={true}
-                secureTextEntry={false}
-                autoCapitalize={false}
-                autoCorrect={false}
-                keyboardType="default"
-                placeholder={user.description ? user.description : "A little bit about me ..."}
-                value={form.description}
-                onChangeText={description => setForm({ ...form, description })}
-                width={300}
-                height={200}
-                paddingTop={15}
-                multiline={true}
-              />
-            </View> */}
             <View>
               <CustomLabel colors={colors} label={'Bio'} />
               <CustomTextInput 
@@ -366,6 +386,16 @@ export default function EditProfile({ navigation }) {
             />
           : null
         }
+        { showPreview
+          ? 
+            <SwipeProfileModal 
+              item={profile}
+              colors={colors}
+              isVisible={showPreview}
+              setIsVisible={setShowPreview}
+            />
+          : null
+			  }
         {/* { showError 
           ?
             <Snackbar

@@ -384,7 +384,7 @@ export default function DetailBottomSheet({
                       borderWidth:.5,
                       borderColor:colors.tertiary
                     }}
-                    source={utils.thumbnail(photo.image)}
+                    source={{uri:photo.image}}
                     resizeMode={FastImage.resizeMode.cover}
                   />
 
