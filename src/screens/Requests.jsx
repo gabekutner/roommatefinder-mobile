@@ -4,7 +4,8 @@ import {
   FlatList, 
   View, 
   TouchableOpacity,
-	SafeAreaView
+	SafeAreaView,
+	RefreshControl,
 } from "react-native";
 
 import SwipeProfileModal from "../components/UI/SwipeProfileModal";
@@ -100,8 +101,19 @@ function RequestRow({ item, colors }) {
 export default function Requests() {
 
 	const requestList = useGlobal(state => state.requestList)
+	const refreshRequestList = useGlobal(state => state.refreshRequestList)
 	const theme = useGlobal(state => state.theme)
 	const colors = c[theme]
+
+	const [refreshing, setRefreshing] = useState(false)
+
+	const onRefresh = React.useCallback(() => {
+    setRefreshing(true)
+		refreshRequestList()
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 2000)
+  }, [])
 
 	if (requestList === null) {
 		return <ActivityIndicator style={{ flex:1, backgroundColor:colors.primary }} />
@@ -119,6 +131,14 @@ export default function Requests() {
 					<RequestRow item={item} colors={colors} />
 				)}
 				keyExtractor={item => item.sender.id}
+				refreshControl={
+					<RefreshControl
+						colors={colors.tertiary}
+						tintColor={colors.tertiary}
+						refreshing={refreshing}
+						onRefresh={onRefresh} 
+					/>
+				}
 			/>
 		</SafeAreaView>
 	)

@@ -540,6 +540,13 @@ const useGlobal = create((set, get) => ({
   //-------------------
   requestList: null,
 
+  refreshRequestList: () => {
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'request.list'
+    }))
+  },
+
 	requestAccept: (id) => {
 		const socket = get().socket
 		socket.send(JSON.stringify({

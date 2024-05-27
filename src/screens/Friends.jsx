@@ -57,22 +57,24 @@ function FriendRow({ navigation, item, colors }) {
 							fontWeight:'600', 
 							fontSize:17, 
 							color:colors.tint, 
-							marginBottom:4 
+							marginBottom:4,
 						}} 
 					>
 						{item.friend.name}
 					</CustomText>
+					
 					<CustomText style={{ color:colors.tertiary }}>
 						{item.preview} 
 						<CustomText 
 							style={{ 
 								color:colors.tertiary, 
-								fontSize:13 
+								fontSize:13,
 							}}
 						>
 							{utils.formatTime(item.updated)}
 						</CustomText>
 					</CustomText>
+					
 				</View>
 			</TouchableOpacity>
 			{ show
