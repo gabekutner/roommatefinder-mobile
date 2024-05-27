@@ -14,6 +14,7 @@ export default function CustomTextInput({
   editable, // bool
   inputMode, // str
   keyboardType, // str
+  keyboardAppearance, // str
   maxLength, // number
   multiline, // bool
   onChange,
@@ -33,6 +34,7 @@ export default function CustomTextInput({
       editable={editable}
       inputMode={inputMode}
       keyboardType={keyboardType}
+      keyboardAppearance={keyboardAppearance}
       maxLength={maxLength}
       multiline={multiline}
       onChange={onChange}
