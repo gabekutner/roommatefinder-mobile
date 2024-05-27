@@ -87,10 +87,6 @@ export default function EditProfile({ navigation }) {
                   console.log(userData)
                 }
                 getData()
-                // sometimes error here
-                // setProfile(userData)
-                // console.log(userData)
-                // setShowPreview(true)
               }}
               style={{
                 width:300,
