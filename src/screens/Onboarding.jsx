@@ -37,16 +37,16 @@ export default function Onboarding({ navigation }) {
     },
     {
       id:2,
-      title:'title',
-      subtitle:'...',
-      description:'some description text...',
+      title:'Swipe Profiles',
+      subtitle:'',
+      description:'Scan through all your roommate options!',
       imagePath: require('../assets/images/image_part_002.png')
     },
     {
       id:3,
-      title:'title',
-      subtitle:'...',
-      description:'some description text...',
+      title:'Chat with Friends',
+      subtitle:'',
+      description:'Message who you want to room with!',
       imagePath: require('../assets/images/image_part_003.png')
     }
   ]
