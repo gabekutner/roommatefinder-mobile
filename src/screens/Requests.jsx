@@ -120,7 +120,7 @@ export default function Requests() {
 	}
 
 	if (requestList.length === 0) {
-		return <Empty icon='bell' message='No requests' colors={colors} />
+		return <Empty icon='bell' message='No requests' colors={colors} refresh={onRefresh} />
 	}
 
 	return (

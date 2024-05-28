@@ -132,14 +132,7 @@ export default function Friends({ navigation }) {
 
 	if (friendList.length === 0) {
 		return (
-      <SafeAreaView 
-				style={{ 
-					flex:1, 
-					backgroundColor:colors.primary 
-				}}
-			>
-			  <Empty icon='inbox' message='No messages yet' colors={colors} />
-      </SafeAreaView>
+			<Empty icon='inbox' message='No messages yet' colors={colors} refresh={onRefresh}/>
 		)
 	}
 

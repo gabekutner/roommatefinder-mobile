@@ -6,9 +6,16 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import CustomText from "./UI/Custom/CustomText";
+import CustomButton from "./UI/Custom/CustomButton";
 
 
-export default function Empty({ icon, message, centered=true, colors }) {
+export default function Empty({ 
+  icon, 
+  message, 
+  centered=true, 
+  colors, 
+  refresh 
+}) {
   return (
     <View
       style={{
@@ -35,6 +42,31 @@ export default function Empty({ icon, message, centered=true, colors }) {
       >
         {message}
       </CustomText>
+      { refresh
+        ?
+          <CustomButton
+            onClick={() => refresh()}
+            style={{
+              marginTop:15,
+              backgroundColor:colors.primary,
+              borderColor:colors.accent,
+              // paddingVertical:5,
+              
+              width:150
+            }}
+          >
+            <CustomText
+              style={{
+                fontSize:18, 
+                fontWeight:'600', 
+                color:colors.constWhite 
+              }}
+            >
+              Refresh
+            </CustomText>
+          </CustomButton>
+        : null
+      }
     </View>
   )
 }
