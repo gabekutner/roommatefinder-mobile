@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Snackbar from '../../components/UI/SnackBar';
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
@@ -26,14 +27,30 @@ export default function SignIn({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
+  const [showError, setShowError] = useState({
+    status: false,
+    message: ""
+  })
+
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
 
+  function validEmail(email) {
+    // Regular expression pattern for validating email addresses
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailPattern.test(email)
+  }
+
   function onSignIn() {
-    // form validation goes here
+    // form validation
     if (!form.email || !form.password) {
+      setShowError({ ...showError, status:true, message:"Missing credentials."})
+      return
+    }
+    if (!validEmail(form.email)) {
+      setShowError({ ...showError, status:true, message:"Invalid email address."})
       return
     }
 
@@ -58,7 +75,9 @@ export default function SignIn({ navigation }) {
       })
       .catch(error => {
         // Handle error
-        console.error('Error:', error);
+        if (error.response.status) {
+          setShowError({ ...showError, status:true, message:"Invalid credentails or this email is already in use." })
+        }
       })
   }
 
@@ -189,6 +208,25 @@ export default function SignIn({ navigation }) {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        { showError.status
+          ?
+            <Snackbar
+              message={showError.message}
+              actionText="Dismiss"
+              onActionPress={() => {
+                setShowError(false)
+              }}
+              duration={5000} // customize duration
+              position="top" // change the position to 'top'/'bottom'
+              backgroundColor={colors.accent} // customize background color
+              textColor={colors.constWhite} // change text color
+              actionTextColor={colors.constWhite} // customize action text color
+              containerStyle={{ marginHorizontal:12 }} // apply additional styling
+              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+              actionTextStyle={{ }} // customize action text styling
+            /> 
+          : null
+        }
       </KeyboardAvoidingView>
     </SafeAreaView>
   )

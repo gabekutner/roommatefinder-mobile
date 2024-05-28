@@ -27,7 +27,10 @@ export default function SignUp({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
-  const [show, setShow] = useState(false)
+  const [showError, setShowError] = useState({
+    status: false,
+    message: ""
+  })
 
   const [form, setForm] = useState({
     email: '',
@@ -35,10 +38,22 @@ export default function SignUp({ navigation }) {
     rpassword: '',
     name: '',
   })
+
+  function validEmail(email) {
+    // Regular expression pattern for validating email addresses
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailPattern.test(email)
+  }
   
   function onSignUp() {
     // form validation here
     if (!form.name || !form.email || !form.password || !form.rpassword) {
+      setShowError({ ...showError, status:true, message:"Missing credentials."})
+      return
+    }
+     
+    if (!validEmail(form.email)) {
+      setShowError({ ...showError, status:true, message:"Invalid email address."})
       return
     }
 
@@ -62,17 +77,19 @@ export default function SignUp({ navigation }) {
         { 'access': response.data.access, 'refresh': response.data.refresh }
       )
     }).catch((error) => {
-      if (error.response) {
-        console.log(error.response.data)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-      } else if (error.request) {
-        console.log(error.request)
-      } else {
-        console.log('Error', error.message)
+      // if (error.response) {
+      //   console.log(error.response.data)
+      //   console.log(error.response.status)
+      //   console.log(error.response.headers)
+      // } else if (error.request) {
+      //   console.log(error.request)
+      // } else {
+      //   console.log('Error', error.message)
+      // }
+      // console.log(error.config)
+      if (error.response.status) {
+        setShowError({ ...showError, status:true, message:"This email is already in use." })
       }
-      console.log(error.config)
-      setShow(true)
     })
   }
 
@@ -99,25 +116,6 @@ export default function SignUp({ navigation }) {
               justifyContent:'center' 
             }}
           >
-            { show
-              ? 
-                <Snackbar 
-                  message="This profile already exists"
-                  actionText="Dismiss"
-                  onActionPress={() => {
-                    setShow(false)
-                  }}
-                  duration={5000} // customize duration
-                  position="top" // change the position to 'top'/'bottom'
-                  backgroundColor={colors.accent} // customize background color
-                  textColor={colors.constWhite} // change text color
-                  actionTextColor={colors.constWhite} // customize action text color
-                  containerStyle={{ marginHorizontal:12 }} // apply additional styling
-                  messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-                  actionTextStyle={{ }} // customize action text styling
-                />
-              : null
-            }
             <View style={{ marginVertical:'10%' }}>
               <Title 
                 text='roommatefinder' 
@@ -257,10 +255,27 @@ export default function SignUp({ navigation }) {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        { showError.status
+              ? 
+                <Snackbar 
+                  message={showError.message}
+                  actionText="Dismiss"
+                  onActionPress={() => {
+                    setShowError(false)
+                  }}
+                  duration={5000} // customize duration
+                  position="top" // change the position to 'top'/'bottom'
+                  backgroundColor={colors.accent} // customize background color
+                  textColor={colors.constWhite} // change text color
+                  actionTextColor={colors.constWhite} // customize action text color
+                  containerStyle={{ marginHorizontal:12 }} // apply additional styling
+                  messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+                  actionTextStyle={{ }} // customize action text styling
+                />
+              : null
+            }
       </KeyboardAvoidingView>
     </SafeAreaView>
-
-    
   )
 }
 

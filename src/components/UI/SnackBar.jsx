@@ -77,7 +77,10 @@ const styles = StyleSheet.create({
   },
   topContainer: { top:15 },
   bottomContainer: { bottom:15 },
-  messageText: { fontSize:16 },
+  messageText: { 
+    fontSize:16,
+    maxWidth:'80%',
+  },
   actionText: {
     marginLeft:8,
     fontSize:14,
