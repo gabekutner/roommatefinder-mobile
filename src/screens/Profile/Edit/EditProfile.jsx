@@ -373,7 +373,7 @@ export default function EditProfile({ navigation }) {
               }}
               duration={5000} // customize duration
               position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.green} // customize background color
+              backgroundColor={colors.accent} // customize background color
               textColor={colors.constWhite} // change text color
               actionTextColor={colors.constWhite} // customize action text color
               containerStyle={{ marginHorizontal:12 }} // apply additional styling
@@ -392,25 +392,6 @@ export default function EditProfile({ navigation }) {
             />
           : null
 			  }
-        {/* { showError 
-          ?
-            <Snackbar
-              message="Error updating profile"
-              actionText="Dismiss"
-              onActionPress={() => {
-                setShowError(false)
-              }}
-              duration={5000} // customize duration
-              position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.accent} // customize background color
-              textColor={colors.constWhite} // change text color
-              actionTextColor={colors.constWhite} // customize action text color
-              containerStyle={{ marginHorizontal:12 }} // apply additional styling
-              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-              actionTextStyle={{ }} // customize action text styling
-            /> 
-          : null
-        } */}
       </KeyboardAvoidingView>
     </SafeAreaView>
   )

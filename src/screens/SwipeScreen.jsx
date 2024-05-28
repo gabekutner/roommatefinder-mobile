@@ -11,6 +11,7 @@ import {
 import { verticalScale } from 'react-native-size-matters';
 
 import Empty from '../components/Empty';
+import CustomText from '../components/UI/Custom/CustomText';
 import CardItem from '../components/Card';
 
 import useGlobal from '../core/global';
@@ -41,7 +42,9 @@ export default function Swipe({ navigation }) {
       if (response === 404) {
         // what to do if user has scrolled through all the users
         // set to 0, will render a 'ran out of profiles' message
-        setData([])
+        const response = await getSwipe(user, 1)
+        const userData = await response.data.results
+        setData(userData)
       } else {
         const userData = await response.data.results
         setData(userData)

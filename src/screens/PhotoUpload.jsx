@@ -245,7 +245,7 @@ export default function PhotoUpload({}) {
             }}
             duration={5000} // customize duration
             position="top" // change the position to 'top'/'bottom'
-            backgroundColor={colors.green} // customize background color
+            backgroundColor={colors.accent} // customize background color
             textColor={colors.constWhite} // change text color
             actionTextColor={colors.constWhite} // customize action text color
             containerStyle={{ marginHorizontal:12 }} // apply additional styling
