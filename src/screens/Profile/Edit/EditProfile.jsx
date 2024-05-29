@@ -8,7 +8,9 @@ import {
   Platform,
   Modal,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Pressable,
+  Alert,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -33,6 +35,8 @@ export default function EditProfile({ navigation }) {
   const user = useGlobal(state => state.user)
   const editProfile = useGlobal(state => state.editProfile)
   const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+  const deleteProfile = useGlobal(state => state.deleteProfile)
+  const logout = useGlobal(state => state.logout)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme] 
 
@@ -40,6 +44,28 @@ export default function EditProfile({ navigation }) {
   const [showSuccess, setShowSuccess] = useState(false)
   const [showPreview, setShowPreview] = useState(false) 
   const [profile, setProfile] = useState()
+
+  const deleteAccountAlert = () => {
+    Alert.alert(
+      'Do you want to delete your profile?',
+      "Doing so will remove you from our database and you'll have to start over to come back.",
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete Account',
+          onPress: () => {
+            // handle delete account
+            deleteProfile(user)
+            logout()
+          },
+          style: 'destructive',
+        },
+      ]
+    )
+  }
   
 
   const [form, setForm] = useState({
@@ -350,17 +376,50 @@ export default function EditProfile({ navigation }) {
         </ScrollView>
 
         <View style={{ paddingHorizontal:45 }}>  
-          <Button
-            colors={colors}
-            buttonText="All Done"
-            onButtonPress={() => {
+          <CustomButton
+            style={{
+              backgroundColor:colors.accent
+            }}
+            onClick={() => {
               const updateProfile = async() => {
                 await editProfile(form, user)                
               }
               updateProfile()
               setShowSuccess(true)
             }}
-          />
+          >
+            <CustomText
+              style={{
+                fontSize:20, 
+                fontWeight:'600', 
+                color:colors.constWhite 
+              }}
+            >
+              All Done
+            </CustomText>
+          </CustomButton>
+          <Pressable 
+            onPress={deleteAccountAlert}
+            style={{
+              flexDirection:'row',
+              gap:5,
+              marginTop:15,
+              justifyContent:'center',
+              
+            }}
+          >
+            <CustomText 
+              style={{ 
+                color:colors.accent, 
+                fontSize:17, 
+                fontWeight:'600',
+                textAlign:'center',
+                letterSpacing:0.15,
+              }}
+            >
+              Delete Account
+            </CustomText>
+          </Pressable>
         </View>
 
         { showSuccess

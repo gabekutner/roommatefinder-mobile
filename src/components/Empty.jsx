@@ -49,9 +49,7 @@ export default function Empty({
             style={{
               marginTop:15,
               backgroundColor:colors.primary,
-              borderColor:colors.accent,
-              // paddingVertical:5,
-              
+              borderColor:colors.accent,              
               width:150
             }}
           >

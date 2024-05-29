@@ -394,6 +394,35 @@ const useGlobal = create((set, get) => ({
   },
 
   //---------------------
+	//   Delete Profile
+	//---------------------
+  deleteProfile: async (user) => {
+    if (user.token) {
+      try {
+        const response = await api({
+          method: 'delete',
+          url: `/api/v1/profiles/${user.id}/`,
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+
+        if (response.status !== 200) {
+          throw 'delete-profile error'
+        }
+  
+        console.log('delete-profile success')
+        return response 
+
+      } catch(error) {
+        if (error.response.status === 404) {
+          return 404
+        } else {
+          console.log(error)
+        }
+      }
+    }
+  },
+
+  //---------------------
 	//     Image Upload
 	//---------------------
   image: null,
