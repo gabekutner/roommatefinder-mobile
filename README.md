@@ -14,6 +14,9 @@ This is the React Native frontend repository. Here's the link for the [**backend
 - 🕹️ [**Font Awesome Icons**](https://fontawesome.com/)
 - 🛩️ [**react-native-size-matters**](https://github.com/nirsky/react-native-size-matters)
 
+## App Demo
+[![Roommatefinder App Demo](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/shorts/XGJW_hADc8s)
+
 ## Preview
 ![preview](https://github.com/gabekutner/roommatefinder-mobile/blob/main/preview.png)
  
