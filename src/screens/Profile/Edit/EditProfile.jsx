@@ -40,6 +40,7 @@ export default function EditProfile({ navigation }) {
   const colors = c[theme] 
 
   const [show, setShow] = useState(false)
+  const [showQuiz, setShowQuiz] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showPreview, setShowPreview] = useState(false) 
   const [profile, setProfile] = useState()
@@ -291,7 +292,7 @@ export default function EditProfile({ navigation }) {
               />
             </View>
 
-            <View style={[styles.section, { marginBottom:0 }]}>
+            <View style={[styles.section, { marginBottom:16 }]}>
               <TouchableOpacity
                 onPress={() => setShow(true)}
                 style={{ 
@@ -379,7 +380,99 @@ export default function EditProfile({ navigation }) {
                       </View>
                     </View>
                   </Modal>
-                : <></> 
+                : null
+              }
+            </View>
+            {/* Roommate Matching Quiz */}
+            <View style={[styles.section, { marginBottom:0 }]}>
+              <TouchableOpacity
+                onPress={() => setShowQuiz(true)}
+                style={{ 
+                  backgroundColor:colors.secondary,
+                  paddingHorizontal:20,
+                  height:55,
+                  width:300,
+                  borderRadius:12,
+                  fontSize:17,
+                  fontWeight:'500',
+                  borderWidth:1,
+                  borderColor:colors.tertiary,
+                  justifyContent:'space-between',
+                  alignItems:'center',
+                  flexDirection:'row',
+                }}
+              >
+                <CustomText 
+                  style={{ 
+                    fontSize:17, 
+                    fontWeight:'600', 
+                    color:colors.tint
+                  }}
+                >
+                  Roommate Matching Quiz
+                </CustomText>
+                <FontAwesomeIcon 
+                  icon="chevron-right"
+                  size={22}
+                  color={colors.accent}
+                />
+              </TouchableOpacity>           
+              { showQuiz 
+                ? 
+                  <Modal 
+                    animationType="slide" 
+                    visible={show}
+                    presentationStyle='pageSheet'
+                  >
+                    <View
+                      style={{
+                        flex:1,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:colors.primary
+                      }}
+                    >
+                      <View
+                        style={{
+                          width:width * .7,
+                          justifyContent:'center',
+                          alignItems:'center'
+                        }}
+                      >
+                        <CustomText
+                          style={{
+                            marginVertical:20,
+                            fontSize:20, 
+                            fontWeight:'600', 
+                            color:colors.tint
+                          }}
+                        >
+                          Roommate Matching Quiz
+                        </CustomText>
+                        <View style={{ height:height*.6 }} >
+                          {/* <Interests colors={colors} form={form} setForm={setForm} /> */}
+                        </View>
+                        <CustomButton
+                          style={{
+                            backgroundColor:colors.accent,
+                            paddingHorizontal:45
+                          }}
+                          onClick={() => setShowQuiz(false)}
+                        >
+                          <CustomText
+                            style={{
+                              fontSize:20, 
+                              fontWeight:'600', 
+                              color:colors.constWhite 
+                            }}
+                          >
+                            All Done
+                          </CustomText>
+                        </CustomButton>
+                      </View>
+                    </View>
+                  </Modal>
+                : null
               }
             </View>
           </View>
