@@ -204,4 +204,26 @@ export const quiz = [
       },
     ]
   }, 
+  {
+    id: "4",
+    question: "It’s 1:30 a.m., you have a test tomorrow and your roommate is still hanging out with friends from your floor. You:",
+    answers: [
+      {
+        id: "1",
+        answer: "Make a point – and a huge show - of yawning and going to bed."
+      },
+      {
+        id: "2",
+        answer: "Say “Guys, it’s getting pretty late. If you want to keep hanging, would you mind heading to another room?”"
+      },
+      {
+        id: "3",
+        answer: "Conveniently need to practice for your acapella routine right this minute."
+      },
+      {
+        id: "4",
+        answer: "Start handing out invitations. You’re not getting any studying done and the more the merrier!"
+      },
+    ]
+  }, 
 ]
