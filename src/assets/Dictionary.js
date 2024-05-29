@@ -136,3 +136,72 @@ export default slides = [
     nonInput:true,
   }
 ]
+
+export const quiz = [
+  {
+    id: "1",
+    question: "Your toothpaste has disappeared - again - and you know right where to look for it: In your roommate's bathroom tote. What do you do?",
+    answers: [
+      {
+        id: "1",
+        answer: "Say “Hey, there's my toothpaste! I was looking for that. Next time you need to borrow it, just let me know, OK?”"
+      },
+      {
+        id: "2",
+        answer: "“Borrow” their pricey styling product and forget to return it."
+      },
+      {
+        id: "3",
+        answer: "Buy another tube (and keep the change the next time you order pizza)."
+      },
+      {
+        id: "4",
+        answer: "Fume silently."
+      },
+    ]
+  }, 
+  {
+    id: "2",
+    question: "You and your roommate have the same crush. What next?",
+    answers: [
+      {
+        id: "1",
+        answer: "You just happen to mention that your roommate wet the bed until the age of 8."
+      },
+      {
+        id: "2",
+        answer: "“You request a change of housing. Effective immediately."
+      },
+      {
+        id: "3",
+        answer: "You put your best foot forward in front of your crush but realize if they choose your roomie it might be meant to be. Stranger things have happened"
+      },
+      {
+        id: "4",
+        answer: "You introduce your roommate to every single, attractive person you've met on campus so far, and hope something sticks."
+      },
+    ]
+  }, 
+  {
+    id: "3",
+    question: "Your roommate has been making some choices that worry you. What's the best step to take?",
+    answers: [
+      {
+        id: "1",
+        answer: "Talk to your RA. They're there to help."
+      },
+      {
+        id: "2",
+        answer: "Follow along and see what you can do to keep them safe."
+      },
+      {
+        id: "3",
+        answer: "Say nothing. It's their life."
+      },
+      {
+        id: "4",
+        answer: "Stage a full-scale intervention."
+      },
+    ]
+  }, 
+]

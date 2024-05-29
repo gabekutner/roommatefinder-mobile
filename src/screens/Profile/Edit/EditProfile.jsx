@@ -15,6 +15,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import RoommateMatchingQuiz from '../../RoommateMatchingQuiz';
 import SwipeProfileModal from '../../../components/UI/SwipeProfileModal';
 import CustomText from '../../../components/UI/Custom/CustomText';
 import CustomTextInput from '../../../components/UI/Custom/CustomInput';
@@ -386,7 +387,10 @@ export default function EditProfile({ navigation }) {
             {/* Roommate Matching Quiz */}
             <View style={[styles.section, { marginBottom:0 }]}>
               <TouchableOpacity
-                onPress={() => setShowQuiz(true)}
+                onPress={() => {
+                  console.log(showQuiz)
+                  setShowQuiz(true)
+                }}
                 style={{ 
                   backgroundColor:colors.secondary,
                   paddingHorizontal:20,
@@ -417,11 +421,11 @@ export default function EditProfile({ navigation }) {
                   color={colors.accent}
                 />
               </TouchableOpacity>           
-              { showQuiz 
+              { showQuiz
                 ? 
                   <Modal 
                     animationType="slide" 
-                    visible={show}
+                    visible={showQuiz}
                     presentationStyle='pageSheet'
                   >
                     <View
@@ -434,7 +438,7 @@ export default function EditProfile({ navigation }) {
                     >
                       <View
                         style={{
-                          width:width * .7,
+                          width:width * .8,
                           justifyContent:'center',
                           alignItems:'center'
                         }}
@@ -450,7 +454,7 @@ export default function EditProfile({ navigation }) {
                           Roommate Matching Quiz
                         </CustomText>
                         <View style={{ height:height*.6 }} >
-                          {/* <Interests colors={colors} form={form} setForm={setForm} /> */}
+                          <RoommateMatchingQuiz colors={colors} />
                         </View>
                         <CustomButton
                           style={{
