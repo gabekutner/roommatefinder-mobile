@@ -20,7 +20,6 @@ import CustomText from '../../../components/UI/Custom/CustomText';
 import CustomTextInput from '../../../components/UI/Custom/CustomInput';
 import CustomButton from '../../../components/UI/Custom/CustomButton';
 import CustomLabel from '../../../components/UI/Label';
-import Button from '../../../components/Button';
 import Interests from '../Create/Interests';
 import Snackbar from '../../../components/UI/SnackBar';
 
@@ -360,12 +359,23 @@ export default function EditProfile({ navigation }) {
                         <View style={{ height:height*.6 }} >
                           <Interests colors={colors} form={form} setForm={setForm} />
                         </View>
-                        <Button
-                          colors={colors}
-                          buttonText="All Done"
-                          buttonStyle={{ padding:45 }}
-                          onButtonPress={() => setShow(false)}
-                        />
+                        <CustomButton
+                          style={{
+                            backgroundColor:colors.accent,
+                            paddingHorizontal:45
+                          }}
+                          onClick={() => setShow(false)}
+                        >
+                          <CustomText
+                            style={{
+                              fontSize:20, 
+                              fontWeight:'600', 
+                              color:colors.constWhite 
+                            }}
+                          >
+                            All Done
+                          </CustomText>
+                        </CustomButton>
                       </View>
                     </View>
                   </Modal>
