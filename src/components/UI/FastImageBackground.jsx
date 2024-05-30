@@ -39,7 +39,7 @@ const LoadingIndicator = () => {
 
   const backgroundColor = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ['rgba(255, 255, 255, 0)', '#F0F0F0'], // Adjust colors as needed
+    outputRange: ['rgba(255, 255, 255, 0)', '#F0F0F0'],
   })
 
   return (
