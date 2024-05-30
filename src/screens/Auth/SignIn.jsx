@@ -167,7 +167,7 @@ export default function SignIn({ navigation }) {
                   style={{ 
                     fontSize:20, 
                     fontWeight:'600', 
-                    color:colors.constWhite 
+                    color:colors.constWhite,
                   }}
                 >
                   Log in
