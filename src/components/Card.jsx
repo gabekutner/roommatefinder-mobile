@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   View,
-  TouchableOpacity, 
+  TouchableOpacity,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -100,6 +100,7 @@ export default function CardItem({ item, colors }) {
           />
         </TouchableOpacity>
       </FastImageBackground>
+      
 
       { show
         ?
