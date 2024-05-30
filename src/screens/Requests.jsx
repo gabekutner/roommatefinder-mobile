@@ -112,7 +112,7 @@ export default function Requests() {
 		refreshRequestList()
     setTimeout(() => {
       setRefreshing(false)
-    }, 2000)
+    }, 700)
   }, [])
 
 	if (requestList === null) {

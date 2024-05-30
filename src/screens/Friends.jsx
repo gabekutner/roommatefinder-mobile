@@ -116,7 +116,7 @@ export default function Friends({ navigation }) {
 		refreshFriendList()
     setTimeout(() => {
       setRefreshing(false)
-    }, 2000)
+    }, 700)
   }, [])
 
 	if (friendList === null) {

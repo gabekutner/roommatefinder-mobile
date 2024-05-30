@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {verticalScale} from 'react-native-size-matters';
 
 import RoommateMatchingQuiz from '../../RoommateMatchingQuiz';
 import SwipeProfileModal from '../../../components/UI/SwipeProfileModal';
@@ -45,6 +46,18 @@ export default function EditProfile({ navigation }) {
   const [showSuccess, setShowSuccess] = useState(false)
   const [showPreview, setShowPreview] = useState(false) 
   const [profile, setProfile] = useState()
+  const [form, setForm] = useState({
+    name: "",
+    instagram: "",
+    snapchat: "",
+    major: "",
+    city: "",
+    state: "",
+    description: "",
+    dorm: "",
+    interests: [],
+    graduation_year: ""
+  })
 
   const deleteAccountAlert = () => {
     Alert.alert(
@@ -67,20 +80,13 @@ export default function EditProfile({ navigation }) {
       ]
     )
   }
-  
 
-  const [form, setForm] = useState({
-    name: "",
-    instagram: "",
-    snapchat: "",
-    major: "",
-    city: "",
-    state: "",
-    description: "",
-    dorm: "",
-    interests: [],
-    graduation_year: ""
-  })
+  useEffect(() => {
+    // get profile progress
+    const getProgress = () => {
+
+    }
+  }, [user])
 
 
   return (
@@ -94,6 +100,31 @@ export default function EditProfile({ navigation }) {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
+        <View
+          style={{
+            alignItems:'center',
+            justifyContent:'center',
+            marginBottom:verticalScale(5)
+          }}
+        >
+          <CustomText
+            style={{
+              textAlign:'center',
+              color:colors.tint,
+              fontSize:16,
+              fontWeight:'500',
+              marginBottom:verticalScale(3),
+            }}
+          >Profile Progress</CustomText>
+          <View 
+            style={{
+              height:8,
+              width:'80%',
+              backgroundColor:'red'
+            }}
+          />
+        </View>
+        
         <ScrollView
           showsVerticalScrollIndicator={false} 
           style={{ padding:30 }}
