@@ -1,11 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { 
   View, 
-  TouchableOpacity, 
   StyleSheet, 
-  FlatList, 
   Image, 
-  Dimensions,
+  Text,
 } from 'react-native';
 
 import { 
@@ -14,11 +12,10 @@ import {
 } from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
+import CustomButton from '../components/UI/Custom/CustomButton';
 
 import useGlobal from '../core/global';
 import { colors as c} from '../assets/config';
-
-const { width, height } = Dimensions.get('window')
 
 
 export default function Onboarding({ navigation }) {
@@ -26,146 +23,68 @@ export default function Onboarding({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
-  const [screen, setScreen] = useState(0)
-  const slides = [
-    {
-      id:1,
-      title:'roommatefinder', 
-      subtitle:'WELCOME TO',
-      description:`Find your future dorm roommates!`, 
-      imagePath: require('../assets/images/image_part_001.png'),
-    },
-    {
-      id:2,
-      title:'Swipe Profiles',
-      subtitle:'',
-      description:'Scan through all your roommate options!',
-      imagePath: require('../assets/images/image_part_002.png')
-    },
-    {
-      id:3,
-      title:'Chat with Friends',
-      subtitle:'',
-      description:'Message who you want to room with!',
-      imagePath: require('../assets/images/image_part_003.png')
-    }
-  ]
-
-  const onViewableItemsChanged = ({ viewableItems }) => { setScreen(viewableItems[0].key) }
-  const viewabilityConfigCallbackPairs = useRef([ { onViewableItemsChanged } ])
-
   return (
     <View 
       style={{ 
         flex:1, 
-        backgroundColor:colors.accentDark 
+        backgroundColor:colors.accentDark
       }}
     >
       <View 
         style={{ 
           flex:0.8, 
-          backgroundColor:colors.constWhite 
+          backgroundColor:colors.accentDark
         }}
       >
-        <FlatList
-          data={slides}
-          horizontal={true}
-          key={({item}) => {item.id}}
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled={true}
-          viewabilityConfigCallbackPairs={
-            viewabilityConfigCallbackPairs.current
-          }
-          renderItem={({ item }) => {
-            return(
-              <View 
-                style={{
-                  width:width,
-                  justifyContent:'flex-end'
-                }}
-              >
-                <Image 
-                  style={{
-                    width:width,
-                    height:height,
-                  }} 
-                  source={item.imagePath} 
-                />
-                <View  
-                  style={{
-                    position:'absolute', 
-                    top:0,
-                    left:0, 
-                    right:0, 
-                    bottom:300, 
-                    justifyContent:'center', 
-                    alignItems:'center',
-                    padding:20,
-                  }}
-                >
-                  <CustomText 
-                    style={[styles.bold, {
-                      fontSize:12,
-                      paddingBottom:15,
-                    }]}
-                  >
-                    {item.subtitle}
-                  </CustomText>
-                  <CustomText 
-                    style={[styles.bold, {
-                      fontSize:22,
-                    }]}
-                  >
-                    {item.title}
-                  </CustomText>
-                  <CustomText 
-                    style={[styles.bold, {
-                      fontSize:14,
-                      textAlign:'center',
-                      paddingTop: 5,
-                    }]}
-                  >
-                    {item.description}
-                  </CustomText>
-                </View>
-              </View>
-            )
-          }}
-        />
-        <View 
-          style={{
-            flexDirection:'row',
-            position:'absolute',
-            right:0, 
-            left:0,
-            bottom:8,
-            justifyContent:'center',
-          }}
-        >
-          <View style={[styles.dot, { backgroundColor: screen === 1 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 2 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
-          <View style={[styles.dot, { backgroundColor: screen === 3 ? colors.accent : colors.constWhite, borderColor:colors.constWhite }]} />
+        <View style={{
+          flex:1,
+          alignItems:'center',
+          justifyContent:'center'
+        }}>
+          <CustomText
+            style={{
+              fontSize:20,
+              color:colors.constWhite,
+              fontWeight:'600'
+            }}
+          >
+            The University of Utah's
+          </CustomText>
+          <Text 
+            style={{ 
+              fontFamily:'Acme-Regular',
+              fontSize:50,
+              color:colors.constWhite,
+              marginVertical:20
+            }}
+          >
+            RoommateFinder
+          </Text>
+          <Image 
+            source={require('../assets/images/uofulogo-clear_prev_ui.png')}
+            style={{
+              width:300,
+              height:250,
+            }}
+          />
         </View>
       </View>
 
       <View style={{ flex:0.2, marginBottom:25 }}>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("signin")}
+        <CustomButton
+          onClick={() => navigation.navigate('signin')}
           style={{
             backgroundColor:colors.constWhite,
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
-            justifyContent:'center',
-            alignItems:'center',
-            borderRadius:5,
-            marginTop:moderateScale(15),
+            height:60,
           }}
         >
           <CustomText 
             style={[
               styles.buttonText, 
-              styles.bold, 
+              styles.bold,
               { 
                 color:colors.accentDark
               }
@@ -173,19 +92,16 @@ export default function Onboarding({ navigation }) {
           >
             Log in
           </CustomText>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("signup")}
+        </CustomButton>
+        <CustomButton
+          onClick={() => navigation.navigate('signup')}
           style={{
             borderWidth:1,
             borderColor:colors.constWhite,
-            padding:20,
-            marginHorizontal:20,
-            marginVertical:5,
-            justifyContent:'center',
-            alignItems:'center',
-            borderRadius:5,
+            padding:moderateVerticalScale(20),
+            marginHorizontal:moderateScale(20),
+            marginVertical:moderateVerticalScale(5),
+            height:60,
           }}
         >
           <CustomText 
@@ -197,9 +113,9 @@ export default function Onboarding({ navigation }) {
               }
             ]}
           >
-            Create an Account
+            Get Started
           </CustomText>
-        </TouchableOpacity>
+        </CustomButton>
       </View>
     </View>
   )
@@ -214,5 +130,5 @@ const styles = StyleSheet.create({
     marginHorizontal:5,
     borderWidth:1,
   },
-  buttonText: { fontSize:17 },
+  buttonText: { fontSize:20 },
 })

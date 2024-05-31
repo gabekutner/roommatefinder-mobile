@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Acme-Regular.ttf",
+      "sha1": "e22fb8c98e27e16c681d0cdddf96fb491013f4c3"
+    },
+    {
       "path": "src/assets/fonts/Glegoo-Bold.ttf",
       "sha1": "68eaa8ea3edff45c7710341f8c8f6784c58df2a5"
     },
@@ -28,6 +32,10 @@
     {
       "path": "src/assets/images/profile.png",
       "sha1": "f8e7131f1c9850806ba7d6725b75341d9729e877"
+    },
+    {
+      "path": "src/assets/images/uofulogo-clear_prev_ui.png",
+      "sha1": "0ddf657219f038bf8c5a849878fa872517872a9f"
     }
   ]
 }
