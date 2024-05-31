@@ -4,8 +4,11 @@ import {
   StatusBar,
   Animated,
   View,
+	Image,
   Text,
 } from 'react-native';
+
+
 
 import Title from '../components/UI/Title';
 import useGlobal from '../core/global';
@@ -48,14 +51,12 @@ export default function SplashScreen() {
 		>
 			<StatusBar barStyle='light-content' />
 			<Animated.View style={[{ transform: [{ translateY }] }]}>
-				<Title 
-					text='roommatefinder' 
-					style={{ 
-						color:colors.constWhite,
-						textAlign:'center',
-						fontSize:34,
-						fontFamily:'Glegoo-Bold' 
-					}} 
+				<Image 
+					source={require('../assets/images/uofulogo-clear_prev_ui.png')}
+					style={{
+						width:400,
+						height:300,
+					}}
 				/>
 			</Animated.View>
       <View 

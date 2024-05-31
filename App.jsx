@@ -32,7 +32,8 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  const initialized = useGlobal(state => state.initialized)
+  // const initialized = useGlobal(state => state.initialized)
+  const initialized = false
   const authenticated = useGlobal(state => state.authenticated)
   const profileCreated = useGlobal(state => state.profileCreated)
   const init = useGlobal(state => state.init)
