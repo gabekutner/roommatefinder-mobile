@@ -94,8 +94,14 @@ function SubmitButton({ colors, form }) {
       onClick={() => createProfile(form, user)}
       style={{
         width:200,
-        marginBottom:10,
-        backgroundColor:colors.accent
+        borderWidth:1,
+        borderColor:colors.constWhite,
+        backgroundColor:colors.accentDark,
+        shadowColor: '#222',
+        shadowOffset: { width: 7, height: 5 },
+        shadowOpacity: 1,
+        shadowRadius: 1,  
+        marginBottom:50
       }}
     >
       <CustomText 

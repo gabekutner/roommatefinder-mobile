@@ -6,6 +6,7 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import FastImage from 'react-native-fast-image';
+import {LinearGradient} from 'react-native-linear-gradient';
 
 import Snackbar from './UI/SnackBar';
 import FastImageBackground from './UI/FastImageBackground';
@@ -48,35 +49,6 @@ export default function CardItem({ item, colors }) {
         resizeMode={FastImage.resizeMode.cover}
         url={item.thumbnail}
       >
-        <TouchableOpacity
-          onPress={() => {
-            // send friend req
-            requestConnect(item.id)
-            // show snackbar
-            setShowSnackbar(true)
-          }}
-          style={{
-            width:50,
-            height:50,
-            borderRadius:100,
-            justifyContent:'center',
-            alignItems:'center',
-            alignSelf:'flex-end',
-            marginVertical:15,
-            marginHorizontal:15,
-            padding:10,
-            backgroundColor:colors.secondary,
-            position:'absolute',
-            right:0,
-            top:0
-          }}
-        >
-          <FontAwesomeIcon 
-            icon="plus"
-            size={25}
-            color={colors.accent}
-          />
-        </TouchableOpacity>
         <InfoCard name={item.name} age={item.age} dorm={item.dorm_building} colors={colors} />
         <TouchableOpacity
           onPress={() => setShow(true)}
@@ -90,15 +62,34 @@ export default function CardItem({ item, colors }) {
             marginVertical:15,
             marginHorizontal:15,
             padding:10,
-            backgroundColor:colors.secondary,
+            backgroundColor:colors.accent,
+            zIndex:1,
+            shadowColor: '#222',
+            shadowOffset: { width: 2, height: 1 },
+            shadowOpacity: 1,
+            shadowRadius: 1,  
           }}
         >
           <FontAwesomeIcon 
             icon="arrow-up"
-            size={25}
-            color={colors.accent}
+            size={30}
+            color={colors.primary}
           />
         </TouchableOpacity>
+        <LinearGradient
+          colors={['rgba(255, 255, 255, 0)', '#222']} // Transparent to black
+          locations={[0, 1]} // Position stops
+          style={{
+            position: 'absolute',
+            right: 0,
+            left: 0,
+            bottom: 0,
+            zIndex: 0,
+            height: '40%',
+            borderBottomLeftRadius:10,
+            borderBottomRightRadius:10,
+          }}
+        />
       </FastImageBackground>
       
 

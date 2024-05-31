@@ -17,7 +17,7 @@ export default function InfoCard(props) {
   const { name, age, dorm, colors } = props
 
   return (
-    <View style={{ ...styles.cardShadow, backgroundColor:colors.secondary, maxWidth:width * .6 }}>
+    <View style={{ ...styles.cardShadow, backgroundColor:colors.secondary, maxWidth:width * .6, zIndex:1 }}>
       <View style={styles.textContainer}>
         <CustomText style={[styles.name, { color:colors.tint }]}>{`${name}, ${age}`}</CustomText>
       </View>
