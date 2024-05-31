@@ -102,9 +102,9 @@ export default function EditProfile({ navigation }) {
           <CustomText
             style={{
               textAlign:'center',
-              color:colors.tint,
+              color:colors.tertiary,
               fontSize:16,
-              fontWeight:'500',
+              fontWeight:'600',
               marginBottom:verticalScale(3),
             }}
           >Profile Progress</CustomText>
@@ -137,7 +137,7 @@ export default function EditProfile({ navigation }) {
           <View 
             style={{ 
               alignItems:'center', 
-              marginBottom:50 
+              marginBottom:50,
             }}
           >
             <CustomButton
@@ -521,7 +521,8 @@ export default function EditProfile({ navigation }) {
         <View style={{ paddingHorizontal:45 }}>  
           <CustomButton
             style={{
-              backgroundColor:colors.accent
+              backgroundColor:colors.accent,
+              marginTop:15,
             }}
             onClick={() => {
               const updateProfile = async() => {

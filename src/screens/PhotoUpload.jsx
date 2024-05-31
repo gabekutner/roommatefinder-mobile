@@ -9,6 +9,7 @@ import {
 
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import FastImage from 'react-native-fast-image';
 
 import CustomButton from "../components/UI/Custom/CustomButton";
 import CustomText from "../components/UI/Custom/CustomText";
@@ -40,7 +41,6 @@ function PhotoNumber({ number, colors }) {
   )
 }
 
-
 export default function PhotoUpload({}) {
 
   const uploadImage = useGlobal(state => state.uploadImage)
@@ -49,12 +49,17 @@ export default function PhotoUpload({}) {
   const colors = c[theme]
   
   const keys = user.photos.map(photo => photo.key)
-
+  
   const [form, setForm] = useState({
-    picture_one: keys.includes(1) ? utils.thumbnail(user.photos.find(photo => photo.key === 1).image) : null,
-    picture_two: keys.includes(2) ? utils.thumbnail(user.photos.find(photo => photo.key === 2).image) : null,
-    picture_three: keys.includes(3) ? utils.thumbnail(user.photos.find(photo => photo.key === 3).image) : null,
-    picture_four: keys.includes(4) ? utils.thumbnail(user.photos.find(photo => photo.key === 4).image) : null,
+    picture_one: keys.includes(1) ? user.photos.find(photo => photo.key === 1).image : null,
+    picture_two: keys.includes(2) ? user.photos.find(photo => photo.key === 2).image : null,
+    picture_three: keys.includes(3) ? user.photos.find(photo => photo.key === 3).image : null,
+    picture_four: keys.includes(4) ? user.photos.find(photo => photo.key === 4).image : null,
+
+    picture_one_uri: null,
+    picture_two_uri: null,
+    picture_three_uri: null,
+    picture_four_uir: null,
   })
 
   const [showSuccess, setShowSuccess] = useState(false)
@@ -87,9 +92,10 @@ export default function PhotoUpload({}) {
               }}
             >
               { form.picture_one 
-                ? <Image 
-                    src={form.picture_one.uri}
+                ? <FastImage
+                    source={utils.thumbnail(form.picture_one)}
                     style={styles.imageStyle}
+                    resizeMode={FastImage.resizeMode.cover}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -117,9 +123,10 @@ export default function PhotoUpload({}) {
               }}
             >
               { form.picture_two 
-                ? <Image 
-                    src={form.picture_two.uri}
+                ? <FastImage
+                    source={utils.thumbnail(form.picture_two)}
                     style={styles.imageStyle}
+                    resizeMode={FastImage.resizeMode.cover}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -150,9 +157,10 @@ export default function PhotoUpload({}) {
               }}
             >
               { form.picture_three 
-                ? <Image 
-                    src={form.picture_three.uri}
+                ? <FastImage
+                    source={utils.thumbnail(form.picture_three)}
                     style={styles.imageStyle}
+                    resizeMode={FastImage.resizeMode.cover}
                   />
                 : <FontAwesomeIcon 
                     icon="image"
@@ -180,9 +188,10 @@ export default function PhotoUpload({}) {
               }}
             >
               { form.picture_four 
-                ? <Image 
-                    src={form.picture_four.uri}
+                ? <FastImage
+                    source={utils.thumbnail(form.picture_four)}
                     style={styles.imageStyle}
+                    resizeMode={FastImage.resizeMode.cover}
                   />
                 : <FontAwesomeIcon 
                     icon="image"

@@ -44,14 +44,12 @@ const LoadingIndicator = () => {
 
   return (
     <Animated.View 
-      style={[
-        { 
-          backgroundColor, 
-          width:'100%',
-          height:'100%',
-          borderRadius:10
-        }
-      ]} 
+      style={{ 
+        backgroundColor, 
+        width:'100%',
+        height:'100%',
+        borderRadius:10
+      }} 
     />
   )
 }
