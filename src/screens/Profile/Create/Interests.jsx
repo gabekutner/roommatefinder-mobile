@@ -35,7 +35,8 @@ export default function Interests({ colors, form, setForm }) {
         style={{ 
           marginBottom:10, 
           borderBottomColor:colors.tint, 
-          borderBottomWidth:.5
+          borderBottomWidth:1,
+          paddingHorizontal:15,
         }}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -43,8 +44,12 @@ export default function Interests({ colors, form, setForm }) {
             style={[
               styles.option, 
               {
-                borderColor:colors.accent,
-                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : 'transparent'
+                borderColor:Object.values(form.interests).includes(item.id) ? colors.tint : colors.accent,
+                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.secondary : colors.accentDark,
+                shadowColor: '#222',
+                shadowOffset: { width: 7, height: 5 },
+                shadowOpacity: 1,
+                shadowRadius: 1,  
               }
             ]}
           >
@@ -66,7 +71,8 @@ export default function Interests({ colors, form, setForm }) {
         style={{ 
           marginBottom:80, 
           marginHorizontal:35, 
-          color:colors.tertiary 
+          color:colors.tertiary,
+          fontSize:18,
         }}
       >
         Pick 1 to 5.

@@ -27,7 +27,8 @@ export default function Dorm({ colors, form, setForm }) {
         style={{ 
           marginBottom:10, 
           borderBottomColor:colors.tint, 
-          borderBottomWidth:.5 
+          borderBottomWidth:1,
+          paddingHorizontal:15,
         }}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -35,8 +36,12 @@ export default function Dorm({ colors, form, setForm }) {
             style={[
               styles.option, 
               { 
-                borderColor: colors.accent,
-                backgroundColor: selected === item.id ? colors.accent : 'transparent'
+                borderColor: selected === item.id ? colors.tint : colors.accent,
+                backgroundColor: selected === item.id ? colors.secondary : colors.accentDark,
+                shadowColor: '#222',
+                shadowOffset: { width: 7, height: 5 },
+                shadowOpacity: 1,
+                shadowRadius: 1,  
               }
             ]}
           >
@@ -44,7 +49,7 @@ export default function Dorm({ colors, form, setForm }) {
               style={[
                 styles.text, 
                 { 
-                  color: selected === item.id ? '#f3f4f6' : colors.tint 
+                  color: selected === item.id ? colors.tint : colors.tint 
                 }
               ]}
             >
@@ -58,7 +63,8 @@ export default function Dorm({ colors, form, setForm }) {
         style={{ 
           marginBottom:80, 
           marginHorizontal:35, 
-          color:colors.tertiary  
+          color:colors.tertiary,
+          fontSize:18,
         }}
       >
         Not official, where you think you'll be living.

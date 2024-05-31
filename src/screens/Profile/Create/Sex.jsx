@@ -25,8 +25,12 @@ export default function Sex({ colors, form, setForm }) {
         style={[
           styles.option, 
           { 
-            borderColor: colors.accent,
-            backgroundColor: selected === "M" ? colors.accent : 'transparent'
+            borderColor: selected === "M" ? colors.tint : colors.accent,
+            backgroundColor: selected === "M" ? colors.secondary : colors.accentDark,
+            shadowColor: '#222',
+            shadowOffset: { width: 7, height: 5 },
+            shadowOpacity: 1,
+            shadowRadius: 1,  
           }
         ]}
       >
@@ -47,8 +51,12 @@ export default function Sex({ colors, form, setForm }) {
         style={[
           styles.option, 
           { 
-            borderColor:colors.accent,
-            backgroundColor: selected === "F" ? colors.accent : 'transparent'
+            borderColor: selected === "F" ? colors.tint : colors.accent,
+            backgroundColor: selected === "F" ? colors.secondary : colors.accentDark,
+            shadowColor: '#222',
+            shadowOffset: { width: 7, height: 5 },
+            shadowOpacity: 1,
+            shadowRadius: 1,  
           }
         ]}
       >

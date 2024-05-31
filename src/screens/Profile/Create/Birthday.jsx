@@ -22,7 +22,8 @@ export default function Birthday({ theme, colors, form, setForm }) {
         style={{ 
           marginVertical:15, 
           marginHorizontal:35, 
-          color:colors.tertiary  
+          color:colors.tertiary ,
+          fontSize:18, 
         }}
       >
         Your age will be public.

@@ -22,6 +22,7 @@ import CreateProfile from './src/screens/Profile/CreateProfile';
 import EditProfile from './src/screens/Profile/Edit/EditProfile';
 import Settings from './src/screens/Settings';
 import PhotoUpload from './src/screens/PhotoUpload';
+import CreateProfilePrompt from './src/screens/Profile/Create/CreateProfilePrompt';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
@@ -74,7 +75,12 @@ export default function App() {
           </>
         ) : !profileCreated ? (
           <>
-             <Stack.Screen 
+            <Stack.Screen 
+              name='create-profile-prompt'
+              component={CreateProfilePrompt}
+              options={{ headerShown:false }}
+            />
+            <Stack.Screen 
               name='create-profile'
               component={CreateProfile}
               options={{ headerShown:false }}

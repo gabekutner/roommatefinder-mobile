@@ -13,6 +13,7 @@ export const colors = {
     constWhite: '#f3f4f6', // constant white
     constBlack: '#111827', // constant black
     green: '#6CC24A', 
+    pureWhite:'#fff'
   },
   dark: {
     primary: '#1f2937', // background
@@ -28,5 +29,6 @@ export const colors = {
     constWhite: '#f3f4f6', // constant white
     constBlack: '#111827', // constant black
     green: '#6CC24A', 
+    pureWhite:'#fff'
   }
 }

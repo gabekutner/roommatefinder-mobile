@@ -46,7 +46,7 @@ function Paginator({ colors, data, scrollX }) {
             style={{ 
               height:10, 
               borderRadius:5, 
-              backgroundColor:colors.accent, 
+              backgroundColor:colors.constWhite, 
               marginHorizontal:8, 
               width:dotWidth, 
               opacity
@@ -140,7 +140,7 @@ export default function CreateProfile() {
       style={{ 
         flex:1, 
         alignItems:'center',
-        backgroundColor:colors.primary
+        backgroundColor:colors.accentDark
       }}
     >
       
