@@ -48,10 +48,14 @@ export default function CustomTextInput({
         paddingHorizontal:20,
         height:55,
         borderRadius:12,
-        fontSize:17,
+        fontSize:18,
         fontWeight:'500',
-        borderWidth:1,
+        // borderWidth:1,
         borderColor:colors.tertiary,
+        shadowColor: '#222',
+        shadowOffset: { width: 7, height: 5 },
+        shadowOpacity: 1,
+        shadowRadius: 1,  
         ...style
       }}
     />

@@ -44,7 +44,7 @@ export default function SignIn({ navigation }) {
   }
 
   function onSignIn() {
-    // form validation
+    // Form validation
     if (!form.email || !form.password) {
       setShowError({ ...showError, status:true, message:"Missing credentials."})
       return
@@ -85,7 +85,7 @@ export default function SignIn({ navigation }) {
     <SafeAreaView 
       style={{ 
         flex:1, 
-        backgroundColor:colors.primary 
+        backgroundColor:colors.accentDark 
       }}
     >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -100,19 +100,19 @@ export default function SignIn({ navigation }) {
 
             <View style={{ marginVertical:'10%' }}>
               <Title 
-                text='roommatefinder'
+                text='RoommateFinder'
                 style={{
                   color:colors.tint,
                   textAlign:'center',
-                  fontSize:34,
-                  fontFamily:'Glegoo-Bold'
+                  fontSize:40,
+                  fontFamily:'Acme-Regular'
                 }}
               />
               <CustomText 
                 style={{ 
                   color: colors.tertiary,
                   marginVertical:10,
-                  fontSize:15,
+                  fontSize:20,
                   fontWeight:'500', 
                   textAlign:'center'
                 }}
@@ -141,7 +141,7 @@ export default function SignIn({ navigation }) {
                 }}
               />
 
-              <CustomLabel colors={colors} label={'Email Address'} />
+              <CustomLabel colors={colors} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
@@ -160,7 +160,14 @@ export default function SignIn({ navigation }) {
               <CustomButton
                 onClick={() => onSignIn()}
                 style={{ 
-                  backgroundColor:colors.accent 
+                  borderWidth:1,
+                  borderColor:colors.constWhite,
+                  // backgroundColor:colors
+                  backgroundColor:colors.accentDark,
+                  shadowColor: '#222',
+                  shadowOffset: { width: 7, height: 5 },
+                  shadowOpacity: 1,
+                  shadowRadius: 1,  
                 }}
               >
                 <CustomText 
@@ -218,7 +225,7 @@ export default function SignIn({ navigation }) {
               }}
               duration={5000} // customize duration
               position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.accent} // customize background color
+              backgroundColor={colors.secondary} // customize background color
               textColor={colors.constWhite} // change text color
               actionTextColor={colors.constWhite} // customize action text color
               containerStyle={{ marginHorizontal:12 }} // apply additional styling

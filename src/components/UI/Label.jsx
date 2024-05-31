@@ -11,7 +11,7 @@ export default function CustomLabel({
     <CustomText 
       style={{ 
         color:colors.tint,
-        fontSize:17, 
+        fontSize:18, 
         fontWeight:'600', 
         marginBottom:6,
         ...style

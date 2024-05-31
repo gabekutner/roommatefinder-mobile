@@ -97,7 +97,7 @@ export default function SignUp({ navigation }) {
     <SafeAreaView 
       style={{ 
         flex:1, 
-        backgroundColor:colors.primary 
+        backgroundColor:colors.accentDark 
       }}
     >
       <KeyboardAvoidingView
@@ -117,20 +117,20 @@ export default function SignUp({ navigation }) {
             }}
           >
             <View style={{ marginVertical:'10%' }}>
-              <Title 
-                text='roommatefinder' 
-                style={{ 
+            <Title 
+                text='RoommateFinder'
+                style={{
                   color:colors.tint,
                   textAlign:'center',
-                  fontSize:34,
-                  fontFamily:'Glegoo-Bold' 
+                  fontSize:40,
+                  fontFamily:'Acme-Regular'
                 }}
               />
               <CustomText 
                 style={{ 
                   color: colors.tertiary,
                   marginVertical:10,
-                  fontSize:15,
+                  fontSize:20,
                   fontWeight:'500', 
                   textAlign:'center'
                 }}
@@ -208,7 +208,15 @@ export default function SignUp({ navigation }) {
 
               <CustomButton
                 onClick={() => onSignUp()}
-                style={{ backgroundColor:colors.accent }}
+                style={{ 
+                  borderWidth:1,
+                  borderColor:colors.constWhite,
+                  backgroundColor:colors.accentDark,
+                  shadowColor: '#222',
+                  shadowOffset: { width: 7, height: 5 },
+                  shadowOpacity: 1,
+                  shadowRadius: 1,  
+                }}
               >
                 <CustomText 
                   style={{ 
