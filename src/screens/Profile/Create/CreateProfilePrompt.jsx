@@ -23,7 +23,7 @@ export default function CreateProfilePrompt({ navigation }) {
   return (
     <View style={{
       flex:1,
-      backgroundColor:colors.accentDark,
+      backgroundColor:colors.primary,
     }}>
       <View
         style={{
@@ -37,7 +37,7 @@ export default function CreateProfilePrompt({ navigation }) {
             fontFamily:'Acme-Regular',
             fontWeight:'600',
             fontSize:30,
-            color:colors.constWhite,
+            color:colors.tint,
             width:300,
             textAlign:'center'
           }}

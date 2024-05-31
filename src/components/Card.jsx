@@ -18,7 +18,7 @@ import useGlobal from '../core/global';
 
 export default function CardItem({ item, colors }) {
 
-  const requestConnect = useGlobal(state => state.requestConnect)
+  // const requestConnect = useGlobal(state => state.requestConnect)
 
   const [show, setShow] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)

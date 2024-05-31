@@ -3,14 +3,14 @@ import CustomText from "./Custom/CustomText";
 
 
 export default function CustomLabel({ 
-  colors, 
+  color, 
   label, 
   style 
 }) {
   return (
     <CustomText 
       style={{ 
-        color:colors.tint,
+        color:color,
         fontSize:18, 
         fontWeight:'600', 
         marginBottom:6,

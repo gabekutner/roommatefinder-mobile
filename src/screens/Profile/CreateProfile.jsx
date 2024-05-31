@@ -146,7 +146,7 @@ export default function CreateProfile() {
       style={{ 
         flex:1, 
         alignItems:'center',
-        backgroundColor:colors.accentDark
+        backgroundColor:colors.primary
       }}
     >
       

@@ -102,7 +102,7 @@ export default function SignIn({ navigation }) {
               <Title 
                 text='RoommateFinder'
                 style={{
-                  color:colors.tint,
+                  color:colors.constWhite,
                   textAlign:'center',
                   fontSize:40,
                   fontFamily:'Acme-Regular'
@@ -110,7 +110,7 @@ export default function SignIn({ navigation }) {
               />
               <CustomText 
                 style={{ 
-                  color: colors.tertiary,
+                  color: colors.constWhite,
                   marginVertical:10,
                   fontSize:20,
                   fontWeight:'500', 
@@ -123,7 +123,7 @@ export default function SignIn({ navigation }) {
 
             <View style={{ marginBottom:24 }}>
 
-              <CustomLabel colors={colors} label={'Email Address'} />
+              <CustomLabel color={colors.constWhite} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
@@ -137,11 +137,11 @@ export default function SignIn({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.constWhite
                 }}
               />
 
-              <CustomLabel colors={colors} label={'Password'} />
+              <CustomLabel color={colors.constWhite} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
@@ -153,7 +153,7 @@ export default function SignIn({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.constWhite
                 }}
               />
 
@@ -194,7 +194,7 @@ export default function SignIn({ navigation }) {
                   style={[
                     styles.text,
                     { 
-                      color:colors.tint
+                      color:colors.constWhite
                     }
                   ]}
                 >
@@ -203,7 +203,7 @@ export default function SignIn({ navigation }) {
                     style={[
                       styles.text, 
                       { 
-                        color:colors.tint, 
+                        color:colors.constWhite, 
                         textDecorationLine:'underline' 
                       }
                     ]}
@@ -226,8 +226,8 @@ export default function SignIn({ navigation }) {
               duration={5000} // customize duration
               position="top" // change the position to 'top'/'bottom'
               backgroundColor={colors.secondary} // customize background color
-              textColor={colors.constWhite} // change text color
-              actionTextColor={colors.constWhite} // customize action text color
+              textColor={colors.tint} // change text color
+              actionTextColor={colors.tint} // customize action text color
               containerStyle={{ marginHorizontal:12 }} // apply additional styling
               messageStyle={{ fontWeight:'bold' }} // adjust message text styling
               actionTextStyle={{ }} // customize action text styling

@@ -57,6 +57,11 @@ export default function SignUp({ navigation }) {
       return
     }
 
+    if (form.password !== form.rpassword) {
+      setShowError({ ...showError, status:true, message:"Your passwords don't match." })
+      return
+    }
+
     api({
       method: 'post',
       url: '/api/v1/profiles/',
@@ -120,7 +125,7 @@ export default function SignUp({ navigation }) {
             <Title 
                 text='RoommateFinder'
                 style={{
-                  color:colors.tint,
+                  color:colors.constWhite,
                   textAlign:'center',
                   fontSize:40,
                   fontFamily:'Acme-Regular'
@@ -128,7 +133,7 @@ export default function SignUp({ navigation }) {
               />
               <CustomText 
                 style={{ 
-                  color: colors.tertiary,
+                  color: colors.constWhite,
                   marginVertical:10,
                   fontSize:20,
                   fontWeight:'500', 
@@ -141,7 +146,7 @@ export default function SignUp({ navigation }) {
 
             <View style={{ marginBottom:24 }}>
 
-              <CustomLabel colors={colors} label={'Full Name'} />
+              <CustomLabel color={colors.constWhite} label={'Full Name'} />
               <CustomTextInput 
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'Gabe Kutner'}
@@ -156,7 +161,7 @@ export default function SignUp({ navigation }) {
                 }}
               />
 
-              <CustomLabel colors={colors} label={'Email Address'} />
+              <CustomLabel color={colors.constWhite} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
@@ -174,7 +179,7 @@ export default function SignUp({ navigation }) {
                 }}
               />
 
-              <CustomLabel colors={colors} label={'Password'} />
+              <CustomLabel color={colors.constWhite} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
@@ -190,7 +195,7 @@ export default function SignUp({ navigation }) {
                 }}
               />
               
-              <CustomLabel colors={colors} label={'Confirm Password'} />
+              <CustomLabel color={colors.constWhite} label={'Confirm Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
@@ -242,7 +247,7 @@ export default function SignUp({ navigation }) {
                   style={[
                     styles.text, 
                     { 
-                      color:colors.tint 
+                      color:colors.constWhite 
                     }
                   ]}
                 >
@@ -251,7 +256,7 @@ export default function SignUp({ navigation }) {
                     style={[
                       styles.text, 
                       { 
-                        color:colors.tint,
+                        color:colors.constWhite,
                         textDecorationLine:'underline' 
                       }
                     ]}
@@ -273,9 +278,9 @@ export default function SignUp({ navigation }) {
                   }}
                   duration={5000} // customize duration
                   position="top" // change the position to 'top'/'bottom'
-                  backgroundColor={colors.accent} // customize background color
-                  textColor={colors.constWhite} // change text color
-                  actionTextColor={colors.constWhite} // customize action text color
+                  backgroundColor={colors.primary} // customize background color
+                  textColor={colors.tint} // change text color
+                  actionTextColor={colors.tint} // customize action text color
                   containerStyle={{ marginHorizontal:12 }} // apply additional styling
                   messageStyle={{ fontWeight:'bold' }} // adjust message text styling
                   actionTextStyle={{ }} // customize action text styling
