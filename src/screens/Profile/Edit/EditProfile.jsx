@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -81,14 +81,6 @@ export default function EditProfile({ navigation }) {
     )
   }
 
-  useEffect(() => {
-    // get profile progress
-    const getProgress = () => {
-
-    }
-  }, [user])
-
-
   return (
     <SafeAreaView 
       style={{ 
@@ -98,7 +90,7 @@ export default function EditProfile({ navigation }) {
     >
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
+        style={{ flex:1 }}
       >
         <View
           style={{
@@ -116,13 +108,26 @@ export default function EditProfile({ navigation }) {
               marginBottom:verticalScale(3),
             }}
           >Profile Progress</CustomText>
+          
           <View 
             style={{
+              width:'70%',
               height:8,
-              width:'80%',
-              backgroundColor:'red'
+              backgroundColor:colors.tertiary,
+              borderRadius:3,
+              overflow:'hidden',
             }}
-          />
+          >
+            <View 
+              style={{ 
+                width: `${user.progress}%`,
+                height:8,
+                backgroundColor:colors.accent,
+                borderTopRightRadius:3,
+                borderBottomRightRadius:3,
+              }} 
+            />
+          </View>
         </View>
         
         <ScrollView
