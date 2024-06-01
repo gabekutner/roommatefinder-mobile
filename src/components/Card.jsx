@@ -76,7 +76,7 @@ export default function CardItem({ item, colors }) {
             color={colors.primary}
           />
         </TouchableOpacity>
-        <LinearGradient
+        {/* <LinearGradient
           colors={['rgba(255, 255, 255, 0)', '#222']} // Transparent to black
           locations={[0, 1]} // Position stops
           style={{
@@ -89,7 +89,7 @@ export default function CardItem({ item, colors }) {
             borderBottomLeftRadius:10,
             borderBottomRightRadius:10,
           }}
-        />
+        /> */}
       </FastImageBackground>
       
 

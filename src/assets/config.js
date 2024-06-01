@@ -9,6 +9,9 @@ export const colors = {
 
     tint: '#111827', // text
 
+    // uofu
+    wasatchSun: '#FFB81D', // yellow
+
     // constants
     constWhite: '#f3f4f6', // constant white
     constBlack: '#111827', // constant black
@@ -24,6 +27,10 @@ export const colors = {
     accentDark: '#890000', // brand color
 
     tint: '#f9fafb', // text
+
+    // uofu
+    wasatchSun: '#FFB81D', // yellow
+
     
     // constants
     constWhite: '#f3f4f6', // constant white

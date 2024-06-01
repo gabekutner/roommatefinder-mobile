@@ -15,13 +15,20 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C3BCC2EB78547389851C417 /* image_part_003.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD86AC7399B44BEB17A14E1 /* image_part_003.png */; };
 		1E04B6296E2D4588A0B6C974 /* NotoSans_Condensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3197D461810B4038A4815B56 /* NotoSans_Condensed-Regular.ttf */; };
+		24372078855F480E8025E554 /* pnghut_halftone-art-pattern-area-technology.png in Resources */ = {isa = PBXBuildFile; fileRef = A3701DE90F15431E99AA49D6 /* pnghut_halftone-art-pattern-area-technology.png */; };
+		2D0C9AD1464B41B184842AAA /* 15291.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93EDD29B5E544BDBBE967862 /* 15291.jpg */; };
 		3D718D807E624C1B86B79828 /* image_part_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 291EED564C414B3A9A8406D4 /* image_part_002.png */; };
 		42E60AEBDD204284A2AF12DA /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 426E976268124640A83CF511 /* Acme-Regular.ttf */; };
+		5C9AFFDA553F499A85770283 /* 279-removebg-preview-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 812AC77F0A9E44BFB62C1617 /* 279-removebg-preview-1.png */; };
+		651514B587E146F8A35E80B8 /* font info.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1769E8B30F243EAB3A93A89 /* font info.txt */; };
 		7699B88040F8A987B510C191 /* libPods-roommatefinder-roommatefinderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-roommatefinder-roommatefinderTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8B52AF85E02542099F9F712D /* blambotcustom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */; };
 		A690DA73BC6447BFAC07BFA1 /* uofulogo-clear_prev_ui.png in Resources */ = {isa = PBXBuildFile; fileRef = 4509464C76CF42FFAE9C14A0 /* uofulogo-clear_prev_ui.png */; };
 		C8727C2C92E346448B14DD85 /* Glegoo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77585F06CDDE43DA83D7A1F7 /* Glegoo-Bold.ttf */; };
+		CCA1E8E789F6449AA51E06E2 /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5E4B2CA41426A9AE19B0D /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png */; };
 		D9F4D10B19BB402FBDE1CD26 /* Glegoo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43A84D9141E4B498D78AF35 /* Glegoo-Regular.ttf */; };
+		F315225F350949AE8C988F46 /* 279-removebg.png in Resources */ = {isa = PBXBuildFile; fileRef = BB37A9F54682463C82172BB9 /* 279-removebg.png */; };
 		F644F9ECD4824C0CA5F79232 /* image_part_001.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C7374BABEB4DDB909ECDDD /* image_part_001.png */; };
 		F67DFDCF1C9547068D5F100E /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7E02CEF494DA5A7615A14 /* profile.png */; };
 /* End PBXBuildFile section */
@@ -51,18 +58,25 @@
 		291EED564C414B3A9A8406D4 /* image_part_002.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = image_part_002.png; path = ../src/assets/images/image_part_002.png; sourceTree = "<group>"; };
 		3197D461810B4038A4815B56 /* NotoSans_Condensed-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoSans_Condensed-Regular.ttf"; path = "../src/assets/fonts/NotoSans_Condensed-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-roommatefinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder.debug.xcconfig"; path = "Target Support Files/Pods-roommatefinder/Pods-roommatefinder.debug.xcconfig"; sourceTree = "<group>"; };
+		3EB5E4B2CA41426A9AE19B0D /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png"; path = "../src/assets/images/pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png"; sourceTree = "<group>"; };
 		426E976268124640A83CF511 /* Acme-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Acme-Regular.ttf"; path = "../src/assets/fonts/Acme-Regular.ttf"; sourceTree = "<group>"; };
 		4509464C76CF42FFAE9C14A0 /* uofulogo-clear_prev_ui.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "uofulogo-clear_prev_ui.png"; path = "../src/assets/images/uofulogo-clear_prev_ui.png"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-roommatefinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder.release.xcconfig"; path = "Target Support Files/Pods-roommatefinder/Pods-roommatefinder.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-roommatefinder-roommatefinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder-roommatefinderTests.debug.xcconfig"; path = "Target Support Files/Pods-roommatefinder-roommatefinderTests/Pods-roommatefinder-roommatefinderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-roommatefinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-roommatefinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = blambotcustom.ttf; path = ../src/assets/fonts/blambotcustom.ttf; sourceTree = "<group>"; };
 		77585F06CDDE43DA83D7A1F7 /* Glegoo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Glegoo-Bold.ttf"; path = "../src/assets/fonts/Glegoo-Bold.ttf"; sourceTree = "<group>"; };
+		812AC77F0A9E44BFB62C1617 /* 279-removebg-preview-1.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "279-removebg-preview-1.png"; path = "../src/assets/images/279-removebg-preview-1.png"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = roommatefinder/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-roommatefinder-roommatefinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder-roommatefinderTests.release.xcconfig"; path = "Target Support Files/Pods-roommatefinder-roommatefinderTests/Pods-roommatefinder-roommatefinderTests.release.xcconfig"; sourceTree = "<group>"; };
 		8BD86AC7399B44BEB17A14E1 /* image_part_003.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = image_part_003.png; path = ../src/assets/images/image_part_003.png; sourceTree = "<group>"; };
 		93C7374BABEB4DDB909ECDDD /* image_part_001.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = image_part_001.png; path = ../src/assets/images/image_part_001.png; sourceTree = "<group>"; };
+		93EDD29B5E544BDBBE967862 /* 15291.jpg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 15291.jpg; path = ../src/assets/images/15291.jpg; sourceTree = "<group>"; };
 		94553960F8D2AEC13ADF5885 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = roommatefinder/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A3701DE90F15431E99AA49D6 /* pnghut_halftone-art-pattern-area-technology.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "pnghut_halftone-art-pattern-area-technology.png"; path = "../src/assets/images/pnghut_halftone-art-pattern-area-technology.png"; sourceTree = "<group>"; };
 		A43A84D9141E4B498D78AF35 /* Glegoo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Glegoo-Regular.ttf"; path = "../src/assets/fonts/Glegoo-Regular.ttf"; sourceTree = "<group>"; };
+		BB37A9F54682463C82172BB9 /* 279-removebg.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "279-removebg.png"; path = "../src/assets/images/279-removebg.png"; sourceTree = "<group>"; };
+		D1769E8B30F243EAB3A93A89 /* font info.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "font info.txt"; path = "../src/assets/fonts/blambot-custom/font info.txt"; sourceTree = "<group>"; };
 		D1B7E02CEF494DA5A7615A14 /* profile.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = profile.png; path = ../src/assets/images/profile.png; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -131,6 +145,13 @@
 				D1B7E02CEF494DA5A7615A14 /* profile.png */,
 				426E976268124640A83CF511 /* Acme-Regular.ttf */,
 				4509464C76CF42FFAE9C14A0 /* uofulogo-clear_prev_ui.png */,
+				D1769E8B30F243EAB3A93A89 /* font info.txt */,
+				93EDD29B5E544BDBBE967862 /* 15291.jpg */,
+				812AC77F0A9E44BFB62C1617 /* 279-removebg-preview-1.png */,
+				BB37A9F54682463C82172BB9 /* 279-removebg.png */,
+				A3701DE90F15431E99AA49D6 /* pnghut_halftone-art-pattern-area-technology.png */,
+				3EB5E4B2CA41426A9AE19B0D /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png */,
+				74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -294,6 +315,13 @@
 				F67DFDCF1C9547068D5F100E /* profile.png in Resources */,
 				42E60AEBDD204284A2AF12DA /* Acme-Regular.ttf in Resources */,
 				A690DA73BC6447BFAC07BFA1 /* uofulogo-clear_prev_ui.png in Resources */,
+				651514B587E146F8A35E80B8 /* font info.txt in Resources */,
+				2D0C9AD1464B41B184842AAA /* 15291.jpg in Resources */,
+				5C9AFFDA553F499A85770283 /* 279-removebg-preview-1.png in Resources */,
+				F315225F350949AE8C988F46 /* 279-removebg.png in Resources */,
+				24372078855F480E8025E554 /* pnghut_halftone-art-pattern-area-technology.png in Resources */,
+				CCA1E8E789F6449AA51E06E2 /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png in Resources */,
+				8B52AF85E02542099F9F712D /* blambotcustom.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

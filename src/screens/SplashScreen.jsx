@@ -6,6 +6,7 @@ import {
   View,
 	Image,
   Text,
+	ImageBackground,
 } from 'react-native';
 
 
@@ -41,7 +42,7 @@ export default function SplashScreen() {
 	}, [])
 
   return (
-		<SafeAreaView
+		<View
 			style={{
 				flex:1,
 				alignItems:'center',
@@ -50,7 +51,11 @@ export default function SplashScreen() {
 			}}
 		>
 			<StatusBar barStyle='light-content' />
-			<Animated.View style={[{ transform: [{ translateY }] }]}>
+			<Animated.View 
+				style={{ 
+					transform: [{ translateY }],
+				}}
+			>
 				<Image 
 					source={require('../assets/images/uofulogo-clear_prev_ui.png')}
 					style={{
@@ -59,22 +64,22 @@ export default function SplashScreen() {
 					}}
 				/>
 			</Animated.View>
-      <View 
-        style={{ 
-          bottom:40, 
-          right:0, 
-          left:0,
-          position:'absolute'
-        }}
-      >
-        <Text 
-          style={{ 
-            color:colors.constWhite,
-            textAlign:'center',
-            fontSize:16,
-            fontFamily:'Glegoo-Bold' 
-          }}>v. 1.0.0</Text>
-      </View>
-		</SafeAreaView>
+			<View 
+				style={{ 
+					bottom:40, 
+					right:0, 
+					left:0,
+					position:'absolute'
+				}}
+			>
+				<Text 
+					style={{ 
+						color:colors.constWhite,
+						textAlign:'center',
+						fontSize:16,
+						fontFamily:'Glegoo-Bold',
+					}}>v. 1.0.0</Text>
+			</View>
+		</View>
 	)
 }
