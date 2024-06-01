@@ -9,6 +9,8 @@ import {
   Pressable,
 } from 'react-native';
 
+import { verticalScale, moderateScale } from 'react-native-size-matters';
+
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
@@ -82,16 +84,6 @@ export default function SignUp({ navigation }) {
         { 'access': response.data.access, 'refresh': response.data.refresh }
       )
     }).catch((error) => {
-      // if (error.response) {
-      //   console.log(error.response.data)
-      //   console.log(error.response.status)
-      //   console.log(error.response.headers)
-      // } else if (error.request) {
-      //   console.log(error.request)
-      // } else {
-      //   console.log('Error', error.message)
-      // }
-      // console.log(error.config)
       if (error.response.status) {
         setShowError({ ...showError, status:true, message:"This email is already in use." })
       }
@@ -121,30 +113,31 @@ export default function SignUp({ navigation }) {
               justifyContent:'center' 
             }}
           >
-            <View style={{ marginVertical:'10%' }}>
-            <Title 
+            <View style={{ marginVertical:verticalScale(15) }}>
+              <Title 
                 text='RoommateFinder'
                 style={{
-                  color:colors.constWhite,
+                  color:colors.wasatchSun,
                   textAlign:'center',
-                  fontSize:40,
-                  fontFamily:'Acme-Regular'
+                  fontSize:verticalScale(36),
+                  fontFamily:'Acme-Regular',
                 }}
               />
               <CustomText 
                 style={{ 
                   color: colors.constWhite,
                   marginVertical:10,
-                  fontSize:20,
+                  fontSize:verticalScale(14),
                   fontWeight:'500', 
-                  textAlign:'center'
+                  textAlign:'center',
+                  // fontFamily:'blambotcustom'
                 }}
               >
                 Sign up to find your future roommate!
               </CustomText>
             </View>
 
-            <View style={{ marginBottom:24 }}>
+            <View style={{ marginBottom:verticalScale(20) }}>
 
               <CustomLabel color={colors.constWhite} label={'Full Name'} />
               <CustomTextInput 
@@ -157,7 +150,10 @@ export default function SignUp({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
 
@@ -175,7 +171,10 @@ export default function SignUp({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
 
@@ -191,7 +190,10 @@ export default function SignUp({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
               
@@ -207,15 +209,19 @@ export default function SignUp({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.tint
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
 
               <CustomButton
                 onClick={() => onSignUp()}
                 style={{ 
-                  borderWidth:1,
-                  borderColor:colors.constWhite,
+                  borderWidth:2,
+                  borderRadius:0,
+                  borderColor:colors.constBlack,
                   backgroundColor:colors.accentDark,
                   shadowColor: '#222',
                   shadowOffset: { width: 7, height: 5 },
@@ -227,7 +233,8 @@ export default function SignUp({ navigation }) {
                   style={{ 
                     fontSize:20, 
                     fontWeight:'600', 
-                    color:colors.constWhite 
+                    color:colors.constWhite,
+                    fontFamily:'Acme-Regular'
                   }}
                 >
                   Sign up

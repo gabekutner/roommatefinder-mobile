@@ -102,10 +102,10 @@ export default function SignIn({ navigation }) {
               <Title 
                 text='RoommateFinder'
                 style={{
-                  color:colors.constWhite,
+                  color:colors.wasatchSun,
                   textAlign:'center',
                   fontSize:40,
-                  fontFamily:'Acme-Regular'
+                  fontFamily:'Acme-Regular',
                 }}
               />
               <CustomText 
@@ -114,7 +114,8 @@ export default function SignIn({ navigation }) {
                   marginVertical:10,
                   fontSize:20,
                   fontWeight:'500', 
-                  textAlign:'center'
+                  textAlign:'center',
+                  // fontFamily:'blambotcustom'
                 }}
               >
                 Welcome back!
@@ -137,7 +138,10 @@ export default function SignIn({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.constWhite
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
 
@@ -153,17 +157,20 @@ export default function SignIn({ navigation }) {
                   height:55,
                   marginBottom:16,
                   backgroundColor:colors.secondary,
-                  color:colors.constWhite
+                  color:colors.tint,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.constBlack
                 }}
               />
 
               <CustomButton
                 onClick={() => onSignIn()}
                 style={{ 
-                  borderWidth:1,
-                  borderColor:colors.constWhite,
-                  // backgroundColor:colors
+                  borderWidth:2,
+                  borderColor:colors.constBlack,
                   backgroundColor:colors.accentDark,
+                  borderRadius:0,
                   shadowColor: '#222',
                   shadowOffset: { width: 7, height: 5 },
                   shadowOpacity: 1,
@@ -175,6 +182,7 @@ export default function SignIn({ navigation }) {
                     fontSize:20, 
                     fontWeight:'600', 
                     color:colors.constWhite,
+                    fontFamily:'Acme-Regular'
                   }}
                 >
                   Log in
