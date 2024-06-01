@@ -15,14 +15,14 @@ export default function Birthday({ theme, colors, form, setForm }) {
         inlined
         date={form.birthday}
         mode={'date'}
-        theme={theme}
+        theme={'dark'}
         onDateChange={birthday => setForm({ ...form, birthday })}
       />
       <CustomText 
         style={{ 
           marginVertical:15, 
           marginHorizontal:35, 
-          color:colors.tertiary ,
+          color:colors.constWhite ,
           fontSize:18, 
         }}
       >

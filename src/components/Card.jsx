@@ -13,12 +13,8 @@ import FastImageBackground from './UI/FastImageBackground';
 import InfoCard from './InfoCard';
 import SwipeProfileModal from './UI/SwipeProfileModal';
 
-import useGlobal from '../core/global';
-
 
 export default function CardItem({ item, colors }) {
-
-  // const requestConnect = useGlobal(state => state.requestConnect)
 
   const [show, setShow] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
@@ -43,7 +39,6 @@ export default function CardItem({ item, colors }) {
           flexDirection:'row',
         }}
         imageStyle={{
-          borderRadius:10,
           height:'100%',
         }}
         resizeMode={FastImage.resizeMode.cover}
@@ -76,7 +71,7 @@ export default function CardItem({ item, colors }) {
             color={colors.primary}
           />
         </TouchableOpacity>
-        {/* <LinearGradient
+        <LinearGradient
           colors={['rgba(255, 255, 255, 0)', '#222']} // Transparent to black
           locations={[0, 1]} // Position stops
           style={{
@@ -86,10 +81,8 @@ export default function CardItem({ item, colors }) {
             bottom: 0,
             zIndex: 0,
             height: '40%',
-            borderBottomLeftRadius:10,
-            borderBottomRightRadius:10,
           }}
-        /> */}
+        />
       </FastImageBackground>
       
 

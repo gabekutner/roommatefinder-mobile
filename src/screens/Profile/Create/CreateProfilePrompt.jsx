@@ -23,7 +23,7 @@ export default function CreateProfilePrompt({ navigation }) {
   return (
     <View style={{
       flex:1,
-      backgroundColor:colors.primary,
+      backgroundColor:colors.accentDark,
     }}>
       <View
         style={{
@@ -37,7 +37,7 @@ export default function CreateProfilePrompt({ navigation }) {
             fontFamily:'Acme-Regular',
             fontWeight:'600',
             fontSize:30,
-            color:colors.tint,
+            color:colors.wasatchSun,
             width:300,
             textAlign:'center'
           }}
@@ -48,7 +48,7 @@ export default function CreateProfilePrompt({ navigation }) {
           style={{
             fontSize:18,
             fontWeight:'600',
-            color:colors.tertiary,
+            color:colors.constWhite,
             marginTop:15
           }}
         >
@@ -60,8 +60,9 @@ export default function CreateProfilePrompt({ navigation }) {
           style={{
             marginVertical:100,
             width:200,
-            borderWidth:1,
-            borderColor:colors.constWhite,
+            borderWidth:2,
+            borderColor:colors.constBlack,
+            borderRadius:0,
             backgroundColor:colors.accentDark,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },

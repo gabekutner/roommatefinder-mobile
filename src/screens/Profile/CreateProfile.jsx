@@ -45,8 +45,9 @@ function Paginator({ colors, data, scrollX }) {
           <Animated.View 
             style={{ 
               height:10, 
-              borderRadius:5, 
-              backgroundColor:colors.accent, 
+              borderWidth:2,
+              borderColor:'#222', 
+              backgroundColor:colors.constWhite, 
               marginHorizontal:8, 
               width:dotWidth, 
               opacity
@@ -94,14 +95,15 @@ function SubmitButton({ colors, form }) {
       onClick={() => createProfile(form, user)}
       style={{
         width:200,
-        borderWidth:1,
-        borderColor:colors.constWhite,
+        borderWidth:2,
+        borderColor:colors.constBlack,
         backgroundColor:colors.accentDark,
         shadowColor: '#222',
         shadowOffset: { width: 7, height: 5 },
         shadowOpacity: 1,
         shadowRadius: 1,  
-        marginBottom:50
+        marginBottom:50,
+        borderRadius:0,
       }}
     >
       <CustomText 
@@ -146,7 +148,7 @@ export default function CreateProfile() {
       style={{ 
         flex:1, 
         alignItems:'center',
-        backgroundColor:colors.primary
+        backgroundColor:colors.accentDark
       }}
     >
       
@@ -171,7 +173,10 @@ export default function CreateProfile() {
                   fontSize:25, 
                   fontWeight:'500', 
                   marginBottom:30,
-                  color:colors.tint,
+                  color:colors.wasatchSun,
+                  textShadowColor:'#222',
+                  textShadowRadius:10,
+                  textShadowOffset: [{ width:15, height:15 }]
                 }}
               >
                 {item.label}

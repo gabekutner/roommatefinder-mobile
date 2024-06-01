@@ -234,7 +234,7 @@ const useGlobal = create((set, get) => ({
       authenticated:false,
       user:{},
       profileCreated:false,
-      theme:'dark',
+      theme:'light',
     }))
   },
 

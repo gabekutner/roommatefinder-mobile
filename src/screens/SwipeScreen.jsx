@@ -164,21 +164,18 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
       ]}
     >
       <Animated.View
-        style={[
-          styles.item,
-          {
-            backgroundColor: colors.secondary,
-            borderColor: colors.tint,
-            borderWidth: 0.5,
-            transform: [
-              { translateX: pan.x },
-              { rotate: rotate },
-            ],
-            width: 90 - index * 1 + '%',
-            marginTop: index * 10,
-            height: verticalScale(450),
-          },
-        ]}
+        style={{
+          backgroundColor: colors.secondary,
+          borderColor: colors.constBlack,
+          borderWidth: 2,
+          transform: [
+            { translateX: pan.x },
+            { rotate: rotate },
+          ],
+          width: 90 - index * 1 + '%',
+          marginTop: index * 10,
+          height: verticalScale(450),
+        }}
       >
         <CardItem navigation={navigation} item={item} colors={colors} />
       </Animated.View>
@@ -193,11 +190,5 @@ const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  item: {
-    height: '50%',
-    borderWidth: 1,
-    borderColor: '#00000055',
-    borderRadius: 10,
   },
 })

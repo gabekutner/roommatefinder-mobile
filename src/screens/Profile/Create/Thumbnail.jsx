@@ -17,7 +17,7 @@ export default function Thumbnail({ colors, form, setForm }) {
         borderRadius:10,
         backgroundColor:'transparent',
         borderWidth:1,
-        borderColor:colors.tertiary,
+        borderColor:colors.constWhite,
         borderStyle: form.thumbnail ? 'none' : 'dashed',
         justifyContent:'center'
       }}
@@ -38,7 +38,7 @@ export default function Thumbnail({ colors, form, setForm }) {
         <FontAwesomeIcon 
           icon="image"
           size={25}
-          color={colors.tertiary}
+          color={colors.constWhite}
           style={{ alignSelf:'center' }}
         />
       )}

@@ -25,8 +25,8 @@ export default function Sex({ colors, form, setForm }) {
         style={[
           styles.option, 
           { 
-            borderColor: selected === "M" ? colors.tint : colors.accent,
-            backgroundColor: selected === "M" ? colors.secondary : colors.accentDark,
+            borderColor: colors.constBlack,
+            backgroundColor: selected === "M" ? colors.wasatchSun : colors.accentDark,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
             shadowOpacity: 1,
@@ -51,8 +51,8 @@ export default function Sex({ colors, form, setForm }) {
         style={[
           styles.option, 
           { 
-            borderColor: selected === "F" ? colors.tint : colors.accent,
-            backgroundColor: selected === "F" ? colors.secondary : colors.accentDark,
+            borderColor: colors.constBlack,
+            backgroundColor: selected === "F" ? colors.wasatchSun : colors.accentDark,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
             shadowOpacity: 1,
@@ -80,8 +80,7 @@ const styles = StyleSheet.create({
   option: {
     paddingVertical:10,
     paddingHorizontal:100,
-    borderRadius:10,
-    borderWidth:1,
+    borderWidth:2,
   },
   text: { fontSize:17 }
 })
