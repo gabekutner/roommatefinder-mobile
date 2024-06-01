@@ -46,7 +46,7 @@ export default function SplashScreen() {
 				flex:1,
 				alignItems:'center',
 				justifyContent:'center',
-				backgroundColor:colors.accent
+				backgroundColor:colors.accentDark
 			}}
 		>
 			<StatusBar barStyle='light-content' />

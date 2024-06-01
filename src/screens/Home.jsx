@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { 
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -35,20 +36,20 @@ function HeaderLogo({ colors }) {
         width:'110%' 
       }}
     >
-      <View 
+      <Image 
+        source={require('../assets/images/uofulogo-clear_prev_ui.png')}
         style={{ 
-          width:30, 
+          width:35, 
           height:30, 
-          backgroundColor:colors.accent
         }} 
       />
       <Title 
-        text="roommatefinder"
+        text="RoommateFinder"
         style={{
           padding:5, 
           fontSize:scale(16), 
           color:colors.tint, 
-          fontFamily:'Glegoo-Bold'
+          fontFamily:'Acme-Regular'
         }}
       />
     </View>

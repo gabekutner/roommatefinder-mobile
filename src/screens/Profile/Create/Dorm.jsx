@@ -49,7 +49,7 @@ export default function Dorm({ colors, form, setForm }) {
               style={[
                 styles.text, 
                 { 
-                  color: selected === item.id ? colors.tint : colors.tint 
+                  color: selected === item.id ? colors.tint : colors.constWhite 
                 }
               ]}
             >

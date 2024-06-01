@@ -38,7 +38,7 @@ export default function Sex({ colors, form, setForm }) {
           style={[
             styles.text, 
             { 
-              color: selected === "M" ? '#f3f4f6' : colors.tint 
+              color: selected === "M" ? colors.tint : colors.constWhite
             }
           ]}
         >
@@ -64,7 +64,7 @@ export default function Sex({ colors, form, setForm }) {
           style={[
             styles.text, 
             { 
-              color: selected === "F" ? '#f3f4f6' : colors.tint 
+              color: selected === "F" ? colors.tint : colors.constWhite
             }
           ]}
         >

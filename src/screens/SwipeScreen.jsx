@@ -36,6 +36,10 @@ export default function Swipe({ navigation }) {
     fetchData(page)
   }, [page])
 
+  useEffect(() => {
+    // if (user)
+  }, [])
+
   const fetchData = async(page) => {
     try {
       const response = await getSwipe(user, page)

@@ -46,7 +46,7 @@ function Paginator({ colors, data, scrollX }) {
             style={{ 
               height:10, 
               borderRadius:5, 
-              backgroundColor:colors.constWhite, 
+              backgroundColor:colors.accent, 
               marginHorizontal:8, 
               width:dotWidth, 
               opacity

@@ -57,7 +57,7 @@ export default function Interests({ colors, form, setForm }) {
               style={[
                 styles.text, 
                 { 
-                  color:Object.values(form.interests).includes(item.id) ? '#f3f4f6' : colors.tint 
+                  color:Object.values(form.interests).includes(item.id) ? colors.tint : colors.constWhite
                 }
               ]}
             >
