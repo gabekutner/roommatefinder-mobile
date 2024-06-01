@@ -5,11 +5,13 @@ import {
   Image, 
   Text,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 
 import { 
   moderateScale, 
-  moderateVerticalScale 
+  moderateVerticalScale, 
+  verticalScale,
 } from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
@@ -31,6 +33,7 @@ export default function Onboarding({ navigation }) {
         backgroundColor:colors.accentDark
       }}
     >
+      <StatusBar barStyle='light-content' />
 
       <View
         style={{
@@ -70,7 +73,7 @@ export default function Onboarding({ navigation }) {
           >
             The University of Utah's
           </Text>
-          {/* possibly replace with swoop of something cooler */}
+          {/* possibly replace with swoop or something cooler */}
           <Image 
             source={require('../assets/images/pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png')}
             resizeMode="cover"
@@ -126,7 +129,7 @@ export default function Onboarding({ navigation }) {
           <Text
             style={{
               fontFamily:'Acme-Regular',
-              fontSize:48,
+              fontSize:verticalScale(40),
               color:colors.wasatchSun,
               transform: [{ rotate: '353deg'}],
               textShadowColor:'#222',
@@ -139,43 +142,17 @@ export default function Onboarding({ navigation }) {
         </View>
 
       </View> 
-      
-      <View style={{ marginBottom:65 }}>
 
-        <View
-          style={{
-            width:60,
-            backgroundColor:colors.constWhite,
-            borderColor:'#222',
-            borderWidth:2,
-            left:15,
-            alignItems:'flex-start',
-            paddingLeft:5,
-            borderStyle:'dotted'
-          }}
-        >
-          <Text
-            style={{
-              fontFamily:'Acme-Regular',
-              fontSize:20,
-              color:colors.constBlack
-
-            }}
-          >
-            2024
-          </Text>
-          <Text
-            style={{
-              fontFamily:'Acme-Regular',
-              fontSize:20,
-              color:colors.constBlack
-            }}
-
-          >
-            June
-          </Text>
-        </View>
-        
+      <View 
+        style={{ 
+          flex:0.2, 
+          marginBottom:25, 
+          position:'absolute', 
+          bottom:0, 
+          left:0, 
+          right:0
+        }}
+      > 
         <Text
           style={{
             fontSize:22,
@@ -183,7 +160,7 @@ export default function Onboarding({ navigation }) {
             fontWeight:'bold',
             color:colors.constWhite,
             marginLeft:15,
-            marginTop:15,
+            marginTop:verticalScale(6),
             textShadowColor:'#222',
             textShadowRadius:10,
             textShadowOffset: [{ width:15, height:15 }]
@@ -197,7 +174,7 @@ export default function Onboarding({ navigation }) {
             fontFamily:'Acme-Regular',
             fontWeight:'bold',
             color:colors.wasatchSun,
-            marginTop:15,
+            marginTop:verticalScale(6),
             marginLeft:15,
             textShadowColor:'#222',
             textShadowRadius:10,
@@ -207,12 +184,11 @@ export default function Onboarding({ navigation }) {
           Newest Edition!
         </Text>
         
-        
         <View
           style={{
             backgroundColor:colors.wasatchSun,
             padding:10,
-            width:'50%',
+            width:moderateScale(200),
             borderColor:'#222',
             borderWidth:2,
             borderLeftWidth:0,
@@ -234,7 +210,7 @@ export default function Onboarding({ navigation }) {
           style={{
             backgroundColor:colors.wasatchSun,
             padding:10,
-            width:'65%',
+            width:moderateScale(265),
             borderColor:'#222',
             borderWidth:2,
             borderLeftWidth:0,
@@ -256,11 +232,12 @@ export default function Onboarding({ navigation }) {
           style={{
             backgroundColor:colors.wasatchSun,
             padding:10,
-            width:'47%',
+            width:moderateScale(190),
             borderColor:'#222',
             borderWidth:2,
             borderLeftWidth:0,
             marginTop:20,
+            marginBottom:20
           }}
         >
           <Text
@@ -274,18 +251,6 @@ export default function Onboarding({ navigation }) {
             Message Friends
           </Text>
         </View>
-      </View> 
-
-      <View 
-        style={{ 
-          flex:0.2, 
-          marginBottom:25, 
-          position:'absolute', 
-          bottom:0, 
-          left:0, 
-          right:0
-        }}
-      >
         <CustomButton
           onClick={() => navigation.navigate('signin')}
           style={{
@@ -293,12 +258,13 @@ export default function Onboarding({ navigation }) {
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
-            height:60,
+            height:63,
             borderRadius:0,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
             shadowOpacity: 1,
             shadowRadius: 1,  
+            borderWidth:2,
           }}
         >
           <Text 
@@ -317,9 +283,9 @@ export default function Onboarding({ navigation }) {
         <CustomButton
           onClick={() => navigation.navigate('signup')}
           style={{
-            borderWidth:1,
+            borderWidth:2,
             backgroundColor:colors.accentDark,
-            borderColor:colors.constWhite,
+            borderColor:colors.constBlack,
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
@@ -328,7 +294,7 @@ export default function Onboarding({ navigation }) {
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
             shadowOpacity: 1,
-            shadowRadius: 1,  
+            shadowRadius: 1,
           }}
         >
           <Text 
