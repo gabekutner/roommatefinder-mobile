@@ -6,6 +6,7 @@ import {
   Text,
   SafeAreaView,
   StatusBar,
+  ImageBackground
 } from 'react-native';
 
 import { 
@@ -27,17 +28,19 @@ export default function Onboarding({ navigation }) {
   const colors = c[theme]
 
   return (
-    <SafeAreaView 
+    <View 
       style={{ 
         flex:1, 
         backgroundColor:colors.accentDark
       }}
     >
+   
       <StatusBar barStyle='light-content' />
 
       <View
         style={{
-          flex:0.8
+          flex:1,
+          marginTop:verticalScale(40)
         }}
       >
         <View
@@ -121,7 +124,6 @@ export default function Onboarding({ navigation }) {
         <View
           style={{
             position:'absolute',
-            top:0,
             right:15,
             top:100
           }}
@@ -140,117 +142,24 @@ export default function Onboarding({ navigation }) {
             RoommateFinder
           </Text>
         </View>
-
       </View> 
 
       <View 
         style={{ 
-          flex:0.2, 
-          marginBottom:25, 
           position:'absolute', 
-          bottom:0, 
-          left:0, 
-          right:0
+          bottom:verticalScale(60), 
+          left:0,
+          right:0,
         }}
       > 
-        <Text
+        <Image 
+          source={require('../assets/images/swoop-removebg-preview.png')}
           style={{
-            fontSize:22,
-            fontFamily:'Acme-Regular',
-            fontWeight:'bold',
-            color:colors.constWhite,
             marginLeft:15,
-            marginTop:verticalScale(6),
-            textShadowColor:'#222',
-            textShadowRadius:10,
-            textShadowOffset: [{ width:15, height:15 }]
+            width:moderateScale(160),
+            height:verticalScale(265),
           }}
-        >
-          Issue #1
-        </Text>
-        <Text
-          style={{
-            fontSize:22,
-            fontFamily:'Acme-Regular',
-            fontWeight:'bold',
-            color:colors.wasatchSun,
-            marginTop:verticalScale(6),
-            marginLeft:15,
-            textShadowColor:'#222',
-            textShadowRadius:10,
-            textShadowOffset: [{ width:15, height:15 }]
-          }}
-        >
-          Newest Edition!
-        </Text>
-        
-        <View
-          style={{
-            backgroundColor:colors.wasatchSun,
-            padding:10,
-            width:moderateScale(200),
-            borderColor:'#222',
-            borderWidth:2,
-            borderLeftWidth:0,
-            marginTop:15,
-          }}
-        >
-          <Text
-            style={{
-              color:'#222',
-              fontSize:18,
-              fontWeight:'bold',
-              fontFamily:'blambotcustom',
-            }}
-          >
-            Find Roommmates
-          </Text>
-        </View>
-        <View
-          style={{
-            backgroundColor:colors.wasatchSun,
-            padding:10,
-            width:moderateScale(265),
-            borderColor:'#222',
-            borderWidth:2,
-            borderLeftWidth:0,
-            marginTop:20
-          }}
-        >
-          <Text
-            style={{
-              color:'#222',
-              fontSize:18,
-              fontWeight:'bold',
-              fontFamily:'blambotcustom',
-            }}
-          >
-            Customize Your Profile
-          </Text>
-        </View>
-        <View
-          style={{
-            backgroundColor:colors.wasatchSun,
-            padding:10,
-            width:moderateScale(190),
-            borderColor:'#222',
-            borderWidth:2,
-            borderLeftWidth:0,
-            marginTop:20,
-            marginBottom:20
-          }}
-        >
-          <Text
-            style={{
-              color:'#222',
-              fontSize:18,
-              fontWeight:'bold',
-              fontFamily:'blambotcustom',
-            }}
-          >
-            Message Friends
-          </Text>
-        </View>
+        />
         <CustomButton
           onClick={() => navigation.navigate('signin')}
           style={{
@@ -311,7 +220,8 @@ export default function Onboarding({ navigation }) {
           </Text>
         </CustomButton>
       </View>
-    </SafeAreaView>
+      {/* </ImageBackground> */}
+    </View>
   )
 }
 
@@ -321,7 +231,7 @@ const styles = StyleSheet.create({
     width:12,
     height:12,
     borderRadius:50,
-    marginHorizontal:5,
+    marginHorizontal:5, 
     borderWidth:1,
   },
   buttonText: { fontSize:24 },
