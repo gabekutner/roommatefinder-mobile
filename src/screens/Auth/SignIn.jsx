@@ -9,6 +9,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import { verticalScale } from 'react-native-size-matters';
+
 import Snackbar from '../../components/UI/SnackBar';
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
@@ -104,26 +106,27 @@ export default function SignIn({ navigation }) {
                 style={{
                   color:colors.wasatchSun,
                   textAlign:'center',
-                  fontSize:40,
-                  fontFamily:'Acme-Regular',
+                  fontSize:verticalScale(30),
+                  fontFamily:'LuckiestGuy-Regular',
+                  textShadowColor:'#222',
+                  textShadowRadius:10,
+                  textShadowOffset: [{ width:15, height:15 }]
                 }}
               />
               <CustomText 
                 style={{ 
                   color: colors.constWhite,
                   marginVertical:10,
-                  fontSize:20,
-                  fontWeight:'500', 
+                  fontSize:verticalScale(15),
+                  fontWeight:'600', 
                   textAlign:'center',
-                  // fontFamily:'blambotcustom'
                 }}
               >
                 Welcome back!
               </CustomText>
             </View>
 
-            <View style={{ marginBottom:24 }}>
-
+            <View style={{ marginBottom:verticalScale(20) }}>
               <CustomLabel color={colors.constWhite} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
@@ -135,13 +138,14 @@ export default function SignIn({ navigation }) {
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
 
@@ -154,13 +158,14 @@ export default function SignIn({ navigation }) {
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
 
@@ -179,10 +184,9 @@ export default function SignIn({ navigation }) {
               >
                 <CustomText 
                   style={{ 
-                    fontSize:20, 
+                    fontSize:verticalScale(16), 
                     fontWeight:'600', 
                     color:colors.constWhite,
-                    fontFamily:'Acme-Regular'
                   }}
                 >
                   Log in
@@ -250,7 +254,7 @@ export default function SignIn({ navigation }) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize:17, 
+    fontSize:verticalScale(14), 
     fontWeight:'600',
     textAlign:'center',
     letterSpacing:0.15,

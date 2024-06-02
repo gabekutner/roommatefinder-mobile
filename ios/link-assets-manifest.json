@@ -14,6 +14,10 @@
       "sha1": "85cb19c0a38cf24ee845589078968ed97aab8a17"
     },
     {
+      "path": "src/assets/fonts/LuckiestGuy-Regular.ttf",
+      "sha1": "7701304fb627ae9caa78cd982dce30d99a591296"
+    },
+    {
       "path": "src/assets/fonts/NotoSans_Condensed-Regular.ttf",
       "sha1": "e8da78b2c0105dfe4d76bba6baf2f298746eaaf9"
     },
@@ -24,18 +28,6 @@
     {
       "path": "src/assets/fonts/blambotcustom.ttf",
       "sha1": "bc64d264e2f9e8aee1421a12c1e9422a10e52871"
-    },
-    {
-      "path": "src/assets/images/15291.jpg",
-      "sha1": "353dfba25239f6e58fad72cd5291fff79c79b0e6"
-    },
-    {
-      "path": "src/assets/images/279-removebg-preview-1.png",
-      "sha1": "1d3cfb02c24e461057c85bfc536428c82ea27598"
-    },
-    {
-      "path": "src/assets/images/279-removebg.png",
-      "sha1": "37de34ad0f1bb65bbbcd5f29bf6a164eb3db0af0"
     },
     {
       "path": "src/assets/images/image_part_001.png",

@@ -76,15 +76,16 @@ export default function CreateProfilePrompt({ navigation }) {
               alignItems:'center',
               paddingHorizontal:moderateScale(26),
             }}>
-            <CustomText
+            <Text
               style={{
                 fontSize:20,
                 fontWeight:'600',
                 color:colors.constWhite,
+                fontFamily:'Acme-Regular'
               }}
             >
               That way
-            </CustomText>
+            </Text>
 
             <FontAwesomeIcon 
               icon='arrow-right-to-bracket'

@@ -119,18 +119,20 @@ export default function SignUp({ navigation }) {
                 style={{
                   color:colors.wasatchSun,
                   textAlign:'center',
-                  fontSize:verticalScale(36),
-                  fontFamily:'Acme-Regular',
+                  fontSize:verticalScale(30),
+                  fontFamily:'LuckiestGuy-Regular',
+                  textShadowColor:'#222',
+                  textShadowRadius:10,
+                  textShadowOffset: [{ width:15, height:15 }]
                 }}
               />
               <CustomText 
                 style={{ 
                   color: colors.constWhite,
                   marginVertical:10,
-                  fontSize:verticalScale(14),
-                  fontWeight:'500', 
+                  fontSize:verticalScale(15),
+                  fontWeight:'600', 
                   textAlign:'center',
-                  // fontFamily:'blambotcustom'
                 }}
               >
                 Sign up to find your future roommate!
@@ -147,13 +149,14 @@ export default function SignUp({ navigation }) {
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
 
@@ -168,13 +171,14 @@ export default function SignUp({ navigation }) {
                 colors={colors}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
 
@@ -187,13 +191,14 @@ export default function SignUp({ navigation }) {
                 colors={colors}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
               
@@ -206,13 +211,14 @@ export default function SignUp({ navigation }) {
                 colors={colors}
                 keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
-                  height:55,
-                  marginBottom:16,
+                  height:verticalScale(45),
+                  marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack
+                  borderColor:colors.constBlack,
+                  fontSize:verticalScale(14)
                 }}
               />
 
@@ -231,10 +237,9 @@ export default function SignUp({ navigation }) {
               >
                 <CustomText 
                   style={{ 
-                    fontSize:20, 
+                    fontSize:verticalScale(16), 
                     fontWeight:'600', 
                     color:colors.constWhite,
-                    fontFamily:'Acme-Regular'
                   }}
                 >
                   Sign up
@@ -302,7 +307,7 @@ export default function SignUp({ navigation }) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize:17, 
+    fontSize:verticalScale(14), 
     fontWeight:'600',
     textAlign:'center',
     letterSpacing:0.15,

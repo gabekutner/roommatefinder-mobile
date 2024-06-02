@@ -4,9 +4,7 @@ import {
   StyleSheet, 
   Image, 
   Text,
-  SafeAreaView,
   StatusBar,
-  ImageBackground
 } from 'react-native';
 
 import { 
@@ -31,28 +29,54 @@ export default function Onboarding({ navigation }) {
     <View 
       style={{ 
         flex:1, 
-        backgroundColor:colors.accentDark
+        // backgroundColor:'white'
       }}
     >
    
       <StatusBar barStyle='light-content' />
 
-      <View
-        style={{
-          flex:1,
-          marginTop:verticalScale(40)
-        }}
-      >
+      <View style={{ flex:1 }} >
         <View
           style={{
+            height:verticalScale(175),
+            position:'absolute',
+            marginTop:verticalScale(-18),
+            top:0,
+            left:0,
+            right:0,
+            backgroundColor:colors.accentDark, 
+            transform: [{ skewY: '-5deg' }],
+            borderBottomWidth:4,
+            alignItems:'flex-end',
+            justifyContent:'flex-end'
+          }}
+        >
+          <Text
+            style={{
+              fontFamily:'LuckiestGuy-Regular',
+              color:colors.wasatchSun,
+              fontSize:verticalScale(30),
+              marginRight:moderateScale(15),
+              marginBottom:verticalScale(10),
+              textShadowColor:'#222',
+              textShadowRadius:10,
+              textShadowOffset: [{ width:15, height:15 }]
+            }}
+          >
+            RoommateFinder
+          </Text>
+        </View>
+        <View
+          style={{
+            marginTop:verticalScale(40),
             backgroundColor:colors.green,
             height:40,
-            top:15,
             flexDirection:'row',
             alignItems:'center',
             overflow:'hidden',
             borderColor:'#222',
-            borderWidth:2
+            borderTopWidth:2,
+            borderBottomWidth:2,
           }}
         >
           <Image 
@@ -68,15 +92,14 @@ export default function Onboarding({ navigation }) {
           />
           <Text
             style={{
-              fontSize:14,
-              color:'#222',
+              fontSize:verticalScale(10),
+              color:colors.constBlack,
               fontWeight:'600',
               fontFamily:'blambotcustom'
             }}
           >
             The University of Utah's
           </Text>
-          {/* possibly replace with swoop or something cooler */}
           <Image 
             source={require('../assets/images/pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png')}
             resizeMode="cover"
@@ -86,80 +109,32 @@ export default function Onboarding({ navigation }) {
               right:0,
             }}
           />
-        </View>
+        </View>  
+      </View>
 
-        <View
-          style={{
-            position:'absolute',
-            top:0,
-            left:20,
-            width:65,
-            backgroundColor:colors.constWhite,
-            borderColor:'#222',
-            borderWidth:2,
-          }}
-        >
-          <Image 
-            source={require('../assets/images/uofulogo-clear_prev_ui.png')}
-            resizeMode='cover'
-            style={{
-              top:-15,
-              width:100,
-              height:85,
-              marginBottom:-10,
-            }}
-          />
-          <View style={{ width:'100%', height:2, backgroundColor:'#222' }} />
-          <Text
-            style={{
-              fontFamily:'blambotcustom',
-              alignSelf:'center',
-              marginVertical:10
-            }}
-          >
-            v. 1.0.0
-          </Text>
-        </View>
-
-        <View
-          style={{
-            position:'absolute',
-            right:15,
-            top:100
-          }}
-        >
-          <Text
-            style={{
-              fontFamily:'Acme-Regular',
-              fontSize:verticalScale(40),
-              color:colors.wasatchSun,
-              transform: [{ rotate: '353deg'}],
-              textShadowColor:'#222',
-              textShadowRadius:10,
-              textShadowOffset: [{ width:15, height:15 }]
-            }}
-          >
-            RoommateFinder
-          </Text>
-        </View>
-      </View> 
-
+      {/*  */}
+      
+      <View
+        style={{
+          height:verticalScale(200),
+          bottom:0,
+          left:0,
+          right:0,
+          backgroundColor:colors.accentDark, 
+          transform: [{ skewY: '5deg' }],
+          borderTopWidth:4,
+        }} 
+      />
       <View 
         style={{ 
           position:'absolute', 
-          bottom:verticalScale(60), 
+          bottom:0,
           left:0,
           right:0,
+          backgroundColor:colors.accentDark,
+          paddingBottom:verticalScale(40),
         }}
       > 
-        <Image 
-          source={require('../assets/images/swoop-removebg-preview.png')}
-          style={{
-            marginLeft:15,
-            width:moderateScale(160),
-            height:verticalScale(265),
-          }}
-        />
         <CustomButton
           onClick={() => navigation.navigate('signin')}
           style={{
@@ -167,7 +142,7 @@ export default function Onboarding({ navigation }) {
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
-            height:63,
+            height:verticalScale(54),
             borderRadius:0,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
@@ -176,18 +151,17 @@ export default function Onboarding({ navigation }) {
             borderWidth:2,
           }}
         >
-          <Text 
+          <CustomText 
             style={[
-              styles.buttonText, 
               styles.bold,
               { 
                 color:colors.accentDark,
-                fontFamily:'Acme-Regular',
+                fontSize:verticalScale(16)
               }
             ]}
           >
             Log in
-          </Text>
+          </CustomText>
         </CustomButton>
         <CustomButton
           onClick={() => navigation.navigate('signup')}
@@ -198,7 +172,7 @@ export default function Onboarding({ navigation }) {
             padding:moderateVerticalScale(20),
             marginHorizontal:moderateScale(20),
             marginVertical:moderateVerticalScale(5),
-            height:60,
+            height:verticalScale(54),
             borderRadius:0,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
@@ -206,21 +180,19 @@ export default function Onboarding({ navigation }) {
             shadowRadius: 1,
           }}
         >
-          <Text 
+          <CustomText 
             style={[
-              styles.buttonText, 
               styles.bold, 
               {
                 color:colors.constWhite,
-                fontFamily:'Acme-Regular',
+                fontSize:verticalScale(16)
               }
             ]}
           >
             Get Started
-          </Text>
+          </CustomText>
         </CustomButton>
       </View>
-      {/* </ImageBackground> */}
     </View>
   )
 }
@@ -234,5 +206,4 @@ const styles = StyleSheet.create({
     marginHorizontal:5, 
     borderWidth:1,
   },
-  buttonText: { fontSize:24 },
 })
