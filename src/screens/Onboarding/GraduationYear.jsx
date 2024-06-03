@@ -22,9 +22,11 @@ export default function GraduationYearScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I'll graduate in ..."
+  const buttonLabel = "Next Step"
+
 
   return (
-    <Base navigation={navigation} next={'major'} label={label} >
+    <Base navigation={navigation} next={'major'} label={label} buttonLabel={buttonLabel} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
         // autoCapitalize={'none'}

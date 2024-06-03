@@ -18,7 +18,8 @@ export default function Base({
   navigation, 
   children, 
   next, 
-  label 
+  label,
+  buttonLabel
 }) {
 
   const theme = useGlobal(state => state.theme)
@@ -96,7 +97,7 @@ export default function Base({
               color:colors.constWhite,
             }}
           >
-            Next Step
+            {buttonLabel}
           </CustomText>
         </CustomButton>
       </View>

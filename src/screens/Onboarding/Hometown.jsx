@@ -19,9 +19,11 @@ export default function HomeTownScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I'm from ..."
+  const buttonLabel = "Next Step"
+
 
   return (
-    <Base navigation={navigation} next={'graduation_year'} label={label} >
+    <Base navigation={navigation} next={'graduation_year'} label={label} buttonLabel={buttonLabel} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
         autoCorrect={false}

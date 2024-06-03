@@ -22,9 +22,11 @@ export default function MajorScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I want to major in ... "
+  const buttonLabel = "Next Step"
+
 
   return (
-    <Base navigation={navigation} next={'interests'} label={label} >
+    <Base navigation={navigation} next={'interests'} label={label} buttonLabel={buttonLabel} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
         autoCorrect={false}

@@ -26,6 +26,7 @@ export default function InterestsScreen({ navigation }) {
   const colors = c[theme]
 
   const label = "I'm into ..."
+  const buttonLabel = "Next Step"
 
   function handleOnClick(id, form, setForm) {
     const arr = [...form.interests]
@@ -43,7 +44,7 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <Base navigation={navigation} next={'widgets'} label={label} >
+    <Base navigation={navigation} next={'widgets'} label={label} buttonLabel={buttonLabel} >
       
       <FlatList
         showsVerticalScrollIndicator={false}

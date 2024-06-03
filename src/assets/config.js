@@ -11,6 +11,7 @@ export const colors = {
 
     // uofu
     wasatchSun: '#FFB81D', // yellow
+    saltFlat: '#E2E6E6', // greyish white
 
     // constants
     constWhite: '#f3f4f6', // constant white
@@ -30,6 +31,7 @@ export const colors = {
 
     // uofu
     wasatchSun: '#FFB81D', // yellow
+    saltFlat: '#E2E6E6', // greyish white
 
     
     // constants

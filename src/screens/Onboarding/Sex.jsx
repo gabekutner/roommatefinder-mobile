@@ -31,9 +31,10 @@ export default function SexScreen({ navigation }) {
   }
 
   const label = "I am a ..."
+  const buttonLabel = "Next Step"
 
   return (
-    <Base navigation={navigation} next={'hometown'} label={label} >
+    <Base navigation={navigation} next={'hometown'} label={label} buttonLabel={buttonLabel} >
       <View 
         style={{ 
           flexDirection:'column', 

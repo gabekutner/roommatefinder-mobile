@@ -15,9 +15,10 @@ export default function AgeScreen({ navigation }) {
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
   const label = "My birthday is on ... "
+  const buttonLabel = "Next Step"
 
   return (
-    <Base navigation={navigation} next={'sex'} label={label} >
+    <Base navigation={navigation} next={'sex'} label={label} buttonLabel={buttonLabel} >
       <View style={{ alignItems:'center' }}>
         <DatePicker
           inlined

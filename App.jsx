@@ -32,6 +32,10 @@ import GraduationYearScreen from './src/screens/Onboarding/GraduationYear';
 import MajorScreen from './src/screens/Onboarding/Major';
 import InterestsScreen from './src/screens/Onboarding/Interests';
 import BaseWidgetsScreen from './src/screens/Onboarding/Widgets/BaseWidget';
+import LinkTreeScreen from './src/screens/Onboarding/Widgets/LinkTree';
+import PromptsScreen from './src/screens/Onboarding/Widgets/Prompts';
+import QuotesScreen from './src/screens/Onboarding/Widgets/Quotes';
+import PhotosScreen from './src/screens/Onboarding/Photos';
 
 
 import useGlobal from './src/core/global';
@@ -128,6 +132,27 @@ export default function App() {
               component={BaseWidgetsScreen}
               options={{ headerShown:false }}
             />  
+            <Stack.Screen 
+              name='linktree'
+              component={LinkTreeScreen}
+              options={{ headerShown:false }}
+            />  
+            <Stack.Screen 
+              name='prompts'
+              component={PromptsScreen}
+              options={{ headerShown:false }}
+            />  
+            <Stack.Screen 
+              name='quotes'
+              component={QuotesScreen}
+              options={{ headerShown:false }}
+            /> 
+            <Stack.Screen 
+              name='photos'
+              component={PhotosScreen}
+              options={{ headerShown:false }}
+            />  
+            
             
           </>
         ) : (
