@@ -29,7 +29,6 @@ export default function Onboarding({ navigation }) {
     <View 
       style={{ 
         flex:1, 
-        // backgroundColor:'white'
       }}
     >
    

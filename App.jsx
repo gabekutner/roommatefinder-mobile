@@ -24,6 +24,16 @@ import Settings from './src/screens/Settings';
 import PhotoUpload from './src/screens/PhotoUpload';
 import CreateProfilePrompt from './src/screens/Profile/Create/CreateProfilePrompt';
 
+
+import AgeScreen from './src/screens/Onboarding/Age';
+import SexScreen from './src/screens/Onboarding/Sex';
+import HomeTownScreen from './src/screens/Onboarding/Hometown';
+import GraduationYearScreen from './src/screens/Onboarding/GraduationYear';
+import MajorScreen from './src/screens/Onboarding/Major';
+import InterestsScreen from './src/screens/Onboarding/Interests';
+import BaseWidgetsScreen from './src/screens/Onboarding/Widgets/BaseWidget';
+
+
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
 
@@ -33,9 +43,12 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  const initialized = useGlobal(state => state.initialized)
-  const authenticated = useGlobal(state => state.authenticated)
-  const profileCreated = useGlobal(state => state.profileCreated)
+  // const initialized = useGlobal(state => state.initialized)
+  // const authenticated = useGlobal(state => state.authenticated)
+  // const profileCreated = useGlobal(state => state.profileCreated)
+  const initialized = true
+  const authenticated = true
+  const profileCreated = false
   const init = useGlobal(state => state.init)
   const theme = useGlobal(state => state.theme)
   const activeColors = c[theme]
@@ -81,10 +94,41 @@ export default function App() {
               options={{ headerShown:false }}
             />
             <Stack.Screen 
-              name='create-profile'
-              component={CreateProfile}
+              name='age'
+              component={AgeScreen}
+              options={{ headerShown:false }}
+            /> 
+            <Stack.Screen 
+              name='sex'
+              component={SexScreen}
               options={{ headerShown:false }}
             />  
+            <Stack.Screen 
+              name='hometown'
+              component={HomeTownScreen}
+              options={{ headerShown:false }}
+            />  
+            <Stack.Screen 
+              name='graduation_year'
+              component={GraduationYearScreen}
+              options={{ headerShown:false }}
+            /> 
+            <Stack.Screen 
+              name='major'
+              component={MajorScreen}
+              options={{ headerShown:false }}
+            />   
+            <Stack.Screen 
+              name='interests'
+              component={InterestsScreen}
+              options={{ headerShown:false }}
+            /> 
+            <Stack.Screen 
+              name='widgets'
+              component={BaseWidgetsScreen}
+              options={{ headerShown:false }}
+            />  
+            
           </>
         ) : (
           <>

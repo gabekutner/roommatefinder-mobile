@@ -1,6 +1,7 @@
 import React from "react";
 import {
   View,
+  Text
 } from 'react-native';
 
 import { verticalScale, moderateScale } from "react-native-size-matters";
@@ -14,8 +15,8 @@ import useGlobal from '../../../core/global';
 import { colors as c } from '../../../assets/config';
 
 
-export default function CreateProfilePrompt({ 
-  navigation,
+export default function CreateProfilePromptNext({ 
+  navigation
  }) {
 
   const theme = useGlobal(state => state.theme)
@@ -43,9 +44,9 @@ export default function CreateProfilePrompt({
             textAlign:'center'
           }}
         >
-          Let's get started with your profile. 
+          Time to customize yourself a little more. 
         </CustomText>
-        <CustomText
+        {/* <CustomText
           style={{
             fontSize:18,
             fontWeight:'600',
@@ -54,10 +55,10 @@ export default function CreateProfilePrompt({
           }}
         >
           This'll take only a couple minutes.
-        </CustomText>
+        </CustomText> */}
         
         <CustomButton
-          onClick={() => navigation.navigate('age')}
+          onClick={() => navigation.navigate('create-profile')}
           style={{
             marginVertical:100,
             width:200,
@@ -77,15 +78,16 @@ export default function CreateProfilePrompt({
               alignItems:'center',
               paddingHorizontal:moderateScale(26),
             }}>
-            <CustomText
+            <Text
               style={{
                 fontSize:20,
                 fontWeight:'600',
                 color:colors.constWhite,
+                fontFamily:'Acme-Regular'
               }}
             >
               That way
-            </CustomText>
+            </Text>
 
             <FontAwesomeIcon 
               icon='arrow-right-to-bracket'

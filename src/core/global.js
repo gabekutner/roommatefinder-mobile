@@ -241,6 +241,24 @@ const useGlobal = create((set, get) => ({
   //---------------------
 	//    Create Profile
 	//---------------------
+  form: {
+    age: new Date(),
+    sex: "",
+    hometown: "",
+    graduation_year: "",
+    major: "",
+    interests: [],
+    
+
+  },
+  setForm: (form) => {
+    set((state) => ({
+      form: form
+    }))
+  },
+
+
+
   profileCreated: false,
 
   createProfile: async (form, user) => {
@@ -303,6 +321,8 @@ const useGlobal = create((set, get) => ({
       }
     }
   },
+
+
 
   //---------------------
 	//    Edit Profile
