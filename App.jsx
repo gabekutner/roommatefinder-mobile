@@ -36,6 +36,7 @@ import LinkTreeScreen from './src/screens/Onboarding/Widgets/LinkTree';
 import PromptsScreen from './src/screens/Onboarding/Widgets/Prompts';
 import QuotesScreen from './src/screens/Onboarding/Widgets/Quotes';
 import PhotosScreen from './src/screens/Onboarding/Photos';
+import DormScreen from './src/screens/Onboarding/Dorm';
 import DoneScreen from './src/screens/Onboarding/Done';
 
 
@@ -153,6 +154,11 @@ export default function App() {
               component={PhotosScreen}
               options={{ headerShown:false }}
             /> 
+            <Stack.Screen 
+              name='dorm'
+              component={DormScreen}
+              options={{ headerShown:false }}
+            />  
             <Stack.Screen 
               name='done'
               component={DoneScreen}

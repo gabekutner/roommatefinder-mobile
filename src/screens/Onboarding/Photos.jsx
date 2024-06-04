@@ -66,7 +66,7 @@ export default function PhotosScreen({ navigation }) {
   }
   
   return (
-    <Base navigation={navigation} next={'done'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} next={'dorm'} label={label} buttonLabel={buttonLabel} >
       <View 
         style={{ 
           alignItems:'center',

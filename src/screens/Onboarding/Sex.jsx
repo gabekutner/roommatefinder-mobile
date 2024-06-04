@@ -61,7 +61,7 @@ export default function SexScreen({ navigation }) {
             style={[
               styles.text, 
               { 
-                color: selected === "M" ? colors.tint : colors.constWhite
+                color: selected === "M" ? colors.constBlack : colors.constWhite
               }
             ]}
           >
