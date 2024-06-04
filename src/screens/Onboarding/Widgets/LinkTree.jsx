@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { verticalScale } from "react-native-size-matters";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
@@ -13,6 +14,8 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
+import BaseWidgetModal from "./BaseWidgetModal";
+import LinkTreeModal from "./LinkTreeModal";
 
 
 export default function LinkTreeScreen({ navigation }) {
@@ -21,8 +24,12 @@ export default function LinkTreeScreen({ navigation }) {
   const setForm = useGlobal(state => state.setForm)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+
+  const [show, setShow] = useState(false)
   const label = "Add your social handles!"
   const buttonLabel = "That's good"
+  const modalLabel = "Add a social handle!"
+  const modalButtonLabel = "Good to go"
 
   // get users links add populate them here
   // temporary
@@ -47,7 +54,7 @@ export default function LinkTreeScreen({ navigation }) {
         }}
       >
         <CustomButton 
-          onClick={() => {}}
+          onClick={() => setShow(true)}
           style={{ 
             ...styles.addLink, 
             borderColor:colors.constWhite
@@ -64,15 +71,34 @@ export default function LinkTreeScreen({ navigation }) {
               style={{
                 ...styles.linked, 
                 borderColor: colors.constBlack,
-                backgroundColor: colors.accentDark
+                backgroundColor: colors.accentDark,
+                flexDirection:'row',
+                gap:15
               }}
             >
+              <FontAwesomeIcon 
+                icon="link"
+                size={22}
+                color={colors.constWhite}
+              />
               <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>{item.link}</CustomText>
             </View>
           )}
         />
       </View>
+      { show
+        ?
+          <LinkTreeModal 
+            colors={colors}
+            label={modalLabel}
+            buttonLabel={modalButtonLabel}
+            navigation={navigation}
+            onActionPress={setShow}
+          />
+        : null
+      }
     </Base>
+
   )
 }
 

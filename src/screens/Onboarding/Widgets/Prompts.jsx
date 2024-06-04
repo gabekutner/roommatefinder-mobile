@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -10,6 +10,7 @@ import { verticalScale } from "react-native-size-matters";
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import PromptsModal from "./PromptsModal";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
@@ -21,8 +22,12 @@ export default function PromptsScreen({ navigation }) {
   const setForm = useGlobal(state => state.setForm)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+
+  const [show, setShow] = useState(false)
   const label = "Answer a couple questions!"
   const buttonLabel = "That's good"
+  const modalLabel = "Add a prompt!"
+  const modalButtonLabel = "Good to go"
 
   // get users prompts and populate them here
   // temporary
@@ -44,7 +49,7 @@ export default function PromptsScreen({ navigation }) {
         }}
       >
         <CustomButton 
-          onClick={() => {}}
+          onClick={() => setShow(true)}
           style={{ 
             ...styles.addLink, 
             borderColor:colors.constWhite
@@ -74,6 +79,17 @@ export default function PromptsScreen({ navigation }) {
           )}
         />
       </View>
+      { show
+        ?
+          <PromptsModal 
+            colors={colors}
+            label={modalLabel}
+            buttonLabel={modalButtonLabel}
+            navigation={navigation}
+            onActionPress={setShow}
+          />
+        : null
+      }
     </Base>
   )
 }

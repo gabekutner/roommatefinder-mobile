@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -10,9 +10,11 @@ import { verticalScale } from "react-native-size-matters";
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import QuotesModal from "./QuotesModal";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 export default function QuotesScreen({ navigation }) {
@@ -21,8 +23,12 @@ export default function QuotesScreen({ navigation }) {
   const setForm = useGlobal(state => state.setForm)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
+
+  const [show, setShow] = useState(false)
   const label = "Add your favorite quotes!"
   const buttonLabel = "That's good"
+  const modalLabel = "Add a quote!"
+  const modalButtonLabel = "Good to go"
 
   // get users quotes and populate them here
   // temporary
@@ -44,7 +50,7 @@ export default function QuotesScreen({ navigation }) {
         }}
       >
         <CustomButton 
-          onClick={() => {}}
+          onClick={() => setShow(true)}
           style={{ 
             ...styles.addLink, 
             borderColor:colors.constWhite
@@ -61,10 +67,15 @@ export default function QuotesScreen({ navigation }) {
               style={{
                 ...styles.linked, 
                 borderColor: colors.constBlack,
-                backgroundColor: colors.accentDark
+                backgroundColor: colors.accentDark,
               }}
             >
-              <View style={{ ...styles.quoteBox }}>
+              <View style={{ ...styles.quoteBox, flexDirection:'column', gap:4 }}>
+                <FontAwesomeIcon 
+                  icon="quote-left"
+                  size={22}
+                  color={colors.constWhite}
+                />
                 <CustomText style={{ ...styles.quote, color:colors.constWhite }}>{item.quote}</CustomText>
               </View>
               <CustomText style={{ ...styles.person, color:colors.constWhite }}>
@@ -74,6 +85,17 @@ export default function QuotesScreen({ navigation }) {
           )}
         />
       </View>
+      { show
+        ?
+          <QuotesModal 
+            colors={colors}
+            label={modalLabel}
+            buttonLabel={modalButtonLabel}
+            navigation={navigation}
+            onActionPress={setShow}
+          />
+        : null
+      }
     </Base>
   )
 }
@@ -97,7 +119,6 @@ const styles = StyleSheet.create({
     marginBottom:verticalScale(10)
   },
   quoteBox: {
-    // borderBottomWidth:1,
     width:'100%',
     padding:verticalScale(15),
     paddingBottom:verticalScale(8),

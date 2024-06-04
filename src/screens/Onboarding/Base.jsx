@@ -19,7 +19,8 @@ export default function Base({
   children, 
   next, 
   label,
-  buttonLabel
+  buttonLabel,
+  onActionPress,
 }) {
 
   const theme = useGlobal(state => state.theme)
@@ -75,7 +76,7 @@ export default function Base({
         </CustomText>
         {children}
         <CustomButton
-          onClick={() => navigation.navigate(next)}
+          onClick={onActionPress ? () => onActionPress(false) : () => navigation.navigate(next)}
           style={{
             marginVertical:100,
             width:200,

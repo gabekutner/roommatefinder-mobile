@@ -424,7 +424,6 @@ export default function EditProfile({ navigation }) {
             <View style={[styles.section, { marginBottom:0 }]}>
               <TouchableOpacity
                 onPress={() => {
-                  console.log(showQuiz)
                   setShowQuiz(true)
                 }}
                 style={{ 
