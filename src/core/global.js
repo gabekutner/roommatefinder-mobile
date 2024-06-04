@@ -248,8 +248,10 @@ const useGlobal = create((set, get) => ({
     graduation_year: "",
     major: "",
     interests: [],
-    
-
+    prompts: [],
+    quotes: [],
+    links: [],
+    photos: [],
   },
   setForm: (form) => {
     set((state) => ({

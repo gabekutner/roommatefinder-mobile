@@ -36,6 +36,7 @@ import LinkTreeScreen from './src/screens/Onboarding/Widgets/LinkTree';
 import PromptsScreen from './src/screens/Onboarding/Widgets/Prompts';
 import QuotesScreen from './src/screens/Onboarding/Widgets/Quotes';
 import PhotosScreen from './src/screens/Onboarding/Photos';
+import DoneScreen from './src/screens/Onboarding/Done';
 
 
 import useGlobal from './src/core/global';
@@ -150,6 +151,11 @@ export default function App() {
             <Stack.Screen 
               name='photos'
               component={PhotosScreen}
+              options={{ headerShown:false }}
+            /> 
+            <Stack.Screen 
+              name='done'
+              component={DoneScreen}
               options={{ headerShown:false }}
             />  
             

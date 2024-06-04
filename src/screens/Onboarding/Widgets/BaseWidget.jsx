@@ -4,7 +4,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { verticalScale } from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
@@ -28,27 +28,28 @@ export default function BaseWidgetsScreen({ navigation }) {
       <View 
         style={{ 
           alignItems:'center',
-          flexDirection:'column',
+          flexDirection:'row',
           gap:10,
+          justifyContent:'center'
         }}
       >
         <CustomButton 
           onClick={() => navigation.navigate('prompts')}
-          style={{ ...styles.option, backgroundColor:colors.saltFlat }}
+          style={{ ...styles.option, backgroundColor:colors.accentDark }}
         >
-          <CustomText style={styles.optionText}>Prompts</CustomText>
+          <CustomText style={{ ...styles.optionText,  color:colors.constWhite }}>Prompts</CustomText>
         </CustomButton>
         <CustomButton 
           onClick={() => navigation.navigate('quotes')}
-          style={{ ...styles.option, backgroundColor:colors.saltFlat }}
+          style={{ ...styles.option, backgroundColor:colors.accentDark }}
         >
-          <CustomText style={styles.optionText}>Quotes</CustomText>
+          <CustomText style={{ ...styles.optionText,  color:colors.constWhite }}>Quotes</CustomText>
         </CustomButton>
         <CustomButton 
           onClick={() => navigation.navigate('linktree')}
-          style={{ ...styles.option, backgroundColor:colors.saltFlat }}
+          style={{ ...styles.option, backgroundColor:colors.accentDark }}
         >
-          <CustomText style={{ ...styles.optionText }}>LinkTree</CustomText>
+          <CustomText style={{ ...styles.optionText, color:colors.constWhite }}>LinkTree</CustomText>
         </CustomButton>
       </View>
     </Base>
@@ -57,10 +58,10 @@ export default function BaseWidgetsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    height:120,
-    width:120,
-    // backgroundColor:'#fff',
-    borderRadius:12,
+    height:verticalScale(80),
+    width:moderateScale(100),
+    borderRadius:0,
+    borderWidth:2,
     alignItems:'center',
     justifyContent:'center',
     shadowOffset: { width: 7, height: 5 },
@@ -71,6 +72,5 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize:verticalScale(12),
     fontWeight:'500',
-
   }
 })

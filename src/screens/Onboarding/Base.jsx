@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  StatusBar,
   View
 } from 'react-native';
 
@@ -33,6 +34,7 @@ export default function Base({
         backgroundColor:colors.accentDark
       }}
     >
+      <StatusBar barStyle={'light-content'}/>
       <CustomButton
         onClick={() => navigation.goBack()}
         style={{
