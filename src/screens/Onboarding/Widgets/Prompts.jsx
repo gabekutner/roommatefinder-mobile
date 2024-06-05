@@ -14,6 +14,7 @@ import PromptsModal from "./PromptsModal";
 import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
+import { prompts } from "../../../assets/Dictionary";
 import { colors as c } from "../../../assets/config";
 
 
@@ -59,8 +60,8 @@ export default function PromptsScreen({ navigation }) {
         </CustomButton>
         <FlatList 
           showsVerticalScrollIndicator={false}
-          data={userPrompts}
-          keyExtractor={item => item.id}
+          data={form.prompts}
+          keyExtractor={item => item.question}
           renderItem={({ item }) => (
             <View 
               style={{
@@ -70,7 +71,7 @@ export default function PromptsScreen({ navigation }) {
               }}
             >
               <View style={{ ...styles.questionBox }}>
-                <CustomText style={{ ...styles.question, color:colors.constWhite }}>{item.question}</CustomText>
+                <CustomText style={{ ...styles.question, color:colors.constWhite }}>{prompts[item.question-1].prompt}</CustomText>
               </View>
               <View style={{ ...styles.answerBox }}>
                 <CustomText style={{ ...styles.answer, color:colors.constWhite }}>{item.answer}</CustomText>

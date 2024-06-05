@@ -64,8 +64,8 @@ export default function LinkTreeScreen({ navigation }) {
         </CustomButton>
         <FlatList 
           showsVerticalScrollIndicator={false}
-          data={userLinks}
-          keyExtractor={item => item.id}
+          data={form.links}
+          keyExtractor={item => item.link}
           renderItem={({ item }) => (
             <View 
               style={{
@@ -81,7 +81,7 @@ export default function LinkTreeScreen({ navigation }) {
                 size={22}
                 color={colors.constWhite}
               />
-              <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>{item.link}</CustomText>
+              <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>{item.title}</CustomText>
             </View>
           )}
         />

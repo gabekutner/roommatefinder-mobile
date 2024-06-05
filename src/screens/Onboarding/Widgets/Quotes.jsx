@@ -28,7 +28,6 @@ export default function QuotesScreen({ navigation }) {
   const [show, setShow] = useState(false)
   const label = "Add your favorite quotes!"
   const modalLabel = "Add a quote!"
-  const modalButtonLabel = "Good to go"
 
   // get users quotes and populate them here
   // temporary
@@ -58,10 +57,11 @@ export default function QuotesScreen({ navigation }) {
         >
           <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>+ Add a quote</CustomText>
         </CustomButton>
+        
         <FlatList 
           showsVerticalScrollIndicator={false}
-          data={userQuotes}
-          keyExtractor={item => item.id}
+          data={form.quotes}
+          keyExtractor={item => item.quote}
           renderItem={({ item }) => (
             <View 
               style={{
@@ -79,7 +79,7 @@ export default function QuotesScreen({ navigation }) {
                 <CustomText style={{ ...styles.quote, color:colors.constWhite }}>{item.quote}</CustomText>
               </View>
               <CustomText style={{ ...styles.person, color:colors.constWhite }}>
-                - {item.person}
+                - {item.cited}
               </CustomText>
             </View>
           )}
