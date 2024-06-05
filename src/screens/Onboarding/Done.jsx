@@ -9,6 +9,9 @@ import { colors as c } from "../../assets/config";
 
 export default function DoneScreen({navigation}) {
 
+  const user = useGlobal(state => state.user)
+  const form = useGlobal(state => state.form)
+  const CreateProfile = useGlobal(state => state.CreateProfile)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
@@ -21,6 +24,7 @@ export default function DoneScreen({navigation}) {
         colors={colors}
         onClick={() => {
           console.log('submit form')
+          CreateProfile(form, user)
         }}
         text={'Done'}
       />

@@ -49,12 +49,12 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  // const initialized = useGlobal(state => state.initialized)
-  // const authenticated = useGlobal(state => state.authenticated)
-  // const profileCreated = useGlobal(state => state.profileCreated)
-  const initialized = true
-  const authenticated = true
-  const profileCreated = false
+  const initialized = useGlobal(state => state.initialized)
+  const authenticated = useGlobal(state => state.authenticated)
+  const profileCreated = useGlobal(state => state.profileCreated)
+  // const initialized = true
+  // const authenticated = true
+  // const profileCreated = false
   const init = useGlobal(state => state.init)
   const theme = useGlobal(state => state.theme)
   const activeColors = c[theme]
