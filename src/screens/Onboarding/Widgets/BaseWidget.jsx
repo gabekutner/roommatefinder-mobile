@@ -26,8 +26,6 @@ export default function BaseWidgetsScreen({ navigation }) {
   const colors = c[theme]
   const label = "Customize your profile with prompts, quotes, and social handles!"
 
-  // console.log(form)
-
   return (
     <Base navigation={navigation} label={label} >
       <View 
@@ -59,7 +57,10 @@ export default function BaseWidgetsScreen({ navigation }) {
       </View>
       <CustomNextButton 
         colors={colors}
-        onClick={() => navigation.navigate('photos')}
+        onClick={() => {
+          // navigation.navigate('photos')
+          console.log(form)
+        }}
         text={'Next Step'}
       />
     </Base>

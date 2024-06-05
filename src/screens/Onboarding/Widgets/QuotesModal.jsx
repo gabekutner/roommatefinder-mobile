@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View
 } from 'react-native';
@@ -9,24 +9,36 @@ import {
 } from 'react-native-size-matters';
 
 import BaseWidgetModal from "./BaseWidgetModal";
-import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomNextButton from "../CustomNextButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import CustomLabel from "../../../components/UI/Label";
+import useGlobal from "../../../core/global";
 
 
 export default function QuotesModal({
   colors,
   label,
-  buttonLabel,
   navigation,
   onActionPress,
 }) {
+
+  const form = useGlobal(state => state.form)
+  const setForm = useGlobal(state => state.setForm)
+
+  const [quote, setQuote] = useState({
+    quote: '',
+    cited: ''
+  })
+  const handleQuote = () => {
+    const arr = [...form.quotes]
+    arr.push({ quote:quote.quote, cited:quote.cited })
+    setForm({ ...form, quotes:arr })
+  }
+
   return (
     <BaseWidgetModal
       colors={colors}
       label={label}
-      // buttonLabel={buttonLabel}
       navigation={navigation}
       onActionPress={onActionPress}
     >
@@ -35,8 +47,8 @@ export default function QuotesModal({
         <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. If you want to make the world a better place, take a look at yourself and make a change. Hooo.'}
-          // value={form.graduation_year}
-          // onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
+          value={quote.quote}
+          onChangeText={input => setQuote({ ...quote, quote:input })}
           colors={colors}
           multiline={true}
           style={{
@@ -58,8 +70,8 @@ export default function QuotesModal({
           <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. Lego Batman'}
-          // value={form.graduation_year}
-          // onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
+          value={quote.cited}
+          onChangeText={input => setQuote({ ...quote, cited:input })}
           colors={colors}
           style={{
             marginTop:verticalScale(5),
@@ -79,6 +91,8 @@ export default function QuotesModal({
         colors={colors}
         onClick={() => {
           console.log('submitted quotes')
+          handleQuote()
+          navigation.navigate('widgets')
         }}
         text={'Good to go!'}
       />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View
 } from 'react-native';
@@ -13,6 +13,7 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import CustomLabel from "../../../components/UI/Label";
 import CustomNextButton from "../CustomNextButton";
+import useGlobal from "../../../core/global";
 
 
 export default function LinkTreeModal({
@@ -20,6 +21,20 @@ export default function LinkTreeModal({
   label,
   navigation,
 }) {
+
+  const form = useGlobal(state => state.form)
+  const setForm = useGlobal(state => state.setForm)
+
+  const [linkTree, setLinkTree] = useState({
+    title: '',
+    link: ''
+  })
+  const handleLinkTree = () => {
+    const arr = [...form.links]
+    arr.push({ title:linkTree.title, link:linkTree.link })
+    setForm({ ...form, links:arr })
+  }
+
   return (
     <BaseWidgetModal
       colors={colors}
@@ -31,8 +46,8 @@ export default function LinkTreeModal({
         <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. Instagram'}
-          // value={form.graduation_year}
-          // onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
+          value={linkTree.title}
+          onChangeText={input => setLinkTree({ ...linkTree, title:input })}
           colors={colors}
           style={{
             marginTop:verticalScale(5),
@@ -51,6 +66,8 @@ export default function LinkTreeModal({
         <CustomTextInput 
         autoCorrect={false}
         placeholder={'Ex. https://'}
+        value={linkTree.link}
+        onChangeText={input => setLinkTree({ ...linkTree, link:input })}
         colors={colors}
         style={{
           marginTop:verticalScale(5),
@@ -68,7 +85,8 @@ export default function LinkTreeModal({
       <CustomNextButton 
         colors={colors}
         onClick={() => {
-          console.log('submitted linktree')
+          handleLinkTree()
+          navigation.navigate('widgets')
         }}
         text={'Good to go!'}
       />

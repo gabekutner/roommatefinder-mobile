@@ -33,17 +33,21 @@ export default function PromptsModal({
   const setForm = useGlobal(state => state.setForm)
 
   const [selected, setSelected] = useState("")
-  const [answer, setAnswer] = useState("")
+
+  const [prompt, setPrompt] = useState({
+    question: '',
+    answer: ''
+  })
+  const handlePrompt = () => {
+    const arr = [...form.prompts]
+    arr.push({ question:prompt.question, answer:prompt.answer })
+    setForm({ ...form, prompts:arr })
+  }
 
   const toggleSelected = (key) => {
     setSelected(key)
+    setPrompt({ ...prompt, question:key })
   }
-
-  // const setPrompt = () => {
-  //   const arr = [...form.prompts]
-  //   arr.push({ question:selected, answer:answer })
-  //   setForm({ ...form, prompts:arr })
-  // }
 
   return (
     <BaseWidgetModal
@@ -97,8 +101,8 @@ export default function PromptsModal({
         <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. '}
-          value={answer}
-          onChangeText={input => setAnswer(input)}
+          value={prompt.answer}
+          onChangeText={input => setPrompt({ ...prompt, answer:input })}
           colors={colors}
           multiline={true}
           style={{
@@ -120,7 +124,8 @@ export default function PromptsModal({
       <CustomNextButton 
         colors={colors}
         onClick={() => {
-          console.log('submitted prompts')
+          handlePrompt()
+          navigation.navigate('widgets')
         }}
         text={'Good to go!'}
       />
