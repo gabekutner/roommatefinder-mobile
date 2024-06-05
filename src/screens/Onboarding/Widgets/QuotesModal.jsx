@@ -10,6 +10,7 @@ import {
 
 import BaseWidgetModal from "./BaseWidgetModal";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomNextButton from "../CustomNextButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import CustomLabel from "../../../components/UI/Label";
 
@@ -25,7 +26,7 @@ export default function QuotesModal({
     <BaseWidgetModal
       colors={colors}
       label={label}
-      buttonLabel={buttonLabel}
+      // buttonLabel={buttonLabel}
       navigation={navigation}
       onActionPress={onActionPress}
     >
@@ -74,6 +75,13 @@ export default function QuotesModal({
           }}
         />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => {
+          console.log('submitted quotes')
+        }}
+        text={'Good to go!'}
+      />
     </BaseWidgetModal>
   )
 }

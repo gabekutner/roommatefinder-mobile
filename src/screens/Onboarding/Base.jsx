@@ -5,7 +5,10 @@ import {
   View
 } from 'react-native';
 
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import { 
+  moderateScale, 
+  verticalScale 
+} from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import CustomButton from '../../components/UI/Custom/CustomButton';
@@ -18,10 +21,7 @@ import { colors as c } from '../../assets/config';
 export default function Base({ 
   navigation, 
   children, 
-  next, 
   label,
-  buttonLabel,
-  onActionPress,
 }) {
 
   const theme = useGlobal(state => state.theme)
@@ -77,32 +77,6 @@ export default function Base({
           {label}
         </CustomText>
         {children}
-        <CustomButton
-          onClick={onActionPress ? () => onActionPress(false) : () => navigation.navigate(next)}
-          style={{
-            marginVertical:100,
-            width:200,
-            borderWidth:2,
-            borderColor:colors.constBlack,
-            borderRadius:0,
-            backgroundColor:colors.accentDark,
-            shadowColor: '#222',
-            shadowOffset: { width: 7, height: 5 },
-            shadowOpacity: 1,
-            shadowRadius: 1,  
-            alignSelf:'center'
-          }}
-        >
-          <CustomText
-            style={{
-              fontSize:verticalScale(15),
-              fontWeight:'600',
-              color:colors.constWhite,
-            }}
-          >
-            {buttonLabel}
-          </CustomText>
-        </CustomButton>
       </View>
     </SafeAreaView>
   )

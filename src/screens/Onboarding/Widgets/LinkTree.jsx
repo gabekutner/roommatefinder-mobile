@@ -11,11 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomNextButton from "../CustomNextButton";
+import LinkTreeModal from "./LinkTreeModal";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
-import BaseWidgetModal from "./BaseWidgetModal";
-import LinkTreeModal from "./LinkTreeModal";
 
 
 export default function LinkTreeScreen({ navigation }) {
@@ -91,12 +91,15 @@ export default function LinkTreeScreen({ navigation }) {
           <LinkTreeModal 
             colors={colors}
             label={modalLabel}
-            buttonLabel={modalButtonLabel}
             navigation={navigation}
-            onActionPress={setShow}
           />
         : null
       }
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('widgets')}
+        text={'All Done'}
+      />
     </Base>
 
   )

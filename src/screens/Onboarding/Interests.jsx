@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -12,6 +12,7 @@ import {
 
 import Base from "./Base";
 import CustomText from "../../components/UI/Custom/CustomText";
+import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
@@ -26,7 +27,6 @@ export default function InterestsScreen({ navigation }) {
   const colors = c[theme]
 
   const label = "I'm into ..."
-  const buttonLabel = "Next Step"
 
   function handleOnClick(id, form, setForm) {
     const arr = [...form.interests]
@@ -44,7 +44,7 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <Base navigation={navigation} next={'widgets'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -93,7 +93,12 @@ export default function InterestsScreen({ navigation }) {
         }}
       >
         Choose 1 to 5 interests!
-      </CustomText>       
+      </CustomText>  
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('widgets')}
+        text={'Next Step'}
+      />    
     </Base>
   )
 }

@@ -12,6 +12,7 @@ import {
 
 import Base from "./Base";
 import CustomText from "../../components/UI/Custom/CustomText";
+import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
@@ -31,10 +32,9 @@ export default function SexScreen({ navigation }) {
   }
 
   const label = "I am a ..."
-  const buttonLabel = "Next Step"
 
   return (
-    <Base navigation={navigation} next={'hometown'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View 
         style={{ 
           flexDirection:'column', 
@@ -94,6 +94,11 @@ export default function SexScreen({ navigation }) {
           </CustomText>
         </TouchableOpacity>
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('hometown')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

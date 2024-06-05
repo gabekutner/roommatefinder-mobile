@@ -7,6 +7,7 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import Base from "./Base";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
@@ -19,17 +20,20 @@ export default function HomeTownScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I'm from ..."
-  const buttonLabel = "Next Step"
 
+  const setHometown = (input) => {
+    var hometown = input.split(', ')
+    setForm({ ...form, city:hometown[0], state:hometown[1] })
+  }
 
   return (
-    <Base navigation={navigation} next={'graduation_year'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
         autoCorrect={false}
         placeholder={'Ex. San Francisco, CA'}
         value={form.hometown}
-        onChangeText={hometown => setForm({ ...form, hometown:hometown })}
+        onChangeText={input => setHometown(input)}
         colors={colors}
         style={{
           height:verticalScale(45),
@@ -44,6 +48,11 @@ export default function HomeTownScreen({ navigation }) {
         }}
       />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('graduation_year')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

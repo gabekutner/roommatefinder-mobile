@@ -11,6 +11,7 @@ import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import PromptsModal from "./PromptsModal";
+import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
@@ -25,7 +26,6 @@ export default function PromptsScreen({ navigation }) {
 
   const [show, setShow] = useState(false)
   const label = "Answer a couple questions!"
-  const buttonLabel = "That's good"
   const modalLabel = "Add a prompt!"
   const modalButtonLabel = "Good to go"
 
@@ -40,7 +40,7 @@ export default function PromptsScreen({ navigation }) {
   ]
 
   return (
-    <Base navigation={navigation} next={'widgets'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label}>
       <View 
         style={{ 
           alignItems:'center',
@@ -84,12 +84,15 @@ export default function PromptsScreen({ navigation }) {
           <PromptsModal 
             colors={colors}
             label={modalLabel}
-            buttonLabel={modalButtonLabel}
             navigation={navigation}
-            onActionPress={setShow}
           />
         : null
       }
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('widgets')}
+        text={'All Done'}
+      />
     </Base>
   )
 }

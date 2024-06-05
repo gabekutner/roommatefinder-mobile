@@ -6,15 +6,16 @@ import {
 } from 'react-native';
 
 import { verticalScale } from "react-native-size-matters";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import QuotesModal from "./QuotesModal";
+import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 export default function QuotesScreen({ navigation }) {
@@ -26,7 +27,6 @@ export default function QuotesScreen({ navigation }) {
 
   const [show, setShow] = useState(false)
   const label = "Add your favorite quotes!"
-  const buttonLabel = "That's good"
   const modalLabel = "Add a quote!"
   const modalButtonLabel = "Good to go"
 
@@ -41,7 +41,7 @@ export default function QuotesScreen({ navigation }) {
   ]
 
   return (
-    <Base navigation={navigation} next={'widgets'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View 
         style={{ 
           alignItems:'center',
@@ -90,12 +90,15 @@ export default function QuotesScreen({ navigation }) {
           <QuotesModal 
             colors={colors}
             label={modalLabel}
-            buttonLabel={modalButtonLabel}
             navigation={navigation}
-            onActionPress={setShow}
           />
         : null
       }
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('widgets')}
+        text={'All Done'}
+      />
     </Base>
   )
 }

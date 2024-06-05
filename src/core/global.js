@@ -242,9 +242,10 @@ const useGlobal = create((set, get) => ({
 	//    Create Profile
 	//---------------------
   form: {
-    age: new Date(),
+    birthday: new Date(),
     sex: "",
-    hometown: "",
+    city: "",
+    state: "",
     graduation_year: "",
     major: "",
     interests: [],

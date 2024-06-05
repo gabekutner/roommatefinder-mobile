@@ -10,6 +10,7 @@ import {
 
 import Base from "./Base";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
@@ -22,20 +23,19 @@ export default function GraduationYearScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I'll graduate in ..."
-  const buttonLabel = "Next Step"
 
+  const setGradYear = (input) => {
+    setForm({ ...form, graduation_year:input })
+  }
 
   return (
-    <Base navigation={navigation} next={'major'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
-        // autoCapitalize={'none'}
         autoCorrect={false}
-        // keyboardType={'email-address'}
-        // keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
         placeholder={'Ex. 2028'}
         value={form.graduation_year}
-        onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
+        onChangeText={input => setGradYear(input)}
         colors={colors}
         style={{
           height:verticalScale(45),
@@ -50,6 +50,11 @@ export default function GraduationYearScreen({ navigation }) {
         }}
       />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('major')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

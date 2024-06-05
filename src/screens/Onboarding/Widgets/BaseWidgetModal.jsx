@@ -8,11 +8,9 @@ import Base from "../Base";
 
 
 export default function BaseWidgetModal({
+  navigation,
   colors,
   label,
-  buttonLabel,
-  navigation,
-  onActionPress,
   children
 }) {
 
@@ -42,10 +40,7 @@ export default function BaseWidgetModal({
         >
           <Base 
             navigation={navigation} 
-            next={''}
             label={label}
-            buttonLabel={buttonLabel}
-            onActionPress={() => onActionPress()}
           >
             {children}
           </Base>

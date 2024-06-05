@@ -10,6 +10,7 @@ import {
 
 import Base from "./Base";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
@@ -22,17 +23,19 @@ export default function MajorScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "I want to major in ... "
-  const buttonLabel = "Next Step"
 
+  const setMajor = (input) => {
+    setForm({ ...form, major:input })
+  }
 
   return (
-    <Base navigation={navigation} next={'interests'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View style={{ alignItems:'center' }}>
       <CustomTextInput 
         autoCorrect={false}
         placeholder={'Ex. Business'}
         value={form.major}
-        onChangeText={major => setForm({ ...form, major:major })}
+        onChangeText={input => setMajor(input)}
         colors={colors}
         style={{
           height:verticalScale(45),
@@ -47,6 +50,11 @@ export default function MajorScreen({ navigation }) {
         }}
       />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('interests')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

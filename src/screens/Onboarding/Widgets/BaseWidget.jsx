@@ -4,11 +4,15 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { moderateScale, verticalScale } from "react-native-size-matters";
+import { 
+  moderateScale, 
+  verticalScale 
+} from "react-native-size-matters";
 
 import Base from "../Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
 import { colors as c } from "../../../assets/config";
@@ -21,10 +25,11 @@ export default function BaseWidgetsScreen({ navigation }) {
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
   const label = "Customize your profile with prompts, quotes, and social handles!"
-  const buttonLabel = "Next Step"
+
+  // console.log(form)
 
   return (
-    <Base navigation={navigation} next={'photos'} label={label} buttonLabel={buttonLabel} >
+    <Base navigation={navigation} label={label} >
       <View 
         style={{ 
           alignItems:'center',
@@ -52,6 +57,11 @@ export default function BaseWidgetsScreen({ navigation }) {
           <CustomText style={{ ...styles.optionText, color:colors.constWhite }}>LinkTree</CustomText>
         </CustomButton>
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('photos')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

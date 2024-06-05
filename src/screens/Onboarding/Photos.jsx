@@ -17,6 +17,7 @@ import FastImage from "react-native-fast-image";
 import Base from "./Base";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from "../../components/UI/Custom/CustomText";
+import CustomNextButton from './CustomNextButton';
 import useGlobal from "../../core/global";
 import { colors as c } from "../../assets/config";
 
@@ -141,6 +142,11 @@ export default function PhotosScreen({ navigation }) {
           </View>
         </View>
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => navigation.navigate('done')}
+        text={'Next Step'}
+      />
     </Base>
   )
 }

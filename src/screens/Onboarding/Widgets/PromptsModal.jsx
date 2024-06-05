@@ -16,8 +16,10 @@ import BaseWidgetModal from "./BaseWidgetModal";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomLabel from "../../../components/UI/Label";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
+import CustomNextButton from "../CustomNextButton";
 
 import { prompts } from "../../../assets/Dictionary";
+import useGlobal from "../../../core/global";
 
 
 export default function PromptsModal({
@@ -27,12 +29,21 @@ export default function PromptsModal({
   navigation,
   onActionPress,
 }) {
+  const form = useGlobal(state => state.form)
+  const setForm = useGlobal(state => state.setForm)
 
   const [selected, setSelected] = useState("")
-  function toggleSelected(key) {
+  const [answer, setAnswer] = useState("")
+
+  const toggleSelected = (key) => {
     setSelected(key)
-    // setForm({ ...form, sex:key })
   }
+
+  // const setPrompt = () => {
+  //   const arr = [...form.prompts]
+  //   arr.push({ question:selected, answer:answer })
+  //   setForm({ ...form, prompts:arr })
+  // }
 
   return (
     <BaseWidgetModal
@@ -50,12 +61,12 @@ export default function PromptsModal({
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => toggleSelected(item.prompt)}
+              onPress={() => toggleSelected(item.id)}
               style={[
                 styles.option, 
                 {
                   borderColor: colors.constBlack,
-                  backgroundColor:selected === item.prompt ? colors.wasatchSun : colors.accentDark,
+                  backgroundColor:selected === item.id ? colors.wasatchSun : colors.accentDark,
                   shadowColor: '#222',
                   shadowOffset: { width: 7, height: 5 },
                   shadowOpacity: 1,
@@ -67,7 +78,7 @@ export default function PromptsModal({
                 style={[
                   styles.text, 
                   { 
-                    color:selected === item.prompt ? colors.tint : colors.constWhite
+                    color:selected === item.id ? colors.tint : colors.constWhite
                   }
                 ]}
               >
@@ -86,8 +97,8 @@ export default function PromptsModal({
         <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. '}
-          // value={form.graduation_year}
-          // onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
+          value={answer}
+          onChangeText={input => setAnswer(input)}
           colors={colors}
           multiline={true}
           style={{
@@ -106,6 +117,13 @@ export default function PromptsModal({
           }}
         />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => {
+          console.log('submitted prompts')
+        }}
+        text={'Good to go!'}
+      />
     </BaseWidgetModal>
   )
 }

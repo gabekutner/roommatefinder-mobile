@@ -12,22 +12,19 @@ import BaseWidgetModal from "./BaseWidgetModal";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import CustomLabel from "../../../components/UI/Label";
+import CustomNextButton from "../CustomNextButton";
 
 
 export default function LinkTreeModal({
   colors,
   label,
-  buttonLabel,
   navigation,
-  onActionPress,
 }) {
   return (
     <BaseWidgetModal
       colors={colors}
       label={label}
-      buttonLabel={buttonLabel}
       navigation={navigation}
-      onActionPress={onActionPress}
     >
       <View style={{ alignItems:'center', marginTop:verticalScale(10) }}>
         <CustomLabel color={colors.constWhite} label={'Add the title of your link!'} />
@@ -54,8 +51,6 @@ export default function LinkTreeModal({
         <CustomTextInput 
         autoCorrect={false}
         placeholder={'Ex. https://'}
-        // value={form.graduation_year}
-        // onChangeText={graduation_year => setForm({ ...form, graduation_year:graduation_year })}
         colors={colors}
         style={{
           marginTop:verticalScale(5),
@@ -67,10 +62,16 @@ export default function LinkTreeModal({
           borderWidth:2,
           borderColor:colors.constBlack,
           fontSize:verticalScale(14),
-          // width:moderateScale(200)
         }}
       />
       </View>
+      <CustomNextButton 
+        colors={colors}
+        onClick={() => {
+          console.log('submitted linktree')
+        }}
+        text={'Good to go!'}
+      />
     </BaseWidgetModal>
   )
 }
