@@ -8,74 +8,46 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { 
-  scale, 
+  moderateScale,
   verticalScale 
 } from 'react-native-size-matters';
 
 import CustomText from "../components/UI/Custom/CustomText";
-import Title from '../components/UI/Title';
+// import Title from '../components/UI/Title';
+import Title from "../components/Brand/Title";
+
 import Friends from "./Friends";
 import Profile from "./Profile/Profile";
 import Swipe from "./SwipeScreen";
 
 import useGlobal from "../core/global";
-import { colors as c } from '../assets/config';
+// import { colors as c } from '../assets/config';
+import { colors } from "../constants/colors";
 
 
 const Tab = createBottomTabNavigator()
 
 
-function HeaderLogo({ colors }) {
-  return (
-    <View 
-      style={{ 
-        flexDirection:'row', 
-        flexWrap:'wrap', 
-        alignItems:'center', 
-        marginLeft:17, 
-        width:'110%' 
-      }}
-    >
-      <Image 
-        source={require('../assets/images/uofulogo-clear_prev_ui.png')}
-        style={{ 
-          width:35, 
-          height:30, 
-        }} 
-      />
-      <Title 
-        text="RoommateFinder"
-        style={{
-          padding:5, 
-          fontSize:scale(16), 
-          color:colors.tint, 
-          fontFamily:'Acme-Regular'
-        }}
-      />
-    </View>
-  )
-}
-
-function ThemeSwitch({ colors, theme, onChange }) {
-  return (
-    <TouchableOpacity
-      onPress={onChange}
-    >
-      { theme === 'dark' ? 
-        <FontAwesomeIcon 
-          icon='sun'
-          size={27}
-          color={colors.tint}
-        /> 
-        : 
-        <FontAwesomeIcon 
-          icon='moon'
-          size={27}
-        />
-      }
-    </TouchableOpacity>
-  )
-}
+// function ThemeSwitch({ colors, theme, onChange }) {
+//   return (
+//     <TouchableOpacity
+//       onPress={onChange}
+//     >
+//       { theme === 'dark' ? 
+//         <FontAwesomeIcon 
+//           icon='sun'
+//           size={27}
+//           color={colors.tint}
+//         /> 
+//         : 
+//         <FontAwesomeIcon 
+//           icon='moon'
+//           size={27}
+//         />
+//       }
+//     </TouchableOpacity>
+//   )
+// }
 
 
 export default function HomeScreen() {
@@ -83,8 +55,8 @@ export default function HomeScreen() {
   const socketConnect = useGlobal(state => state.socketConnect)
   const socketDisconnect = useGlobal(state => state.socketDisconnect)
   const setTheme = useGlobal(state => state.setTheme)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
+  // const theme = useGlobal(state => state.theme)
+  // const colors = c[theme]
 
   const toggleSwitch = () => {
     setTheme()
@@ -101,7 +73,6 @@ export default function HomeScreen() {
     <Tab.Navigator
       initialRouteName="swipe"
       screenOptions={({ route }) => ({
-        // https://fontawesome.com/search
         tabBarIcon: ({ color }) => {
 					const icons = {
 						swipe: 'home',
@@ -141,7 +112,8 @@ export default function HomeScreen() {
         name="swipe" 
         component={Swipe} 
         options={({ navigation }) => ({
-          headerLeft: () => <HeaderLogo colors={colors}/>,
+          headerTitle: () => <Title color={colors.tint} fontSize={verticalScale(20)} />,
+          headerTitleAlign:'left',
           headerRight: () => (
             <View 
               style={{ 
@@ -150,22 +122,18 @@ export default function HomeScreen() {
                 marginRight:17 
               }}
             >
-              <ThemeSwitch 
-                colors={colors} 
-                theme={theme} 
-                onChange={toggleSwitch} 
-              />
-              <TouchableOpacity onPress={() => navigation.navigate('requests')}>
+              <TouchableOpacity 
+                onPress={() => {}}
+              >
                 <FontAwesomeIcon 
-                  icon="bell"
-                  size={27}
+                  icon='ellipsis-vertical'
+                  size={verticalScale(20)}
                   color={colors.tint}
                 />
               </TouchableOpacity>
             </View>
             
           ),
-          title: '',
           headerStyle: {
             backgroundColor:colors.primary,
           },

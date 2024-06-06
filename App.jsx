@@ -24,6 +24,7 @@ import Settings from './src/screens/Settings';
 import PhotoUpload from './src/screens/PhotoUpload';
 import CreateProfilePrompt from './src/screens/Profile/Create/CreateProfilePrompt';
 
+// import AppStack from './src/routes/AppStack';
 
 import AgeScreen from './src/screens/Onboarding/Age';
 import SexScreen from './src/screens/Onboarding/Sex';
@@ -42,6 +43,11 @@ import DoneScreen from './src/screens/Onboarding/Done';
 
 import useGlobal from './src/core/global';
 import { colors as c } from './src/assets/config';
+
+
+import SplashStack from './src/routes/SplashStack';
+import AuthStack from './src/routes/AuthStack';
+import AppStack from './src/routes/AppStack';
 
 
 const Stack = createNativeStackNavigator()
@@ -63,11 +69,55 @@ export default function App() {
     init()
   }, [])
 
-  return (
-    <NavigationContainer>
-      <StatusBar barStyle={activeColors.primary === '#1f2937' ? 'light-content' : 'dark-content'} />
+  if (!initialized) {
+    return (
+      <NavigationContainer>
+        <SplashStack />
+      </NavigationContainer>
+    )
+  } else if (!authenticated) {
+    return (
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
+    )
+  } else {
+    return (
+      <NavigationContainer>
+        <AppStack />
+      </NavigationContainer>
+    )
+  }
+    
+  // if (initialized && authenticated) {
+  //   return (
+  //     <NavigationContainer>
+  //       <AppStack />
+  //     </NavigationContainer>
+  //   )
+  // }
+  
 
-      <Stack.Navigator>
+  // if (!authenticated) return <
+
+  // if (initialized && authenticated && profileCreated) {
+    // return (
+    //   <NavigationContainer>
+    //     <AppStack />
+    //   </NavigationContainer>
+    // )
+  // }
+
+  // return (
+    // <NavigationContainer>
+    //   <StatusBar barStyle={activeColors.primary === '#1f2937' ? 'light-content' : 'dark-content'} />
+
+      {/* { initialized authenticated profileCreated 
+        ? <AppStack />
+        : null 
+      } */}
+
+      {/* <Stack.Navigator>
         {!initialized ? (
             <Stack.Screen 
               name='splash' 
@@ -168,92 +218,92 @@ export default function App() {
             
           </>
         ) : (
-          <>
-            <Stack.Screen 
-              name='home' 
-              component={Home} 
-              options={{ headerShown:false }}
-            />
-            <Stack.Screen 
-              name='search' 
-              component={Search} 
-              options={{ headerShown:false }}
-            />
-            <Stack.Screen 
-              name='messages' 
-              component={Message} 
-            />
-            <Stack.Screen 
-              name='requests' 
-              component={Requests} 
-              options={({ navigation }) => ({
-                headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <FontAwesomeIcon 
-                      icon='arrow-left'
-                      size={22}
-                      color={activeColors.tint}
-                    />
-                  </TouchableOpacity>
-                ), 
-                title: 'Friend Requests',
-                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
-                headerStyle: {
-                  backgroundColor:activeColors.primary,
-                },
-                headerShadowVisible: false, // border bottom invisible
-              })}
-            />
-            <Stack.Screen 
-              name='edit-profile'
-              component={EditProfile}
-              options={({ navigation }) => ({
-                headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <FontAwesomeIcon 
-                      icon='arrow-left'
-                      size={22}
-                      color={activeColors.tint}
-                    />
-                  </TouchableOpacity>
-                ), 
-                title: 'Edit Profile',
-                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
-                headerStyle: {
-                  backgroundColor:activeColors.primary,
-                },
-                headerShadowVisible: false, // border bottom invisible
-              })}
-            />
-            <Stack.Screen 
-              name="settings"
-              component={Settings}
-              options={{ headerShown:false }}
-            />
-            <Stack.Screen 
-              name='photo-upload'
-              component={PhotoUpload}
-              options={({ navigation }) => ({
-                headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <FontAwesomeIcon 
-                      icon='arrow-left'
-                      size={22}
-                      color={activeColors.tint}
-                    />
-                  </TouchableOpacity>
-                ), 
-                title: 'Upload Photos',
-                headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
-                headerStyle: {
-                  backgroundColor:activeColors.primary,
-                },
-                headerShadowVisible: false, // border bottom invisible
-              })}
-            />
-          </>
+          // <>
+          //   <Stack.Screen 
+          //     name='home' 
+          //     component={Home} 
+          //     options={{ headerShown:false }}
+          //   />
+          //   <Stack.Screen 
+          //     name='search' 
+          //     component={Search} 
+          //     options={{ headerShown:false }}
+          //   />
+          //   <Stack.Screen 
+          //     name='messages' 
+          //     component={Message} 
+          //   />
+          //   <Stack.Screen 
+          //     name='requests' 
+          //     component={Requests} 
+          //     options={({ navigation }) => ({
+          //       headerLeft: () => (
+          //         <TouchableOpacity onPress={() => navigation.goBack()}>
+          //           <FontAwesomeIcon 
+          //             icon='arrow-left'
+          //             size={22}
+          //             color={activeColors.tint}
+          //           />
+          //         </TouchableOpacity>
+          //       ), 
+          //       title: 'Friend Requests',
+          //       headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          //       headerStyle: {
+          //         backgroundColor:activeColors.primary,
+          //       },
+          //       headerShadowVisible: false, // border bottom invisible
+          //     })}
+          //   />
+          //   <Stack.Screen 
+          //     name='edit-profile'
+          //     component={EditProfile}
+          //     options={({ navigation }) => ({
+          //       headerLeft: () => (
+          //         <TouchableOpacity onPress={() => navigation.goBack()}>
+          //           <FontAwesomeIcon 
+          //             icon='arrow-left'
+          //             size={22}
+          //             color={activeColors.tint}
+          //           />
+          //         </TouchableOpacity>
+          //       ), 
+          //       title: 'Edit Profile',
+          //       headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          //       headerStyle: {
+          //         backgroundColor:activeColors.primary,
+          //       },
+          //       headerShadowVisible: false, // border bottom invisible
+          //     })}
+          //   />
+          //   <Stack.Screen 
+          //     name="settings"
+          //     component={Settings}
+          //     options={{ headerShown:false }}
+          //   />
+          //   <Stack.Screen 
+          //     name='photo-upload'
+          //     component={PhotoUpload}
+          //     options={({ navigation }) => ({
+          //       headerLeft: () => (
+          //         <TouchableOpacity onPress={() => navigation.goBack()}>
+          //           <FontAwesomeIcon 
+          //             icon='arrow-left'
+          //             size={22}
+          //             color={activeColors.tint}
+          //           />
+          //         </TouchableOpacity>
+          //       ), 
+          //       title: 'Upload Photos',
+          //       headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          //       headerStyle: {
+          //         backgroundColor:activeColors.primary,
+          //       },
+          //       headerShadowVisible: false, // border bottom invisible
+          //     })}
+          //   />
+          // </>
         )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+      </Stack.Navigator> */}
+    // </NavigationContainer>
+  // )
 }

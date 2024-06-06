@@ -15,7 +15,8 @@ import CustomText from '../components/UI/Custom/CustomText';
 import CardItem from '../components/Card';
 
 import useGlobal from '../core/global';
-import { colors as c } from '../assets/config'; 
+// import { colors as c } from '../assets/config'; 
+import { colors } from '../constants/colors';
 
 const { width } = Dimensions.get('window')
 const offset = width / 5
@@ -25,8 +26,6 @@ export default function Swipe({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const getSwipe = useGlobal(state => state.getSwipe)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   const opacity = useRef(new Animated.Value(0)).current
   const [data, setData] = useState([])
@@ -36,16 +35,10 @@ export default function Swipe({ navigation }) {
     fetchData(page)
   }, [page])
 
-  useEffect(() => {
-    // if (user)
-  }, [])
-
   const fetchData = async(page) => {
     try {
       const response = await getSwipe(user, page)
       if (response === 404) {
-        // what to do if user has scrolled through all the users
-        // set to 0, will render a 'ran out of profiles' message
         const response = await getSwipe(user, 1)
         const userData = await response.data.results
         setData(userData)
@@ -72,16 +65,12 @@ export default function Swipe({ navigation }) {
     })
   }
 
-  if (data.length === 0) {
-    return (
-      <Empty icon='hourglass' message='You ran out of people.' colors={colors} />
-    )
-  }
+  if (data.length === 0) return <Empty icon='hourglass' message='You ran out of people.' colors={colors} />
 
   return (
     <View style={[styles.container, { backgroundColor: colors.primary }]}>
       <Animated.View
-        style={[StyleSheet.absoluteFill, {opacity: opacity}]}
+        style={[StyleSheet.absoluteFill, { opacity: opacity }]}
         ref={e => (this.containerRef = e)}
       />
       <View style={styles.container}>
@@ -100,7 +89,7 @@ export default function Swipe({ navigation }) {
                 />
               ))}
             </>
-          : <></> 
+          : null
         }
       </View>
     </View>
@@ -167,14 +156,14 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
         style={{
           backgroundColor: colors.secondary,
           borderColor: colors.constBlack,
-          borderWidth: 2,
+          borderWidth: 3,
           transform: [
             { translateX: pan.x },
             { rotate: rotate },
           ],
           width: 90 - index * 1 + '%',
           marginTop: index * 10,
-          height: verticalScale(450),
+          height: verticalScale(490),
         }}
       >
         <CardItem navigation={navigation} item={item} colors={colors} />

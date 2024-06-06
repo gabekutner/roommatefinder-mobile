@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import CustomButton from './Custom/CustomButton';
 import CustomText from './Custom/CustomText';
 
-import utils from '../../core/utils';
 import useGlobal from '../../core/global';
 import { dormsData, interestsData } from '../../assets/Dictionary';
 
@@ -21,7 +20,6 @@ const { width } = Dimensions.get('window');
 
 
 export default function DetailBottomSheet({ 
-  navigation,
   item, 
   setShow, 
   colors,
@@ -37,7 +35,7 @@ export default function DetailBottomSheet({
         flex:1,
         overflow:'hidden',
         padding:20,
-        borderRadius:10,
+        borderTopWidth:2,
         minHeight:'30%',
         maxHeight:'40%',
       }}

@@ -6,12 +6,14 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import FastImage from 'react-native-fast-image';
-import {LinearGradient} from 'react-native-linear-gradient';
+import { LinearGradient } from 'react-native-linear-gradient';
 
+import CircleButton from './UI/CircleButton';
 import Snackbar from './UI/SnackBar';
 import FastImageBackground from './UI/FastImageBackground';
 import InfoCard from './InfoCard';
 import SwipeProfileModal from './UI/SwipeProfileModal';
+import { verticalScale } from 'react-native-size-matters';
 
 
 export default function CardItem({ item, colors }) {
@@ -45,32 +47,13 @@ export default function CardItem({ item, colors }) {
         url={item.thumbnail}
       >
         <InfoCard name={item.name} age={item.age} dorm={item.dorm_building} colors={colors} />
-        <TouchableOpacity
-          onPress={() => setShow(true)}
-          style={{
-            width:50,
-            height:50,
-            borderRadius:100,
-            justifyContent:'center',
-            alignItems:'center',
-            alignSelf:'flex-end',
-            marginVertical:15,
-            marginHorizontal:15,
-            padding:10,
-            backgroundColor:colors.accent,
-            zIndex:1,
-            shadowColor: '#222',
-            shadowOffset: { width: 2, height: 1 },
-            shadowOpacity: 1,
-            shadowRadius: 1,  
-          }}
-        >
-          <FontAwesomeIcon 
-            icon="arrow-up"
-            size={30}
-            color={colors.primary}
-          />
-        </TouchableOpacity>
+        <CircleButton 
+          backgroundColor={colors.primary} 
+          iconColor={'#222'} 
+          onPress={() => setShow(true)} 
+          size={verticalScale(24)}
+          icon={'arrow-up'}
+        />
         <LinearGradient
           colors={['rgba(255, 255, 255, 0)', '#222']} // Transparent to black
           locations={[0, 1]} // Position stops
@@ -85,7 +68,6 @@ export default function CardItem({ item, colors }) {
         />
       </FastImageBackground>
       
-
       { show
         ?
           <SwipeProfileModal 

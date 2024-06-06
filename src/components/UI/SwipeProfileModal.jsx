@@ -12,7 +12,6 @@ import useGlobal from "../../core/global";
 
 
 export default function SwipeProfileModal({ 
-  navigation,
   item,
   colors,
   setIsVisible,

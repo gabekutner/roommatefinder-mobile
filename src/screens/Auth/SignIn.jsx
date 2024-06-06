@@ -99,7 +99,6 @@ export default function SignIn({ navigation }) {
               justifyContent:'center' 
             }}
           >
-
             <View style={{ marginVertical:'10%' }}>
               <Title 
                 text='RoommateFinder'

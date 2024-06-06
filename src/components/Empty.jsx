@@ -28,7 +28,7 @@ export default function Empty({
     >
       <FontAwesomeIcon 
         icon={icon}
-        color={colors.tertiary}
+        color={colors.tint}
         size={90}
         style={{
           marginBottom:16,
@@ -36,7 +36,7 @@ export default function Empty({
       />
       <CustomText
         style={{
-          color:colors.tertiary,
+          color:colors.tint,
           fontSize:16,
         }}
       >
