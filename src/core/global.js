@@ -252,8 +252,8 @@ const useGlobal = create((set, get) => ({
     prompts: [],
     quotes: [],
     links: [],
-    thumbnail:"",
-    photos: [],
+    // thumbnail:"",
+    // photos: [],
   },
   setForm: (form) => {
     set((state) => ({
@@ -266,71 +266,27 @@ const useGlobal = create((set, get) => ({
   CreateProfile: async (form, user) => {
     if (user.token) {
       try {
-        const dataForm = new FormData()
-        // const imageUri = form.thumbnail.uri
-        // const fileName = imageUri.split('/').pop()
-        // const fileType = fileName.split('.')[1]
-
-        // dataForm.append('thumbnail', {
-        //   name: fileName,
-        //   type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
-        //   uri:
-        //     Platform.OS === 'android'
-        //       ? form.thumbnail.uri
-        //       : form.thumbnail.uri.replace('file://', ''),
-        // })
-
-        // // form validating
-        // const bday = ((
-        //   form.birthday.getMonth() > 8)
-        //   ? (form.birthday.getMonth() + 1) 
-        //   : ('0' + (form.birthday.getMonth() + 1))) 
-        //   + '-' + ((form.birthday.getDate() > 9) 
-        //   ? form.birthday.getDate() 
-        //   : ('0' + form.birthday.getDate())) 
-        //   + '-' + form.birthday.getFullYear()
-      
-
-
-        dataForm.append('birthday', '03-21-2005')
-        dataForm.append('sex', 'M')
-        dataForm.append('city', 'San Francisco')
-        dataForm.append('state', 'CA')
-        dataForm.append('graduation_year', '2028')
-        dataForm.append('major', 'business')
-        dataForm.append('dorm_building', '5')
-
-        dataForm.append('prompts', [])
-        dataForm.append('links', [])
-        dataForm.append('quotes', [])
-        dataForm.append('photos', [])
-
-
-        // for (obj of form.interests) {
-        //   dataForm.append('interests', obj)
-        // }
-        // for (obj of form.prompts) {
-        //   dataForm.append('prompts', obj)
-        // }
-        // for (obj of form.quotes) {
-        //   dataForm.append('prompts', obj)
-        // }
-        // for (obj of form.links) {
-        //   dataForm.append('prompts', obj)
-        // }
-        // for (obj of form.prompts) {
-        //   dataForm.append('prompts', obj te)
-        // }
         
-
+        const bday = ((
+          form.birthday.getMonth() > 8)
+          ? (form.birthday.getMonth() + 1) 
+          : ('0' + (form.birthday.getMonth() + 1))) 
+          + '-' + ((form.birthday.getDate() > 9) 
+          ? form.birthday.getDate() 
+          : ('0' + form.birthday.getDate())) 
+          + '-' + form.birthday.getFullYear()
+        
+        form.birthday = bday
+        form.dorm_building = "1"
+        
         const response = await api({
           method: 'post',
           url: '/api/v1/profiles/actions/create-profile/',
-          data: dataForm,
-          headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
+          data: form,
+          headers: {"Authorization": `Bearer ${user.token}`},
         })
 
-        if (response.status !== 200) {
+        if (response.status !== 201) {
           throw 'create-profile error'
         }
   
@@ -342,8 +298,9 @@ const useGlobal = create((set, get) => ({
           profileCreated:true,
           user:response.data,
         }))
+
       } catch(error) {
-        console.log('useGlobal.CreateProfile: ', error.response)
+        console.log('useGlobal.CreateProfile: ', error)
       }
     } 
   },

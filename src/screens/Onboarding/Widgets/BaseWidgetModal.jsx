@@ -26,7 +26,7 @@ export default function BaseWidgetModal({
       <View 
         style={{ 
           backgroundColor:'rgba(0,0,0,0.4)', 
-          flex:1
+          // flex:1
         }}
       >
         <View

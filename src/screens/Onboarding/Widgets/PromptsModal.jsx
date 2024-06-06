@@ -59,6 +59,28 @@ export default function PromptsModal({
     >
 
       <View style={{ alignItems:'center' }}>
+        <CustomLabel color={colors.constWhite} label={'Answer here!'} />
+        <CustomTextInput 
+          autoCorrect={false}
+          placeholder={'Ex. '}
+          value={prompt.answer}
+          onChangeText={input => setPrompt({ ...prompt, answer:input })}
+          colors={colors}
+          multiline={true}
+          style={{
+            marginTop:verticalScale(7),
+            marginBottom:verticalScale(10),            
+            backgroundColor:colors.secondary,
+            color:colors.tint,
+            borderRadius:0,
+            borderWidth:2,
+            borderColor:colors.constBlack,
+            fontSize:verticalScale(14),
+            width:moderateScale(240),
+            height:verticalScale(150),
+            paddingTop:verticalScale(10)
+          }}
+        />
         <FlatList
           showsVerticalScrollIndicator={false}
           data={prompts}
@@ -94,32 +116,10 @@ export default function PromptsModal({
             flexDirection:'column', 
             marginHorizontal:moderateScale(50),
             height:'30%',
-            marginBottom:verticalScale(10)
+            marginTop:verticalScale(10),
+            marginBottom:verticalScale(-30),
           }}
         /> 
-        <CustomLabel color={colors.constWhite} label={'Answer here!'} />
-        <CustomTextInput 
-          autoCorrect={false}
-          placeholder={'Ex. '}
-          value={prompt.answer}
-          onChangeText={input => setPrompt({ ...prompt, answer:input })}
-          colors={colors}
-          multiline={true}
-          style={{
-            marginTop:verticalScale(5),
-            height:verticalScale(45),
-            marginBottom:verticalScale(-30),
-            backgroundColor:colors.secondary,
-            color:colors.tint,
-            borderRadius:0,
-            borderWidth:2,
-            borderColor:colors.constBlack,
-            fontSize:verticalScale(14),
-            width:moderateScale(240),
-            height:verticalScale(150),
-            paddingTop:verticalScale(10)
-          }}
-        />
       </View>
       <CustomNextButton 
         colors={colors}
@@ -141,5 +141,8 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:20,
   },
-  text: { fontSize:17 },
+  text: { 
+    fontSize:verticalScale(14),
+    fontWeight:'600',
+  },
 })

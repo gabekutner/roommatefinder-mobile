@@ -20,11 +20,9 @@ import { colors as c } from "../../../assets/config";
 
 export default function BaseWidgetsScreen({ navigation }) {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
-  const label = "Customize your profile with prompts, quotes, and social handles!"
+  const label = "Add your socials, prompts, and quotes!"
 
   return (
     <Base navigation={navigation} label={label} >
@@ -59,7 +57,6 @@ export default function BaseWidgetsScreen({ navigation }) {
         colors={colors}
         onClick={() => {
           navigation.navigate('photos')
-          // console.log(form)
         }}
         text={'Next Step'}
       />
@@ -69,8 +66,11 @@ export default function BaseWidgetsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    height:verticalScale(80),
-    width:moderateScale(100),
+    // height:verticalScale(80),
+    // width:moderateScale(90),
+    height:100,
+    width:100,
+    
     borderRadius:0,
     borderWidth:2,
     alignItems:'center',
@@ -78,10 +78,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,  
-
   },
   optionText: {
-    fontSize:verticalScale(12),
+    fontSize:verticalScale(14),
     fontWeight:'500',
   }
 })

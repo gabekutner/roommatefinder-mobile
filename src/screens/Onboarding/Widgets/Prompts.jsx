@@ -30,15 +30,7 @@ export default function PromptsScreen({ navigation }) {
   const modalLabel = "Add a prompt!"
   const modalButtonLabel = "Good to go"
 
-  // get users prompts and populate them here
-  // temporary
-  const userPrompts = [
-    {
-      id: "1",
-      question: "Hot take:",
-      answer: "I hate pineapple on pizza",
-    },
-  ]
+  console.log(form.prompts)
 
   return (
     <Base navigation={navigation} label={label}>

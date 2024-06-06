@@ -111,5 +111,8 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:20,
   },
-  text: { fontSize:17 },
+  text: { 
+    fontSize:verticalScale(14),
+    fontWeight:'600',
+  },
 })

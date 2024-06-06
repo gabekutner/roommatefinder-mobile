@@ -59,7 +59,7 @@ export default function Base({
           color={colors.constWhite}
         />
       </CustomButton>
-      <View style={{ marginVertical:verticalScale(75) }}>
+      <View style={{ marginVertical:verticalScale(20) }}>
         <CustomText
           style={{
             alignSelf:'center',
@@ -71,7 +71,7 @@ export default function Base({
             textShadowColor:'#222',
             textShadowRadius:10,
             textShadowOffset: [{ width:15, height:15 }],
-            marginBottom:verticalScale(15),
+            marginBottom:verticalScale(10),
           }}
         >
           {label}

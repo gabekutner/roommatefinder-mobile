@@ -52,8 +52,8 @@ function PhotoNumber({ number, colors }) {
 
 export default function PhotosScreen({ navigation }) {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  // const form = useGlobal(state => state.form)
+  // const setForm = useGlobal(state => state.setForm)
   const theme = useGlobal(state => state.theme)
   const colors = c[theme]
 
@@ -84,11 +84,11 @@ export default function PhotosScreen({ navigation }) {
   }
   
   const handleImage = () => {
-    const arr = [...form.photos]
-    arr.push({ image:photo.photo_1 })
-    arr.push({ image:photo.photo_2 })
-    arr.push({ image:photo.photo_3 })
-    setForm({ ...form, photos:arr, thumbnail:photo.thumbnail })
+    // const arr = [...form.photos]
+    // arr.push({ image:photo.photo_1 })
+    // arr.push({ image:photo.photo_2 })
+    // arr.push({ image:photo.photo_3 })
+    // setForm({ ...form, photos:arr, thumbnail:photo.thumbnail })
   }
   
   return (
