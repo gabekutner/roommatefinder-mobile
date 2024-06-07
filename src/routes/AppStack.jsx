@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -12,6 +12,7 @@ import {
 } from 'react-native-size-matters';
 
 import Title from "../components/Brand/Title";
+import DropDownMenu from "../components/DropDownMenu";
 
 import Friends from "../screens/Friends";
 import Profile from "../screens/Profile/Profile";
@@ -41,6 +42,9 @@ export default function AppStack() {
   }, [])
 
   const Tabs = () => {
+
+    const [open, setOpen] = useState(false)
+
     return (
       <Tab.Navigator
         initialRouteName="swipe"
@@ -78,7 +82,7 @@ export default function AppStack() {
             headerTitleAlign:'left',
             headerRight: () => (
               <TouchableOpacity 
-                onPress={() => {}}
+                onPress={() => setOpen(!open)}
                 style={{ 
                   marginRight:moderateScale(10)
                 }}
@@ -88,6 +92,10 @@ export default function AppStack() {
                   size={verticalScale(20)}
                   color={colors.tint}
                 />
+                {open
+                  ? <DropDownMenu />
+                  : null
+                }
               </TouchableOpacity>            
             ),
             headerRightContainerStyle: { paddingRight:moderateScale(10) },

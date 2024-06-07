@@ -4,6 +4,10 @@ import {
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  verticalScale,
+  moderateScale
+} from 'react-native-size-matters';
 
 import CustomText from "./UI/Custom/CustomText";
 import CustomButton from "./UI/Custom/CustomButton";
@@ -23,22 +27,22 @@ export default function Empty({
         flex:1,
         justifyContent:centered?'center' : 'flex-start',
         alignItems:'center',
-        paddingVertical:120,
+        paddingVertical:verticalScale(120),
         backgroundColor:colors.primary,
       }}
     >
       <FontAwesomeIcon 
         icon={icon}
         color={colors.tint}
-        size={90}
+        size={verticalScale(70)}
         style={{
-          marginBottom:16,
+          marginBottom:verticalScale(14),
         }}
       />
       <CustomText
         style={{
           color:colors.tint,
-          fontSize:16,
+          fontSize:verticalScale(13),
         }}
       >
         {message}
@@ -48,15 +52,15 @@ export default function Empty({
           <CustomButton
             onClick={() => refresh()}
             style={{
-              marginTop:15,
+              marginTop:verticalScale(14),
               backgroundColor:colors.accent,
               borderColor:colors.tint,              
-              width:150
+              width:moderateScale(150)
             }}
           >
             <CustomText
               style={{
-                fontSize:18, 
+                fontSize:verticalScale(14), 
                 fontWeight:'600', 
                 color:colors.white 
               }}
