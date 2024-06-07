@@ -40,8 +40,8 @@ export default function DropDownMenu({ navigation, colors }) {
       />
       <DropDownItem  
         onPress={() => {}}
-        icon="⚙️"
-        text="Settings"
+        icon="🔍"
+        text="Search"
       />
     </View>
   )
