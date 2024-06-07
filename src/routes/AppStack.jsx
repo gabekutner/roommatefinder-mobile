@@ -84,7 +84,8 @@ export default function AppStack() {
               <TouchableOpacity 
                 onPress={() => setOpen(!open)}
                 style={{ 
-                  marginRight:moderateScale(10)
+                  marginRight:moderateScale(10),
+                  marginBottom:verticalScale(5)
                 }}
               >
                 <FontAwesomeIcon 
@@ -93,7 +94,7 @@ export default function AppStack() {
                   color={colors.tint}
                 />
                 {open
-                  ? <DropDownMenu />
+                  ? <DropDownMenu navigation={navigation} colors={colors} />
                   : null
                 }
               </TouchableOpacity>            
@@ -157,18 +158,22 @@ export default function AppStack() {
         component={Requests} 
         options={({ navigation }) => ({
           headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={{
+                marginBottom:verticalScale(5)
+              }}
+            >
               <FontAwesomeIcon 
                 icon='arrow-left'
-                size={22}
-                color={activeColors.tint}
+                size={verticalScale(20)}
+                color={colors.tint}
               />
             </TouchableOpacity>
           ), 
-          title: 'Friend Requests',
-          headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          headerTitle: () => <Title title="Roommate Matches" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
-            backgroundColor:activeColors.primary,
+            backgroundColor:colors.primary,
           },
           headerShadowVisible: false, // border bottom invisible
         })}
@@ -182,14 +187,14 @@ export default function AppStack() {
               <FontAwesomeIcon 
                 icon='arrow-left'
                 size={22}
-                color={activeColors.tint}
+                color={colors.tint}
               />
             </TouchableOpacity>
           ), 
           title: 'Edit Profile',
-          headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          headerTitleStyle: { color:colors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
           headerStyle: {
-            backgroundColor:activeColors.primary,
+            backgroundColor:colors.primary,
           },
           headerShadowVisible: false, // border bottom invisible
         })}
@@ -208,14 +213,14 @@ export default function AppStack() {
               <FontAwesomeIcon 
                 icon='arrow-left'
                 size={22}
-                color={activeColors.tint}
+                color={colors.tint}
               />
             </TouchableOpacity>
           ), 
           title: 'Upload Photos',
-          headerTitleStyle: { color:activeColors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
+          headerTitleStyle: { color:colors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
           headerStyle: {
-            backgroundColor:activeColors.primary,
+            backgroundColor:colors.primary,
           },
           headerShadowVisible: false, // border bottom invisible
         })}

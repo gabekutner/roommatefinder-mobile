@@ -16,7 +16,8 @@ import Thumbnail from "../components/Thumbnail";
 
 import useGlobal from "../core/global";
 import utils from "../core/utils";
-import { colors as c } from '../assets/config';
+// import { colors as c } from '../assets/config';
+import { colors } from "../constants/colors";
 
 
 function RequestAccept({ item, colors }) {
@@ -35,7 +36,7 @@ function RequestAccept({ item, colors }) {
 				justifyContent:'center'
 			}}
 		>
-			<CustomText style={{ color:colors.constWhite, fontWeight:'500' }}>Accept</CustomText>
+			<CustomText style={{ color:colors.white, fontWeight:'500' }}>Accept</CustomText>
 		</TouchableOpacity>
 	)
 }
@@ -73,8 +74,8 @@ function RequestRow({ item, colors }) {
 				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
 					{item.sender.name}
 				</CustomText>
-				<CustomText style={{ color:colors.tertiary }}>
-					{message} <CustomText style={{ color:colors.tertiary, fontSize:13 }}>
+				<CustomText style={{ color:colors.tint }}>
+					{message} <CustomText style={{ color:colors.tint, fontSize:13 }}>
 						{utils.formatTime(item.created)}
 					</CustomText>
 				</CustomText>
@@ -92,7 +93,6 @@ function RequestRow({ item, colors }) {
 					/>
 				: null 
 			}
-
 		</Cell>
 	)
 }
@@ -102,8 +102,6 @@ export default function Requests() {
 
 	const requestList = useGlobal(state => state.requestList)
 	const refreshRequestList = useGlobal(state => state.refreshRequestList)
-	const theme = useGlobal(state => state.theme)
-	const colors = c[theme]
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -120,7 +118,7 @@ export default function Requests() {
 	}
 
 	if (requestList.length === 0) {
-		return <Empty icon='bell' message='No requests' colors={colors} refresh={onRefresh} />
+		return <Empty emoji={'😶‍🌫️'} message='Nothing yet... Keep swiping and check back later!' colors={colors} refresh={onRefresh} />
 	}
 
 	return (
@@ -133,8 +131,8 @@ export default function Requests() {
 				keyExtractor={item => item.sender.id}
 				refreshControl={
 					<RefreshControl
-						colors={colors.tertiary}
-						tintColor={colors.tertiary}
+						colors={colors.tint}
+						tintColor={colors.tint}
 						refreshing={refreshing}
 						onRefresh={onRefresh} 
 					/>

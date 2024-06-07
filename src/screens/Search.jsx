@@ -198,21 +198,22 @@ export default function Search({ navigation }) {
 				</View>
 			</View>
 
-			{searchList === null ? (
-				<Empty
-					icon='magnifying-glass'
-					message='Search for friends'
-					centered={false}
-					colors={colors}
-				/>
-			) : searchList.length === 0 ? (
-				<Empty
-					icon='triangle-exclamation'
-					message={'No users found for "' + query + '"'}
-					centered={false}
-					colors={colors}
-				/>
-			) : (
+			{searchList === null 
+				? 
+					<Empty
+						icon='magnifying-glass'
+						message='Search for friends'
+						centered={false}
+						colors={colors}
+					/>
+				: searchList.length === 0 ? 
+					<Empty
+						emoji='🤷‍♂️'
+						message={"Hmmm... couldn't find anything for '" + query + "'"}
+						centered={false}
+						colors={colors}
+					/>
+			 : 
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
@@ -220,7 +221,7 @@ export default function Search({ navigation }) {
 					)}
 					keyExtractor={item => item.id}
 				/>
-			)}
+			}
 		</SafeAreaView>
 	)
 }

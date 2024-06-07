@@ -34,7 +34,7 @@ function FriendRow({ navigation, item, colors }) {
 				onPress={async() => {
 					const profile = await getSwipeProfile(user, item.friend.id)
 					const userData = await profile.data
-					// sometimes error here
+					// Sometimes error here
 					setProfile(userData)
 					setShow(true)
 				}}
@@ -83,8 +83,6 @@ function FriendRow({ navigation, item, colors }) {
 							{utils.formatTime(item.updated)}
 						</CustomText>
 					</View>
-					
-					
 				</View>
 			</TouchableOpacity>
 			{ show
@@ -129,9 +127,7 @@ export default function Friends({ navigation }) {
 	}
 
 	if (friendList.length === 0) {
-		return (
-			<Empty icon='inbox' message='No messages yet' colors={colors} refresh={onRefresh}/>
-		)
+		return <Empty emoji={'💬'} message='Nothing yet... Match with roommates and check back later!' colors={colors} refresh={onRefresh}/>
 	}
 
 	return (
@@ -149,8 +145,8 @@ export default function Friends({ navigation }) {
 				keyExtractor={item => item.id}
 				refreshControl={
 					<RefreshControl
-						colors={colors.tertiary}
-						tintColor={colors.tertiary}
+						colors={colors.tint}
+						tintColor={colors.tint}
 						refreshing={refreshing}
 						onRefresh={onRefresh} 
 					/>

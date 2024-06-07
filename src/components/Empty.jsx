@@ -15,10 +15,11 @@ import CustomButton from "./UI/Custom/CustomButton";
 
 export default function Empty({ 
   icon, 
+  emoji,
   message, 
   centered=true, 
   colors, 
-  refresh 
+  refresh,
 }) {
 
   return (
@@ -31,18 +32,33 @@ export default function Empty({
         backgroundColor:colors.primary,
       }}
     >
-      <FontAwesomeIcon 
-        icon={icon}
-        color={colors.tint}
-        size={verticalScale(70)}
-        style={{
-          marginBottom:verticalScale(14),
-        }}
-      />
+      {icon
+        ? 
+          <FontAwesomeIcon 
+            icon={icon}
+            color={colors.tint}
+            size={verticalScale(70)}
+            style={{
+              marginBottom:verticalScale(14),
+            }}
+          />
+        : 
+          <CustomText
+            style={{
+              fontSize:verticalScale(80),
+              marginBottom:verticalScale(14),
+            }}
+          >
+            {emoji}
+          </CustomText>
+      }
+      
       <CustomText
         style={{
           color:colors.tint,
           fontSize:verticalScale(13),
+          maxWidth:moderateScale(200),
+          textAlign:'center'
         }}
       >
         {message}
@@ -62,7 +78,8 @@ export default function Empty({
               style={{
                 fontSize:verticalScale(14), 
                 fontWeight:'600', 
-                color:colors.white 
+                color:colors.white,
+
               }}
             >
               Refresh

@@ -2,7 +2,7 @@ import React from "react";
 import {
   View,
   TouchableOpacity,
-  Text
+  StyleSheet,
 } from 'react-native';
 import CustomText from "./UI/Custom/CustomText";
 import { verticalScale } from "react-native-size-matters";
@@ -11,63 +11,65 @@ import { verticalScale } from "react-native-size-matters";
 
 
 
-export default function DropDownMenu({
-
-}) {
-
+export default function DropDownMenu({ navigation, colors }) {
   function DropDownItem({
     onPress,
     icon,
-    children
+    text,
   }) {
     return (
       <TouchableOpacity
         onPress={onPress}
-        style={{
-          height:50,
-          // display:'flex',
-          // alignItems:'center',
-          borderRadius:10,
-          textAlign:'center',
-          padding:10,
-          backgroundColor:'#ccc',
-          flexDirection:'row',
-        }}
-      >
-        <CustomText>
+        style={{ ...styles.dropDownItem }}>
+        <CustomText style={{ ...styles.itemText }}>
           {icon}
         </CustomText>
-        <CustomText>
-          {children}
+        <CustomText style={{ ...styles.itemText, color:colors.tint }}>
+          {text}
         </CustomText>
       </TouchableOpacity>
     )
   }
 
-
   return (
-    <View 
-      style={{
-        position:'absolute',
-        top:verticalScale(25),
-        right:5,
-        width:'auto',
-        // transform: [{ translateX:'-45%' }],
-        backgroundColor:'red',
-        borderRadius:10,
-        padding:3,
-        overflow:'hidden'
-      }}
-    >
+    <View style={{ ...styles.dropDown, backgroundColor:colors.secondary }}>
+      <DropDownItem  
+        onPress={() => navigation.navigate('requests')}
+        icon="👋"
+        text="Roommate Matches"
+      />
       <DropDownItem  
         onPress={() => {}}
-        icon="🎯"
-      >
-        <CustomText>
-          My Profile
-        </CustomText>
-      </DropDownItem>
-      
+        icon="⚙️"
+        text="Settings"
+      />
     </View>
   )
 }
+
+
+const styles = StyleSheet.create({
+  dropDown: {
+    position:'absolute',
+    top:verticalScale(25),
+    right:5,
+    width:'auto',
+    borderRadius:10,
+    padding:5,
+    overflow:'hidden',
+    borderWidth:2
+  },
+  dropDownItem: {
+    borderRadius:10,
+    textAlign:'center',
+    alignItems:'center',
+    paddingVertical:10,
+    paddingHorizontal:15,
+    flexDirection:'row',
+    gap:10,
+  },
+  itemText: {
+    fontSize:verticalScale(13),
+    fontWeight:'bold',
+  }
+})
