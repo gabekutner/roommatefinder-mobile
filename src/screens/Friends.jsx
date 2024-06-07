@@ -16,7 +16,7 @@ import Thumbnail from "../components/Thumbnail";
 
 import utils from "../core/utils";
 import useGlobal from "../core/global";
-import { colors as c } from "../assets/config";
+import { colors } from "../constants/colors";
 
 
 function FriendRow({ navigation, item, colors }) {
@@ -42,7 +42,7 @@ function FriendRow({ navigation, item, colors }) {
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={76}
-					borderColor={colors.secondary}
+					borderColor={colors.tint}
 				/>
 			</TouchableOpacity>
 			
@@ -71,12 +71,12 @@ function FriendRow({ navigation, item, colors }) {
 							gap:5
 						}}
 					>
-						<CustomText style={{ color:colors.tertiary }}>
+						<CustomText style={{ color:colors.tint }}>
 							{item.preview} 
 						</CustomText>
 						<CustomText 
 							style={{ 
-								color:colors.tertiary, 
+								color:colors.tint, 
 								fontSize:13,
 							}}
 						>
@@ -106,8 +106,6 @@ export default function Friends({ navigation }) {
 
 	const friendList = useGlobal(state => state.friendList)
 	const refreshFriendList = useGlobal(state => state.refreshFriendList)
-	const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
 	const [refreshing, setRefreshing] = useState(false)
 

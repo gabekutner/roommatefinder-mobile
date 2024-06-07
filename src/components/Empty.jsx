@@ -16,6 +16,7 @@ export default function Empty({
   colors, 
   refresh 
 }) {
+
   return (
     <View
       style={{
@@ -48,8 +49,8 @@ export default function Empty({
             onClick={() => refresh()}
             style={{
               marginTop:15,
-              backgroundColor:colors.primary,
-              borderColor:colors.accent,              
+              backgroundColor:colors.accent,
+              borderColor:colors.tint,              
               width:150
             }}
           >
@@ -57,7 +58,7 @@ export default function Empty({
               style={{
                 fontSize:18, 
                 fontWeight:'600', 
-                color:colors.constWhite 
+                color:colors.white 
               }}
             >
               Refresh

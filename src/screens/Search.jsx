@@ -8,6 +8,10 @@ import {
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { 
+	moderateScale, 
+	verticalScale 
+} from "react-native-size-matters";
 
 import SwipeProfileModal from "../components/UI/SwipeProfileModal";
 import CustomText from '../components/UI/Custom/CustomText';
@@ -16,7 +20,8 @@ import Thumbnail from "../components/Thumbnail";
 import Cell from "../components/Cell";
 
 import useGlobal from "../core/global";
-import { colors as c} from '../assets/config'; 
+// import { colors as c} from '../assets/config'; 
+import { colors } from '../constants/colors';
 
 
 function SearchButton({ user, colors }) {
@@ -103,15 +108,15 @@ function SearchRow({ item, colors }) {
 			<TouchableOpacity onPress={() => setShow(true)}>
 				<Thumbnail
 					url={item.thumbnail}
-					size={76}
+					size={verticalScale(60)}
 					borderColor={colors.secondary}
 				/>
 			</TouchableOpacity>
 			<View style={{ flex:1, paddingHorizontal:16 }}>
-					<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
-						{item.name}
-					</CustomText>	
-				</View>
+				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
+					{item.name}
+				</CustomText>	
+			</View>
 			<SearchButton user={item} colors={colors} />
 			{ show
 			  ? 
@@ -133,8 +138,6 @@ export default function Search({ navigation }) {
 
 	const searchList = useGlobal(state => state.searchList)
 	const searchUsers = useGlobal(state => state.searchUsers)
-	const theme = useGlobal(state => state.theme)
-	const colors = c[theme]
 
 	useEffect(() => {
 		searchUsers(query)
@@ -142,36 +145,40 @@ export default function Search({ navigation }) {
 
 	return (
 		<SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
-			<View style={{padding: 16	}} >
+			<View 
+				style={{
+					flexDirection:'row',
+					gap:moderateScale(20),
+					alignItems:'center',
+				}}
+			>
 				<TouchableOpacity 
 					onPress={() => navigation.goBack()}
 					style={{
-						paddingLeft:16,
-						paddingBottom:16,
+						paddingLeft:moderateScale(16),
 					}}
 				>
 					<FontAwesomeIcon 
 						icon='arrow-left'
-						size={22}
+						size={verticalScale(24)}
 						color={colors.tint}
 					/>
 				</TouchableOpacity>
-				<View>
+				<View 
+					style={{ 
+						width:moderateScale(290) 
+					}}>
 					<TextInput
 						style={{
 							height: 52,
 							borderRadius: 26,
-							padding: 16,
-							fontSize: 16,
-							paddingLeft: 50,
-							paddingHorizontal: 18,
-							borderWidth: 1,
-							borderColor: colors.tertiary,
-							backgroundColor: colors.secondary,
+							fontSize: verticalScale(15),
+							paddingLeft:moderateScale(49),
+							borderWidth:1,
+							borderColor: colors.tint,
 							color:colors.tint,
 							fontFamily:'NotoSans_Condensed-Regular',
 						}}
-						keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
 						value={query}
 						onChangeText={setQuery}
 						placeholder='Search...'
@@ -184,7 +191,7 @@ export default function Search({ navigation }) {
 						color={colors.tint}
 						style={{
 							position:'absolute',
-							left:18,
+							left:moderateScale(18),
 							top:17
 						}}
 					/>
