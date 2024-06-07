@@ -38,10 +38,17 @@ export default function DropDownMenu({ navigation, colors }) {
         icon="👋"
         text="Roommate Matches"
       />
+      <View style={styles.divider } />
       <DropDownItem  
-        onPress={() => {}}
+        onPress={() => navigation.navigate('search')}
         icon="🔍"
         text="Search"
+      />
+      <View style={styles.divider} />
+      <DropDownItem  
+        onPress={() => {}}
+        icon="🕹️"
+        text="Settings"
       />
     </View>
   )
@@ -71,5 +78,10 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize:verticalScale(13),
     fontWeight:'bold',
+  },
+  divider: {
+    borderWidth:.5,
+    width:'90%',
+    alignSelf:'center',
   }
 })

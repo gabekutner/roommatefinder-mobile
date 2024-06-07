@@ -16,7 +16,7 @@ import SwipeProfileModal from './UI/SwipeProfileModal';
 import { verticalScale } from 'react-native-size-matters';
 
 
-export default function CardItem({ item, colors }) {
+export default function CardItem({ navigation, item, colors }) {
 
   const [show, setShow] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
@@ -50,7 +50,7 @@ export default function CardItem({ item, colors }) {
         <CircleButton 
           backgroundColor={colors.primary} 
           iconColor={'#222'} 
-          onPress={() => setShow(true)} 
+          onPress={() => navigation.navigate('profile-detail', { item:item })} 
           size={verticalScale(24)}
           icon={'arrow-up'}
         />

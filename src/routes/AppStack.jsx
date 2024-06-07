@@ -24,6 +24,9 @@ import EditProfile from "../screens/Profile/Edit/EditProfile";
 import Settings from "../screens/Settings";
 import PhotoUpload from "../screens/PhotoUpload";
 
+
+import ProfileDetail from '../screens/ProfileDetail';
+
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
 
@@ -148,6 +151,14 @@ export default function AppStack() {
         name='search' 
         component={Search} 
         options={{ headerShown:false }}
+      />
+      <Stack.Screen 
+        name='profile-detail' 
+        component={ProfileDetail} 
+        options={{ 
+          headerShown:false,
+          presentation:'modal'
+        }}
       />
       <Stack.Screen 
         name='messages' 
