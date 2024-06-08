@@ -20,7 +20,6 @@ import Thumbnail from "../components/Thumbnail";
 import Cell from "../components/Cell";
 
 import useGlobal from "../core/global";
-// import { colors as c} from '../assets/config'; 
 import { colors } from '../constants/colors';
 
 
@@ -31,7 +30,7 @@ function SearchButton({ user, colors }) {
 			<FontAwesomeIcon
 				icon='circle-check'
 				size={30}
-				color={colors.green}
+				color={colors.tint}
 				style={{ marginRight:10 }}
 			/>
 		)
@@ -43,7 +42,7 @@ function SearchButton({ user, colors }) {
 
 	switch (user.status) {
 		case 'no-connection':
-			data.text = 'Connect'
+			data.text = 'Add'
 			data.disabled = false
 			data.onPress = () => requestConnect(user.id)
 			break
@@ -75,7 +74,7 @@ function SearchButton({ user, colors }) {
 		>
 			<CustomText
 				style={{
-					color:colors.constWhite,
+					color:colors.white,
 					fontWeight:'600',
 				}}
 			>

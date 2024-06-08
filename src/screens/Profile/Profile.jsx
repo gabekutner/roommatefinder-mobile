@@ -17,6 +17,7 @@ import Thumbnail from "../../components/Thumbnail";
 
 import useGlobal from '../../core/global';
 import { colors as c } from "../../assets/config";
+import { colors } from '../../constants/colors';
 
 
 function ProfileImage({ user, colors }) {
@@ -36,7 +37,7 @@ function ProfileImage({ user, colors }) {
     >
       <Thumbnail
 				url={user.thumbnail}
-				size={180}
+				size={verticalScale(123)}
         borderColor={colors.secondary}
 			/>
       <View
@@ -83,15 +84,15 @@ function ProfileLogout({ colors }) {
     >
       <FontAwesomeIcon 
         icon='right-from-bracket'
-        size={20}
-        color='#fff'
+        size={verticalScale(15)}
+        color={colors.white}
         style={{ marginRight:moderateScale(10) }}
       />
       <CustomText 
         style={{ 
           fontWeight:'600', 
           fontSize:verticalScale(15), 
-          color:colors.constWhite 
+          color:colors.white 
         }}
       >
         Logout
@@ -103,15 +104,13 @@ function ProfileLogout({ colors }) {
 export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   return (
     <View 
       style={{ 
         flex:1, 
         alignItems:'center', 
-        paddingTop:100, 
+        paddingTop:verticalScale(80), 
         backgroundColor:colors.primary 
       }} 
     >
