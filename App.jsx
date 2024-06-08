@@ -48,6 +48,7 @@ import { colors as c } from './src/assets/config';
 import SplashStack from './src/routes/SplashStack';
 import AuthStack from './src/routes/AuthStack';
 import AppStack from './src/routes/AppStack';
+import AccountSetupStack from './src/routes/AccountSetupStack';
 
 
 // const Stack = createNativeStackNavigator()
@@ -55,12 +56,12 @@ import AppStack from './src/routes/AppStack';
 
 export default function App() {
 
-  const initialized = useGlobal(state => state.initialized)
-  const authenticated = useGlobal(state => state.authenticated)
-  const profileCreated = useGlobal(state => state.profileCreated)
-  // const initialized = true
-  // const authenticated = true
-  // const profileCreated = true
+  // const initialized = useGlobal(state => state.initialized)
+  // const authenticated = useGlobal(state => state.authenticated)
+  // const profileCreated = useGlobal(state => state.profileCreated)
+  const initialized = true
+  const authenticated = true
+  const profileCreated = false
   const init = useGlobal(state => state.init)
   const theme = useGlobal(state => state.theme)
   const activeColors = c[theme]
@@ -79,6 +80,12 @@ export default function App() {
     return (
       <NavigationContainer>
         <AuthStack />
+      </NavigationContainer>
+    )
+  } else if (!profileCreated) {
+    return (
+      <NavigationContainer>
+        <AccountSetupStack />
       </NavigationContainer>
     )
   } else {

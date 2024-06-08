@@ -56,7 +56,7 @@ export default function BaseWidgetsScreen({ navigation }) {
       <CustomNextButton 
         colors={colors}
         onClick={() => {
-          navigation.navigate('photos')
+          navigation.navigate('dorm')
         }}
         text={'Next Step'}
       />

@@ -4,39 +4,42 @@ import {
 } from 'react-native';
 
 import DatePicker from 'react-native-date-picker';
+import {
+  verticalScale
+} from 'react-native-size-matters';
 
-import Base from "./Base";
-import CustomNextButton from "./CustomNextButton";
+import CustomText from "../../components/UI/Custom/CustomText";
+
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 
 import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 
 
 export default function AgeScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-
-  const label = "My birthday is on ... "
 
   return (
-    <Base navigation={navigation} label={label} >
-      <View style={{ alignItems:'center' }}>
+    <Base>
+      <View 
+        style={{ 
+          alignItems:'center',
+          marginTop:verticalScale(30)  
+        }}
+      >
+        <Label text="How old are you?" style={{ marginVertical:verticalScale(15) }} />
         <DatePicker
           inlined
           date={form.birthday}
           mode={'date'}
-          theme={'dark'}
+          theme={'light'}
           onDateChange={birthday => setForm({ ...form, birthday:birthday })}
         />
       </View>
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('sex')}
-        text={'Next Step'}
-      />
+      
     </Base>
   )
 }
