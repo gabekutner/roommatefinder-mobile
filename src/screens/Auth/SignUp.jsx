@@ -9,25 +9,23 @@ import {
   Pressable,
 } from 'react-native';
 
-import { verticalScale, moderateScale } from 'react-native-size-matters';
+import { verticalScale } from 'react-native-size-matters';
 
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
-import Title from '../../components/UI/Title';
 import Snackbar from "../../components/UI/SnackBar";
 import CustomLabel from '../../components/UI/Label';
+import Title from '../../components/Brand/Title';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
-import { colors as c } from '../../assets/config';
+import { colors } from '../../constants/colors';
 
 
 export default function SignUp({ navigation }) {
 
   const login = useGlobal(state => state.login)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   const [showError, setShowError] = useState({
     status: false,
@@ -94,7 +92,7 @@ export default function SignUp({ navigation }) {
     <SafeAreaView 
       style={{ 
         flex:1, 
-        backgroundColor:colors.accentDark 
+        backgroundColor:colors.primary 
       }}
     >
       <KeyboardAvoidingView
@@ -115,20 +113,16 @@ export default function SignUp({ navigation }) {
           >
             <View style={{ marginVertical:verticalScale(15) }}>
               <Title 
-                text='RoommateFinder'
+                title='RoommateFinder'
+                color={colors.tint}
+                fontSize={verticalScale(30)}
                 style={{
-                  color:colors.wasatchSun,
-                  textAlign:'center',
-                  fontSize:verticalScale(30),
-                  fontFamily:'LuckiestGuy-Regular',
-                  textShadowColor:'#222',
-                  textShadowRadius:10,
-                  textShadowOffset: [{ width:15, height:15 }]
+                  textAlign:'center'
                 }}
               />
               <CustomText 
                 style={{ 
-                  color: colors.constWhite,
+                  color: colors.tint,
                   marginVertical:10,
                   fontSize:verticalScale(15),
                   fontWeight:'600', 
@@ -141,9 +135,8 @@ export default function SignUp({ navigation }) {
 
             <View style={{ marginBottom:verticalScale(20) }}>
 
-              <CustomLabel color={colors.constWhite} label={'Full Name'} />
+              <CustomLabel color={colors.tint} label={'Full Name'} />
               <CustomTextInput 
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'Gabe Kutner'}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
@@ -155,12 +148,12 @@ export default function SignUp({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
 
-              <CustomLabel color={colors.constWhite} label={'Email Address'} />
+              <CustomLabel color={colors.tint} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
@@ -169,7 +162,6 @@ export default function SignUp({ navigation }) {
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
@@ -177,19 +169,18 @@ export default function SignUp({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
 
-              <CustomLabel color={colors.constWhite} label={'Password'} />
+              <CustomLabel color={colors.tint} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
@@ -197,19 +188,18 @@ export default function SignUp({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
               
-              <CustomLabel color={colors.constWhite} label={'Confirm Password'} />
+              <CustomLabel color={colors.tint} label={'Confirm Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
                 placeholder={'********'}
                 value={form.rpassword}
                 onChangeText={rpassword => setForm({ ...form, rpassword })}
                 colors={colors}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 style={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
@@ -217,7 +207,7 @@ export default function SignUp({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
@@ -227,8 +217,8 @@ export default function SignUp({ navigation }) {
                 style={{ 
                   borderWidth:2,
                   borderRadius:0,
-                  borderColor:colors.constBlack,
-                  backgroundColor:colors.accentDark,
+                  borderColor:colors.tint,
+                  backgroundColor:colors.accent,
                   shadowColor: '#222',
                   shadowOffset: { width: 7, height: 5 },
                   shadowOpacity: 1,
@@ -239,7 +229,7 @@ export default function SignUp({ navigation }) {
                   style={{ 
                     fontSize:verticalScale(16), 
                     fontWeight:'600', 
-                    color:colors.constWhite,
+                    color:colors.white,
                   }}
                 >
                   Sign up
@@ -259,7 +249,7 @@ export default function SignUp({ navigation }) {
                   style={[
                     styles.text, 
                     { 
-                      color:colors.constWhite 
+                      color:colors.tint 
                     }
                   ]}
                 >
@@ -268,7 +258,7 @@ export default function SignUp({ navigation }) {
                     style={[
                       styles.text, 
                       { 
-                        color:colors.constWhite,
+                        color:colors.tint,
                         textDecorationLine:'underline' 
                       }
                     ]}
@@ -290,7 +280,7 @@ export default function SignUp({ navigation }) {
                   }}
                   duration={5000} // customize duration
                   position="top" // change the position to 'top'/'bottom'
-                  backgroundColor={colors.primary} // customize background color
+                  backgroundColor={colors.secondary} // customize background color
                   textColor={colors.tint} // change text color
                   actionTextColor={colors.tint} // customize action text color
                   containerStyle={{ marginHorizontal:12 }} // apply additional styling

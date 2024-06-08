@@ -46,7 +46,7 @@ export default function DropDownMenu({ navigation, colors }) {
       />
       <View style={styles.divider} />
       <DropDownItem  
-        onPress={() => {}}
+        onPress={() => navigation.navigate('settings')}
         icon="🕹️"
         text="Settings"
       />

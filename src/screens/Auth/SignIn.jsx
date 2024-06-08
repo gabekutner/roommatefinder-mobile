@@ -15,19 +15,22 @@ import Snackbar from '../../components/UI/SnackBar';
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
-import Title from '../../components/UI/Title';
+// import Title from '../../components/UI/Title';
 import CustomLabel from '../../components/UI/Label';
+
+import Title from '../../components/Brand/Title';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
-import { colors as c } from '../../assets/config';
+// import { colors as c } from '../../assets/config';
+import { colors } from '../../constants/colors';
 
 
 export default function SignIn({ navigation }) {
 
   const login = useGlobal(state => state.login)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
+  // const theme = useGlobal(state => state.theme)
+  // const colors = c[theme]
 
   const [showError, setShowError] = useState({
     status: false,
@@ -87,7 +90,7 @@ export default function SignIn({ navigation }) {
     <SafeAreaView 
       style={{ 
         flex:1, 
-        backgroundColor:colors.accentDark 
+        backgroundColor:colors.primary 
       }}
     >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -101,20 +104,16 @@ export default function SignIn({ navigation }) {
           >
             <View style={{ marginVertical:'10%' }}>
               <Title 
-                text='RoommateFinder'
+                title='RoommateFinder'
+                color={colors.tint}
+                fontSize={verticalScale(30)}
                 style={{
-                  color:colors.wasatchSun,
-                  textAlign:'center',
-                  fontSize:verticalScale(30),
-                  fontFamily:'LuckiestGuy-Regular',
-                  textShadowColor:'#222',
-                  textShadowRadius:10,
-                  textShadowOffset: [{ width:15, height:15 }]
+                  textAlign:'center'
                 }}
               />
               <CustomText 
                 style={{ 
-                  color: colors.constWhite,
+                  color: colors.tint,
                   marginVertical:10,
                   fontSize:verticalScale(15),
                   fontWeight:'600', 
@@ -126,12 +125,12 @@ export default function SignIn({ navigation }) {
             </View>
 
             <View style={{ marginBottom:verticalScale(20) }}>
-              <CustomLabel color={colors.constWhite} label={'Email Address'} />
+              <CustomLabel color={colors.tint} label={'Email Address'} />
               <CustomTextInput 
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                // keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
@@ -143,15 +142,15 @@ export default function SignIn({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
 
-              <CustomLabel color={colors.constWhite} label={'Password'} />
+              <CustomLabel color={colors.tint} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
-                keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
+                // keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
@@ -163,7 +162,7 @@ export default function SignIn({ navigation }) {
                   color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
-                  borderColor:colors.constBlack,
+                  borderColor:colors.tint,
                   fontSize:verticalScale(14)
                 }}
               />
@@ -172,8 +171,8 @@ export default function SignIn({ navigation }) {
                 onClick={() => onSignIn()}
                 style={{ 
                   borderWidth:2,
-                  borderColor:colors.constBlack,
-                  backgroundColor:colors.accentDark,
+                  borderColor:colors.tint,
+                  backgroundColor:colors.accent,
                   borderRadius:0,
                   shadowColor: '#222',
                   shadowOffset: { width: 7, height: 5 },
@@ -185,7 +184,7 @@ export default function SignIn({ navigation }) {
                   style={{ 
                     fontSize:verticalScale(16), 
                     fontWeight:'600', 
-                    color:colors.constWhite,
+                    color:colors.white,
                   }}
                 >
                   Log in
@@ -205,7 +204,7 @@ export default function SignIn({ navigation }) {
                   style={[
                     styles.text,
                     { 
-                      color:colors.constWhite
+                      color:colors.tint
                     }
                   ]}
                 >
@@ -214,7 +213,7 @@ export default function SignIn({ navigation }) {
                     style={[
                       styles.text, 
                       { 
-                        color:colors.constWhite, 
+                        color:colors.tint, 
                         textDecorationLine:'underline' 
                       }
                     ]}

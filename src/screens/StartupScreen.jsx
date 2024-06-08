@@ -1,8 +1,6 @@
 import React from 'react';
 import { 
   View, 
-  StyleSheet, 
-  Image, 
   Text,
   StatusBar,
   SafeAreaView,
@@ -17,7 +15,6 @@ import Title from '../components/Brand/Title';
 import CustomText from '../components/UI/Custom/CustomText';
 import CustomButton from '../components/UI/Custom/CustomButton';
 
-import useGlobal from '../core/global';
 import { colors } from '../constants/colors';
 
 
@@ -30,10 +27,15 @@ export default function StartupScreen({ navigation }) {
         style={{
           alignSelf:'center',
           width:'80%',
-          
+          backgroundColor:colors.accent
         }}
       >
-        <CustomText>
+        <CustomText
+          style={{
+            fontSize:verticalScale(16),
+            color:colors.white
+          }}
+        >
           {text}
         </CustomText>
       </CustomButton>
