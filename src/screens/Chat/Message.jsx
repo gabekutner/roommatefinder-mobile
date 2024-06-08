@@ -11,22 +11,30 @@ import {
   InputAccessoryView, 
   Platform, 
   SafeAreaView, 
-  TextInput, 
   TouchableOpacity, 
   View 
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-
-import CustomText from '../components/UI/Custom/CustomText';
-import Thumbnail from "../components/Thumbnail";
-
-import useGlobal from "../core/global";
-import { colors as c } from "../assets/config";
+import { 
+	verticalScale,
+	moderateScale 
+} from "react-native-size-matters";
 
 
-function MessageHeader({ navigation, friend, colors }) {
+import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import CustomText from '../../components/UI/Custom/CustomText';
+import Thumbnail from "../../components/Thumbnail";
 
+import useGlobal from "../../core/global";
+import { colors } from '../../constants/colors';
+
+
+function MessageHeader({ 
+	navigation, 
+	friend, 
+	colors 
+}) {
 	return  (
 		<View
 			style={{
@@ -79,7 +87,7 @@ function MessageBubbleMe({ text }) {
 					backgroundColor:'#303040',
 					borderRadius:21,
 					maxWidth:'75%',
-					paddingHorizontal:16,
+					paddingHorizontal:moderateScale(16),
 					paddingVertical:12,
 					justifyContent:'center',
 					marginRight:8,
@@ -91,6 +99,7 @@ function MessageBubbleMe({ text }) {
 						color:'white',
 						fontSize:16,
 						lineHeight:18,
+						fontSize:verticalScale(13)
 					}}
 				>
 					{text}
@@ -187,7 +196,7 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 					<CustomText
 						style={{
 							color:'#202020',
-							fontSize:16,
+							fontSize:verticalScale(14),
 							lineHeight:18,
 						}}
 					>
@@ -201,7 +210,12 @@ function MessageBubbleFriend({ text='', friend, typing=false, colors }) {
 }
 
 
-function MessageBubble({ index, message, friend, colors }) {
+function MessageBubble({ 
+	index, 
+	message, 
+	friend, 
+	colors 
+}) {
 	const [showTyping, setShowTyping] = useState(false)
 
 	const messagesTyping = useGlobal(state => state.messagesTyping)
@@ -238,42 +252,48 @@ function MessageBubble({ index, message, friend, colors }) {
 }
 
 
-function MessageInput({ message, setMessage, onSend, colors }) {
+function MessageInput({ 
+	message, 
+	setMessage, 
+	onSend, 
+	colors 
+}) {
 	return (
 		<View
 			style={{
-				paddingHorizontal:10,
-				paddingBottom:10,
+				paddingHorizontal:moderateScale(7),
+				paddingBottom:moderateScale(7),
 				flexDirection:'row',
-				alignItems:'center'
+				alignItems:'center',
+				marginBottom:verticalScale(10)
 			}}
 		>
-			<TextInput
-				keyboardAppearance={colors.primary === '#1f2937' ? 'dark' : 'light'}
+			<CustomTextInput
 				placeholder="Message..."
 				placeholderTextColor={colors.tint}
 				value={message}
 				onChangeText={setMessage}
 				autoComplete={false}
+				colors={colors}
 				style={{
 					flex: 1,
-					paddingHorizontal:18,
+					paddingHorizontal:moderateScale(10),
 					borderWidth:1,
 					borderRadius:25,
-					borderColor:colors.tertiary,
+					borderColor:colors.tint,
 					backgroundColor:colors.secondary,
-					height:50,
+					height:verticalScale(40),
 					color:colors.tint,
-					fontFamily:'NotoSans_Condensed-Regular',
+					fontSize:verticalScale(14),
 				}}
 			/>
 			<TouchableOpacity onPress={onSend}>
 				<FontAwesomeIcon
 					icon='paper-plane'
-					size={22}
+					size={verticalScale(19)}
 					color={colors.tint}
 					style={{
-						marginHorizontal: 12
+						marginHorizontal: moderateScale(15)
 					}}
 				/>
 			</TouchableOpacity>
@@ -290,8 +310,6 @@ export default function Message({ navigation, route }) {
 	const messageList = useGlobal(state => state.messageList)
 	const messageSend = useGlobal(state => state.messageSend)
 	const messageType = useGlobal(state => state.messageType)
-	const theme = useGlobal(state => state.theme)
-	const colors = c[theme]
 
 	const connectionId = route.params.id
 	const friend = route.params.friend
@@ -330,7 +348,7 @@ export default function Message({ navigation, route }) {
 				<FlatList
 					automaticallyAdjustKeyboardInsets={true}
 					contentContainerStyle={{
-						paddingTop: 30
+						paddingTop: verticalScale(20)
 					}}
 					data={[{id: -1}, ...messagesList]}
 					inverted={true}

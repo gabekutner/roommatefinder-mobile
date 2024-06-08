@@ -8,37 +8,37 @@ import {
 import './src/core/fontawesome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-import SplashScreen from './src/screens/SplashScreen';
-import SignIn from './src/screens/Auth/SignIn';
-import SignUp from './src/screens/Auth/SignUp';
-import Home from './src/screens/Home';
-import Message from './src/screens/Message';
-import Search from './src/screens/Search';
-import Onboarding from './src/screens/Onboarding';
-import Requests from './src/screens/Requests';
-import CreateProfile from './src/screens/Profile/CreateProfile';
-import EditProfile from './src/screens/Profile/Edit/EditProfile';
-import Settings from './src/screens/Settings';
-import PhotoUpload from './src/screens/PhotoUpload';
-import CreateProfilePrompt from './src/screens/Profile/Create/CreateProfilePrompt';
+// import SplashScreen from './src/screens/SplashScreen';
+// import SignIn from './src/screens/Auth/SignIn';
+// import SignUp from './src/screens/Auth/SignUp';
+// import Home from './src/screens/Home';
+// import Message from './src/screens/Message';
+// import Search from './src/screens/Search';
+// import Onboarding from './src/screens/Onboarding';
+// import Requests from './src/screens/Requests';
+// import CreateProfile from './src/screens/Profile/CreateProfile';
+// import EditProfile from './src/screens/Profile/Edit/EditProfile';
+// import Settings from './src/screens/Settings';
+// import PhotoUpload from './src/screens/PhotoUpload';
+// import CreateProfilePrompt from './src/screens/Profile/Create/CreateProfilePrompt';
 
 // import AppStack from './src/routes/AppStack';
 
-import AgeScreen from './src/screens/Onboarding/Age';
-import SexScreen from './src/screens/Onboarding/Sex';
-import HomeTownScreen from './src/screens/Onboarding/Hometown';
-import GraduationYearScreen from './src/screens/Onboarding/GraduationYear';
-import MajorScreen from './src/screens/Onboarding/Major';
-import InterestsScreen from './src/screens/Onboarding/Interests';
-import BaseWidgetsScreen from './src/screens/Onboarding/Widgets/BaseWidget';
-import LinkTreeScreen from './src/screens/Onboarding/Widgets/LinkTree';
-import PromptsScreen from './src/screens/Onboarding/Widgets/Prompts';
-import QuotesScreen from './src/screens/Onboarding/Widgets/Quotes';
-import PhotosScreen from './src/screens/Onboarding/Photos';
-import DormScreen from './src/screens/Onboarding/Dorm';
-import DoneScreen from './src/screens/Onboarding/Done';
+// import AgeScreen from './src/screens/Onboarding/Age';
+// import SexScreen from './src/screens/Onboarding/Sex';
+// import HomeTownScreen from './src/screens/Onboarding/Hometown';
+// import GraduationYearScreen from './src/screens/Onboarding/GraduationYear';
+// import MajorScreen from './src/screens/Onboarding/Major';
+// import InterestsScreen from './src/screens/Onboarding/Interests';
+// import BaseWidgetsScreen from './src/screens/Onboarding/Widgets/BaseWidget';
+// import LinkTreeScreen from './src/screens/Onboarding/Widgets/LinkTree';
+// import PromptsScreen from './src/screens/Onboarding/Widgets/Prompts';
+// import QuotesScreen from './src/screens/Onboarding/Widgets/Quotes';
+// import PhotosScreen from './src/screens/Onboarding/Photos';
+// import DormScreen from './src/screens/Onboarding/Dorm';
+// import DoneScreen from './src/screens/Onboarding/Done';
 
 
 import useGlobal from './src/core/global';
@@ -50,7 +50,7 @@ import AuthStack from './src/routes/AuthStack';
 import AppStack from './src/routes/AppStack';
 
 
-const Stack = createNativeStackNavigator()
+// const Stack = createNativeStackNavigator()
 
 
 export default function App() {

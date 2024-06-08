@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { 
+	useState, 
+	useEffect 
+} from "react";
 import { 
   ActivityIndicator, 
   FlatList, 
@@ -8,16 +11,15 @@ import {
 	RefreshControl,
 } from "react-native";
 
-import SwipeProfileModal from "../components/UI/SwipeProfileModal";
-import CustomText from '../components/UI/Custom/CustomText';
-import Empty from "../components/Empty";
-import Cell from "../components/Cell";
-import Thumbnail from "../components/Thumbnail";
+import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
+import CustomText from '../../components/UI/Custom/CustomText';
+import Empty from "../../components/Empty";
+import Cell from "../../components/Cell";
+import Thumbnail from "../../components/Thumbnail";
 
-import useGlobal from "../core/global";
-import utils from "../core/utils";
-// import { colors as c } from '../assets/config';
-import { colors } from "../constants/colors";
+import useGlobal from "../../core/global";
+import utils from "../../core/utils";
+import { colors } from "../../constants/colors";
 
 
 function RequestAccept({ item, colors }) {

@@ -13,14 +13,14 @@ import {
 	verticalScale 
 } from "react-native-size-matters";
 
-import SwipeProfileModal from "../components/UI/SwipeProfileModal";
-import CustomText from '../components/UI/Custom/CustomText';
-import Empty from "../components/Empty";
-import Thumbnail from "../components/Thumbnail";
-import Cell from "../components/Cell";
+import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
+import CustomText from '../../components/UI/Custom/CustomText';
+import Empty from "../../components/Empty";
+import Thumbnail from "../../components/Thumbnail";
+import Cell from "../../components/Cell";
 
-import useGlobal from "../core/global";
-import { colors } from '../constants/colors';
+import useGlobal from "../../core/global";
+import { colors } from '../../constants/colors';
 
 
 function SearchButton({ user, colors }) {

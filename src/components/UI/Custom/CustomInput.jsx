@@ -51,7 +51,7 @@ export default function CustomTextInput({
         fontSize:18,
         fontWeight:'500',
         // borderWidth:1,
-        borderColor:colors.tertiary,
+        borderColor:colors.tint,
         shadowColor: '#222',
         shadowOffset: { width: 7, height: 5 },
         shadowOpacity: 1,
