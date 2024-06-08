@@ -211,9 +211,29 @@ export default function AppStack() {
         })}
       />
       <Stack.Screen 
-        name="settings"
-        component={Settings}
-        options={{ headerShown:false }}
+        name='settings' 
+        component={Settings} 
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={{
+                marginBottom:verticalScale(5)
+              }}
+            >
+              <FontAwesomeIcon 
+                icon='arrow-left'
+                size={verticalScale(20)}
+                color={colors.tint}
+              />
+            </TouchableOpacity>
+          ), 
+          headerTitle: () => <Title title="Settings" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerStyle: {
+            backgroundColor:colors.primary,
+          },
+          headerShadowVisible: false, // border bottom invisible
+        })}
       />
       <Stack.Screen 
         name='photo-upload'

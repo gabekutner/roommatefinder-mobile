@@ -10,29 +10,27 @@ import {
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  verticalScale,
+  moderateScale
+} from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
 import Thumbnail from '../components/Thumbnail';
 
 import useGlobal from '../core/global';
-import { colors as c } from '../assets/config';
+import { colors } from '../constants/colors';
 
 
 export default function Settings({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const logout = useGlobal(state => state.logout)
-  const setTheme = useGlobal(state => state.setTheme)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   const [form, setForm] = useState({
     emailNotifications: true,
     pushNotifications: false,
-    theme: true ? theme === 'dark' : false, // true -> dark mode, false -> light mode
   })
-
-  const toggleSwitch = () => { setTheme() }
 
   return (
     <SafeAreaView 
@@ -42,34 +40,9 @@ export default function Settings({ navigation }) {
       }}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.headerAction}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}>
-              <FontAwesomeIcon
-                icon="arrow-left"
-                color={colors.tint}
-                size={24} />
-            </TouchableOpacity>
-          </View>
-
-          <CustomText 
-            style={[
-              styles.headerTitle, 
-              { 
-                color:colors.tint 
-              }
-            ]}
-          >
-            Settings
-          </CustomText>
-
-          <View style={[styles.headerAction, { alignItems: 'flex-end' }]} />
-        </View>
-
         <ScrollView contentContainerStyle={styles.content}>
-          <View style={[styles.section, { paddingTop: 4 }]}>
-            <Text style={[styles.sectionTitle, { color:colors.tertiary }]}>Account</Text>
+          <View style={[styles.section, { paddingTop:4 }]}>
+            <Text style={[styles.sectionTitle, { color:colors.tint }]}>Account</Text>
 
             <View style={styles.sectionBody}>
               <TouchableOpacity
@@ -84,7 +57,7 @@ export default function Settings({ navigation }) {
               >
                 <Thumbnail 
                   url={user.thumbnail}
-                  size={70}
+                  size={100}
                   borderColor={colors.secondary}
                   style={styles.profileAvatar}
                 />
@@ -94,7 +67,8 @@ export default function Settings({ navigation }) {
                     style={[
                       styles.profileName, 
                       { 
-                        color:colors.tint 
+                        color:colors.tint,
+                        // fontSize:verticalScale(10)
                       }
                     ]}
                   >
@@ -105,7 +79,7 @@ export default function Settings({ navigation }) {
                     style={[
                       styles.profileHandle, 
                       { 
-                        color:colors.tertiary 
+                        color:colors.tint 
                       }
                     ]}
                   >
@@ -114,9 +88,9 @@ export default function Settings({ navigation }) {
                 </View>
 
                 <FontAwesomeIcon
-                  color={colors.tertiary}
+                  color={colors.tint}
                   icon="chevron-right"
-                  size={22} 
+                  size={verticalScale(19)} 
                 />
               </TouchableOpacity>
             </View>
@@ -128,7 +102,7 @@ export default function Settings({ navigation }) {
               style={[
                 styles.sectionTitle, 
                 { 
-                  color:colors.tertiary 
+                  color:colors.tint 
                 }
               ]}
             >
@@ -139,11 +113,12 @@ export default function Settings({ navigation }) {
                 style={[
                   styles.rowWrapper, 
                   styles.rowFirst, 
+                  styles.rowLast,
                   { 
                     backgroundColor:colors.secondary, 
                     borderColor:colors.tint, 
-                    borderWidth:.2, 
-                    borderTopWidth:.2 
+                    borderWidth:.5, 
+                    borderTopWidth:.5
                   }
                 ]}
               >
@@ -182,7 +157,7 @@ export default function Settings({ navigation }) {
                     value={form.pushNotifications} />
                 </View>
               </View> */}
-              <View 
+              {/* <View 
                 style={[
                   styles.rowWrapper, 
                   styles.rowLast, 
@@ -215,7 +190,7 @@ export default function Settings({ navigation }) {
                     style={{ transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }] }}
                     value={form.theme} />
                 </View>
-              </View>
+              </View> */}
             </View>
           </View>
 
@@ -225,7 +200,7 @@ export default function Settings({ navigation }) {
               style={[
                 styles.sectionTitle, 
                 { 
-                  color:colors.tertiary 
+                  color:colors.tint 
                 }
               ]}
             >
@@ -240,8 +215,8 @@ export default function Settings({ navigation }) {
                   { 
                     backgroundColor:colors.secondary, 
                     borderColor:colors.tint, 
-                    borderWidth:.2, 
-                    borderTopWidth:.2 
+                    borderWidth:.5, 
+                    borderTopWidth:.5
                   }
                 ]}
               >
@@ -267,7 +242,8 @@ export default function Settings({ navigation }) {
                   <FontAwesomeIcon
                     color={colors.tertiary}
                     icon="chevron-right"
-                    size={19} />
+                    size={verticalScale(15)}
+                  />
                 </TouchableOpacity>
               </View>
 
@@ -294,8 +270,8 @@ export default function Settings({ navigation }) {
                   { 
                     backgroundColor:colors.secondary, 
                     borderColor:colors.tint, 
-                    borderWidth:.2, 
-                    borderTopWidth:.2 
+                    borderWidth:.5, 
+                    borderTopWidth:.25
                   }
                 ]}
               >
@@ -322,7 +298,8 @@ export default function Settings({ navigation }) {
                   <FontAwesomeIcon
                     color={colors.tertiary}
                     icon="chevron-right"
-                    size={19} />
+                    size={verticalScale(15)}
+                  />
                 </TouchableOpacity>
               </View>
 
@@ -333,8 +310,8 @@ export default function Settings({ navigation }) {
                   { 
                     backgroundColor:colors.secondary,
                     borderColor:colors.tint,
-                    borderWidth:.2, 
-                    borderTopWidth:.1 
+                    borderWidth:.5, 
+                    borderTopWidth:.25 
                   }
                 ]}
               >
@@ -361,7 +338,8 @@ export default function Settings({ navigation }) {
                   <FontAwesomeIcon
                     color={colors.tertiary}
                     icon="chevron-right"
-                    size={19} />
+                    size={verticalScale(15)} 
+                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -376,10 +354,7 @@ export default function Settings({ navigation }) {
                   styles.rowLast,
                   { 
                     alignItems: 'center',
-                    backgroundColor:colors.secondary, 
-                    borderColor:colors.tint, 
-                    borderWidth:.2, 
-                    borderTopWidth:.2 
+                    backgroundColor:colors.accent, 
                   },
                 ]}
               >
@@ -392,7 +367,7 @@ export default function Settings({ navigation }) {
                       styles.rowLabel, 
                       styles.rowLabelLogout, 
                       { 
-                        color:colors.accent 
+                        color:colors.white 
                       }
                     ]}
                   >
@@ -407,7 +382,7 @@ export default function Settings({ navigation }) {
             style={[
               styles.contentFooter, 
               { 
-                color:colors.tertiary 
+                color:colors.tint 
               }
             ]}
           >
@@ -426,54 +401,29 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexBasis: 0,
   },
-  /** Header */
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: 16,
-  },
-  headerAction: {
-    width: 40,
-    height: 40,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  headerTitle: {
-    fontSize: 19,
-    fontWeight: '600',
-  },
-  /** Content */
-  content: {
-    paddingHorizontal: 16,
-  },
+  // Content
+  content: { paddingHorizontal: moderateScale(20) },
   contentFooter: {
     marginTop: 24,
-    fontSize: 13,
+    fontSize: verticalScale(10),
     fontWeight: '500',
     textAlign: 'center',
-    // color: '#a69f9f',
   },
-  /** Section */
-  section: {
-    paddingVertical: 12,
-  },
+  // Section
+  section: { paddingVertical: verticalScale(8) },
   sectionTitle: {
-    margin: 8,
-    marginLeft: 12,
-    fontSize: 13,
-    letterSpacing: 0.33,
+    margin:8,
+    marginLeft:moderateScale(10),
+    fontSize:verticalScale(10),
+    letterSpacing:0.33,
     fontWeight: '500',
     textTransform: 'uppercase',
   },
-  sectionBody: {
-    borderRadius: 12,
-  },
-  /** Profile */
+  sectionBody: { borderRadius: 12 },
+  // Profile  
   profile: {
     padding: 12,
-    borderWidth:.2,
+    borderWidth:.5,
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -485,54 +435,41 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
     marginRight: 12,
   },
-  profileBody: {
-    marginRight: 'auto',
-  },
+  profileBody: { marginRight: 'auto' },
   profileName: {
-    fontSize: 18,
+    fontSize: verticalScale(15),
     fontWeight: '600',
-    // color: '#292929',
   },
   profileHandle: {
     marginTop: 2,
-    fontSize: 16,
+    fontSize: verticalScale(13),
     fontWeight: '400',
-    // color: '#858585',
   },
-  /** Row */
+  // Row
   row: {
-    height: 44,
+    height: verticalScale(38),
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingRight: 12,
+    paddingRight: moderateScale(8),
   },
   rowWrapper: {
-    paddingLeft: 16,
-    // backgroundColor: '#fff',
+    paddingLeft: moderateScale(12),
     borderTopWidth: 1,
-    // borderColor: '#f0f0f0',
   },
   rowFirst: {
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
   rowLabel: {
-    fontSize: 16,
+    fontSize: verticalScale(13),
     letterSpacing: 0.24,
-    // color: '#000',
   },
   rowSpacer: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-  },
-  rowValue: {
-    fontSize: 16,
-    fontWeight: '500',
-    // color: '#ababab',
-    marginRight: 4,
   },
   rowLast: {
     borderBottomLeftRadius: 12,
@@ -542,7 +479,6 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontWeight: '500',
-    fontSize:18
-    // color: '#dc2626',
+    fontSize:verticalScale(14)
   },
-});
+})
