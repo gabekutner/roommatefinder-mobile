@@ -3,17 +3,18 @@ import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
-import Onboarding from '../screens/Onboarding';
+// import Onboarding from '../screens/Onboarding';
 import SignIn from '../screens/Auth/SignIn';
 import SignUp from '../screens/Auth/SignUp';
+import StartupScreen from "../screens/StartupScreen";
 
 
 export default function AuthStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name='onboarding' 
-        component={Onboarding} 
+        name='startup' 
+        component={StartupScreen} 
         options={{ headerShown:false }}
       />
       <Stack.Screen 
