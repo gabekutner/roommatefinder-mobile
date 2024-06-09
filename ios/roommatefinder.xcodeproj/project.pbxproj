@@ -22,6 +22,7 @@
 		7699B88040F8A987B510C191 /* libPods-roommatefinder-roommatefinderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-roommatefinder-roommatefinderTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B52AF85E02542099F9F712D /* blambotcustom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */; };
+		9B1212B5673F4691BEEB01F1 /* GideonRoman-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A65889328C493A8A9CA98F /* GideonRoman-Regular.ttf */; };
 		A4A562685317409D97A5A03F /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0949059BA7D4CCBB7EE554F /* LuckiestGuy-Regular.ttf */; };
 		A690DA73BC6447BFAC07BFA1 /* uofulogo-clear_prev_ui.png in Resources */ = {isa = PBXBuildFile; fileRef = 4509464C76CF42FFAE9C14A0 /* uofulogo-clear_prev_ui.png */; };
 		C8727C2C92E346448B14DD85 /* Glegoo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77585F06CDDE43DA83D7A1F7 /* Glegoo-Bold.ttf */; };
@@ -29,7 +30,6 @@
 		D9F4D10B19BB402FBDE1CD26 /* Glegoo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43A84D9141E4B498D78AF35 /* Glegoo-Regular.ttf */; };
 		F644F9ECD4824C0CA5F79232 /* image_part_001.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C7374BABEB4DDB909ECDDD /* image_part_001.png */; };
 		F67DFDCF1C9547068D5F100E /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7E02CEF494DA5A7615A14 /* profile.png */; };
-		9B1212B5673F4691BEEB01F1 /* GideonRoman-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43A65889328C493A8A9CA98F /* GideonRoman-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +59,7 @@
 		3B4392A12AC88292D35C810B /* Pods-roommatefinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder.debug.xcconfig"; path = "Target Support Files/Pods-roommatefinder/Pods-roommatefinder.debug.xcconfig"; sourceTree = "<group>"; };
 		3EB5E4B2CA41426A9AE19B0D /* pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png"; path = "../src/assets/images/pnghut_halftone-comics-monochrome-polka-dot-graphic-design.png"; sourceTree = "<group>"; };
 		426E976268124640A83CF511 /* Acme-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Acme-Regular.ttf"; path = "../src/assets/fonts/Acme-Regular.ttf"; sourceTree = "<group>"; };
+		43A65889328C493A8A9CA98F /* GideonRoman-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "GideonRoman-Regular.ttf"; path = "../src/assets/fonts/GideonRoman-Regular.ttf"; sourceTree = "<group>"; };
 		4509464C76CF42FFAE9C14A0 /* uofulogo-clear_prev_ui.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "uofulogo-clear_prev_ui.png"; path = "../src/assets/images/uofulogo-clear_prev_ui.png"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-roommatefinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder.release.xcconfig"; path = "Target Support Files/Pods-roommatefinder/Pods-roommatefinder.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-roommatefinder-roommatefinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roommatefinder-roommatefinderTests.debug.xcconfig"; path = "Target Support Files/Pods-roommatefinder-roommatefinderTests/Pods-roommatefinder-roommatefinderTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,7 +77,6 @@
 		D1769E8B30F243EAB3A93A89 /* font info.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "font info.txt"; path = "../src/assets/fonts/blambot-custom/font info.txt"; sourceTree = "<group>"; };
 		D1B7E02CEF494DA5A7615A14 /* profile.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = profile.png; path = ../src/assets/images/profile.png; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		43A65889328C493A8A9CA98F /* GideonRoman-Regular.ttf */ = {isa = PBXFileReference; name = "GideonRoman-Regular.ttf"; path = "../src/assets/fonts/GideonRoman-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -10,20 +10,18 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "./Base";
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
-import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 
 
 export default function SexScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   const [selected, setSelected] = useState("")
   function toggleSelected(key) {
@@ -31,25 +29,25 @@ export default function SexScreen({ navigation }) {
     setForm({ ...form, sex:key })
   }
 
-  const label = "I am a ..."
-
   return (
-    <Base navigation={navigation} label={label} >
+    <Base>
       <View 
         style={{ 
           flexDirection:'column', 
           gap:verticalScale(15),
           marginHorizontal:moderateScale(100),
-          alignItems:'center'
+          alignItems:'center',
+          marginVertical:verticalScale(30)
         }}
       >
+        <Label text="I am a ..." style={{ marginVertical:verticalScale(20) }} />
         <TouchableOpacity 
           onPress={() => toggleSelected("M")}
           style={[
             styles.option, 
             { 
-              borderColor: colors.constBlack,
-              backgroundColor: selected === "M" ? colors.wasatchSun : colors.accentDark,
+              borderColor: colors.tint,
+              backgroundColor: selected === "M" ? colors.accent : colors.secondary,
               shadowColor: '#222',
               shadowOffset: { width: 7, height: 5 },
               shadowOpacity: 1,
@@ -61,7 +59,7 @@ export default function SexScreen({ navigation }) {
             style={[
               styles.text, 
               { 
-                color: selected === "M" ? colors.constBlack : colors.constWhite
+                color: selected === "M" ? colors.white : colors.tint
               }
             ]}
           >
@@ -74,7 +72,7 @@ export default function SexScreen({ navigation }) {
             styles.option, 
             { 
               borderColor: colors.constBlack,
-              backgroundColor: selected === "F" ? colors.wasatchSun : colors.accentDark,
+              backgroundColor: selected === "F" ? colors.accent : colors.secondary,
               shadowColor: '#222',
               shadowOffset: { width: 7, height: 5 },
               shadowOpacity: 1,
@@ -86,7 +84,7 @@ export default function SexScreen({ navigation }) {
             style={[
               styles.text, 
               { 
-                color: selected === "F" ? colors.tint : colors.constWhite
+                color: selected === "F" ? colors.white : colors.tint
               }
             ]}
           >
@@ -94,11 +92,6 @@ export default function SexScreen({ navigation }) {
           </CustomText>
         </TouchableOpacity>
       </View>
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('hometown')}
-        text={'Next Step'}
-      />
     </Base>
   )
 }
