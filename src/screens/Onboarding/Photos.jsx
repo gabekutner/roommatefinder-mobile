@@ -24,6 +24,7 @@ import CustomText from "../../components/UI/Custom/CustomText";
 // import useGlobal from "../../core/global";
 // import { colors as c } from "../../assets/config";
 import { colors } from "../../constants/colors";
+import useGlobal from "../../core/global";
 
 
 
@@ -58,6 +59,7 @@ export default function PhotosScreen({ navigation }) {
   // const setForm = useGlobal(state => state.setForm)
   // const theme = useGlobal(state => state.theme)
   // const colors = c[theme]
+  const uploadPhotos = useGlobal(state => state.uploadPhotos)
 
   const [photo, setPhoto] = useState({
     thumbnail: null,
@@ -65,9 +67,6 @@ export default function PhotosScreen({ navigation }) {
     photo_2: null,
     photo_3: null,
   }) 
-
-  // const label = "Upload some photos!"
-  // const buttonLabel = "Next Step"
 
   const launchLibrary = (key) => {
     launchImageLibrary({ includeBase64:true, }, (response) => {
@@ -86,11 +85,8 @@ export default function PhotosScreen({ navigation }) {
   }
   
   const handleImage = () => {
-    // const arr = [...form.photos]
-    // arr.push({ image:photo.photo_1 })
-    // arr.push({ image:photo.photo_2 })
-    // arr.push({ image:photo.photo_3 })
-    // setForm({ ...form, photos:arr, thumbnail:photo.thumbnail })
+    // upload thumbnail
+    uploadPhotos(photo)
   }
   
   return (
@@ -215,6 +211,13 @@ export default function PhotosScreen({ navigation }) {
           </View>
         </View>
       </View>
+      <CustomButton
+        onClick={() => handleImage()}
+      >
+        <CustomText>
+          Submit
+        </CustomText>
+      </CustomButton>
     </Base>
   )
 }

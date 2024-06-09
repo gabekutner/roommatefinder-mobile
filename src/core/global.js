@@ -300,9 +300,77 @@ const useGlobal = create((set, get) => ({
         }))
 
       } catch(error) {
-        console.log('useGlobal.CreateProfile: ', error)
+        console.log('useGlobal.createProfile: ', error)
       }
     } 
+  },
+
+  uploadPhotos: async (form, user) => {
+    if (user.token) {
+      try {
+
+        const dataForm = new FormData();
+
+        if (form.photo_1 !== null) {
+          const imageUri = form.photo_1.uri
+          const fileName = imageUri.split('/').pop()
+          const fileType = fileName.split('.')[1]
+          dataForm.append('image', {
+            name: fileName,
+            type: Platform.OS === 'ios' ? form.photo_1.type : 'image/' + fileType,
+            uri:
+              Platform.OS === 'android'
+                ? form.photo_1.uri
+                : form.photo_1.uri.replace('file://', ''),
+          })
+        }
+        if (form.photo_2 !== null) {
+          const imageUri = form.photo_2.uri
+          const fileName = imageUri.split('/').pop()
+          const fileType = fileName.split('.')[1]
+          dataForm.append('image', {
+            name: fileName,
+            type: Platform.OS === 'ios' ? form.photo_2.type : 'image/' + fileType,
+            uri:
+              Platform.OS === 'android'
+                ? form.photo_2.uri
+                : form.photo_2.uri.replace('file://', ''),
+          })
+        }
+        if (form.photo_3 !== null) {
+          const imageUri = form.photo_3.uri
+          const fileName = imageUri.split('/').pop()
+          const fileType = fileName.split('.')[1]
+          dataForm.append('image', {
+            name: fileName,
+            type: Platform.OS === 'ios' ? form.photo_3.type : 'image/' + fileType,
+            uri:
+              Platform.OS === 'android'
+                ? form.photo_3.uri
+                : form.photo_3.uri.replace('file://', ''),
+          })
+        }
+
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/photos/',
+          data: dataForm,
+          headers: {
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTQ3NTQzLCJpYXQiOjE3MTc5NTU1NDMsImp0aSI6IjMzMDk0Mzc0ODg0MTQxNWU4YzE3NTVkMTBmZTU3NTQwIiwidXNlcl9pZCI6IjM5ZmMwNTAxLTY2OGEtNGM5NS1iZTIzLTFiYmU0NjljZDg3MSJ9.Uf1HVBIV0L0VY_9VtC_naz083XO1gCWkmL0hzssaPVg`, 
+            'Content-Type' : 'multipart/form-data',
+          },
+        })
+
+        if (response.status !== 201) {
+          throw 'upload-photos error'
+        }
+
+        console.log('uploaded photos!')
+
+      } catch(error) {
+        console.log('useGlobal.uploadPhotos: ', error.response)
+      }
+    }
   },
 
   // createProfile: async (form, user) => {
