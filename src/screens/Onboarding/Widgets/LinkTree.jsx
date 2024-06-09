@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   FlatList,
+  KeyboardAvoidingView,
 } from 'react-native';
 
-import { verticalScale } from "react-native-size-matters";
+import { 
+  verticalScale,
+  moderateScale 
+} from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomTextInput from '../../../components/UI/Custom/CustomInput'
 
 import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
@@ -22,55 +27,140 @@ export default function LinkTreeScreen({ navigation }) {
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
 
+  const [link, setLink] = useState({
+    title:"",
+    link:"",
+  })
+
+  const handleForm = () => {
+    const arr = [...form.links]
+    arr.push({ title:link.title, link:link.link })
+    setForm({ ...form, links:arr })
+  }
+
   return (
-    <Base>
-      <View 
-        style={{ 
-          alignItems:'center',
-          flexDirection:'column',
-          gap:10,
-          marginVertical:verticalScale(30)
-        }}
-      >
-        <Label text="Add your social handles!" style={{ marginVertical:verticalScale(20) }} />
-        <CustomButton 
-          onClick={() => {}}
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <Base>  
+        <View 
           style={{ 
-            ...styles.addLink, 
-            borderColor:colors.tint
+            alignItems:'center',
+            flexDirection:'column',
+            gap:10,
+            marginVertical:verticalScale(30)
           }}
         >
-          <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a link</CustomText>
-        </CustomButton>
-        <FlatList 
-          showsVerticalScrollIndicator={false}
-          data={form.links}
-          keyExtractor={item => item.link}
-          renderItem={({ item }) => (
-            <View 
-              style={{
-                ...styles.linked, 
-                borderColor: colors.tint,
-                backgroundColor: colors.secondary,
-                flexDirection:'row',
-                gap:15
-              }}
-            >
-              <FontAwesomeIcon 
-                icon="link"
-                size={22}
-                color={colors.tint}
+          <Label text="Add your social handles!" style={{ marginVertical:verticalScale(20) }} />
+
+          <Label 
+            text="Title" 
+            style={{ 
+              fontSize:verticalScale(14), 
+              alignSelf:'flex-start',
+              marginLeft:moderateScale(42)
+            }} 
+          />
+          <CustomTextInput 
+            autoCorrect={false}
+            autoCapitalize={false}
+            placeholder={'Ex. insta'}
+            value={link.title}
+            onChangeText={input => setLink({ ...link, title:input })}
+            colors={colors}
+            style={{
+              height:verticalScale(45),
+              marginBottom:verticalScale(14),
+              backgroundColor:colors.secondary,
+              color:colors.tint,
+              borderRadius:0,
+              borderWidth:2,
+              borderColor:colors.tint,
+              fontSize:verticalScale(14),
+              width:'80%'
+            }}
+          />
+
+          <Label 
+            text="Link" 
+            style={{ 
+              fontSize:verticalScale(14), 
+              alignSelf:'flex-start',
+              marginLeft:moderateScale(42)
+            }} 
+          />
+          <CustomTextInput 
+            autoCorrect={false}
+            autoCapitalize={false}
+            placeholder={'Ex. instagram.com/gabekutner'}
+            value={link.link}
+            onChangeText={input => setLink({ ...link, link:input })}
+            colors={colors}
+            style={{
+              height:verticalScale(45),
+              marginBottom:verticalScale(14),
+              backgroundColor:colors.secondary,
+              color:colors.tint,
+              borderRadius:0,
+              borderWidth:2,
+              borderColor:colors.tint,
+              fontSize:verticalScale(14),
+              width:'80%'
+            }}
+          />
+
+          <CustomButton 
+            onClick={() => handleForm()}
+            style={{ 
+              ...styles.addLink, 
+              borderColor:colors.tint
+            }}
+          >
+            <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a link</CustomText>
+          </CustomButton>
+          
+          { form.links
+            ?
+              <FlatList 
+                showsVerticalScrollIndicator={false}
+                data={form.links}
+                keyExtractor={item => item.link}
+                style={{
+                  marginBottom:verticalScale(320)
+                }}
+                numColumns={2}
+                renderItem={({ item }) => (
+                  <View 
+                    style={{
+                      ...styles.linked, 
+                      borderColor: colors.tint,
+                      backgroundColor: colors.secondary,
+                      flexDirection:'row',
+                      gap:15,
+                      marginHorizontal:moderateScale(5)
+                    }}
+                  >
+                    <FontAwesomeIcon 
+                      icon="link"
+                      size={22}
+                      color={colors.tint}
+                    />
+                    <CustomText style={[styles.linkedText, { color:colors.tint }]}>{item.title}</CustomText>
+                  </View>
+                )}
               />
-              <CustomText style={[styles.linkedText, { color:colors.tint }]}>{item.title}</CustomText>
-            </View>
-          )}
-        />
-      </View>
-    </Base>
+            : null
+          }
+          
+        </View>
+      </Base>
+    </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   linked: {
     padding:verticalScale(15),
     borderWidth:1,

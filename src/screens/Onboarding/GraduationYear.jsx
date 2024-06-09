@@ -42,7 +42,7 @@ export default function GraduationYearScreen({ navigation }) {
             color:colors.tint,
             borderRadius:0,
             borderWidth:2,
-            borderColor:colors.constBlack,
+            borderColor:colors.tint,
             fontSize:verticalScale(14),
             width:moderateScale(110)
           }}

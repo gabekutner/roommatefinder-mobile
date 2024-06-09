@@ -20,7 +20,7 @@ export default function CustomTextInput({
   onChange,
   onChangeText,
   placeholder, // str
-  placeholderTextColor = colors.tertiary, // str
+  placeholderTextColor = colors.tint, // str
   secureTextEntry, // bool
   value, 
   style,

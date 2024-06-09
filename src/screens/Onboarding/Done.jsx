@@ -4,6 +4,8 @@ import { verticalScale } from "react-native-size-matters";
 
 import Base from "./Components/Base";
 import Label from "./Components/Label";
+import CustomText from "../../components/UI/Custom/CustomText";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
@@ -25,6 +27,15 @@ export default function DoneScreen({navigation}) {
           alignSelf:'center'
         }} 
       />
+      <CustomButton
+        onClick={() => {
+          console.log(form)
+        }}
+      >
+        <CustomText>
+          Submit
+        </CustomText>
+      </CustomButton>
     </Base>
   )
 }
