@@ -235,13 +235,11 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
   //   Authentication
   //---------------------
   authenticated: false,
   user: {},
-
 
   login: (credentials, user, tokens) => {
     secure.set('credentials', credentials)
@@ -253,7 +251,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   logout: () => {
     secure.wipe()
     set((state) => ({
@@ -263,7 +260,6 @@ const useGlobal = create((set, get) => ({
       theme:'light',
     }))
   },
-
 
   //---------------------
   //    Create Profile
@@ -280,8 +276,6 @@ const useGlobal = create((set, get) => ({
     quotes: [],
     links: [],
     dorm_building:""
-    // thumbnail:"",
-    // photos: [],
   },
   setForm: (form) => {
     set((state) => ({
@@ -289,9 +283,7 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   profileCreated: false,
-
 
   createProfile: async (form, user) => {
     if (user.token) {
@@ -315,13 +307,11 @@ const useGlobal = create((set, get) => ({
           headers: {"Authorization": `Bearer ${user.token}`},
         })
 
-
         if (response.status !== 201) {
           throw 'create-profile error'
         }
-          const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
+        const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
         secure.set('tokens', tokens)
-
 
         console.log('create-profile success')
         set((state) => ({
@@ -329,12 +319,15 @@ const useGlobal = create((set, get) => ({
           user:response.data,
         }))
 
-
       } catch(error) {
         console.log('useGlobal.createProfile: ', error)
       }
     }
   },
+
+  //---------------------
+  //    Upload Photos 
+  //---------------------
 
   photos: {
     thumbnail:null,
@@ -348,7 +341,6 @@ const useGlobal = create((set, get) => ({
       photos: form
     }))
   },
-
 
   uploadPhotos: async (form, user) => {
     if (user.token) {
@@ -417,7 +409,6 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-
   staticUploadThumbnail: async (form, user) => {
     if (user.token) {
       try {
@@ -456,81 +447,6 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-
-  // createProfile: async (form, user) => {
-  //   if (user.token) {
-  //     try {
-
-
-  //       const dataForm = new FormData()
-  //       const imageUri = form.thumbnail.uri
-  //       const fileName = imageUri.split('/').pop()
-  //       const fileType = fileName.split('.')[1]
-
-
-  //       dataForm.append('thumbnail', {
-  //         name: fileName,
-  //         type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
-  //         uri:
-  //           Platform.OS === 'android'
-  //             ? form.thumbnail.uri
-  //             : form.thumbnail.uri.replace('file://', ''),
-  //       })
-
-
-  //       // form validating
-  //       const bday = ((
-  //         form.birthday.getMonth() > 8)
-  //         ? (form.birthday.getMonth() + 1)
-  //         : ('0' + (form.birthday.getMonth() + 1)))
-  //         + '-' + ((form.birthday.getDate() > 9)
-  //         ? form.birthday.getDate()
-  //         : ('0' + form.birthday.getDate()))
-  //         + '-' + form.birthday.getFullYear()
-        
-  //       dataForm.append('birthday', bday)
-  //       dataForm.append('sex', form.sex)
-  //       dataForm.append('dorm_building', form.dorm)
-  //       for (obj of form.interests) {
-  //         dataForm.append('interests', obj)
-  //       }     
-
-
-  //       const response = await api({
-  //         method: 'post',
-  //         url: '/api/v1/profiles/actions/create-profile/',
-  //         data: dataForm,
-  //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
-  //       })
-
-
-  //       if (response.status !== 200) {
-  //         throw 'create-profile error'
-  //       }
-
-
-  //       const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
-//       secure.set('tokens', tokens)
-
-
-//       console.log('create-profile success')
-//       set((state) => ({
-//         profileCreated:true,
-//         user:response.data,
-//       }))
-
-
-//     } catch(error) {
-//       console.log('useGlobal.createProfile: ', error.response)
-//     }
-//   }
-// },
-
-
-
-
-
-
   //---------------------
   //    Edit Profile
   //---------------------
@@ -538,9 +454,7 @@ const useGlobal = create((set, get) => ({
     if (user.token) {
       try {
 
-
         const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
-
 
         const response = await api({
           method: 'put',
@@ -551,18 +465,17 @@ const useGlobal = create((set, get) => ({
           if (response.status !== 200) {
           throw 'create-profile error'
         }
-          console.log('edit-profile success')
+
+        console.log('edit-profile success')
         set((state) => ({
           user:response.data,
         }))
-
 
       } catch(error) {
         console.log(error.response)
       }
     }
   },
-
 
   //---------------------
   //        Swipe
@@ -581,7 +494,6 @@ const useGlobal = create((set, get) => ({
           console.log('get-swipe success')
         return response
 
-
       } catch(error) {
         if (error.response.status === 404) {
           return 404
@@ -591,7 +503,6 @@ const useGlobal = create((set, get) => ({
       }
     }
   },
-
 
   //---------------------
   //    Swipe Profile
@@ -621,7 +532,6 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-
   //---------------------
   //   Delete Profile
   //---------------------
@@ -633,7 +543,6 @@ const useGlobal = create((set, get) => ({
           url: `/api/v1/profiles/${user.id}/`,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-
 
         if (response.status !== 200) {
           throw 'delete-profile error'
@@ -652,75 +561,65 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-
   //---------------------
-  //     Image Upload
-  //---------------------
-  image: null,
+  //     Image Upload - not necessary, move to uploadPhotos
+  // ---------------------
+  // image: null,
 
 
-  uploadImage: async (file, key, user) => {
-    if (user.token) {
-      try {
+  // uploadImage: async (file, key, user) => {
+  //   if (user.token) {
+  //     try {
 
 
-        const dataForm = new FormData()
-        const imageUri = file.uri
-        const fileName = imageUri.split('/').pop()
-        const fileType = fileName.split('.')[1]
-        dataForm.append('image', {
-          name: fileName,
-          type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
-          uri:
-            Platform.OS === 'android'
-              ? file.uri
-              : file.uri.replace('file://', ''),
-        })
+  //       const dataForm = new FormData()
+  //       const imageUri = file.uri
+  //       const fileName = imageUri.split('/').pop()
+  //       const fileType = fileName.split('.')[1]
+  //       dataForm.append('image', {
+  //         name: fileName,
+  //         type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
+  //         uri:
+  //           Platform.OS === 'android'
+  //             ? file.uri
+  //             : file.uri.replace('file://', ''),
+  //       })
 
+  //       dataForm.append('key', key)
 
-        dataForm.append('key', key)
-
-
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/photos/',
-          data: dataForm,
-          headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
-        })
+  //       const response = await api({
+  //         method: 'post',
+  //         url: '/api/v1/photos/',
+  //         data: dataForm,
+  //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
+  //       })
         
-        if (response.status !== 200) {
-          throw 'Authentication error'
-        }
+  //       if (response.status !== 200) {
+  //         throw 'Authentication error'
+  //       }
 
-
-        console.log('upload-photo success')
-
-
-        set((state) => ({
-          image:imageUri
-        }))
+  //       console.log('upload-photo success')
+  //       set((state) => ({
+  //         image:imageUri
+  //       }))
         
-      } catch(error) {
-        console.log('Global.uploadImage error: ', error)
-      }
-    }
-  },
-
+  //     } catch(error) {
+  //       console.log('Global.uploadImage error: ', error)
+  //     }
+  //   }
+  // },
 
   //---------------------
   //      Websocket
   //---------------------
   socket: null,
 
-
   socketConnect: async () => {
     const tokens = await secure.get('tokens')
-
 
     const socket = new WebSocket(
       `ws://${ADDRESS}/chat/?token=${tokens.access}`
     )
-
 
     socket.onopen = () => {
       console.log('socket.onopen')
@@ -781,7 +680,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
   //     Thumbnail
   //---------------------
@@ -794,12 +692,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
   //     Search
   //---------------------
   searchList: [],
-
 
   searchUsers: (query) => {
     if (query) {
@@ -815,12 +711,10 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-
   //-------------------
   //  Friend Requests
   //-------------------
   requestList: null,
-
 
   refreshRequestList: () => {
     const socket = get().socket
@@ -828,7 +722,6 @@ const useGlobal = create((set, get) => ({
       source: 'request.list'
     }))
   },
-
 
   requestAccept: (id) => {
     const socket = get().socket
@@ -838,7 +731,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   requestConnect: (id) => {
     const socket = get().socket
     socket.send(JSON.stringify({
@@ -847,12 +739,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //-------------------
   //    Friend List
   //-------------------
   friendList: null,
-
 
   refreshFriendList: () => {
     const socket = get().socket
@@ -861,7 +751,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
   //     Messages
   //---------------------
@@ -869,7 +758,6 @@ const useGlobal = create((set, get) => ({
   messagesNext: null,
   messagesTyping: null,
   messagesId: null,
-
 
   messageList: (connectionId, page=0) => {
     if (page === 0) {
@@ -892,7 +780,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   messageSend: (connectionId, message) => {
     const socket = get().socket
     socket.send(JSON.stringify({
@@ -902,7 +789,6 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   messageType: (id) => {
     const socket = get().socket
     socket.send(JSON.stringify({
@@ -911,12 +797,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-
   //---------------------
-  //       Theme
+  //       Theme - deprecated
   //---------------------
   theme: 'light',
-
 
   setTheme: () => {
     set((state) => ({
@@ -925,6 +809,5 @@ const useGlobal = create((set, get) => ({
   },
 
 }))
-
 
 export default useGlobal
