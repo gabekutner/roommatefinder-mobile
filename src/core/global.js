@@ -504,9 +504,6 @@ const useGlobal = create((set, get) => ({
     }
   },
 
-  //---------------------
-  //    Swipe Profile
-  //---------------------
   getSwipeProfile: async (user, id) => {
     if(user.token) {
       try {

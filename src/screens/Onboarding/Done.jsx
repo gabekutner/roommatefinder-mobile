@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 
 import { verticalScale } from "react-native-size-matters";
-
 
 import Base from "./Components/Base";
 import Label from "./Components/Label";
@@ -10,15 +8,11 @@ import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import Snackbar from "../../components/UI/SnackBar";
 
-
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
 
 
-
-
 export default function DoneScreen({navigation}) {
-
 
  const user = useGlobal(state => state.user)
  const form = useGlobal(state => state.form)
@@ -27,39 +21,28 @@ export default function DoneScreen({navigation}) {
  const uploadPhotos = useGlobal(state => state.uploadPhotos)
  const staticUploadThumbnail = useGlobal(state => state.staticUploadThumbnail)
 
-
  const [show, setShow] = useState({
    status:false,
    message:""
  })
 
-
  // form validation & submit
  const submit = () => {
-  // console.log(photos)
-  //  const arr = []
-  //  for (let value in form) {
-  //    if (form[value] === "") {
-  //      console.log('empty string')
-  //      arr.push(value)
-  //    } else if (form[value].length === 0) {
-  //      console.log('empty list')
-  //      arr.push(value)
-  //    }
-  //  }
-  //  if (arr.length === 0) {
-  //    // submit form
-  //    console.log(photos)
+   const arr = []
+   for (let value in form) {
+     if (form[value] === "") {
+       console.log('empty string')
+       arr.push(value)
+      }
+   }
+   if (arr.length === 0) {
     uploadPhotos(photos, user)
     staticUploadThumbnail(photos, user)
-    // staticUploadThumbnail(form, user)
-     createProfile(form, user)
-  //  } else {
-  //    setShow({ status:true, message:'Missing required inputs.' })
-  //    console.log(arr)
-  //  }
+    createProfile(form, user)
+   } else {
+      setShow({ status:true, message:'Missing required inputs.' })
+   }
  }
-
 
  return (
    <Base>

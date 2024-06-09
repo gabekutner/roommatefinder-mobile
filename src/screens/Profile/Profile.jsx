@@ -16,7 +16,6 @@ import CustomText from '../../components/UI/Custom/CustomText';
 import Thumbnail from "../../components/Thumbnail";
 
 import useGlobal from '../../core/global';
-import { colors as c } from "../../assets/config";
 import { colors } from '../../constants/colors';
 
 
