@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { verticalScale } from "react-native-size-matters";
 
@@ -6,6 +6,7 @@ import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
+import Snackbar from "../../components/UI/SnackBar";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
@@ -15,15 +16,32 @@ export default function DoneScreen({navigation}) {
 
   const user = useGlobal(state => state.user)
   const form = useGlobal(state => state.form)
-  const CreateProfile = useGlobal(state => state.CreateProfile)
+  const createProfile = useGlobal(state => state.createProfile)
 
-  // form validation here
+  const [show, setShow] = useState({
+    status:false,
+    message:""
+  })
+
+  // form validation & submit
   const submit = () => {
-    console.log(form)
+    const arr = []
     for (let value in form) {
-      // console.log(form[value])
-      // if ()
-      console.log(form[value])
+      if (form[value] === "") {
+        console.log('empty string')
+        arr.push(value)
+      } else if (form[value].length === 0) {
+        console.log('empty list')
+        arr.push(value)
+      }
+    }
+    if (arr.length === 0) {
+      // submit form 
+      console.log('form submitted')
+      // createProfile(form, user)
+    } else {
+      setShow({ status:true, message:'Missing required inputs.' })
+      console.log(arr)
     }
   }
 
@@ -75,6 +93,27 @@ export default function DoneScreen({navigation}) {
           Submit
         </CustomText>
       </CustomButton>
+
+      { show.status
+          ?
+            <Snackbar
+              message={show.message}
+              actionText="Dismiss"
+              onActionPress={() => {
+                setShow(false)
+              }}
+              duration={5000} // customize duration
+              position="top" // change the position to 'top'/'bottom'
+              backgroundColor={colors.secondary} // customize background color
+              textColor={colors.tint} // change text color
+              actionTextColor={colors.tint} // customize action text color
+              containerStyle={{ marginHorizontal:12 }} // apply additional styling
+              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+              actionTextStyle={{ }} // customize action text styling
+            /> 
+          : null
+        }
+
     </Base>
   )
 }

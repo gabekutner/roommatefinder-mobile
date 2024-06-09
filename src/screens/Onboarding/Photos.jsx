@@ -14,14 +14,16 @@ import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import FastImage from "react-native-fast-image";
 
-import Base from "./Base";
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from "../../components/UI/Custom/CustomText";
-import CustomNextButton from './CustomNextButton';
+// import CustomNextButton from './CustomNextButton';
 
 // import utils from '../../core/utils';
-import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+// import useGlobal from "../../core/global";
+// import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 
 
 
@@ -33,7 +35,7 @@ function PhotoNumber({ number, colors }) {
         top:-10,
         left:-10,
         padding:verticalScale(6),
-        backgroundColor:colors.accentDark,
+        backgroundColor:colors.accent,
         borderRadius:0,
         borderWidth:2,
         shadowOffset: { width: 7, height: 5 },
@@ -44,7 +46,7 @@ function PhotoNumber({ number, colors }) {
       <FontAwesomeIcon 
         icon={number}
         size={verticalScale(15)}
-        color={colors.constWhite}
+        color={colors.white}
       />
     </View>
   )
@@ -54,8 +56,8 @@ export default function PhotosScreen({ navigation }) {
 
   // const form = useGlobal(state => state.form)
   // const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
+  // const theme = useGlobal(state => state.theme)
+  // const colors = c[theme]
 
   const [photo, setPhoto] = useState({
     thumbnail: null,
@@ -64,8 +66,8 @@ export default function PhotosScreen({ navigation }) {
     photo_3: null,
   }) 
 
-  const label = "Upload some photos!"
-  const buttonLabel = "Next Step"
+  // const label = "Upload some photos!"
+  // const buttonLabel = "Next Step"
 
   const launchLibrary = (key) => {
     launchImageLibrary({ includeBase64:true, }, (response) => {
@@ -92,14 +94,16 @@ export default function PhotosScreen({ navigation }) {
   }
   
   return (
-    <Base navigation={navigation} next={'dorm'} label={label} buttonLabel={buttonLabel} >
+    <Base>
       <View 
         style={{ 
           alignItems:'center',
           flexDirection:'column',
           gap:10,
+          marginVertical:verticalScale(30)
         }}
       >
+        <Label text="Add a few photos!" style={{ marginVertical:verticalScale(20) }} />
         <View 
           style={{
             flexDirection:'row',
@@ -108,7 +112,7 @@ export default function PhotosScreen({ navigation }) {
         >
           <View style={styles.wrapper}>
             <TouchableOpacity 
-              style={{ ...styles.upload, borderColor:colors.constWhite, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}
+              style={{ ...styles.upload, borderColor:colors.tint, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}
               onPress={() => launchLibrary('0')}
             >
               { photo.thumbnail 
@@ -121,7 +125,7 @@ export default function PhotosScreen({ navigation }) {
                   <FontAwesomeIcon 
                     icon="image"
                     size={22}
-                    color={colors.constWhite}
+                    color={colors.tint}
                   /> 
               }
             </TouchableOpacity>
@@ -131,7 +135,7 @@ export default function PhotosScreen({ navigation }) {
             <TouchableOpacity 
               style={{ 
                 ...styles.upload, 
-                borderColor:colors.constWhite, 
+                borderColor:colors.tint, 
                 borderStyle:photo.photo_1 ? 'solid' : 'dashed' 
               }}
               onPress={() => launchLibrary('photo_1')}
@@ -146,7 +150,7 @@ export default function PhotosScreen({ navigation }) {
                   <FontAwesomeIcon 
                     icon="image"
                     size={22}
-                    color={colors.constWhite}
+                    color={colors.tint}
                   /> 
               }
             </TouchableOpacity>
@@ -163,7 +167,7 @@ export default function PhotosScreen({ navigation }) {
             <TouchableOpacity 
               style={{ 
                 ...styles.upload, 
-                borderColor:colors.constWhite, 
+                borderColor:colors.tint, 
                 borderStyle:photo.photo_2 ? 'solid' : 'dashed' 
               }}
               onPress={() => launchLibrary('photo_2')}
@@ -178,7 +182,7 @@ export default function PhotosScreen({ navigation }) {
                   <FontAwesomeIcon 
                     icon="image"
                     size={22}
-                    color={colors.constWhite}
+                    color={colors.tint}
                   /> 
               }
             </TouchableOpacity>
@@ -188,7 +192,7 @@ export default function PhotosScreen({ navigation }) {
             <TouchableOpacity 
               style={{ 
                 ...styles.upload, 
-                borderColor:colors.constWhite, 
+                borderColor:colors.tint, 
                 borderStyle:photo.photo_3 ? 'solid' : 'dashed' 
               }}
               onPress={() => launchLibrary('photo_3')}
@@ -203,7 +207,7 @@ export default function PhotosScreen({ navigation }) {
                   <FontAwesomeIcon 
                     icon="image"
                     size={22}
-                    color={colors.constWhite}
+                    color={colors.tint}
                   /> 
               }
             </TouchableOpacity>
@@ -211,14 +215,6 @@ export default function PhotosScreen({ navigation }) {
           </View>
         </View>
       </View>
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => {
-          handleImage()
-          navigation.navigate('done')
-        }}
-        text={'Next Step'}
-      />
     </Base>
   )
 }

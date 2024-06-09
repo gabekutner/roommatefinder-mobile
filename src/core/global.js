@@ -264,7 +264,7 @@ const useGlobal = create((set, get) => ({
 
   profileCreated: false,
 
-  CreateProfile: async (form, user) => {
+  createProfile: async (form, user) => {
     if (user.token) {
       try {
         
@@ -305,66 +305,66 @@ const useGlobal = create((set, get) => ({
     } 
   },
 
-  createProfile: async (form, user) => {
-    if (user.token) {
-      try {
+  // createProfile: async (form, user) => {
+  //   if (user.token) {
+  //     try {
 
-        const dataForm = new FormData()
-        const imageUri = form.thumbnail.uri
-        const fileName = imageUri.split('/').pop()
-        const fileType = fileName.split('.')[1]
+  //       const dataForm = new FormData()
+  //       const imageUri = form.thumbnail.uri
+  //       const fileName = imageUri.split('/').pop()
+  //       const fileType = fileName.split('.')[1]
 
-        dataForm.append('thumbnail', {
-          name: fileName,
-          type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
-          uri:
-            Platform.OS === 'android'
-              ? form.thumbnail.uri
-              : form.thumbnail.uri.replace('file://', ''),
-        })
+  //       dataForm.append('thumbnail', {
+  //         name: fileName,
+  //         type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
+  //         uri:
+  //           Platform.OS === 'android'
+  //             ? form.thumbnail.uri
+  //             : form.thumbnail.uri.replace('file://', ''),
+  //       })
 
-        // form validating
-        const bday = ((
-          form.birthday.getMonth() > 8)
-          ? (form.birthday.getMonth() + 1) 
-          : ('0' + (form.birthday.getMonth() + 1))) 
-          + '-' + ((form.birthday.getDate() > 9) 
-          ? form.birthday.getDate() 
-          : ('0' + form.birthday.getDate())) 
-          + '-' + form.birthday.getFullYear()
+  //       // form validating
+  //       const bday = ((
+  //         form.birthday.getMonth() > 8)
+  //         ? (form.birthday.getMonth() + 1) 
+  //         : ('0' + (form.birthday.getMonth() + 1))) 
+  //         + '-' + ((form.birthday.getDate() > 9) 
+  //         ? form.birthday.getDate() 
+  //         : ('0' + form.birthday.getDate())) 
+  //         + '-' + form.birthday.getFullYear()
         
-        dataForm.append('birthday', bday)
-        dataForm.append('sex', form.sex)
-        dataForm.append('dorm_building', form.dorm)
-        for (obj of form.interests) {
-          dataForm.append('interests', obj)
-        }      
+  //       dataForm.append('birthday', bday)
+  //       dataForm.append('sex', form.sex)
+  //       dataForm.append('dorm_building', form.dorm)
+  //       for (obj of form.interests) {
+  //         dataForm.append('interests', obj)
+  //       }      
 
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/profiles/actions/create-profile/',
-          data: dataForm,
-          headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
-        })
+  //       const response = await api({
+  //         method: 'post',
+  //         url: '/api/v1/profiles/actions/create-profile/',
+  //         data: dataForm,
+  //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
+  //       })
 
-        if (response.status !== 200) {
-          throw 'create-profile error'
-        }
+  //       if (response.status !== 200) {
+  //         throw 'create-profile error'
+  //       }
 
-        const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
-        secure.set('tokens', tokens)
+  //       const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
+  //       secure.set('tokens', tokens)
 
-        console.log('create-profile success')
-        set((state) => ({
-          profileCreated:true,
-          user:response.data,
-        }))
+  //       console.log('create-profile success')
+  //       set((state) => ({
+  //         profileCreated:true,
+  //         user:response.data,
+  //       }))
 
-      } catch(error) {
-        console.log('useGlobal.createProfile: ', error.response)
-      }
-    }
-  },
+  //     } catch(error) {
+  //       console.log('useGlobal.createProfile: ', error.response)
+  //     }
+  //   }
+  // },
 
 
 

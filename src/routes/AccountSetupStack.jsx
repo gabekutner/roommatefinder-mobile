@@ -12,8 +12,6 @@ const Stack = createNativeStackNavigator();
 
 import CustomButton from "../components/UI/Custom/CustomButton";
 
-
-// import CreateProfilePrompt from '../screens/Profile/Create/CreateProfilePrompt';
 import PromptScreen from "../screens/Onboarding/Prompt";
 import AgeScreen from '../screens/Onboarding/Age';
 import SexScreen from '../screens/Onboarding/Sex';
@@ -27,13 +25,12 @@ import LinkTreeScreen from '../screens/Onboarding/Widgets/LinkTree';
 import QuotesScreen from '../screens/Onboarding/Widgets/Quotes';
 import PromptsScreen from '../screens/Onboarding/Widgets/Prompts';
 
-
+import PhotosScreen from "../screens/Onboarding/Photos";
 import DormScreen from '../screens/Onboarding/Dorm';
 import DoneScreen from '../screens/Onboarding/Done';
 
 
 import { colors } from "../constants/colors";
-
 
 
 
@@ -143,7 +140,7 @@ export default function AccountSetupStack() {
      component={BaseWidgetsScreen}
      options={({ navigation }) => ({
        headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-       headerRight: () => <Header nav={() => navigation.navigate('dorm')} icon="arrow-right" />,
+       headerRight: () => <Header nav={() => navigation.navigate('photos')} icon="arrow-right" />,
        title: '',
        headerStyle: { backgroundColor:colors.primary },
        headerShadowVisible: false, // border bottom invisible
@@ -176,6 +173,17 @@ export default function AccountSetupStack() {
        title: '',
        headerStyle: { backgroundColor:colors.primary },
        headerShadowVisible: false, // border bottom invisible
+     })}
+   /> 
+   <Stack.Screen
+     name='photos'
+     component={PhotosScreen}
+     options={({ navigation }) => ({
+      headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+      headerRight: () => <Header nav={() => navigation.navigate('dorm')} icon="arrow-right" />,
+      title: '',
+      headerStyle: { backgroundColor:colors.primary },
+      headerShadowVisible: false, // border bottom invisible
      })}
    /> 
    <Stack.Screen
