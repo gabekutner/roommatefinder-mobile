@@ -15,7 +15,6 @@ import CustomText from '../components/UI/Custom/CustomText';
 import CardItem from '../components/Card';
 
 import useGlobal from '../core/global';
-// import { colors as c } from '../assets/config'; 
 import { colors } from '../constants/colors';
 
 const { width } = Dimensions.get('window')
@@ -98,11 +97,15 @@ export default function Swipe({ navigation }) {
 
 const Card = ({ item, data, index, colors, removeItem, navigation}) => {
 
+  const requestConnect = useGlobal(state => state.requestConnect)
+
   const pan = useRef(new Animated.ValueXY({x: 0, y: 0})).current
   const rotate = pan.x.interpolate({
     inputRange: [-width, 0, width],
     outputRange: ['-40deg', '0deg', '40deg'],
   })
+
+  let lastSwipeValue = 0; // Initialize variable to store the last swipe value
 
   const panResponder = useRef(
     PanResponder.create({
@@ -110,12 +113,19 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
       onPanResponderGrant: () => {},
       onPanResponderMove: Animated.event([null, {dx: pan.x}], {
         useNativeDriver: false,
-        listener: (e, gestureState) => {
-          // logic for positive and negative gestures
-        },
       }),
       onPanResponderRelease: (e, gestureState) => {
+        // Update last swipe value
+        lastSwipeValue = gestureState.dx;
+        if (lastSwipeValue > 0) {
+          // send friend request
+          requestConnect(item.id)
+        }
+        // No need to handle left swipe
+        
         if (Math.abs(gestureState.vx) > 1 || Math.abs(gestureState.dx) > offset) {
+          // Update last swipe value
+          lastSwipeValue = gestureState.dx;
           Animated.spring(pan, {
             toValue: {x: width * 2 * (gestureState.dx < 0 ? -1 : 1), y: 0},
             useNativeDriver: true,
@@ -138,7 +148,8 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
         }).start()
       },
     })
-  ).current
+  ).current;
+
 
   return (
     <Animated.View
