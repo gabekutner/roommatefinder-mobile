@@ -1,11 +1,15 @@
-import { 
-  Platform, 
+import {
+  Platform,
 } from 'react-native';
+
 
 import { create } from 'zustand';
 
+
 import secure from './secure';
 import api, { ADDRESS } from './api';
+
+
 
 
 //-------------------------------------
@@ -17,136 +21,145 @@ function responseFriendList(set, get, friendList) {
   }))
 }
 
+
 function responseFriendNew(set, get, friend) {
-	const friendList = [friend, ...get().friendList]
-	set((state) => ({
-		friendList: friendList
-	}))
+  const friendList = [friend, ...get().friendList]
+  set((state) => ({
+    friendList: friendList
+  }))
 }
+
 
 function responseMessageList(set, get, data) {
-	set((state) => ({
-		messagesList: [...get().messagesList, ...data.messages],
-		messagesNext: data.next,
-		messagesId: data.friend.id
-	}))
+  set((state) => ({
+    messagesList: [...get().messagesList, ...data.messages],
+    messagesNext: data.next,
+    messagesId: data.friend.id
+  }))
 }
+
 
 function responseMessageSend(set, get, data) {
-	const id = data.friend.id
-	// move friendList item for this friend to the start of 
-	// list, update the preview text and update the time stamp
-	const friendList = [...get().friendList]
-	const friendIndex = friendList.findIndex(
-		item => item.friend.id === id
-	)
-	if (friendIndex >= 0) {
-		const item = friendList[friendIndex]
-		item.preview = data.message.text
-		item.updated = data.message.created
-		friendList.splice(friendIndex, 1)
-		friendList.unshift(item)
-		set((state) => ({
-			friendList: friendList
-		}))
-	}
-	// if the message data does not belong to this friend then 
-	// dont update the message list, as a fresh messageList will 
-	// be loaded the next time the user opens the correct chat window
-	if (id !== get().messagesId) {
-		return
-	}
-	const messagesList = [data.message, ...get().messagesList]
-	set((state) => ({
-		messagesList: messagesList,
-		messagesTyping: null
-	}))
+  const id = data.friend.id
+  // move friendList item for this friend to the start of
+  // list, update the preview text and update the time stamp
+  const friendList = [...get().friendList]
+  const friendIndex = friendList.findIndex(
+    item => item.friend.id === id
+  )
+  if (friendIndex >= 0) {
+    const item = friendList[friendIndex]
+    item.preview = data.message.text
+    item.updated = data.message.created
+    friendList.splice(friendIndex, 1)
+    friendList.unshift(item)
+    set((state) => ({
+      friendList: friendList
+    }))
+  }
+  // if the message data does not belong to this friend then
+  // dont update the message list, as a fresh messageList will
+  // be loaded the next time the user opens the correct chat window
+  if (id !== get().messagesId) {
+    return
+  }
+  const messagesList = [data.message, ...get().messagesList]
+  set((state) => ({
+    messagesList: messagesList,
+    messagesTyping: null
+  }))
 }
+
 
 function responseMessageType(set, get, data) {
-	if (data.id !== get().messagesId) return
-	set((state) => ({
-		messagesTyping: new Date()
-	}))
+  if (data.id !== get().messagesId) return
+  set((state) => ({
+    messagesTyping: new Date()
+  }))
 }
+
 
 function responseRequestConnect(set, get, connection) {
-	const user = get().user
+  const user = get().user
 
-	// if i was the one that made the connect request, 
-	// update the search list row
-	if (user.id === connection.sender.id) {
-		const searchList = [...get().searchList]
-		const searchIndex = searchList.findIndex(
-			request => request.id === connection.receiver.id
-		)
-		if (searchIndex >= 0) {
-			searchList[searchIndex].status = 'pending-them'
-			set((state) => ({
-				searchList: searchList
-			}))
-		}
-	// if they were the one  that sent the connect 
-	// request, add request to request list
-	} else {
-		const requestList = [...get().requestList]
-		const requestIndex = requestList.findIndex(
-			request => request.sender.username === connection.sender.username
-		)
-		if (requestIndex === -1) {
-			requestList.unshift(connection)
-			set((state) => ({
-				requestList: requestList
-			}))
-		}
-	}
+
+  // if i was the one that made the connect request,
+  // update the search list row
+  if (user.id === connection.sender.id) {
+    const searchList = [...get().searchList]
+    const searchIndex = searchList.findIndex(
+      request => request.id === connection.receiver.id
+    )
+    if (searchIndex >= 0) {
+      searchList[searchIndex].status = 'pending-them'
+      set((state) => ({
+        searchList: searchList
+      }))
+    }
+  // if they were the one  that sent the connect
+  // request, add request to request list
+  } else {
+    const requestList = [...get().requestList]
+    const requestIndex = requestList.findIndex(
+      request => request.sender.username === connection.sender.username
+    )
+    if (requestIndex === -1) {
+      requestList.unshift(connection)
+      set((state) => ({
+        requestList: requestList
+      }))
+    }
+  }
 }
+
+
 
 
 function responseRequestAccept(set, get, connection) {
   const user = get().user
-	// if I was the one that accepted the request, remove 
-	// request from the  requestList
-	if (user.id === connection.receiver.id) {
-		const requestList = [...get().requestList]
-		const requestIndex = requestList.findIndex(
-			request => request.id === connection.id
-		)
-		if (requestIndex >= 0) {
-			requestList.splice(requestIndex, 1)
-			set((state) => ({
-				requestList: requestList
-			}))
-		}
-	} 
-	// if the corresponding user is contained within the  
-	// searchList for the  acceptor or the  acceptee, update 
-	// the state of the searchlist item
-	const sl = get().searchList
-	if (sl === null) {
-		return
-	}
-	const searchList = [...sl]
+  // if I was the one that accepted the request, remove
+  // request from the  requestList
+  if (user.id === connection.receiver.id) {
+    const requestList = [...get().requestList]
+    const requestIndex = requestList.findIndex(
+      request => request.id === connection.id
+    )
+    if (requestIndex >= 0) {
+      requestList.splice(requestIndex, 1)
+      set((state) => ({
+        requestList: requestList
+      }))
+    }
+  }
+  // if the corresponding user is contained within the 
+  // searchList for the  acceptor or the  acceptee, update
+  // the state of the searchlist item
+  const sl = get().searchList
+  if (sl === null) {
+    return
+  }
+  const searchList = [...sl]
 
-	let  searchIndex = -1
-	// if this user  accepted
-	if (user.id === connection.receiver.id) {
-		searchIndex = searchList.findIndex(
-			user => user.id === connection.sender.id
-		)
-	// if the other user accepted
-	} else {
-		searchIndex = searchList.findIndex(
-			user => user.id === connection.receiver.id
-		)
-	}
-	if (searchIndex >= 0) {
-		searchList[searchIndex].status = 'connected'
-		set((state) => ({
-			searchList: searchList
-		}))
-	}
+  let  searchIndex = -1
+  // if this user  accepted
+  if (user.id === connection.receiver.id) {
+    searchIndex = searchList.findIndex(
+      user => user.id === connection.sender.id
+    )
+  // if the other user accepted
+  } else {
+    searchIndex = searchList.findIndex(
+      user => user.id === connection.receiver.id
+    )
+  }
+  if (searchIndex >= 0) {
+    searchList[searchIndex].status = 'connected'
+    set((state) => ({
+      searchList: searchList
+    }))
+  }
 }
+
 
 function responseRequestList(set, get, requestList) {
   set((state) => ({
@@ -154,11 +167,13 @@ function responseRequestList(set, get, requestList) {
   }))
 }
 
+
 function responseSearch(set, get, data) {
   set((state) => ({
     searchList:data
   }))
 }
+
 
 function responseThumbnail(set, get, data) {
   set((state) => ({
@@ -167,17 +182,21 @@ function responseThumbnail(set, get, data) {
 }
 
 
+
+
 const useGlobal = create((set, get) => ({
 
+
   //---------------------
-	//    Initialization
-	//---------------------
+  //    Initialization
+  //---------------------
   initialized: false,
+
 
   init: async () => {
     const credentials = await secure.get('credentials')
     if (credentials) {
-      try { 
+      try {
         const response = await api({
           method: 'post',
           url: '/api/v1/users/login/',
@@ -187,14 +206,18 @@ const useGlobal = create((set, get) => ({
           }
         })
 
+
         if (response.status !== 200) {
           throw 'Authentication error'
         }
 
+
         const created = response.data.name == null ? false : true
+
 
         const tokens = {'access': response.data.access, 'refresh': response.data.refresh}
         secure.set('tokens', tokens)
+
 
         set((state) => ({
           initialized:true,
@@ -212,11 +235,13 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   //---------------------
-	//   Authentication
-	//---------------------
+  //   Authentication
+  //---------------------
   authenticated: false,
   user: {},
+
 
   login: (credentials, user, tokens) => {
     secure.set('credentials', credentials)
@@ -228,6 +253,7 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   logout: () => {
     secure.wipe()
     set((state) => ({
@@ -238,9 +264,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   //---------------------
-	//    Create Profile
-	//---------------------
+  //    Create Profile
+  //---------------------
   form: {
     birthday: new Date(),
     sex: "",
@@ -262,19 +289,21 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   profileCreated: false,
+
 
   createProfile: async (form, user) => {
     if (user.token) {
       try {
-        
+      
         const bday = ((
           form.birthday.getMonth() > 8)
-          ? (form.birthday.getMonth() + 1) 
-          : ('0' + (form.birthday.getMonth() + 1))) 
-          + '-' + ((form.birthday.getDate() > 9) 
-          ? form.birthday.getDate() 
-          : ('0' + form.birthday.getDate())) 
+          ? (form.birthday.getMonth() + 1)
+          : ('0' + (form.birthday.getMonth() + 1)))
+          + '-' + ((form.birthday.getDate() > 9)
+          ? form.birthday.getDate()
+          : ('0' + form.birthday.getDate()))
           + '-' + form.birthday.getFullYear()
         
         form.birthday = bday
@@ -286,12 +315,13 @@ const useGlobal = create((set, get) => ({
           headers: {"Authorization": `Bearer ${user.token}`},
         })
 
+
         if (response.status !== 201) {
           throw 'create-profile error'
         }
-  
-        const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
+          const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
         secure.set('tokens', tokens)
+
 
         console.log('create-profile success')
         set((state) => ({
@@ -299,17 +329,31 @@ const useGlobal = create((set, get) => ({
           user:response.data,
         }))
 
+
       } catch(error) {
         console.log('useGlobal.createProfile: ', error)
       }
-    } 
+    }
   },
+
+  photos: {
+    thumbnail:null,
+    photo_1:null,
+    photo_2:null,
+    photo_3:null,
+  },
+
+  setPhotos: (form) => {
+    set((state) => ({
+      photos: form
+    }))
+  },
+
 
   uploadPhotos: async (form, user) => {
     if (user.token) {
       try {
-
-        const dataForm = new FormData();
+        const dataForm = new FormData()
 
         if (form.photo_1 !== null) {
           const imageUri = form.photo_1.uri
@@ -356,7 +400,7 @@ const useGlobal = create((set, get) => ({
           url: '/api/v1/photos/',
           data: dataForm,
           headers: {
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTQ3NTQzLCJpYXQiOjE3MTc5NTU1NDMsImp0aSI6IjMzMDk0Mzc0ODg0MTQxNWU4YzE3NTVkMTBmZTU3NTQwIiwidXNlcl9pZCI6IjM5ZmMwNTAxLTY2OGEtNGM5NS1iZTIzLTFiYmU0NjljZDg3MSJ9.Uf1HVBIV0L0VY_9VtC_naz083XO1gCWkmL0hzssaPVg`, 
+            'Authorization': `Bearer ${user.token}`,
             'Content-Type' : 'multipart/form-data',
           },
         })
@@ -368,19 +412,61 @@ const useGlobal = create((set, get) => ({
         console.log('uploaded photos!')
 
       } catch(error) {
-        console.log('useGlobal.uploadPhotos: ', error.response)
+        console.log('useGlobal.uploadPhotos: ', error)
       }
     }
   },
+
+
+  staticUploadThumbnail: async (form, user) => {
+    if (user.token) {
+      try {
+
+        const dataForm = new FormData()
+        
+        if (form.thumbnail.uri !== null) {
+          const imageUri = form.thumbnail.uri
+          const fileName = imageUri.split('/').pop()
+          const fileType = fileName.split('.')[1]
+          dataForm.append('thumbnail', {
+            name: fileName,
+            type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
+            uri:
+              Platform.OS === 'android'
+                ? form.thumbnail.uri
+                : form.thumbnail.uri.replace('file://', ''),
+          })
+          const response = await api({
+            method: 'post',
+            url: '/api/v1/profiles/actions/upload-thumbnail/',
+            data: dataForm,
+            headers: {
+              'Authorization': `Bearer ${user.token}`,
+              'Content-Type' : 'multipart/form-data',
+            },
+          })
+            if (response.status !== 201) {
+            throw 'static-upload-thumbnail error'
+          }
+            console.log('uploaded thumbnail!')
+        }
+      } catch(error) {
+        console.log('useGlobal.uploadThumbnail: ', error)
+      }
+    }
+  },
+
 
   // createProfile: async (form, user) => {
   //   if (user.token) {
   //     try {
 
+
   //       const dataForm = new FormData()
   //       const imageUri = form.thumbnail.uri
   //       const fileName = imageUri.split('/').pop()
   //       const fileType = fileName.split('.')[1]
+
 
   //       dataForm.append('thumbnail', {
   //         name: fileName,
@@ -391,14 +477,15 @@ const useGlobal = create((set, get) => ({
   //             : form.thumbnail.uri.replace('file://', ''),
   //       })
 
+
   //       // form validating
   //       const bday = ((
   //         form.birthday.getMonth() > 8)
-  //         ? (form.birthday.getMonth() + 1) 
-  //         : ('0' + (form.birthday.getMonth() + 1))) 
-  //         + '-' + ((form.birthday.getDate() > 9) 
-  //         ? form.birthday.getDate() 
-  //         : ('0' + form.birthday.getDate())) 
+  //         ? (form.birthday.getMonth() + 1)
+  //         : ('0' + (form.birthday.getMonth() + 1)))
+  //         + '-' + ((form.birthday.getDate() > 9)
+  //         ? form.birthday.getDate()
+  //         : ('0' + form.birthday.getDate()))
   //         + '-' + form.birthday.getFullYear()
         
   //       dataForm.append('birthday', bday)
@@ -406,7 +493,8 @@ const useGlobal = create((set, get) => ({
   //       dataForm.append('dorm_building', form.dorm)
   //       for (obj of form.interests) {
   //         dataForm.append('interests', obj)
-  //       }      
+  //       }     
+
 
   //       const response = await api({
   //         method: 'post',
@@ -415,35 +503,44 @@ const useGlobal = create((set, get) => ({
   //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
   //       })
 
+
   //       if (response.status !== 200) {
   //         throw 'create-profile error'
   //       }
 
+
   //       const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
-  //       secure.set('tokens', tokens)
+//       secure.set('tokens', tokens)
 
-  //       console.log('create-profile success')
-  //       set((state) => ({
-  //         profileCreated:true,
-  //         user:response.data,
-  //       }))
 
-  //     } catch(error) {
-  //       console.log('useGlobal.createProfile: ', error.response)
-  //     }
-  //   }
-  // },
+//       console.log('create-profile success')
+//       set((state) => ({
+//         profileCreated:true,
+//         user:response.data,
+//       }))
+
+
+//     } catch(error) {
+//       console.log('useGlobal.createProfile: ', error.response)
+//     }
+//   }
+// },
+
+
+
 
 
 
   //---------------------
-	//    Edit Profile
-	//---------------------
+  //    Edit Profile
+  //---------------------
   editProfile: async(form, user) => {
     if (user.token) {
       try {
 
+
         const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
+
 
         const response = await api({
           method: 'put',
@@ -451,15 +548,14 @@ const useGlobal = create((set, get) => ({
           data: cleanedForm,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-  
-        if (response.status !== 200) {
+          if (response.status !== 200) {
           throw 'create-profile error'
         }
-  
-        console.log('edit-profile success')
+          console.log('edit-profile success')
         set((state) => ({
           user:response.data,
         }))
+
 
       } catch(error) {
         console.log(error.response)
@@ -467,9 +563,10 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+
   //---------------------
-	//        Swipe
-	//---------------------
+  //        Swipe
+  //---------------------
   getSwipe: async (user, page) => {
     if(user.token) {
       try {
@@ -478,13 +575,12 @@ const useGlobal = create((set, get) => ({
           url: `/api/v1/swipe/?page=${page}`,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-  
-        if (response.status !== 200) {
+          if (response.status !== 200) {
           throw 'get-swipe error'
         }
-  
-        console.log('get-swipe success')
+          console.log('get-swipe success')
         return response
+
 
       } catch(error) {
         if (error.response.status === 404) {
@@ -496,9 +592,10 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+
   //---------------------
-	//    Swipe Profile
-	//---------------------
+  //    Swipe Profile
+  //---------------------
   getSwipeProfile: async (user, id) => {
     if(user.token) {
       try {
@@ -507,13 +604,12 @@ const useGlobal = create((set, get) => ({
           url: `/api/v1/swipe/${id}/`,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-  
-        if (response.status !== 200) {
+          if (response.status !== 200) {
           throw 'get-swipe-profile error'
         }
-  
-        console.log('get-swipe-profile success')
+          console.log('get-swipe-profile success')
         return response
+
 
       } catch(error) {
         if (error.response.status === 404) {
@@ -525,9 +621,10 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+
   //---------------------
-	//   Delete Profile
-	//---------------------
+  //   Delete Profile
+  //---------------------
   deleteProfile: async (user) => {
     if (user.token) {
       try {
@@ -537,12 +634,13 @@ const useGlobal = create((set, get) => ({
           headers: {"Authorization": `Bearer ${user.token}`},
         })
 
+
         if (response.status !== 200) {
           throw 'delete-profile error'
         }
-  
-        console.log('delete-profile success')
-        return response 
+          console.log('delete-profile success')
+        return response
+
 
       } catch(error) {
         if (error.response.status === 404) {
@@ -554,14 +652,17 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+
   //---------------------
-	//     Image Upload
-	//---------------------
+  //     Image Upload
+  //---------------------
   image: null,
+
 
   uploadImage: async (file, key, user) => {
     if (user.token) {
       try {
+
 
         const dataForm = new FormData()
         const imageUri = file.uri
@@ -576,7 +677,9 @@ const useGlobal = create((set, get) => ({
               : file.uri.replace('file://', ''),
         })
 
+
         dataForm.append('key', key)
+
 
         const response = await api({
           method: 'post',
@@ -589,7 +692,9 @@ const useGlobal = create((set, get) => ({
           throw 'Authentication error'
         }
 
+
         console.log('upload-photo success')
+
 
         set((state) => ({
           image:imageUri
@@ -601,20 +706,25 @@ const useGlobal = create((set, get) => ({
     }
   },
 
+
   //---------------------
-	//      Websocket
-	//---------------------
+  //      Websocket
+  //---------------------
   socket: null,
+
 
   socketConnect: async () => {
     const tokens = await secure.get('tokens')
+
 
     const socket = new WebSocket(
       `ws://${ADDRESS}/chat/?token=${tokens.access}`
     )
 
+
     socket.onopen = () => {
       console.log('socket.onopen')
+
 
       socket.send(JSON.stringify({
         source: 'request.list'
@@ -631,15 +741,15 @@ const useGlobal = create((set, get) => ({
 
       const responses = {
         'friend.list': responseFriendList,
-				'friend.new': responseFriendNew,
-				'message.list': responseMessageList,
-				'message.send': responseMessageSend,
-				'message.type':    responseMessageType,
-				'request.accept': responseRequestAccept,
-				'request.connect': responseRequestConnect,
-				'request.list': responseRequestList,
-				'search': responseSearch,
-				'thumbnail': responseThumbnail
+        'friend.new': responseFriendNew,
+        'message.list': responseMessageList,
+        'message.send': responseMessageSend,
+        'message.type':    responseMessageType,
+        'request.accept': responseRequestAccept,
+        'request.connect': responseRequestConnect,
+        'request.list': responseRequestList,
+        'search': responseSearch,
+        'thumbnail': responseThumbnail
       }
       const resp = responses[parsed.source]
       if (!resp) {
@@ -660,6 +770,7 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   socketDisconnect: () => {
     const socket = get().socket
     if (socket) {
@@ -670,9 +781,10 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
+
   //---------------------
-	//     Thumbnail
-	//---------------------
+  //     Thumbnail
+  //---------------------
   uploadThumbnail: (file) => {
     socket = get().socket
     socket.send(JSON.stringify({
@@ -682,29 +794,33 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-  //---------------------
-	//     Search
-	//---------------------
-	searchList: [],
 
-	searchUsers: (query) => {
-		if (query) {
-			const socket = get().socket
-			socket.send(JSON.stringify({
-				source: 'search',
-				query: query
-			}))
-		} else {
-			set((state) => ({
-				searchList: []
-			}))
-		}
-	},
+  //---------------------
+  //     Search
+  //---------------------
+  searchList: [],
+
+
+  searchUsers: (query) => {
+    if (query) {
+      const socket = get().socket
+      socket.send(JSON.stringify({
+        source: 'search',
+        query: query
+      }))
+    } else {
+      set((state) => ({
+        searchList: []
+      }))
+    }
+  },
+
 
   //-------------------
   //  Friend Requests
   //-------------------
   requestList: null,
+
 
   refreshRequestList: () => {
     const socket = get().socket
@@ -713,26 +829,30 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-	requestAccept: (id) => {
-		const socket = get().socket
-		socket.send(JSON.stringify({
-			source: 'request.accept',
-			id: id
-		}))
-	},
 
-	requestConnect: (id) => {
-		const socket = get().socket
-		socket.send(JSON.stringify({
-			source: 'request.connect',
-			id: id
-		}))
-	},
+  requestAccept: (id) => {
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'request.accept',
+      id: id
+    }))
+  },
+
+
+  requestConnect: (id) => {
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'request.connect',
+      id: id
+    }))
+  },
+
 
   //-------------------
   //    Friend List
   //-------------------
   friendList: null,
+
 
   refreshFriendList: () => {
     const socket = get().socket
@@ -741,56 +861,62 @@ const useGlobal = create((set, get) => ({
     }))
   },
 
-  //---------------------
-	//     Messages
-	//---------------------
-	messagesList: [],
-	messagesNext: null,
-	messagesTyping: null,
-	messagesId: null,
-
-	messageList: (connectionId, page=0) => {
-		if (page === 0) {
-			set((state) => ({
-				messagesList: [],
-				messagesNext: null,
-				messagesTyping: null,
-				messagesId: null
-			}))
-		} else {
-			set((state) => ({
-				messagesNext: null
-			}))
-		}
-		const socket = get().socket
-		socket.send(JSON.stringify({
-			source: 'message.list',
-			connectionId: connectionId,
-			page: page
-		}))
-	},
-
-	messageSend: (connectionId, message) => {
-		const socket = get().socket
-		socket.send(JSON.stringify({
-			source: 'message.send',
-			connectionId: connectionId,
-			message: message
-		}))
-	},
-
-	messageType: (id) => {
-		const socket = get().socket
-		socket.send(JSON.stringify({
-			source: 'message.type',
-			id: id
-		}))
-	},
 
   //---------------------
-	//       Theme
-	//---------------------
+  //     Messages
+  //---------------------
+  messagesList: [],
+  messagesNext: null,
+  messagesTyping: null,
+  messagesId: null,
+
+
+  messageList: (connectionId, page=0) => {
+    if (page === 0) {
+      set((state) => ({
+        messagesList: [],
+        messagesNext: null,
+        messagesTyping: null,
+        messagesId: null
+      }))
+    } else {
+      set((state) => ({
+        messagesNext: null
+      }))
+    }
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'message.list',
+      connectionId: connectionId,
+      page: page
+    }))
+  },
+
+
+  messageSend: (connectionId, message) => {
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'message.send',
+      connectionId: connectionId,
+      message: message
+    }))
+  },
+
+
+  messageType: (id) => {
+    const socket = get().socket
+    socket.send(JSON.stringify({
+      source: 'message.type',
+      id: id
+    }))
+  },
+
+
+  //---------------------
+  //       Theme
+  //---------------------
   theme: 'light',
+
 
   setTheme: () => {
     set((state) => ({
