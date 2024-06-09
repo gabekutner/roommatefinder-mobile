@@ -10,12 +10,12 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "./Base";
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
-import CustomNextButton from "./CustomNextButton";
 
 import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 import { interestsData } from "../../assets/Dictionary";
 
 
@@ -23,10 +23,6 @@ export default function InterestsScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-
-  const label = "I'm into ..."
 
   function handleOnClick(id, form, setForm) {
     const arr = [...form.interests]
@@ -44,8 +40,15 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <Base navigation={navigation} label={label} >
-      
+    <Base>
+      <Label 
+        text="What're you into?" 
+        style={{ 
+          marginTop:verticalScale(50), 
+          marginBottom:verticalScale(20),
+          alignSelf:'center'
+        }} 
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={interestsData}
@@ -56,8 +59,8 @@ export default function InterestsScreen({ navigation }) {
             style={[
               styles.option, 
               {
-                borderColor: colors.constBlack,
-                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.wasatchSun : colors.accentDark,
+                borderColor: colors.tint,
+                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
                 shadowColor: '#222',
                 shadowOffset: { width: 7, height: 5 },
                 shadowOpacity: 1,
@@ -69,7 +72,7 @@ export default function InterestsScreen({ navigation }) {
               style={[
                 styles.text, 
                 { 
-                  color:Object.values(form.interests).includes(item.id) ? colors.tint : colors.constWhite
+                  color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
                 }
               ]}
             >
@@ -83,22 +86,6 @@ export default function InterestsScreen({ navigation }) {
           height:'50%'
         }}
       /> 
-      <CustomText
-        style={{
-          fontSize:verticalScale(12),
-          alignSelf:'center',
-          color:colors.constWhite,
-          marginVertical:verticalScale(10),
-          fontWeight:'500',
-        }}
-      >
-        Choose 1 to 5 interests!
-      </CustomText>  
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('widgets')}
-        text={'Next Step'}
-      />    
     </Base>
   )
 }
