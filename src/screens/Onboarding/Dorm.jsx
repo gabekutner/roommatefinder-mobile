@@ -10,11 +10,12 @@ import {
   moderateScale 
 } from "react-native-size-matters";
 
-import Base from "./Base";
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 
 import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 import { dormsData } from "../../assets/Dictionary";
 
 
@@ -22,8 +23,6 @@ export default function DormScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   const [selected, setSelected] = useState("")
   function toggleSelected(key) {
@@ -31,11 +30,16 @@ export default function DormScreen({ navigation }) {
     // setForm({ ...form, dorm:key })
   }
 
-  const label = "I'll be living in ..."
-  const buttonLabel = "Next Step"
-
   return (
-    <Base navigation={navigation} next={'done'} label={label} buttonLabel={buttonLabel} >
+    <Base>
+      <Label 
+        text="Where will you be living next year?" 
+        style={{ 
+          marginTop:verticalScale(50), 
+          marginBottom:verticalScale(20),
+          alignSelf:'center'
+        }} 
+      />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={dormsData}
@@ -46,8 +50,8 @@ export default function DormScreen({ navigation }) {
             style={[
               styles.option, 
               {
-                borderColor: colors.constBlack,
-                backgroundColor: selected === item.id ? colors.wasatchSun : colors.accentDark,
+                borderColor: colors.tint,
+                backgroundColor: selected === item.id ? colors.accent : colors.secondary,
                 shadowColor: '#222',
                 shadowOffset: { width: 7, height: 5 },
                 shadowOpacity: 1,
@@ -59,7 +63,7 @@ export default function DormScreen({ navigation }) {
               style={[
                 styles.text, 
                 { 
-                  color: selected === item.id ? colors.constBlack : colors.constWhite,
+                  color: selected === item.id ? colors.white : colors.tint,
                 }
               ]}
             >
@@ -70,7 +74,6 @@ export default function DormScreen({ navigation }) {
         style={{
           flexDirection:'column', 
           marginHorizontal:moderateScale(50),
-          height:'50%'
         }}
       /> 
     </Base>

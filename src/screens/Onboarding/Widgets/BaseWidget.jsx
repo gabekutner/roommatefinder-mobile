@@ -9,68 +9,63 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "../Base";
+import Base from "../Components/Base";
+import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
-import { colors as c } from "../../../assets/config";
+import { colors } from "../../../constants/colors";
 
 
 export default function BaseWidgetsScreen({ navigation }) {
-
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-  const label = "Add your socials, prompts, and quotes!"
-
   return (
-    <Base navigation={navigation} label={label} >
+    <Base>
+      <Label 
+        text="Customize your profile with prompts, quotes, and your social handles!" 
+        style={{ 
+          marginTop:verticalScale(30),
+          marginBottom:verticalScale(20),
+          marginHorizontal:moderateScale(60),
+          alignSelf:'center',
+          textAlign:'center'
+        }} 
+      />
       <View 
         style={{ 
           alignItems:'center',
           flexDirection:'row',
           gap:10,
-          justifyContent:'center'
+          justifyContent:'center',
         }}
       >
         <CustomButton 
           onClick={() => navigation.navigate('prompts')}
-          style={{ ...styles.option, backgroundColor:colors.accentDark }}
+          style={{ ...styles.option, backgroundColor:colors.secondary }}
         >
-          <CustomText style={{ ...styles.optionText,  color:colors.constWhite }}>Prompts</CustomText>
+          <CustomText style={{ ...styles.optionText,  color:colors.tint }}>Prompts</CustomText>
         </CustomButton>
         <CustomButton 
           onClick={() => navigation.navigate('quotes')}
-          style={{ ...styles.option, backgroundColor:colors.accentDark }}
+          style={{ ...styles.option, backgroundColor:colors.secondary }}
         >
-          <CustomText style={{ ...styles.optionText,  color:colors.constWhite }}>Quotes</CustomText>
+          <CustomText style={{ ...styles.optionText,  color:colors.tint }}>Quotes</CustomText>
         </CustomButton>
         <CustomButton 
           onClick={() => navigation.navigate('linktree')}
-          style={{ ...styles.option, backgroundColor:colors.accentDark }}
+          style={{ ...styles.option, backgroundColor:colors.secondary }}
         >
-          <CustomText style={{ ...styles.optionText, color:colors.constWhite }}>LinkTree</CustomText>
+          <CustomText style={{ ...styles.optionText, color:colors.tint }}>LinkTree</CustomText>
         </CustomButton>
       </View>
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => {
-          navigation.navigate('dorm')
-        }}
-        text={'Next Step'}
-      />
     </Base>
   )
 }
 
 const styles = StyleSheet.create({
   option: {
-    // height:verticalScale(80),
-    // width:moderateScale(90),
     height:100,
     width:100,
-    
     borderRadius:0,
     borderWidth:2,
     alignItems:'center',

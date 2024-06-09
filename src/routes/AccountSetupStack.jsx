@@ -189,6 +189,16 @@ export default function AccountSetupStack() {
        headerShadowVisible: false, // border bottom invisible
      })}
    />
+   <Stack.Screen
+     name='done'
+     component={DoneScreen}
+     options={({ navigation }) => ({
+       headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+       title: '',
+       headerStyle: { backgroundColor:colors.primary },
+       headerShadowVisible: false, // border bottom invisible
+     })}
+   />
  </Stack.Navigator>
 )
 }

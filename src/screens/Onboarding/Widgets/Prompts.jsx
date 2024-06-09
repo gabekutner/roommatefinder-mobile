@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -7,48 +7,40 @@ import {
 
 import { verticalScale } from "react-native-size-matters";
 
-import Base from "../Base";
+import Base from "../Components/Base";
+import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import PromptsModal from "./PromptsModal";
-import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
 import { prompts } from "../../../assets/Dictionary";
-import { colors as c } from "../../../assets/config";
+import { colors } from "../../../constants/colors";
 
 
 export default function PromptsScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-
-  const [show, setShow] = useState(false)
-  const label = "Answer a couple questions!"
-  const modalLabel = "Add a prompt!"
-  const modalButtonLabel = "Good to go"
-
-  console.log(form.prompts)
 
   return (
-    <Base navigation={navigation} label={label}>
+    <Base>
       <View 
         style={{ 
           alignItems:'center',
           flexDirection:'column',
           gap:10,
+          marginVertical:verticalScale(30)
         }}
       >
+        <Label text="Answer a question or two!" style={{ marginVertical:verticalScale(20) }} />
         <CustomButton 
-          onClick={() => setShow(true)}
+          onClick={() => {}}
           style={{ 
             ...styles.addLink, 
-            borderColor:colors.constWhite
+            borderColor:colors.tint
           }}
         >
-          <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>+ Add a prompt</CustomText>
+          <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a prompt</CustomText>
         </CustomButton>
         <FlatList 
           showsVerticalScrollIndicator={false}
@@ -58,34 +50,20 @@ export default function PromptsScreen({ navigation }) {
             <View 
               style={{
                 ...styles.linked, 
-                borderColor: colors.constBlack,
-                backgroundColor: colors.accentDark
+                borderColor: colors.tint,
+                backgroundColor: colors.secondary
               }}
             >
               <View style={{ ...styles.questionBox }}>
-                <CustomText style={{ ...styles.question, color:colors.constWhite }}>{prompts[item.question-1].prompt}</CustomText>
+                <CustomText style={{ ...styles.question, color:colors.tint }}>{prompts[item.question-1].prompt}</CustomText>
               </View>
               <View style={{ ...styles.answerBox }}>
-                <CustomText style={{ ...styles.answer, color:colors.constWhite }}>{item.answer}</CustomText>
+                <CustomText style={{ ...styles.answer, color:colors.tint }}>{item.answer}</CustomText>
               </View>
             </View>
           )}
         />
       </View>
-      { show
-        ?
-          <PromptsModal 
-            colors={colors}
-            label={modalLabel}
-            navigation={navigation}
-          />
-        : null
-      }
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('widgets')}
-        text={'All Done'}
-      />
     </Base>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -8,54 +8,39 @@ import {
 import { verticalScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Base from "../Base";
+import Base from "../Components/Base";
+import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import QuotesModal from "./QuotesModal";
-import CustomNextButton from "../CustomNextButton";
 
 import useGlobal from "../../../core/global";
-import { colors as c } from "../../../assets/config";
+import { colors } from "../../../constants/colors";
 
 
 export default function QuotesScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-
-  const [show, setShow] = useState(false)
-  const label = "Add your favorite quotes!"
-  const modalLabel = "Add a quote!"
-
-  // get users quotes and populate them here
-  // temporary
-  const userQuotes = [
-    {
-      id: "1",
-      quote: "Think not those faithful who praise all thy words and actions; but those who kindly reprove thy faults.",
-      person: "Socrates"
-    },
-  ]
 
   return (
-    <Base navigation={navigation} label={label} >
+    <Base>
       <View 
         style={{ 
           alignItems:'center',
           flexDirection:'column',
           gap:10,
+          marginVertical:verticalScale(30)
         }}
       >
+        <Label text="Add your favorite quotes!" style={{ marginVertical:verticalScale(20) }} />
         <CustomButton 
-          onClick={() => setShow(true)}
+          onClick={() => {}}
           style={{ 
             ...styles.addLink, 
-            borderColor:colors.constWhite
+            borderColor:colors.tint
           }}
         >
-          <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>+ Add a quote</CustomText>
+          <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a quote</CustomText>
         </CustomButton>
         
         <FlatList 
@@ -66,39 +51,25 @@ export default function QuotesScreen({ navigation }) {
             <View 
               style={{
                 ...styles.linked, 
-                borderColor: colors.constBlack,
-                backgroundColor: colors.accentDark,
+                borderColor: colors.tint,
+                backgroundColor: colors.secondary,
               }}
             >
               <View style={{ ...styles.quoteBox, flexDirection:'column', gap:4 }}>
                 <FontAwesomeIcon 
                   icon="quote-left"
                   size={22}
-                  color={colors.constWhite}
+                  color={colors.tint}
                 />
-                <CustomText style={{ ...styles.quote, color:colors.constWhite }}>{item.quote}</CustomText>
+                <CustomText style={{ ...styles.quote, color:colors.tint }}>{item.quote}</CustomText>
               </View>
-              <CustomText style={{ ...styles.person, color:colors.constWhite }}>
+              <CustomText style={{ ...styles.person, color:colors.tint }}>
                 - {item.cited}
               </CustomText>
             </View>
           )}
         />
       </View>
-      { show
-        ?
-          <QuotesModal 
-            colors={colors}
-            label={modalLabel}
-            navigation={navigation}
-          />
-        : null
-      }
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('widgets')}
-        text={'All Done'}
-      />
     </Base>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -8,59 +8,39 @@ import {
 import { verticalScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Base from "../Base";
+import Base from "../Components/Base";
+import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomNextButton from "../CustomNextButton";
-import LinkTreeModal from "./LinkTreeModal";
 
 import useGlobal from "../../../core/global";
-import { colors as c } from "../../../assets/config";
+import { colors } from "../../../constants/colors";
 
 
 export default function LinkTreeScreen({ navigation }) {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
-
-  const [show, setShow] = useState(false)
-  const label = "Add your social handles!"
-  const buttonLabel = "That's good"
-  const modalLabel = "Add a social handle!"
-  const modalButtonLabel = "Good to go"
-
-  // get users links add populate them here
-  // temporary
-  const userLinks = [
-    {
-      id: "1",
-      link: "http://test.com/",
-    },
-    {
-      id: "2",
-      link: "http://test.com/"
-    }
-  ]
 
   return (
-    <Base navigation={navigation} next={'widgets'} label={label} buttonLabel={buttonLabel} >
+    <Base>
       <View 
         style={{ 
           alignItems:'center',
           flexDirection:'column',
           gap:10,
+          marginVertical:verticalScale(30)
         }}
       >
+        <Label text="Add your social handles!" style={{ marginVertical:verticalScale(20) }} />
         <CustomButton 
-          onClick={() => setShow(true)}
+          onClick={() => {}}
           style={{ 
             ...styles.addLink, 
-            borderColor:colors.constWhite
+            borderColor:colors.tint
           }}
         >
-          <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>+ Add a link</CustomText>
+          <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a link</CustomText>
         </CustomButton>
         <FlatList 
           showsVerticalScrollIndicator={false}
@@ -70,8 +50,8 @@ export default function LinkTreeScreen({ navigation }) {
             <View 
               style={{
                 ...styles.linked, 
-                borderColor: colors.constBlack,
-                backgroundColor: colors.accentDark,
+                borderColor: colors.tint,
+                backgroundColor: colors.secondary,
                 flexDirection:'row',
                 gap:15
               }}
@@ -79,29 +59,14 @@ export default function LinkTreeScreen({ navigation }) {
               <FontAwesomeIcon 
                 icon="link"
                 size={22}
-                color={colors.constWhite}
+                color={colors.tint}
               />
-              <CustomText style={[styles.linkedText, { color:colors.constWhite }]}>{item.title}</CustomText>
+              <CustomText style={[styles.linkedText, { color:colors.tint }]}>{item.title}</CustomText>
             </View>
           )}
         />
       </View>
-      { show
-        ?
-          <LinkTreeModal 
-            colors={colors}
-            label={modalLabel}
-            navigation={navigation}
-          />
-        : null
-      }
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => navigation.navigate('widgets')}
-        text={'All Done'}
-      />
     </Base>
-
   )
 }
 

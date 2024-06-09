@@ -1,10 +1,12 @@
 import React from "react";
 
-import CustomNextButton from './CustomNextButton';
-import Base from "./Base";
+import { verticalScale } from "react-native-size-matters";
+
+import Base from "./Components/Base";
+import Label from "./Components/Label";
 
 import useGlobal from "../../core/global";
-import { colors as c } from "../../assets/config";
+import { colors } from "../../constants/colors";
 
 
 export default function DoneScreen({navigation}) {
@@ -12,21 +14,16 @@ export default function DoneScreen({navigation}) {
   const user = useGlobal(state => state.user)
   const form = useGlobal(state => state.form)
   const CreateProfile = useGlobal(state => state.CreateProfile)
-  const theme = useGlobal(state => state.theme)
-  const colors = c[theme]
 
   return (
-    <Base 
-      navigation={navigation} 
-      label={"All done! Hit 'Done' to create your profile and move on!"} 
-    >
-      <CustomNextButton 
-        colors={colors}
-        onClick={() => {
-          console.log('submit form')
-          CreateProfile(form, user)
-        }}
-        text={'Done'}
+    <Base>
+      <Label 
+        text="All Done!" 
+        style={{ 
+          marginTop:verticalScale(50), 
+          marginBottom:verticalScale(20),
+          alignSelf:'center'
+        }} 
       />
     </Base>
   )
