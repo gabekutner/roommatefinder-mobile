@@ -33,9 +33,14 @@ export default function LinkTreeScreen({ navigation }) {
   })
 
   const handleForm = () => {
-    const arr = [...form.links]
-    arr.push({ title:link.title, link:link.link })
-    setForm({ ...form, links:arr })
+    if (link.title && link.link) {
+      const arr = [...form.links]
+      arr.push({ title:link.title, link:link.link })
+      setForm({ ...form, links:arr })
+      setLink({ ...link, title:'', link:'' })
+    } else {
+      return
+    }
   }
 
   return (
@@ -111,10 +116,13 @@ export default function LinkTreeScreen({ navigation }) {
             onClick={() => handleForm()}
             style={{ 
               ...styles.addLink, 
-              borderColor:colors.tint
+              borderColor:colors.tint,
+              backgroundColor:colors.accent,
+              borderWidth:2,
+              borderRadius:0,
             }}
           >
-            <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a link</CustomText>
+            <CustomText style={[styles.linkedText, { color:colors.white }]}>+ Add a link</CustomText>
           </CustomButton>
           
           { form.links
@@ -123,9 +131,7 @@ export default function LinkTreeScreen({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 data={form.links}
                 keyExtractor={item => item.link}
-                style={{
-                  marginBottom:verticalScale(320)
-                }}
+                style={{ marginBottom:verticalScale(320) }}
                 numColumns={2}
                 renderItem={({ item }) => (
                   <View 

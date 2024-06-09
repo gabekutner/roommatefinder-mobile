@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { verticalScale } from "react-native-size-matters";
 
@@ -17,6 +17,16 @@ export default function DoneScreen({navigation}) {
   const form = useGlobal(state => state.form)
   const CreateProfile = useGlobal(state => state.CreateProfile)
 
+  // form validation here
+  const submit = () => {
+    console.log(form)
+    for (let value in form) {
+      // console.log(form[value])
+      // if ()
+      console.log(form[value])
+    }
+  }
+
   return (
     <Base>
       <Label 
@@ -27,12 +37,41 @@ export default function DoneScreen({navigation}) {
           alignSelf:'center'
         }} 
       />
-      <CustomButton
-        onClick={() => {
-          console.log(form)
+      <CustomText
+        style={{
+          alignSelf:'center',
+          fontSize:verticalScale(14)
         }}
       >
-        <CustomText>
+        Hit{' '}
+        <CustomText
+          style={{
+            fontSize:verticalScale(14),
+            fontWeight:'bold'
+          }}
+        >
+          submit
+        </CustomText>
+        {' '}
+        to move on and get swiping! 
+      </CustomText>
+      <CustomButton
+        onClick={() => submit()}
+        style={{
+          width:'80%',
+          alignSelf:'center',
+          backgroundColor:colors.accent,
+          position:'absolute',
+          bottom:verticalScale(130),
+        }}
+      >
+        <CustomText
+          style={{
+            fontSize:verticalScale(14),
+            color:colors.white,
+            fontWeight:'bold'
+          }}
+        >
           Submit
         </CustomText>
       </CustomButton>

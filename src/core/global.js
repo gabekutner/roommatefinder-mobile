@@ -252,6 +252,7 @@ const useGlobal = create((set, get) => ({
     prompts: [],
     quotes: [],
     links: [],
+    dorm_building:""
     // thumbnail:"",
     // photos: [],
   },
@@ -277,7 +278,6 @@ const useGlobal = create((set, get) => ({
           + '-' + form.birthday.getFullYear()
         
         form.birthday = bday
-        form.dorm_building = "1"
         
         const response = await api({
           method: 'post',

@@ -27,7 +27,7 @@ export default function DormScreen({ navigation }) {
   const [selected, setSelected] = useState("")
   function toggleSelected(key) {
     setSelected(key)
-    // setForm({ ...form, dorm:key })
+    setForm({ ...form, dorm_building:key })
   }
 
   return (

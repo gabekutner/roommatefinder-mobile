@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   FlatList,
+  KeyboardAvoidingView,
 } from 'react-native';
 
-import { verticalScale } from "react-native-size-matters";
+import { 
+  verticalScale,
+  moderateScale
+} from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 
 import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
@@ -22,59 +27,150 @@ export default function QuotesScreen({ navigation }) {
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
 
+  const [quote, setQuote] = useState({
+    quote:"",
+    cited:"",
+  })
+
+  const handleForm = () => {
+    if (quote.quote && quote.cited) {
+      const arr = [...form.quotes]
+      arr.push({ quote:quote.quote, cited:quote.cited })
+      setForm({ ...form, quotes:arr })
+      setQuote({ ...quote, quote:'', cited:'' })
+    } else {
+      return
+    }
+  }
+
   return (
-    <Base>
-      <View 
-        style={{ 
-          alignItems:'center',
-          flexDirection:'column',
-          gap:10,
-          marginVertical:verticalScale(30)
-        }}
-      >
-        <Label text="Add your favorite quotes!" style={{ marginVertical:verticalScale(20) }} />
-        <CustomButton 
-          onClick={() => {}}
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <Base>  
+        <View 
           style={{ 
-            ...styles.addLink, 
-            borderColor:colors.tint
+            alignItems:'center',
+            flexDirection:'column',
+            gap:10,
+            marginVertical:verticalScale(30)
           }}
         >
-          <CustomText style={[styles.linkedText, { color:colors.tint }]}>+ Add a quote</CustomText>
-        </CustomButton>
-        
-        <FlatList 
-          showsVerticalScrollIndicator={false}
-          data={form.quotes}
-          keyExtractor={item => item.quote}
-          renderItem={({ item }) => (
-            <View 
-              style={{
-                ...styles.linked, 
-                borderColor: colors.tint,
-                backgroundColor: colors.secondary,
-              }}
-            >
-              <View style={{ ...styles.quoteBox, flexDirection:'column', gap:4 }}>
-                <FontAwesomeIcon 
-                  icon="quote-left"
-                  size={22}
-                  color={colors.tint}
-                />
-                <CustomText style={{ ...styles.quote, color:colors.tint }}>{item.quote}</CustomText>
-              </View>
-              <CustomText style={{ ...styles.person, color:colors.tint }}>
-                - {item.cited}
-              </CustomText>
-            </View>
-          )}
-        />
-      </View>
-    </Base>
+          <Label text="Add your favorite quotes!" style={{ marginVertical:verticalScale(20) }} />
+
+          <Label 
+            text="Quote" 
+            style={{ 
+              fontSize:verticalScale(14), 
+              alignSelf:'flex-start',
+              marginLeft:moderateScale(42)
+            }} 
+          />
+          <CustomTextInput 
+            autoCorrect={false}
+            autoCapitalize={false}
+            multiline={true}
+            placeholder={'Ex. If you want to make the world a better place, take a look at yourself and make a change. Hooo'}
+            value={quote.quote}
+            onChangeText={input => setQuote({ ...quote, quote:input })}
+            colors={colors}
+            style={{
+              height:verticalScale(45),
+              marginBottom:verticalScale(14),
+              backgroundColor:colors.secondary,
+              color:colors.tint,
+              borderRadius:0,
+              borderWidth:2,
+              borderColor:colors.tint,
+              fontSize:verticalScale(14),
+              width:'80%',
+              paddingTop:verticalScale(12),
+              height:verticalScale(130)
+            }}
+          />
+
+          <Label 
+            text="Link" 
+            style={{ 
+              fontSize:verticalScale(14), 
+              alignSelf:'flex-start',
+              marginLeft:moderateScale(42)
+            }} 
+          />
+          <CustomTextInput 
+            autoCorrect={false}
+            autoCapitalize={false}
+            placeholder={'Ex. Lego Batman'}
+            value={quote.cited}
+            onChangeText={input => setQuote({ ...quote, cited:input })}
+            colors={colors}
+            style={{
+              height:verticalScale(45),
+              marginBottom:verticalScale(14),
+              backgroundColor:colors.secondary,
+              color:colors.tint,
+              borderRadius:0,
+              borderWidth:2,
+              borderColor:colors.tint,
+              fontSize:verticalScale(14),
+              width:'80%'
+            }}
+          />
+
+          <CustomButton 
+            onClick={() => handleForm()}
+            style={{ 
+              ...styles.addLink, 
+              borderColor:colors.tint,
+              backgroundColor:colors.accent,
+              borderWidth:2,
+              borderRadius:0,
+            }}
+          >
+            <CustomText style={[styles.linkedText, { color:colors.white }]}>+ Add a quote</CustomText>
+          </CustomButton>
+          
+          { form.quotes
+            ?
+              <FlatList 
+                showsVerticalScrollIndicator={false}
+                data={form.quotes}
+                keyExtractor={item => item.quote}
+                style={{ marginBottom:verticalScale(360) }}
+                renderItem={({ item }) => (
+                  <View 
+                    style={{
+                      ...styles.linked, 
+                      borderColor: colors.tint,
+                      backgroundColor: colors.secondary,
+                    }}
+                  >
+                    <View style={{ ...styles.quoteBox, flexDirection:'column', gap:4 }}>
+                      <FontAwesomeIcon 
+                        icon="quote-left"
+                        size={22}
+                        color={colors.tint}
+                      />
+                      <CustomText style={{ ...styles.quote, color:colors.tint }}>{item.quote}</CustomText>
+                    </View>
+                    <CustomText style={{ ...styles.person, color:colors.tint }}>
+                      - {item.cited}
+                    </CustomText>
+                  </View>
+                )}
+              />
+            : null
+          }
+          
+        </View>
+      </Base>
+    </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   linked: {
     borderWidth:1,
     borderRadius:0,
@@ -102,9 +198,6 @@ const styles = StyleSheet.create({
   quote: {
     fontSize:verticalScale(14),
     fontWeight:'600',
-    textShadowColor:'#222',
-    textShadowRadius:10,
-    textShadowOffset: [{ width:15, height:15 }],
   },
   person: {
     fontSize:verticalScale(12),
