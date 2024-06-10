@@ -30,7 +30,7 @@ export default function SocialBatteryScreen() {
         }}
       >
         <Label 
-          text='Social Battery' 
+          text='Social Battery 🔌' 
           style={{ 
             marginVertical:verticalScale(20),
             

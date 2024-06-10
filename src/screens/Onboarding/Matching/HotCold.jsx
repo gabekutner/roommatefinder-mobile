@@ -17,7 +17,7 @@ import { colors } from "../../../constants/colors";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
 
-export default function NoiseLevelScreen() {
+export default function HotColdScreen() {
 
   const [value, setValue] = useState(0)
 
@@ -30,7 +30,7 @@ export default function NoiseLevelScreen() {
         }}
       >
         <Label 
-          text='Noise Level 🎧' 
+          text='Hot or Cold? 🌡️' 
           style={{ marginVertical:verticalScale(20) }} 
         />
         <CustomText
@@ -41,11 +41,11 @@ export default function NoiseLevelScreen() {
             marginHorizontal:moderateScale(50)
           }}
         >
-          How loud is it in your room most of the time?
+          How hot or cold do you keep your room?
         </CustomText>
         <View style={styles.sliderWrapper}>
           <View style={styles.iconWrapper}>
-            <CustomText style={styles.icon}>🤫</CustomText>
+            <CustomText style={styles.icon}>🥶</CustomText>
           </View>
           <Slider
             value={value}
@@ -58,16 +58,8 @@ export default function NoiseLevelScreen() {
             minimumTrackStyle={{ backgroundColor:colors.accent }}
           />
           <View style={styles.iconWrapper}>
-            <CustomText style={styles.icon}>🥳</CustomText>
+            <CustomText style={styles.icon}>🥵</CustomText>
           </View>
-        </View>
-        <View style={styles.description}>
-          <CustomText style={styles.text}>
-            Shhhh
-          </CustomText>
-          <CustomText style={styles.text}>
-            Party on!
-          </CustomText>
         </View>
       </View>
     </Base>
@@ -87,14 +79,4 @@ const styles = StyleSheet.create({
     borderRadius:60
   },
   icon: { fontSize:verticalScale(30) },
-  description: {
-    marginTop:verticalScale(15),
-    flexDirection:'row',
-    width:'95%',
-    justifyContent:'space-between',
-  },
-  text: {
-    fontSize:verticalScale(12),
-    fontWeight:'bold',
-  }
 })

@@ -34,6 +34,7 @@ import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
 import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
 import GuestPolicyScreen from "../screens/Onboarding/Matching/GuestPolicy";
 import InRoomScreen from "../screens/Onboarding/Matching/InRoom";
+import HotColdScreen from "../screens/Onboarding/Matching/HotCold";
 
 import DoneScreen from '../screens/Onboarding/Done';
 
@@ -263,6 +264,17 @@ export default function AccountSetupStack() {
       <Stack.Screen
         name='in-room'
         component={InRoomScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('hot-cold')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='hot-cold'
+        component={HotColdScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
           headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,

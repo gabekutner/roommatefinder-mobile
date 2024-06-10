@@ -29,7 +29,7 @@ export default function CleanRoomScreen() {
         }}
       >
         <Label 
-          text='How clean do you keep your room?' 
+          text='How clean do you keep your room? 🧹' 
           style={{ 
             marginVertical:verticalScale(20),
             marginHorizontal:moderateScale(45),

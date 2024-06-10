@@ -29,7 +29,7 @@ export default function GuestPolicyScreen() {
         }}
       >
         <Label 
-          text="What do you think about dorm guests?" 
+          text="What do you think about dorm guests? 🏨" 
           style={{ 
             marginVertical:verticalScale(20),
             marginHorizontal:moderateScale(45),
