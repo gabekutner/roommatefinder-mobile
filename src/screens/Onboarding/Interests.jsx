@@ -59,12 +59,7 @@ export default function InterestsScreen({ navigation }) {
             style={[
               styles.option, 
               {
-                borderColor: colors.tint,
                 backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
-                shadowColor: '#222',
-                shadowOffset: { width: 7, height: 5 },
-                shadowOpacity: 1,
-                shadowRadius: 1,  
               }
             ]}
           >
@@ -92,14 +87,19 @@ export default function InterestsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    paddingVertical:10,
-    paddingHorizontal:30,
+    paddingVertical:verticalScale(8),
+    paddingHorizontal:moderateScale(30),
     borderWidth:2,
     alignItems:'center',
-    marginBottom:20,
+    marginBottom:verticalScale(20),
+    shadowColor: '#222',
+    shadowOffset: { width: 7, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 1,  
+    borderColor: colors.tint,
   },
   text: { 
     fontSize:verticalScale(14),
-    fontWeight:'600',
+    fontWeight:'bold',
   },
 })

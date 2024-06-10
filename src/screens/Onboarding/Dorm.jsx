@@ -37,7 +37,9 @@ export default function DormScreen({ navigation }) {
         style={{ 
           marginTop:verticalScale(50), 
           marginBottom:verticalScale(20),
-          alignSelf:'center'
+          alignSelf:'center',
+          marginHorizontal:moderateScale(25),
+          textAlign:'center'
         }} 
       />
       <FlatList
@@ -50,12 +52,7 @@ export default function DormScreen({ navigation }) {
             style={[
               styles.option, 
               {
-                borderColor: colors.tint,
                 backgroundColor: selected === item.id ? colors.accent : colors.secondary,
-                shadowColor: '#222',
-                shadowOffset: { width: 7, height: 5 },
-                shadowOpacity: 1,
-                shadowRadius: 1,  
               }
             ]}
           >
@@ -82,11 +79,19 @@ export default function DormScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    paddingVertical:10,
-    paddingHorizontal:30,
+    paddingVertical:verticalScale(8),
+    paddingHorizontal:moderateScale(30),
     borderWidth:2,
     alignItems:'center',
-    marginBottom:20,
+    marginBottom:verticalScale(20),
+    borderColor: colors.tint,
+    shadowColor:'#222',
+    shadowOffset:{ width: 7, height: 5 },
+    shadowOpacity:1,
+    shadowRadius:1, 
   },
-  text: { fontSize:17 },
+  text: { 
+    fontSize:verticalScale(14),
+    fontWeight:'bold',
+  },
 })

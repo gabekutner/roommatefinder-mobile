@@ -14,7 +14,6 @@ import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
-import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
@@ -34,29 +33,43 @@ export default function BaseWidgetsScreen({ navigation }) {
       <View 
         style={{ 
           alignItems:'center',
-          flexDirection:'row',
-          gap:10,
+          flexDirection:'column',
+          gap:8,
           justifyContent:'center',
         }}
       >
+
         <CustomButton 
           onClick={() => navigation.navigate('prompts')}
-          style={{ ...styles.option, backgroundColor:colors.secondary }}
+          style={{ 
+            ...styles.option, 
+            marginRight:moderateScale(75)
+            
+          }}
         >
-          <CustomText style={{ ...styles.optionText,  color:colors.tint }}>Prompts</CustomText>
+          <CustomText style={{ ...styles.optionText }}>Prompts</CustomText>
         </CustomButton>
+
         <CustomButton 
           onClick={() => navigation.navigate('quotes')}
-          style={{ ...styles.option, backgroundColor:colors.secondary }}
+          style={{ 
+            ...styles.option, 
+            marginLeft:moderateScale(75)
+          }}
         >
-          <CustomText style={{ ...styles.optionText,  color:colors.tint }}>Quotes</CustomText>
+          <CustomText style={{ ...styles.optionText }}>Quotes</CustomText>
         </CustomButton>
+
         <CustomButton 
           onClick={() => navigation.navigate('linktree')}
-          style={{ ...styles.option, backgroundColor:colors.secondary }}
+          style={{ 
+            ...styles.option, 
+            marginRight:moderateScale(75)
+          }}
         >
-          <CustomText style={{ ...styles.optionText, color:colors.tint }}>LinkTree</CustomText>
+          <CustomText style={{ ...styles.optionText }}>LinkTree</CustomText>
         </CustomButton>
+
       </View>
     </Base>
   )
@@ -64,8 +77,8 @@ export default function BaseWidgetsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    height:100,
-    width:100,
+    height:160,
+    width:160,
     borderRadius:0,
     borderWidth:2,
     alignItems:'center',
@@ -73,9 +86,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,  
+    backgroundColor:colors.secondary
   },
   optionText: {
-    fontSize:verticalScale(14),
-    fontWeight:'500',
+    fontSize:verticalScale(17),
+    fontWeight:'bold',
+    color:colors.tint
   }
 })

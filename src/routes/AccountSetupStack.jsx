@@ -26,11 +26,13 @@ import PromptsScreen from '../screens/Onboarding/Widgets/Prompts';
 
 import PhotosScreen from "../screens/Onboarding/Photos";
 import DormScreen from '../screens/Onboarding/Dorm';
+
+// matching
+import MatchingPromptScreen from "../screens/Onboarding/Matching/MatchingPrompt";
+
 import DoneScreen from '../screens/Onboarding/Done';
 
-
 import { colors } from "../constants/colors";
-
 
 
 const Header = ({ nav, icon }) => {
@@ -189,7 +191,17 @@ export default function AccountSetupStack() {
      component={DormScreen}
      options={({ navigation }) => ({
        headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-       headerRight: () => <Header nav={() => navigation.navigate('done')} icon="arrow-right" />,
+       headerRight: () => <Header nav={() => navigation.navigate('matching-prompt')} icon="arrow-right" />,
+       title: '',
+       headerStyle: { backgroundColor:colors.primary },
+       headerShadowVisible: false, // border bottom invisible
+     })}
+   />
+   <Stack.Screen
+     name='matching-prompt'
+     component={MatchingPromptScreen}
+     options={({ navigation }) => ({
+       headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
        title: '',
        headerStyle: { backgroundColor:colors.primary },
        headerShadowVisible: false, // border bottom invisible

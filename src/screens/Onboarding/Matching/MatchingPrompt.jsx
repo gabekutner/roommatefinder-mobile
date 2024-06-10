@@ -1,22 +1,22 @@
 import React from "react";
 import {
   SafeAreaView,
-  View
+  View,
 } from 'react-native';
 
 import { 
   verticalScale,
   moderateScale
 } from 'react-native-size-matters';
-
-import CustomText from "../../components/UI/Custom/CustomText";
-import CustomButton from "../../components/UI/Custom/CustomButton";
-
-import { colors } from "../../constants/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomButton from "../../../components/UI/Custom/CustomButton";
 
-export default function PromptScreen({ navigation }) {
+import { colors } from "../../../constants/colors";
+
+
+export default function MatchingPromptScreen({ navigation }) {
   return (
     <SafeAreaView 
       style={{ 
@@ -39,7 +39,7 @@ export default function PromptScreen({ navigation }) {
             fontWeight:'bold'
           }}
         >
-          Ready to kick off your profile?
+          Want to take our roommate matching quiz?
         </CustomText>
         <CustomText
           style={{
@@ -47,18 +47,31 @@ export default function PromptScreen({ navigation }) {
             fontSize:verticalScale(13),
           }}
         >
-          It'll only take a couple of minutes.
+          This'll up our game in matching you with people you'll get along with better!
         </CustomText>
       </View> 
-
+      
       <CustomButton
-        onClick={() => navigation.navigate('age')}
+        onClick={() => navigation.navigate('done')}
+        style={{ borderWidth:0 }}
+      >
+        <CustomText
+          style={{
+            fontSize:verticalScale(12),
+            fontWeight:'bold',
+            color:colors.tint,
+            textDecorationLine:'underline'
+          }}
+        >
+          Nah, I'll do it later
+        </CustomText>
+      </CustomButton>
+      <CustomButton
+        onClick={() => {}}
         style={{ 
           backgroundColor:colors.accent,
           paddingVertical:verticalScale(15),
           paddingHorizontal:moderateScale(30),
-          flexDirection:'row',
-          gap:moderateScale(20)
         }}
       >
         <CustomText
@@ -68,13 +81,8 @@ export default function PromptScreen({ navigation }) {
             color:colors.white,
           }}
         >
-          That way
+          Let's do it!
         </CustomText>
-        <FontAwesomeIcon 
-          icon="arrow-right-to-bracket"
-          size={verticalScale(20)}
-          color={colors.white}
-        />
       </CustomButton>
     </SafeAreaView>
   )
