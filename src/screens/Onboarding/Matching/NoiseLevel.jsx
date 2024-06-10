@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'center',
-    gap:10
+    gap:4
   },
   iconWrapper: {
     padding:10,

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {
+  View
+} from 'react-native';
 
 import { 
   verticalScale, 
@@ -77,6 +80,23 @@ export default function DoneScreen({navigation}) {
        {' '}
        to create your profile and get swiping!
      </CustomText>
+
+      {/* some kinda photo - simple design, photos of the app, or gif of swiping? */}
+      <View 
+        style={{ 
+          alignSelf:'center',
+          marginVertical:verticalScale(20),
+          backgroundColor:'#ccc', 
+          width:moderateScale(260), 
+          height:verticalScale(260),
+          // can delete this after later..
+          justifyContent:'center',
+          alignItems:'center'
+        }} 
+      >
+        <CustomText>Some photo here ...</CustomText>
+      </View>
+
      <CustomButton
        onClick={() => submit()}
        style={{
