@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import {
   View,
-  TouchableOpacity,
 } from 'react-native';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import FastImage from 'react-native-fast-image';
 import { LinearGradient } from 'react-native-linear-gradient';
 
@@ -16,11 +14,11 @@ import SwipeProfileModal from './UI/SwipeProfileModal';
 import { verticalScale } from 'react-native-size-matters';
 
 
-export default function CardItem({ navigation, item, colors }) {
-
-  const [show, setShow] = useState(false)
-  const [showSnackbar, setShowSnackbar] = useState(false)
-
+export default function CardItem({ 
+  navigation, 
+  item, 
+  colors, 
+}) {
   return (
     <View 
       style={{ 
@@ -67,38 +65,6 @@ export default function CardItem({ navigation, item, colors }) {
           }}
         />
       </FastImageBackground>
-      
-      { show
-        ?
-          <SwipeProfileModal 
-            item={item}
-            colors={colors}
-            isVisible={show}
-            setIsVisible={setShow}
-          />
-        : null
-      }
-
-      { showSnackbar
-        ? 
-          <Snackbar
-            message="Sent message request"
-            actionText="Dismiss"
-            onActionPress={() => {
-              setShowSnackbar(false)
-            }}
-            duration={3000} // customize duration
-            position="top" // change the position to 'top'/'bottom'
-            backgroundColor={colors.accent} // customize background color
-            textColor={colors.constWhite} // change text color
-            actionTextColor={colors.constWhite} // customize action text color
-            containerStyle={{ marginHorizontal:12 }} // apply additional styling
-            messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-            actionTextStyle={{ }} // customize action text styling
-          />
-        : null
-      }
-
     </View>
   )
 }

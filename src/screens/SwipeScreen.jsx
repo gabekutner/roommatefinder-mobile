@@ -150,7 +150,6 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
     })
   ).current;
 
-
   return (
     <Animated.View
       {...panResponder.panHandlers}

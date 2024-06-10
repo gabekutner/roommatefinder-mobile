@@ -11,7 +11,6 @@ import {
   moderateScale
 } from 'react-native-size-matters';
 
-
 import CustomText from '../components/UI/Custom/CustomText';
 import CustomButton from '../components/UI/Custom/CustomButton';
 
