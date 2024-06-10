@@ -35,6 +35,10 @@ import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
 import GuestPolicyScreen from "../screens/Onboarding/Matching/GuestPolicy";
 import InRoomScreen from "../screens/Onboarding/Matching/InRoom";
 import HotColdScreen from "../screens/Onboarding/Matching/HotCold";
+import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
+import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
+import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
+
 
 import DoneScreen from '../screens/Onboarding/Done';
 
@@ -277,7 +281,40 @@ export default function AccountSetupStack() {
         component={HotColdScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,
+          headerRight: () => <Header nav={() => navigation.navigate('bed-time')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='bed-time'
+        component={BedTimeScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('wake-up-time')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='wake-up-time'
+        component={WakeUpScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('sharing-policy')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='sharing-policy'
+        component={SharingPolicyScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          // headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,
           title: '',
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible

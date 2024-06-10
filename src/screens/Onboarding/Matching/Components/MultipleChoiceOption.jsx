@@ -22,18 +22,18 @@ export default function MultipleChoiceOption({
   setSelected
 }) {
   return (
-    <View style={styles.option}>
-      <TouchableOpacity onPress={() => setSelected(text)}>
+    <TouchableOpacity onPress={() => setSelected(text)}>
+      <View style={styles.option}>
         <FontAwesomeIcon 
           icon="circle"
           size={verticalScale(20)}
           color={selected === text ? colors.accent : colors.primary}
         />
-      </TouchableOpacity>
-      <CustomText style={styles.text} >
-        {text}
-      </CustomText>
-    </View>
+        <CustomText style={styles.text} >
+          {text}
+        </CustomText>
+      </View>
+    </TouchableOpacity>
   )
 }
 
