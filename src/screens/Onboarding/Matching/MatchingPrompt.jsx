@@ -67,7 +67,7 @@ export default function MatchingPromptScreen({ navigation }) {
         </CustomText>
       </CustomButton>
       <CustomButton
-        onClick={() => {}}
+        onClick={() => navigation.navigate('social-battery')}
         style={{ 
           backgroundColor:colors.accent,
           paddingVertical:verticalScale(15),

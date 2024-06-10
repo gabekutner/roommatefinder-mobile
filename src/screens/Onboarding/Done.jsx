@@ -50,7 +50,7 @@ export default function DoneScreen({navigation}) {
  return (
    <Base>
      <Label
-       text="All Done!"
+       text="You're all done!"
        style={{
          marginTop:verticalScale(50),
          marginBottom:verticalScale(20),
@@ -60,7 +60,9 @@ export default function DoneScreen({navigation}) {
      <CustomText
        style={{
          alignSelf:'center',
-         fontSize:verticalScale(14)
+         fontSize:verticalScale(14),
+         marginHorizontal:moderateScale(45),
+         textAlign:'center'
        }}
      >
        Hit{' '}
@@ -73,7 +75,7 @@ export default function DoneScreen({navigation}) {
          submit
        </CustomText>
        {' '}
-       to move on and get swiping!
+       to create your profile and get swiping!
      </CustomText>
      <CustomButton
        onClick={() => submit()}
