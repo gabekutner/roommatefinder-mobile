@@ -58,7 +58,13 @@ export default function PromptScreen({ navigation }) {
           paddingVertical:verticalScale(15),
           paddingHorizontal:moderateScale(30),
           flexDirection:'row',
-          gap:moderateScale(20)
+          gap:moderateScale(20),
+          shadowColor:'#222',
+          shadowOffset: { width:5, height:3 },
+          shadowOpacity:1,
+          shadowRadius:1, 
+          borderRadius:0,
+          borderWidth:2
         }}
       >
         <CustomText

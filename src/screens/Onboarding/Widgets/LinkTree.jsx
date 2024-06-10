@@ -118,8 +118,12 @@ export default function LinkTreeScreen({ navigation }) {
               ...styles.addLink, 
               borderColor:colors.tint,
               backgroundColor:colors.accent,
-              borderWidth:2,
+              shadowColor:'#222',
+              shadowOffset: { width:5, height:3 },
+              shadowOpacity:1,
+              shadowRadius:1, 
               borderRadius:0,
+              borderWidth:2
             }}
           >
             <CustomText style={[styles.linkedText, { color:colors.white }]}>+ Add a link</CustomText>

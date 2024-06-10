@@ -6,7 +6,8 @@ import {
 
 import { 
   moderateScale, 
-  verticalScale 
+  verticalScale,
+  scale
 } from "react-native-size-matters";
 
 import Base from "../Components/Base";
@@ -38,7 +39,6 @@ export default function BaseWidgetsScreen({ navigation }) {
           justifyContent:'center',
         }}
       >
-
         <CustomButton 
           onClick={() => navigation.navigate('prompts')}
           style={{ 
@@ -77,8 +77,8 @@ export default function BaseWidgetsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   option: {
-    height:160,
-    width:160,
+    height:scale(120),
+    width:scale(120),
     borderRadius:0,
     borderWidth:2,
     alignItems:'center',

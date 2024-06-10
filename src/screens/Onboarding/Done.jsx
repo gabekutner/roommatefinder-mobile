@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-import { verticalScale } from "react-native-size-matters";
+import { 
+  verticalScale, 
+  moderateScale 
+} from "react-native-size-matters";
 
 import Base from "./Components/Base";
 import Label from "./Components/Label";
@@ -75,11 +78,19 @@ export default function DoneScreen({navigation}) {
      <CustomButton
        onClick={() => submit()}
        style={{
-         width:'80%',
-         alignSelf:'center',
-         backgroundColor:colors.accent,
-         position:'absolute',
-         bottom:verticalScale(130),
+          width:'80%',
+          alignSelf:'center',
+          position:'absolute',
+          bottom:verticalScale(130),
+          backgroundColor:colors.accent,
+          paddingVertical:verticalScale(15),
+          paddingHorizontal:moderateScale(30),
+          shadowColor:'#222',
+          shadowOffset: { width:5, height:3 },
+          shadowOpacity:1,
+          shadowRadius:1, 
+          borderRadius:0,
+          borderWidth:2
        }}
      >
        <CustomText
@@ -92,7 +103,6 @@ export default function DoneScreen({navigation}) {
          Submit
        </CustomText>
      </CustomButton>
-
 
      { show.status
          ?
