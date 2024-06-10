@@ -20,7 +20,7 @@ import Swipe from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search";
 import Requests from '../screens/Extras/Requests';
 import Message from "../screens/Chat/Message";
-import EditProfile from "../screens/Profile/Edit/EditProfile";
+// import EditProfile from "../screens/Profile/Edit/EditProfile";
 import Settings from "../screens/Settings";
 import PhotoUpload from "../screens/PhotoUpload";
 
@@ -189,7 +189,7 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      <Stack.Screen 
+      {/* <Stack.Screen 
         name='edit-profile'
         component={EditProfile}
         options={({ navigation }) => ({
@@ -209,7 +209,7 @@ export default function AppStack() {
           },
           headerShadowVisible: false, // border bottom invisible
         })}
-      />
+      /> */}
       <Stack.Screen 
         name='settings' 
         component={Settings} 

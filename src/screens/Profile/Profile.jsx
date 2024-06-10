@@ -128,7 +128,7 @@ export default function ProfileScreen({ navigation }) {
 
       <View style={{ justifyContent:'flex-start' }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('edit-profile')}
+          onPress={() => {}}
           style={{
             flexDirection:'row',
             height:verticalScale(52),

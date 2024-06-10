@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
  verticalScale,
@@ -41,7 +40,8 @@ const Header = ({ nav, icon }) => {
      style={{
        marginBottom:verticalScale(5),
        backgroundColor:colors.accent,
-       width:scale(30),height:scale(30),
+       width:scale(30),
+       height:scale(30),
        shadowColor:'#222',
        shadowOffset: { width:5, height:3 },
        shadowOpacity:1,
@@ -49,38 +49,36 @@ const Header = ({ nav, icon }) => {
        borderRadius:0,
        borderWidth:2
      }}
-   >
+    >
      <FontAwesomeIcon
        icon={icon}
        size={verticalScale(20)}
        color={colors.white}
      />
    </CustomButton>
- )
+  )
 }
-
-
 
 
 export default function AccountSetupStack() {
  return (
    <Stack.Navigator>
-     <Stack.Screen
-       name='start'
-       component={PromptScreen}
-       options={{ headerShown:false }}
-     />
-     <Stack.Screen
-       name='age'
-       component={AgeScreen}
-       options={({ navigation }) => ({
-         headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-         headerRight: () => <Header nav={() => navigation.navigate('sex')} icon="arrow-right" />,
-         title: '',
-         headerStyle: { backgroundColor:colors.primary },
-         headerShadowVisible: false, // border bottom invisible
-       })}
-     />
+    <Stack.Screen
+      name='start'
+      component={PromptScreen}
+      options={{ headerShown:false }}
+    />
+    <Stack.Screen
+      name='age'
+      component={AgeScreen}
+      options={({ navigation }) => ({
+        headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+        headerRight: () => <Header nav={() => navigation.navigate('sex')} icon="arrow-right" />,
+        title: '',
+        headerStyle: { backgroundColor:colors.primary },
+        headerShadowVisible: false, // border bottom invisible
+      })}
+    />
      <Stack.Screen
        name='sex'
        component={SexScreen}

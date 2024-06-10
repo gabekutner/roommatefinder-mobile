@@ -88,7 +88,7 @@ export default function QuotesScreen({ navigation }) {
           />
 
           <Label 
-            text="Link" 
+            text="Always cite your sources ;)" 
             style={{ 
               fontSize:verticalScale(14), 
               alignSelf:'flex-start',
