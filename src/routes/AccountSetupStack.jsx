@@ -32,6 +32,8 @@ import MatchingPromptScreen from "../screens/Onboarding/Matching/MatchingPrompt"
 import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
 import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
 import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
+import GuestPolicyScreen from "../screens/Onboarding/Matching/GuestPolicy";
+import InRoomScreen from "../screens/Onboarding/Matching/InRoom";
 
 import DoneScreen from '../screens/Onboarding/Done';
 
@@ -241,12 +243,34 @@ export default function AccountSetupStack() {
         component={NoiseLevelScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,
+          headerRight: () => <Header nav={() => navigation.navigate('guest-policy')} icon="arrow-right" />,
           title: '',
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible
         })}
       />     
+      <Stack.Screen
+        name='guest-policy'
+        component={GuestPolicyScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('in-room')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='in-room'
+        component={InRoomScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
 
       <Stack.Screen
         name='done'

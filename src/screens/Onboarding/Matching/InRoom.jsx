@@ -17,7 +17,7 @@ import { colors } from "../../../constants/colors";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
 
-export default function NoiseLevelScreen() {
+export default function InRoomScreen() {
 
   const [value, setValue] = useState(0)
 
@@ -30,7 +30,7 @@ export default function NoiseLevelScreen() {
         }}
       >
         <Label 
-          text='Noise Level' 
+          text='Room Time 🕥' 
           style={{ marginVertical:verticalScale(20) }} 
         />
         <CustomText
@@ -41,11 +41,11 @@ export default function NoiseLevelScreen() {
             marginHorizontal:moderateScale(50)
           }}
         >
-          How loud is it in your room most of the time?
+          How much time do you spend in your room?
         </CustomText>
         <View style={styles.sliderWrapper}>
           <View style={styles.iconWrapper}>
-            <CustomText style={styles.icon}>🤫</CustomText>
+            <CustomText style={styles.icon}>🏠</CustomText>
           </View>
           <Slider
             value={value}
@@ -58,15 +58,15 @@ export default function NoiseLevelScreen() {
             minimumTrackStyle={{ backgroundColor:colors.accent }}
           />
           <View style={styles.iconWrapper}>
-            <CustomText style={styles.icon}>🥳</CustomText>
+            <CustomText style={styles.icon}>🧗‍♂️</CustomText>
           </View>
         </View>
         <View style={styles.description}>
           <CustomText style={styles.text}>
-            Shhhh
+            Always Around!
           </CustomText>
           <CustomText style={styles.text}>
-            Party on!
+            Out and About!
           </CustomText>
         </View>
       </View>
