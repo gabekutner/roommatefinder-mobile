@@ -60,14 +60,41 @@ export default function SharingPolicyScreen({ navigation }) {
             setSelected={setSelected}
           />
         </View>
-        <CustomButton
-          onClick={() => {}}
+        
+        <CustomText
           style={{
-            marginVertical:verticalScale(25)
+            marginTop:verticalScale(25),
+            fontSize:verticalScale(12),
+            fontWeight:'bold'
           }}
         >
-          <CustomText>
-            Done
+          Get your roommate quiz in and get going!
+        </CustomText>
+        <CustomButton
+          onClick={() => navigation.navigate('done')}
+          style={{
+            marginVertical:verticalScale(5),
+            width:'80%',
+            alignItems:'center',
+            backgroundColor:colors.accent,
+            paddingVertical:verticalScale(15),
+            paddingHorizontal:moderateScale(30),
+            shadowColor:'#222',
+            shadowOffset: { width:5, height:3 },
+            shadowOpacity:1,
+            shadowRadius:1, 
+            borderRadius:0,
+            borderWidth:2
+          }}
+        >
+          <CustomText
+            style={{
+              fontSize:verticalScale(14),
+              color:colors.white,
+              fontWeight:'bold',
+            }}
+          >
+            All Done!!!
           </CustomText>
         </CustomButton>
       </View>

@@ -50,7 +50,7 @@ export default function HotColdScreen() {
           <Slider
             value={value}
             minimumValue={0}
-            maximumValue={10}
+            maximumValue={20}
             step={1}
             onValueChange={value => setValue(value)}
             containerStyle={{ width:moderateScale(230) }}

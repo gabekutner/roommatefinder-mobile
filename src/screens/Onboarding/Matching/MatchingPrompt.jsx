@@ -49,6 +49,16 @@ export default function MatchingPromptScreen({ navigation }) {
         >
           This'll up our game in matching you with people you'll get along with better!
         </CustomText>
+        <CustomText
+          style={{
+            textAlign:'center',
+            fontSize:verticalScale(12),
+            fontWeight:'500',
+            marginVertical:verticalScale(7)
+          }}
+        >
+          (P.S. Only 9 questions)
+        </CustomText>
       </View> 
       
       <CustomButton
