@@ -21,32 +21,11 @@ import { dormsData } from '../assets/Dictionary';
 export default function ProfileDetail({ route, navigation }) {
 
   const { item } = route.params
-
-  const Button = ({onPress, text}) => {
-    return (
-      <CustomButton
-        onClick={onPress}
-        style={{
-          height:55,
-          width:55,
-          backgroundColor:colors.primary,
-        }}
-      >
-        <CustomText style={{ fontSize:verticalScale(15) }}>
-          {text}
-        </CustomText>
-      </CustomButton>
-    )
-  }
   
   const InfoItem = ({ emoji, text, style }) => {
-
     const styles = StyleSheet.create({
-      text: {
-        fontSize:verticalScale(15),
-      }
+      text: { fontSize:verticalScale(15) }
     })
-
     return (
       <View
         style={{
@@ -63,6 +42,14 @@ export default function ProfileDetail({ route, navigation }) {
         <CustomText style={styles.text}>
           {text}
         </CustomText>
+      </View>
+    )
+  }
+
+  const BoxedItem = () => {
+    return (
+      <View>
+        
       </View>
     )
   }
@@ -96,7 +83,6 @@ export default function ProfileDetail({ route, navigation }) {
         }}
         showsVerticalScrollIndicator={false}
       >
-        
         <CustomText
           style={{
             fontSize:verticalScale(20),
@@ -105,35 +91,52 @@ export default function ProfileDetail({ route, navigation }) {
         >
           {item.name}
         </CustomText>
-
+        
+        {/* Data
+            - name  - email
+            - birthday  - major
+            - city, state 
+            - description (optional)
+            - dorm_building
+            - interests
+            - graduation_year
+            - quotes  - links
+            - prompts   - photos
+        */}
         <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} style={{ marginTop:verticalScale(10) }} />
-        {/* <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} />
-        <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} /> */}
+        <InfoItem emoji="🎓" text={item.major} style={{ marginTop:verticalScale(10) }} />
+        { item.city && item.state
+          ?
+            <InfoItem 
+              emoji="📍" 
+              text={`${item.city}, ${item.state}`} 
+              style={{ marginTop:verticalScale(10) }} 
+            />
+          : null
+        }
+        { item.links.length !== 0
+          ? 
+            <InfoItem 
+              emoji="🔗" 
+              text={`${item.links}`} 
+              style={{ marginTop:verticalScale(10) }} 
+            />
+          : null
+        }
 
+        { item.quotes.length !== 0
+          ?
+            <InfoItem 
+              emoji="🔗" 
+              text={`${item.quotes[0].quote}`} 
+              style={{ marginTop:verticalScale(10) }} 
+            />
+          : null
+        }
 
-        {/* <CustomButton
-          onClick={() => navigation.goBack()}
-        >
-          <CustomText>back</CustomText>
-        </CustomButton> */}
+        
+
       </ScrollView>
-
-      {/* Action Buttons (swipe left / right) */}
-      <View
-        style={{
-          position:'absolute',
-          bottom:0,
-          right:0,
-          left:0,
-          flexDirection:'row',
-          justifyContent:'space-between',
-          paddingHorizontal:30,
-          paddingVertical:30
-        }}
-      >
-        <Button onPress={() => {}} text="❌" />
-        <Button onPress={() => {}} text="✔️" />
-      </View>
     </View>
   )
 }
