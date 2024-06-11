@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -13,12 +13,14 @@ import Base from "../Components/Base";
 import Label from "../Components/Label";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
 export default function GuestPolicyScreen() {
 
-  const [selected, setSelected] = useState("")
+  const matchingForm = useGlobal(state => state.matchingForm)
+  const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
     <Base>
@@ -39,23 +41,23 @@ export default function GuestPolicyScreen() {
         <View style={styles.optionsContainer}>
           <MultipleChoiceOption 
             text="Guests are family—come one, come all, anytime."
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.guest_policy}
+            setSelected={() => setMatchingForm({ ...matchingForm, guest_policy:"Guests are family—come one, come all, anytime." })}
           />
           <MultipleChoiceOption 
             text="Guests are cool, but they gotta bring snacks to share." 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.guest_policy}
+            setSelected={() => setMatchingForm({ ...matchingForm, guest_policy:"Guests are cool, but they gotta bring snacks to share." })}
           />
           <MultipleChoiceOption 
             text="Guests are okay, but keep it chill, we're not running a hotel." 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.guest_policy}
+            setSelected={() => setMatchingForm({ ...matchingForm, guest_policy:"Guests are okay, but keep it chill, we're not running a hotel." })}
           />
           <MultipleChoiceOption 
             text="Guests? Nah, this is our sanctuary." 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.guest_policy}
+            setSelected={() => setMatchingForm({ ...matchingForm, guest_policy:"Guests? Nah, this is our sanctuary." })}
           />
         </View>
       </View>

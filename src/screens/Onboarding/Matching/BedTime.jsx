@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -13,12 +13,14 @@ import Base from "../Components/Base";
 import Label from "../Components/Label";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
 export default function BedTimeScreen() {
 
-  const [selected, setSelected] = useState("")
+  const matchingForm = useGlobal(state => state.matchingForm)
+  const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
     <Base>
@@ -38,24 +40,24 @@ export default function BedTimeScreen() {
         />
         <View style={styles.optionsContainer}>
           <MultipleChoiceOption 
-            text="9 pm"
-            selected={selected}
-            setSelected={setSelected}
+            text="9pm"
+            selected={matchingForm.bed_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"9pm" })}
           />
           <MultipleChoiceOption 
             text="11pm" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.bed_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"11pm" })}
           />
           <MultipleChoiceOption 
             text="1am" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.bed_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"1am" })}
           />
           <MultipleChoiceOption 
             text="3am" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.bed_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"3am" })}
           />
         </View>
       </View>

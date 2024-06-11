@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -13,13 +13,15 @@ import {Slider} from '@miblanchard/react-native-slider';
 import Base from "../Components/Base";
 import Label from "../Components/Label";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
 
 export default function SocialBatteryScreen() {
 
-  const [value, setValue] = useState(0)
+  const matchingForm = useGlobal(state => state.matchingForm)
+  const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
     <Base>
@@ -51,11 +53,11 @@ export default function SocialBatteryScreen() {
             <CustomText style={styles.icon}>🪫</CustomText>
           </View>
           <Slider
-            value={value}
+            value={matchingForm.social_battery}
             minimumValue={0}
             maximumValue={20}
             step={1}
-            onValueChange={value => setValue(value)}
+            onValueChange={value => setMatchingForm({ ...matchingForm, social_battery:value })}
             containerStyle={{ width:moderateScale(230) }}
             thumbStyle={{ backgroundColor:colors.accent }}
             minimumTrackStyle={{ backgroundColor:colors.accent }}

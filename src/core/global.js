@@ -328,14 +328,12 @@ const useGlobal = create((set, get) => ({
   //---------------------
   //    Upload Photos 
   //---------------------
-
   photos: {
     thumbnail:null,
     photo_1:null,
     photo_2:null,
     photo_3:null,
   },
-
   setPhotos: (form) => {
     set((state) => ({
       photos: form
@@ -448,6 +446,53 @@ const useGlobal = create((set, get) => ({
   },
 
   //---------------------
+  //    Roommate Quiz
+  //---------------------
+  matchingForm: {
+    social_battery:0,
+    clean_room:"",
+    noise_level:0,
+    guest_policy:"",
+    in_room:0,
+    hot_cold:0,
+    bed_time:"",
+    wake_up_time:"",
+    sharing_policy:""
+  },
+  setMatchingForm: (form) => {
+    set((state) => ({
+      matchingForm: form
+    }))
+  },
+
+  submitMatchingForm: async (form, user) => {
+    if (user.token) {
+      try {
+
+        form.hot_cold = form.hot_cold[0]
+        form.in_room = form.in_room[0]
+        form.noise_level = form.noise_level[0]
+        form.social_battery = form.social_battery[0]
+
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/matching-quizs/',
+          data: form,
+          headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNzMwMzIxLCJpYXQiOjE3MTgxMzgzMjEsImp0aSI6IjA3OTc3YzgzY2ExZjQwYTE4NmI3NWI5MTE4ZTNhNzgzIiwidXNlcl9pZCI6IjliOGRmN2MyLTYwMDQtNGFiYi05MThiLTBhNGJmNmMwNjkyMCJ9.ev-yXyv9WHELO3wIvgNKbIIY6iUfw1fYBVKeKTqnyJk`},
+        })
+
+        if (response.status !== 201) {
+          throw 'submit-matching-quiz error'
+        }
+        console.log('submitted matching quiz!')
+
+      } catch(error) {
+        console.log(error.response)
+      }
+    }
+  },
+
+  //---------------------
   //    Edit Profile
   //---------------------
   editProfile: async(form, user) => {
@@ -462,7 +507,7 @@ const useGlobal = create((set, get) => ({
           data: cleanedForm,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-          if (response.status !== 200) {
+        if (response.status !== 200) {
           throw 'create-profile error'
         }
 

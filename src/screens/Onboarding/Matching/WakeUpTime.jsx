@@ -13,12 +13,14 @@ import Base from "../Components/Base";
 import Label from "../Components/Label";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
 export default function WakeUpScreen() {
 
-  const [selected, setSelected] = useState("")
+  const matchingForm = useGlobal(state => state.matchingForm)
+  const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
     <Base>
@@ -39,23 +41,23 @@ export default function WakeUpScreen() {
         <View style={styles.optionsContainer}>
           <MultipleChoiceOption 
             text="5am"
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.wake_up_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"5am" })}
           />
           <MultipleChoiceOption 
             text="6am" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.wake_up_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"6am" })}
           />
           <MultipleChoiceOption 
             text="8am" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.wake_up_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"8am" })}
           />
           <MultipleChoiceOption 
             text="10am" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.wake_up_time}
+            setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"10am" })}
           />
         </View>
       </View>

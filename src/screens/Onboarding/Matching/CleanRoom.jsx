@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -13,13 +13,15 @@ import Base from "../Components/Base";
 import Label from "../Components/Label";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
 export default function CleanRoomScreen() {
 
-  const [selected, setSelected] = useState("")
-
+  const matchingForm = useGlobal(state => state.matchingForm)
+  const setMatchingForm = useGlobal(state => state.setMatchingForm)
+  
   return (
     <Base>
       <View 
@@ -39,23 +41,23 @@ export default function CleanRoomScreen() {
         <View style={styles.optionsContainer}>
           <MultipleChoiceOption 
             text="I'm the master of cleanliness and order. 🤹"
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.clean_room}
+            setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"I'm the master of cleanliness and order. 🤹" })}
           />
           <MultipleChoiceOption 
             text="Mostly tidy, with a stray sock or two." 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.clean_room}
+            setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"Mostly tidy, with a stray sock or two." })}
           />
           <MultipleChoiceOption 
             text="A bit cluttered, but I know where everything is." 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.clean_room}
+            setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"A bit cluttered, but I know where everything is." })}
           />
           <MultipleChoiceOption 
             text="Organized Chaos 😈" 
-            selected={selected}
-            setSelected={setSelected}
+            selected={matchingForm.clean_room}
+            setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"Organized Chaos 😈" })}
           />
         </View>
       </View>
