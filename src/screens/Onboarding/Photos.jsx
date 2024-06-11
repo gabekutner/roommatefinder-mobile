@@ -89,7 +89,18 @@ export default function PhotosScreen({ navigation }) {
           marginVertical:verticalScale(30)
         }}
       >
-        <Label text="Add a few photos!" style={{ marginVertical:verticalScale(20) }} />
+        <Label text="Add a few photos!" style={{ marginTop:verticalScale(20) }} />
+        <CustomText
+          style={{
+            fontSize:verticalScale(12),
+            fontWeight:'500',
+            marginTop:verticalScale(5),
+            marginBottom:verticalScale(20),
+            alignSelf:'center'
+          }}
+        >
+          (P.S. Add at least 2 photos)
+        </CustomText>
         <View
           style={{
             flexDirection:'row',

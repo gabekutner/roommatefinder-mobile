@@ -25,12 +25,22 @@ export default function BaseWidgetsScreen({ navigation }) {
         text="Customize your profile with prompts, quotes, and your social handles!" 
         style={{ 
           marginTop:verticalScale(30),
-          marginBottom:verticalScale(20),
           marginHorizontal:moderateScale(60),
           alignSelf:'center',
           textAlign:'center'
         }} 
       />
+      <CustomText
+        style={{
+          fontSize:verticalScale(12),
+          fontWeight:'500',
+          marginTop:verticalScale(5),
+          marginBottom:verticalScale(20),
+          alignSelf:'center'
+        }}
+      >
+        (P.S. Optional)
+      </CustomText>
       <View 
         style={{ 
           alignItems:'center',

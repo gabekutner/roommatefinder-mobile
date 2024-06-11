@@ -121,7 +121,7 @@ export default function QuotesScreen({ navigation }) {
           <CustomTextInput 
             autoCorrect={false}
             multiline={true}
-            placeholder={'Ex. Lego Batman'}
+            placeholder={'Ex. Ninja Turtles'}
             value={prompt.answer}
             onChangeText={input => setPrompt({ ...prompt, answer:input })}
             colors={colors}
