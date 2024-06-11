@@ -4,7 +4,6 @@ import utils from "../core/utils";
 
 
 export default function Thumbnail({ url, size, borderColor, style }) {
-
 	if (url) {
 		return (
 			<FastImage

@@ -134,7 +134,26 @@ export default function AppStack() {
         <Tab.Screen 
           name="profile" 
           component={Profile} 
-          options={{ headerShown:false }}
+          options={() => ({
+            headerTitle: () => <Title title="Profile" color={colors.tint} fontSize={verticalScale(20)} />,
+            headerTitleAlign:'left',
+            headerRight: () => (
+              <TouchableOpacity 
+                onPress={() => {
+                  // navigate to edit-profile
+                }}
+                style={{ marginRight:moderateScale(20) }}
+              >
+                <FontAwesomeIcon 
+                  icon="user-pen"
+                  size={verticalScale(20)}
+                  color={colors.tint}
+                />
+              </TouchableOpacity>
+            ),
+            headerStyle: { backgroundColor:colors.primary },
+            headerShadowVisible: false, // border bottom invisible
+          })}
         />
       </Tab.Navigator>
     )
@@ -189,27 +208,6 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      {/* <Stack.Screen 
-        name='edit-profile'
-        component={EditProfile}
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <FontAwesomeIcon 
-                icon='arrow-left'
-                size={22}
-                color={colors.tint}
-              />
-            </TouchableOpacity>
-          ), 
-          title: 'Edit Profile',
-          headerTitleStyle: { color:colors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
-          headerStyle: {
-            backgroundColor:colors.primary,
-          },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> */}
       <Stack.Screen 
         name='settings' 
         component={Settings} 
