@@ -478,7 +478,7 @@ const useGlobal = create((set, get) => ({
           method: 'post',
           url: '/api/v1/matching-quizs/',
           data: form,
-          headers: {"Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNzMwMzIxLCJpYXQiOjE3MTgxMzgzMjEsImp0aSI6IjA3OTc3YzgzY2ExZjQwYTE4NmI3NWI5MTE4ZTNhNzgzIiwidXNlcl9pZCI6IjliOGRmN2MyLTYwMDQtNGFiYi05MThiLTBhNGJmNmMwNjkyMCJ9.ev-yXyv9WHELO3wIvgNKbIIY6iUfw1fYBVKeKTqnyJk`},
+          headers: {"Authorization": `Bearer ${user.token}`},
         })
 
         if (response.status !== 201) {
