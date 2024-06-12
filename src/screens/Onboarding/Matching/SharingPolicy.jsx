@@ -19,15 +19,25 @@ import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
-export default function SharingPolicyScreen({ navigation }) {
+export default function SharingPolicyScreen({ 
+  route,
+  navigation
+}) {
+
+  const { navTo, action } = route.params
 
   const user = useGlobal(state => state.user)
   const matchingForm = useGlobal(state => state.matchingForm)
   const setMatchingForm = useGlobal(state => state.setMatchingForm)
   const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
+  const editMatchingForm = useGlobal(state => state.editMatchingForm)
 
   const handleQuiz = () => {
-    submitMatchingForm(matchingForm, user)
+    if (action === 'create') {
+      submitMatchingForm(matchingForm, user)
+    } else {
+      editMatchingForm(matchingForm, user)
+    }
   }
 
   return (
@@ -81,7 +91,7 @@ export default function SharingPolicyScreen({ navigation }) {
         <CustomButton
           onClick={() => {
             handleQuiz()
-            navigation.navigate('done')
+            navigation.navigate(navTo)
           }}
           style={{
             marginVertical:verticalScale(5),

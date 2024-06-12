@@ -468,24 +468,43 @@ const useGlobal = create((set, get) => ({
   submitMatchingForm: async (form, user) => {
     if (user.token) {
       try {
-
         form.hot_cold = form.hot_cold[0]
         form.in_room = form.in_room[0]
         form.noise_level = form.noise_level[0]
         form.social_battery = form.social_battery[0]
-
         const response = await api({
           method: 'post',
           url: '/api/v1/matching-quizs/',
           data: form,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-
         if (response.status !== 201) {
           throw 'submit-matching-quiz error'
         }
         console.log('submitted matching quiz!')
 
+      } catch(error) {
+        console.log(error.response)
+      }
+    }
+  },
+  editMatchingForm: async(form, user) => {
+    if (user.token) {
+      try {
+        form.hot_cold = form.hot_cold[0]
+        form.in_room = form.in_room[0]
+        form.noise_level = form.noise_level[0]
+        form.social_battery = form.social_battery[0]
+        const response = await api({
+          method:'put',
+          url: `/api/v1/matching-quizs/${user.id}/`,
+          data:form,
+          headers: {"Authorization": `Bearer ${user.token}`}
+        })
+        if (response.status !== 200) {
+          throw 'edit-matching-form error'
+        }
+        console.log('edited matching quiz')
       } catch(error) {
         console.log(error.response)
       }

@@ -39,38 +39,12 @@ import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
 import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
 import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
-
 import DoneScreen from '../screens/Onboarding/Done';
 
 import { colors } from "../constants/colors";
 
 
-const Header = ({ nav, icon }) => {
-  return (
-    <CustomButton
-      onClick={nav}
-      style={{
-        marginTop:verticalScale(2),
-        marginBottom:verticalScale(5),
-        backgroundColor:colors.accent,
-        width:scale(30),
-        height:scale(30),
-        shadowColor:'#222',
-        shadowOffset: { width:5, height:3 },
-        shadowOpacity:1,
-        shadowRadius:1, 
-        borderRadius:0,
-        borderWidth:2
-      }}
-    >
-      <FontAwesomeIcon
-        icon={icon}
-        size={verticalScale(20)}
-        color={colors.white}
-      />
-   </CustomButton>
-  )
-}
+
 
 
 export default function AccountSetupStack() {
@@ -210,7 +184,7 @@ export default function AccountSetupStack() {
         })}
       />
 
-      {/* Matching */}
+      {/* matching quiz */}
       <Stack.Screen
         name='matching-prompt'
         component={MatchingPromptScreen}
@@ -303,7 +277,7 @@ export default function AccountSetupStack() {
         component={WakeUpScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('sharing-policy')} icon="arrow-right" />,
+          headerRight: () => <Header nav={() => navigation.navigate('sharing-policy', { navTo:'done', action:'create' })} icon="arrow-right" />,
           title: '',
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible
@@ -314,7 +288,6 @@ export default function AccountSetupStack() {
         component={SharingPolicyScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          // headerRight: () => <Header nav={() => navigation.navigate('')} icon="arrow-right" />,
           title: '',
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible

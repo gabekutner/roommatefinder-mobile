@@ -151,7 +151,7 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         <View style={styles.navOptions}>
-          <CustomButton onClick={() => {}} style={styles.navBox}>
+          <CustomButton onClick={() => navigation.navigate('social-battery')} style={styles.navBox}>
             <CustomText style={{ fontSize:verticalScale(20) }}>🚀</CustomText>
             <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
               Retake Quiz

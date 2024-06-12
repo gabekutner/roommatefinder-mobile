@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,11 +8,13 @@ const Stack = createNativeStackNavigator();
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { 
   moderateScale,
-  verticalScale 
+  verticalScale,
+  scale,
 } from 'react-native-size-matters';
 
 import Title from "../components/Brand/Title";
 import DropDownMenu from "../components/DropDownMenu";
+import CustomButton from "../components/UI/Custom/CustomButton";
 
 import Friends from "../screens/Friends";
 import Profile from "../screens/Profile/Profile";
@@ -20,16 +22,53 @@ import Swipe from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search";
 import Requests from '../screens/Extras/Requests';
 import Message from "../screens/Chat/Message";
-// import EditProfile from "../screens/Profile/Edit/EditProfile";
 import Settings from "../screens/Settings";
 import PhotoUpload from "../screens/PhotoUpload";
-
+// matching quiz
+// import MatchingPromptScreen from "../screens/Onboarding/Matching/MatchingPrompt";
+import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
+import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
+import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
+import GuestPolicyScreen from "../screens/Onboarding/Matching/GuestPolicy";
+import InRoomScreen from "../screens/Onboarding/Matching/InRoom";
+import HotColdScreen from "../screens/Onboarding/Matching/HotCold";
+import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
+import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
+import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
 import ProfileDetail from '../screens/ProfileDetail';
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
 
+
+
+const Header = ({ nav, icon }) => {
+  return (
+    <CustomButton
+      onClick={nav}
+      style={{
+        marginTop:verticalScale(2),
+        marginBottom:verticalScale(5),
+        backgroundColor:colors.accent,
+        width:scale(30),
+        height:scale(30),
+        shadowColor:'#222',
+        shadowOffset: { width:5, height:3 },
+        shadowOpacity:1,
+        shadowRadius:1, 
+        borderRadius:0,
+        borderWidth:2
+      }}
+    >
+      <FontAwesomeIcon
+        icon={icon}
+        size={verticalScale(20)}
+        color={colors.white}
+      />
+   </CustomButton>
+  )
+}
 
 export default function AppStack() {
 
@@ -254,6 +293,107 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
+
+      {/* matching quiz */}
+      <Stack.Screen
+        name='social-battery'
+        component={SocialBatteryScreen}
+        options={({ navigation }) => ({
+          headerLeft:() => <View />,
+          // headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('clean-room')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      />  
+      <Stack.Screen
+        name='clean-room'
+        component={CleanRoomScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('noise-level')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='noise-level'
+        component={NoiseLevelScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('guest-policy')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      />     
+      <Stack.Screen
+        name='guest-policy'
+        component={GuestPolicyScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('in-room')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='in-room'
+        component={InRoomScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('hot-cold')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='hot-cold'
+        component={HotColdScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('bed-time')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='bed-time'
+        component={BedTimeScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('wake-up-time')} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='wake-up-time'
+        component={WakeUpScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          headerRight: () => <Header nav={() => navigation.navigate('sharing-policy', { navTo:'profile', action:'edit' })} icon="arrow-right" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
+      <Stack.Screen
+        name='sharing-policy'
+        component={SharingPolicyScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      /> 
     </Stack.Navigator>
   ) 
 }
