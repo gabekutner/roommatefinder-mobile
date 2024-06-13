@@ -158,9 +158,23 @@ export default function ProfileScreen({ navigation }) {
             </CustomText>
           </CustomButton>
           <CustomButton onClick={() => navigation.navigate('settings')} style={styles.navBox}>
-            <CustomText style={{ fontSize:verticalScale(20) }}>⚙️</CustomText>
+            <CustomText style={{ fontSize:verticalScale(20) }}>🕹️</CustomText>
             <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
               Settings
+            </CustomText>
+          </CustomButton>
+        </View>
+        <View style={{ ...styles.navOptions, marginTop:verticalScale(10) }}>
+          <CustomButton onClick={() => navigation.navigate('edit-profile')} style={styles.navBox}>
+            <CustomText style={{ fontSize:verticalScale(20) }}>💥</CustomText>
+            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
+              Edit Profile
+            </CustomText>
+          </CustomButton>
+          <CustomButton onClick={() => {}} style={styles.navBox}>
+            <CustomText style={{ fontSize:verticalScale(20) }}>👀</CustomText>
+            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
+              Preview
             </CustomText>
           </CustomButton>
         </View>

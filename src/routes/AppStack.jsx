@@ -23,9 +23,8 @@ import Search from "../screens/Extras/Search";
 import Requests from '../screens/Extras/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";
-import PhotoUpload from "../screens/PhotoUpload";
+import EditProfileScreen from "../screens/Profile/EditProfile";
 // matching quiz
-// import MatchingPromptScreen from "../screens/Onboarding/Matching/MatchingPrompt";
 import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
 import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
 import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
@@ -40,7 +39,6 @@ import ProfileDetail from '../screens/ProfileDetail';
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
-
 
 
 const Header = ({ nav, icon }) => {
@@ -173,14 +171,12 @@ export default function AppStack() {
         <Tab.Screen 
           name="profile" 
           component={Profile} 
-          options={() => ({
+          options={({ navigation }) => ({
             headerTitle: () => <Title title="Profile" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
             headerRight: () => (
               <TouchableOpacity 
-                onPress={() => {
-                  // navigate to edit-profile
-                }}
+                onPress={() => navigation.navigate('edit-profile')}
                 style={{ marginRight:moderateScale(20) }}
               >
                 <FontAwesomeIcon 
@@ -273,6 +269,30 @@ export default function AppStack() {
         })}
       />
       <Stack.Screen 
+        name='edit-profile' 
+        component={EditProfileScreen} 
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={{ marginBottom:verticalScale(5) }}
+            >
+              <FontAwesomeIcon 
+                icon='arrow-left'
+                size={verticalScale(20)}
+                color={colors.tint}
+              />
+            </TouchableOpacity>
+          ), 
+          headerTitle: () => <Title title="Edit Profile" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerStyle: {
+            backgroundColor:colors.primary,
+          },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      />
+
+      {/* <Stack.Screen 
         name='photo-upload'
         component={PhotoUpload}
         options={({ navigation }) => ({
@@ -292,7 +312,7 @@ export default function AppStack() {
           },
           headerShadowVisible: false, // border bottom invisible
         })}
-      />
+      /> */}
 
       {/* matching quiz */}
       <Stack.Screen
