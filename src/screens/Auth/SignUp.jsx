@@ -141,15 +141,18 @@ export default function SignUp({ navigation }) {
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
-                style={{
+                emoji={'👤'}
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
 
@@ -162,15 +165,18 @@ export default function SignUp({ navigation }) {
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
-                style={{
+                emoji={'✉️'}
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
 
@@ -181,15 +187,18 @@ export default function SignUp({ navigation }) {
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
-                style={{
+                emoji={'🔑'}
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
               
@@ -200,15 +209,18 @@ export default function SignUp({ navigation }) {
                 value={form.rpassword}
                 onChangeText={rpassword => setForm({ ...form, rpassword })}
                 colors={colors}
-                style={{
+                emoji={'🔑'}
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
 

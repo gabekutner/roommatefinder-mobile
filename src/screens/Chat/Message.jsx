@@ -265,7 +265,7 @@ function MessageInput({
 				paddingBottom:moderateScale(7),
 				flexDirection:'row',
 				alignItems:'center',
-				marginBottom:verticalScale(10)
+				// marginBottom:verticalScale(10)
 			}}
 		>
 			<CustomTextInput
@@ -275,14 +275,16 @@ function MessageInput({
 				onChangeText={setMessage}
 				autoComplete={false}
 				colors={colors}
-				style={{
-					flex: 1,
+				containerStyle={{
+					flex:1,
 					paddingHorizontal:moderateScale(10),
 					borderWidth:1,
 					borderRadius:25,
 					borderColor:colors.tint,
 					backgroundColor:colors.secondary,
 					height:verticalScale(40),
+				}}
+				inputStyle={{
 					color:colors.tint,
 					fontSize:verticalScale(14),
 				}}
@@ -293,7 +295,8 @@ function MessageInput({
 					size={verticalScale(19)}
 					color={colors.tint}
 					style={{
-						marginHorizontal: moderateScale(15)
+						marginHorizontal: moderateScale(15),
+						marginBottom:verticalScale(17)
 					}}
 				/>
 			</TouchableOpacity>

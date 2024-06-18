@@ -130,40 +130,44 @@ export default function SignIn({ navigation }) {
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
-                // keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
+                emoji={'✉️'}
                 colors={colors}
-                style={{
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
 
               <CustomLabel color={colors.tint} label={'Password'} />
               <CustomTextInput 
                 secureTextEntry={true}
-                // keyboardAppearance={theme === 'dark' ? 'dark' : 'light'}
                 placeholder={'********'}
                 value={form.password}
                 onChangeText={password => setForm({ ...form, password })}
                 colors={colors}
-                style={{
+                emoji={'🔑'}
+                containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
                   backgroundColor:colors.secondary,
-                  color:colors.tint,
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
-                  fontSize:verticalScale(14)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
                 }}
               />
 
