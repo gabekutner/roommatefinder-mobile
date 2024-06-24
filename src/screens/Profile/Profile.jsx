@@ -106,7 +106,7 @@ export default function ProfileScreen({ navigation }) {
   const user = useGlobal(state => state.user)
 
   return (
-    <ScrollView style={{ flex:1, backgroundColor:colors.primary }}>
+    <View style={{ flex:1, backgroundColor:colors.primary }}>
       <View 
         style={{ 
           alignItems:'center',
@@ -129,20 +129,9 @@ export default function ProfileScreen({ navigation }) {
         >
           {user.name}
         </CustomText>
-        <CustomText
-          style={{
-            textAlign:'center',
-            color:colors.tint,
-            fontSize:verticalScale(14),
-            fontWeight:'500',
-            marginBottom:verticalScale(6),
-          }}
-        >
-          🏠 {dormsData[user.dorm_building-1].dorm}
-        </CustomText>
       </View>
 
-      <View style={{ marginTop:verticalScale(-20) }}>
+      <ScrollView style={{ marginTop:verticalScale(-20) }}>
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
           
           <View 
@@ -256,9 +245,9 @@ export default function ProfileScreen({ navigation }) {
           </View>
 
         </View>
-      </View>
-      <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
-    </ScrollView>
+        <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
+      </ScrollView>
+    </View>
   )
 } 
 
