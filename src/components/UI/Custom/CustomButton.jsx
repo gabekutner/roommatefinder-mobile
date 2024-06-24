@@ -11,6 +11,7 @@ export default function CustomButton({
   children,
   onClick,
   style,
+  disabled
 }) {
   
   const [scaleValue] = useState(new Animated.Value(1)); // Initial scale value
@@ -52,6 +53,7 @@ export default function CustomButton({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       delayPressIn={200}
       delayPressOut={200}
       style={{

@@ -14,6 +14,7 @@ import {
 } from "react-native-size-matters";
 
 import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from '../../components/UI/Custom/CustomText';
 import Empty from "../../components/Empty";
 import Thumbnail from "../../components/Thumbnail";
@@ -61,27 +62,54 @@ function SearchButton({ user, colors }) {
 	}
 
 	return (
-		<TouchableOpacity
-			style={{
-				backgroundColor: data.disabled ? '#708E99' : colors.accent,
-				paddingHorizontal:14,
-				height:36,
+		// <TouchableOpacity
+		// 	style={{
+		// 		backgroundColor: data.disabled ? '#708E99' : colors.accent,
+		// 		paddingHorizontal:14,
+		// 		height:36,
+		// 		alignItems:'center',
+		// 		justifyContent:'center',
+		// 		borderRadius:18
+		// 	}}
+		// 	disabled={data.disabled}
+		// 	onPress={data.onPress}
+		// >
+		// 	<CustomText
+		// 		style={{
+		// 			color:colors.white,
+		// 			fontWeight:'600',
+		// 		}}
+		// 	>
+		// 		{data.text}
+		// 	</CustomText>
+		// </TouchableOpacity>
+		<CustomButton
+			onClick={data.onPress}
+			disabled={data.disabled}
+			style={{ 
+				borderWidth:2,
 				alignItems:'center',
 				justifyContent:'center',
-				borderRadius:18
+				borderColor:colors.tint,
+				backgroundColor: data.disabled ? '#708E99' : colors.accent,
+				paddingHorizontal:moderateScale(16),
+				borderRadius:0,
+				shadowColor: '#222',
+				shadowOffset: { width: 7, height: 5 },
+				shadowOpacity: 1,
+				shadowRadius: 1,  
 			}}
-			disabled={data.disabled}
-			onPress={data.onPress}
 		>
-			<CustomText
-				style={{
+			<CustomText 
+				style={{ 
+					fontWeight:'600', 
+					fontSize:verticalScale(12),
 					color:colors.white,
-					fontWeight:'600',
 				}}
 			>
 				{data.text}
 			</CustomText>
-		</TouchableOpacity>
+		</CustomButton>
 	)
 }
 

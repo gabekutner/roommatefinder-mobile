@@ -68,10 +68,17 @@ export default function Empty({
           <CustomButton
             onClick={() => refresh()}
             style={{
-              marginTop:verticalScale(14),
+              marginTop:verticalScale(14),        
+              width:moderateScale(150),
+              borderWidth:2,
+              borderColor:colors.tint,
               backgroundColor:colors.accent,
-              borderColor:colors.tint,              
               width:moderateScale(150)
+              borderRadius:0,
+              shadowColor: '#222',
+              shadowOffset: { width: 7, height: 5 },
+              shadowOpacity: 1,
+              shadowRadius: 1,  
             }}
           >
             <CustomText

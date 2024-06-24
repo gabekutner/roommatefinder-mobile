@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from '../../components/UI/Custom/CustomText';
 import Empty from "../../components/Empty";
 import Cell from "../../components/Cell";
@@ -20,6 +21,7 @@ import Thumbnail from "../../components/Thumbnail";
 import useGlobal from "../../core/global";
 import utils from "../../core/utils";
 import { colors } from "../../constants/colors";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
 
 function RequestAccept({ item, colors }) {
@@ -27,19 +29,32 @@ function RequestAccept({ item, colors }) {
 	const requestAccept = useGlobal(state => state.requestAccept)
 
 	return (
-		<TouchableOpacity
-			onPress={() => {requestAccept(item.sender.id)}}
-			style={{
-				backgroundColor:colors.accent,
-				paddingHorizontal:14,
-				height:36,
-				borderRadius:18,
+		<CustomButton
+			onClick={() => requestAccept(item.sender.id)}
+			style={{ 
+				borderWidth:2,
 				alignItems:'center',
-				justifyContent:'center'
+				justifyContent:'center',
+				borderColor:colors.tint,
+				backgroundColor:colors.accent,
+				paddingHorizontal:moderateScale(16),
+				borderRadius:0,
+				shadowColor: '#222',
+				shadowOffset: { width: 7, height: 5 },
+				shadowOpacity: 1,
+				shadowRadius: 1,  
 			}}
 		>
-			<CustomText style={{ color:colors.white, fontWeight:'500' }}>Accept</CustomText>
-		</TouchableOpacity>
+			<CustomText 
+				style={{ 
+					fontWeight:'600', 
+					fontSize:verticalScale(12),
+					color:colors.white,
+				}}
+			>
+				Accept
+			</CustomText>
+		</CustomButton>
 	)
 }
 
