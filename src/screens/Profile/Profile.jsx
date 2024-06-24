@@ -140,9 +140,14 @@ export default function ProfileScreen({ navigation }) {
         </CustomText>
       </View>
 
-      <ScrollView style={{ marginTop:verticalScale(-20) }}>
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        style={{ 
+          marginTop:verticalScale(-20),
+          marginBottom:verticalScale(120)
+        }}
+      >
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
-          
           <View 
             style={{ 
               ...styles.rowWrapper, 
@@ -159,7 +164,6 @@ export default function ProfileScreen({ navigation }) {
               <CustomText style={{ fontSize:verticalScale(18) }}>🥳</CustomText>
             </View>
           </View>
-
           <View 
             style={{ 
               ...styles.rowWrapper, 
@@ -173,10 +177,9 @@ export default function ProfileScreen({ navigation }) {
                 Edit Basics
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🛠️</CustomText>
+              <CustomText style={{ fontSize:verticalScale(18) }}>✍️</CustomText>
             </View>
           </View>
-
           <View 
             style={{ 
               ...styles.rowWrapper, 
@@ -191,52 +194,101 @@ export default function ProfileScreen({ navigation }) {
                 Edit Widgets
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>📌</CustomText>
+              <CustomText style={{ fontSize:verticalScale(18) }}>🤿</CustomText>
             </View>
           </View>
-
         </View>
 
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
-      
           <View 
             style={{ 
               ...styles.rowWrapper, 
-              ...styles.rowFirst, 
+              ...styles.rowFirst,
+              ...styles.rowLast, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
             }}
           >
             <View style={styles.row}>
               <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Matching Quiz
+                Roommate Matching Quiz
               </CustomText>
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>💥</CustomText>
             </View>
           </View>
+        </View>
 
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowFirst,
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Contact Us
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              {/* <CustomText style={{ fontSize:verticalScale(18) }}></CustomText> */}
+            </View>
+          </View>
           <View 
             style={{ 
               ...styles.rowWrapper, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5
             }}
           >
             <View style={styles.row}>
-              <CustomText 
-                style={{ 
-                  ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Edit Profile
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Report a Bug
               </CustomText>
               <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>🐞</CustomText>
             </View>
           </View>
-
           <View 
             style={{ 
               ...styles.rowWrapper, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Rate in App Store
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>📲</CustomText>
+            </View>
+          </View>
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowLast,
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Terms and Privacy
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              {/* <CustomText style={{ fontSize:verticalScale(18) }}></CustomText> */}
+            </View>
+          </View>
+        </View>
+
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowFirst,
               ...styles.rowLast, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
@@ -246,14 +298,15 @@ export default function ProfileScreen({ navigation }) {
             <View style={styles.row}>
               <CustomText 
                 style={{ 
-                  ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Edit Profile
+                  ...styles.rowLabel, color:colors.accent, fontWeight:'600' }}>
+                Delete Account
               </CustomText>
               <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>🚨</CustomText>
             </View>
           </View>
-
         </View>
+
         <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
       </ScrollView>
     </View>
