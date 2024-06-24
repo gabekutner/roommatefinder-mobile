@@ -21,6 +21,7 @@ import Cell from "../../components/Cell";
 
 import useGlobal from "../../core/global";
 import { colors } from '../../constants/colors';
+import CustomTextInput from "../../components/UI/Custom/CustomInput";
 
 
 function SearchButton({ user, colors }) {
@@ -153,9 +154,7 @@ export default function Search({ navigation }) {
 			>
 				<TouchableOpacity 
 					onPress={() => navigation.goBack()}
-					style={{
-						paddingLeft:moderateScale(16),
-					}}
+					style={{ paddingLeft:moderateScale(16) }}
 				>
 					<FontAwesomeIcon 
 						icon='arrow-left'
@@ -163,26 +162,27 @@ export default function Search({ navigation }) {
 						color={colors.tint}
 					/>
 				</TouchableOpacity>
-				<View 
-					style={{ 
-						width:moderateScale(290) 
-					}}>
-					<TextInput
-						style={{
-							height: 52,
-							borderRadius: 26,
-							fontSize: verticalScale(15),
-							paddingLeft:moderateScale(49),
-							borderWidth:1,
-							borderColor: colors.tint,
-							color:colors.tint,
-							fontFamily:'NotoSans_Condensed-Regular',
-						}}
+				<View style={{ width:moderateScale(290) }}>
+					<CustomTextInput 
+						placeholder={'Search ...'}
+						placeholderTextColor={colors.tint}
+						colors={colors}
 						value={query}
 						onChangeText={setQuery}
-						placeholder='Search...'
-						color={colors.tint}
-						placeholderTextColor={colors.tint}
+						containerStyle={{
+							height: 52,
+							paddingLeft:moderateScale(15),
+							color:colors.tint,
+							borderWidth:1,
+							borderRadius:25,
+							borderColor:colors.tint,
+							backgroundColor:colors.secondary,
+							marginTop:verticalScale(15)
+						}}
+						inputStyle={{
+							color:colors.tint,
+							fontSize:verticalScale(14)
+						}}
 					/>
 					<FontAwesomeIcon
 						icon='magnifying-glass'
@@ -191,7 +191,8 @@ export default function Search({ navigation }) {
 						style={{
 							position:'absolute',
 							left:moderateScale(18),
-							top:17
+							marginTop:verticalScale(15),
+							top:15
 						}}
 					/>
 				</View>

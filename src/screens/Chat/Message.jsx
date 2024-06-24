@@ -251,7 +251,6 @@ function MessageBubble({
 	)
 }
 
-
 function MessageInput({ 
 	message, 
 	setMessage, 
@@ -265,7 +264,6 @@ function MessageInput({
 				paddingBottom:moderateScale(7),
 				flexDirection:'row',
 				alignItems:'center',
-				// marginBottom:verticalScale(10)
 			}}
 		>
 			<CustomTextInput

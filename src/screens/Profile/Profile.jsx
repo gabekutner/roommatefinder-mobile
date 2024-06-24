@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { 
   View,
   TouchableOpacity,
@@ -24,9 +24,7 @@ import { dormsData } from '../../assets/Dictionary';
 
 
 function ProfileImage({ user, colors }) {
-
   const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
-
   return (
     <TouchableOpacity
       style={{ marginBottom:20 }}
@@ -49,14 +47,14 @@ function ProfileImage({ user, colors }) {
           position:"absolute",
           bottom:0,
           right:0,
-          backgroundColor:colors.secondary, //'#E8ECF4'
+          backgroundColor:colors.primary, //'#E8ECF4'
           width:40,
           height:40,
           borderRadius:20,
           alignItems:'center',
           justifyContent:'center',
           borderWidth:3,
-          borderColor:colors.primary,
+          borderColor:colors.secondary,
         }}
       >
         <FontAwesomeIcon 
@@ -69,7 +67,7 @@ function ProfileImage({ user, colors }) {
   )
 }
 
-function ProfileLogout({ colors }) {
+function ProfileLogout({ colors, style }) {
   const logout = useGlobal(state => state.logout)
   return (
     <CustomButton
@@ -81,6 +79,7 @@ function ProfileLogout({ colors }) {
         alignItems:'center',
         justifyContent:'center',
         marginTop:verticalScale(25),
+        ...style
       }}
     >
       <FontAwesomeIcon 
@@ -103,12 +102,21 @@ function ProfileLogout({ colors }) {
 }
 
 export default function ProfileScreen({ navigation }) {
+
   const user = useGlobal(state => state.user)
 
   return (
     <ScrollView style={{ flex:1, backgroundColor:colors.primary }}>
-      <View style={{ alignItems:'center', paddingTop:verticalScale(15) }}>
-        {/* Profile Header */}
+      <View 
+        style={{ 
+          alignItems:'center',
+          paddingTop:verticalScale(15),
+          backgroundColor:colors.secondary,
+          paddingBottom:verticalScale(35),
+          borderBottomLeftRadius:65,
+          borderBottomRightRadius:65,
+        }}
+      >
         <ProfileImage user={user} colors={colors} />
         <CustomText
           style={{
@@ -132,56 +140,124 @@ export default function ProfileScreen({ navigation }) {
         >
           🏠 {dormsData[user.dorm_building-1].dorm}
         </CustomText>
-
-        <View style={{ ...styles.keyData, marginTop:verticalScale(6) }}>
-          <View style={styles.keyDataOption}>
-            <CustomText style={styles.keyDataText}>{user.age} yo</CustomText>
-            <CustomText style={{ ...styles.keyDataText, fontSize:verticalScale(11) }}>Age</CustomText>
-          </View>
-          <View style={styles.keyDataDivider} />
-          <View style={styles.keyDataOption}>
-            <CustomText style={styles.keyDataText}>{user.state}</CustomText>
-            <CustomText style={{ ...styles.keyDataText, fontSize:verticalScale(11) }}>State</CustomText>
-          </View>
-          <View style={styles.keyDataDivider} />
-          <View style={styles.keyDataOption}>
-            <CustomText style={styles.keyDataText}>{user.graduation_year}</CustomText>
-            <CustomText style={{ ...styles.keyDataText, fontSize:verticalScale(11) }}>Grad Year</CustomText>
-          </View>
-        </View>
-
-        <View style={styles.navOptions}>
-          <CustomButton onClick={() => navigation.navigate('social-battery')} style={styles.navBox}>
-            <CustomText style={{ fontSize:verticalScale(20) }}>🚀</CustomText>
-            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
-              Retake Quiz
-            </CustomText>
-          </CustomButton>
-          <CustomButton onClick={() => navigation.navigate('settings')} style={styles.navBox}>
-            <CustomText style={{ fontSize:verticalScale(20) }}>🕹️</CustomText>
-            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
-              Settings
-            </CustomText>
-          </CustomButton>
-        </View>
-        <View style={{ ...styles.navOptions, marginTop:verticalScale(10) }}>
-          <CustomButton onClick={() => navigation.navigate('edit-profile')} style={styles.navBox}>
-            <CustomText style={{ fontSize:verticalScale(20) }}>💥</CustomText>
-            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
-              Edit Profile
-            </CustomText>
-          </CustomButton>
-          <CustomButton onClick={() => {}} style={styles.navBox}>
-            <CustomText style={{ fontSize:verticalScale(20) }}>👀</CustomText>
-            <CustomText style={{ fontSize:verticalScale(12), fontWeight:'bold' }}>
-              Preview
-            </CustomText>
-          </CustomButton>
-        </View>
-
-        <ProfileLogout colors={colors} />
-
       </View>
+
+      <View style={{ marginTop:verticalScale(-20) }}>
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
+          
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowFirst, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'700' }}>
+                Preview Profile
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>🥳</CustomText>
+            </View>
+          </View>
+
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderTopWidth:.5
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Edit Basics
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>🛠️</CustomText>
+            </View>
+          </View>
+
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowLast, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderTopWidth:.5
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Edit Widgets
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>📌</CustomText>
+            </View>
+          </View>
+
+        </View>
+
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+      
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowFirst, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Matching Quiz
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <CustomText style={{ fontSize:verticalScale(18) }}>💥</CustomText>
+            </View>
+          </View>
+
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderTopWidth:.5
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText 
+                style={{ 
+                  ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Edit Profile
+              </CustomText>
+              <View style={styles.rowSpacer} />
+            </View>
+          </View>
+
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowLast, 
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderTopWidth:.5
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText 
+                style={{ 
+                  ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Edit Profile
+              </CustomText>
+              <View style={styles.rowSpacer} />
+            </View>
+          </View>
+
+        </View>
+      </View>
+      <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
     </ScrollView>
   )
 } 
@@ -220,6 +296,54 @@ const styles = StyleSheet.create({
     borderWidth:0,
     justifyContent:'space-between',
     paddingLeft:moderateScale(5),
-    paddingRight:moderateScale(17)
-  }
+    paddingRight:moderateScale(17),
+  },
+  sectionBody: { 
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1.5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  // Row
+  row: {
+    height: verticalScale(38),
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingRight: moderateScale(8),
+  },
+  rowWrapper: {
+    paddingLeft: moderateScale(12),
+    borderWidth: .75,  
+  },
+  rowFirst: {
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+  rowLabel: {
+    fontSize: verticalScale(13),
+    letterSpacing: 0.24,
+  },
+  rowSpacer: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+  },
+  rowLast: {
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+  },
+  rowLabelLogout: {
+    width: '100%',
+    textAlign: 'center',
+    fontWeight: '500',
+    fontSize:verticalScale(14)
+  },
+
 })

@@ -186,7 +186,7 @@ export default function AppStack() {
                 />
               </TouchableOpacity>
             ),
-            headerStyle: { backgroundColor:colors.primary },
+            headerStyle: { backgroundColor:colors.secondary },
             headerShadowVisible: false, // border bottom invisible
           })}
         />
