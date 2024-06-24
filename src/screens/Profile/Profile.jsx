@@ -152,12 +152,12 @@ export default function ProfileScreen({ navigation }) {
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst, 
-              backgroundColor:colors.secondary, 
+              backgroundColor:colors.accent, 
               borderColor:colors.tint,
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'700' }}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.white, fontWeight:'700' }}>
                 Preview Profile
               </CustomText>
               <View style={styles.rowSpacer} />
@@ -233,7 +233,7 @@ export default function ProfileScreen({ navigation }) {
                 Contact Us
               </CustomText>
               <View style={styles.rowSpacer} />
-              {/* <CustomText style={{ fontSize:verticalScale(18) }}></CustomText> */}
+              <CustomText style={{ fontSize:verticalScale(18) }}>📞</CustomText>
             </View>
           </View>
           <View 
@@ -279,7 +279,7 @@ export default function ProfileScreen({ navigation }) {
                 Terms and Privacy
               </CustomText>
               <View style={styles.rowSpacer} />
-              {/* <CustomText style={{ fontSize:verticalScale(18) }}></CustomText> */}
+              <CustomText style={{ fontSize:verticalScale(18) }}>🕵️‍♀️</CustomText>
             </View>
           </View>
         </View>

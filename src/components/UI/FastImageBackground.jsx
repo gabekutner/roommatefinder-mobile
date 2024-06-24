@@ -14,7 +14,6 @@ import { createImageProgress } from 'react-native-image-progress';
 const Image = createImageProgress(FastImage);
 
 
-
 const LoadingIndicator = () => {
 
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -62,7 +61,6 @@ export default function FastImageBackground({
   resizeMode, 
   children
 }) {
-
   return (
     <View 
       style={{ 
