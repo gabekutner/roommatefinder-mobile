@@ -73,7 +73,6 @@ export default function Empty({
               borderWidth:2,
               borderColor:colors.tint,
               backgroundColor:colors.accent,
-              width:moderateScale(150)
               borderRadius:0,
               shadowColor: '#222',
               shadowOffset: { width: 7, height: 5 },
