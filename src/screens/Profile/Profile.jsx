@@ -1,9 +1,12 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   View,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  Alert,
+  Button,
+  Pressable
 } from "react-native";
 
 import { launchImageLibrary } from "react-native-image-picker";
@@ -20,7 +23,6 @@ import Thumbnail from "../../components/Thumbnail";
 
 import useGlobal from '../../core/global';
 import { colors } from '../../constants/colors';
-import { dormsData } from '../../assets/Dictionary';
 
 
 function ProfileImage({ user, colors }) {
@@ -78,7 +80,6 @@ function ProfileLogout({ colors, style }) {
         alignItems:'center',
         justifyContent:'center',
         marginTop:verticalScale(25),
-
         borderWidth:2,
         borderColor:colors.tint,
         backgroundColor:colors.accent,
@@ -87,7 +88,6 @@ function ProfileLogout({ colors, style }) {
         shadowOffset: { width: 7, height: 5 },
         shadowOpacity: 1,
         shadowRadius: 1, 
-        
         ...style
       }}
     >
@@ -113,7 +113,36 @@ function ProfileLogout({ colors, style }) {
 export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
+  const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+  const [item, setItem] = useState()
 
+  useEffect(async() => {
+    const resp = await getSwipeProfile(user, user.id)
+    setItem(resp.data)
+  }, [])
+
+  const alert = (
+    title, 
+    msg, 
+    text, 
+    style,
+  ) => {
+    return (
+      Alert.alert(`${title}`, `${msg}`, [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: `${text}`, 
+          onPress: () => console.log('pressed'),
+          style: `${style}`
+        },
+      ])
+    )
+  }
+    
   return (
     <View style={{ flex:1, backgroundColor:colors.primary }}>
       <View 
@@ -148,12 +177,15 @@ export default function ProfileScreen({ navigation }) {
         }}
       >
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
-          <View 
+          <CustomButton 
+            onClick={() => navigation.navigate('profile-detail', { item:item })}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst, 
               backgroundColor:colors.accent, 
               borderColor:colors.tint,
+              borderBottomLeftRadius:0,
+              borderBottomRightRadius:0
             }}
           >
             <View style={styles.row}>
@@ -163,7 +195,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>🥳</CustomText>
             </View>
-          </View>
+          </CustomButton>
           <View 
             style={{ 
               ...styles.rowWrapper, 
@@ -285,14 +317,22 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
-          <View 
+          <CustomButton 
+            onClick={() => {
+              alert(
+                title="Delete Account", 
+                msg="Are you sure you want to delete your account? You'll have to create an account again to come back 😒",
+                text="Yep, I'm sure",
+                style="destructive",
+              )
+            }}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst,
               ...styles.rowLast, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5
+              borderTopWidth:.5,
             }}
           >
             <View style={styles.row}>
@@ -304,7 +344,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>🚨</CustomText>
             </View>
-          </View>
+          </CustomButton>
         </View>
 
         <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
@@ -370,6 +410,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(8),
   },
   rowWrapper: {
+    height:verticalScale(40),
     paddingLeft: moderateScale(12),
     borderWidth: .75,  
   },
