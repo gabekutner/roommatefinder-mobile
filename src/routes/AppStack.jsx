@@ -39,6 +39,7 @@ import ProfileDetail from '../screens/ProfileDetail';
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
+import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
 
 const Header = ({ nav, icon }) => {
@@ -237,6 +238,31 @@ export default function AppStack() {
             </TouchableOpacity>
           ), 
           headerTitle: () => <Title title="Roommate Matches" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerStyle: {
+            backgroundColor:colors.primary,
+          },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      />
+      <Stack.Screen 
+        name='edit-basics' 
+        component={EditBasicsScreen} 
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={{
+                marginBottom:verticalScale(5)
+              }}
+            >
+              <FontAwesomeIcon 
+                icon='arrow-left'
+                size={verticalScale(20)}
+                color={colors.tint}
+              />
+            </TouchableOpacity>
+          ), 
+          headerTitle: () => <Title title="Edit Profile Basics" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
             backgroundColor:colors.primary,
           },

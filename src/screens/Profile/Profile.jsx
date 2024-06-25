@@ -196,12 +196,14 @@ export default function ProfileScreen({ navigation }) {
               <CustomText style={{ fontSize:verticalScale(18) }}>🥳</CustomText>
             </View>
           </CustomButton>
-          <View 
+          <CustomButton 
+            onClick={() => navigation.navigate('edit-basics')}
             style={{ 
               ...styles.rowWrapper, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5
+              borderTopWidth:.5,
+              borderRadius:0,
             }}
           >
             <View style={styles.row}>
@@ -211,7 +213,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>✍️</CustomText>
             </View>
-          </View>
+          </CustomButton>
           <View 
             style={{ 
               ...styles.rowWrapper, 
@@ -346,7 +348,6 @@ export default function ProfileScreen({ navigation }) {
             </View>
           </CustomButton>
         </View>
-
         <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
       </ScrollView>
     </View>
