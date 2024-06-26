@@ -42,7 +42,7 @@ function ProfileImage({ user, colors }) {
       <Thumbnail
 				url={user.thumbnail}
 				size={verticalScale(123)}
-        borderColor={colors.secondary}
+        borderColor={colors.tint}
         style={{ borderWidth:2 }}
 			/>
       <View
@@ -117,9 +117,12 @@ export default function ProfileScreen({ navigation }) {
   const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
   const [item, setItem] = useState()
 
-  useEffect(async() => {
-    const resp = await getSwipeProfile(user, user.id)
-    setItem(resp.data)
+  useEffect(() => {
+    const fetchProfile = async() => {
+      const resp = await getSwipeProfile(user, user.id)
+      setItem(resp.data)
+    }
+    fetchProfile()
   }, [])
 
   const alert = (
@@ -349,7 +352,7 @@ export default function ProfileScreen({ navigation }) {
             </View>
           </CustomButton>
         </View>
-        <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25) }}/>
+        <ProfileLogout colors={colors} style={{ marginHorizontal:moderateScale(25), marginBottom:verticalScale(15) }}/>
       </ScrollView>
     </View>
   )
@@ -401,6 +404,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
+    backgroundColor:colors.primary
   },
   // Row
   row: {

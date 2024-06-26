@@ -192,6 +192,7 @@ export default function AppStack() {
             ),
             headerStyle: { backgroundColor:colors.secondary },
             headerShadowVisible: false, // border bottom invisible
+            
           })}
         />
       </Tab.Navigator>
@@ -226,6 +227,7 @@ export default function AppStack() {
         name='dorm'
         component={DormScreen}
         options={({ navigation }) => ({
+          presentation:'modal',
           headerTitle: () => <Title title="Change Dorm" color={colors.tint} fontSize={verticalScale(20)} />,
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
           headerStyle: { backgroundColor:colors.primary },
@@ -236,6 +238,7 @@ export default function AppStack() {
         name='interests'
         component={InterestsScreen}
         options={({ navigation }) => ({
+          presentation:'modal',
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
           headerTitle: () => <Title title="Change Interests" color={colors.tint} fontSize={verticalScale(20)} />,          
           headerStyle: { backgroundColor:colors.primary },
@@ -271,24 +274,13 @@ export default function AppStack() {
         name='edit-basics' 
         component={EditBasicsScreen} 
         options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
-              style={{
-                marginBottom:verticalScale(5)
-              }}
-            >
-              <FontAwesomeIcon 
-                icon='arrow-left'
-                size={verticalScale(20)}
-                color={colors.tint}
-              />
-            </TouchableOpacity>
-          ), 
-          headerTitle: () => <Title title="Edit Profile Basics" color={colors.tint} fontSize={verticalScale(20)} />,
+          presentation:'modal',
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          // headerTitle: () => <Title title="Edit Profile Basics" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
             backgroundColor:colors.primary,
           },
+          title:'',
           headerShadowVisible: false, // border bottom invisible
         })}
       />

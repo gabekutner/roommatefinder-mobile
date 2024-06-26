@@ -168,7 +168,7 @@ export default function EditBasicsScreen({ navigation }) {
             justifyContent:'space-between',
             borderWidth:2,
             borderColor:colors.tint,
-            backgroundColor:colors.accent,
+            backgroundColor:colors.secondary,
             borderRadius:0,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
@@ -177,13 +177,13 @@ export default function EditBasicsScreen({ navigation }) {
             paddingHorizontal:moderateScale(15)
           }}
         >
-          <CustomText style={{ fontSize:verticalScale(13), fontWeight:'500', color:colors.white }}>
+          <CustomText style={{ fontSize:verticalScale(13), fontWeight:'600', color:colors.tint }}>
             Change Dorm
           </CustomText>
           <FontAwesomeIcon 
             icon='arrow-right'
             size={verticalScale(22)}
-            color={colors.white}
+            color={colors.tint}
           />
         </CustomButton>
 
@@ -194,7 +194,7 @@ export default function EditBasicsScreen({ navigation }) {
             justifyContent:'space-between',
             borderWidth:2,
             borderColor:colors.tint,
-            backgroundColor:colors.accent,
+            backgroundColor:colors.secondary,
             borderRadius:0,
             shadowColor: '#222',
             shadowOffset: { width: 7, height: 5 },
@@ -204,13 +204,13 @@ export default function EditBasicsScreen({ navigation }) {
             marginTop:verticalScale(10)
           }}
         >
-          <CustomText style={{ fontSize:verticalScale(13), fontWeight:'500', color:colors.white }}>
+          <CustomText style={{ fontSize:verticalScale(13), fontWeight:'600', color:colors.tint }}>
             Change Interests
           </CustomText>
           <FontAwesomeIcon 
             icon='arrow-right'
             size={verticalScale(22)}
-            color={colors.white}
+            color={colors.tint}
           />
         </CustomButton>
 

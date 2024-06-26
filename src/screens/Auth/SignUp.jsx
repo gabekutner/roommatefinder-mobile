@@ -137,7 +137,7 @@ export default function SignUp({ navigation }) {
 
               <CustomLabel color={colors.tint} label={'Full Name'} />
               <CustomTextInput 
-                placeholder={'Gabe Kutner'}
+                placeholder={'Ex. Gabe'}
                 value={form.name}
                 onChangeText={name => setForm({ ...form, name })}
                 colors={colors}
@@ -161,11 +161,11 @@ export default function SignUp({ navigation }) {
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
-                placeholder={'gabe@example.com'}
+                placeholder={'Ex. gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
                 colors={colors}
-                emoji={'✉️'}
+                emoji={'📬'}
                 containerStyle={{
                   height:verticalScale(45),
                   marginBottom:verticalScale(14),
