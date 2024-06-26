@@ -180,7 +180,7 @@ export default function AppStack() {
             headerTitleAlign:'left',
             headerRight: () => (
               <TouchableOpacity 
-                onPress={() => navigation.navigate('edit-profile')}
+                onPress={() => navigation.navigate('edit-basics')}
                 style={{ marginRight:moderateScale(20) }}
               >
                 <FontAwesomeIcon 
@@ -226,8 +226,8 @@ export default function AppStack() {
         name='dorm'
         component={DormScreen}
         options={({ navigation }) => ({
+          headerTitle: () => <Title title="Change Dorm" color={colors.tint} fontSize={verticalScale(20)} />,
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          title: 'Choose Dorm',
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible
         })}
@@ -237,7 +237,7 @@ export default function AppStack() {
         component={InterestsScreen}
         options={({ navigation }) => ({
           headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          title: '',
+          headerTitle: () => <Title title="Change Interests" color={colors.tint} fontSize={verticalScale(20)} />,          
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible
         })}
