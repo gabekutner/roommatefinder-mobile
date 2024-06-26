@@ -12,6 +12,7 @@ import {
 import CustomLabel from "../../../components/UI/Label";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 
+import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -20,7 +21,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 export default function EditBasicsScreen({ navigation }) {
 
-  const [form, setForm] = useState({
+  const form = useGlobal(state => state.form)
+  const [_form, _setForm] = useState({
     name: '',
     city: '',
     state: '',
@@ -31,6 +33,13 @@ export default function EditBasicsScreen({ navigation }) {
     interests: [],
   })
 
+  const submit = () => {
+    _setForm({ ..._form, dorm_building:form.dorm_building })
+    _setForm({ ..._form, interests:form.interests })
+    console.log(_form)
+  }
+
+
   return (
     <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <View style={{ marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}> 
@@ -39,8 +48,8 @@ export default function EditBasicsScreen({ navigation }) {
           autoCapitalize={'none'}
           autoCorrect={false}
           placeholder={'Ex. Gabe'}
-          value={form.name}
-          onChangeText={name => setForm({ ...form, name })}
+          value={_form.name}
+          onChangeText={name => _setForm({ ..._form, name })}
           colors={colors}
           emoji={'👤'}
           containerStyle={{
@@ -62,8 +71,8 @@ export default function EditBasicsScreen({ navigation }) {
           autoCapitalize={'none'}
           autoCorrect={false}
           placeholder={'Ex. Business'}
-          value={form.major}
-          onChangeText={major => setForm({ ...form, major })}
+          value={_form.major}
+          onChangeText={major => _setForm({ ..._form, major })}
           colors={colors}
           emoji={'🎓'}
           containerStyle={{
@@ -85,8 +94,8 @@ export default function EditBasicsScreen({ navigation }) {
           autoCapitalize={'none'}
           autoCorrect={false}
           placeholder={'Ex. 2028'}
-          value={form.graduation_year}
-          onChangeText={graduation_year => setForm({ ...form, graduation_year })}
+          value={_form.graduation_year}
+          onChangeText={graduation_year => _setForm({ ..._form, graduation_year })}
           colors={colors}
           emoji={'🏫'}
           containerStyle={{
@@ -109,8 +118,8 @@ export default function EditBasicsScreen({ navigation }) {
             autoCapitalize={'none'}
             autoCorrect={false}
             placeholder={'Ex. San Francisco'}
-            value={form.city}
-            onChangeText={city => setForm({ ...form, city })}
+            value={_form.city}
+            onChangeText={city => _setForm({ ..._form, city })}
             colors={colors}
             emoji={'📍'}
             containerStyle={{
@@ -131,8 +140,8 @@ export default function EditBasicsScreen({ navigation }) {
             autoCapitalize={'none'}
             autoCorrect={false}
             placeholder={'Ex. CA'}
-            value={form.state}
-            onChangeText={state => setForm({ ...form, state })}
+            value={_form.state}
+            onChangeText={state => _setForm({ ..._form, state })}
             colors={colors}
             emoji={''}
             containerStyle={{
@@ -153,7 +162,7 @@ export default function EditBasicsScreen({ navigation }) {
         </View>
 
         <CustomButton
-          onClick={() => console.log('press')}
+          onClick={() => navigation.navigate('dorm')}
           style={{
             flexDirection:'row',
             justifyContent:'space-between',
@@ -179,7 +188,7 @@ export default function EditBasicsScreen({ navigation }) {
         </CustomButton>
 
         <CustomButton
-          onClick={() => console.log('press')}
+          onClick={() => navigation.navigate('interests')}
           style={{
             flexDirection:'row',
             justifyContent:'space-between',
@@ -205,6 +214,33 @@ export default function EditBasicsScreen({ navigation }) {
           />
         </CustomButton>
 
+        <CustomButton
+          onClick={() => submit()}
+          style={{
+              width:'80%',
+              alignSelf:'center',
+              marginTop:verticalScale(25),
+              backgroundColor:colors.accent,
+              paddingVertical:verticalScale(15),
+              paddingHorizontal:moderateScale(30),
+              shadowColor:'#222',
+              shadowOffset: { width:5, height:3 },
+              shadowOpacity:1,
+              shadowRadius:1, 
+              borderRadius:0,
+              borderWidth:2
+          }}
+        >
+          <CustomText
+            style={{
+              fontSize:verticalScale(14),
+              color:colors.white,
+              fontWeight:'bold'
+            }}
+          >
+            Submit
+          </CustomText>
+        </CustomButton>
       </View>
     </SafeAreaView>
   )

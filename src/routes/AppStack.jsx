@@ -23,7 +23,12 @@ import Search from "../screens/Extras/Search";
 import Requests from '../screens/Extras/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";
-import EditProfileScreen from "../screens/Profile/EditProfile";
+import EditProfileScreen from "../screens/Profile/EditProfile"; // deprecated
+import ProfileDetail from '../screens/ProfileDetail';
+import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
+import DormScreen from "../screens/Onboarding/Dorm";
+import InterestsScreen from "../screens/Onboarding/Interests";
+
 // matching quiz
 import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
 import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
@@ -35,11 +40,9 @@ import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
 import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
 import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
-import ProfileDetail from '../screens/ProfileDetail';
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
-import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
 
 const Header = ({ nav, icon }) => {
@@ -218,6 +221,26 @@ export default function AppStack() {
       <Stack.Screen 
         name='messages' 
         component={Message} 
+      />
+      <Stack.Screen
+        name='dorm'
+        component={DormScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          title: 'Choose Dorm',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
+      />
+      <Stack.Screen
+        name='interests'
+        component={InterestsScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
+          title: '',
+          headerStyle: { backgroundColor:colors.primary },
+          headerShadowVisible: false, // border bottom invisible
+        })}
       />
       <Stack.Screen 
         name='requests' 

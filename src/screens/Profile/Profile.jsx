@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { 
+  useEffect, 
+  useState 
+} from 'react';
 import { 
   View,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
   Alert,
-  Button,
-  Pressable
 } from "react-native";
 
 import { launchImageLibrary } from "react-native-image-picker";

@@ -1,15 +1,7 @@
 import React from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
- verticalScale,
- scale,
-} from 'react-native-size-matters';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
-
-
-import CustomButton from "../components/UI/Custom/CustomButton";
 
 import PromptScreen from "../screens/Onboarding/Prompt";
 import AgeScreen from '../screens/Onboarding/Age';
@@ -38,13 +30,9 @@ import HotColdScreen from "../screens/Onboarding/Matching/HotCold";
 import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
 import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
 import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
-
 import DoneScreen from '../screens/Onboarding/Done';
 
 import { colors } from "../constants/colors";
-
-
-
 
 
 export default function AccountSetupStack() {
