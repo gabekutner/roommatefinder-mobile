@@ -27,7 +27,7 @@ export default function GraduationYearScreen({ navigation }) {
 
   return (
     <Base>
-      <View style={{ alignItems:'center', marginVertical:verticalScale(30) }}>
+      <View style={{ alignItems:'center', marginVertical:verticalScale(30), marginHorizontal:moderateScale(50) }}>
         <Label text="When will you graduate?" style={{ marginVertical:verticalScale(20) }} />
         <CustomTextInput 
           autoCorrect={false}
@@ -44,7 +44,6 @@ export default function GraduationYearScreen({ navigation }) {
             borderWidth:2,
             borderColor:colors.tint,
             fontSize:verticalScale(14),
-            width:moderateScale(110)
           }}
         />
       </View>

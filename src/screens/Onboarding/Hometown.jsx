@@ -28,7 +28,7 @@ export default function HomeTownScreen({ navigation }) {
 
   return (
     <Base>
-      <View style={{ alignItems:'center', marginVertical:verticalScale(30) }}>
+      <View style={{ alignItems:'center', marginVertical:verticalScale(30), marginHorizontal:moderateScale(50) }}>
         <Label text="Where are you from?" style={{ marginVertical:verticalScale(20) }} />
         <CustomTextInput 
           autoCorrect={false}
@@ -45,7 +45,6 @@ export default function HomeTownScreen({ navigation }) {
             borderWidth:2,
             borderColor:colors.constBlack,
             fontSize:verticalScale(14),
-            width:moderateScale(215)
           }}
         />
       </View>

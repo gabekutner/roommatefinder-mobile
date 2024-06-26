@@ -27,8 +27,8 @@ export default function MajorScreen({ navigation }) {
 
   return (
     <Base>
-      <View style={{ alignItems:'center', marginVertical:verticalScale(30) }}>
-        <Label text="What do you want to major in?" style={{ marginVertical:verticalScale(20) }} />
+      <View style={{ alignItems:'center', marginVertical:verticalScale(30), marginHorizontal:moderateScale(50) }}>
+        <Label text="What do you want to major in?" style={{ marginVertical:verticalScale(20), textAlign:'center' }} />
         <CustomTextInput 
           autoCorrect={false}
           placeholder={'Ex. Business'}
@@ -44,7 +44,6 @@ export default function MajorScreen({ navigation }) {
             borderWidth:2,
             borderColor:colors.constBlack,
             fontSize:verticalScale(14),
-            width:moderateScale(140)
           }}
         />
       </View>

@@ -1,7 +1,11 @@
 import React from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { verticalScale, scale } from "react-native-size-matters";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
+
+import CustomButton from "../components/UI/Custom/CustomButton";
 
 import PromptScreen from "../screens/Onboarding/Prompt";
 import AgeScreen from '../screens/Onboarding/Age';
@@ -15,7 +19,6 @@ import BaseWidgetsScreen from '../screens/Onboarding/Widgets/BaseWidget';
 import LinkTreeScreen from '../screens/Onboarding/Widgets/LinkTree';
 import QuotesScreen from '../screens/Onboarding/Widgets/Quotes';
 import PromptsScreen from '../screens/Onboarding/Widgets/Prompts';
-
 import PhotosScreen from "../screens/Onboarding/Photos";
 import DormScreen from '../screens/Onboarding/Dorm';
 
@@ -33,6 +36,33 @@ import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 import DoneScreen from '../screens/Onboarding/Done';
 
 import { colors } from "../constants/colors";
+
+const Header = ({ nav, icon }) => {
+  return (
+    <CustomButton
+      onClick={nav}
+      style={{
+        marginTop:verticalScale(2),
+        marginBottom:verticalScale(5),
+        backgroundColor:colors.accent,
+        width:scale(30),
+        height:scale(30),
+        shadowColor:'#222',
+        shadowOffset: { width:5, height:3 },
+        shadowOpacity:1,
+        shadowRadius:1, 
+        borderRadius:0,
+        borderWidth:2
+      }}
+    >
+      <FontAwesomeIcon
+        icon={icon}
+        size={verticalScale(20)}
+        color={colors.white}
+      />
+   </CustomButton>
+  )
+}
 
 
 export default function AccountSetupStack() {
