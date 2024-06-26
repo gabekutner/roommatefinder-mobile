@@ -4,6 +4,7 @@ import {
   Text,
   StatusBar,
   SafeAreaView,
+  Image
 } from 'react-native';
 
 import { 
@@ -45,26 +46,36 @@ export default function StartupScreen({ navigation }) {
   return (
     <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <StatusBar />
-      <Text
-        style={{
-          fontFamily:'GideonRoman-Regular',
-          fontSize:verticalScale(15),
-          alignSelf:'center',
-          marginVertical:verticalScale(10)
-        }}
-      >
-        THE UNIVERSITY OF UTAH'S
-      </Text>
-      <Title 
-        title="RoommateFinder"
-        color={colors.accent}
-        fontSize={verticalScale(28)}
-        style={{
-          alignSelf:'center'
-        }}
-      />
+      <View style={{ position:'absolute', left:0, right:0, top:verticalScale(100) }}>
+        <Text
+          style={{
+            fontFamily:'GideonRoman-Regular',
+            fontSize:verticalScale(15),
+            alignSelf:'center',
+            marginVertical:verticalScale(10),
+          }}
+        >
+          THE UNIVERSITY OF UTAH'S
+        </Text>
+        <Title 
+          title="RoommateFinder"
+          color={colors.accent}
+          fontSize={verticalScale(28)}
+          style={{
+            alignSelf:'center'
+          }}
+        />
+      </View>
 
-      {/* something here... */}
+      <Image 
+        source={require('../assets/images/base_uofu-removebg-preview.png')}
+        style={{ 
+          alignSelf:'center',
+          height: verticalScale(683),
+          marginLeft:moderateScale(175)
+        }}
+        resizeMode='contain'
+      />
 
       <View
         style={{
@@ -79,7 +90,8 @@ export default function StartupScreen({ navigation }) {
           flexDirection:'column',
           gap:verticalScale(14),
           backgroundColor:colors.secondary,
-          paddingHorizontal:moderateScale(35)
+          paddingHorizontal:moderateScale(35),
+          borderWidth:2,
         }}
       >
         <CustomButton
