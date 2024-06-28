@@ -18,6 +18,7 @@ import {
   scale
 } from 'react-native-size-matters';
 
+import FormModal from '../../components/FormModal';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';
 import Thumbnail from "../../components/Thumbnail";
@@ -115,7 +116,18 @@ export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+
   const [item, setItem] = useState()
+  const [showContactForm, setShowContactForm] = useState(false)
+  const [contactForm, setContactForm] = useState({
+    title:'',
+    message:''
+  })
+  const [showBugForm, setShowBugForm] = useState(false)
+  const [bugForm, setBugForm] = useState({
+    title:'',
+    message:''
+  })
 
   useEffect(() => {
     const fetchProfile = async() => {
@@ -258,14 +270,32 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
-          <View 
+          <CustomButton 
+            onClick={() => setShowContactForm(true)}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst,
+              borderBottomLeftRadius:0,
+              borderBottomRightRadius:0,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
             }}
           >
+            { showContactForm 
+              ? <FormModal 
+                  isVisible={showContactForm} 
+                  setIsVisible={setShowContactForm} 
+                  title={"What's up?"}
+                  subtitle={'Some subtitle text here ...'}
+                  placeholderTitle={'Ex. Hello!'}
+                  placeholderTitleEmoji={'🤔'}
+                  placeholderMessage={'Ex. I found my roommate, thanks!'}
+                  placeholderMessageEmoji={'💬'}
+                  form={contactForm}
+                  setForm={setContactForm}
+                /> 
+              : null 
+            }
             <View style={styles.row}>
               <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
                 Contact Us
@@ -273,14 +303,31 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>📞</CustomText>
             </View>
-          </View>
-          <View 
+          </CustomButton>
+          <CustomButton 
+            onClick={() => setShowBugForm(true)}
             style={{ 
               ...styles.rowWrapper, 
+              borderRadius:0,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
             }}
           >
+            { showBugForm
+              ? <FormModal 
+                  isVisible={showBugForm} 
+                  setIsVisible={setShowBugForm} 
+                  title={"What's wrong?"}
+                  subtitle={'Some subtitle text here ...'}
+                  placeholderTitle={'Ex. Where?'}
+                  placeholderTitleEmoji={'🤔'}
+                  placeholderMessage={"Ex. There's something wrong over there..."}
+                  placeholderMessageEmoji={'🐞'}
+                  form={bugForm}
+                  setForm={setBugForm}
+                /> 
+              : null
+            }
             <View style={styles.row}>
               <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
                 Report a Bug
@@ -288,7 +335,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>🐞</CustomText>
             </View>
-          </View>
+          </CustomButton>
           <View 
             style={{ 
               ...styles.rowWrapper, 

@@ -130,10 +130,10 @@ export default function SignIn({ navigation }) {
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 keyboardType={'email-address'}
-                placeholder={'Ex. gabe@example.com'}
+                placeholder={'gabe@example.com'}
                 value={form.email}
                 onChangeText={email => setForm({ ...form, email })}
-                emoji={'📬'}
+                emoji={'📫'}
                 colors={colors}
                 containerStyle={{
                   height:verticalScale(45),
