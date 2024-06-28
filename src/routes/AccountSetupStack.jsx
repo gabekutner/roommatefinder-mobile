@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, scale } from "react-native-size-matters";
@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import CustomButton from "../components/UI/Custom/CustomButton";
+import CustomText from "../components/UI/Custom/CustomText";
 
 import PromptScreen from "../screens/Onboarding/Prompt";
 import AgeScreen from '../screens/Onboarding/Age';
@@ -36,6 +37,8 @@ import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 import DoneScreen from '../screens/Onboarding/Done';
 
 import { colors } from "../constants/colors";
+import ProfileDetail from "../screens/ProfileDetail";
+import useGlobal from "../core/global";
 
 const Header = ({ nav, icon }) => {
   return (
@@ -63,7 +66,6 @@ const Header = ({ nav, icon }) => {
    </CustomButton>
   )
 }
-
 
 export default function AccountSetupStack() {
   return (
@@ -321,6 +323,16 @@ export default function AccountSetupStack() {
           headerStyle: { backgroundColor:colors.primary },
           headerShadowVisible: false, // border bottom invisible
         })}
+      />
+
+      {/* preview */}
+      <Stack.Screen 
+        name="preview"
+        component={ProfileDetail}
+        options={{ 
+          headerShown:false,
+          presentation:'modal'
+        }}
       />
     </Stack.Navigator>
   )

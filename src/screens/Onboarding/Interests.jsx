@@ -13,6 +13,7 @@ import {
 import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
@@ -54,14 +55,12 @@ export default function InterestsScreen({ navigation }) {
         data={interestsData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => handleOnClick(item.id, form, setForm)}
-            style={[
-              styles.option, 
-              {
-                backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
-              }
-            ]}
+          <CustomButton
+            onClick={() => handleOnClick(item.id, form, setForm)}
+            style={{
+              ...styles.option, 
+              backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
+            }}
           >
             <CustomText 
               style={[
@@ -73,7 +72,7 @@ export default function InterestsScreen({ navigation }) {
             >
               {item.interest}
             </CustomText>
-          </TouchableOpacity>
+          </CustomButton>
         )}
         style={{
           flexDirection:'column', 
@@ -91,12 +90,13 @@ const styles = StyleSheet.create({
     paddingHorizontal:moderateScale(30),
     borderWidth:2,
     alignItems:'center',
-    marginBottom:verticalScale(20),
+    marginBottom:verticalScale(10),
     shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,  
     borderColor: colors.tint,
+    borderRadius:0,
   },
   text: { 
     fontSize:verticalScale(14),

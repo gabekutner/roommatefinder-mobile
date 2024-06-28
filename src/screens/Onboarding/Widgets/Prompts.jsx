@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import {
+  Keyboard,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  FlatList,
   View,
   StyleSheet,
-  FlatList,
-  KeyboardAvoidingView,
-  TouchableOpacity,
 } from 'react-native';
 
 import { 
@@ -14,7 +16,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Base from "../Components/Base";
-import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
@@ -52,158 +53,108 @@ export default function QuotesScreen({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Base>  
-        <View 
-          style={{ 
-            alignItems:'center',
-            flexDirection:'column',
-            gap:10,
-            marginVertical:verticalScale(30)
-          }}
-        >
-          <Label text="Answer a question or two!" style={{ marginVertical:verticalScale(20) }} />
+    <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <Base>
+            <View style={styles.wrapper}>
+              <CustomTextInput 
+                autoCorrect={false}
+                multiline={true}
+                placeholder={'Ex. Ninja Turtles'}
+                value={prompt.answer}
+                onChangeText={input => setPrompt({ ...prompt, answer:input })}
+                colors={colors}
+                emoji={'🧐'}
+                containerStyle={{
+                  height:verticalScale(75),
+                  marginBottom:verticalScale(14),
+                  backgroundColor:colors.secondary,
+                  borderRadius:0,
+                  borderWidth:2,
+                  borderColor:colors.tint,
+                  width:'90%',
+                  paddingRight:moderateScale(45)
+                }}
+                inputStyle={{
+                  fontSize:verticalScale(14),
+                  color:colors.tint,
+                }}
+              /> 
 
-          <Label 
-            text="Prompt" 
-            style={{ 
-              fontSize:verticalScale(14), 
-              alignSelf:'flex-start',
-              marginLeft:moderateScale(42)
-            }} 
-          />
-          <FlatList 
-            showsVerticalScrollIndicator={false}
-            data={prompts}
-            keyExtractor={item => item.id}
-            style={{ 
-              height:verticalScale(130),
-              marginHorizontal:moderateScale(20)
-            }}
-            renderItem={({ item }) => (
-              <TouchableOpacity 
-                onPress={() => toggleSelected(item.id)}
-                style={[
-                  styles.option, 
-                  { 
-                    borderColor: colors.tint,
-                    backgroundColor: selected === item.id ? colors.accent : colors.secondary,
-                    shadowColor: '#222',
-                    shadowOffset: { width: 7, height: 5 },
-                    shadowOpacity: 1,
-                    shadowRadius: 1,
-                    marginBottom:verticalScale(10)
-                  }
-                ]}
-              >
-                <CustomText 
-                  style={[
-                    styles.text, 
-                    { 
-                      color: selected === item.id ? colors.white : colors.tint
-                    }
-                  ]}
-                >
-                  {item.prompt}
-                </CustomText>
-              </TouchableOpacity>
-            )}
-          />
-
-          <Label 
-            text="Answer" 
-            style={{ 
-              fontSize:verticalScale(14), 
-              alignSelf:'flex-start',
-              marginLeft:moderateScale(42)
-            }} 
-          />
-          <CustomTextInput 
-            autoCorrect={false}
-            multiline={true}
-            placeholder={'Ex. Ninja Turtles'}
-            value={prompt.answer}
-            onChangeText={input => setPrompt({ ...prompt, answer:input })}
-            colors={colors}
-            emoji={'🧐'}
-            containerStyle={{
-              height:verticalScale(45),
-              marginBottom:verticalScale(14),
-              backgroundColor:colors.secondary,
-              borderRadius:0,
-              borderWidth:2,
-              borderColor:colors.tint,
-              width:'90%',
-              paddingRight:moderateScale(45)
-            }}
-            inputStyle={{
-              fontSize:verticalScale(14),
-              color:colors.tint,
-            }}
-          />
-
-          <CustomButton 
-            onClick={() => handleForm()}
-            style={{ 
-              ...styles.addLink, 
-              borderColor:colors.tint,
-              backgroundColor:colors.accent,
-              shadowColor:'#222',
-              shadowOffset: { width:5, height:3 },
-              shadowOpacity:1,
-              shadowRadius:1, 
-              borderRadius:0,
-              borderWidth:2
-            }}
-          >
-            <CustomText style={[styles.linkedText, { color:colors.white }]}>+ Add a prompt</CustomText>
-          </CustomButton>
-          
-          { form.prompts
-            ?
               <FlatList 
                 showsVerticalScrollIndicator={false}
-                data={form.prompts}
-                keyExtractor={item => item.question}
-                style={{ marginBottom:verticalScale(360) }}
+                data={prompts}
+                keyExtractor={item => item.id}
+                style={{ height:verticalScale(300), marginHorizontal:moderateScale(20) }}
                 renderItem={({ item }) => (
-                  <View 
+                  <CustomButton 
+                    onClick={() => toggleSelected(item.id)}
                     style={{
-                      ...styles.linked, 
-                      borderColor: colors.tint,
-                      backgroundColor: colors.secondary
+                      ...styles.option, 
+                      backgroundColor: selected === item.id ? colors.accent : colors.secondary,
                     }}
                   >
-                    <View style={{ ...styles.questionBox }}>
-                      <CustomText style={{ ...styles.question, color:colors.tint }}>{prompts[item.question-1].prompt}</CustomText>
-                    </View>
-                    <View style={{ ...styles.answerBox }}>
-                      <CustomText style={{ ...styles.answer, color:colors.tint }}>{item.answer}</CustomText>
-                    </View>
-                  </View>
+                    <CustomText 
+                      style={{
+                        ...styles.text, 
+                        color: selected === item.id ? colors.white : colors.tint
+                      }}
+                    >
+                      {item.prompt}
+                    </CustomText>
+                  </CustomButton>
                 )}
               />
-            : null
-          }
-        </View>
-      </Base>
-    </KeyboardAvoidingView>
+              <CustomButton 
+                onClick={() => handleForm()}
+                style={{ 
+                  ...styles.addLink, 
+                  borderColor:colors.tint,
+                  backgroundColor:colors.accent,
+                  shadowColor:'#222',
+                  shadowOffset: { width:5, height:3 },
+                  shadowOpacity:1,
+                  shadowRadius:1, 
+                  borderRadius:0,
+                  borderWidth:2
+                }}
+              >
+                <CustomText style={{...styles.linkedText, color:colors.white }}>+ Add a prompt</CustomText>
+              </CustomButton>
+            </View>
+          </Base>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   )
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  wrapper: {
+    alignItems:'center',
+    flexDirection:'column',
+    gap:10,
+    marginVertical:verticalScale(30)
   },
-  linked: {
-    borderWidth:1,
-    borderRadius:0,
-    marginBottom:verticalScale(10),
+  option: {
+    paddingVertical:verticalScale(10),
+    paddingHorizontal:moderateScale(50),
+    borderWidth:2,
     shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
-    shadowRadius: 1,  
+    shadowRadius: 1,
+    marginBottom:verticalScale(10),
+    borderRadius:0,
+    borderColor: colors.tint,
+  },
+  text: {
+    fontSize:verticalScale(14), 
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
   },
   linkedText: {
     fontSize:verticalScale(12),
@@ -213,33 +164,106 @@ const styles = StyleSheet.create({
     padding:verticalScale(15),
     marginBottom:verticalScale(10)
   },
-  questionBox: {
-    borderBottomWidth:1,
-    width:'100%',
-    padding:verticalScale(15),
-    paddingBottom:verticalScale(8),
-    paddingLeft:verticalScale(8),
-    paddingTop:verticalScale(8),
-
-  },
-  question: {
-    fontSize:verticalScale(14),
-    fontWeight:'600',
-  },
-  answerBox: {
-    marginTop:verticalScale(6),
-    padding:verticalScale(10)
-  },
-  answer: {
-    fontSize:verticalScale(12)
-  },
-  option: {
-    paddingVertical:verticalScale(10),
-    paddingHorizontal:moderateScale(50),
-    borderWidth:2,
-  },
-  text: { 
-    fontSize:verticalScale(14),
-    fontWeight:'600',
-  },
 })
+
+//   return (
+//     <KeyboardAvoidingView style={styles.container} behavior="padding">
+//       <Base>  
+        
+//           <Label text="Answer a question or two!" style={{ marginVertical:verticalScale(20) }} />
+
+//           <Label 
+//             text="Prompt" 
+//             style={{ 
+//               fontSize:verticalScale(14), 
+//               alignSelf:'flex-start',
+//               marginLeft:moderateScale(42)
+//             }} 
+//           />
+
+
+//           <Label 
+//             text="Answer" 
+//             style={{ 
+//               fontSize:verticalScale(14), 
+//               alignSelf:'flex-start',
+//               marginLeft:moderateScale(42)
+//             }} 
+//           />
+          
+
+          
+          
+//           { form.prompts
+//             ?
+//               <FlatList 
+//                 showsVerticalScrollIndicator={false}
+//                 data={form.prompts}
+//                 keyExtractor={item => item.question}
+//                 style={{ marginBottom:verticalScale(360) }}
+//                 renderItem={({ item }) => (
+//                   <View 
+//                     style={{
+//                       ...styles.linked, 
+//                       borderColor: colors.tint,
+//                       backgroundColor: colors.secondary
+//                     }}
+//                   >
+//                     <View style={{ ...styles.questionBox }}>
+//                       <CustomText style={{ ...styles.question, color:colors.tint }}>{prompts[item.question-1].prompt}</CustomText>
+//                     </View>
+//                     <View style={{ ...styles.answerBox }}>
+//                       <CustomText style={{ ...styles.answer, color:colors.tint }}>{item.answer}</CustomText>
+//                     </View>
+//                   </View>
+//                 )}
+//               />
+//             : null
+//           }
+//         </View>
+//       </Base>
+//     </KeyboardAvoidingView>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//   },
+//   linked: {
+//     borderWidth:1,
+//     borderRadius:0,
+//     marginBottom:verticalScale(10),
+//     shadowColor: '#222',
+//     shadowOffset: { width: 7, height: 5 },
+//     shadowOpacity: 1,
+//     shadowRadius: 1,  
+//   },
+  
+//   questionBox: {
+//     borderBottomWidth:1,
+//     width:'100%',
+//     padding:verticalScale(15),
+//     paddingBottom:verticalScale(8),
+//     paddingLeft:verticalScale(8),
+//     paddingTop:verticalScale(8),
+
+//   },
+//   question: {
+//     fontSize:verticalScale(14),
+//     fontWeight:'600',
+//   },
+//   answerBox: {
+//     marginTop:verticalScale(6),
+//     padding:verticalScale(10)
+//   },
+//   answer: {
+//     fontSize:verticalScale(12)
+//   },
+  
+//   text: { 
+//     fontSize:verticalScale(14),
+//     fontWeight:'600',
+//   },
+// })

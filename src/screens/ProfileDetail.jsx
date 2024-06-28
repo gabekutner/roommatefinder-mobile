@@ -24,9 +24,6 @@ import { dormsData, interestsData } from '../assets/Dictionary';
 export default function ProfileDetail({ route, navigation }) {
 
   const { item } = route.params
-
-  // console.log(item.quotes)
-  // console.log(item.prompts)
   
   const InfoItem = ({ emoji, text, style }) => {
     const styles = StyleSheet.create({
@@ -54,17 +51,31 @@ export default function ProfileDetail({ route, navigation }) {
 
   return (
     <View style={{ flex:1 }}>
-      <FastImage
-        key={item.id}
-        style={{
-          width:'100%',
-          height:'75%',
-          alignItems:'flex-end',
-          flexDirection:'row',
-        }}
-        source={{ uri:item.thumbnail }}
-        resizeMode={FastImage.resizeMode.cover}
-      />
+      { item.thumbnail
+        ? <FastImage
+            key={item.id}
+            style={{
+              width:'100%',
+              height:'75%',
+              alignItems:'flex-end',
+              flexDirection:'row',
+            }}
+            source={{ uri:item.thumbnail }}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        : <FastImage
+            key={item.id}
+            style={{
+              width:'100%',
+              height:'75%',
+              alignItems:'flex-end',
+              flexDirection:'row',
+            }}
+            source={require('../assets/images/profile.png')}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+      }
+      
       <ScrollView
         style={{ 
           backgroundColor:colors.secondary,
@@ -91,19 +102,32 @@ export default function ProfileDetail({ route, navigation }) {
             }}
           >
             <CustomText style={{ fontSize:verticalScale(20), fontWeight:'bold' }}>
-              {item.name}
+              {item.name ? item.name : null}
             </CustomText>
           </View>
           <View style={{ justifyContent:'center', marginLeft:moderateScale(8) }}>
             <CustomText style={{ fontSize:verticalScale(17), fontWeight:'600', }}>
-              {item.age} yo.
+              {item.age ? `${item.age} yo.` : null}
             </CustomText>
           </View>
         </View>
-        <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} style={{ marginTop:verticalScale(15) }} />
-        <InfoItem emoji="🎓" text={item.major} style={{ marginTop:verticalScale(10) }} />
-        <InfoItem emoji="📍" text={`${item.city}, ${item.state}`} style={{ marginTop:verticalScale(10) }} />
-        <InfoItem emoji="🏫" text={item.graduation_year} style={{ marginTop:verticalScale(10) }} />
+        { item.dorm 
+          ? <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} style={{ marginTop:verticalScale(15) }} />
+          : null
+        }
+        { item.major
+          ? <InfoItem emoji="🎓" text={item.major} style={{ marginTop:verticalScale(10) }} />
+          : null
+        }
+        { item.city && item.state
+          ? <InfoItem emoji="📍" text={`${item.city}, ${item.state}`} style={{ marginTop:verticalScale(10) }} />
+          : null
+        }
+        { item.graduation_year
+          ? <InfoItem emoji="🏫" text={item.graduation_year} style={{ marginTop:verticalScale(10) }} />
+          : null
+        }
+       
         <CustomButton
           onClick={() => {}}
           style={{
@@ -170,27 +194,31 @@ export default function ProfileDetail({ route, navigation }) {
             flexWrap:'wrap'
           }}
         >
-          { item.interests.map((item) => (
-            <View 
-              style={{ 
-                paddingVertical:verticalScale(10), 
-                paddingHorizontal:moderateScale(20),
-                borderRadius:20, 
-                backgroundColor:colors.accent,
-              }}
-              key={item}
-            >
-              <CustomText 
-                style={{ 
-                  color:colors.white, 
-                  fontSize:verticalScale(13), 
-                  fontWeight:'500' 
-                }}
-              >
-                {interestsData[item-1].interest}
-              </CustomText>
-            </View>
-          ))}
+          { item.interests 
+            ? item.interests.map((item) => (
+                <View 
+                  style={{ 
+                    paddingVertical:verticalScale(10), 
+                    paddingHorizontal:moderateScale(20),
+                    borderRadius:20, 
+                    backgroundColor:colors.accent,
+                  }}
+                  key={item}
+                >
+                  <CustomText 
+                    style={{ 
+                      color:colors.white, 
+                      fontSize:verticalScale(13), 
+                      fontWeight:'500' 
+                    }}
+                  >
+                    {interestsData[item-1].interest}
+                  </CustomText>
+                </View>
+              ))
+            : null
+          }
+
         </View>
 
         { item.photos[1] !== undefined
@@ -250,9 +278,6 @@ export default function ProfileDetail({ route, navigation }) {
             </View>
           : null
         }
-
-
-
         <View style={{ height:verticalScale(150) }} />
       </ScrollView>
     </View>

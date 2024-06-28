@@ -11,7 +11,8 @@ export default function CustomButton({
   children,
   onClick,
   style,
-  disabled
+  disabled,
+  onLayout
 }) {
   
   const [scaleValue] = useState(new Animated.Value(1)); // Initial scale value
@@ -56,6 +57,7 @@ export default function CustomButton({
       disabled={disabled}
       delayPressIn={200}
       delayPressOut={200}
+      onLayout={onLayout}
       style={{
         gap:'0.5rem',
         borderWidth:.75,

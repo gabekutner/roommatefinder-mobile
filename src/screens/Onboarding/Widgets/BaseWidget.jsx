@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
 } from 'react-native';
 
-import { 
-  moderateScale, 
-  verticalScale,
-  scale
-} from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import Base from "../Components/Base";
 import Label from "../Components/Label";
@@ -19,88 +15,69 @@ import { colors } from "../../../constants/colors";
 
 
 export default function BaseWidgetsScreen({ navigation }) {
+
+  const Square = ({ text, onClick }) => {
+    const [height, setHeight] = useState(0)
+    return (
+      <CustomButton
+        onClick={onClick}
+        onLayout={(e) => setHeight(e.nativeEvent.layout.width)}
+        style={{ ...styles.square, height }}
+      >
+        <CustomText style={styles.optionText}>{text}</CustomText>
+      </CustomButton>
+    )
+  }
+
   return (
     <Base>
       <Label 
         text="Customize your profile with prompts, quotes, and your social handles!" 
-        style={{ 
-          marginTop:verticalScale(30),
-          marginHorizontal:moderateScale(60),
-          alignSelf:'center',
-          textAlign:'center'
-        }} 
+        style={styles.label} 
       />
-      <CustomText
-        style={{
-          fontSize:verticalScale(12),
-          fontWeight:'500',
-          marginTop:verticalScale(5),
-          marginBottom:verticalScale(20),
-          alignSelf:'center'
-        }}
-      >
+      <CustomText style={styles.subtitle}>
         (P.S. Optional)
       </CustomText>
-      <View 
-        style={{ 
-          alignItems:'center',
-          flexDirection:'column',
-          gap:8,
-          justifyContent:'center',
-        }}
-      >
-        <CustomButton 
-          onClick={() => navigation.navigate('prompts')}
-          style={{ 
-            ...styles.option, 
-            marginRight:moderateScale(75)
-            
-          }}
-        >
-          <CustomText style={{ ...styles.optionText }}>Prompts</CustomText>
-        </CustomButton>
 
-        <CustomButton 
-          onClick={() => navigation.navigate('quotes')}
-          style={{ 
-            ...styles.option, 
-            marginLeft:moderateScale(75)
-          }}
-        >
-          <CustomText style={{ ...styles.optionText }}>Quotes</CustomText>
-        </CustomButton>
-
-        <CustomButton 
-          onClick={() => navigation.navigate('linktree')}
-          style={{ 
-            ...styles.option, 
-            marginRight:moderateScale(75)
-          }}
-        >
-          <CustomText style={{ ...styles.optionText }}>LinkTree</CustomText>
-        </CustomButton>
-
+      <View style={{ flexDirection:'column' }}>
+        <View style={{ flex: 1, flexDirection: "row", marginHorizontal:moderateScale(20), gap:8 }}>
+          <Square onClick={() => navigation.navigate('prompts')} text={'Prompts'} />
+          <Square onClick={() => navigation.navigate('quotes')} text={'Quotes'} />
+          <Square onClick={() => navigation.navigate('linktree')} text={'LinkTree'} />
+        </View>
       </View>
     </Base>
   )
 }
 
 const styles = StyleSheet.create({
-  option: {
-    height:scale(120),
-    width:scale(120),
-    borderRadius:0,
+  label: {
+    marginTop:verticalScale(30),
+    marginHorizontal:moderateScale(60),
+    alignSelf:'center',
+    textAlign:'center'
+  }, 
+  subtitle: {
+    fontSize:verticalScale(12),
+    fontWeight:'500',
+    marginTop:verticalScale(5),
+    marginBottom:verticalScale(20),
+    alignSelf:'center'
+  },
+  optionText: {
+    fontSize:verticalScale(16),
+    fontWeight:'600',
+    color:colors.white
+  },
+  square: {
+    flex:1,
     borderWidth:2,
-    alignItems:'center',
-    justifyContent:'center',
+    borderColor:colors.tint,
+    backgroundColor:colors.accent,
+    borderRadius:0,
+    shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,  
-    backgroundColor:colors.secondary
-  },
-  optionText: {
-    fontSize:verticalScale(17),
-    fontWeight:'bold',
-    color:colors.tint
   }
 })
