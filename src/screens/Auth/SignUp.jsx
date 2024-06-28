@@ -9,7 +9,7 @@ import {
   Pressable,
 } from 'react-native';
 
-import { verticalScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
@@ -149,6 +149,7 @@ export default function SignUp({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),
@@ -173,6 +174,7 @@ export default function SignUp({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),
@@ -195,6 +197,7 @@ export default function SignUp({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),
@@ -217,6 +220,7 @@ export default function SignUp({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),

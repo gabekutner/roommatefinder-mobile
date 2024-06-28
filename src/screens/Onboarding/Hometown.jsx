@@ -36,15 +36,20 @@ export default function HomeTownScreen({ navigation }) {
           value={form.hometown}
           onChangeText={input => setHometown(input)}
           colors={colors}
-          style={{
+          emoji={'📍'}
+          containerStyle={{
             height:verticalScale(45),
             marginBottom:verticalScale(14),
             backgroundColor:colors.secondary,
-            color:colors.tint,
             borderRadius:0,
             borderWidth:2,
-            borderColor:colors.constBlack,
+            borderColor:colors.tint,
+            width:'90%',
+            paddingRight:moderateScale(45)
+          }}
+          inputStyle={{
             fontSize:verticalScale(14),
+            color:colors.tint,
           }}
         />
       </View>

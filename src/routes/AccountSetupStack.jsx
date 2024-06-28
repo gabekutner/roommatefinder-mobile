@@ -67,7 +67,7 @@ const Header = ({ nav, icon }) => {
 
 export default function AccountSetupStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="start">
       <Stack.Screen
         name='start'
         component={PromptScreen}

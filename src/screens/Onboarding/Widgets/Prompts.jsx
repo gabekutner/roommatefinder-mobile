@@ -125,18 +125,20 @@ export default function QuotesScreen({ navigation }) {
             value={prompt.answer}
             onChangeText={input => setPrompt({ ...prompt, answer:input })}
             colors={colors}
-            style={{
+            emoji={'🧐'}
+            containerStyle={{
               height:verticalScale(45),
               marginBottom:verticalScale(14),
               backgroundColor:colors.secondary,
-              color:colors.tint,
               borderRadius:0,
               borderWidth:2,
               borderColor:colors.tint,
+              width:'90%',
+              paddingRight:moderateScale(45)
+            }}
+            inputStyle={{
               fontSize:verticalScale(14),
-              width:'80%',
-              height:verticalScale(75),
-              paddingTop:verticalScale(12),
+              color:colors.tint,
             }}
           />
 

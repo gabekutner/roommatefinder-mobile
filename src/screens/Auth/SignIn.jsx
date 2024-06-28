@@ -142,6 +142,7 @@ export default function SignIn({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),
@@ -164,6 +165,7 @@ export default function SignIn({ navigation }) {
                   borderRadius:0,
                   borderWidth:2,
                   borderColor:colors.tint,
+                  paddingRight:moderateScale(45)
                 }}
                 inputStyle={{
                   fontSize:verticalScale(14),

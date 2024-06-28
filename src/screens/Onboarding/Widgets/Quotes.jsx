@@ -72,18 +72,20 @@ export default function QuotesScreen({ navigation }) {
             value={quote.quote}
             onChangeText={input => setQuote({ ...quote, quote:input })}
             colors={colors}
-            style={{
-              height:verticalScale(45),
+            emoji={'🥸'}
+            containerStyle={{
+              height:verticalScale(75),
               marginBottom:verticalScale(14),
               backgroundColor:colors.secondary,
-              color:colors.tint,
               borderRadius:0,
               borderWidth:2,
               borderColor:colors.tint,
+              width:'90%',
+              paddingRight:moderateScale(45)
+            }}
+            inputStyle={{
               fontSize:verticalScale(14),
-              width:'80%',
-              paddingTop:verticalScale(12),
-              height:verticalScale(130)
+              color:colors.tint,
             }}
           />
 
@@ -102,16 +104,20 @@ export default function QuotesScreen({ navigation }) {
             value={quote.cited}
             onChangeText={input => setQuote({ ...quote, cited:input })}
             colors={colors}
-            style={{
+            emoji={'🏇'}
+            containerStyle={{
               height:verticalScale(45),
               marginBottom:verticalScale(14),
               backgroundColor:colors.secondary,
-              color:colors.tint,
               borderRadius:0,
               borderWidth:2,
               borderColor:colors.tint,
+              width:'90%',
+              paddingRight:moderateScale(45)
+            }}
+            inputStyle={{
               fontSize:verticalScale(14),
-              width:'80%'
+              color:colors.tint,
             }}
           />
 

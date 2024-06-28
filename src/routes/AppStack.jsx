@@ -200,7 +200,7 @@ export default function AppStack() {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="home">
       <Stack.Screen 
         name='home' 
         component={Tabs} 

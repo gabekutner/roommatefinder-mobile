@@ -35,15 +35,20 @@ export default function GraduationYearScreen({ navigation }) {
           value={form.graduation_year}
           onChangeText={input => setGradYear(input)}
           colors={colors}
-          style={{
+          emoji={'📅'}
+          containerStyle={{
             height:verticalScale(45),
             marginBottom:verticalScale(14),
             backgroundColor:colors.secondary,
-            color:colors.tint,
             borderRadius:0,
             borderWidth:2,
             borderColor:colors.tint,
+            width:'90%',
+            paddingRight:moderateScale(45)
+          }}
+          inputStyle={{
             fontSize:verticalScale(14),
+            color:colors.tint,
           }}
         />
       </View>

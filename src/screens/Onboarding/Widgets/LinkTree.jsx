@@ -71,16 +71,20 @@ export default function LinkTreeScreen({ navigation }) {
             value={link.title}
             onChangeText={input => setLink({ ...link, title:input })}
             colors={colors}
-            style={{
+            emoji={'🤖'}
+            containerStyle={{
               height:verticalScale(45),
               marginBottom:verticalScale(14),
               backgroundColor:colors.secondary,
-              color:colors.tint,
               borderRadius:0,
               borderWidth:2,
               borderColor:colors.tint,
+              width:'90%',
+              paddingRight:moderateScale(45)
+            }}
+            inputStyle={{
               fontSize:verticalScale(14),
-              width:'80%'
+              color:colors.tint,
             }}
           />
 
@@ -99,16 +103,20 @@ export default function LinkTreeScreen({ navigation }) {
             value={link.link}
             onChangeText={input => setLink({ ...link, link:input })}
             colors={colors}
-            style={{
+            emoji={'🔗'}
+            containerStyle={{
               height:verticalScale(45),
               marginBottom:verticalScale(14),
               backgroundColor:colors.secondary,
-              color:colors.tint,
               borderRadius:0,
               borderWidth:2,
               borderColor:colors.tint,
+              width:'90%',
+              paddingRight:moderateScale(45)
+            }}
+            inputStyle={{
               fontSize:verticalScale(14),
-              width:'80%'
+              color:colors.tint,
             }}
           />
 
