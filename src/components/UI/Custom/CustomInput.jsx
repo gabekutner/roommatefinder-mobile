@@ -30,6 +30,8 @@ export default function CustomTextInput({
   emoji,
   icon,
   iconColor,
+  iconSize,
+  iconStyle,
   containerStyle,
   inputStyle
 }) {
@@ -52,7 +54,7 @@ export default function CustomTextInput({
     >
       { emoji 
         ? <CustomText style={{ paddingHorizontal:15, fontSize:verticalScale(18) }}>{emoji}</CustomText>
-        : icon ? <FontAwesomeIcon icon={icon} size={verticalScale(22)} color={iconColor} style={{ marginHorizontal:moderateScale(12) }} /> : null
+        : icon ? <FontAwesomeIcon icon={icon} size={verticalScale(iconSize)} color={iconColor} style={{ marginHorizontal:moderateScale(12), ...iconStyle }} /> : null
       }
       
       <TextInput 

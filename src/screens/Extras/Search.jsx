@@ -2,27 +2,23 @@ import React, { useEffect, useState } from "react";
 import { 
 	FlatList,
 	SafeAreaView, 
-	TextInput, 
 	TouchableOpacity, 
 	View
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { 
-	moderateScale, 
-	verticalScale 
-} from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from '../../components/UI/Custom/CustomText';
+import CustomTextInput from "../../components/UI/Custom/CustomInput";
 import Empty from "../../components/Empty";
 import Thumbnail from "../../components/Thumbnail";
 import Cell from "../../components/Cell";
 
 import useGlobal from "../../core/global";
 import { colors } from '../../constants/colors';
-import CustomTextInput from "../../components/UI/Custom/CustomInput";
 
 
 function SearchButton({ user, colors }) {
@@ -62,27 +58,6 @@ function SearchButton({ user, colors }) {
 	}
 
 	return (
-		// <TouchableOpacity
-		// 	style={{
-		// 		backgroundColor: data.disabled ? '#708E99' : colors.accent,
-		// 		paddingHorizontal:14,
-		// 		height:36,
-		// 		alignItems:'center',
-		// 		justifyContent:'center',
-		// 		borderRadius:18
-		// 	}}
-		// 	disabled={data.disabled}
-		// 	onPress={data.onPress}
-		// >
-		// 	<CustomText
-		// 		style={{
-		// 			color:colors.white,
-		// 			fontWeight:'600',
-		// 		}}
-		// 	>
-		// 		{data.text}
-		// 	</CustomText>
-		// </TouchableOpacity>
 		<CustomButton
 			onClick={data.onPress}
 			disabled={data.disabled}
@@ -160,7 +135,6 @@ function SearchRow({ item, colors }) {
 	)
 }
 
-
 export default function Search({ navigation }) {
 	const [query, setQuery] = useState('')
 
@@ -193,34 +167,28 @@ export default function Search({ navigation }) {
 				<View style={{ width:moderateScale(290) }}>
 					<CustomTextInput 
 						placeholder={'Search ...'}
-						placeholderTextColor={colors.tint}
+						placeholderTextColor={colors.tertiary}
 						colors={colors}
 						value={query}
 						onChangeText={setQuery}
+						icon="magnifying-glass"
+						iconColor={colors.tertiary}
+						iconSize={20}
+						iconStyle={{ marginHorizontal:moderateScale(8) }}
 						containerStyle={{
-							height: 52,
-							paddingLeft:moderateScale(15),
-							color:colors.tint,
-							borderWidth:1,
-							borderRadius:25,
-							borderColor:colors.tint,
+							paddingLeft:moderateScale(8),
+							borderRadius:12,
+							height:verticalScale(45),
+							marginBottom:verticalScale(14),
 							backgroundColor:colors.secondary,
+							borderWidth:2,
+							borderColor:colors.tint,
+							paddingRight:moderateScale(45),
 							marginTop:verticalScale(15)
 						}}
 						inputStyle={{
 							color:colors.tint,
 							fontSize:verticalScale(14)
-						}}
-					/>
-					<FontAwesomeIcon
-						icon='magnifying-glass'
-						size={20}
-						color={colors.tint}
-						style={{
-							position:'absolute',
-							left:moderateScale(18),
-							marginTop:verticalScale(15),
-							top:15
 						}}
 					/>
 				</View>

@@ -16,11 +16,7 @@ import {
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { 
-	verticalScale,
-	moderateScale 
-} from "react-native-size-matters";
-
+import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
 import CustomText from '../../components/UI/Custom/CustomText';
@@ -266,7 +262,7 @@ function MessageInput({
 				alignItems:'center',
 			}}
 		>
-			<CustomTextInput
+			{/* <CustomTextInput
 				placeholder="Message..."
 				placeholderTextColor={colors.tint}
 				value={message}
@@ -274,23 +270,42 @@ function MessageInput({
 				autoComplete={false}
 				colors={colors}
 				containerStyle={{
-					flex:1,
-					paddingHorizontal:moderateScale(10),
-					borderWidth:1,
-					borderRadius:25,
-					borderColor:colors.tint,
-					backgroundColor:colors.secondary,
-					height:verticalScale(40),
+					
 				}}
 				inputStyle={{
 					color:colors.tint,
 					fontSize:verticalScale(14),
 				}}
+			/> */}
+			<CustomTextInput
+				placeholder="Message..."
+				placeholderTextColor={colors.tertiary}
+				value={message}
+				onChangeText={setMessage}
+				autoComplete={false}
+				colors={colors}
+				icon="magnifying-glass"
+				iconColor={colors.tertiary}
+				iconSize={20}
+				iconStyle={{ marginHorizontal:moderateScale(8) }}
+				containerStyle={{
+					paddingLeft:moderateScale(8),
+					borderRadius:12,
+					height:verticalScale(45),
+					borderWidth:2,
+					flex:1,
+					borderColor:colors.tint,
+					backgroundColor:colors.secondary,
+				}}
+				inputStyle={{
+					color:colors.tint,
+					fontSize:verticalScale(14)
+				}}
 			/>
 			<TouchableOpacity onPress={onSend}>
 				<FontAwesomeIcon
 					icon='paper-plane'
-					size={verticalScale(19)}
+					size={verticalScale(22)}
 					color={colors.tint}
 					style={{
 						marginHorizontal: moderateScale(15),

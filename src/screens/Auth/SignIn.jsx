@@ -103,7 +103,25 @@ export default function SignIn({ navigation }) {
                   Welcome back!
                 </CustomText>
               </View>
-
+              { showError.status
+                ?
+                  <Snackbar
+                    message={showError.message}
+                    actionText="Dismiss"
+                    onActionPress={() => {
+                      setShowError(false)
+                    }}
+                    duration={5000} // customize duration
+                    position="top" // change the position to 'top'/'bottom'
+                    backgroundColor={colors.accent} // customize background color
+                    textColor={colors.white} // change text color
+                    actionTextColor={colors.white} // customize action text color
+                    containerStyle={{ marginHorizontal:12 }} // apply additional styling
+                    messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+                    actionTextStyle={{ }} // customize action text styling
+                  /> 
+                : null
+              }
               <View style={{ marginBottom:verticalScale(20) }}>
                 <CustomLabel color={colors.tint} label={'Email Address'} />
                 <CustomTextInput 
@@ -158,25 +176,7 @@ export default function SignIn({ navigation }) {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        { showError.status
-          ?
-            <Snackbar
-              message={showError.message}
-              actionText="Dismiss"
-              onActionPress={() => {
-                setShowError(false)
-              }}
-              duration={5000} // customize duration
-              position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.secondary} // customize background color
-              textColor={colors.tint} // change text color
-              actionTextColor={colors.tint} // customize action text color
-              containerStyle={{ marginHorizontal:12 }} // apply additional styling
-              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-              actionTextStyle={{ }} // customize action text styling
-            /> 
-          : null
-        }
+        
       </KeyboardAvoidingView>
     </ImageBackground>
   )

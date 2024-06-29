@@ -115,6 +115,25 @@ export default function SignUp({ navigation }) {
                   Sign up to find your future roommate!
                 </CustomText>
               </View>
+              { showError.status
+                ? 
+                  <Snackbar 
+                    message={showError.message}
+                    actionText="Dismiss"
+                    onActionPress={() => {
+                      setShowError(false)
+                    }}
+                    duration={5000} // customize duration
+                    position="top" // change the position to 'top'/'bottom'
+                    backgroundColor={colors.secondary} // customize background color
+                    textColor={colors.tint} // change text color
+                    actionTextColor={colors.tint} // customize action text color
+                    containerStyle={{ marginHorizontal:12 }} // apply additional styling
+                    messageStyle={{ fontWeight:'bold' }} // adjust message text styling
+                    actionTextStyle={{ }} // customize action text styling
+                  />
+                : null
+              }
 
               <View style={{ marginBottom:verticalScale(20) }}>
 
@@ -195,25 +214,6 @@ export default function SignUp({ navigation }) {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        { showError.status
-          ? 
-            <Snackbar 
-              message={showError.message}
-              actionText="Dismiss"
-              onActionPress={() => {
-                setShowError(false)
-              }}
-              duration={5000} // customize duration
-              position="top" // change the position to 'top'/'bottom'
-              backgroundColor={colors.secondary} // customize background color
-              textColor={colors.tint} // change text color
-              actionTextColor={colors.tint} // customize action text color
-              containerStyle={{ marginHorizontal:12 }} // apply additional styling
-              messageStyle={{ fontWeight:'bold' }} // adjust message text styling
-              actionTextStyle={{ }} // customize action text styling
-            />
-          : null
-        }
       </KeyboardAvoidingView>
     </ImageBackground>
   )
