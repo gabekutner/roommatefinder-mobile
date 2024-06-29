@@ -89,45 +89,17 @@ export default function SignIn({ navigation }) {
     >
       <KeyboardAvoidingView behavior="padding" style={{ flex:1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View 
-            style={{ 
-              flex:1, 
-              justifyContent:'center',
-              width:'95%',
-              alignSelf:'center',              
-            }}
-          >
-            <View 
-              style={{ 
-                backgroundColor:colors.primary, 
-                paddingVertical:verticalScale(10), 
-                paddingHorizontal:moderateScale(25),
-                borderRadius:12,
-                borderWidth:2,
-                shadowColor: '#222',
-                shadowOffset: { width: 5, height: 3 },
-                shadowOpacity: .7,
-                shadowRadius: 1,  
-              }}
-            >
+          <View style={styles.container}>
+            <View style={styles.wrapper}>
+
               <View style={{ marginVertical:'10%' }}>
                 <Title 
                   title='RoommateFinder'
                   color={colors.tint}
                   fontSize={verticalScale(28)}
-                  style={{
-                    textAlign:'center'
-                  }}
+                  style={{ textAlign:'center' }}
                 />
-                <CustomText 
-                  style={{ 
-                    color: colors.tint,
-                    marginVertical:10,
-                    fontSize:verticalScale(15),
-                    fontWeight:'600', 
-                    textAlign:'center',
-                  }}
-                >
+                <CustomText style={styles.subtitle}>
                   Welcome back!
                 </CustomText>
               </View>
@@ -144,19 +116,8 @@ export default function SignIn({ navigation }) {
                   icon="envelope"
                   iconColor={colors.tertiary}
                   colors={colors}
-                  containerStyle={{
-                    height:verticalScale(45),
-                    marginBottom:verticalScale(14),
-                    backgroundColor:colors.secondary,
-                    borderRadius:0,
-                    borderWidth:2,
-                    borderColor:colors.tint,
-                    paddingRight:moderateScale(45)
-                  }}
-                  inputStyle={{
-                    fontSize:verticalScale(14),
-                    color:colors.tint,
-                  }}
+                  containerStyle={styles.inputContainer}
+                  inputStyle={styles.inputText}
                 />
 
                 <CustomLabel color={colors.tint} label={'Password'} />
@@ -166,63 +127,21 @@ export default function SignIn({ navigation }) {
                   value={form.password}
                   onChangeText={password => setForm({ ...form, password })}
                   colors={colors}
-                  // emoji={'🔑'}
                   icon='lock'
                   iconColor={colors.tertiary}
-                  containerStyle={{
-                    height:verticalScale(45),
-                    marginBottom:verticalScale(14),
-                    backgroundColor:colors.secondary,
-                    borderRadius:0,
-                    borderWidth:2,
-                    borderColor:colors.tint,
-                    paddingRight:moderateScale(45)
-                  }}
-                  inputStyle={{
-                    fontSize:verticalScale(14),
-                    color:colors.tint,
-                  }}
+                  containerStyle={styles.inputContainer}
+                  inputStyle={styles.inputText}
                 />
 
-                <CustomButton
-                  onClick={() => onSignIn()}
-                  style={{ 
-                    borderWidth:2,
-                    borderColor:colors.tint,
-                    backgroundColor:colors.accent,
-                    borderRadius:0,
-                    shadowColor: '#222',
-                    shadowOffset: { width: 7, height: 5 },
-                    shadowOpacity: 1,
-                    shadowRadius: 1,  
-                  }}
-                >
-                  <CustomText 
-                    style={{ 
-                      fontSize:verticalScale(16), 
-                      fontWeight:'600', 
-                      color:colors.white,
-                    }}
-                  >
+                <CustomButton onClick={() => onSignIn()} style={styles.buttonStyle}>
+                  <CustomText style={styles.buttonText}>
                     Log in
                   </CustomText>
                 </CustomButton>
 
-                <Pressable 
-                  onPress={() => navigation.navigate('signup')}
-                  style={{
-                    flexDirection:'row',
-                    gap:5,
-                    marginTop:20,
-                    justifyContent:'center',
-                  }}
-                >
+                <Pressable onPress={() => navigation.navigate('signup')} style={styles.pressableStyle}>
                   <CustomText 
-                    style={{
-                      ...styles.text,
-                      color:colors.tint
-                    }}
-                  >
+                    style={{ ...styles.text, color:colors.tint }}>
                     Don't have an account?{' '}
                     <CustomText 
                       style={{ 
@@ -236,9 +155,7 @@ export default function SignIn({ navigation }) {
                   </CustomText>
                 </Pressable>
               </View>
-
             </View>
-
           </View>
         </TouchableWithoutFeedback>
         { showError.status
@@ -267,6 +184,64 @@ export default function SignIn({ navigation }) {
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1, 
+    justifyContent:'center',
+    width:'95%',
+    alignSelf:'center',        
+  },
+  wrapper: {
+    backgroundColor:colors.primary, 
+    paddingVertical:verticalScale(10), 
+    paddingHorizontal:moderateScale(25),
+    borderRadius:12,
+    borderWidth:2,
+    shadowColor: '#222',
+    shadowOffset: { width: 5, height: 3 },
+    shadowOpacity: .7,
+    shadowRadius: 1,  
+  },
+  subtitle: {
+    color: colors.tint,
+    marginVertical:10,
+    fontSize:verticalScale(12),
+    fontWeight:'600', 
+    textAlign:'center',
+  },
+  inputContainer: {
+    height:verticalScale(45),
+    marginBottom:verticalScale(14),
+    backgroundColor:colors.secondary,
+    borderRadius:0,
+    borderWidth:2,
+    borderColor:colors.tint,
+    paddingRight:moderateScale(45)
+  },
+  inputText: {
+    fontSize:verticalScale(14),
+    color:colors.tint,
+  },
+  buttonStyle: {
+    borderWidth:2,
+    borderColor:colors.tint,
+    backgroundColor:colors.accent,
+    borderRadius:0,
+    shadowColor: '#222',
+    shadowOffset: { width: 7, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 1,  
+  },
+  buttonText: {
+    fontSize:verticalScale(16), 
+    fontWeight:'600', 
+    color:colors.white,
+  },
+  pressableStyle: {
+    flexDirection:'row',
+    gap:5,
+    marginTop:20,
+    justifyContent:'center'
+  },
   text: {
     fontSize:verticalScale(14), 
     fontWeight:'600',
