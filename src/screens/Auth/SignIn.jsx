@@ -2,35 +2,30 @@ import React, { useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
-  SafeAreaView,
   TouchableWithoutFeedback,
   Pressable,
   View,
   StyleSheet,
+  ImageBackground
 } from 'react-native';
 
-import { verticalScale } from 'react-native-size-matters';
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import Snackbar from '../../components/UI/SnackBar';
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
-// import Title from '../../components/UI/Title';
 import CustomLabel from '../../components/UI/Label';
-
 import Title from '../../components/Brand/Title';
 
 import api from '../../core/api';
 import useGlobal from '../../core/global';
-// import { colors as c } from '../../assets/config';
 import { colors } from '../../constants/colors';
 
 
 export default function SignIn({ navigation }) {
 
   const login = useGlobal(state => state.login)
-  // const theme = useGlobal(state => state.theme)
-  // const colors = c[theme]
 
   const [showError, setShowError] = useState({
     status: false,
@@ -87,148 +82,163 @@ export default function SignIn({ navigation }) {
   }
 
   return (
-    <SafeAreaView 
-      style={{ 
-        flex:1, 
-        backgroundColor:colors.primary 
-      }}
+    <ImageBackground 
+      source={require('../../assets/images/image_part_001.png')} 
+      style={{ flex:1, backgroundColor:colors.secondary }}
+      imageStyle={{ opacity:0.3 }}
     >
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior="padding" style={{ flex:1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View 
             style={{ 
               flex:1, 
-              paddingHorizontal:20, 
-              justifyContent:'center' 
+              justifyContent:'center',
+              width:'95%',
+              alignSelf:'center',              
             }}
           >
-            <View style={{ marginVertical:'10%' }}>
-              <Title 
-                title='RoommateFinder'
-                color={colors.tint}
-                fontSize={verticalScale(30)}
-                style={{
-                  textAlign:'center'
-                }}
-              />
-              <CustomText 
-                style={{ 
-                  color: colors.tint,
-                  marginVertical:10,
-                  fontSize:verticalScale(15),
-                  fontWeight:'600', 
-                  textAlign:'center',
-                }}
-              >
-                Welcome back!
-              </CustomText>
-            </View>
-
-            <View style={{ marginBottom:verticalScale(20) }}>
-              <CustomLabel color={colors.tint} label={'Email Address'} />
-              <CustomTextInput 
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                keyboardType={'email-address'}
-                placeholder={'gabe@example.com'}
-                value={form.email}
-                onChangeText={email => setForm({ ...form, email })}
-                emoji={'📫'}
-                colors={colors}
-                containerStyle={{
-                  height:verticalScale(45),
-                  marginBottom:verticalScale(14),
-                  backgroundColor:colors.secondary,
-                  borderRadius:0,
-                  borderWidth:2,
-                  borderColor:colors.tint,
-                  paddingRight:moderateScale(45)
-                }}
-                inputStyle={{
-                  fontSize:verticalScale(14),
-                  color:colors.tint,
-                }}
-              />
-
-              <CustomLabel color={colors.tint} label={'Password'} />
-              <CustomTextInput 
-                secureTextEntry={true}
-                placeholder={'********'}
-                value={form.password}
-                onChangeText={password => setForm({ ...form, password })}
-                colors={colors}
-                emoji={'🔑'}
-                containerStyle={{
-                  height:verticalScale(45),
-                  marginBottom:verticalScale(14),
-                  backgroundColor:colors.secondary,
-                  borderRadius:0,
-                  borderWidth:2,
-                  borderColor:colors.tint,
-                  paddingRight:moderateScale(45)
-                }}
-                inputStyle={{
-                  fontSize:verticalScale(14),
-                  color:colors.tint,
-                }}
-              />
-
-              <CustomButton
-                onClick={() => onSignIn()}
-                style={{ 
-                  borderWidth:2,
-                  borderColor:colors.tint,
-                  backgroundColor:colors.accent,
-                  borderRadius:0,
-                  shadowColor: '#222',
-                  shadowOffset: { width: 7, height: 5 },
-                  shadowOpacity: 1,
-                  shadowRadius: 1,  
-                }}
-              >
+            <View 
+              style={{ 
+                backgroundColor:colors.primary, 
+                paddingVertical:verticalScale(10), 
+                paddingHorizontal:moderateScale(25),
+                borderRadius:12,
+                borderWidth:2,
+                shadowColor: '#222',
+                shadowOffset: { width: 5, height: 3 },
+                shadowOpacity: .7,
+                shadowRadius: 1,  
+              }}
+            >
+              <View style={{ marginVertical:'10%' }}>
+                <Title 
+                  title='RoommateFinder'
+                  color={colors.tint}
+                  fontSize={verticalScale(28)}
+                  style={{
+                    textAlign:'center'
+                  }}
+                />
                 <CustomText 
                   style={{ 
-                    fontSize:verticalScale(16), 
+                    color: colors.tint,
+                    marginVertical:10,
+                    fontSize:verticalScale(15),
                     fontWeight:'600', 
-                    color:colors.white,
+                    textAlign:'center',
                   }}
                 >
-                  Log in
+                  Welcome back!
                 </CustomText>
-              </CustomButton>
+              </View>
 
-              <Pressable 
-                onPress={() => navigation.navigate('signup')}
-                style={{
-                  flexDirection:'row',
-                  gap:5,
-                  marginTop:20,
-                  justifyContent:'center',
-                }}
-              >
-                <CustomText 
-                  style={[
-                    styles.text,
-                    { 
-                      color:colors.tint
-                    }
-                  ]}
+              <View style={{ marginBottom:verticalScale(20) }}>
+                <CustomLabel color={colors.tint} label={'Email Address'} />
+                <CustomTextInput 
+                  autoCapitalize={'none'}
+                  autoCorrect={false}
+                  keyboardType={'email-address'}
+                  placeholder={'gabe@example.com'}
+                  value={form.email}
+                  onChangeText={email => setForm({ ...form, email })}
+                  icon="envelope"
+                  iconColor={colors.tertiary}
+                  colors={colors}
+                  containerStyle={{
+                    height:verticalScale(45),
+                    marginBottom:verticalScale(14),
+                    backgroundColor:colors.secondary,
+                    borderRadius:0,
+                    borderWidth:2,
+                    borderColor:colors.tint,
+                    paddingRight:moderateScale(45)
+                  }}
+                  inputStyle={{
+                    fontSize:verticalScale(14),
+                    color:colors.tint,
+                  }}
+                />
+
+                <CustomLabel color={colors.tint} label={'Password'} />
+                <CustomTextInput 
+                  secureTextEntry={true}
+                  placeholder={'********'}
+                  value={form.password}
+                  onChangeText={password => setForm({ ...form, password })}
+                  colors={colors}
+                  // emoji={'🔑'}
+                  icon='lock'
+                  iconColor={colors.tertiary}
+                  containerStyle={{
+                    height:verticalScale(45),
+                    marginBottom:verticalScale(14),
+                    backgroundColor:colors.secondary,
+                    borderRadius:0,
+                    borderWidth:2,
+                    borderColor:colors.tint,
+                    paddingRight:moderateScale(45)
+                  }}
+                  inputStyle={{
+                    fontSize:verticalScale(14),
+                    color:colors.tint,
+                  }}
+                />
+
+                <CustomButton
+                  onClick={() => onSignIn()}
+                  style={{ 
+                    borderWidth:2,
+                    borderColor:colors.tint,
+                    backgroundColor:colors.accent,
+                    borderRadius:0,
+                    shadowColor: '#222',
+                    shadowOffset: { width: 7, height: 5 },
+                    shadowOpacity: 1,
+                    shadowRadius: 1,  
+                  }}
                 >
-                  Don't have an account?{' '}
                   <CustomText 
-                    style={[
-                      styles.text, 
-                      { 
+                    style={{ 
+                      fontSize:verticalScale(16), 
+                      fontWeight:'600', 
+                      color:colors.white,
+                    }}
+                  >
+                    Log in
+                  </CustomText>
+                </CustomButton>
+
+                <Pressable 
+                  onPress={() => navigation.navigate('signup')}
+                  style={{
+                    flexDirection:'row',
+                    gap:5,
+                    marginTop:20,
+                    justifyContent:'center',
+                  }}
+                >
+                  <CustomText 
+                    style={{
+                      ...styles.text,
+                      color:colors.tint
+                    }}
+                  >
+                    Don't have an account?{' '}
+                    <CustomText 
+                      style={{ 
+                        ...styles.text, 
                         color:colors.tint, 
                         textDecorationLine:'underline' 
-                      }
-                    ]}
-                  >
-                    Sign up
+                      }}
+                    >
+                      Sign up
+                    </CustomText>
                   </CustomText>
-                </CustomText>
-              </Pressable>
+                </Pressable>
+              </View>
+
             </View>
+
           </View>
         </TouchableWithoutFeedback>
         { showError.status
@@ -251,7 +261,7 @@ export default function SignIn({ navigation }) {
           : null
         }
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </ImageBackground>
   )
 }
 

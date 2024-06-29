@@ -5,7 +5,8 @@ import {
   View
 } from "react-native";
 import CustomText from "./CustomText";
-import { verticalScale } from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 export default function CustomTextInput({
@@ -23,10 +24,12 @@ export default function CustomTextInput({
   onChange,
   onChangeText,
   placeholder, // str
-  placeholderTextColor = colors.tint, // str
+  placeholderTextColor = colors.tertiary, // str
   secureTextEntry, // bool
   value, 
   emoji,
+  icon,
+  iconColor,
   containerStyle,
   inputStyle
 }) {
@@ -47,9 +50,11 @@ export default function CustomTextInput({
         ...containerStyle,
       }}
     >
-      <CustomText style={{ paddingHorizontal:15, fontSize:verticalScale(18) }}>
-        {emoji}
-      </CustomText>
+      { emoji 
+        ? <CustomText style={{ paddingHorizontal:15, fontSize:verticalScale(18) }}>{emoji}</CustomText>
+        : icon ? <FontAwesomeIcon icon={icon} size={verticalScale(22)} color={iconColor} style={{ marginHorizontal:moderateScale(12) }} /> : null
+      }
+      
       <TextInput 
         autoCapitalize={autoCapitalize}
         autoComplete={autoComplete}
