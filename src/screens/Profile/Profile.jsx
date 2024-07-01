@@ -1,16 +1,11 @@
-import React, { 
-  useEffect, 
-  useState 
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   View,
-  TouchableOpacity,
   ScrollView,
   StyleSheet,
   Alert,
 } from "react-native";
 
-import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { 
   verticalScale, 
@@ -21,55 +16,11 @@ import {
 import FormModal from '../../components/FormModal';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';
-import Thumbnail from "../../components/Thumbnail";
+import ProfileImage from './Components/ProfileImage';
 
 import useGlobal from '../../core/global';
 import { colors } from '../../constants/colors';
 
-
-function ProfileImage({ user, colors }) {
-  const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
-  return (
-    <TouchableOpacity
-      style={{ marginBottom:20 }}
-      onPress={() => {
-        launchImageLibrary({ includeBase64:true, }, (response) => {
-          if (response.didCancel) return
-          const file = response.assets[0]
-          uploadThumbnail(file)
-        })
-      }}
-    >
-      <Thumbnail
-				url={user.thumbnail}
-				size={verticalScale(123)}
-        borderColor={colors.tint}
-        style={{ borderWidth:2 }}
-			/>
-      <View
-        style={{
-          position:"absolute",
-          bottom:0,
-          right:0,
-          backgroundColor:colors.primary, //'#E8ECF4'
-          width:40,
-          height:40,
-          borderRadius:20,
-          alignItems:'center',
-          justifyContent:'center',
-          borderWidth:3,
-          borderColor:colors.secondary,
-        }}
-      >
-        <FontAwesomeIcon 
-          icon='pencil'
-          size={15}
-          color={colors.tint}
-        />
-      </View>
-    </TouchableOpacity>
-  )
-}
 
 function ProfileLogout({ colors, style }) {
   const logout = useGlobal(state => state.logout)
@@ -171,7 +122,7 @@ export default function ProfileScreen({ navigation }) {
           borderBottomRightRadius:65,
         }}
       >
-        <ProfileImage user={user} colors={colors} />
+        <ProfileImage user={user} colors={colors} bc={colors.secondary} bg={colors.primary} />
         <CustomText
           style={{
             textAlign:'center',

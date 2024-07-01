@@ -43,6 +43,7 @@ import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
+import CustomText from "../components/UI/Custom/CustomText";
 
 
 const Header = ({ nav, icon }) => {
@@ -277,13 +278,22 @@ export default function AppStack() {
         name='edit-basics' 
         component={EditBasicsScreen} 
         options={({ navigation }) => ({
-          presentation:'modal',
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          // headerTitle: () => <Title title="Edit Profile Basics" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()}
+              style={{ marginBottom:verticalScale(5) }}
+            >
+              <FontAwesomeIcon 
+                icon='arrow-left'
+                size={verticalScale(20)}
+                color={colors.tint}
+              />
+            </TouchableOpacity>
+          ), 
+          headerTitle: () => <Title title="Edit Profile" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
             backgroundColor:colors.primary,
           },
-          title:'',
           headerShadowVisible: false, // border bottom invisible
         })}
       />
@@ -335,28 +345,6 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-
-      {/* <Stack.Screen 
-        name='photo-upload'
-        component={PhotoUpload}
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <FontAwesomeIcon 
-                icon='arrow-left'
-                size={22}
-                color={colors.tint}
-              />
-            </TouchableOpacity>
-          ), 
-          title: 'Upload Photos',
-          headerTitleStyle: { color:colors.tint, fontSize:20, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular' },
-          headerStyle: {
-            backgroundColor:colors.primary,
-          },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> */}
 
       {/* matching quiz */}
       <Stack.Screen
