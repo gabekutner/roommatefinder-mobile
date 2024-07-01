@@ -6,15 +6,18 @@ import {
   TouchableWithoutFeedback,
   View,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 import CustomText from "../../../components/UI/Custom/CustomText";
+import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import useGlobal from "../../../core/global";
 import ProfileImage from "../Components/ProfileImage";
 import { colors } from "../../../constants/colors";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 export default function EditBasicsScreen({ navigation }) {
@@ -43,7 +46,8 @@ export default function EditBasicsScreen({ navigation }) {
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.container}>
-            <View style={{ alignItems:'center' }}>
+            
+            <View style={{ alignItems:'center' }}>              
 
               <ProfileImage user={user} colors={colors} bc={colors.primary} bg={colors.secondary} />
 
@@ -129,6 +133,28 @@ export default function EditBasicsScreen({ navigation }) {
                 inputStyle={styles.inputText}
               />
 
+              <CustomButton onClick={() => {}} style={{ ...styles.goto, marginTop:0 }}>
+                <CustomText style={styles.gotoText}>
+                  Dorm
+                </CustomText>
+                <FontAwesomeIcon 
+                  icon="arrow-right"
+                  size={verticalScale(20)}
+                  color={colors.tertiary}
+                />
+              </CustomButton>
+
+              <CustomButton onClick={() => {}} style={styles.goto}>
+                <CustomText style={styles.gotoText}>
+                  Interests
+                </CustomText>
+                <FontAwesomeIcon 
+                  icon="arrow-right"
+                  size={verticalScale(20)}
+                  color={colors.tertiary}
+                />
+              </CustomButton>
+
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -161,37 +187,24 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(14),
     color:colors.tint,
   },
-  dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
+  goto: {
+    marginTop:verticalScale(10),
+    backgroundColor:colors.secondary,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    width:'102%',
+    padding:verticalScale(10),
+    alignItems:'center',
+    borderWidth:2,
+    shadowColor: '#222',
+    shadowOffset: { width: 7, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 1, 
+    borderRadius:0,
   },
-  icon: {
-    marginRight: 5,
-  },
-  label: {
-    position: 'absolute',
-    backgroundColor: 'white',
-    left: 22,
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 8,
-    fontSize: 14,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
+  gotoText: {
+    fontSize:verticalScale(14),
+    fontWeight:'600',
+    color:colors.tertiary
+  }
 })
