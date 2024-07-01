@@ -221,7 +221,10 @@ export default function AppStack() {
       />
       <Stack.Screen 
         name='messages' 
-        component={Message} 
+        component={Message}
+        options={{
+          headerShadowVisible: false, // border bottom invisible
+        }}
       />
       <Stack.Screen
         name='dorm'

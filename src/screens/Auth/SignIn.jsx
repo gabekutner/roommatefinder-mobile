@@ -176,7 +176,6 @@ export default function SignIn({ navigation }) {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        
       </KeyboardAvoidingView>
     </ImageBackground>
   )

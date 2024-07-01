@@ -43,11 +43,6 @@ export default function StartupScreen({ navigation }) {
 
       <View 
         resizeMode='cover'
-        // imageStyle={{ 
-        //   marginRight:100, 
-        //   marginTop:100,
-        //   // transform: [{rotate: '180deg'}] 
-        // }}
         style={styles.actionWrapper}
       >
         <CustomButton
@@ -75,7 +70,6 @@ const styles = StyleSheet.create({
   container: { 
     flex:1, 
     backgroundColor:colors.secondary 
-    // backgroundColor:'#ADA852'
   },
   titleWrapper: {
     position:'absolute', 
@@ -98,17 +92,10 @@ const styles = StyleSheet.create({
     left:0,
     right:0,
     paddingTop:verticalScale(15),
-    // borderTopLeftRadius:20,
-    // borderTopRightRadius:20,
-    // borderRadius:20,
     paddingBottom:verticalScale(35),
     flexDirection:'column',
     gap:verticalScale(14),
-    // backgroundColor:colors.secondary,
     paddingHorizontal:moderateScale(35),
-    // borderWidth:2,
-    // alignItems:'center'
-    // opacity:0.8
   },
   actionButton: {
     borderWidth:2,
