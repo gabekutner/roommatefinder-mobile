@@ -7,6 +7,7 @@ import {
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
 // import Base from "../Components/Base";
+import Card from "../Components/Card";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -30,7 +31,11 @@ export default function BaseWidgetsScreen({ navigation }) {
   }
 
   return (
-    <>
+    <Card
+      navigation={navigation} 
+      screen={"photos"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
       <Label 
         text="Customize your profile with prompts, quotes, and your social handles!" 
         style={styles.label} 
@@ -39,21 +44,20 @@ export default function BaseWidgetsScreen({ navigation }) {
         (P.S. Optional)
       </CustomText>
 
-      <View style={{ flexDirection:'column' }}>
+      {/* <View style={{ flexDirection:'column' }}>
         <View style={{ flex: 1, flexDirection: "row", marginHorizontal:moderateScale(20), gap:8 }}>
           <Square onClick={() => navigation.navigate('prompts')} text={'Prompts'} />
           <Square onClick={() => navigation.navigate('quotes')} text={'Quotes'} />
           <Square onClick={() => navigation.navigate('linktree')} text={'LinkTree'} />
         </View>
-      </View>
-    </>
+      </View> */}
+    </Card>
   )
 }
 
 const styles = StyleSheet.create({
   label: {
-    marginTop:verticalScale(30),
-    marginHorizontal:moderateScale(60),
+    marginTop:verticalScale(20),
     alignSelf:'center',
     textAlign:'center'
   }, 

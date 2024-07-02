@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  View
-} from 'react-native';
 
-import { 
-  moderateScale, 
-  verticalScale 
-} from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
-// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import Card from "./Components/Card";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
@@ -27,32 +21,36 @@ export default function HomeTownScreen({ navigation }) {
   }
 
   return (
-    <>
-      <View style={{ alignItems:'center', marginVertical:verticalScale(30), marginHorizontal:moderateScale(50) }}>
-        <Label text="Where are you from?" style={{ marginVertical:verticalScale(20) }} />
-        <CustomTextInput 
-          autoCorrect={false}
-          placeholder={'Ex. San Francisco, CA'}
-          value={form.hometown}
-          onChangeText={input => setHometown(input)}
-          colors={colors}
-          emoji={'📍'}
-          containerStyle={{
-            height:verticalScale(45),
-            marginBottom:verticalScale(14),
-            backgroundColor:colors.secondary,
-            borderRadius:0,
-            borderWidth:2,
-            borderColor:colors.tint,
-            width:'90%',
-            paddingRight:moderateScale(45)
-          }}
-          inputStyle={{
-            fontSize:verticalScale(14),
-            color:colors.tint,
-          }}
-        />
-      </View>
-    </>
+    <Card
+      navigation={navigation} 
+      screen={"graduation_year"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
+      <Label text="Where are you from?" style={{ marginVertical:verticalScale(20) }} />
+      <CustomTextInput 
+        autoCorrect={false}
+        placeholder={'Ex. San Francisco, CA'}
+        value={form.hometown}
+        onChangeText={input => setHometown(input)}
+        colors={colors}
+        icon={'location-dot'}
+        iconColor={colors.tertiary}
+        iconSize={verticalScale(13)}
+        containerStyle={{
+          height:verticalScale(45),
+          marginBottom:verticalScale(14),
+          backgroundColor:colors.secondary,
+          borderRadius:0,
+          borderWidth:2,
+          borderColor:colors.tint,
+          width:'90%',
+          paddingRight:moderateScale(45)
+        }}
+        inputStyle={{
+          fontSize:verticalScale(14),
+          color:colors.tint,
+        }}
+      />
+    </Card>
   )
 }

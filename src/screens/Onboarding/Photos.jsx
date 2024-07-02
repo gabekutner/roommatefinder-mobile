@@ -13,7 +13,7 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-// import Base from "./Components/Base";
+import Card from "./Components/Card";
 import Label from "./Components/Label";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from "../../components/UI/Custom/CustomText";
@@ -80,15 +80,11 @@ export default function PhotosScreen({ navigation }) {
   }
 
   return (
-    <>
-      <View
-        style={{
-          alignItems:'center',
-          flexDirection:'column',
-          gap:10,
-          marginVertical:verticalScale(30)
-        }}
-      >
+    <Card
+      navigation={navigation} 
+      screen={"photos"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
         <Label text="Add a few photos!" style={{ marginTop:verticalScale(20) }} />
         <CustomText
           style={{
@@ -101,6 +97,7 @@ export default function PhotosScreen({ navigation }) {
         >
           (P.S. Add at least 2 photos)
         </CustomText>
+
         <View
           style={{
             flexDirection:'row',
@@ -108,8 +105,8 @@ export default function PhotosScreen({ navigation }) {
           }}
         >
           <View style={styles.wrapper}>
-            <TouchableOpacity
-              onPress={() => launchLibrary('0')}
+            <CustomButton
+              onClick={() => launchLibrary('0')}
               style={{ 
                 ...styles.upload, 
                 borderColor:colors.tint, 
@@ -120,7 +117,7 @@ export default function PhotosScreen({ navigation }) {
                 ?
                   <Image
                     source={{uri:photo.thumbnail.uri}}
-                    style={styles.imageStyle}
+                    style={{ height:'100%', width:'100%' }}
                   />
                 :
                   <FontAwesomeIcon
@@ -129,17 +126,18 @@ export default function PhotosScreen({ navigation }) {
                     color={colors.tint}
                   />
               }
-            </TouchableOpacity>
+            </CustomButton>
             <PhotoNumber number="1" colors={colors} />
           </View>
+
           <View style={styles.wrapper}>
-            <TouchableOpacity
+            <CustomButton
               style={{
                 ...styles.upload,
                 borderColor:colors.tint,
                 borderStyle:photo.photo_1 ? 'solid' : 'dashed'
               }}
-              onPress={() => launchLibrary('photo_1')}
+              onClick={() => launchLibrary('photo_1')}
             >
               { photo.photo_1
                 ?
@@ -154,10 +152,11 @@ export default function PhotosScreen({ navigation }) {
                     color={colors.tint}
                   />
               }
-            </TouchableOpacity>
+            </CustomButton>
             <PhotoNumber number="2" colors={colors} />
           </View>
         </View>
+
         <View
           style={{
             flexDirection:'row',
@@ -165,13 +164,13 @@ export default function PhotosScreen({ navigation }) {
           }}
         >
           <View style={styles.wrapper}>
-            <TouchableOpacity
+            <CustomButton
               style={{
                 ...styles.upload,
                 borderColor:colors.tint,
                 borderStyle:photo.photo_2 ? 'solid' : 'dashed'
               }}
-              onPress={() => launchLibrary('photo_2')}
+              onClick={() => launchLibrary('photo_2')}
             >
               { photo.photo_2
                 ?
@@ -186,17 +185,18 @@ export default function PhotosScreen({ navigation }) {
                     color={colors.tint}
                   />
               }
-            </TouchableOpacity>
+            </CustomButton>
             <PhotoNumber number="3" colors={colors} />
           </View>
+
           <View style={styles.wrapper}>
-            <TouchableOpacity
+            <CustomButton
               style={{
                 ...styles.upload,
                 borderColor:colors.tint,
                 borderStyle:photo.photo_3 ? 'solid' : 'dashed'
               }}
-              onPress={() => launchLibrary('photo_3')}
+              onClick={() => launchLibrary('photo_3')}
             >
               { photo.photo_3
                 ?
@@ -211,12 +211,11 @@ export default function PhotosScreen({ navigation }) {
                     color={colors.tint}
                   />
               }
-            </TouchableOpacity>
+            </CustomButton>
             <PhotoNumber number="4" colors={colors} />
           </View>
         </View>
-      </View>
-    </>
+      </Card>
   )
 }
 
@@ -240,5 +239,6 @@ const styles = StyleSheet.create({
     height:'100%',
     width:'100%',
     borderRadius:10,
+    paddingVertical:0
   }
 })

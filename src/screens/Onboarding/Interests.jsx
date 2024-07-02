@@ -1,16 +1,12 @@
 import React from "react";
 import {
-  TouchableOpacity,
   StyleSheet,
   FlatList
 } from 'react-native';
 
-import { 
-  moderateScale,
-  verticalScale 
-} from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
-// import Base from "./Components/Base";
+import Card from "./Components/Card";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
@@ -41,12 +37,15 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <>
+    <Card
+      navigation={navigation} 
+      screen={"widgets"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
       <Label 
         text="What're you into?" 
         style={{ 
-          marginTop:verticalScale(50), 
-          marginBottom:verticalScale(20),
+          marginVertical:verticalScale(20),
           alignSelf:'center'
         }} 
       />
@@ -80,7 +79,7 @@ export default function InterestsScreen({ navigation }) {
           height:'50%'
         }}
       /> 
-    </>
+    </Card>
   )
 }
 

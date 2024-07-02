@@ -59,61 +59,40 @@ export default function AccountSetupStack() {
         component={SexScreen}
         options={{ headerShown:false }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name='hometown'
         component={HomeTownScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('graduation_year')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       <Stack.Screen
         name='graduation_year'
         component={GraduationYearScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('major')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       <Stack.Screen
         name='major'
         component={MajorScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('interests')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       <Stack.Screen
         name='interests'
         component={InterestsScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('widgets')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       <Stack.Screen
         name='widgets'
         component={BaseWidgetsScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('photos')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
+      <Stack.Screen
+        name='photos'
+        component={PhotosScreen}
+        options={{ headerShown:false }}
+      /> 
+      {/* 
+      
+      
+      
       <Stack.Screen
         name='linktree'
         component={LinkTreeScreen}
@@ -143,17 +122,7 @@ export default function AccountSetupStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       /> 
-      <Stack.Screen
-        name='photos'
-        component={PhotosScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('dorm')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
+      
       <Stack.Screen
         name='dorm'
         component={DormScreen}
