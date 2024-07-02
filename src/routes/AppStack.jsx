@@ -23,11 +23,8 @@ import Search from "../screens/Extras/Search";
 import Requests from '../screens/Extras/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";
-import EditProfileScreen from "../screens/Profile/EditProfile"; // deprecated
 import ProfileDetail from '../screens/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
-import DormScreen from "../screens/Onboarding/Dorm";
-import InterestsScreen from "../screens/Onboarding/Interests";
 
 // matching quiz
 import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
@@ -227,28 +224,6 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         }}
       />
-      <Stack.Screen
-        name='dorm'
-        component={DormScreen}
-        options={({ navigation }) => ({
-          presentation:'modal',
-          headerTitle: () => <Title title="Change Dorm" color={colors.tint} fontSize={verticalScale(20)} />,
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />
-      <Stack.Screen
-        name='interests'
-        component={InterestsScreen}
-        options={({ navigation }) => ({
-          presentation:'modal',
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerTitle: () => <Title title="Change Interests" color={colors.tint} fontSize={verticalScale(20)} />,          
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />
       <Stack.Screen 
         name='requests' 
         component={Requests} 
@@ -322,29 +297,6 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      <Stack.Screen 
-        name='edit-profile' 
-        component={EditProfileScreen} 
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
-              style={{ marginBottom:verticalScale(5) }}
-            >
-              <FontAwesomeIcon 
-                icon='arrow-left'
-                size={verticalScale(20)}
-                color={colors.tint}
-              />
-            </TouchableOpacity>
-          ), 
-          headerTitle: () => <Title title="Edit Profile" color={colors.tint} fontSize={verticalScale(20)} />,
-          headerStyle: {
-            backgroundColor:colors.primary,
-          },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />
 
       {/* matching quiz */}
       <Stack.Screen
@@ -352,7 +304,6 @@ export default function AppStack() {
         component={SocialBatteryScreen}
         options={({ navigation }) => ({
           headerLeft:() => <View />,
-          // headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
           headerRight: () => <Header nav={() => navigation.navigate('clean-room')} icon="arrow-right" />,
           title: '',
           headerStyle: { backgroundColor:colors.primary },
@@ -446,6 +397,7 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       /> 
+
     </Stack.Navigator>
   ) 
 }

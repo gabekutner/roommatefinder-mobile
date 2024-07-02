@@ -82,7 +82,6 @@ function responseMessageType(set, get, data) {
 function responseRequestConnect(set, get, connection) {
   const user = get().user
 
-
   // if i was the one that made the connect request,
   // update the search list row
   if (user.id === connection.sender.id) {
@@ -111,9 +110,6 @@ function responseRequestConnect(set, get, connection) {
     }
   }
 }
-
-
-
 
 function responseRequestAccept(set, get, connection) {
   const user = get().user
@@ -623,69 +619,18 @@ const useGlobal = create((set, get) => ({
   },
 
   //---------------------
-  //     Image Upload - not necessary, move to uploadPhotos
-  // ---------------------
-  // image: null,
-
-
-  // uploadImage: async (file, key, user) => {
-  //   if (user.token) {
-  //     try {
-
-
-  //       const dataForm = new FormData()
-  //       const imageUri = file.uri
-  //       const fileName = imageUri.split('/').pop()
-  //       const fileType = fileName.split('.')[1]
-  //       dataForm.append('image', {
-  //         name: fileName,
-  //         type: Platform.OS === 'ios' ? file.type : 'image/' + fileType,
-  //         uri:
-  //           Platform.OS === 'android'
-  //             ? file.uri
-  //             : file.uri.replace('file://', ''),
-  //       })
-
-  //       dataForm.append('key', key)
-
-  //       const response = await api({
-  //         method: 'post',
-  //         url: '/api/v1/photos/',
-  //         data: dataForm,
-  //         headers: {"Authorization": `Bearer ${user.token}`, 'Content-Type' : 'multipart/form-data'},
-  //       })
-        
-  //       if (response.status !== 200) {
-  //         throw 'Authentication error'
-  //       }
-
-  //       console.log('upload-photo success')
-  //       set((state) => ({
-  //         image:imageUri
-  //       }))
-        
-  //     } catch(error) {
-  //       console.log('Global.uploadImage error: ', error)
-  //     }
-  //   }
-  // },
-
-  //---------------------
   //      Websocket
   //---------------------
   socket: null,
 
   socketConnect: async () => {
     const tokens = await secure.get('tokens')
-
     const socket = new WebSocket(
       `ws://${ADDRESS}/chat/?token=${tokens.access}`
     )
 
     socket.onopen = () => {
       console.log('socket.onopen')
-
-
       socket.send(JSON.stringify({
         source: 'request.list'
       }))
@@ -729,7 +674,6 @@ const useGlobal = create((set, get) => ({
       socket:socket
     }))
   },
-
 
   socketDisconnect: () => {
     const socket = get().socket
