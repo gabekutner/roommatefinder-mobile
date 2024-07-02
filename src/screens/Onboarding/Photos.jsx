@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import {
  View,
  StyleSheet,
- Image,
- TouchableOpacity
+ Image
 } from 'react-native';
 
-import {
- verticalScale,
- scale
-} from "react-native-size-matters";
+import { verticalScale, scale } from "react-native-size-matters";
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
@@ -21,31 +17,6 @@ import CustomText from "../../components/UI/Custom/CustomText";
 import { colors } from "../../constants/colors";
 import useGlobal from "../../core/global";
 
-
-function PhotoNumber({ number, colors }) {
- return (
-   <View
-     style={{
-       position:'absolute',
-       top:-10,
-       left:-10,
-       padding:verticalScale(6),
-       backgroundColor:colors.accent,
-       borderRadius:0,
-       borderWidth:2,
-       shadowOffset: { width: 7, height: 5 },
-       shadowOpacity: 1,
-       shadowRadius: 1, 
-     }}
-   >
-     <FontAwesomeIcon
-       icon={number}
-       size={verticalScale(15)}
-       color={colors.white}
-     />
-   </View>
- )
-}
 
 export default function PhotosScreen({ navigation }) {
 
@@ -98,18 +69,12 @@ export default function PhotosScreen({ navigation }) {
           (P.S. Add at least 2 photos)
         </CustomText>
 
-        <View
-          style={{
-            flexDirection:'row',
-            gap:10
-          }}
-        >
+        <View style={styles.rowWrapper}>
           <View style={styles.wrapper}>
             <CustomButton
               onClick={() => launchLibrary('0')}
               style={{ 
                 ...styles.upload, 
-                borderColor:colors.tint, 
                 borderStyle:photo.thumbnail ? 'solid' : 'dashed'
               }}
             >
@@ -117,7 +82,8 @@ export default function PhotosScreen({ navigation }) {
                 ?
                   <Image
                     source={{uri:photo.thumbnail.uri}}
-                    style={{ height:'100%', width:'100%' }}
+                    style={styles.imageStyle}
+                    resizeMode="cover"
                   />
                 :
                   <FontAwesomeIcon
@@ -127,23 +93,23 @@ export default function PhotosScreen({ navigation }) {
                   />
               }
             </CustomButton>
-            <PhotoNumber number="1" colors={colors} />
+            {/* <PhotoNumber number="1" colors={colors} /> */}
           </View>
 
           <View style={styles.wrapper}>
             <CustomButton
+              onClick={() => launchLibrary('photo_1')}
               style={{
                 ...styles.upload,
-                borderColor:colors.tint,
                 borderStyle:photo.photo_1 ? 'solid' : 'dashed'
               }}
-              onClick={() => launchLibrary('photo_1')}
             >
               { photo.photo_1
                 ?
                   <Image
                     source={{uri:photo.photo_1.uri}}
                     style={styles.imageStyle}
+                    resizeMode="cover"
                   />
                 :
                   <FontAwesomeIcon
@@ -153,30 +119,24 @@ export default function PhotosScreen({ navigation }) {
                   />
               }
             </CustomButton>
-            <PhotoNumber number="2" colors={colors} />
           </View>
         </View>
 
-        <View
-          style={{
-            flexDirection:'row',
-            gap:10
-          }}
-        >
+        <View style={styles.rowWrapper}>
           <View style={styles.wrapper}>
             <CustomButton
+              onClick={() => launchLibrary('photo_2')}
               style={{
                 ...styles.upload,
-                borderColor:colors.tint,
                 borderStyle:photo.photo_2 ? 'solid' : 'dashed'
               }}
-              onClick={() => launchLibrary('photo_2')}
             >
               { photo.photo_2
                 ?
                   <Image
                     source={{uri:photo.photo_2.uri}}
                     style={styles.imageStyle}
+                    resizeMode="cover"
                   />
                 :
                   <FontAwesomeIcon
@@ -186,23 +146,22 @@ export default function PhotosScreen({ navigation }) {
                   />
               }
             </CustomButton>
-            <PhotoNumber number="3" colors={colors} />
           </View>
 
           <View style={styles.wrapper}>
             <CustomButton
+              onClick={() => launchLibrary('photo_3')}
               style={{
                 ...styles.upload,
-                borderColor:colors.tint,
                 borderStyle:photo.photo_3 ? 'solid' : 'dashed'
               }}
-              onClick={() => launchLibrary('photo_3')}
             >
               { photo.photo_3
                 ?
                   <Image
                     source={{uri:photo.photo_3.uri}}
                     style={styles.imageStyle}
+                    resizeMode="cover"
                   />
                 :
                   <FontAwesomeIcon
@@ -212,7 +171,6 @@ export default function PhotosScreen({ navigation }) {
                   />
               }
             </CustomButton>
-            <PhotoNumber number="4" colors={colors} />
           </View>
         </View>
       </Card>
@@ -220,6 +178,10 @@ export default function PhotosScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  rowWrapper: {
+    flexDirection:'row',
+    gap:10
+  },
   wrapper: {
     alignItems:'center',
     flexDirection:'row',
@@ -233,12 +195,13 @@ const styles = StyleSheet.create({
     height:scale(130),
     width:scale(130),
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    borderColor:colors.tint, 
   },
   imageStyle: {
-    height:'100%',
-    width:'100%',
+    height:scale(130),
+    width:scale(130),
     borderRadius:10,
-    paddingVertical:0
+    borderWidth:2
   }
 })
