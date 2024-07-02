@@ -10,7 +10,7 @@ import {
 } from 'react-native-size-matters';
 import {Slider} from '@miblanchard/react-native-slider';
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 
 import useGlobal from "../../../core/global";
@@ -25,7 +25,7 @@ export default function NoiseLevelScreen() {
   const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
-    <Base>
+    <>
       <View 
         style={{ 
           alignItems:'center',
@@ -73,7 +73,7 @@ export default function NoiseLevelScreen() {
           </CustomText>
         </View>
       </View>
-    </Base>
+    </>
   )
 }
 

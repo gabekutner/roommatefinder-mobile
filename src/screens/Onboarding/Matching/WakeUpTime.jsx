@@ -9,7 +9,7 @@ import {
   verticalScale
 } from 'react-native-size-matters';
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
@@ -23,7 +23,7 @@ export default function WakeUpScreen() {
   const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
-    <Base>
+    <>
       <View 
         style={{ 
           alignItems:'center',
@@ -61,7 +61,7 @@ export default function WakeUpScreen() {
           />
         </View>
       </View>
-    </Base>
+    </>
   )
 }
 

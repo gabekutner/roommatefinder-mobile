@@ -8,7 +8,7 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
 
@@ -26,7 +26,7 @@ export default function MajorScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <View style={{ alignItems:'center', marginVertical:verticalScale(30), marginHorizontal:moderateScale(50) }}>
         <Label text="What do you want to major in?" style={{ marginVertical:verticalScale(20), textAlign:'center' }} />
         <CustomTextInput 
@@ -52,6 +52,6 @@ export default function MajorScreen({ navigation }) {
           }}
         />
       </View>
-    </Base>
+    </>
   )
 }

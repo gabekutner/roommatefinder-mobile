@@ -9,7 +9,7 @@ import {
   verticalScale
 } from 'react-native-size-matters';
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -41,7 +41,7 @@ export default function SharingPolicyScreen({
   }
 
   return (
-    <Base>
+    <>
       <View 
         style={{ 
           alignItems:'center',
@@ -119,7 +119,7 @@ export default function SharingPolicyScreen({
           </CustomText>
         </CustomButton>
       </View>
-    </Base>
+    </>
   )
 }
 

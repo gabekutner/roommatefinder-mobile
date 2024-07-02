@@ -97,7 +97,7 @@ export default function AccountSetupStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name='hometown'
         component={HomeTownScreen}
         options={({ navigation }) => ({
@@ -204,7 +204,6 @@ export default function AccountSetupStack() {
         })}
       />
 
-      {/* matching quiz */}
       <Stack.Screen
         name='matching-prompt'
         component={MatchingPromptScreen}
@@ -325,7 +324,6 @@ export default function AccountSetupStack() {
         })}
       />
 
-      {/* preview */}
       <Stack.Screen 
         name="preview"
         component={ProfileDetail}
@@ -333,7 +331,7 @@ export default function AccountSetupStack() {
           headerShown:false,
           presentation:'modal'
         }}
-      />
+      /> */}
     </Stack.Navigator>
   )
 }

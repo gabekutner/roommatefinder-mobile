@@ -12,7 +12,7 @@ import {
 } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -45,7 +45,7 @@ export default function QuotesScreen({ navigation }) {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Base>  
+      <>  
         <View 
           style={{ 
             alignItems:'center',
@@ -171,7 +171,7 @@ export default function QuotesScreen({ navigation }) {
           }
           
         </View>
-      </Base>
+      </>
     </KeyboardAvoidingView>
   )
 }

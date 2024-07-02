@@ -10,7 +10,7 @@ import {
 } from 'react-native-size-matters';
 import {Slider} from '@miblanchard/react-native-slider';
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 
 import useGlobal from "../../../core/global";
@@ -24,7 +24,7 @@ export default function InRoomScreen() {
   const setMatchingForm = useGlobal(state => state.setMatchingForm)
 
   return (
-    <Base>
+    <>
       <View 
         style={{ 
           alignItems:'center',
@@ -72,7 +72,7 @@ export default function InRoomScreen() {
           </CustomText>
         </View>
       </View>
-    </Base>
+    </>
   )
 }
 

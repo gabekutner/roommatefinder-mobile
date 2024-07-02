@@ -10,7 +10,7 @@ import {
   moderateScale 
 } from "react-native-size-matters";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 
@@ -31,7 +31,7 @@ export default function DormScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <Label 
         text="Where will you be living next year?" 
         style={{ 
@@ -73,7 +73,7 @@ export default function DormScreen({ navigation }) {
           marginHorizontal:moderateScale(50),
         }}
       /> 
-    </Base>
+    </>
   )
 }
 

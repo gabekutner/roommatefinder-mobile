@@ -6,7 +6,7 @@ import {
 
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -30,7 +30,7 @@ export default function BaseWidgetsScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <Label 
         text="Customize your profile with prompts, quotes, and your social handles!" 
         style={styles.label} 
@@ -46,7 +46,7 @@ export default function BaseWidgetsScreen({ navigation }) {
           <Square onClick={() => navigation.navigate('linktree')} text={'LinkTree'} />
         </View>
       </View>
-    </Base>
+    </>
   )
 }
 

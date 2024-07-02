@@ -10,7 +10,7 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 
@@ -30,7 +30,7 @@ export default function SexScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <View 
         style={{ 
           flexDirection:'column', 
@@ -92,7 +92,7 @@ export default function SexScreen({ navigation }) {
           </CustomText>
         </TouchableOpacity>
       </View>
-    </Base>
+    </>
   )
 }
 

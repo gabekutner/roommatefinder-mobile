@@ -15,7 +15,7 @@ import {
 } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Base from "../Components/Base";
+// import Base from "../Components/Base";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
@@ -56,7 +56,7 @@ export default function QuotesScreen({ navigation }) {
     <SafeAreaView style={{ flex:1, backgroundColor:colors.primary }}>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <Base>
+          <>
             <View style={styles.wrapper}>
               <CustomTextInput 
                 autoCorrect={false}
@@ -123,7 +123,7 @@ export default function QuotesScreen({ navigation }) {
                 <CustomText style={{...styles.linkedText, color:colors.white }}>+ Add a prompt</CustomText>
               </CustomButton>
             </View>
-          </Base>
+          </>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>

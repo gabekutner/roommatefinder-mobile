@@ -8,7 +8,7 @@ import {
   moderateScale 
 } from "react-native-size-matters";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
@@ -51,7 +51,7 @@ export default function DoneScreen({navigation}) {
  }
 
  return (
-   <Base>
+   <>
      <Label
        text="You're all done!"
        style={{
@@ -145,6 +145,6 @@ export default function DoneScreen({navigation}) {
            />
          : null
        }
-   </Base>
+   </>
  )
 }

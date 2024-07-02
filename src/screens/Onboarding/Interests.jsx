@@ -10,7 +10,7 @@ import {
   verticalScale 
 } from "react-native-size-matters";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
@@ -41,7 +41,7 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <Label 
         text="What're you into?" 
         style={{ 
@@ -80,7 +80,7 @@ export default function InterestsScreen({ navigation }) {
           height:'50%'
         }}
       /> 
-    </Base>
+    </>
   )
 }
 

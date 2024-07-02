@@ -45,7 +45,7 @@ export default function LinkTreeScreen({ navigation }) {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Base>  
+      <>  
         <View 
           style={{ 
             alignItems:'center',
@@ -169,7 +169,7 @@ export default function LinkTreeScreen({ navigation }) {
           }
           
         </View>
-      </Base>
+      </>
     </KeyboardAvoidingView>
   )
 }

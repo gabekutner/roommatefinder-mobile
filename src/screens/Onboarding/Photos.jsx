@@ -13,7 +13,7 @@ import {
 import { launchImageLibrary } from "react-native-image-picker";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import Base from "./Components/Base";
+// import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from "../../components/UI/Custom/CustomText";
@@ -80,7 +80,7 @@ export default function PhotosScreen({ navigation }) {
   }
 
   return (
-    <Base>
+    <>
       <View
         style={{
           alignItems:'center',
@@ -216,7 +216,7 @@ export default function PhotosScreen({ navigation }) {
           </View>
         </View>
       </View>
-    </Base>
+    </>
   )
 }
 
