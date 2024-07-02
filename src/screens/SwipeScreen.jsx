@@ -11,7 +11,6 @@ import {
 import { verticalScale } from 'react-native-size-matters';
 
 import Empty from '../components/Empty';
-import CustomText from '../components/UI/Custom/CustomText';
 import CardItem from '../components/Card';
 
 import useGlobal from '../core/global';
@@ -166,7 +165,8 @@ const Card = ({ item, data, index, colors, removeItem, navigation}) => {
         style={{
           backgroundColor: colors.secondary,
           borderColor: colors.constBlack,
-          borderWidth: 3,
+          borderWidth: 2,
+          borderRadius:20,
           transform: [
             { translateX: pan.x },
             { rotate: rotate },
