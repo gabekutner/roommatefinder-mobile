@@ -60,6 +60,7 @@ export default function EditBasicsScreen({ navigation }) {
                   onChangeText={name => _setForm({ ..._form, name })}
                   icon="signature"
                   iconColor={colors.tertiary}
+                  iconSize={verticalScale(13)}
                   colors={colors}
                   containerStyle={{ ...styles.inputContainer, width:'60%' }}
                   inputStyle={styles.inputText}
@@ -73,6 +74,7 @@ export default function EditBasicsScreen({ navigation }) {
                   onChangeText={graduation_year => _setForm({ ..._form, graduation_year })}
                   icon="calendar-days"
                   iconColor={colors.tertiary}
+                  iconSize={verticalScale(13)}
                   colors={colors}
                   containerStyle={{ ...styles.inputContainer, width:'40%' }}
                   inputStyle={styles.inputText}
@@ -88,6 +90,7 @@ export default function EditBasicsScreen({ navigation }) {
                   onChangeText={city => _setForm({ ..._form, city })}
                   icon="city"
                   iconColor={colors.tertiary}
+                  iconSize={verticalScale(13)}
                   colors={colors}
                   containerStyle={{ ...styles.inputContainer, width:'70%' }}
                   inputStyle={styles.inputText}
@@ -100,6 +103,7 @@ export default function EditBasicsScreen({ navigation }) {
                   onChangeText={state => _setForm({ ..._form, state })}
                   icon="globe"
                   iconColor={colors.tertiary}
+                  iconSize={verticalScale(13)}
                   colors={colors}
                   containerStyle={{ ...styles.inputContainer, width:'30%' }}
                   inputStyle={styles.inputText}
@@ -114,6 +118,7 @@ export default function EditBasicsScreen({ navigation }) {
                 onChangeText={major => _setForm({ ..._form, major })}
                 icon="graduation-cap"
                 iconColor={colors.tertiary}
+                iconSize={verticalScale(13)}
                 colors={colors}
                 containerStyle={{ ...styles.inputContainer, width:'102%' }}
                 inputStyle={styles.inputText}
@@ -123,11 +128,12 @@ export default function EditBasicsScreen({ navigation }) {
                 autoCapitalize={'none'}
                 autoCorrect={false}
                 multiline={true}
-                placeholder={'Some super interesting bio here ...'}
+                placeholder={'Some super interesting bio ...'}
                 value={_form.description}
                 onChangeText={description => _setForm({ ..._form, description })}
                 icon="address-book"
                 iconColor={colors.tertiary}
+                iconSize={verticalScale(13)}
                 colors={colors}
                 containerStyle={{ ...styles.inputContainer, width:'102%', height:verticalScale(100) }}
                 inputStyle={styles.inputText}

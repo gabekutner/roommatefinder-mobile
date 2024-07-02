@@ -67,6 +67,8 @@ export default function ProfileScreen({ navigation }) {
 
   const user = useGlobal(state => state.user)
   const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+  const deleteProfile = useGlobal(state => state.deleteProfile)
+  const logout = useGlobal(state => state.logout)
 
   const [item, setItem] = useState()
   const [showContactForm, setShowContactForm] = useState(false)
@@ -98,12 +100,15 @@ export default function ProfileScreen({ navigation }) {
       Alert.alert(`${title}`, `${msg}`, [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
+          onPress: () => console.log('cancel profile deletion'),
           style: 'cancel',
         },
         {
           text: `${text}`, 
-          onPress: () => console.log('pressed'),
+          onPress: () => {
+            deleteProfile(user)
+            logout()
+          },
           style: `${style}`
         },
       ])
