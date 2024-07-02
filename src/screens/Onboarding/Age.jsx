@@ -14,7 +14,11 @@ export default function AgeScreen({ navigation }) {
   const setForm = useGlobal(state => state.setForm)
 
   return (
-    <Card navigation={navigation} screen={"sex"} style={{ marginTop:verticalScale(30) }}>
+    <Card 
+      navigation={navigation} 
+      screen={"sex"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
       <Label text="How old are you?" style={{ marginVertical:verticalScale(20) }} />
       <DatePicker
         inlined

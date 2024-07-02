@@ -40,32 +40,6 @@ import { colors } from "../constants/colors";
 import ProfileDetail from "../screens/ProfileDetail";
 import useGlobal from "../core/global";
 
-const Header = ({ nav, icon }) => {
-  return (
-    <CustomButton
-      onClick={nav}
-      style={{
-        marginTop:verticalScale(2),
-        marginBottom:verticalScale(5),
-        backgroundColor:colors.accent,
-        width:scale(30),
-        height:scale(30),
-        shadowColor:'#222',
-        shadowOffset: { width:5, height:3 },
-        shadowOpacity:1,
-        shadowRadius:1, 
-        borderRadius:0,
-        borderWidth:2
-      }}
-    >
-      <FontAwesomeIcon
-        icon={icon}
-        size={verticalScale(20)}
-        color={colors.white}
-      />
-   </CustomButton>
-  )
-}
 
 export default function AccountSetupStack() {
   return (
@@ -78,24 +52,12 @@ export default function AccountSetupStack() {
       <Stack.Screen
         name='age'
         component={AgeScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('sex')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       <Stack.Screen
         name='sex'
         component={SexScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('hometown')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        options={{ headerShown:false }}
       />
       {/* <Stack.Screen
         name='hometown'

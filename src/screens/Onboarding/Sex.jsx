@@ -13,9 +13,11 @@ import {
 // import Base from "./Components/Base";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
+import Card from "./Components/Card";
 
 
 export default function SexScreen({ navigation }) {
@@ -30,69 +32,45 @@ export default function SexScreen({ navigation }) {
   }
 
   return (
-    <>
-      <View 
-        style={{ 
-          flexDirection:'column', 
-          gap:verticalScale(15),
-          marginHorizontal:moderateScale(100),
-          alignItems:'center',
-          marginVertical:verticalScale(30)
+    <Card 
+      navigation={navigation} 
+      screen={"hometown"} 
+      style={{ marginTop:verticalScale(30) }}
+    >
+      <Label text="I am a ..." style={{ marginVertical:verticalScale(20) }} />
+      <CustomButton 
+        onClick={() => toggleSelected("M")}
+        style={{
+          ...styles.option, 
+          backgroundColor: selected === "M" ? colors.accent : colors.secondary,
         }}
       >
-        <Label text="I am a ..." style={{ marginVertical:verticalScale(20) }} />
-        <TouchableOpacity 
-          onPress={() => toggleSelected("M")}
-          style={[
-            styles.option, 
-            { 
-              borderColor: colors.tint,
-              backgroundColor: selected === "M" ? colors.accent : colors.secondary,
-              shadowColor: '#222',
-              shadowOffset: { width: 7, height: 5 },
-              shadowOpacity: 1,
-              shadowRadius: 1,  
-            }
-          ]}
+        <CustomText 
+          style={{
+            ...styles.text, 
+            color: selected === "M" ? colors.white : colors.tint
+          }}
         >
-          <CustomText 
-            style={[
-              styles.text, 
-              { 
-                color: selected === "M" ? colors.white : colors.tint
-              }
-            ]}
-          >
-            Guy
-          </CustomText>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          onPress={() => toggleSelected("F")}
-          style={[
-            styles.option, 
-            { 
-              borderColor: colors.constBlack,
-              backgroundColor: selected === "F" ? colors.accent : colors.secondary,
-              shadowColor: '#222',
-              shadowOffset: { width: 7, height: 5 },
-              shadowOpacity: 1,
-              shadowRadius: 1,  
-            }
-          ]}
+          Guy
+        </CustomText>
+      </CustomButton>
+      <CustomButton 
+        onClick={() => toggleSelected("F")}
+        style={{
+          ...styles.option, 
+          backgroundColor: selected === "F" ? colors.accent : colors.secondary,
+        }}
+      >
+        <CustomText 
+          style={{
+            ...styles.text, 
+            color: selected === "F" ? colors.white : colors.tint
+          }}
         >
-          <CustomText 
-            style={[
-              styles.text, 
-              { 
-                color: selected === "F" ? colors.white : colors.tint
-              }
-            ]}
-          >
-            Girl
-          </CustomText>
-        </TouchableOpacity>
-      </View>
-    </>
+          Guy
+        </CustomText>
+      </CustomButton>
+    </Card>
   )
 }
 
@@ -101,6 +79,13 @@ const styles = StyleSheet.create({
     paddingVertical:verticalScale(10),
     paddingHorizontal:moderateScale(50),
     borderWidth:2,
+    shadowColor: '#222',
+    shadowOffset: { width: 7, height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 1,  
+    borderColor: colors.tint,
+    borderRadius:0,
+    marginVertical:verticalScale(5)
   },
   text: { 
     fontSize:verticalScale(14),

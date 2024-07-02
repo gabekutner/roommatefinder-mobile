@@ -49,10 +49,15 @@ const Header = ({ navigation, screen }) => {
   )
 }
 
-export default function Card({ navigation, children, screen, style }) {
+export default function Card({ 
+  navigation,
+  children, 
+  screen, 
+  style,
+}) {
   return (
     <ImageBackground 
-      source={require('../../../assets/images/image_part_001.png')}
+      source={require('../../../assets/images/image_part_002.png')}
       style={{ flex:1, backgroundColor:colors.secondary }}
       imageStyle={{ opacity:0.5 }}
     >
