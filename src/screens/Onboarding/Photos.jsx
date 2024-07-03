@@ -53,7 +53,7 @@ export default function PhotosScreen({ navigation }) {
   return (
     <Card
       navigation={navigation} 
-      screen={"photos"} 
+      screen={"dorm"} 
       style={{ marginTop:verticalScale(30) }}
     >
         <Label text="Add a few photos!" style={{ marginTop:verticalScale(20) }} />

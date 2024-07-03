@@ -5,18 +5,16 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { 
-  verticalScale, 
-  moderateScale 
-} from "react-native-size-matters";
+import { verticalScale, moderateScale } from "react-native-size-matters";
 
-// import Base from "./Components/Base";
+import Card from "./Components/Card";
 import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 
 import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
 import { dormsData } from "../../assets/Dictionary";
+import CustomButton from "../../components/UI/Custom/CustomButton";
 
 
 export default function DormScreen({ navigation }) {
@@ -31,11 +29,15 @@ export default function DormScreen({ navigation }) {
   }
 
   return (
-    <>
+    <Card
+      navigation={navigation} 
+      screen={""} 
+      style={{ marginTop:verticalScale(30) }}
+    >
       <Label 
         text="Where will you be living next year?" 
         style={{ 
-          marginTop:verticalScale(50), 
+          marginTop:verticalScale(20), 
           marginBottom:verticalScale(20),
           alignSelf:'center',
           marginHorizontal:moderateScale(25),
@@ -47,33 +49,30 @@ export default function DormScreen({ navigation }) {
         data={dormsData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => toggleSelected(item.id)}
-            style={[
-              styles.option, 
-              {
-                backgroundColor: selected === item.id ? colors.accent : colors.secondary,
-              }
-            ]}
+          <CustomButton
+            onClick={() => toggleSelected(item.id)}
+            style={{
+              ...styles.option, 
+              backgroundColor: selected === item.id ? colors.accent : colors.secondary,
+            }}
           >
             <CustomText 
-              style={[
-                styles.text, 
-                { 
-                  color: selected === item.id ? colors.white : colors.tint,
-                }
-              ]}
+              style={{
+                ...styles.text, 
+                color: selected === item.id ? colors.white : colors.tint,
+              }}
             >
               {item.dorm}
             </CustomText>
-          </TouchableOpacity>
+          </CustomButton>
         )}
         style={{
           flexDirection:'column', 
           marginHorizontal:moderateScale(50),
+          height:'50%'
         }}
       /> 
-    </>
+    </Card>
   )
 }
 
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:moderateScale(30),
     borderWidth:2,
     alignItems:'center',
-    marginBottom:verticalScale(20),
+    marginBottom:verticalScale(10),
     borderColor: colors.tint,
     shadowColor:'#222',
     shadowOffset:{ width: 7, height: 5 },

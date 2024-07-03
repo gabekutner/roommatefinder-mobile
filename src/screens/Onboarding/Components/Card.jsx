@@ -2,7 +2,7 @@ import React from "react";
 import {
   View, 
   StyleSheet, 
-  ImageBackground 
+  ImageBackground,
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";

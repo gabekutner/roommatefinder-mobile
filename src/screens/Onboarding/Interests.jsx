@@ -44,10 +44,7 @@ export default function InterestsScreen({ navigation }) {
     >
       <Label 
         text="What're you into?" 
-        style={{ 
-          marginVertical:verticalScale(20),
-          alignSelf:'center'
-        }} 
+        style={{ marginVertical:verticalScale(20), alignSelf:'center' }} 
       />
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -62,12 +59,10 @@ export default function InterestsScreen({ navigation }) {
             }}
           >
             <CustomText 
-              style={[
-                styles.text, 
-                { 
-                  color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
-                }
-              ]}
+              style={{
+                ...styles.text, 
+                color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
+              }}
             >
               {item.interest}
             </CustomText>
@@ -95,7 +90,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 1,  
     borderColor: colors.tint,
-    borderRadius:0,
   },
   text: { 
     fontSize:verticalScale(14),

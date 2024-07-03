@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 1,  
     borderColor: colors.tint,
-    borderRadius:0,
     marginVertical:verticalScale(5)
   },
   text: { 

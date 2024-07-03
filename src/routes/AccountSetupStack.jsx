@@ -89,6 +89,11 @@ export default function AccountSetupStack() {
         component={PhotosScreen}
         options={{ headerShown:false }}
       /> 
+      <Stack.Screen
+        name='dorm'
+        component={DormScreen}
+        options={{ headerShown:false }}
+      />
       {/* 
       
       
@@ -123,17 +128,7 @@ export default function AccountSetupStack() {
         })}
       /> 
       
-      <Stack.Screen
-        name='dorm'
-        component={DormScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('matching-prompt')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />
+      
 
       <Stack.Screen
         name='matching-prompt'
