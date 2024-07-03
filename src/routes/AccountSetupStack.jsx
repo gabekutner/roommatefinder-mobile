@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { verticalScale, scale } from "react-native-size-matters";
+import { verticalScale, moderateScale } from "react-native-size-matters";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +41,7 @@ import ProfileDetail from "../screens/ProfileDetail";
 import useGlobal from "../core/global";
 
 
+
 export default function AccountSetupStack() {
   return (
     <Stack.Navigator initialRouteName="start">
@@ -48,6 +49,13 @@ export default function AccountSetupStack() {
         name='start'
         component={PromptScreen}
         options={{ headerShown:false }}
+        initialParams={{ 
+          title: 'Ready to kick off your profile?',
+          subtitle: "It'll only take a couple of minutes.",
+          text: "That way",
+          screen:'age',
+          icon: "arrow-right-to-bracket"
+        }}
       />
       <Stack.Screen
         name='age'
@@ -93,6 +101,30 @@ export default function AccountSetupStack() {
         name='dorm'
         component={DormScreen}
         options={{ headerShown:false }}
+      />
+      <Stack.Screen
+        name='matching-prompt'
+        component={PromptScreen}
+        options={{ headerShown:false }}
+        initialParams={{ 
+          title: 'Want to take our roommate matching quiz?',
+          subtitle: "This'll up our game in matching you with people you'll get along with better!",
+          text: "Let's do it!",
+          screen:'',
+          screen2:'done'
+        }}
+      />
+      <Stack.Screen
+        name='done'
+        component={PromptScreen}
+        options={{ headerShown:false }}
+        initialParams={{ 
+          title: "You're all done!",
+          subtitle: "Hit submit to create your profile and get swiping!",
+          text: "Submit",
+          screen:'',
+          screen2:''
+        }}
       />
       {/* 
       

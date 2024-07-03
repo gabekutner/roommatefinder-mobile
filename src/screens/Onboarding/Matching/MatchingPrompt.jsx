@@ -4,11 +4,7 @@ import {
   View,
 } from 'react-native';
 
-import { 
-  verticalScale,
-  moderateScale
-} from 'react-native-size-matters';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomButton from "../../../components/UI/Custom/CustomButton";

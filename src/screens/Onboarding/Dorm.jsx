@@ -31,7 +31,7 @@ export default function DormScreen({ navigation }) {
   return (
     <Card
       navigation={navigation} 
-      screen={""} 
+      screen={"matching-prompt"} 
       style={{ marginTop:verticalScale(30) }}
     >
       <Label 
