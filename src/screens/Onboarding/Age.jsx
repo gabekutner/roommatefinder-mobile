@@ -12,6 +12,9 @@ import DatePicker from 'react-native-date-picker';
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import Paginator from "./Components/Base/Paginator";
+import Header from "./Components/Base/Header";
+import Carousel from "./Components/Base/Carousel";
+
 import CustomText from "../../components/UI/Custom/CustomText";
 import Label from "./Components/Label";
 import Card from "./Components/Card";
@@ -72,42 +75,27 @@ export default function AgeScreen({ navigation }) {
     )
   }
 
-  const NextButton = ({ scrollNext, scrollBack }) => {
-    return (
-      <View style={{ flex:1, justifyContent:'center', alignItems:'center', flexDirection:'row' }}>
-        <CustomButton
-          onClick={scrollBack}
-          style={{}}
-        >
-          <FontAwesomeIcon 
-            icon="arrow-left"
-            size={22}
-            color={colors.accent}
-          />
-        </CustomButton>
-        <CustomButton
-          onClick={scrollNext}
-          style={{}}
-        >
-          <FontAwesomeIcon 
-            icon="arrow-right"
-            size={22}
-            color={colors.accent}
-          />
-        </CustomButton>
-      </View>
-    )
-  }
-
   return (
     <ImageBackground 
       source={require('../../assets/images/image_part_002.png')}
-      style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.primary }}
+      style={{ flex:1, backgroundColor:colors.primary }}
       imageStyle={{ opacity:0.5 }}
     >
+      <Header 
+        scrollNext={scrollNext} 
+        scrollBack={scrollBack} 
+        data={data} 
+        scrollX={scrollX} 
+      />
       <View style={{ flex:3 }}>
-        {/* <Paginator data={data} /> */}
-        <FlatList 
+        <Carousel 
+          data={data}
+          scrollX={scrollX}
+          viewableItemsChanged={viewableItemsChanged}
+          viewConfig={viewConfig}
+          dataRef={dataRef}
+        />
+        {/* <FlatList 
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -122,10 +110,9 @@ export default function AgeScreen({ navigation }) {
           onViewableItemsChanged={viewableItemsChanged}
           viewabilityConfig={viewConfig}
           ref={dataRef}
-        />
+        /> */}
+
       </View>
-      <Paginator data={data} scrollX={scrollX} />
-      <NextButton scrollNext={scrollNext} scrollBack={scrollBack} /> 
     </ImageBackground>      
   )
 }
