@@ -31,7 +31,7 @@ export default function GraduationYearScreen() {
         borderRadius:0,
         borderWidth:2,
         borderColor:colors.tint,
-        width:'50%',
+        width:'52%',
         paddingRight:moderateScale(45)
       }}
       inputStyle={{

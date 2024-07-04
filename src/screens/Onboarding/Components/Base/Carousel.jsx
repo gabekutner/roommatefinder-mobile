@@ -17,9 +17,9 @@ import GraduationYearScreen from "../../GraduationYear";
 import InterestsScreen from "../../Interests";
 import PhotosScreen from "../../Photos";
 import DormScreen from "../../Dorm";
-
-import { colors } from "../../../../constants/colors";
 import BaseWidgetsScreen from "../../Widgets/BaseWidget";
+
+// quiz
 import SocialBatteryScreen from "../../Matching/SocialBattery";
 import CleanRoomScreen from "../../Matching/CleanRoom";
 import NoiseLevelScreen from "../../Matching/NoiseLevel";
@@ -29,6 +29,8 @@ import HotColdScreen from "../../Matching/HotCold";
 import BedTimeScreen from "../../Matching/BedTime";
 import WakeUpScreen from "../../Matching/WakeUpTime";
 import SharingPolicyScreen from "../../Matching/SharingPolicy";
+
+import { colors } from "../../../../constants/colors";
 
 
 export default function Carousel({ 
@@ -54,7 +56,9 @@ export default function Carousel({
           { item.title === 'dorm' ? <DormScreen /> : null }
           {/* matching quiz */}
           { item.title === 'social-battery' ? <SocialBatteryScreen /> : null }
-          {/* { item.title === 'clean-room' ? <CleanRoomScreen /> : null }
+          { item.title === 'clean-room' ? <CleanRoomScreen /> : null }
+          { item.title === 'noise-level' ? <NoiseLevelScreen /> : null }
+          {/* 
           { item.title === 'noise-level' ? <NoiseLevelScreen /> : null }
           { item.title === 'guest-policy' ? <GuestPolicyScreen /> : null }
           { item.title === 'in-room' ? <InRoomScreen /> : null }
@@ -73,6 +77,7 @@ export default function Carousel({
       pagingEnabled
       showsHorizontalScrollIndicator={false}
       bounces={false}
+      scrollEnabled={false}
       data={data}
       renderItem={({ item }) => <Item item={item} />}
       keyExtractor={(item) => item.id}

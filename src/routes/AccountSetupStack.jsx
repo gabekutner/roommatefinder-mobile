@@ -94,7 +94,7 @@ export default function AccountSetupStack() {
         options={{ headerShown:false }}
         initialParams={{
           data: [
-            {'id': 1, 'title': 'social-battery', 'label': "How's your social energy throughout the day?'"},
+            {'id': 1, 'title': 'social-battery', 'label': "How's your social energy throughout the day?"},
             {'id': 2, 'title': 'clean-room', 'label': 'How clean do you keep your room? 🧹'},
             {'id': 3, 'title': 'noise-level', 'label': 'How loud is it in your room most of the time?'},
             {'id': 4, 'title': 'guest-policy', 'label': 'What do you think about dorm guests? 🏨'},
