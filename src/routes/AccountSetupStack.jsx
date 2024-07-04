@@ -43,7 +43,6 @@ import ProfileDetail from "../screens/ProfileDetail";
 import useGlobal from "../core/global";
 
 
-
 export default function AccountSetupStack() {
   return (
     <Stack.Navigator initialRouteName="start">
@@ -69,11 +68,13 @@ export default function AccountSetupStack() {
             {'id': 2, 'title': 'sex', 'label': 'I am a ...'},
             {'id': 3, 'title': 'hometown', 'label': 'Where are you from?'},
             {'id': 4, 'title': 'graduation_year', 'label': 'When will you graduate?'},
-            {'id': 5, 'title': 'interests', 'label': "What're you into?"},
-            {'id': 6, 'title': 'widgets', 'label': 'Customize your profile with prompts, quotes, and your social handles!'},
-            {'id': 7, 'title': 'photos', 'label': 'Add a few photos!'},
-            {'id': 8, 'title': 'dorm', 'label': 'Where will you be living next year?'},
-          ]
+            {'id': 5, 'title': 'major', 'label': 'What do you want to major in?'},
+            {'id': 6, 'title': 'interests', 'label': "What're you into?"},
+            {'id': 7, 'title': 'widgets', 'label': 'Customize your profile with prompts, quotes, and your social handles!'},
+            {'id': 8, 'title': 'photos', 'label': 'Add a few photos!'},
+            {'id': 9, 'title': 'dorm', 'label': 'Where will you be living next year?'},
+          ],
+          next: 'matching-prompt'
         }}
       />
       <Stack.Screen
@@ -103,54 +104,10 @@ export default function AccountSetupStack() {
             {'id': 7, 'title': 'bed-time', 'label': 'When is it time for bed? 🥱'},
             {'id': 8, 'title': 'wake-up-time', 'label': 'What about wake up time? ☀️'},
             {'id': 9, 'title': 'sharing-policy', 'label': 'What do you think about sharing your stuff? 🧸'},
-          ]
+          ],
+          next: 'done'
         }}
       />
-      {/* <Stack.Screen
-        name='social-battery'
-        component={SocialBatteryScreen}
-        options={{ headerShown:false }}
-      />  
-      <Stack.Screen
-        name='clean-room'
-        component={CleanRoomScreen}
-        options={{ headerShown:false }}
-      /> 
-      <Stack.Screen
-        name='noise-level'
-        component={NoiseLevelScreen}
-        options={{ headerShown:false }}
-      />     
-      <Stack.Screen
-        name='guest-policy'
-        component={GuestPolicyScreen}
-        options={{ headerShown:false }}
-      /> 
-      <Stack.Screen
-        name='in-room'
-        component={InRoomScreen}
-        options={{ headerShown:false }}
-      /> 
-      <Stack.Screen
-        name='hot-cold'
-        component={HotColdScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='bed-time'
-        component={BedTimeScreen}
-        options={{ headerShown:false }}
-      /> 
-      <Stack.Screen
-        name='wake-up-time'
-        component={WakeUpScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='sharing-policy'
-        component={SharingPolicyScreen}
-        options={{ headerShown:false }}
-      />  */}
       <Stack.Screen
         name='done'
         component={PromptScreen}
@@ -164,9 +121,6 @@ export default function AccountSetupStack() {
         }}
       />
       {/* 
-      
-      
-      
       <Stack.Screen
         name='linktree'
         component={LinkTreeScreen}

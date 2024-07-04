@@ -8,7 +8,6 @@ import {
 
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
-import Paginator from "./Base/Paginator";
 import Header from "./Base/Header";
 import Carousel from "./Base/Carousel";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -17,7 +16,7 @@ import { colors } from "../../../constants/colors";
 
 export default function BaseOnboardingCard({ navigation, route }) {
 
-  const {data} = route.params
+  const { data, next } = route.params
 
   const scrollX = useRef(new Animated.Value(0)).current
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -33,7 +32,7 @@ export default function BaseOnboardingCard({ navigation, route }) {
     if (currentIndex < data.length - 1) {
       dataRef.current.scrollToIndex({ index: currentIndex + 1 })
     } else {
-      navigation.navigate('matching-prompt')
+      navigation.navigate(next)
     }
   }
   const scrollBack = () => {
@@ -92,15 +91,3 @@ export default function BaseOnboardingCard({ navigation, route }) {
     </ImageBackground>      
   )
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    alignItems:"center",
-    flexDirection:'row',
-    backgroundColor:colors.primary,
-    width:'100%',
-    paddingHorizontal:6,
-    borderRadius:12,
-    borderWidth:2,
-  }
-})

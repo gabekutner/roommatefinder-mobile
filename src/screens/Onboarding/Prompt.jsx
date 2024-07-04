@@ -12,6 +12,7 @@ import { verticalScale, moderateScale } from 'react-native-size-matters';
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import { colors } from "../../constants/colors";
+import useGlobal from "../../core/global";
 
 
 export default function PromptScreen({ route, navigation }) {
@@ -24,6 +25,28 @@ export default function PromptScreen({ route, navigation }) {
     screen2,
     icon
   } = route.params
+
+  const user = useGlobal(state => state.user)
+  const form = useGlobal(state => state.form)
+  const photos = useGlobal(state => state.photos)
+  const matchingForm = useGlobal(state => state.matchingForm)
+
+  const createProfile = useGlobal(state => state.createProfile)
+  const uploadPhotos = useGlobal(state => state.uploadPhotos)
+  const staticUploadThumbnail = useGlobal(state => state.staticUploadThumbnail)
+  const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
+
+  const buttonClick = () => {
+    if (screen != '') {
+      navigation.navigate(screen)
+    } else {
+      // submit all forms here 
+      createProfile(form, user)
+      uploadPhotos(photos, user)
+      staticUploadThumbnail(photos, user)
+      submitMatchingForm(matchingForm, user)
+    }
+  }
 
   return (
     <ImageBackground
@@ -59,7 +82,10 @@ export default function PromptScreen({ route, navigation }) {
             : null 
           }
 
-          <CustomButton onClick={() => navigation.navigate(screen)} style={styles.button}>
+          <CustomButton 
+            onClick={() => buttonClick()} 
+            style={styles.button}
+          >
             <CustomText style={styles.text}>
               {text}
             </CustomText>

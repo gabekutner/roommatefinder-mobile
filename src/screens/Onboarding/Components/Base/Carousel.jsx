@@ -14,6 +14,7 @@ import SexScreen from "../../Sex";
 import AgeScreen from "../../Age";
 import HomeTownScreen from "../../Hometown";
 import GraduationYearScreen from "../../GraduationYear";
+import MajorScreen from "../../Major";
 import InterestsScreen from "../../Interests";
 import PhotosScreen from "../../Photos";
 import DormScreen from "../../Dorm";
@@ -50,6 +51,7 @@ export default function Carousel({
           { item.title === 'sex' ? <SexScreen /> : null }
           { item.title === 'hometown' ? <HomeTownScreen /> : null }
           { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
+          { item.title === 'major' ? <MajorScreen /> : null }
           { item.title === 'interests' ? <InterestsScreen /> : null }
           { item.title === 'widgets' ? <BaseWidgetsScreen /> : null }
           { item.title === 'photos' ? <PhotosScreen /> : null }

@@ -14,12 +14,9 @@ import useGlobal from './src/core/global';
 
 export default function App() {
 
-  // const initialized = useGlobal(state => state.initialized)
-  // const authenticated = useGlobal(state => state.authenticated)
-  // const profileCreated = useGlobal(state => state.profileCreated)
-  const initialized = true
-  const authenticated = true
-  const profileCreated = false
+  const initialized = useGlobal(state => state.initialized)
+  const authenticated = useGlobal(state => state.authenticated)
+  const profileCreated = useGlobal(state => state.profileCreated)
   const init = useGlobal(state => state.init)
 
   useEffect(() => {
