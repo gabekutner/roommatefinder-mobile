@@ -16,7 +16,7 @@ import { colors } from "../../constants/colors";
 import { interestsData } from "../../assets/Dictionary";
 
 
-export default function InterestsScreen({ navigation }) {
+export default function InterestsScreen() {
 
   const form = useGlobal(state => state.form)
   const setForm = useGlobal(state => state.setForm)
@@ -37,44 +37,34 @@ export default function InterestsScreen({ navigation }) {
   }
 
   return (
-    <Card
-      navigation={navigation} 
-      screen={"widgets"} 
-      style={{ marginTop:verticalScale(30) }}
-    >
-      <Label 
-        text="What're you into?" 
-        style={{ marginVertical:verticalScale(20), alignSelf:'center' }} 
-      />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={interestsData}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <CustomButton
-            onClick={() => handleOnClick(item.id, form, setForm)}
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      data={interestsData}
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
+        <CustomButton
+          onClick={() => handleOnClick(item.id, form, setForm)}
+          style={{
+            ...styles.option, 
+            backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
+          }}
+        >
+          <CustomText 
             style={{
-              ...styles.option, 
-              backgroundColor:Object.values(form.interests).includes(item.id) ? colors.accent : colors.secondary,
+              ...styles.text, 
+              color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
             }}
           >
-            <CustomText 
-              style={{
-                ...styles.text, 
-                color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
-              }}
-            >
-              {item.interest}
-            </CustomText>
-          </CustomButton>
-        )}
-        style={{
-          flexDirection:'column', 
-          marginHorizontal:moderateScale(50),
-          height:'50%'
-        }}
-      /> 
-    </Card>
+            {item.interest}
+          </CustomText>
+        </CustomButton>
+      )}
+      style={{
+        flexDirection:'column', 
+        marginHorizontal:moderateScale(50),
+        height:'50%'
+      }}
+    /> 
   )
 }
 

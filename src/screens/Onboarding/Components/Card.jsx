@@ -1,109 +1,101 @@
-import React from "react";
-import {
+import React, { useRef, useState} from "react";
+import { 
   View, 
-  StyleSheet, 
-  ImageBackground,
+  Animated,
+  ImageBackground
 } from "react-native";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { moderateScale, verticalScale } from "react-native-size-matters";
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
+import Header from "./Base/Header";
+import Carousel from "./Base/Carousel";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomButton from "../../../components/UI/Custom/CustomButton";
 import { colors } from "../../../constants/colors";
 
 
-const Header = ({ navigation, screen }) => {
-  return (
-    <View 
-      style={{ 
-        ...styles.shared,
-        marginTop:verticalScale(50), 
-        flexDirection:'row', 
-        justifyContent:'space-between', 
-        marginHorizontal:moderateScale(100),
-        paddingVertical:0,
-      }}
-    >
-      <CustomButton
-        onClick={() => navigation.goBack()}
-        style={{ borderWidth:0 }}
-      >
-        <FontAwesomeIcon
-          icon='arrow-left'
-          size={verticalScale(20)}
-          color={colors.tint}
-        />
-      </CustomButton>
-      <CustomButton
-        onClick={() => navigation.navigate(screen)}
-        style={{ borderWidth:0 }}
-      >
-        <FontAwesomeIcon
-          icon='arrow-right'
-          size={verticalScale(20)}
-          color={colors.tint}
-        />
-      </CustomButton>
-    </View>
-  )
-}
+export default function BaseOnboardingCard() {
 
-export default function Card({ 
-  navigation,
-  children, 
-  screen, 
-  style,
-}) {
+  const scrollX = useRef(new Animated.Value(0)).current
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const dataRef = useRef(null)
+
+  const viewableItemsChanged = useRef(({ viewableItems }) => {
+    setCurrentIndex(viewableItems[0].index)
+  }).current
+
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
+
+  const scrollNext = () => {
+    if (currentIndex < data.length - 1) {
+      dataRef.current.scrollToIndex({ index: currentIndex + 1 })
+    } else {
+      console.log('last item')
+    }
+  }
+  const scrollBack = () => {
+    if (currentIndex < data.length && currentIndex != 0) {
+      dataRef.current.scrollToIndex({ index: currentIndex - 1 })
+    } else {
+      console.log('first item')
+    }
+  }
+  
+  const data = [
+    {'id': 1, 'title': 'age', 'label': 'How old are you?'},
+    {'id': 2, 'title': 'sex', 'label': 'I am a ...'},
+    {'id': 3, 'title': 'hometown', 'label': 'Where are you from?'},
+    {'id': 4, 'title': 'graduation_year', 'label': 'When will you graduate?'},
+    {'id': 5, 'title': 'interests', 'label': "What're you into?"},
+    {'id': 6, 'title': 'widgets', 'label': 'Customize your profile with prompts, quotes, and your social handles!'},
+    {'id': 7, 'title': 'photos', 'label': 'Add a few photos!'},
+    {'id': 8, 'title': 'dorm', 'label': 'Where will you be living next year?'},
+  ]
+
   return (
     <ImageBackground 
       source={require('../../../assets/images/image_part_002.png')}
-      style={{ flex:1, backgroundColor:colors.secondary }}
+      style={{ flex:1, backgroundColor:colors.primary }}
       imageStyle={{ opacity:0.5 }}
     >
-      <Header navigation={navigation} screen={screen} />
+      <Header 
+        scrollNext={scrollNext} 
+        scrollBack={scrollBack} 
+        data={data} 
+        scrollX={scrollX} 
+      />
+      <Carousel 
+        data={data}
+        scrollX={scrollX}
+        viewableItemsChanged={viewableItemsChanged}
+        viewConfig={viewConfig}
+        dataRef={dataRef}
+      />
       <View 
         style={{ 
-          ...styles.shared,
-          ...styles.card, 
-          ...style
+          position:'absolute',
+          left:0,
+          right:0,
+          bottom:verticalScale(35),
+          alignItems:'center',
+          backgroundColor:colors.primary,
+          marginHorizontal:moderateScale(25),
+          paddingVertical:verticalScale(12),
+          paddingHorizontal:6,
+          borderRadius:12,
+          borderWidth:2,
         }}
       >
-        {children}
+        <CustomText 
+          style={{ 
+            fontSize:verticalScale(11),
+            fontWeight:'500',
+            textAlign:'center',
+            color:colors.tertiary
+          }}
+        >
+          No information about your account is shared with the University of Utah.
+        </CustomText>
       </View>
-      <View 
-        style={{ 
-          ...styles.shared,
-          ...styles.subCard, 
-        }}
-      >
-        <CustomText style={styles.subCardText}>No information about your account is shared with the University of Utah.</CustomText>
-      </View>
-    </ImageBackground>
+    </ImageBackground>      
   )
 }
-
-const styles = StyleSheet.create({
-  shared: {
-    alignItems:'center',
-    backgroundColor:colors.primary,
-    marginHorizontal:moderateScale(25),
-    paddingVertical:verticalScale(12),
-    paddingHorizontal:6,
-    borderRadius:12,
-    borderWidth:2,
-  },
-  card: {},
-  subCard: {
-    position:'absolute',
-    left:0,
-    right:0,
-    bottom:verticalScale(35),
-  },
-  subCardText: {
-    fontSize:verticalScale(11),
-    fontWeight:'500',
-    textAlign:'center',
-    color:colors.tertiary
-  }
-})

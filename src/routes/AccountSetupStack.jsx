@@ -23,6 +23,8 @@ import PromptsScreen from '../screens/Onboarding/Widgets/Prompts';
 import PhotosScreen from "../screens/Onboarding/Photos";
 import DormScreen from '../screens/Onboarding/Dorm';
 
+import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
+
 // matching
 import MatchingPromptScreen from "../screens/Onboarding/Matching/MatchingPrompt";
 import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
@@ -59,7 +61,7 @@ export default function AccountSetupStack() {
       />
       <Stack.Screen
         name='age'
-        component={AgeScreen}
+        component={BaseOnboardingCard}
         options={{ headerShown:false }}
       />
       <Stack.Screen

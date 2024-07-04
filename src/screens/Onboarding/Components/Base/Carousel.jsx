@@ -7,8 +7,20 @@ import {
   Dimensions
 } from "react-native";
 
-import { verticalScale } from "react-native-size-matters";
+import DatePicker from 'react-native-date-picker';
+import { moderateScale, verticalScale } from "react-native-size-matters";
+
+import Label from "../Label";
+import SexScreen from "../../Sex";
+
+import useGlobal from "../../../../core/global";
 import { colors } from "../../../../constants/colors";
+import AgeScreen from "../../Age";
+import HomeTownScreen from "../../Hometown";
+import GraduationYearScreen from "../../GraduationYear";
+import InterestsScreen from "../../Interests";
+import PhotosScreen from "../../Photos";
+import DormScreen from "../../Dorm";
 
 
 export default function Carousel({ 
@@ -23,6 +35,15 @@ export default function Carousel({
     return (
       <View style={styles.container}>
         <View style={styles.card}>
+          <Label text={item.label} style={{ marginVertical:verticalScale(20), textAlign:'center' }} />
+          { item.title === 'age' ? <AgeScreen /> : null }
+          { item.title === 'sex' ? <SexScreen /> : null }
+          { item.title === 'hometown' ? <HomeTownScreen /> : null }
+          { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
+          { item.title === 'interests' ? <InterestsScreen /> : null }
+
+          { item.title === 'photos' ? <PhotosScreen /> : null }
+          { item.title === 'dorm' ? <DormScreen /> : null }
 
         </View>
       </View>
@@ -55,24 +76,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginTop:verticalScale(25)
   },
-  // shared: {
-  //   width:Dimensions.get('window').width ,
-  //   alignItems:'center',
-  //   height:100,
-  //   alignSelf:'center',
-  //   justifyContent:"center",
-  //   backgroundColor:colors.primary,
-  //   paddingVertical:verticalScale(12),
-  //   paddingHorizontal:6,
-  //   borderRadius:12,
-  //   borderWidth:2,
-  // },
   card: {
-    width:'75%',
+    width:'85%',
     backgroundColor:colors.primary,
-    height:100,
     borderRadius:12,
     borderWidth:2,
     borderColor:colors.tint,
+    alignItems:'center',
+    paddingHorizontal:moderateScale(15),
+    paddingBottom:verticalScale(20)
   },
 })
