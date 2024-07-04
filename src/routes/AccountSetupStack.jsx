@@ -55,53 +55,13 @@ export default function AccountSetupStack() {
           title: 'Ready to kick off your profile?',
           subtitle: "It'll only take a couple of minutes.",
           text: "That way",
-          screen:'age',
+          screen:'base',
           icon: "arrow-right-to-bracket"
         }}
       />
       <Stack.Screen
-        name='age'
+        name='base'
         component={BaseOnboardingCard}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='sex'
-        component={SexScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='hometown'
-        component={HomeTownScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='graduation_year'
-        component={GraduationYearScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='major'
-        component={MajorScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='interests'
-        component={InterestsScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='widgets'
-        component={BaseWidgetsScreen}
-        options={{ headerShown:false }}
-      />
-      <Stack.Screen
-        name='photos'
-        component={PhotosScreen}
-        options={{ headerShown:false }}
-      /> 
-      <Stack.Screen
-        name='dorm'
-        component={DormScreen}
         options={{ headerShown:false }}
       />
       <Stack.Screen

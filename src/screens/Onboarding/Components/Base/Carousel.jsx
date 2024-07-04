@@ -7,20 +7,18 @@ import {
   Dimensions
 } from "react-native";
 
-import DatePicker from 'react-native-date-picker';
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import Label from "../Label";
 import SexScreen from "../../Sex";
-
-import useGlobal from "../../../../core/global";
-import { colors } from "../../../../constants/colors";
 import AgeScreen from "../../Age";
 import HomeTownScreen from "../../Hometown";
 import GraduationYearScreen from "../../GraduationYear";
 import InterestsScreen from "../../Interests";
 import PhotosScreen from "../../Photos";
 import DormScreen from "../../Dorm";
+
+import { colors } from "../../../../constants/colors";
 
 
 export default function Carousel({ 
@@ -41,10 +39,9 @@ export default function Carousel({
           { item.title === 'hometown' ? <HomeTownScreen /> : null }
           { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
           { item.title === 'interests' ? <InterestsScreen /> : null }
-
+          {/* widgets here ... */}
           { item.title === 'photos' ? <PhotosScreen /> : null }
           { item.title === 'dorm' ? <DormScreen /> : null }
-
         </View>
       </View>
     )
@@ -66,6 +63,7 @@ export default function Carousel({
       onViewableItemsChanged={viewableItemsChanged}
       viewabilityConfig={viewConfig}
       ref={dataRef}
+      initialNumToRender={8}
     />
   )
 }

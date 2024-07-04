@@ -1,8 +1,9 @@
 import React from "react";
 import {
-  SafeAreaView,
+  Dimensions,
   View,
-  StyleSheet
+  StyleSheet,
+  ImageBackground
 } from 'react-native';
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -25,78 +26,85 @@ export default function PromptScreen({ route, navigation }) {
   } = route.params
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.titleWrapper}>
-        <CustomText style={styles.title}>
-          {title}
-        </CustomText>
-        <CustomText style={styles.subtitle}>
-          {subtitle}
-        </CustomText>
-      </View> 
+    <ImageBackground
+      source={require('../../assets/images/image_part_003.png')}
+      style={{ flex:1, backgroundColor:colors.primary }}
+      imageStyle={{ opacity:0.5 }}
+    >
+      <View style={styles.container}> 
+        <View style={styles.card}>
 
-      { screen2 
-        ?
-          <CustomButton
-            onClick={() => navigation.navigate(screen2)}
-            style={{ borderWidth:0 }}
-          >
-            <CustomText
-              style={{
-                fontSize:verticalScale(12),
-                fontWeight:'bold',
-                color:colors.tint,
-                textDecorationLine:'underline'
-              }}
-            >
-              Nah, I'll do it later
+          <View style={styles.titleWrapper}>
+            <CustomText style={styles.title}>
+              {title}
             </CustomText>
-          </CustomButton>
-        : null 
-      }
+            <CustomText style={styles.subtitle}>
+              {subtitle}
+            </CustomText>
+          </View>
 
-      <CustomButton
-        onClick={() => navigation.navigate(screen)}
-        style={styles.button}
-      >
-        <CustomText style={styles.text}>
-          {text}
-        </CustomText>
-        { icon 
-          ?
-            <FontAwesomeIcon 
-              icon={icon}
-              size={verticalScale(20)}
-              color={colors.white}
-            />
-          : null  
-        }
-        
-      </CustomButton>
-    </SafeAreaView>
+          { screen2 
+            ? <CustomButton onClick={() => navigation.navigate(screen2)} style={{ borderWidth:0 }}>
+                <CustomText 
+                  style={{
+                    fontSize:verticalScale(12),
+                    fontWeight:'bold',
+                    color:colors.tint,
+                    textDecorationLine:'underline'
+                  }}
+                >
+                  No thanks, I'll do it later
+                </CustomText>
+              </CustomButton>
+            : null 
+          }
+
+          <CustomButton onClick={() => navigation.navigate(screen)} style={styles.button}>
+            <CustomText style={styles.text}>
+              {text}
+            </CustomText>
+            { icon 
+              ? <FontAwesomeIcon icon={icon} size={verticalScale(20)} color={colors.white} />
+              : null
+            }
+          </CustomButton>
+
+        </View>
+      </View> 
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1, 
+    width:Dimensions.get('window').width,
     alignItems:'center',
-    backgroundColor:colors.primary 
+    marginVertical:verticalScale(125)
   },
-  titleWrapper: {
-    marginHorizontal:moderateScale(30),
-    marginVertical:verticalScale(100)
+  card: {
+    width:'85%',
+    backgroundColor:colors.primary,
+    borderRadius:12,
+    borderWidth:2,
+    borderColor:colors.tint,
+    alignItems:'center',
+    paddingHorizontal:moderateScale(15),
+    paddingBottom:verticalScale(20)
   },
+
+  titleWrapper: { marginTop:verticalScale(20), marginBottom:verticalScale(50) },
   title: {
     textAlign:'center',
     fontSize:verticalScale(17),
     marginBottom:verticalScale(15),
-    fontWeight:'bold'
+    fontWeight:'600',
   },
   subtitle: {
     textAlign:'center',
     fontSize:verticalScale(13),
+    marginHorizontal:moderateScale(35)
   },
+
   button: {
     backgroundColor:colors.accent,
     paddingVertical:verticalScale(15),

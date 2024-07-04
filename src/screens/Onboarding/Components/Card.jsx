@@ -13,7 +13,7 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import { colors } from "../../../constants/colors";
 
 
-export default function BaseOnboardingCard() {
+export default function BaseOnboardingCard({ navigation }) {
 
   const scrollX = useRef(new Animated.Value(0)).current
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -29,7 +29,7 @@ export default function BaseOnboardingCard() {
     if (currentIndex < data.length - 1) {
       dataRef.current.scrollToIndex({ index: currentIndex + 1 })
     } else {
-      console.log('last item')
+      navigation.navigate('matching-prompt')
     }
   }
   const scrollBack = () => {
