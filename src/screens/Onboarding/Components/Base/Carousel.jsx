@@ -58,14 +58,12 @@ export default function Carousel({
           { item.title === 'social-battery' ? <SocialBatteryScreen /> : null }
           { item.title === 'clean-room' ? <CleanRoomScreen /> : null }
           { item.title === 'noise-level' ? <NoiseLevelScreen /> : null }
-          {/* 
-          { item.title === 'noise-level' ? <NoiseLevelScreen /> : null }
           { item.title === 'guest-policy' ? <GuestPolicyScreen /> : null }
           { item.title === 'in-room' ? <InRoomScreen /> : null }
           { item.title === 'hot-cold' ? <HotColdScreen /> : null }
           { item.title === 'bed-time' ? <BedTimeScreen /> : null }
           { item.title === 'wake-up-time' ? <WakeUpScreen /> : null }
-          { item.title === 'sharing-policy' ? <SharingPolicyScreen /> : null } */}
+          { item.title === 'sharing-policy' ? <SharingPolicyScreen /> : null } 
         </View>
       </View>
     )
