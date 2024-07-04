@@ -8,8 +8,6 @@ import {
 } from "react-native";
 
 import { verticalScale } from "react-native-size-matters";
-
-import CustomText from "../../../../components/UI/Custom/CustomText";
 import { colors } from "../../../../constants/colors";
 
 
@@ -23,14 +21,9 @@ export default function Carousel({
 
   const Item = ({ item }) => {
     return (
-      <View style={styles.cardContainer}>
-        <View 
-          style={{ 
-            ...styles.shared,
-            ...styles.card, 
-          }}
-        >
-          <CustomText>{item.title}</CustomText>
+      <View style={styles.container}>
+        <View style={styles.card}>
+
         </View>
       </View>
     )
@@ -57,23 +50,29 @@ export default function Carousel({
 }
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    flex:1,
+  container: {
     width:Dimensions.get('window').width,
     alignItems:'center',
-    justifyContent:'center',
+    marginTop:verticalScale(25)
   },
-  shared: {
-    width:Dimensions.get('window').width ,
-    alignItems:'center',
-    height:100,
-    alignSelf:'center',
-    justifyContent:"center",
+  // shared: {
+  //   width:Dimensions.get('window').width ,
+  //   alignItems:'center',
+  //   height:100,
+  //   alignSelf:'center',
+  //   justifyContent:"center",
+  //   backgroundColor:colors.primary,
+  //   paddingVertical:verticalScale(12),
+  //   paddingHorizontal:6,
+  //   borderRadius:12,
+  //   borderWidth:2,
+  // },
+  card: {
+    width:'75%',
     backgroundColor:colors.primary,
-    paddingVertical:verticalScale(12),
-    paddingHorizontal:6,
+    height:100,
     borderRadius:12,
     borderWidth:2,
+    borderColor:colors.tint,
   },
-  card: {},
 })
