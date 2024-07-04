@@ -15,7 +15,9 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import { colors } from "../../../constants/colors";
 
 
-export default function BaseOnboardingCard({ navigation }) {
+export default function BaseOnboardingCard({ navigation, route }) {
+
+  const {data} = route.params
 
   const scrollX = useRef(new Animated.Value(0)).current
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -41,17 +43,6 @@ export default function BaseOnboardingCard({ navigation }) {
       console.log('first item')
     }
   }
-  
-  const data = [
-    {'id': 1, 'title': 'age', 'label': 'How old are you?'},
-    {'id': 2, 'title': 'sex', 'label': 'I am a ...'},
-    {'id': 3, 'title': 'hometown', 'label': 'Where are you from?'},
-    {'id': 4, 'title': 'graduation_year', 'label': 'When will you graduate?'},
-    {'id': 5, 'title': 'interests', 'label': "What're you into?"},
-    {'id': 6, 'title': 'widgets', 'label': 'Customize your profile with prompts, quotes, and your social handles!'},
-    {'id': 7, 'title': 'photos', 'label': 'Add a few photos!'},
-    {'id': 8, 'title': 'dorm', 'label': 'Where will you be living next year?'},
-  ]
 
   return (
     <ImageBackground 

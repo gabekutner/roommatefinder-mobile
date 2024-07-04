@@ -6,13 +6,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-import { 
-  verticalScale,
-  moderateScale 
-} from "react-native-size-matters";
+import { verticalScale, moderateScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-// import Base from "../Components/Base";
 import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";

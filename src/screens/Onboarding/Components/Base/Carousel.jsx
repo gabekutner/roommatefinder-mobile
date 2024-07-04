@@ -20,6 +20,15 @@ import DormScreen from "../../Dorm";
 
 import { colors } from "../../../../constants/colors";
 import BaseWidgetsScreen from "../../Widgets/BaseWidget";
+import SocialBatteryScreen from "../../Matching/SocialBattery";
+import CleanRoomScreen from "../../Matching/CleanRoom";
+import NoiseLevelScreen from "../../Matching/NoiseLevel";
+import GuestPolicyScreen from "../../Matching/GuestPolicy";
+import InRoomScreen from "../../Matching/InRoom";
+import HotColdScreen from "../../Matching/HotCold";
+import BedTimeScreen from "../../Matching/BedTime";
+import WakeUpScreen from "../../Matching/WakeUpTime";
+import SharingPolicyScreen from "../../Matching/SharingPolicy";
 
 
 export default function Carousel({ 
@@ -40,10 +49,19 @@ export default function Carousel({
           { item.title === 'hometown' ? <HomeTownScreen /> : null }
           { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
           { item.title === 'interests' ? <InterestsScreen /> : null }
-          {/* widgets here ... */}
           { item.title === 'widgets' ? <BaseWidgetsScreen /> : null }
           { item.title === 'photos' ? <PhotosScreen /> : null }
           { item.title === 'dorm' ? <DormScreen /> : null }
+          {/* matching quiz */}
+          { item.title === 'social-battery' ? <SocialBatteryScreen /> : null }
+          {/* { item.title === 'clean-room' ? <CleanRoomScreen /> : null }
+          { item.title === 'noise-level' ? <NoiseLevelScreen /> : null }
+          { item.title === 'guest-policy' ? <GuestPolicyScreen /> : null }
+          { item.title === 'in-room' ? <InRoomScreen /> : null }
+          { item.title === 'hot-cold' ? <HotColdScreen /> : null }
+          { item.title === 'bed-time' ? <BedTimeScreen /> : null }
+          { item.title === 'wake-up-time' ? <WakeUpScreen /> : null }
+          { item.title === 'sharing-policy' ? <SharingPolicyScreen /> : null } */}
         </View>
       </View>
     )

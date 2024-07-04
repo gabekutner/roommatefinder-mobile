@@ -63,6 +63,18 @@ export default function AccountSetupStack() {
         name='base'
         component={BaseOnboardingCard}
         options={{ headerShown:false }}
+        initialParams={{
+          data: [
+            {'id': 1, 'title': 'age', 'label': 'How old are you?'},
+            {'id': 2, 'title': 'sex', 'label': 'I am a ...'},
+            {'id': 3, 'title': 'hometown', 'label': 'Where are you from?'},
+            {'id': 4, 'title': 'graduation_year', 'label': 'When will you graduate?'},
+            {'id': 5, 'title': 'interests', 'label': "What're you into?"},
+            {'id': 6, 'title': 'widgets', 'label': 'Customize your profile with prompts, quotes, and your social handles!'},
+            {'id': 7, 'title': 'photos', 'label': 'Add a few photos!'},
+            {'id': 8, 'title': 'dorm', 'label': 'Where will you be living next year?'},
+          ]
+        }}
       />
       <Stack.Screen
         name='matching-prompt'
@@ -72,10 +84,73 @@ export default function AccountSetupStack() {
           title: 'Want to take our roommate matching quiz?',
           subtitle: "This'll up our game in matching you with people you'll get along with better!",
           text: "Let's do it!",
-          screen:'',
+          screen:'base-matching',
           screen2:'done'
         }}
       />
+      <Stack.Screen
+        name='base-matching'
+        component={BaseOnboardingCard}
+        options={{ headerShown:false }}
+        initialParams={{
+          data: [
+            {'id': 1, 'title': 'social-battery', 'label': "How's your social energy throughout the day?'"},
+            {'id': 2, 'title': 'clean-room', 'label': 'How clean do you keep your room? 🧹'},
+            {'id': 3, 'title': 'noise-level', 'label': 'How loud is it in your room most of the time?'},
+            {'id': 4, 'title': 'guest-policy', 'label': 'What do you think about dorm guests? 🏨'},
+            {'id': 5, 'title': 'in-room', 'label': "How much time do you spend in your room?"},
+            {'id': 6, 'title': 'hot-cold', 'label': ' How hot or cold do you keep your room?'},
+            {'id': 7, 'title': 'bed-time', 'label': 'When is it time for bed? 🥱'},
+            {'id': 8, 'title': 'wake-up-time', 'label': 'What about wake up time? ☀️'},
+            {'id': 9, 'title': 'sharing-policy', 'label': 'What do you think about sharing your stuff? 🧸'},
+          ]
+        }}
+      />
+      {/* <Stack.Screen
+        name='social-battery'
+        component={SocialBatteryScreen}
+        options={{ headerShown:false }}
+      />  
+      <Stack.Screen
+        name='clean-room'
+        component={CleanRoomScreen}
+        options={{ headerShown:false }}
+      /> 
+      <Stack.Screen
+        name='noise-level'
+        component={NoiseLevelScreen}
+        options={{ headerShown:false }}
+      />     
+      <Stack.Screen
+        name='guest-policy'
+        component={GuestPolicyScreen}
+        options={{ headerShown:false }}
+      /> 
+      <Stack.Screen
+        name='in-room'
+        component={InRoomScreen}
+        options={{ headerShown:false }}
+      /> 
+      <Stack.Screen
+        name='hot-cold'
+        component={HotColdScreen}
+        options={{ headerShown:false }}
+      />
+      <Stack.Screen
+        name='bed-time'
+        component={BedTimeScreen}
+        options={{ headerShown:false }}
+      /> 
+      <Stack.Screen
+        name='wake-up-time'
+        component={WakeUpScreen}
+        options={{ headerShown:false }}
+      />
+      <Stack.Screen
+        name='sharing-policy'
+        component={SharingPolicyScreen}
+        options={{ headerShown:false }}
+      />  */}
       <Stack.Screen
         name='done'
         component={PromptScreen}
