@@ -41,10 +41,11 @@ export default function PromptScreen({ route, navigation }) {
       navigation.navigate(screen)
     } else {
       // submit all forms here 
-      createProfile(form, user)
-      uploadPhotos(photos, user)
-      staticUploadThumbnail(photos, user)
-      submitMatchingForm(matchingForm, user)
+      console.log(form)
+      // createProfile(form, user)
+      // uploadPhotos(photos, user)
+      // staticUploadThumbnail(photos, user)
+      // submitMatchingForm(matchingForm, user)
     }
   }
 

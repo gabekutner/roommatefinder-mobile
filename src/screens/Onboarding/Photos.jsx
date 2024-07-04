@@ -12,6 +12,7 @@ import { scale, verticalScale } from "react-native-size-matters";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import { colors } from "../../constants/colors";
 import useGlobal from "../../core/global";
+import CustomText from "../../components/UI/Custom/CustomText";
 
 
 export default function PhotosScreen() {
@@ -48,6 +49,7 @@ export default function PhotosScreen() {
 
   return (
     <>
+      <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>Add least 2 photos.</CustomText>
       <View style={styles.rowWrapper}>
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('0')} style={{ ...styles.upload, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}>
