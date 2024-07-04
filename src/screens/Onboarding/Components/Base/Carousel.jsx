@@ -19,6 +19,7 @@ import PhotosScreen from "../../Photos";
 import DormScreen from "../../Dorm";
 
 import { colors } from "../../../../constants/colors";
+import BaseWidgetsScreen from "../../Widgets/BaseWidget";
 
 
 export default function Carousel({ 
@@ -40,6 +41,7 @@ export default function Carousel({
           { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
           { item.title === 'interests' ? <InterestsScreen /> : null }
           {/* widgets here ... */}
+          { item.title === 'widgets' ? <BaseWidgetsScreen /> : null }
           { item.title === 'photos' ? <PhotosScreen /> : null }
           { item.title === 'dorm' ? <DormScreen /> : null }
         </View>

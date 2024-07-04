@@ -2,11 +2,13 @@ import React, { useRef, useState} from "react";
 import { 
   View, 
   Animated,
-  ImageBackground
+  ImageBackground,
+  StyleSheet
 } from "react-native";
 
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
+import Paginator from "./Base/Paginator";
 import Header from "./Base/Header";
 import Carousel from "./Base/Carousel";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -58,10 +60,10 @@ export default function BaseOnboardingCard({ navigation }) {
       imageStyle={{ opacity:0.5 }}
     >
       <Header 
-        scrollNext={scrollNext} 
         scrollBack={scrollBack} 
-        data={data} 
-        scrollX={scrollX} 
+        scrollNext={scrollNext}
+        data={data}
+        scrollX={scrollX}
       />
       <Carousel 
         data={data}
@@ -99,3 +101,15 @@ export default function BaseOnboardingCard({ navigation }) {
     </ImageBackground>      
   )
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    alignItems:"center",
+    flexDirection:'row',
+    backgroundColor:colors.primary,
+    width:'100%',
+    paddingHorizontal:6,
+    borderRadius:12,
+    borderWidth:2,
+  }
+})
