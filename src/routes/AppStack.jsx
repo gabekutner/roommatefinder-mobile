@@ -16,10 +16,10 @@ import Title from "../components/Brand/Title";
 import DropDownMenu from "../components/DropDownMenu";
 import CustomButton from "../components/UI/Custom/CustomButton";
 
-import Friends from "../screens/Friends";
+import Friends from "../screens/Extras/Friends/Friends";
 import Profile from "../screens/Profile/Profile";
 import Swipe from "../screens/SwipeScreen";
-import Search from "../screens/Extras/Search";
+import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";

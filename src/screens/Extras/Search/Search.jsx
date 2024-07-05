@@ -9,13 +9,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
-import SearchRow from "./Search/SearchRow";
-import CustomButton from "../../components/UI/Custom/CustomButton";
-import CustomTextInput from "../../components/UI/Custom/CustomInput";
-import Empty from "../../components/Empty";
+import SearchRow from "./SearchRow";
+import CustomButton from "../../../components/UI/Custom/CustomButton";
+import CustomTextInput from "../../../components/UI/Custom/CustomInput";
+import Empty from "../../../components/Empty";
 
-import useGlobal from "../../core/global";
-import { colors } from '../../constants/colors';
+import useGlobal from "../../../core/global";
+import { colors } from '../../../constants/colors';
 
 
 export default function Search({ navigation }) {
