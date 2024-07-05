@@ -10,10 +10,7 @@ import {
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {
-  verticalScale,
-  moderateScale
-} from 'react-native-size-matters';
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
 import Thumbnail from '../components/Thumbnail';

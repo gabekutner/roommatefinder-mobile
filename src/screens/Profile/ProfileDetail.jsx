@@ -10,11 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import FastImage from 'react-native-fast-image';
 import { verticalScale, moderateScale, scale } from 'react-native-size-matters';
 
-import CustomText from '../components/UI/Custom/CustomText';
-import CustomButton from '../components/UI/Custom/CustomButton';
+import CustomText from '../../components/UI/Custom/CustomText';
+import CustomButton from '../../components/UI/Custom/CustomButton';
 
-import { colors } from '../constants/colors';
-import { dormsData, interestsData } from '../assets/Dictionary';
+import { colors } from '../../constants/colors';
+import { dormsData, interestsData } from '../../assets/Dictionary';
 
 
 export default function ProfileDetail({ route, navigation }) {
@@ -52,7 +52,7 @@ export default function ProfileDetail({ route, navigation }) {
               alignItems:'flex-end',
               flexDirection:'row',
             }}
-            source={require('../assets/images/profile.png')}
+            source={require('../../assets/images/profile.png')}
             resizeMode={FastImage.resizeMode.cover}
           />
       }

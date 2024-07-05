@@ -23,7 +23,7 @@ import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";
-import ProfileDetail from '../screens/ProfileDetail';
+import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
 // matching quiz
