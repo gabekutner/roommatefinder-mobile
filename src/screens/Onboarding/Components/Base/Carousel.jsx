@@ -35,6 +35,7 @@ import { colors } from "../../../../constants/colors";
 
 
 export default function Carousel({ 
+  navigation,
   data,
   scrollX,
   viewableItemsChanged,
@@ -53,7 +54,7 @@ export default function Carousel({
           { item.title === 'graduation_year' ? <GraduationYearScreen /> : null }
           { item.title === 'major' ? <MajorScreen /> : null }
           { item.title === 'interests' ? <InterestsScreen /> : null }
-          { item.title === 'widgets' ? <BaseWidgetsScreen /> : null }
+          { item.title === 'widgets' ? <BaseWidgetsScreen navigation={navigation} /> : null }
           { item.title === 'photos' ? <PhotosScreen /> : null }
           { item.title === 'dorm' ? <DormScreen /> : null }
           {/* matching quiz */}

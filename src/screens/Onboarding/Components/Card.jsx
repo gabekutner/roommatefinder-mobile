@@ -56,6 +56,7 @@ export default function BaseOnboardingCard({ navigation, route }) {
         scrollX={scrollX}
       />
       <Carousel 
+        navigation={navigation}
         data={data}
         scrollX={scrollX}
         viewableItemsChanged={viewableItemsChanged}
