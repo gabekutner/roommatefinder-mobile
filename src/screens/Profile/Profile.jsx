@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Alert,
+  Switch
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -80,6 +81,11 @@ export default function ProfileScreen({ navigation }) {
     title:'',
     message:''
   })
+
+  const [showHow, setShowHow] = useState(false)
+
+  const [isEnabled, setIsEnabled] = useState(false)
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState)
 
   useEffect(() => {
     const fetchProfile = async() => {
@@ -209,6 +215,57 @@ export default function ProfileScreen({ navigation }) {
               <CustomText style={{ fontSize:verticalScale(18) }}>💥</CustomText>
             </View>
           </View>
+        </View>
+
+        {/* preferences */}
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+          <View 
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowFirst,
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderBottomWidth:0
+            }}
+          >
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                Pause Profile
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <Switch 
+                trackColor={{ true:colors.accent }}
+                thumbColor={colors.white}
+                ios_backgroundColor={colors.tertiary}
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+            </View>
+          </View>
+          <CustomButton 
+            onClick={() => setShowHow(true)}
+            style={{ 
+              ...styles.rowWrapper, 
+              ...styles.rowLast,
+              backgroundColor:colors.secondary, 
+              borderColor:colors.tint,
+              borderTopWidth:0,
+              borderTopLeftRadius:0,
+              borderTopRightRadius:0
+            }}
+          >
+            { showHow 
+              ? null
+              : null 
+            }
+            <View style={styles.row}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+                How to find a roommate?
+              </CustomText>
+              <View style={styles.rowSpacer} />
+              <FontAwesomeIcon icon="question-circle" size={verticalScale(20)} color={colors.tertiary} />
+            </View>
+          </CustomButton>
         </View>
 
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
