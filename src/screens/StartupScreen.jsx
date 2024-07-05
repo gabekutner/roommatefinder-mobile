@@ -12,6 +12,7 @@ import { moderateScale, verticalScale } from 'react-native-size-matters';
 import Title from '../components/Brand/Title';
 import CustomText from '../components/UI/Custom/CustomText';
 import CustomButton from '../components/UI/Custom/CustomButton';
+
 import { colors } from '../constants/colors';
 
 
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderColor:colors.tint,
     backgroundColor:colors.accent,
-    // borderRadius:0,
     shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,

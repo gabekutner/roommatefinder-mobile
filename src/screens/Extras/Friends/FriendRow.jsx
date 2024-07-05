@@ -20,16 +20,17 @@ export default function FriendRow({ navigation, item }) {
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {
-    const fetchProfile = async() => {
-      const resp = await getSwipeProfile(user, user.id)
-      setProfile(resp.data)
-    }
-    fetchProfile()
-  }, [])
+    async function fetchData() {
+			const profile = await getSwipeProfile(user, item.friend.id)
+			const userData = await profile.data
+			setProfile(userData)
+		}
+		fetchData()
+  }, [getSwipeProfile, user, item])
 
 	return (
 		<Cell colors={colors}>
-			<CustomButton onClick={() => navigation.navigate('profile-detail', { item:profile })} style={{ borderWidth:0 }}>
+			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={verticalScale(60)}

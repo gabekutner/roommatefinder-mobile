@@ -37,7 +37,6 @@ import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
 import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
 import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
-
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
 

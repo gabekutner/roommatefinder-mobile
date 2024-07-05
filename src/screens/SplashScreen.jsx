@@ -1,28 +1,21 @@
 import React, { useEffect } from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   Animated,
   View,
-	Image,
-  Text,
 	ImageBackground,
 	StyleSheet,
 } from 'react-native';
 
-// import Title from '../components/UI/Title';
-import useGlobal from '../core/global';
-// import { colors as c } from '../assets/config'
-import { colors } from '../constants/colors';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
+
 import Title from '../components/Brand/Title';
 import CustomText from '../components/UI/Custom/CustomText';
 
+import { colors } from '../constants/colors';
+
 
 export default function SplashScreen() {
-
-	// const theme = useGlobal(state => state.theme)
-	// const colors = c[theme]
 
   const translateY = new Animated.Value(0)
 	const duration = 2000

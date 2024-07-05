@@ -34,7 +34,7 @@ export default function SearchRow({ navigation, item }) {
 				<Thumbnail
 					url={item.thumbnail}
 					size={verticalScale(60)}
-					borderColor={colors.secondary}
+					borderColor={colors.tint}
 				/>
 			</CustomButton>
 			<View style={styles.textContainer}>
