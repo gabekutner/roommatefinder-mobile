@@ -14,6 +14,7 @@ import CustomText from '../../components/UI/Custom/CustomText';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 
 import { colors } from '../../constants/colors';
+import utils from '../../core/utils';
 import { dormsData, interestsData } from '../../assets/Dictionary';
 
 
@@ -56,7 +57,6 @@ export default function ProfileDetail({ route, navigation }) {
             resizeMode={FastImage.resizeMode.cover}
           />
       }
-      
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
@@ -79,19 +79,29 @@ export default function ProfileDetail({ route, navigation }) {
           <InfoItem icon="graduation-cap" text={item.major} />
         </View>
         {/* socials */}
-        <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(10) }}>
-          { item.links.map(( link ) => {
-            return (
-              <CustomButton 
-                key={link.link}
-                onClick={() => Linking.openURL(link.link)} 
-                style={{ backgroundColor:colors.accent }}
-              >
-                <CustomText style={{ fontSize:verticalScale(15), color:colors.white }}>{link.title}</CustomText>
-              </CustomButton>
-            )
-          })}
-        </View>
+        { item.links.length !== 0
+          ? 
+          <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(10) }}>
+            { item.links.map(( link ) => {
+              return (
+                <CustomButton 
+                  key={link.link}
+                  onClick={() => {
+                    const url = utils.testUrl(link.link)
+                    Linking.openURL(url).catch((err) =>
+                      console.error('openlink err: ', err)
+                    )
+                  }} 
+                  style={{ backgroundColor:colors.accent }}
+                >
+                  <CustomText style={{ fontSize:verticalScale(15), color:colors.white }}>{link.title}</CustomText>
+                </CustomButton>
+              )
+            })}
+          </View>
+          : null 
+        }
+        
         {/* first photo */}
         { item.photos[0] 
           ?
@@ -174,7 +184,7 @@ const styles = StyleSheet.create({
     left:0,
     right:0,
     position:'absolute',
-    height:'48%',
+    height:'55%',
     borderTopWidth:2,
   },
   wrapper: {

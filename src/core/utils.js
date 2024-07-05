@@ -11,6 +11,14 @@ function thumbnail(url) {
 	}
 }
 
+function testUrl(url) {
+	if (url.includes('https://')) {
+		return url
+	} else {
+		return `https://${url}`
+	}
+}
+
 function formatTime(date) {
 	if (date === null)  {
 		return '-'
@@ -46,8 +54,8 @@ function formatTime(date) {
 	return `${y}y ago`
 }
 
-
 export default {
   thumbnail,
+	testUrl,
 	formatTime,
 }
