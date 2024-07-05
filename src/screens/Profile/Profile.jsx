@@ -14,6 +14,7 @@ import {
   scale
 } from 'react-native-size-matters';
 
+import ProfileLogout from './Components/ProfileLogout';
 import FormModal from '../../components/FormModal';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';
@@ -22,46 +23,6 @@ import ProfileImage from './Components/ProfileImage';
 import useGlobal from '../../core/global';
 import { colors } from '../../constants/colors';
 
-
-function ProfileLogout({ colors, style }) {
-  const logout = useGlobal(state => state.logout)
-  return (
-    <CustomButton
-      onClick={() => logout()}
-      style={{
-        flexDirection:'row',
-        paddingHorizontal:moderateScale(22),
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:verticalScale(25),
-        borderWidth:2,
-        borderColor:colors.tint,
-        backgroundColor:colors.accent,
-        shadowColor: '#222',
-        shadowOffset: { width: 7, height: 5 },
-        shadowOpacity: 1,
-        shadowRadius: 1, 
-        ...style
-      }}
-    >
-      <FontAwesomeIcon 
-        icon='right-from-bracket'
-        size={verticalScale(15)}
-        color={colors.white}
-        style={{ marginRight:moderateScale(10) }}
-      />
-      <CustomText 
-        style={{ 
-          fontWeight:'600', 
-          fontSize:verticalScale(15), 
-          color:colors.white 
-        }}
-      >
-        Logout
-      </CustomText>
-    </CustomButton>
-  )
-}
 
 export default function ProfileScreen({ navigation }) {
 
