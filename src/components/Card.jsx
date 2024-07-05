@@ -39,7 +39,8 @@ export default function CardItem({
               {item.name}{', '}
               <CustomText style={styles.age}>{item.age}</CustomText>
             </CustomText>
-            <CustomText style={styles.dorm}>🏡 {dormsData[item.dorm_building-1].dorm}</CustomText>
+            <CustomText style={{ ...styles.extra, marginBottom:verticalScale(5) }}>🏡 {dormsData[item.dorm_building-1].dorm}</CustomText>
+            <CustomText style={{ ...styles.extra, marginBottom:verticalScale(6) }}>📍 {item.city}, {item.state}</CustomText>
           </View>
           <View style={{ ...styles.box, width:'20%' }}>
             <CustomButton
@@ -126,16 +127,16 @@ const styles = StyleSheet.create({
     borderWidth:3,
   },  
   name: {
-    fontSize:verticalScale(16),
+    fontSize:verticalScale(18),
     fontWeight:'600',
     marginBottom:verticalScale(5)
   },
-  dorm: {
-    fontSize:verticalScale(12),
+  extra: {
+    fontSize:verticalScale(15),
     fontWeight:'500'
   },
   age: {
-    fontSize:verticalScale(15),
+    fontSize:verticalScale(16),
     fontWeight:'500'
   }
 })

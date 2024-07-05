@@ -9,7 +9,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
-import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
@@ -68,7 +67,6 @@ function SearchButton({ user, colors }) {
 				borderColor:colors.tint,
 				backgroundColor: data.disabled ? '#708E99' : colors.accent,
 				paddingHorizontal:moderateScale(16),
-				borderRadius:0,
 				shadowColor: '#222',
 				shadowOffset: { width: 7, height: 5 },
 				shadowOpacity: 1,
@@ -89,12 +87,11 @@ function SearchButton({ user, colors }) {
 }
 
 
-function SearchRow({ item, colors }) {
+function SearchRow({ navigation, item, colors }) {
 
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
 	
-	const [show, setShow] = useState(false)
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {
@@ -108,29 +105,19 @@ function SearchRow({ item, colors }) {
 
 	return (
 		<Cell colors={colors}>
-			<TouchableOpacity onPress={() => setShow(true)}>
+			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
 				<Thumbnail
 					url={item.thumbnail}
 					size={verticalScale(60)}
 					borderColor={colors.secondary}
 				/>
-			</TouchableOpacity>
+			</CustomButton>
 			<View style={{ flex:1, paddingHorizontal:16 }}>
 				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }} >
 					{item.name}
 				</CustomText>	
 			</View>
 			<SearchButton user={item} colors={colors} />
-			{ show
-			  ? 
-					<SwipeProfileModal 
-						item={profile}
-						colors={colors}
-						isVisible={show}
-						setIsVisible={setShow}
-					/>
-				: null 
-			}
 		</Cell>
 	)
 }
@@ -213,7 +200,7 @@ export default function Search({ navigation }) {
 				<FlatList
 					data={searchList}
 					renderItem={({ item }) => (
-						<SearchRow item={item} colors={colors} />
+						<SearchRow navigation={navigation} item={item} colors={colors} />
 					)}
 					keyExtractor={item => item.id}
 				/>

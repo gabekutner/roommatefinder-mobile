@@ -11,7 +11,7 @@ import {
 	RefreshControl,
 } from "react-native";
 
-import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
+// import SwipeProfileModal from "../../components/UI/SwipeProfileModal";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import CustomText from '../../components/UI/Custom/CustomText';
 import Empty from "../../components/Empty";
@@ -59,12 +59,10 @@ function RequestAccept({ item, colors }) {
 }
 
 
-function RequestRow({ item, colors }) {
+function RequestRow({ navigation, item, colors }) {
 
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
-
-	const [show, setShow] = useState(false)
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {
@@ -80,12 +78,12 @@ function RequestRow({ item, colors }) {
 
 	return (
 		<Cell colors={colors}>
-			<TouchableOpacity onPress={() => setShow(true)}>
+			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
 				<Thumbnail
 					url={item.sender.thumbnail}
 					size={76}
 				/>
-			</TouchableOpacity>
+			</CustomButton>
 			
 			<View style={{ flex:1, paddingHorizontal:16 }} >
 				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
@@ -97,25 +95,13 @@ function RequestRow({ item, colors }) {
 					</CustomText>
 				</CustomText>
 			</View>
-
 			<RequestAccept item={item} colors={colors} />
-
-			{ show
-			  ? 
-					<SwipeProfileModal 
-						item={profile}
-						colors={colors}
-						isVisible={show}
-						setIsVisible={setShow}
-					/>
-				: null 
-			}
 		</Cell>
 	)
 }
 
 
-export default function Requests() {
+export default function Requests({ navigation }) {
 
 	const requestList = useGlobal(state => state.requestList)
 	const refreshRequestList = useGlobal(state => state.refreshRequestList)
@@ -143,7 +129,7 @@ export default function Requests() {
 			<FlatList
 				data={requestList}
 				renderItem={({ item }) => (
-					<RequestRow item={item} colors={colors} />
+					<RequestRow navigation={navigation} item={item} colors={colors} />
 				)}
 				keyExtractor={item => item.sender.id}
 				refreshControl={

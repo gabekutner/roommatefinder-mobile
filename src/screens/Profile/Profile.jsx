@@ -179,7 +179,7 @@ export default function ProfileScreen({ navigation }) {
           >
             <View style={styles.row}>
               <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Edit Basics
+                Edit Profile
               </CustomText>
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>✍️</CustomText>

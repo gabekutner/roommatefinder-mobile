@@ -8,7 +8,7 @@ import {
 	RefreshControl
 } from "react-native";
 
-import SwipeProfileModal from "../components/UI/SwipeProfileModal";
+import CustomButton from "../components/UI/Custom/CustomButton";
 import CustomText from '../components/UI/Custom/CustomText';
 import Cell from "../components/Cell";
 import Empty from "../components/Empty";
@@ -24,27 +24,28 @@ function FriendRow({ navigation, item, colors }) {
 	const user = useGlobal(state => state.user)
 	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
 	
-	const [show, setShow] = useState(false)
 	const [profile, setProfile] = useState()
 
+	useEffect(() => {
+    const fetchProfile = async() => {
+      const resp = await getSwipeProfile(user, user.id)
+      setItem(resp.data)
+    }
+    fetchProfile()
+  }, [])
 
 	return (
 		<Cell colors={colors}>
-			<TouchableOpacity
-				onPress={async() => {
-					const profile = await getSwipeProfile(user, item.friend.id)
-					const userData = await profile.data
-					// Sometimes error here
-					setProfile(userData)
-					setShow(true)
-				}}
+			<CustomButton
+				onClick={() => navigation.navigate('profile-detail', { item:profile })}
+				style={{ borderWidth:0 }}
 			>
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={76}
 					borderColor={colors.tint}
 				/>
-			</TouchableOpacity>
+			</CustomButton>
 			
 			<TouchableOpacity onPress={() => navigation.navigate('messages', item)}>
 				<View 
@@ -85,16 +86,6 @@ function FriendRow({ navigation, item, colors }) {
 					</View>
 				</View>
 			</TouchableOpacity>
-			{ show
-				? 
-					<SwipeProfileModal 
-						item={profile}
-						colors={colors}
-						isVisible={show}
-						setIsVisible={setShow}
-					/>
-				: null
-			}
 		</Cell>
 	)
 }
