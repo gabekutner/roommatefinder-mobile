@@ -41,10 +41,7 @@ export default function StartupScreen({ navigation }) {
         />
       </View>
 
-      <View 
-        resizeMode='cover'
-        style={styles.actionWrapper}
-      >
+      <View resizeMode='cover' style={styles.actionWrapper}>
         <CustomButton
           onClick={() => navigation.navigate('signin')}
           style={styles.actionButton}
@@ -101,7 +98,7 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderColor:colors.tint,
     backgroundColor:colors.accent,
-    borderRadius:0,
+    // borderRadius:0,
     shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,

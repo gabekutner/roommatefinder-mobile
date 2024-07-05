@@ -41,11 +41,10 @@ export default function PromptScreen({ route, navigation }) {
       navigation.navigate(screen)
     } else {
       // submit all forms here 
-      console.log(form)
-      // createProfile(form, user)
-      // uploadPhotos(photos, user)
-      // staticUploadThumbnail(photos, user)
-      // submitMatchingForm(matchingForm, user)
+      createProfile(form, user)
+      uploadPhotos(photos, user)
+      staticUploadThumbnail(photos, user)
+      submitMatchingForm(matchingForm, user)
     }
   }
 
@@ -131,7 +130,6 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(13),
     marginHorizontal:moderateScale(35)
   },
-
   button: {
     backgroundColor:colors.accent,
     paddingVertical:verticalScale(15),
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width:5, height:3 },
     shadowOpacity:1,
     shadowRadius:1, 
-    borderRadius:0,
+    // borderRadius:0,
     borderWidth:2
   },
   text: {
