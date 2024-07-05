@@ -3,16 +3,12 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  FlatList,
-  SafeAreaView
+  Linking,
 } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import FastImage from 'react-native-fast-image';
-import { 
-  verticalScale,
-  moderateScale
-} from 'react-native-size-matters';
+import { verticalScale, moderateScale, scale } from 'react-native-size-matters';
 
 import CustomText from '../components/UI/Custom/CustomText';
 import CustomButton from '../components/UI/Custom/CustomButton';
@@ -24,27 +20,12 @@ import { dormsData, interestsData } from '../assets/Dictionary';
 export default function ProfileDetail({ route, navigation }) {
 
   const { item } = route.params
-  
-  const InfoItem = ({ emoji, text, style }) => {
-    const styles = StyleSheet.create({
-      text: { fontSize:verticalScale(15) }
-    })
+
+  const InfoItem = ({ icon, text }) => {
     return (
-      <View
-        style={{
-          flexDirection:'row',
-          gap:moderateScale(10),
-          textAlign:'center',
-          alignItems:'center',
-          ...style
-        }}
-      >
-        <CustomText style={styles.text}>
-          {emoji}
-        </CustomText>
-        <CustomText style={{ ...styles.text, fontWeight:'500' }}>
-          {text}
-        </CustomText>
+      <View style={{ flexDirection:'row', gap:moderateScale(10), alignItems:"center" }}>
+        <FontAwesomeIcon icon={icon} size={verticalScale(20)} color={colors.tertiary} />
+        <CustomText style={{ fontSize:verticalScale(15), fontWeight:'500', color:colors.tertiary }}>{text}</CustomText>
       </View>
     )
   }
@@ -76,210 +57,143 @@ export default function ProfileDetail({ route, navigation }) {
           />
       }
       
-      <ScrollView
-        style={{ 
-          backgroundColor:colors.secondary,
-          overflow:'hidden',
-          padding:20,
-          borderTopLeftRadius:20,
-          borderTopRightRadius:20,
-          bottom:0,
-          left:0,
-          right:0,
-          position:'absolute',
-          height:'48%',
-          borderTopWidth:2,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={{ flexDirection:'row' }}>
-          <View 
-            style={{ 
-              backgroundColor:colors.primary,  
-              paddingHorizontal:moderateScale(10),
-              paddingVertical:verticalScale(5),
-              borderRadius:6,
-            }}
-          >
-            <CustomText style={{ fontSize:verticalScale(20), fontWeight:'bold' }}>
-              {item.name ? item.name : null}
-            </CustomText>
-          </View>
-          <View style={{ justifyContent:'center', marginLeft:moderateScale(8) }}>
-            <CustomText style={{ fontSize:verticalScale(17), fontWeight:'600', }}>
-              {item.age ? `${item.age} yo.` : null}
-            </CustomText>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <View style={styles.wrapper}>
+          <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
+            <CustomText style={styles.title}>{item.name}, {item.age}</CustomText>
+            <CustomButton style={styles.button} onClick={() => navigation.goBack()}>
+              <FontAwesomeIcon 
+                icon="arrow-down" 
+                size={verticalScale(20)} 
+                color={colors.white} 
+              />
+            </CustomButton>
           </View>
         </View>
-        { item.dorm 
-          ? <InfoItem emoji="🏡" text={dormsData[item.dorm_building-1].dorm} style={{ marginTop:verticalScale(15) }} />
+        {/* basics */}
+        <View style={styles.wrapper}>
+          <InfoItem icon="building" text={dormsData[item.dorm_building-1].dorm} />
+          <View style={{ borderWidth:.5, marginVertical:verticalScale(10), borderColor:colors.tertiary }}/>
+          <InfoItem icon="location-dot" text={`${item.city}, ${item.state}`} />
+          <View style={{ borderWidth:.5, marginVertical:verticalScale(10), borderColor:colors.tertiary }}/>
+          <InfoItem icon="graduation-cap" text={item.major} />
+        </View>
+        {/* socials */}
+        <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(10) }}>
+          { item.links.map(( link ) => {
+            return (
+              <CustomButton 
+                key={link.link}
+                onClick={() => Linking.openURL(link.link)} 
+                style={{ backgroundColor:colors.accent }}
+              >
+                <CustomText style={{ fontSize:verticalScale(15), color:colors.white }}>{link.title}</CustomText>
+              </CustomButton>
+            )
+          })}
+        </View>
+        {/* first photo */}
+        { item.photos[0] 
+          ?
+            <View style={styles.wrapper}>
+              <FastImage
+                key={`${item.id}1`}
+                style={{
+                  width:'100%',
+                  height:verticalScale(250),
+                  alignItems:'flex-end',
+                  flexDirection:'row',
+                  borderRadius:12
+                }}
+                source={{ uri:item.photos[0].image }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            </View>
           : null
         }
-        { item.major
-          ? <InfoItem emoji="🎓" text={item.major} style={{ marginTop:verticalScale(10) }} />
-          : null
-        }
-        { item.city && item.state
-          ? <InfoItem emoji="📍" text={`${item.city}, ${item.state}`} style={{ marginTop:verticalScale(10) }} />
-          : null
-        }
-        { item.graduation_year
-          ? <InfoItem emoji="🏫" text={item.graduation_year} style={{ marginTop:verticalScale(10) }} />
-          : null
-        }
-       
-        <CustomButton
-          onClick={() => {}}
-          style={{
-            marginTop:verticalScale(10),
-            borderWidth:2,
-            borderColor:colors.tint,
-            backgroundColor:colors.accent,
-            borderRadius:0,
-            shadowColor: '#222',
-            shadowOffset: { width: 7, height: 5 },
-            shadowOpacity: 1,
-            shadowRadius: 1,  
-            flexDirection:'row',
-            justifyContent:'space-between',
-            paddingHorizontal:moderateScale(15)
-          }}
-        >
-          <CustomText style={{ fontSize:verticalScale(15), color:colors.white, fontWeight:'500' }}>Socials</CustomText>
-          <CustomText style={{ fontSize:verticalScale(15) }}>🔗</CustomText>
-        </CustomButton>
-
-        <View style={{ borderWidth:.75, marginVertical:verticalScale(10), borderColor:colors.tint }}/>
-
+        {/* description */}
         { item.description 
           ? 
-            <View 
-              style={{ 
-                backgroundColor:colors.primary,  
-                paddingHorizontal:moderateScale(10),
-                paddingVertical:verticalScale(5),
-                borderRadius:6,
-              }}
-            >
-              <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>
-                {item.description}
-              </CustomText>
+            <View style={styles.wrapper}>
+              <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600' }}>Description</CustomText>
+              <CustomText style={{ fontSize:verticalScale(13), fontWeight:'500', color:colors.tertiary }}>{item.description}</CustomText>
             </View>
           : null
         }
-
-        { item.photos[0] 
-          ? 
-            <FastImage 
-              key={item.id}
-              style={{
-                width:'100%',
-                height:350,
-                marginTop:verticalScale(10),
-                borderColor:colors.tint,
-                borderWidth:2,
-                borderRadius:6
-              }}
-              source={{uri:item.photos[0].image}}
-              resizeMode={FastImage.resizeMode.cover}
-            />
-          : null
-        }
-
-        <View 
-          style={{
-            flexDirection:'row',
-            gap:moderateScale(12),
-            marginTop:verticalScale(10),
-            flexWrap:'wrap'
-          }}
-        >
-          { item.interests 
-            ? item.interests.map((item) => (
-                <View 
-                  style={{ 
-                    paddingVertical:verticalScale(10), 
-                    paddingHorizontal:moderateScale(20),
-                    borderRadius:20, 
-                    backgroundColor:colors.accent,
-                  }}
-                  key={item}
-                >
-                  <CustomText 
-                    style={{ 
-                      color:colors.white, 
-                      fontSize:verticalScale(13), 
-                      fontWeight:'500' 
-                    }}
-                  >
-                    {interestsData[item-1].interest}
-                  </CustomText>
-                </View>
-              ))
-            : null
-          }
-
-        </View>
-
-        { item.photos[1] !== undefined
-          ? 
-            <FastImage 
-              key={item.id}
-              style={{
-                width:'100%',
-                height:350,
-                marginTop:verticalScale(10),
-                borderColor:colors.tint,
-                borderWidth:2,
-                borderRadius:6
-              }}
-              source={{uri:item.photos[1].image}}
-              resizeMode={FastImage.resizeMode.cover}
-            />
-          : null
-        }
-
-        { item.quotes.length !== 0
-          ? 
-            <View style={{ marginTop:verticalScale(10) }}>
+        {/* interests */}
+        <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(4) }}>
+          { item.interests.map((interest) => {
+            return (
               <View 
                 style={{ 
-                  backgroundColor:colors.primary,  
-                  paddingHorizontal:moderateScale(10),
-                  paddingVertical:verticalScale(5),
-                  borderRadius:6,
-                  paddingLeft:moderateScale(40)
-                }}
-              >
-                <CustomText style={{ fontSize:verticalScale(16), fontWeight:'500' }}>
-                  {item.quotes[0].quote}
-                </CustomText>
-                <CustomText style={{ fontSize:verticalScale(14), marginTop:verticalScale(5) }}>
-                  - {item.quotes[0].cited}
-                </CustomText>
+                  backgroundColor:colors.accent, 
+                  
+                }}>
+                <CustomText style={{ color:colors.white, fontSize:verticalScale(14) }} key={interest}>{interestsData[interest-1].interest}</CustomText>
               </View>
-              <View
+            )
+          })}
+        </View>
+        {/* second photo */}
+        { item.photos[1] 
+          ?
+            <View style={styles.wrapper}>
+              <FastImage
+                key={`${item.id}2`}
                 style={{
-                  position:'absolute',
-                  top:-10,
-                  left:-10,
-                  padding:10,
-                  backgroundColor:colors.primary,
-                  borderRadius:60,
-                  borderWidth:1
+                  width:'100%',
+                  height:verticalScale(250),
+                  alignItems:'flex-end',
+                  flexDirection:'row',
+                  borderRadius:12
                 }}
-              >
-                <FontAwesomeIcon 
-                  icon='quote-left'
-                  size={22}
-                  color={colors.accent}
-                />
-              </View>
+                source={{ uri:item.photos[1].image }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
             </View>
           : null
         }
-        <View style={{ height:verticalScale(150) }} />
+        {/* quotes, prompts */}
+
+        {/* other photos, possible : 1 */}
+
+        <View style={{ marginVertical:verticalScale(20) }} />
       </ScrollView>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor:colors.secondary,
+    overflow:'hidden',
+    padding:verticalScale(15),
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+    bottom:0,
+    left:0,
+    right:0,
+    position:'absolute',
+    height:'48%',
+    borderTopWidth:2,
+  },
+  wrapper: {
+    backgroundColor:colors.primary,
+    paddingHorizontal:moderateScale(15),
+    paddingVertical:verticalScale(10),
+    borderRadius:12,
+    marginBottom:verticalScale(10)
+  },
+  title: {
+    fontSize:verticalScale(18),
+    fontWeight:'600',
+    color:colors.tint
+  },
+  button: {
+    height:scale(45),
+    width:scale(45),
+    backgroundColor:colors.accent,
+    borderRadius:6,
+    borderWidth:2,
+  }
+})

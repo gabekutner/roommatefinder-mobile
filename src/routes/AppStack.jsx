@@ -214,7 +214,8 @@ export default function AppStack() {
         component={ProfileDetail} 
         options={{ 
           headerShown:false,
-          presentation:'modal'
+          presentation:'modal',
+          gestureEnabled:false
         }}
       />
       <Stack.Screen 
