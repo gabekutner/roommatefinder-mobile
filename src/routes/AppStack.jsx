@@ -20,7 +20,7 @@ import Friends from "../screens/Friends";
 import Profile from "../screens/Profile/Profile";
 import Swipe from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search";
-import Requests from '../screens/Extras/Requests';
+import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
 import Settings from "../screens/Settings";
 import ProfileDetail from '../screens/ProfileDetail';
@@ -40,7 +40,6 @@ import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
-import CustomText from "../components/UI/Custom/CustomText";
 
 
 const Header = ({ nav, icon }) => {

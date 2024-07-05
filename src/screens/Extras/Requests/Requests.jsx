@@ -7,11 +7,11 @@ import {
 } from "react-native";
 
 
-import RequestRow from "./Requests/RequestRow";
-import Empty from "../../components/Empty";
+import RequestRow from "./RequestRow";
+import Empty from "../../../components/Empty";
 
-import useGlobal from "../../core/global";
-import { colors } from "../../constants/colors";
+import useGlobal from "../../../core/global";
+import { colors } from "../../../constants/colors";
 
 
 export default function Requests({ navigation }) {
