@@ -58,6 +58,7 @@ export default function ProfileDetail({ route, navigation }) {
           />
       }
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* title */}
         <View style={styles.wrapper}>
           <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
             <CustomText style={styles.title}>{item.name}, {item.age}</CustomText>
@@ -70,6 +71,7 @@ export default function ProfileDetail({ route, navigation }) {
             </CustomButton>
           </View>
         </View>
+
         {/* basics */}
         <View style={styles.wrapper}>
           <InfoItem icon="building" text={dormsData[item.dorm_building-1].dorm} />
@@ -78,41 +80,47 @@ export default function ProfileDetail({ route, navigation }) {
           <View style={{ borderWidth:.5, marginVertical:verticalScale(10), borderColor:colors.tertiary }}/>
           <InfoItem icon="graduation-cap" text={item.major} />
         </View>
+
         {/* socials */}
-        
         { item.links.length !== 0
-          ? 
-            <View 
-              style={{ 
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                alignItems: 'center', // Adjust as needed
-                justifyContent: 'flex-start', // Adjust as needed
-                ...styles.wrapper
-              }}
-            >
-              {item.links.map(( link ) => (
-                <CustomButton 
-                  key={link.link}
-                  onClick={() => {
-                    const url = utils.testUrl(link.link)
-                    Linking.openURL(url).catch((err) =>
-                      console.error('openlink err: ', err)
-                    )
-                  }} 
-                  style={{ 
-                    backgroundColor:colors.accent,
-                    paddingHorizontal:moderateScale(12),
-                    paddingVertical:verticalScale(6),
-                    borderRadius:12,
-                    margin:verticalScale(2), // Adjust spacing between items 
-                  }}
-                >
-                  <CustomText style={{ fontSize:verticalScale(14), color:colors.white, fontWeight:'600' }}>
-                    {link.title}
-                  </CustomText>
-                </CustomButton>
-              ))}
+          ?
+            <View style={styles.wrapper}>
+              <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
+                <FontAwesomeIcon icon="link" size={verticalScale(20)} color={colors.tertiary} />
+                <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600', color:colors.tint }}>Social handles</CustomText>
+              </View>
+              <View 
+                style={{ 
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  alignItems: 'center', // Adjust as needed
+                  justifyContent: 'flex-start', // Adjust as needed
+                }}
+              >
+                
+                {item.links.map(( link ) => (
+                  <CustomButton 
+                    key={link.link}
+                    onClick={() => {
+                      const url = utils.testUrl(link.link)
+                      Linking.openURL(url).catch((err) =>
+                        console.error('openlink err: ', err)
+                      )
+                    }} 
+                    style={{ 
+                      backgroundColor:colors.accent,
+                      paddingHorizontal:moderateScale(15),
+                      paddingVertical:verticalScale(10),
+                      borderRadius:12,
+                      margin:verticalScale(2), // Adjust spacing between items 
+                    }}
+                  >
+                    <CustomText style={{ fontSize:verticalScale(14), color:colors.white, fontWeight:'600' }}>
+                      {link.title}
+                    </CustomText>
+                  </CustomButton>
+                ))}
+              </View>
             </View>
           : null 
         }
@@ -136,25 +144,34 @@ export default function ProfileDetail({ route, navigation }) {
             </View>
           : null
         }
+
         {/* description */}
         { item.description 
           ? 
             <View style={styles.wrapper}>
-              <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600' }}>Description</CustomText>
+              <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
+                <FontAwesomeIcon icon="quote-left" size={verticalScale(14)} color={colors.tertiary} />
+                <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600', color:colors.tint }}>About me</CustomText>
+              </View>
               <CustomText style={{ fontSize:verticalScale(13), fontWeight:'500', color:colors.tertiary }}>{item.description}</CustomText>
             </View>
           : null
         }
+
         {/* interests */}
         { item.interests.length !== 0
           ?
+          <View style={styles.wrapper}>
+            <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
+              <FontAwesomeIcon icon="person-hiking" size={verticalScale(20)} color={colors.tertiary} />
+              <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600', color:colors.tint }}>Interests</CustomText>
+            </View>
             <View 
               style={{ 
                 flexDirection: 'row',
                 flexWrap: 'wrap',
                 alignItems: 'center', // Adjust as needed
                 justifyContent: 'flex-start', // Adjust as needed
-                ...styles.wrapper
               }}
             >
               {item.interests.map((interest, index) => (
@@ -174,6 +191,7 @@ export default function ProfileDetail({ route, navigation }) {
                 </View>
               ))}
             </View>
+          </View>
           : null
         }
         
@@ -196,6 +214,7 @@ export default function ProfileDetail({ route, navigation }) {
             </View>
           : null
         }
+
         {/* quotes, prompts */}
 
         {/* other photos, possible : 1 */}
