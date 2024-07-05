@@ -115,37 +115,22 @@ export default function ProfileScreen({ navigation }) {
   }
     
   return (
-    <View style={{ flex:1, backgroundColor:colors.primary }}>
-      <View 
-        style={{ 
-          alignItems:'center',
-          paddingTop:verticalScale(15),
-          backgroundColor:colors.secondary,
-          paddingBottom:verticalScale(35),
-          borderBottomLeftRadius:65,
-          borderBottomRightRadius:65,
-        }}
-      >
-        <ProfileImage user={user} colors={colors} bc={colors.secondary} bg={colors.primary} />
-        <CustomText
-          style={{
-            textAlign:'center',
-            color:colors.tint,
-            fontSize:verticalScale(16),
-            fontWeight:'bold',
-            marginBottom:verticalScale(3),
-          }}
-        >
+    <View style={styles.container}>
+      <View style={styles.titleWrapper}>
+        <ProfileImage 
+          user={user} 
+          colors={colors} 
+          bc={colors.secondary} 
+          bg={colors.primary} 
+        />
+        <CustomText style={styles.name}>
           {user.name}
         </CustomText>
       </View>
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
-        style={{ 
-          marginTop:verticalScale(-20),
-          marginBottom:verticalScale(120)
-        }}
+        style={styles.contentWrapper}
       >
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
           <CustomButton 
@@ -155,12 +140,13 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowFirst, 
               backgroundColor:colors.accent, 
               borderColor:colors.tint,
+              borderBottomWidth:0,
               borderBottomLeftRadius:0,
-              borderBottomRightRadius:0
+              borderBottomRightRadius:0,
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.white, fontWeight:'700' }}>
+              <CustomText style={{ ...styles.rowLabel, color:colors.white, fontWeight:'600' }}>
                 Preview Profile
               </CustomText>
               <View style={styles.rowSpacer} />
@@ -173,7 +159,8 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowWrapper, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5,
+              borderTopWidth:0,
+              borderBottomWidth:0,
               borderRadius:0,
             }}
           >
@@ -191,7 +178,7 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowLast, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5
+              borderTopWidth:0
             }}
           >
             <View style={styles.row}>
@@ -234,6 +221,7 @@ export default function ProfileScreen({ navigation }) {
               borderBottomRightRadius:0,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
+              borderBottomWidth:0
             }}
           >
             { showContactForm 
@@ -264,6 +252,8 @@ export default function ProfileScreen({ navigation }) {
             style={{ 
               ...styles.rowWrapper, 
               borderRadius:0,
+              borderTopWidth:0,
+              borderBottomWidth:0,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
             }}
@@ -296,6 +286,8 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowWrapper, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
+              borderTopWidth:0,
+              borderBottomWidth:0
             }}
           >
             <View style={styles.row}>
@@ -312,6 +304,7 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowLast,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
+              borderTopWidth:0
             }}
           >
             <View style={styles.row}>
@@ -340,7 +333,6 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowLast, 
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
-              borderTopWidth:.5,
             }}
           >
             <View style={styles.row}>
@@ -362,40 +354,36 @@ export default function ProfileScreen({ navigation }) {
 
 
 const styles = StyleSheet.create({
-  keyData: {
-    flexDirection:'row',
-    gap:moderateScale(8)
+  container: {
+    flex:1, 
+    backgroundColor:colors.primary
   },
-  keyDataOption: {
-    width:scale(70),
-    height:scale(50),
+  // title 
+  titleWrapper: {
     alignItems:'center',
-    justifyContent:'center',
-  },
-  keyDataDivider: {
-    height:"100%",
+    paddingTop:verticalScale(15),
     backgroundColor:colors.secondary,
-    width:2,
-    borderRadius:5
+    paddingBottom:verticalScale(35),
+    borderBottomLeftRadius:65,
+    borderBottomRightRadius:65,
   },
-  keyDataText: {
-    fontSize:verticalScale(13),
-    fontWeight:'500'
+  name: {
+    textAlign:'center',
+    color:colors.tint,
+    fontSize:verticalScale(16),
+    fontWeight:'600',
+    marginBottom:verticalScale(3),
   },
+  // content
+  contentWrapper: {
+    marginTop:verticalScale(-20),
+    marginBottom:verticalScale(120)
+  },
+
+
+
+
   // navigation options
-  navOptions: {
-    marginTop:verticalScale(25),
-    flexDirection:'row',
-    gap:moderateScale(10)
-  },
-  navBox: {
-    width:moderateScale(150),
-    backgroundColor:colors.secondary,
-    borderWidth:0,
-    justifyContent:'space-between',
-    paddingLeft:moderateScale(5),
-    paddingRight:moderateScale(17),
-  },
   sectionBody: { 
     borderRadius: 12,
     shadowColor: '#000',
@@ -420,7 +408,7 @@ const styles = StyleSheet.create({
   rowWrapper: {
     height:verticalScale(40),
     paddingLeft: moderateScale(12),
-    borderWidth: .75,  
+    borderWidth: 2,  
   },
   rowFirst: {
     borderTopLeftRadius: 12,

@@ -22,7 +22,7 @@ import Swipe from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
-import Settings from "../screens/Settings";
+// import Settings from "../screens/Settings";
 import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
@@ -271,7 +271,7 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      <Stack.Screen 
+      {/* <Stack.Screen 
         name='settings' 
         component={Settings} 
         options={({ navigation }) => ({
@@ -295,7 +295,7 @@ export default function AppStack() {
           },
           headerShadowVisible: false, // border bottom invisible
         })}
-      />
+      /> */}
 
       {/* matching quiz */}
       <Stack.Screen
