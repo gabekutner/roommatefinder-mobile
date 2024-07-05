@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight:'600', 
-    fontSize:verticalScale(17), 
+    fontSize:verticalScale(15), 
     color:colors.tint, 
     marginBottom:verticalScale(4)
   }

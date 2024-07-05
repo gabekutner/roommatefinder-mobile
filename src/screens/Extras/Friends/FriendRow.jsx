@@ -29,13 +29,10 @@ export default function FriendRow({ navigation, item }) {
 
 	return (
 		<Cell colors={colors}>
-			<CustomButton
-				onClick={() => navigation.navigate('profile-detail', { item:profile })}
-				style={{ borderWidth:0 }}
-			>
+			<CustomButton onClick={() => navigation.navigate('profile-detail', { item:profile })} style={{ borderWidth:0 }}>
 				<Thumbnail
 					url={item.friend.thumbnail}
-					size={76}
+					size={verticalScale(60)}
 					borderColor={colors.tint}
 				/>
 			</CustomButton>

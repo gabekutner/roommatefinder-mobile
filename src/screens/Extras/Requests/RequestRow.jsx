@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
+
+import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import Cell from "../../../components/Cell";
 import Thumbnail from "../../../components/Thumbnail";
@@ -34,15 +36,16 @@ export default function RequestRow({ navigation, item }) {
 			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
 				<Thumbnail
 					url={item.sender.thumbnail}
-					size={76}
+					size={verticalScale(60)}
+					borderColor={colors.tint}
 				/>
 			</CustomButton>
-			<View style={{ flex:1, paddingHorizontal:16 }} >
-				<CustomText style={{ fontWeight:'600', fontSize:17, color:colors.tint, marginBottom:4 }}>
+			<View style={styles.textContainer} >
+				<CustomText style={styles.text}>
 					{item.sender.name}
 				</CustomText>
 				<CustomText style={{ color:colors.tint }}>
-					{message} <CustomText style={{ color:colors.tint, fontSize:13 }}>
+					{message} <CustomText style={{ color:colors.tertiary, fontSize:verticalScale(11) }}>
 						{utils.formatTime(item.created)}
 					</CustomText>
 				</CustomText>
@@ -51,3 +54,16 @@ export default function RequestRow({ navigation, item }) {
 		</Cell>
 	)
 }
+
+const styles = StyleSheet.create({
+	textContainer: {
+    flex:1, 
+    paddingHorizontal:moderateScale(16)
+  },
+	text: {
+		fontWeight:'600', 
+    fontSize:verticalScale(14), 
+    color:colors.tint, 
+    marginBottom:verticalScale(4)
+	}
+})

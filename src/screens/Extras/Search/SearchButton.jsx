@@ -4,6 +4,9 @@ import { StyleSheet } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
+import CustomButton from "../../../components/UI/Custom/CustomButton";
+import CustomText from "../../../components/UI/Custom/CustomText";
+
 import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
