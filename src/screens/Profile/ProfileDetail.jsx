@@ -79,11 +79,19 @@ export default function ProfileDetail({ route, navigation }) {
           <InfoItem icon="graduation-cap" text={item.major} />
         </View>
         {/* socials */}
+        
         { item.links.length !== 0
           ? 
-          <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(10) }}>
-            { item.links.map(( link ) => {
-              return (
+            <View 
+              style={{ 
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center', // Adjust as needed
+                justifyContent: 'flex-start', // Adjust as needed
+                ...styles.wrapper
+              }}
+            >
+              {item.links.map(( link ) => (
                 <CustomButton 
                   key={link.link}
                   onClick={() => {
@@ -92,13 +100,20 @@ export default function ProfileDetail({ route, navigation }) {
                       console.error('openlink err: ', err)
                     )
                   }} 
-                  style={{ backgroundColor:colors.accent }}
+                  style={{ 
+                    backgroundColor:colors.accent,
+                    paddingHorizontal:moderateScale(12),
+                    paddingVertical:verticalScale(6),
+                    borderRadius:12,
+                    margin:verticalScale(2), // Adjust spacing between items 
+                  }}
                 >
-                  <CustomText style={{ fontSize:verticalScale(15), color:colors.white }}>{link.title}</CustomText>
+                  <CustomText style={{ fontSize:verticalScale(14), color:colors.white, fontWeight:'600' }}>
+                    {link.title}
+                  </CustomText>
                 </CustomButton>
-              )
-            })}
-          </View>
+              ))}
+            </View>
           : null 
         }
         
@@ -131,19 +146,37 @@ export default function ProfileDetail({ route, navigation }) {
           : null
         }
         {/* interests */}
-        <View style={{ ...styles.wrapper, flexDirection:'column', gap:verticalScale(4) }}>
-          { item.interests.map((interest) => {
-            return (
-              <View 
-                style={{ 
-                  backgroundColor:colors.accent, 
-                  
-                }}>
-                <CustomText style={{ color:colors.white, fontSize:verticalScale(14) }} key={interest}>{interestsData[interest-1].interest}</CustomText>
-              </View>
-            )
-          })}
-        </View>
+        { item.interests.length !== 0
+          ?
+            <View 
+              style={{ 
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center', // Adjust as needed
+                justifyContent: 'flex-start', // Adjust as needed
+                ...styles.wrapper
+              }}
+            >
+              {item.interests.map((interest, index) => (
+                <View 
+                  key={index} 
+                  style={{ 
+                    backgroundColor:colors.accent,
+                    paddingHorizontal:moderateScale(12),
+                    paddingVertical:verticalScale(6),
+                    borderRadius:12,
+                    margin:verticalScale(2), // Adjust spacing between items 
+                  }}
+                >
+                  <CustomText style={{ color:colors.white, fontSize:verticalScale(14), fontWeight:'600' }}>
+                    {interestsData[interest - 1].interest}
+                  </CustomText>
+                </View>
+              ))}
+            </View>
+          : null
+        }
+        
         {/* second photo */}
         { item.photos[1] 
           ?
