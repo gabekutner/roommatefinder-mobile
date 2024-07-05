@@ -302,23 +302,6 @@ export default function ProfileScreen({ navigation }) {
           <View 
             style={{ 
               ...styles.rowWrapper, 
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
-              borderTopWidth:0,
-              borderBottomWidth:0
-            }}
-          >
-            <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Rate in App Store
-              </CustomText>
-              <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>📲</CustomText>
-            </View>
-          </View>
-          <View 
-            style={{ 
-              ...styles.rowWrapper, 
               ...styles.rowLast,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
