@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { 
   View, 
   StyleSheet,
@@ -9,10 +9,7 @@ import { LinearGradient } from 'react-native-linear-gradient';
 import { verticalScale, moderateScale, scale } from 'react-native-size-matters';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-// import CircleButton from './UI/CircleButton';
-// import Title from './Brand/Title';
 import FastImageBackground from './UI/FastImageBackground';
-import InfoCard from './InfoCard';
 import CustomText from './UI/Custom/CustomText';
 import CustomButton from './UI/Custom/CustomButton';
 import { dormsData } from '../assets/Dictionary';

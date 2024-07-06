@@ -27,15 +27,8 @@ import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
 // matching quiz
-import SocialBatteryScreen from "../screens/Onboarding/Matching/SocialBattery";
-import CleanRoomScreen from "../screens/Onboarding/Matching/CleanRoom";
-import NoiseLevelScreen from "../screens/Onboarding/Matching/NoiseLevel";
-import GuestPolicyScreen from "../screens/Onboarding/Matching/GuestPolicy";
-import InRoomScreen from "../screens/Onboarding/Matching/InRoom";
-import HotColdScreen from "../screens/Onboarding/Matching/HotCold";
-import BedTimeScreen from "../screens/Onboarding/Matching/BedTime";
-import WakeUpScreen from "../screens/Onboarding/Matching/WakeUpTime";
-import SharingPolicyScreen from "../screens/Onboarding/Matching/SharingPolicy";
+import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
+import PromptScreen from "../screens/Onboarding/Prompt";
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
@@ -271,131 +264,39 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      {/* <Stack.Screen 
-        name='settings' 
-        component={Settings} 
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
-              style={{
-                marginBottom:verticalScale(5)
-              }}
-            >
-              <FontAwesomeIcon 
-                icon='arrow-left'
-                size={verticalScale(20)}
-                color={colors.tint}
-              />
-            </TouchableOpacity>
-          ), 
-          headerTitle: () => <Title title="Settings" color={colors.tint} fontSize={verticalScale(20)} />,
-          headerStyle: {
-            backgroundColor:colors.primary,
-          },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> */}
 
       {/* matching quiz */}
       <Stack.Screen
-        name='social-battery'
-        component={SocialBatteryScreen}
-        options={({ navigation }) => ({
-          headerLeft:() => <View />,
-          headerRight: () => <Header nav={() => navigation.navigate('clean-room')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />  
+        name='matching'
+        component={BaseOnboardingCard}
+        options={{ headerShown:false }}
+        initialParams={{
+          data: [
+            {'id': 1, 'title': 'social-battery', 'label': "How's your social energy throughout the day?"},
+            {'id': 2, 'title': 'clean-room', 'label': 'How clean do you keep your room? 🧹'},
+            {'id': 3, 'title': 'noise-level', 'label': 'How loud is it in your room most of the time?'},
+            {'id': 4, 'title': 'guest-policy', 'label': 'What do you think about dorm guests? 🏨'},
+            {'id': 5, 'title': 'in-room', 'label': "How much time do you spend in your room?"},
+            {'id': 6, 'title': 'hot-cold', 'label': ' How hot or cold do you keep your room?'},
+            {'id': 7, 'title': 'bed-time', 'label': 'When is it time for bed? 🥱'},
+            {'id': 8, 'title': 'wake-up-time', 'label': 'What about wake up time? ☀️'},
+            {'id': 9, 'title': 'sharing-policy', 'label': 'What do you think about sharing your stuff? 🧸'},
+          ],
+          next: 'done'
+        }}
+      />
       <Stack.Screen
-        name='clean-room'
-        component={CleanRoomScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('noise-level')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='noise-level'
-        component={NoiseLevelScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('guest-policy')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      />     
-      <Stack.Screen
-        name='guest-policy'
-        component={GuestPolicyScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('in-room')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='in-room'
-        component={InRoomScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('hot-cold')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='hot-cold'
-        component={HotColdScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('bed-time')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='bed-time'
-        component={BedTimeScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('wake-up-time')} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='wake-up-time'
-        component={WakeUpScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          headerRight: () => <Header nav={() => navigation.navigate('sharing-policy', { navTo:'profile', action:'edit' })} icon="arrow-right" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='sharing-policy'
-        component={SharingPolicyScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
+        name='done'
+        component={PromptScreen}
+        options={{ headerShown:false }}
+        initialParams={{ 
+          title: "Sweet! You're all done",
+          subtitle: "Hit submit to update your matching quiz!",
+          text: "Submit",
+          screen:'update',
+          screen2:''
+        }}
+      />
 
     </Stack.Navigator>
   ) 

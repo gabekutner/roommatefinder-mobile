@@ -36,9 +36,12 @@ export default function PromptScreen({ route, navigation }) {
   const staticUploadThumbnail = useGlobal(state => state.staticUploadThumbnail)
   const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
 
-  const buttonClick = () => {
-    if (screen != '') {
+  const buttonClick = async() => {
+    if (screen != '' && screen != 'update') {
       navigation.navigate(screen)
+    } else if (screen === 'update') {
+      submitMatchingForm(matchingForm, user)
+      navigation.navigate('profile')
     } else {
       // submit all forms here 
       createProfile(form, user)

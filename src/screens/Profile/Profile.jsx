@@ -158,7 +158,8 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
-          <View 
+          <CustomButton 
+            onClick={() => navigation.navigate('matching')}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst,
@@ -174,7 +175,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText style={{ fontSize:verticalScale(18) }}>💥</CustomText>
             </View>
-          </View>
+          </CustomButton>
         </View>
 
         {/* preferences */}
@@ -206,96 +207,20 @@ export default function ProfileScreen({ navigation }) {
             onClick={() => setShowHow(true)}
             style={{ 
               ...styles.rowWrapper, 
-              ...styles.rowLast,
+              // ...styles.rowLast,
               backgroundColor:colors.secondary, 
               borderColor:colors.tint,
               borderTopWidth:0,
-              borderTopLeftRadius:0,
-              borderTopRightRadius:0
+              borderRadius:0,
+              borderBottomWidth:0
             }}
           >
-            { showHow 
-              ? null
-              : null 
-            }
             <View style={styles.row}>
               <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
                 How to find a roommate?
               </CustomText>
               <View style={styles.rowSpacer} />
               <FontAwesomeIcon icon="question-circle" size={verticalScale(20)} color={colors.tertiary} />
-            </View>
-          </CustomButton>
-        </View>
-
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
-          <CustomButton 
-            onClick={() => setShowContactForm(true)}
-            style={{ 
-              ...styles.rowWrapper, 
-              ...styles.rowFirst,
-              borderBottomLeftRadius:0,
-              borderBottomRightRadius:0,
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
-              borderBottomWidth:0
-            }}
-          >
-            { showContactForm 
-              ? <FormModal 
-                  isVisible={showContactForm} 
-                  setIsVisible={setShowContactForm} 
-                  title={"What's up?"}
-                  subtitle={'Some subtitle text here ...'}
-                  placeholderTitle={'Ex. Hello!'}
-                  placeholderTitleEmoji={'🤔'}
-                  placeholderMessage={'Ex. I found my roommate, thanks!'}
-                  placeholderMessageEmoji={'💬'}
-                  form={contactForm}
-                  setForm={setContactForm}
-                /> 
-              : null 
-            }
-            <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Contact Us
-              </CustomText>
-              <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>📞</CustomText>
-            </View>
-          </CustomButton>
-          <CustomButton 
-            onClick={() => setShowBugForm(true)}
-            style={{ 
-              ...styles.rowWrapper, 
-              borderRadius:0,
-              borderTopWidth:0,
-              borderBottomWidth:0,
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
-            }}
-          >
-            { showBugForm
-              ? <FormModal 
-                  isVisible={showBugForm} 
-                  setIsVisible={setShowBugForm} 
-                  title={"What's wrong?"}
-                  subtitle={'Some subtitle text here ...'}
-                  placeholderTitle={'Ex. Where?'}
-                  placeholderTitleEmoji={'🤔'}
-                  placeholderMessage={"Ex. There's something wrong over there..."}
-                  placeholderMessageEmoji={'🐞'}
-                  form={bugForm}
-                  setForm={setBugForm}
-                /> 
-              : null
-            }
-            <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
-                Report a Bug
-              </CustomText>
-              <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🐞</CustomText>
             </View>
           </CustomButton>
           <View 

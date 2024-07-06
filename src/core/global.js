@@ -1,15 +1,9 @@
-import {
-  Platform,
-} from 'react-native';
-
+import { Platform } from 'react-native';
 
 import { create } from 'zustand';
 
-
 import secure from './secure';
 import api, { ADDRESS } from './api';
-
-
 
 
 //-------------------------------------
@@ -21,14 +15,12 @@ function responseFriendList(set, get, friendList) {
   }))
 }
 
-
 function responseFriendNew(set, get, friend) {
   const friendList = [friend, ...get().friendList]
   set((state) => ({
     friendList: friendList
   }))
 }
-
 
 function responseMessageList(set, get, data) {
   set((state) => ({
@@ -37,7 +29,6 @@ function responseMessageList(set, get, data) {
     messagesId: data.friend.id
   }))
 }
-
 
 function responseMessageSend(set, get, data) {
   const id = data.friend.id
@@ -70,7 +61,6 @@ function responseMessageSend(set, get, data) {
   }))
 }
 
-
 function responseMessageType(set, get, data) {
   if (data.id !== get().messagesId) return
   set((state) => ({
@@ -78,10 +68,8 @@ function responseMessageType(set, get, data) {
   }))
 }
 
-
 function responseRequestConnect(set, get, connection) {
   const user = get().user
-
   // if i was the one that made the connect request,
   // update the search list row
   if (user.id === connection.sender.id) {
@@ -156,13 +144,11 @@ function responseRequestAccept(set, get, connection) {
   }
 }
 
-
 function responseRequestList(set, get, requestList) {
   set((state) => ({
     requestList: requestList
   }))
 }
-
 
 function responseSearch(set, get, data) {
   set((state) => ({
@@ -170,13 +156,11 @@ function responseSearch(set, get, data) {
   }))
 }
 
-
 function responseThumbnail(set, get, data) {
   set((state) => ({
     user:data
   }))
 }
-
 
 const useGlobal = create((set, get) => ({
   //---------------------
@@ -196,19 +180,13 @@ const useGlobal = create((set, get) => ({
           }
         })
 
-
         if (response.status !== 200) {
           throw 'Authentication error'
         }
 
-
         const created = response.data.name == null ? false : true
-
-
         const tokens = {'access': response.data.access, 'refresh': response.data.refresh}
         secure.set('tokens', tokens)
-
-
         set((state) => ({
           initialized:true,
           authenticated:true,
@@ -274,11 +252,9 @@ const useGlobal = create((set, get) => ({
   },
 
   profileCreated: false,
-
   createProfile: async (form, user) => {
     if (user.token) {
       try {
-      
         const bday = ((
           form.birthday.getMonth() > 8)
           ? (form.birthday.getMonth() + 1)
@@ -287,9 +263,8 @@ const useGlobal = create((set, get) => ({
           ? form.birthday.getDate()
           : ('0' + form.birthday.getDate()))
           + '-' + form.birthday.getFullYear()
-        
         form.birthday = bday
-        
+  
         const response = await api({
           method: 'post',
           url: '/api/v1/profiles/actions/create-profile/',
@@ -300,9 +275,9 @@ const useGlobal = create((set, get) => ({
         if (response.status !== 201) {
           throw 'create-profile error'
         }
+
         const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
         secure.set('tokens', tokens)
-
         console.log('create-profile success')
         set((state) => ({
           profileCreated:true,
@@ -358,7 +333,6 @@ const useGlobal = create((set, get) => ({
     if (user.token) {
       try {
         const dataForm = new FormData()
-
         if (form.photo_1 !== null) {
           const imageUri = form.photo_1.uri
           const fileName = imageUri.split('/').pop()
@@ -481,46 +455,54 @@ const useGlobal = create((set, get) => ({
 
   submitMatchingForm: async (form, user) => {
     if (user.token) {
-      try {
-        form.hot_cold = form.hot_cold[0]
-        form.in_room = form.in_room[0]
-        form.noise_level = form.noise_level[0]
-        form.social_battery = form.social_battery[0]
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/matching-quizs/',
-          data: form,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-        if (response.status !== 201) {
-          throw 'submit-matching-quiz error'
-        }
-        console.log('submitted matching quiz!')
 
-      } catch(error) {
-        console.log(error.response)
-      }
-    }
-  },
-  editMatchingForm: async(form, user) => {
-    if (user.token) {
-      try {
-        form.hot_cold = form.hot_cold[0]
-        form.in_room = form.in_room[0]
-        form.noise_level = form.noise_level[0]
-        form.social_battery = form.social_battery[0]
-        const response = await api({
-          method:'put',
-          url: `/api/v1/matching-quizs/${user.id}/`,
-          data:form,
-          headers: {"Authorization": `Bearer ${user.token}`}
-        })
-        if (response.status !== 200) {
-          throw 'edit-matching-form error'
+      const response = await api({
+        method: 'get',
+        url: `/api/v1/matching-quizs/${user.id}`,
+        headers: {"Authorization": `Bearer ${user.token}`},
+      })
+      if (response.data.length === 0) {
+        try {
+          form.hot_cold = form.hot_cold[0]
+          form.in_room = form.in_room[0]
+          form.noise_level = form.noise_level[0]
+          form.social_battery = form.social_battery[0]
+          const response = await api({
+            method: 'post',
+            url: '/api/v1/matching-quizs/',
+            data: form,
+            headers: {"Authorization": `Bearer ${user.token}`},
+          })
+          if (response.status !== 201) {
+            throw 'submit-matching-quiz error'
+          }
+          console.log('submitted matching quiz!')
+  
+        } catch(error) {
+          console.log(error.response)
         }
-        console.log('edited matching quiz')
-      } catch(error) {
-        console.log(error.response)
+      } else {
+        try {
+          form.hot_cold = form.hot_cold[0]
+          form.in_room = form.in_room[0]
+          form.noise_level = form.noise_level[0]
+          form.social_battery = form.social_battery[0]
+          const response = await api({
+            method:'put',
+            url: `/api/v1/matching-quizs/${user.id}/`,
+            data:form,
+            headers: {"Authorization": `Bearer ${user.token}`}
+          })
+          if (response.status !== 200) {
+            throw 'update-matching-form error'
+          }
+          console.log('updated matching quiz')
+          set((state) => ({
+            matchingForm:matchingForm
+          }))
+        } catch(error) {
+          console.log('useGlobal.updateMatchingForm : ', error.response)
+        }
       }
     }
   },
