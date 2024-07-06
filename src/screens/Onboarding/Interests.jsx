@@ -1,13 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  FlatList
-} from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
-import Card from "./Components/Card";
-import Label from "./Components/Label";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 
@@ -59,11 +54,7 @@ export default function InterestsScreen() {
           </CustomText>
         </CustomButton>
       )}
-      style={{
-        flexDirection:'column', 
-        marginHorizontal:moderateScale(50),
-        height:'50%'
-      }}
+      style={styles.flatlist}
     /> 
   )
 }
@@ -85,4 +76,9 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(14),
     fontWeight:'bold',
   },
+  flatlist: {
+    flexDirection:'column', 
+    marginHorizontal:moderateScale(50),
+    height:'50%'
+  }
 })
