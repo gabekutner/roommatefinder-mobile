@@ -178,17 +178,11 @@ function responseThumbnail(set, get, data) {
 }
 
 
-
-
 const useGlobal = create((set, get) => ({
-
-
   //---------------------
   //    Initialization
   //---------------------
   initialized: false,
-
-
   init: async () => {
     const credentials = await secure.get('credentials')
     if (credentials) {
@@ -317,6 +311,30 @@ const useGlobal = create((set, get) => ({
 
       } catch(error) {
         console.log('useGlobal.createProfile: ', error)
+      }
+    }
+  },
+
+  //---------------------
+  //    Pause Profile
+  //---------------------
+  pauseProfile: async (user) => {  
+    if (user.token) {
+      try {
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/profiles/actions/pause-profile/',
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+        if (response.status !== 200) {
+          throw new Error('pause-profile error')
+        }
+        console.assert.log('pause-profile success')
+        set((state) => ({
+          user:response.data
+        }))
+      } catch(error) {
+        console.log('useGlobal.pauseProfile: ', error)
       }
     }
   },

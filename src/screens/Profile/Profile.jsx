@@ -8,11 +8,7 @@ import {
 } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { 
-  verticalScale, 
-  moderateScale, 
-  scale
-} from 'react-native-size-matters';
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import ProfileLogout from './Components/ProfileLogout';
 import FormModal from '../../components/FormModal';
@@ -30,6 +26,7 @@ export default function ProfileScreen({ navigation }) {
   const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
   const deleteProfile = useGlobal(state => state.deleteProfile)
   const logout = useGlobal(state => state.logout)
+  const pauseProfile = useGlobal(state => state.pauseProfile)
 
   const [item, setItem] = useState()
   const [showContactForm, setShowContactForm] = useState(false)
@@ -44,9 +41,11 @@ export default function ProfileScreen({ navigation }) {
   })
 
   const [showHow, setShowHow] = useState(false)
-
-  const [isEnabled, setIsEnabled] = useState(false)
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState)
+  const [isEnabled, setIsEnabled] = useState(user.pause_profile)
+  const toggleSwitch = () =>{
+    setIsEnabled(previousState => !previousState)
+    pauseProfile(user)
+  }
 
   useEffect(() => {
     const fetchProfile = async() => {
