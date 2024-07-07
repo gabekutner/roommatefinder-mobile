@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import MessageBubbleMe from "./MessageBubbleMe";
 import MessageBubbleFriend from "./MessageBubbleFriend";
-import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
+// import useGlobal from "../../../core/global";
 
 
 export default function MessageBubble({ 
@@ -11,7 +12,7 @@ export default function MessageBubble({
 	friend, 
 	colors 
 }) {
-  const messagesTyping = useGlobal(state => state.messagesTyping)
+  const messagesTyping = useStore(state => state.messagesTyping)
 	const [showTyping, setShowTyping] = useState(false)
 
 	useEffect(() => {

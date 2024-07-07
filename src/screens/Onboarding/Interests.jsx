@@ -6,15 +6,16 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
+import useStore from "../../zustand/store";
 import { interestsData } from "../../assets/Dictionary";
 
 
 export default function InterestsScreen() {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  const form = useStore(state => state.form)
+  const setForm = useStore(state => state.setForm)
 
   function handleOnClick(id, form, setForm) {
     const arr = [...form.interests]

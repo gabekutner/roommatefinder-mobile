@@ -14,15 +14,16 @@ import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import Empty from "../../../components/Empty";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from '../../../constants/colors';
 
 
 export default function Search({ navigation }) {
 
 	const [query, setQuery] = useState('')
-	const searchList = useGlobal(state => state.searchList)
-	const searchUsers = useGlobal(state => state.searchUsers)
+	const searchList = useStore(state => state.searchList)
+	const searchUsers = useStore(state => state.searchUsers)
 
 	useEffect(() => {
 		searchUsers(query)

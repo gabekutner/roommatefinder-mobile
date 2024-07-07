@@ -11,22 +11,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import ProfileLogout from './Components/ProfileLogout';
-import FormModal from '../../components/FormModal';
+// import FormModal from '../../components/FormModal';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';
 import ProfileImage from './Components/ProfileImage';
 
-import useGlobal from '../../core/global';
+// import useGlobal from '../../core/global';
+import useStore from '../../zustand/store';
 import { colors } from '../../constants/colors';
 
 
 export default function ProfileScreen({ navigation }) {
 
-  const user = useGlobal(state => state.user)
-  const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
-  const deleteProfile = useGlobal(state => state.deleteProfile)
-  const logout = useGlobal(state => state.logout)
-  const pauseProfile = useGlobal(state => state.pauseProfile)
+  const user = useStore(state => state.user)
+  const getSwipeProfile = useStore(state => state.getSwipeProfile)
+  const deleteProfile = useStore(state => state.deleteProfile)
+  const logout = useStore(state => state.logout)
+  const pauseProfile = useStore(state => state.pauseProfile)
 
   const [item, setItem] = useState()
   const [showContactForm, setShowContactForm] = useState(false)

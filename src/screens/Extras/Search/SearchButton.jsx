@@ -7,12 +7,13 @@ import { verticalScale, moderateScale } from "react-native-size-matters";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function SearchButton({ user }) {
-  const requestConnect = useGlobal(state => state.requestConnect)
+  const requestConnect = useStore(state => state.requestConnect)
 	// add tick if user is already connected
 	if (user.status === 'connected') {
 		return (

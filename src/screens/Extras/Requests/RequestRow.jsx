@@ -9,15 +9,16 @@ import RequestAccept from "./RequestAccept";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import utils from "../../../core/utils";
 import { colors } from "../../../constants/colors";
 
 
 export default function RequestRow({ navigation, item }) {
 
-	const user = useGlobal(state => state.user)
-	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+	const user = useStore(state => state.user)
+	const getSwipeProfile = useStore(state => state.getSwipeProfile)
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {

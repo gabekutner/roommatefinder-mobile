@@ -9,14 +9,15 @@ import {
 import Empty from "../../../components/Empty";
 import FriendRow from "./FriendRow";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
+import useStore from "../../../zustand/store";
 
 
 export default function Friends({ navigation }) {
 
-	const friendList = useGlobal(state => state.friendList)
-	const refreshFriendList = useGlobal(state => state.refreshFriendList)
+	const friendList = useStore(state => state.friendList)
+	const refreshFriendList = useStore(state => state.refreshFriendList)
 	const [refreshing, setRefreshing] = useState(false)
 
 	const onRefresh = useCallback(() => {

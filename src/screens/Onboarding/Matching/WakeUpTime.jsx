@@ -7,14 +7,15 @@ import {
 import { verticalScale } from 'react-native-size-matters';
 
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function WakeUpScreen() {
 
-  const matchingForm = useGlobal(state => state.matchingForm)
-  const setMatchingForm = useGlobal(state => state.setMatchingForm)
+  const matchingForm = useStore(state => state.matchingForm)
+  const setMatchingForm = useStore(state => state.setMatchingForm)
 
   return (
     <View style={styles.optionsContainer}>

@@ -15,7 +15,8 @@ import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
@@ -23,11 +24,11 @@ export default function SharingPolicyScreen({ route, navigation }) {
 
   // const { navTo, action } = route.params
 
-  const user = useGlobal(state => state.user)
+  const user = useStore(state => state.user)
   const matchingForm = useGlobal(state => state.matchingForm)
-  const setMatchingForm = useGlobal(state => state.setMatchingForm)
-  const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
-  const editMatchingForm = useGlobal(state => state.editMatchingForm)
+  const setMatchingForm = useStore(state => state.setMatchingForm)
+  // const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
+  // const editMatchingForm = useGlobal(state => state.editMatchingForm)
 
   // const handleQuiz = () => {
   //   if (action === 'create') {

@@ -9,14 +9,15 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import Thumbnail from "../../../components/Thumbnail";
 import SearchButton from "./SearchButton";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function SearchRow({ navigation, item }) {
 
-	const user = useGlobal(state => state.user)
-	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+	const user = useStore(state => state.user)
+	const getSwipeProfile = useStore(state => state.getSwipeProfile)
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {

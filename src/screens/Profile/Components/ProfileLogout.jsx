@@ -7,12 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function ProfileLogout({ style }) {
-  const logout = useGlobal(state => state.logout)
+  const logout = useStore(state => state.logout)
   return (
     <CustomButton
       onClick={() => logout()}

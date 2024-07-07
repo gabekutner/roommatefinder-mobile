@@ -16,18 +16,19 @@ import { verticalScale } from "react-native-size-matters";
 import MessageHeader from "./Components/MessageHeader";
 import MessageBubble from "./Components/MessageBubble";
 import MessageInput from "./Components/MessageInput";
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
+import useStore from "../../zustand/store";
 import { colors } from '../../constants/colors';
 
 
 export default function Message({ navigation, route }) {
 	const [message, setMessage] = useState('')
 
-	const messagesList = useGlobal(state => state.messagesList)
-	const messagesNext = useGlobal(state => state.messagesNext)
-	const messageList = useGlobal(state => state.messageList)
-	const messageSend = useGlobal(state => state.messageSend)
-	const messageType = useGlobal(state => state.messageType)
+	const messagesList = useStore(state => state.messagesList)
+	const messagesNext = useStore(state => state.messagesNext)
+	const messageList = useStore(state => state.messageList)
+	const messageSend = useStore(state => state.messageSend)
+	const messageType = useStore(state => state.messageType)
 
 	const connectionId = route.params.id
 	const friend = route.params.friend

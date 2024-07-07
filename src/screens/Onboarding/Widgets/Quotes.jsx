@@ -18,14 +18,15 @@ import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function QuotesScreen({ navigation }) {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  const form = useStore(state => state.form)
+  const setForm = useStore(state => state.setForm)
 
   const [quote, setQuote] = useState({
     quote:"",

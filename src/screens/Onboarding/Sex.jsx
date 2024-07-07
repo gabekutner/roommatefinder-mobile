@@ -6,13 +6,14 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import { colors } from "../../constants/colors";
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
+import useStore from "../../zustand/store";
 
 
 export default function SexScreen() {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  const form = useStore(state => state.form)
+  const setForm = useStore(state => state.setForm)
 
   const [selected, setSelected] = useState("")
   function toggleSelected(key) {

@@ -12,7 +12,8 @@ import { verticalScale, moderateScale } from 'react-native-size-matters';
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import { colors } from "../../constants/colors";
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
+import useStore from "../../zustand/store";
 
 
 export default function PromptScreen({ route, navigation }) {
@@ -26,15 +27,15 @@ export default function PromptScreen({ route, navigation }) {
     icon
   } = route.params
 
-  const user = useGlobal(state => state.user)
-  const form = useGlobal(state => state.form)
-  const photos = useGlobal(state => state.photos)
-  const matchingForm = useGlobal(state => state.matchingForm)
+  const user = useStore(state => state.user)
+  const form = useStore(state => state.form)
+  const photos = useStore(state => state.photos)
+  const matchingForm = useStore(state => state.matchingForm)
 
-  const createProfile = useGlobal(state => state.createProfile)
-  const uploadPhotos = useGlobal(state => state.uploadPhotos)
-  const staticUploadThumbnail = useGlobal(state => state.staticUploadThumbnail)
-  const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
+  const createProfile = useStore(state => state.createProfile)
+  const uploadPhotos = useStore(state => state.uploadPhotos)
+  const staticUploadThumbnail = useStore(state => state.staticUploadThumbnail)
+  const submitMatchingForm = useStore(state => state.submitMatchingForm)
 
   const buttonClick = async() => {
     if (screen != '' && screen != 'update') {

@@ -9,15 +9,15 @@ import AuthStack from './src/routes/AuthStack';
 import AppStack from './src/routes/AppStack';
 import AccountSetupStack from './src/routes/AccountSetupStack';
 
-import useGlobal from './src/core/global';
+import useStore from './src/zustand/store';
 
 
 export default function App() {
 
-  const initialized = useGlobal(state => state.initialized)
-  const authenticated = useGlobal(state => state.authenticated)
-  const profileCreated = useGlobal(state => state.profileCreated)
-  const init = useGlobal(state => state.init)
+  const initialized = useStore(state => state.initialized)
+  const authenticated = useStore(state => state.authenticated)
+  const profileCreated = useStore(state => state.profileCreated)
+  const init = useStore(state => state.init)
 
   useEffect(() => {
     init()

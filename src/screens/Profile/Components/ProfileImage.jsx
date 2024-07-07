@@ -6,11 +6,12 @@ import { verticalScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import Thumbnail from "../../../components/Thumbnail";
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 
 
 export default function ProfileImage({ user, colors, bc, bg }) {
-  const uploadThumbnail = useGlobal(state => state.uploadThumbnail)
+  const uploadThumbnail = useStore(state => state.uploadThumbnail)
   return (
     <TouchableOpacity
       style={{ marginBottom:verticalScale(14) }}

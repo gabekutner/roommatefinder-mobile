@@ -1,14 +1,15 @@
 import React from "react";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
+import useStore from "../../zustand/store";
 
 
 export default function GraduationYearScreen() {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  const form = useStore(state => state.form)
+  const setForm = useStore(state => state.setForm)
 
   const setGradYear = (input) => {
     setForm({ ...form, graduation_year:input })

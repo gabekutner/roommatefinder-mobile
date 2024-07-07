@@ -1,12 +1,13 @@
 import React from "react";
 import CustomSlider from "./Components/CustomSlider";
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 
 
 export default function HotColdScreen() {
 
-  const matchingForm = useGlobal(state => state.matchingForm)
-  const setMatchingForm = useGlobal(state => state.setMatchingForm)
+  const matchingForm = useStore(state => state.matchingForm)
+  const setMatchingForm = useStore(state => state.setMatchingForm)
 
   return (
     <CustomSlider 

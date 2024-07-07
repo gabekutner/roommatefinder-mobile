@@ -14,18 +14,19 @@ import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import Snackbar from "../../components/UI/SnackBar";
 
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
+import useStore from "../../zustand/store";
 import { colors } from "../../constants/colors";
 
 
 export default function DoneScreen({navigation}) {
 
- const user = useGlobal(state => state.user)
- const form = useGlobal(state => state.form)
- const photos = useGlobal(state => state.photos)
- const createProfile = useGlobal(state => state.createProfile)
- const uploadPhotos = useGlobal(state => state.uploadPhotos)
- const staticUploadThumbnail = useGlobal(state => state.staticUploadThumbnail)
+ const user = useStore(state => state.user)
+ const form = useStore(state => state.form)
+ const photos = useStore(state => state.photos)
+ const createProfile = useStore(state => state.createProfile)
+ const uploadPhotos = useStore(state => state.uploadPhotos)
+ const staticUploadThumbnail = useStore(state => state.staticUploadThumbnail)
 
  const [show, setShow] = useState({
    status:false,

@@ -11,14 +11,15 @@ import { scale, verticalScale } from "react-native-size-matters";
 
 import CustomButton from "../../components/UI/Custom/CustomButton";
 import { colors } from "../../constants/colors";
-import useGlobal from "../../core/global";
+// import useGlobal from "../../core/global";
+import useStore from "../../zustand/store";
 import CustomText from "../../components/UI/Custom/CustomText";
 
 
 export default function PhotosScreen() {
 
-  const photos = useGlobal(state => state.photos)
-  const setPhotos = useGlobal(state => state.setPhotos)
+  const photos = useStore(state => state.photos)
+  const setPhotos = useStore(state => state.setPhotos)
 
   const [photo, setPhoto] = useState({
     thumbnail: null,

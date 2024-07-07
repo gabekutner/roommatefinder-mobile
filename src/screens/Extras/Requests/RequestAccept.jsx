@@ -6,12 +6,13 @@ import { verticalScale, moderateScale } from "react-native-size-matters";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
 export default function RequestAccept({ item }) {
-	const requestAccept = useGlobal(state => state.requestAccept)
+	const requestAccept = useStore(state => state.requestAccept)
 	return (
 		<CustomButton onClick={() => requestAccept(item.sender.id)} style={styles.button}>
 			<CustomText style={styles.text}>

@@ -8,15 +8,16 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import Cell from "../../../components/Cell";
 import Thumbnail from "../../../components/Thumbnail";
 
-import useGlobal from "../../../core/global";
+// import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 import utils from "../../../core/utils";
 
 
 export default function FriendRow({ navigation, item }) {
 
-	const user = useGlobal(state => state.user)
-	const getSwipeProfile = useGlobal(state => state.getSwipeProfile)
+	const user = useStore(state => state.user)
+	const getSwipeProfile = useStore(state => state.getSwipeProfile)
 	const [profile, setProfile] = useState()
 
 	useEffect(() => {

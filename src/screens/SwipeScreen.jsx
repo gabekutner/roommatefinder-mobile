@@ -13,7 +13,8 @@ import { verticalScale } from 'react-native-size-matters';
 import Empty from '../components/Empty';
 import CardItem from '../components/Card';
 
-import useGlobal from '../core/global';
+// import useGlobal from '../core/global';
+import useStore from '../zustand/store';
 import { colors } from '../constants/colors';
 
 const { width } = Dimensions.get('window')
@@ -22,8 +23,8 @@ const offset = width / 5
 
 export default function Swipe({ navigation }) {
 
-  const user = useGlobal(state => state.user)
-  const getSwipe = useGlobal(state => state.getSwipe)
+  const user = useStore(state => state.user)
+  const getSwipe = useStore(state => state.getSwipe)
 
   const opacity = useRef(new Animated.Value(0)).current
   const [data, setData] = useState([])
@@ -96,7 +97,7 @@ export default function Swipe({ navigation }) {
 
 const Card = ({ item, data, index, colors, removeItem, navigation}) => {
 
-  const requestConnect = useGlobal(state => state.requestConnect)
+  const requestConnect = useStore(state => state.requestConnect)
 
   const pan = useRef(new Animated.ValueXY({x: 0, y: 0})).current
   const rotate = pan.x.interpolate({

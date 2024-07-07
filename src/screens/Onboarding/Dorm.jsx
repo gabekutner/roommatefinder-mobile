@@ -11,12 +11,12 @@ import useGlobal from "../../core/global";
 import { colors } from "../../constants/colors";
 import { dormsData } from "../../assets/Dictionary";
 import CustomButton from "../../components/UI/Custom/CustomButton";
-
+import useStore from "../../zustand/store";
 
 export default function DormScreen() {
 
-  const form = useGlobal(state => state.form)
-  const setForm = useGlobal(state => state.setForm)
+  const form = useStore(state => state.form)
+  const setForm = useStore(state => state.setForm)
 
   const [selected, setSelected] = useState("")
   function toggleSelected(key) {

@@ -9,15 +9,15 @@ import {
 
 import RequestRow from "./RequestRow";
 import Empty from "../../../components/Empty";
-
-import useGlobal from "../../../core/global";
+import useStore from "../../../zustand/store";
+// import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 
 export default function Requests({ navigation }) {
 
-	const requestList = useGlobal(state => state.requestList)
-	const refreshRequestList = useGlobal(state => state.refreshRequestList)
+	const requestList = useStore(state => state.requestList)
+	const refreshRequestList = useStore(state => state.refreshRequestList)
 	const [refreshing, setRefreshing] = useState(false)
 
 	const onRefresh = useCallback(() => {

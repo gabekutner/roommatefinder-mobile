@@ -18,14 +18,15 @@ import CustomTextInput from '../../components/UI/Custom/CustomInput';
 import CustomLabel from '../../components/UI/Label';
 import Title from '../../components/Brand/Title';
 
+import useStore from '../../zustand/store';
 import api from '../../core/api';
-import useGlobal from '../../core/global';
+// import useGlobal from '../../core/global';
 import { colors } from '../../constants/colors';
 
 
 export default function SignIn({ navigation }) {
 
-  const login = useGlobal(state => state.login)
+  const login = useStore(state => state.login)
 
   const [showError, setShowError] = useState({
     status: false,

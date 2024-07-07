@@ -25,7 +25,8 @@ import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
 import PromptScreen from "../screens/Onboarding/Prompt";
 
-import useGlobal from "../core/global";
+// import useGlobal from "../core/global";
+import useStore from "../zustand/store";
 import { colors } from "../constants/colors";
 import InterestsScreen from "../screens/Onboarding/Interests";
 import DormScreen from "../screens/Onboarding/Dorm";
@@ -33,8 +34,8 @@ import DormScreen from "../screens/Onboarding/Dorm";
 
 export default function AppStack() {
 
-  const socketConnect = useGlobal(state => state.socketConnect)
-  const socketDisconnect = useGlobal(state => state.socketDisconnect)
+  const socketConnect = useStore(state => state.socketConnect)
+  const socketDisconnect = useStore(state => state.socketDisconnect)
 
   // Connect to backend socket
   useEffect(() => {
