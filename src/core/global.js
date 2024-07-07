@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 
 import { create } from 'zustand';
-import { profileSlice } from '../zustand/profile';
+import { profileSlice } from '../zustand/slices/profile';
 
 import secure from './secure';
 import api, { ADDRESS } from './api';
@@ -234,63 +234,62 @@ const useGlobal = create((set, get) => ({
   //---------------------
   //    Create Profile
   //---------------------
-  form: {
-    birthday: new Date(),
-    sex: "",
-    city: "",
-    state: "",
-    graduation_year: "",
-    major: "",
-    interests: [],
-    prompts: [],
-    quotes: [],
-    links: [],
-    dorm_building:""
-  },
-  setForm: (form) => {
-    set((state) => ({
-      form: form
-    }))
-  },
+  // form: {
+  //   birthday: new Date(),
+  //   sex: "",
+  //   city: "",
+  //   state: "",
+  //   graduation_year: "",
+  //   major: "",
+  //   interests: [],
+  //   prompts: [],
+  //   quotes: [],
+  //   links: [],
+  //   dorm_building:""
+  // },
+  // setForm: (form) => {
+  //   set((state) => ({
+  //     form: form
+  //   }))
+  // },
 
-  profileCreated: false,
-  createProfile: async (form, user) => {
-    if (user.token) {
-      try {
-        const bday = ((
-          form.birthday.getMonth() > 8)
-          ? (form.birthday.getMonth() + 1)
-          : ('0' + (form.birthday.getMonth() + 1)))
-          + '-' + ((form.birthday.getDate() > 9)
-          ? form.birthday.getDate()
-          : ('0' + form.birthday.getDate()))
-          + '-' + form.birthday.getFullYear()
-        form.birthday = bday
+  // profileCreated: false,
+  // createProfile: async (form, user) => {
+  //   if (user.token) {
+  //     try {
+  //       const bday = ((
+  //         form.birthday.getMonth() > 8)
+  //         ? (form.birthday.getMonth() + 1)
+  //         : ('0' + (form.birthday.getMonth() + 1)))
+  //         + '-' + ((form.birthday.getDate() > 9)
+  //         ? form.birthday.getDate()
+  //         : ('0' + form.birthday.getDate()))
+  //         + '-' + form.birthday.getFullYear()
+  //       form.birthday = bday
   
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/profiles/actions/create-profile/',
-          data: form,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
+  //       const response = await api({
+  //         method: 'post',
+  //         url: '/api/v1/profiles/actions/create-profile/',
+  //         data: form,
+  //         headers: {"Authorization": `Bearer ${user.token}`},
+  //       })
 
-        if (response.status !== 201) {
-          throw 'create-profile error'
-        }
+  //       if (response.status !== 201) {
+  //         throw 'create-profile error'
+  //       }
 
-        const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
-        secure.set('tokens', tokens)
-        console.log('create-profile success')
-        set((state) => ({
-          profileCreated:true,
-          user:response.data,
-        }))
-
-      } catch(error) {
-        console.log('useGlobal.createProfile: ', error)
-      }
-    }
-  },
+  //       const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
+  //       await secure.set('tokens', tokens)
+  //       console.log('create-profile success')
+  //       set((state) => ({
+  //         profileCreated:true,
+  //         user:response.data,
+  //       }))
+  //     } catch(error) {
+  //       console.log('useGlobal.createProfile: ', error)
+  //     }
+  //   }
+  // },
 
   //---------------------
   //    Pause Profile

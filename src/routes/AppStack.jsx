@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { 
-  moderateScale,
-  verticalScale,
-  scale,
-} from 'react-native-size-matters';
+import {  moderateScale, verticalScale } from 'react-native-size-matters';
 
 import Title from "../components/Brand/Title";
 import DropDownMenu from "../components/DropDownMenu";
-import CustomButton from "../components/UI/Custom/CustomButton";
 
 import Friends from "../screens/Extras/Friends/Friends";
 import Profile from "../screens/Profile/Profile";
@@ -36,33 +31,6 @@ import InterestsScreen from "../screens/Onboarding/Interests";
 import DormScreen from "../screens/Onboarding/Dorm";
 
 
-const Header = ({ nav, icon }) => {
-  return (
-    <CustomButton
-      onClick={nav}
-      style={{
-        marginTop:verticalScale(2),
-        marginBottom:verticalScale(5),
-        backgroundColor:colors.accent,
-        width:scale(30),
-        height:scale(30),
-        shadowColor:'#222',
-        shadowOffset: { width:5, height:3 },
-        shadowOpacity:1,
-        shadowRadius:1, 
-        borderRadius:0,
-        borderWidth:2
-      }}
-    >
-      <FontAwesomeIcon
-        icon={icon}
-        size={verticalScale(20)}
-        color={colors.white}
-      />
-   </CustomButton>
-  )
-}
-
 export default function AppStack() {
 
   const socketConnect = useGlobal(state => state.socketConnect)
@@ -77,9 +45,7 @@ export default function AppStack() {
   }, [])
 
   const Tabs = () => {
-
     const [open, setOpen] = useState(false)
-
     return (
       <Tab.Navigator
         initialRouteName="swipe"
@@ -298,11 +264,11 @@ export default function AppStack() {
             {'id': 8, 'title': 'wake-up-time', 'label': 'What about wake up time? ☀️'},
             {'id': 9, 'title': 'sharing-policy', 'label': 'What do you think about sharing your stuff? 🧸'},
           ],
-          next: 'done'
+          next: 'done-w-quiz'
         }}
       />
       <Stack.Screen
-        name='done'
+        name='done-w-quiz'
         component={PromptScreen}
         options={{ headerShown:false }}
         initialParams={{ 
