@@ -12,6 +12,7 @@ function thumbnail(url) {
 }
 
 function testUrl(url) {
+	// made for opening links
 	if (url.includes('https://')) {
 		return url
 	} else {

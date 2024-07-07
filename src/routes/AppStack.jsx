@@ -137,7 +137,7 @@ export default function AppStack() {
             headerRight: () => (
               <CustomButton 
                 onClick={() => navigation.navigate('edit-basics')}
-                style={{ marginRight:moderateScale(20) }}
+                style={{ marginRight:moderateScale(20), borderWidth:0 }}
               >
                 <FontAwesomeIcon 
                   icon="user-pen"
@@ -216,7 +216,7 @@ export default function AppStack() {
           headerLeft: () => (
             <CustomButton 
               onClick={() => navigation.goBack()}
-              style={{ marginBottom:verticalScale(5) }}
+              style={{ marginBottom:verticalScale(5), borderWidth:0 }}
             >
               <FontAwesomeIcon 
                 icon='arrow-left'
