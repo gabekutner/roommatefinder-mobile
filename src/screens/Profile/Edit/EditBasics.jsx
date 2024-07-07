@@ -45,11 +45,8 @@ export default function EditBasicsScreen({ navigation }) {
   })
 
   const submit = () => {
-    _setForm({ ..._form, dorm_building:form.dorm_building })
-    _setForm({ ..._form, interests:form.interests })
-    console.log(_form)
-    // editProfile(_form, user)
-    // navigation.goBack()
+    editProfile(_form, form, user)
+    navigation.goBack()
   }
 
   return (
