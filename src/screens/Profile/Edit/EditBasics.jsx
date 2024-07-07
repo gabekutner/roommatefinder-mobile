@@ -168,7 +168,13 @@ export default function EditBasicsScreen({ navigation }) {
                   />
                 </CustomButton>
 
-                <CustomButton onClick={() => navigation.navigate('interests')} style={styles.goto}>
+                <CustomButton onClick={() => setInterestsVisible(true)} style={styles.goto}>
+                  { interestsVisible 
+                    ? <BasicModal isVisible={interestsVisible} setIsVisible={setInterestsVisible}>
+                        <InterestsScreen />
+                      </BasicModal>
+                    : null
+                  }
                   <CustomText style={styles.gotoText}>
                     Interests
                   </CustomText>
