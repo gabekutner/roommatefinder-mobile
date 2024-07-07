@@ -82,23 +82,23 @@ export default function ProfileScreen({ navigation }) {
     
   return (
     <View style={styles.container}>
-      <View style={styles.titleWrapper}>
-        <ProfileImage 
-          user={user} 
-          colors={colors} 
-          bc={colors.secondary} 
-          bg={colors.primary} 
-        />
-        <CustomText style={styles.name}>
-          {user.name}
-        </CustomText>
-      </View>
-
-      <ScrollView 
+      <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.contentWrapper}
       >
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25) }}>
+        <View style={styles.titleWrapper}>
+          <ProfileImage 
+            user={user} 
+            colors={colors} 
+            bc={colors.secondary} 
+            bg={colors.primary} 
+          />
+          <CustomText style={styles.name}>
+            {user.name}
+          </CustomText>
+        </View>
+
+        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(-20) }}>
           <CustomButton 
             onClick={() => navigation.navigate('profile-detail', { item:item })}
             style={{ 
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
   },
   // content
   contentWrapper: {
-    marginTop:verticalScale(-20),
+    // marginTop:verticalScale(-20),
     marginBottom:verticalScale(120)
   },
 

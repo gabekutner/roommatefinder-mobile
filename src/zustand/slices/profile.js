@@ -1,9 +1,12 @@
 import api from '../../core/api';
 import secure from '../../core/secure';
 
-
+// profile state management
 export const profileSlice = (set) => ({
-  // create profile
+
+  //---------------------
+  //   Create Profile
+  //---------------------
   profileCreated: false,
   form: {
     birthday: new Date(),
@@ -62,8 +65,10 @@ export const profileSlice = (set) => ({
       console.log('zustand.profile.createProfile : not authenticated')
     }
   },
-  
-  // edit profile
+
+  //---------------------
+  //    Edit Profile
+  //---------------------
   editProfile: async (_form, form,  user) => {
     if (user.token) {
       try {
