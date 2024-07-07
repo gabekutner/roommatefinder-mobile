@@ -74,6 +74,6 @@ const styles = StyleSheet.create({
   },
   date: {
     color:colors.tertiary, 
-		fontSize:verticalScale(11),
+		fontSize:verticalScale(14),
   }
 })

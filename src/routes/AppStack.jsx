@@ -190,10 +190,7 @@ export default function AppStack() {
           headerLeft: () => (
             <CustomButton 
               onClick={() => navigation.goBack()}
-              style={{
-                marginBottom:verticalScale(5),
-                borderWidth:0
-              }}
+              style={{top:verticalScale(-5), borderWidth:0 }}
             >
               <FontAwesomeIcon 
                 icon='arrow-left'
@@ -216,7 +213,7 @@ export default function AppStack() {
           headerLeft: () => (
             <CustomButton 
               onClick={() => navigation.goBack()}
-              style={{ marginBottom:verticalScale(5), borderWidth:0 }}
+              style={{ top:verticalScale(-5), borderWidth:0 }}
             >
               <FontAwesomeIcon 
                 icon='arrow-left'

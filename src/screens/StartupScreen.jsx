@@ -20,9 +20,11 @@ export default function StartupScreen({ navigation }) {
   return (
     <ImageBackground 
       source={require('../assets/images/image_part_001.png')}
-      imageStyle={{ height: '83%' }}
-      borderWidth={4}
-      borderRadius={20}
+      imageStyle={{ 
+        height: '83%',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+      }}
       resizeMode='cover'
       style={styles.container}
     >
@@ -67,7 +69,7 @@ export default function StartupScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: { 
     flex:1, 
-    backgroundColor:colors.secondary 
+    backgroundColor:colors.secondary,
   },
   titleWrapper: {
     position:'absolute', 

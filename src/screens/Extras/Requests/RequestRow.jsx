@@ -45,7 +45,7 @@ export default function RequestRow({ navigation, item }) {
 					{item.sender.name}
 				</CustomText>
 				<CustomText style={{ color:colors.tint }}>
-					{message} <CustomText style={{ color:colors.tertiary, fontSize:verticalScale(11) }}>
+					{message} <CustomText style={{ ...styles.text, color:colors.tertiary, fontWeight:'500' }}>
 						{utils.formatTime(item.created)}
 					</CustomText>
 				</CustomText>
