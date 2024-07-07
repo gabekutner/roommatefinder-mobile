@@ -2,11 +2,13 @@ import { Platform } from 'react-native';
 
 import { create } from 'zustand';
 
+import secure from './secure';
+import api, { ADDRESS } from './api';
 import { profileSlice } from '../zustand/slices/profile';
 import { authSlice } from '../zustand/slices/auth';
 import { quizSlice } from '../zustand/slices/quiz';
-import secure from './secure';
-import api, { ADDRESS } from './api';
+import { swipeSlice } from '../zustand/slices/swipe';
+import { imageSlice } from '../zustand/slices/images';
 
 
 //-------------------------------------
@@ -169,177 +171,8 @@ const useGlobal = create((set, get) => ({
   ...profileSlice(set),
   ...authSlice(set),
   ...quizSlice(set),
-
-  //---------------------
-  //    Upload Photos 
-  //---------------------
-  photos: {
-    thumbnail:null,
-    photo_1:null,
-    photo_2:null,
-    photo_3:null,
-  },
-  setPhotos: (form) => {
-    set((state) => ({
-      photos: form
-    }))
-  },
-
-  uploadPhotos: async (form, user) => {
-    if (user.token) {
-      try {
-        const dataForm = new FormData()
-        if (form.photo_1 !== null) {
-          const imageUri = form.photo_1.uri
-          const fileName = imageUri.split('/').pop()
-          const fileType = fileName.split('.')[1]
-          dataForm.append('image', {
-            name: fileName,
-            type: Platform.OS === 'ios' ? form.photo_1.type : 'image/' + fileType,
-            uri:
-              Platform.OS === 'android'
-                ? form.photo_1.uri
-                : form.photo_1.uri.replace('file://', ''),
-          })
-        }
-        if (form.photo_2 !== null) {
-          const imageUri = form.photo_2.uri
-          const fileName = imageUri.split('/').pop()
-          const fileType = fileName.split('.')[1]
-          dataForm.append('image', {
-            name: fileName,
-            type: Platform.OS === 'ios' ? form.photo_2.type : 'image/' + fileType,
-            uri:
-              Platform.OS === 'android'
-                ? form.photo_2.uri
-                : form.photo_2.uri.replace('file://', ''),
-          })
-        }
-        if (form.photo_3 !== null) {
-          const imageUri = form.photo_3.uri
-          const fileName = imageUri.split('/').pop()
-          const fileType = fileName.split('.')[1]
-          dataForm.append('image', {
-            name: fileName,
-            type: Platform.OS === 'ios' ? form.photo_3.type : 'image/' + fileType,
-            uri:
-              Platform.OS === 'android'
-                ? form.photo_3.uri
-                : form.photo_3.uri.replace('file://', ''),
-          })
-        }
-
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/photos/',
-          data: dataForm,
-          headers: {
-            'Authorization': `Bearer ${user.token}`,
-            'Content-Type' : 'multipart/form-data',
-          },
-        })
-
-        if (response.status !== 201) {
-          throw 'upload-photos error'
-        }
-
-        console.log('uploaded photos!')
-
-      } catch(error) {
-        console.log('useGlobal.uploadPhotos: ', error)
-      }
-    }
-  },
-
-  staticUploadThumbnail: async (form, user) => {
-    if (user.token) {
-      try {
-
-        const dataForm = new FormData()
-        
-        if (form.thumbnail.uri !== null) {
-          const imageUri = form.thumbnail.uri
-          const fileName = imageUri.split('/').pop()
-          const fileType = fileName.split('.')[1]
-          dataForm.append('thumbnail', {
-            name: fileName,
-            type: Platform.OS === 'ios' ? form.thumbnail.type : 'image/' + fileType,
-            uri:
-              Platform.OS === 'android'
-                ? form.thumbnail.uri
-                : form.thumbnail.uri.replace('file://', ''),
-          })
-          const response = await api({
-            method: 'post',
-            url: '/api/v1/profiles/actions/upload-thumbnail/',
-            data: dataForm,
-            headers: {
-              'Authorization': `Bearer ${user.token}`,
-              'Content-Type' : 'multipart/form-data',
-            },
-          })
-            if (response.status !== 201) {
-            throw 'static-upload-thumbnail error'
-          }
-            console.log('uploaded thumbnail!')
-        }
-      } catch(error) {
-        console.log('useGlobal.uploadThumbnail: ', error)
-      }
-    }
-  },
-
-  //---------------------
-  //        Swipe
-  //---------------------
-  getSwipe: async (user, page) => {
-    if(user.token) {
-      try {
-        const response = await api({
-          method: 'get',
-          url: `/api/v1/swipe/?page=${page}`,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-          if (response.status !== 200) {
-          throw 'get-swipe error'
-        }
-          console.log('get-swipe success')
-        return response
-
-      } catch(error) {
-        if (error.response.status === 404) {
-          return 404
-        } else {
-          console.log(error)
-        }
-      }
-    }
-  },
-
-  getSwipeProfile: async (user, id) => {
-    if(user.token) {
-      try {
-        const response = await api({
-          method: 'get',
-          url: `/api/v1/swipe/${id}/`,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-          if (response.status !== 200) {
-          throw 'get-swipe-profile error'
-        }
-          console.log('get-swipe-profile success')
-        return response
-
-
-      } catch(error) {
-        if (error.response.status === 404) {
-          return 404
-        } else {
-          console.log(error)
-        }
-      }
-    }
-  },
+  ...swipeSlice(set),
+  ...imageSlice(set),
 
   //---------------------
   //      Websocket
@@ -424,7 +257,6 @@ const useGlobal = create((set, get) => ({
   //     Search
   //---------------------
   searchList: [],
-
   searchUsers: (query) => {
     if (query) {
       const socket = get().socket
@@ -443,7 +275,6 @@ const useGlobal = create((set, get) => ({
   //  Friend Requests
   //-------------------
   requestList: null,
-
   refreshRequestList: () => {
     const socket = get().socket
     socket.send(JSON.stringify({
@@ -471,7 +302,6 @@ const useGlobal = create((set, get) => ({
   //    Friend List
   //-------------------
   friendList: null,
-
   refreshFriendList: () => {
     const socket = get().socket
     socket.send(JSON.stringify({
@@ -486,7 +316,6 @@ const useGlobal = create((set, get) => ({
   messagesNext: null,
   messagesTyping: null,
   messagesId: null,
-
   messageList: (connectionId, page=0) => {
     if (page === 0) {
       set((state) => ({
@@ -524,7 +353,6 @@ const useGlobal = create((set, get) => ({
       id: id
     }))
   }
-
 }))
 
 export default useGlobal

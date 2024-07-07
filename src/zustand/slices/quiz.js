@@ -1,5 +1,4 @@
 import api from '../../core/api';
-import secure from '../../core/secure';
 
 // quiz state management
 export const quizSlice = (set) => ({
