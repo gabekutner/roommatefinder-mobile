@@ -1,8 +1,10 @@
 import { Platform } from 'react-native';
 
 import { create } from 'zustand';
-import { profileSlice } from '../zustand/slices/profile';
 
+import { profileSlice } from '../zustand/slices/profile';
+import { authSlice } from '../zustand/slices/auth';
+import { quizSlice } from '../zustand/slices/quiz';
 import secure from './secure';
 import api, { ADDRESS } from './api';
 
@@ -165,95 +167,8 @@ function responseThumbnail(set, get, data) {
 
 const useGlobal = create((set, get) => ({
   ...profileSlice(set),
-  //---------------------
-  //    Initialization
-  //---------------------
-  initialized: false,
-  init: async () => {
-    const credentials = await secure.get('credentials')
-    if (credentials) {
-      try {
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/users/login/',
-          data: {
-            email: credentials.email,
-            password: credentials.password,
-          }
-        })
-
-        if (response.status !== 200) {
-          throw 'Authentication error'
-        }
-
-        const created = response.data.name == null ? false : true
-        const tokens = {'access': response.data.access, 'refresh': response.data.refresh}
-        secure.set('tokens', tokens)
-        set((state) => ({
-          initialized:true,
-          authenticated:true,
-          profileCreated:created,
-          user:response.data,
-        }))
-        return
-      } catch(error) {
-        console.log('useGlobal.init: ', error)
-      }
-    }
-    set((state) => ({
-      initialized:true
-    }))
-  },
-
-  //---------------------
-  //   Authentication
-  //---------------------
-  authenticated: false,
-  user: {},
-
-  login: (credentials, user, tokens) => {
-    secure.set('credentials', credentials)
-    secure.set('tokens', tokens)
-    set((state) => ({
-      authenticated:true,
-      user:user,
-      profileCreated:user.has_account,
-    }))
-  },
-
-  logout: () => {
-    secure.wipe()
-    set((state) => ({
-      authenticated:false,
-      user:{},
-      profileCreated:false,
-      theme:'light',
-    }))
-  },
-
-  //---------------------
-  //    Pause Profile
-  //---------------------
-  pauseProfile: async (user) => {  
-    if (user.token) {
-      try {
-        const response = await api({
-          method: 'post',
-          url: '/api/v1/profiles/actions/pause-profile/',
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-        if (response.status !== 200) {
-          throw new Error('pause-profile error')
-        }
-        console.assert.log('pause-profile success')
-        set((state) => ({
-          user:response.data
-        }))
-      } catch(error) {
-        console.log('useGlobal.pauseProfile: ', error)
-      }
-    }
-  },
+  ...authSlice(set),
+  ...quizSlice(set),
 
   //---------------------
   //    Upload Photos 
@@ -375,110 +290,6 @@ const useGlobal = create((set, get) => ({
   },
 
   //---------------------
-  //    Roommate Quiz
-  //---------------------
-  matchingForm: {
-    social_battery:0,
-    clean_room:"",
-    noise_level:0,
-    guest_policy:"",
-    in_room:0,
-    hot_cold:0,
-    bed_time:"",
-    wake_up_time:"",
-    sharing_policy:""
-  },
-  setMatchingForm: (form) => {
-    set((state) => ({
-      matchingForm: form
-    }))
-  },
-
-  submitMatchingForm: async (form, user) => {
-    if (user.token) {
-
-      const response = await api({
-        method: 'get',
-        url: `/api/v1/matching-quizs/${user.id}`,
-        headers: {"Authorization": `Bearer ${user.token}`},
-      })
-      if (response.data.length === 0) {
-        try {
-          form.hot_cold = form.hot_cold[0]
-          form.in_room = form.in_room[0]
-          form.noise_level = form.noise_level[0]
-          form.social_battery = form.social_battery[0]
-          const response = await api({
-            method: 'post',
-            url: '/api/v1/matching-quizs/',
-            data: form,
-            headers: {"Authorization": `Bearer ${user.token}`},
-          })
-          if (response.status !== 201) {
-            throw 'submit-matching-quiz error'
-          }
-          console.log('submitted matching quiz!')
-  
-        } catch(error) {
-          console.log(error.response)
-        }
-      } else {
-        try {
-          form.hot_cold = form.hot_cold[0]
-          form.in_room = form.in_room[0]
-          form.noise_level = form.noise_level[0]
-          form.social_battery = form.social_battery[0]
-          const response = await api({
-            method:'put',
-            url: `/api/v1/matching-quizs/${user.id}/`,
-            data:form,
-            headers: {"Authorization": `Bearer ${user.token}`}
-          })
-          if (response.status !== 200) {
-            throw 'update-matching-form error'
-          }
-          console.log('updated matching quiz')
-          set((state) => ({
-            matchingForm:matchingForm
-          }))
-        } catch(error) {
-          console.log('useGlobal.updateMatchingForm : ', error.response)
-        }
-      }
-    }
-  },
-
-  //---------------------
-  //    Edit Profile
-  //---------------------
-  // editProfile: async(form, user) => {
-  //   if (user.token) {
-  //     try {
-
-  //       const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
-
-  //       const response = await api({
-  //         method: 'put',
-  //         url: `/api/v1/profiles/${user.id}/`,
-  //         data: cleanedForm,
-  //         headers: {"Authorization": `Bearer ${user.token}`},
-  //       })
-  //       if (response.status !== 200) {
-  //         throw 'create-profile error'
-  //       }
-
-  //       console.log('edit-profile success')
-  //       set((state) => ({
-  //         user:response.data,
-  //       }))
-
-  //     } catch(error) {
-  //       console.log(error.response)
-  //     }
-  //   }
-  // },
-
-  //---------------------
   //        Swipe
   //---------------------
   getSwipe: async (user, page) => {
@@ -517,35 +328,6 @@ const useGlobal = create((set, get) => ({
           throw 'get-swipe-profile error'
         }
           console.log('get-swipe-profile success')
-        return response
-
-
-      } catch(error) {
-        if (error.response.status === 404) {
-          return 404
-        } else {
-          console.log(error)
-        }
-      }
-    }
-  },
-
-  //---------------------
-  //   Delete Profile
-  //---------------------
-  deleteProfile: async (user) => {
-    if (user.token) {
-      try {
-        const response = await api({
-          method: 'delete',
-          url: `/api/v1/profiles/${user.id}/`,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-
-        if (response.status !== 200) {
-          throw 'delete-profile error'
-        }
-          console.log('delete-profile success')
         return response
 
 

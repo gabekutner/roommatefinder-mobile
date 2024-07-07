@@ -3,7 +3,6 @@ import secure from '../../core/secure';
 
 // profile state management
 export const profileSlice = (set) => ({
-
   //---------------------
   //   Create Profile
   //---------------------
@@ -46,13 +45,13 @@ export const profileSlice = (set) => ({
           data: form,
           headers: {"Authorization": `Bearer ${user.token}`},
         })
-        // check respons status
+        // check response status
         if (response.status !== 201) {
           throw new Error('create-profile error')
         } else {
+          // set tokens
           const tokens = {'access': response.data.token, 'refresh': response.data.refresh_token}
           await secure.set('tokens', tokens)
-          // console.log('create-profile success')
           set((state) => ({
             profileCreated:true,
             user:response.data,
@@ -65,7 +64,6 @@ export const profileSlice = (set) => ({
       console.log('zustand.profile.createProfile : not authenticated')
     }
   },
-
   //---------------------
   //    Edit Profile
   //---------------------
@@ -96,6 +94,7 @@ export const profileSlice = (set) => ({
         if (response.status !== 200) {
           throw new Error('edit-profile error')
         } else {
+          // set user data
           set((state) => ({
             user:response.data,
           }))
@@ -106,5 +105,63 @@ export const profileSlice = (set) => ({
     } else {
       console.log('zustand.profile.editProfile : not authenticated')
     }
-  }
+  },
+  //---------------------
+  //   Delete Profile
+  //---------------------
+  deleteProfile: async (user) => {
+    if (user.token) {
+      try {
+        // make api request
+        const response = await api({
+          method: 'delete',
+          url: `/api/v1/profiles/${user.id}/`,
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+        // check response status
+        if (response.status !== 200) {
+          throw new Error('edit-profile error')
+        } else {
+          // return response object
+          return response
+        }
+      } catch(error) {
+        if (error.response.status === 404) {
+          return 404
+        } else {
+          console.log('zustand.profile.deleteProfile ', error)
+        }
+      }
+    } else {
+      console.log('zustand.profile.deleteProfile : not authenticated')
+    }
+  },
+  //---------------------
+  //    Pause Profile
+  //---------------------
+  pauseProfile: async (user) => {  
+    if (user.token) {
+      try {
+        // make api request
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/profiles/actions/pause-profile/',
+          headers: {"Authorization": `Bearer ${user.token}`},
+        })
+        // check response status
+        if (response.status !== 200) {
+          throw new Error('pause-profile error')
+        } else {
+          // reset user state
+          set((state) => ({
+            user:response.data
+          }))
+        }        
+      } catch(error) {
+        console.log('useGlobal.pauseProfile: ', error)
+      }
+    } else {
+      console.log('zustand.profile.pauseProfile : not authenticated')
+    }
+  },
 })
