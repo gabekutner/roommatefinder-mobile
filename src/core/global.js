@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 
 import { create } from 'zustand';
+import { profileSlice } from '../zustand/profile';
 
 import secure from './secure';
 import api, { ADDRESS } from './api';
@@ -163,6 +164,7 @@ function responseThumbnail(set, get, data) {
 }
 
 const useGlobal = create((set, get) => ({
+  ...profileSlice(set),
   //---------------------
   //    Initialization
   //---------------------
@@ -510,32 +512,32 @@ const useGlobal = create((set, get) => ({
   //---------------------
   //    Edit Profile
   //---------------------
-  editProfile: async(form, user) => {
-    if (user.token) {
-      try {
+  // editProfile: async(form, user) => {
+  //   if (user.token) {
+  //     try {
 
-        const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
+  //       const cleanedForm = Object.fromEntries(Object.entries(form).filter(([_, v]) => v != "" | null | []))
 
-        const response = await api({
-          method: 'put',
-          url: `/api/v1/profiles/${user.id}/`,
-          data: cleanedForm,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
-        if (response.status !== 200) {
-          throw 'create-profile error'
-        }
+  //       const response = await api({
+  //         method: 'put',
+  //         url: `/api/v1/profiles/${user.id}/`,
+  //         data: cleanedForm,
+  //         headers: {"Authorization": `Bearer ${user.token}`},
+  //       })
+  //       if (response.status !== 200) {
+  //         throw 'create-profile error'
+  //       }
 
-        console.log('edit-profile success')
-        set((state) => ({
-          user:response.data,
-        }))
+  //       console.log('edit-profile success')
+  //       set((state) => ({
+  //         user:response.data,
+  //       }))
 
-      } catch(error) {
-        console.log(error.response)
-      }
-    }
-  },
+  //     } catch(error) {
+  //       console.log(error.response)
+  //     }
+  //   }
+  // },
 
   //---------------------
   //        Swipe
@@ -800,18 +802,7 @@ const useGlobal = create((set, get) => ({
       source: 'message.type',
       id: id
     }))
-  },
-
-  //---------------------
-  //       Theme - deprecated
-  //---------------------
-  theme: 'light',
-
-  setTheme: () => {
-    set((state) => ({
-      theme: get().theme === 'dark' ? 'light' : 'dark'
-    }))
-  },
+  }
 
 }))
 

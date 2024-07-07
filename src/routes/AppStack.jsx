@@ -32,6 +32,8 @@ import PromptScreen from "../screens/Onboarding/Prompt";
 
 import useGlobal from "../core/global";
 import { colors } from "../constants/colors";
+import InterestsScreen from "../screens/Onboarding/Interests";
+import DormScreen from "../screens/Onboarding/Dorm";
 
 
 const Header = ({ nav, icon }) => {
@@ -263,6 +265,20 @@ export default function AppStack() {
           },
           headerShadowVisible: false, // border bottom invisible
         })}
+      />
+      <Stack.Screen 
+        name='interests'
+        component={InterestsScreen}
+        // options={{
+        //   presentation:'modal'
+        // }}
+      />
+      <Stack.Screen 
+        name='dorm'
+        component={DormScreen}
+        // options={{
+        //   presentation:'modal'
+        // }}
       />
 
       {/* matching quiz */}

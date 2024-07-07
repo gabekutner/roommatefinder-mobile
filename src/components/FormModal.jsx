@@ -164,4 +164,4 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(16),
     fontWeight:'600',
   }
-});
+})
