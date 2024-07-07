@@ -250,7 +250,8 @@ export default function AppStack() {
             {'id': 8, 'title': 'wake-up-time', 'label': 'What about wake up time? ☀️'},
             {'id': 9, 'title': 'sharing-policy', 'label': 'What do you think about sharing your stuff? 🧸'},
           ],
-          next: 'done-w-quiz'
+          next: 'done-w-quiz',
+          back: 'profile'
         }}
       />
       <Stack.Screen

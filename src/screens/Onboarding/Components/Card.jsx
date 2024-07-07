@@ -16,7 +16,7 @@ import { colors } from "../../../constants/colors";
 
 export default function BaseOnboardingCard({ navigation, route }) {
 
-  const { data, next } = route.params
+  const { data, next, back  } = route.params
 
   const scrollX = useRef(new Animated.Value(0)).current
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -39,7 +39,12 @@ export default function BaseOnboardingCard({ navigation, route }) {
     if (currentIndex < data.length && currentIndex != 0) {
       dataRef.current.scrollToIndex({ index: currentIndex - 1 })
     } else {
-      console.log('first item')
+      // here, 
+      if (back) {
+        navigation.navigate(back)
+      } else {
+        console.log('first item')
+      }
     }
   }
 
