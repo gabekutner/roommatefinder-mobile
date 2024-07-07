@@ -1,8 +1,6 @@
 import React from "react";
 
-import {
- verticalScale
-} from 'react-native-size-matters';
+import { verticalScale } from 'react-native-size-matters';
 
 import CustomText from "../../../components/UI/Custom/CustomText"
 

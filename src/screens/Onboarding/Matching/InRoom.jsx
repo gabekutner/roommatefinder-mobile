@@ -1,7 +1,8 @@
 import React from "react";
-// import useGlobal from "../../../core/global";
-import useStore from "../../../zustand/store";
+
 import CustomSlider from "./Components/CustomSlider";
+
+import useStore from "../../../zustand/store";
 
 
 export default function InRoomScreen() {

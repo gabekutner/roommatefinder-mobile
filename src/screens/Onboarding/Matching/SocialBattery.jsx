@@ -1,6 +1,7 @@
 import React from "react";
+
 import CustomSlider from "./Components/CustomSlider";
-// import useGlobal from "../../../core/global";
+
 import useStore from "../../../zustand/store";
 
 

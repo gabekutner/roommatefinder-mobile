@@ -6,9 +6,8 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
 
-// import useGlobal from "../../core/global";
-import { colors } from "../../constants/colors";
 import useStore from "../../zustand/store";
+import { colors } from "../../constants/colors";
 import { interestsData } from "../../assets/Dictionary";
 
 

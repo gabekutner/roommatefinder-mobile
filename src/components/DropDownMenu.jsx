@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import CustomText from "./UI/Custom/CustomText";
+import { View, StyleSheet } from 'react-native';
+
 import { verticalScale } from "react-native-size-matters";
 
-
-
+import CustomButton from "./UI/Custom/CustomButton";
+import CustomText from "./UI/Custom/CustomText";
 
 
 export default function DropDownMenu({ navigation, colors }) {
@@ -18,16 +14,21 @@ export default function DropDownMenu({ navigation, colors }) {
     text,
   }) {
     return (
-      <TouchableOpacity
-        onPress={onPress}
-        style={{ ...styles.dropDownItem }}>
+      <CustomButton
+        onClick={onPress}
+        style={{ 
+          ...styles.dropDownItem,
+          borderWidth:0,
+          justifyContent:'flex-start',
+        }}
+      >
         <CustomText style={{ ...styles.itemText }}>
           {icon}
         </CustomText>
         <CustomText style={{ ...styles.itemText, color:colors.tint }}>
           {text}
         </CustomText>
-      </TouchableOpacity>
+      </CustomButton>
     )
   }
 
@@ -52,13 +53,13 @@ export default function DropDownMenu({ navigation, colors }) {
 const styles = StyleSheet.create({
   dropDown: {
     position:'absolute',
-    top:verticalScale(25),
+    top:verticalScale(40),
     right:5,
     width:'auto',
     borderRadius:10,
     padding:5,
     overflow:'hidden',
-    borderWidth:2
+    borderWidth:2,
   },
   dropDownItem: {
     borderRadius:10,

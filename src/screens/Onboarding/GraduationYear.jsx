@@ -1,7 +1,9 @@
 import React from "react";
+
 import { moderateScale, verticalScale } from "react-native-size-matters";
+
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
-// import useGlobal from "../../core/global";
+
 import { colors } from "../../constants/colors";
 import useStore from "../../zustand/store";
 

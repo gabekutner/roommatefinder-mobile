@@ -1,8 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  Animated,
-  Easing
-} from 'react-native';
+import { Animated, Easing } from 'react-native';
 
 
 export default function MessageTypingAnimation({ offset }) {

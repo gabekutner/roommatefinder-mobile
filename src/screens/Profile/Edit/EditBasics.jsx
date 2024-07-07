@@ -17,7 +17,6 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 
-// import useGlobal from "../../../core/global";
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 import BasicModal from "../../../components/Modals/BasicModal";
@@ -27,7 +26,7 @@ import DormScreen from "../../Onboarding/Dorm";
 
 export default function EditBasicsScreen({ navigation }) {
 
-  const user = useState(state => state.user)
+  const user = useStore(state => state.user)
   const form = useStore(state => state.form)
   const editProfile = useStore(state => state.editProfile)
 

@@ -25,7 +25,7 @@ export default function SharingPolicyScreen({ route, navigation }) {
   // const { navTo, action } = route.params
 
   const user = useStore(state => state.user)
-  const matchingForm = useGlobal(state => state.matchingForm)
+  const matchingForm = useStore(state => state.matchingForm)
   const setMatchingForm = useStore(state => state.setMatchingForm)
   // const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
   // const editMatchingForm = useGlobal(state => state.editMatchingForm)

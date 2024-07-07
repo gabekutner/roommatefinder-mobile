@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,6 +9,7 @@ import {  moderateScale, verticalScale } from 'react-native-size-matters';
 
 import Title from "../components/Brand/Title";
 import DropDownMenu from "../components/DropDownMenu";
+import CustomButton from "../components/UI/Custom/CustomButton";
 
 import Friends from "../screens/Extras/Friends/Friends";
 import Profile from "../screens/Profile/Profile";
@@ -17,7 +17,6 @@ import Swipe from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
-// import Settings from "../screens/Settings";
 import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 
@@ -25,11 +24,8 @@ import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
 import PromptScreen from "../screens/Onboarding/Prompt";
 
-// import useGlobal from "../core/global";
 import useStore from "../zustand/store";
 import { colors } from "../constants/colors";
-import InterestsScreen from "../screens/Onboarding/Interests";
-import DormScreen from "../screens/Onboarding/Dorm";
 
 
 export default function AppStack() {
@@ -83,11 +79,12 @@ export default function AppStack() {
             headerTitle: () => <Title title="RoommateFinder" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => setOpen(!open)}
+              <CustomButton 
+                onClick={() => setOpen(!open)}
                 style={{ 
                   marginRight:moderateScale(10),
-                  marginBottom:verticalScale(5)
+                  marginBottom:verticalScale(5),
+                  borderWidth:0
                 }}
               >
                 <FontAwesomeIcon 
@@ -99,7 +96,7 @@ export default function AppStack() {
                   ? <DropDownMenu navigation={navigation} colors={colors} />
                   : null
                 }
-              </TouchableOpacity>            
+              </CustomButton>            
             ),
             headerRightContainerStyle: { paddingRight:moderateScale(10) },
             headerStyle: { backgroundColor:colors.primary },
@@ -113,10 +110,11 @@ export default function AppStack() {
             headerTitle: () => <Title title="Friends" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('search')}
+              <CustomButton 
+                onClick={() => navigation.navigate('search')}
                 style={{
-                  marginRight:moderateScale(20)
+                  marginRight:moderateScale(20),
+                  borderWidth:0
                 }}
               >
                 <FontAwesomeIcon 
@@ -124,7 +122,7 @@ export default function AppStack() {
                   size={verticalScale(20)}
                   color={colors.tint}
                 />
-              </TouchableOpacity>
+              </CustomButton>
             ),
             headerStyle: { backgroundColor:colors.primary },
             headerShadowVisible: false, // border bottom invisible
@@ -137,8 +135,8 @@ export default function AppStack() {
             headerTitle: () => <Title title="Profile" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('edit-basics')}
+              <CustomButton 
+                onClick={() => navigation.navigate('edit-basics')}
                 style={{ marginRight:moderateScale(20) }}
               >
                 <FontAwesomeIcon 
@@ -146,7 +144,7 @@ export default function AppStack() {
                   size={verticalScale(20)}
                   color={colors.tint}
                 />
-              </TouchableOpacity>
+              </CustomButton>
             ),
             headerStyle: { backgroundColor:colors.secondary },
             headerShadowVisible: false, // border bottom invisible
@@ -190,10 +188,11 @@ export default function AppStack() {
         component={Requests} 
         options={({ navigation }) => ({
           headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
+            <CustomButton 
+              onClick={() => navigation.goBack()}
               style={{
-                marginBottom:verticalScale(5)
+                marginBottom:verticalScale(5),
+                borderWidth:0
               }}
             >
               <FontAwesomeIcon 
@@ -201,7 +200,7 @@ export default function AppStack() {
                 size={verticalScale(20)}
                 color={colors.tint}
               />
-            </TouchableOpacity>
+            </CustomButton>
           ), 
           headerTitle: () => <Title title="Roommate Matches" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
@@ -215,8 +214,8 @@ export default function AppStack() {
         component={EditBasicsScreen} 
         options={({ navigation }) => ({
           headerLeft: () => (
-            <TouchableOpacity 
-              onPress={() => navigation.goBack()}
+            <CustomButton 
+              onClick={() => navigation.goBack()}
               style={{ marginBottom:verticalScale(5) }}
             >
               <FontAwesomeIcon 
@@ -224,7 +223,7 @@ export default function AppStack() {
                 size={verticalScale(20)}
                 color={colors.tint}
               />
-            </TouchableOpacity>
+            </CustomButton>
           ), 
           headerTitle: () => <Title title="Edit Profile" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
@@ -232,20 +231,6 @@ export default function AppStack() {
           },
           headerShadowVisible: false, // border bottom invisible
         })}
-      />
-      <Stack.Screen 
-        name='interests'
-        component={InterestsScreen}
-        // options={{
-        //   presentation:'modal'
-        // }}
-      />
-      <Stack.Screen 
-        name='dorm'
-        component={DormScreen}
-        // options={{
-        //   presentation:'modal'
-        // }}
       />
 
       {/* matching quiz */}

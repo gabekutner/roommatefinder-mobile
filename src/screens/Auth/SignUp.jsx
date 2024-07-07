@@ -18,9 +18,8 @@ import Snackbar from "../../components/UI/SnackBar";
 import CustomLabel from '../../components/UI/Label';
 import Title from '../../components/Brand/Title';
 
-import api from '../../core/api';
-// import useGlobal from '../../core/global';
 import useStore from '../../zustand/store';
+import api from '../../core/api';
 import { colors } from '../../constants/colors';
 
 

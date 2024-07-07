@@ -4,20 +4,15 @@ import { View, StyleSheet } from "react-native";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
-// import useGlobal from "../../core/global";
-import { colors } from "../../constants/colors";
+
 import useStore from "../../zustand/store";
+import { colors } from "../../constants/colors";
 
 
 export default function HomeTownScreen() {
 
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
-
-  // const setHometown = (input) => {
-  //   var hometown = input.split(', ')
-  //   setForm({ ...form, city:hometown[0], state:hometown[1] })
-  // }
 
   return (
     <View style={styles.container}>
@@ -51,9 +46,6 @@ export default function HomeTownScreen() {
         value={form.state}
         onChangeText={value => setForm({ ...form, state:value })}
         colors={colors}
-        // icon={'location-dot'}
-        // iconColor={colors.tertiary}
-        // iconSize={verticalScale(13)}
         containerStyle={{
           height:verticalScale(45),
           marginBottom:verticalScale(14),
@@ -63,7 +55,6 @@ export default function HomeTownScreen() {
           borderColor:colors.tint,
           width:'21%',
           paddingLeft:moderateScale(4)
-          // paddingRight:moderateScale(45)
         }}
         inputStyle={{
           fontSize:verticalScale(14),

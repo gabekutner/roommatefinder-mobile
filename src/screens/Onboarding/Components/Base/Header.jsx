@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  View,
-  StyleSheet
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import { verticalScale, moderateScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import Paginator from "./Paginator";
 import CustomButton from "../../../../components/UI/Custom/CustomButton";
+
 import { colors } from "../../../../constants/colors";
 
 

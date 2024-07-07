@@ -10,10 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { scale, verticalScale } from "react-native-size-matters";
 
 import CustomButton from "../../components/UI/Custom/CustomButton";
-import { colors } from "../../constants/colors";
-// import useGlobal from "../../core/global";
-import useStore from "../../zustand/store";
 import CustomText from "../../components/UI/Custom/CustomText";
+
+import useStore from "../../zustand/store";
+import { colors } from "../../constants/colors";
 
 
 export default function PhotosScreen() {

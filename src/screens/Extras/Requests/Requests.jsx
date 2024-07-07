@@ -6,11 +6,10 @@ import {
 	RefreshControl,
 } from "react-native";
 
-
 import RequestRow from "./RequestRow";
 import Empty from "../../../components/Empty";
+
 import useStore from "../../../zustand/store";
-// import useGlobal from "../../../core/global";
 import { colors } from "../../../constants/colors";
 
 

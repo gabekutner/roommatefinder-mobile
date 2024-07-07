@@ -9,9 +9,8 @@ import {
 import Empty from "../../../components/Empty";
 import FriendRow from "./FriendRow";
 
-// import useGlobal from "../../../core/global";
-import { colors } from "../../../constants/colors";
 import useStore from "../../../zustand/store";
+import { colors } from "../../../constants/colors";
 
 
 export default function Friends({ navigation }) {

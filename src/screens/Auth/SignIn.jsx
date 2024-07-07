@@ -20,7 +20,6 @@ import Title from '../../components/Brand/Title';
 
 import useStore from '../../zustand/store';
 import api from '../../core/api';
-// import useGlobal from '../../core/global';
 import { colors } from '../../constants/colors';
 
 

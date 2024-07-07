@@ -6,7 +6,6 @@ import { verticalScale, moderateScale } from "react-native-size-matters";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
-// import useGlobal from "../../../core/global";
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 

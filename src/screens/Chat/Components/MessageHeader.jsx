@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { moderateScale, verticalScale } from "react-native-size-matters";

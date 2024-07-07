@@ -8,7 +8,6 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 import Cell from "../../../components/Cell";
 import Thumbnail from "../../../components/Thumbnail";
 
-// import useGlobal from "../../../core/global";
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 import utils from "../../../core/utils";

@@ -16,7 +16,7 @@ import { verticalScale } from "react-native-size-matters";
 import MessageHeader from "./Components/MessageHeader";
 import MessageBubble from "./Components/MessageBubble";
 import MessageInput from "./Components/MessageInput";
-// import useGlobal from "../../core/global";
+
 import useStore from "../../zustand/store";
 import { colors } from '../../constants/colors';
 

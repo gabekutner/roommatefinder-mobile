@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import MessageBubbleMe from "./MessageBubbleMe";
 import MessageBubbleFriend from "./MessageBubbleFriend";
+
 import useStore from "../../../zustand/store";
-// import useGlobal from "../../../core/global";
 
 
 export default function MessageBubble({ 

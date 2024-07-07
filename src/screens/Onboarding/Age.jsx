@@ -1,7 +1,9 @@
 import React from "react";
+
 import DatePicker from 'react-native-date-picker';
-// import useStore from "../../core/global";
+
 import useStore from "../../zustand/store";
+
 
 export default function AgeScreen() {
 

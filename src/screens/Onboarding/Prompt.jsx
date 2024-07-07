@@ -11,9 +11,9 @@ import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButton from "../../components/UI/Custom/CustomButton";
-import { colors } from "../../constants/colors";
-// import useGlobal from "../../core/global";
+
 import useStore from "../../zustand/store";
+import { colors } from "../../constants/colors";
 
 
 export default function PromptScreen({ route, navigation }) {

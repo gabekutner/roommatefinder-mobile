@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { verticalScale } from 'react-native-size-matters';
 
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
-// import useGlobal from "../../../core/global";
+
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 

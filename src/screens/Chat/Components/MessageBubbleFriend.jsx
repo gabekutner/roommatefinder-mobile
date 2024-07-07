@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  View,
-  StyleSheet
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import MessageTypingAnimation from "./MessageTypingAnimation";
 import Thumbnail from "../../../components/Thumbnail";
 import CustomText from "../../../components/UI/Custom/CustomText";
+
 import { colors } from "../../../constants/colors";
 
 

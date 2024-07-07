@@ -14,7 +14,6 @@ import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import Empty from "../../../components/Empty";
 
-// import useGlobal from "../../../core/global";
 import useStore from "../../../zustand/store";
 import { colors } from '../../../constants/colors';
 
