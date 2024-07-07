@@ -1,0 +1,4 @@
+USAGE NOTES
+
+Not built to support any other devices (tablets, computers) other than smart phones (ios, *android)
+
