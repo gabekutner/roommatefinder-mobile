@@ -30,7 +30,11 @@ export default function FriendRow({ navigation, item }) {
 
 	return (
 		<Cell colors={colors}>
-			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
+			<CustomButton 
+				shadow
+				style={{ borderWidth:0 }} 
+				onClick={() => navigation.navigate('profile-detail', { item:profile })}
+			>
 				<Thumbnail
 					url={item.friend.thumbnail}
 					size={verticalScale(60)}
@@ -39,14 +43,14 @@ export default function FriendRow({ navigation, item }) {
 			</CustomButton>
 			<CustomButton onClick={() => navigation.navigate('messages', item)} style={{ borderWidth:0 }}>
 				<View style={styles.container}>
-					<CustomText style={styles.name}>
+					<CustomText fontSize="medium" style={styles.name}>
 						{item.friend.name}
 					</CustomText>
 					<View style={styles.wrapper}>
-						<CustomText style={{ color:colors.tint }}>
+						<CustomText fontSize="small" style={{ color:colors.tint }}>
 							{item.preview} 
 						</CustomText>
-						<CustomText style={styles.date}>
+						<CustomText fontSize="small" style={styles.date}>
 							{utils.formatTime(item.updated)}
 						</CustomText>
 					</View>
@@ -64,7 +68,6 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight:'600', 
-    fontSize:verticalScale(14), 
     color:colors.tint, 
     marginBottom:verticalScale(4),
   },
@@ -72,8 +75,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
 		gap:moderateScale(5)
   },
-  date: {
-    color:colors.tertiary, 
-		fontSize:verticalScale(14),
-  }
+  date: { color:colors.tertiary }
 })

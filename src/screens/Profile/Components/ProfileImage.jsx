@@ -15,6 +15,7 @@ export default function ProfileImage({ user, colors, bc, bg }) {
   const uploadThumbnail = useStore(state => state.uploadThumbnail)
   return (
     <CustomButton
+      shadow
       style={styles.container}
       onClick={() => {
         launchImageLibrary({ includeBase64:true, }, (response) => {

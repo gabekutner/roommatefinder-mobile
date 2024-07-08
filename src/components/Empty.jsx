@@ -21,7 +21,6 @@ export default function Empty({
   colors, 
   refresh,
 }) {
-
   return (
     <View
       style={{
@@ -38,9 +37,7 @@ export default function Empty({
             icon={icon}
             color={colors.tint}
             size={verticalScale(70)}
-            style={{
-              marginBottom:verticalScale(14),
-            }}
+            style={{ marginBottom:verticalScale(14) }}
           />
         : 
           <CustomText
@@ -54,9 +51,9 @@ export default function Empty({
       }
       
       <CustomText
+        fontSize="medium"
         style={{
           color:colors.tint,
-          fontSize:verticalScale(13),
           maxWidth:moderateScale(200),
           textAlign:'center'
         }}
@@ -66,26 +63,21 @@ export default function Empty({
       { refresh
         ?
           <CustomButton
+            shadow
             onClick={() => refresh()}
             style={{
               marginTop:verticalScale(14),        
               width:moderateScale(150),
               borderWidth:2,
               borderColor:colors.tint,
-              backgroundColor:colors.accent,
-              // borderRadius:0,
-              shadowColor: '#222',
-              shadowOffset: { width: 7, height: 5 },
-              shadowOpacity: 1,
-              shadowRadius: 1,  
+              backgroundColor:colors.accent, 
             }}
           >
             <CustomText
+              fontSize="medium"
               style={{
-                fontSize:verticalScale(14), 
                 fontWeight:'600', 
                 color:colors.white,
-
               }}
             >
               Refresh

@@ -39,7 +39,12 @@ export default function Friends({ navigation }) {
 	}
 
 	if (friendList.length === 0) {
-		return <Empty emoji={'💬'} message='Nothing yet... Match with roommates and check back later!' colors={colors} refresh={onRefresh}/>
+		return <Empty 
+			emoji={'💬'} 
+			colors={colors} 
+			refresh={onRefresh}
+			message='Nothing yet... Match with roommates and check back later!' 
+		/>
 	}
 
 	return (

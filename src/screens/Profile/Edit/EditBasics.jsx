@@ -148,7 +148,11 @@ export default function EditBasicsScreen({ navigation }) {
                   inputStyle={styles.inputText}
                 />
 
-                <CustomButton onClick={() => setDormVisible(true)} style={{ ...styles.goto, marginTop:0 }}>
+                <CustomButton 
+                  shadow
+                  onClick={() => setDormVisible(true)} 
+                  style={{ ...styles.goto, marginTop:0 }}
+                >
                   { dormVisible 
                     ? <BasicModal isVisible={dormVisible} setIsVisible={setDormVisible}>
                         <DormScreen />
@@ -165,7 +169,11 @@ export default function EditBasicsScreen({ navigation }) {
                   />
                 </CustomButton>
 
-                <CustomButton onClick={() => setInterestsVisible(true)} style={styles.goto}>
+                <CustomButton 
+                  shadow
+                  onClick={() => setInterestsVisible(true)} 
+                  style={styles.goto}
+                >
                   { interestsVisible 
                     ? <BasicModal isVisible={interestsVisible} setIsVisible={setInterestsVisible}>
                         <InterestsScreen />
@@ -182,7 +190,11 @@ export default function EditBasicsScreen({ navigation }) {
                   />
                 </CustomButton>
 
-                <CustomButton onClick={() => submit()} style={styles.buttonStyle}>
+                <CustomButton 
+                  shadow
+                  onClick={() => submit()} 
+                  style={styles.buttonStyle}
+                >
                   <CustomText style={styles.buttonText}>
                     All Done!
                   </CustomText>
@@ -211,16 +223,12 @@ const styles = StyleSheet.create({
     gap:10,
   },
   inputContainer: {
-    height:verticalScale(45),
     marginBottom:verticalScale(14),
     backgroundColor:colors.secondary,
-    borderRadius:0,
     borderWidth:2,
     borderColor:colors.tint,
-    paddingRight:moderateScale(45)
   },
   inputText: {
-    fontSize:verticalScale(14),
     color:colors.tint,
   },
   goto: {
@@ -232,11 +240,10 @@ const styles = StyleSheet.create({
     padding:verticalScale(10),
     alignItems:'center',
     borderWidth:2,
-    shadowColor: '#222',
-    shadowOffset: { width: 7, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 1, 
-    borderRadius:0,
+    // shadowColor: '#000',
+    // shadowOffset: { width: 1.5, height: 2 },
+    // shadowOpacity: .7,
+    // shadowRadius: .6, 
   },
   gotoText: {
     fontSize:verticalScale(14),
