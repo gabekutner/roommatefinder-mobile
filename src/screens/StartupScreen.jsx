@@ -33,7 +33,7 @@ export default function StartupScreen({ navigation }) {
           THE UNIVERSITY OF UTAH'S
         </Text>
         <Title 
-          title="RoommateFinder"
+          title="roommatefinder"
           color={colors.accent}
           style={{ alignSelf:'center' }}
         />
@@ -41,6 +41,7 @@ export default function StartupScreen({ navigation }) {
 
       <View resizeMode='cover' style={styles.actionWrapper}>
         <CustomButton
+          shadow
           onClick={() => navigation.navigate('signin')}
           style={styles.actionButton}
         >
@@ -49,6 +50,7 @@ export default function StartupScreen({ navigation }) {
           </CustomText>
         </CustomButton>
         <CustomButton
+          shadow
           onClick={() => navigation.navigate('signup')}
           style={styles.actionButton}
         >

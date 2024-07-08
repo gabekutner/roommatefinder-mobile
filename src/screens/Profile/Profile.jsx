@@ -11,12 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import ProfileLogout from './Components/ProfileLogout';
-// import FormModal from '../../components/FormModal';
 import CustomButton from '../../components/UI/Custom/CustomButton';
 import CustomText from '../../components/UI/Custom/CustomText';
 import ProfileImage from './Components/ProfileImage';
 
-// import useGlobal from '../../core/global';
 import useStore from '../../zustand/store';
 import { colors } from '../../constants/colors';
 
@@ -30,18 +28,6 @@ export default function ProfileScreen({ navigation }) {
   const pauseProfile = useStore(state => state.pauseProfile)
 
   const [item, setItem] = useState()
-  const [showContactForm, setShowContactForm] = useState(false)
-  const [contactForm, setContactForm] = useState({
-    title:'',
-    message:''
-  })
-  const [showBugForm, setShowBugForm] = useState(false)
-  const [bugForm, setBugForm] = useState({
-    title:'',
-    message:''
-  })
-
-  const [showHow, setShowHow] = useState(false)
   const [isEnabled, setIsEnabled] = useState(user.pause_profile)
   const toggleSwitch = () =>{
     setIsEnabled(previousState => !previousState)
@@ -49,7 +35,7 @@ export default function ProfileScreen({ navigation }) {
   }
 
   useEffect(() => {
-    const fetchProfile = async() => {
+    const fetchProfile = async () => {
       const resp = await getSwipeProfile(user, user.id)
       setItem(resp.data)
     }
@@ -94,104 +80,107 @@ export default function ProfileScreen({ navigation }) {
             bc={colors.secondary} 
             bg={colors.primary} 
           />
-          <CustomText style={styles.name}>
+          <CustomText fontSize="large" style={styles.name}>
             {user.name}
           </CustomText>
         </View>
 
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(-20) }}>
+        <View 
+          style={{ 
+            ...styles.sectionBody, 
+            marginTop:verticalScale(-20) 
+          }}
+        >
           <CustomButton 
             onClick={() => navigation.navigate('profile-detail', { item:item })}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst, 
               backgroundColor:colors.accent, 
-              borderColor:colors.tint,
               borderBottomWidth:0,
               borderBottomLeftRadius:0,
               borderBottomRightRadius:0,
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.white, fontWeight:'600' }}>
+              <CustomText 
+                fontSize="medium" 
+                style={{ 
+                  ...styles.rowLabel, 
+                  color:colors.white, 
+                  fontWeight:'600' 
+                }}
+              >
                 Preview Profile
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🥳</CustomText>
+              <CustomText fontSize="large">🥳</CustomText>
             </View>
           </CustomButton>
           <CustomButton 
             onClick={() => navigation.navigate('edit-basics')}
             style={{ 
               ...styles.rowWrapper, 
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
               borderTopWidth:0,
               borderBottomWidth:0,
               borderRadius:0,
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 Edit Profile
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>✍️</CustomText>
+              <CustomText fontSize="large">✍️</CustomText>
             </View>
           </CustomButton>
           <View 
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowLast, 
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
               borderTopWidth:0
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 Edit Widgets
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🤿</CustomText>
+              <CustomText fontSize="large">🤿</CustomText>
             </View>
           </View>
         </View>
 
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+        <View style={styles.sectionBody}>
           <CustomButton 
             onClick={() => navigation.navigate('matching')}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst,
               ...styles.rowLast, 
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 Roommate Matching Quiz
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>💥</CustomText>
+              <CustomText fontSize="large">💥</CustomText>
             </View>
           </CustomButton>
         </View>
 
         {/* preferences */}
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+        <View style={styles.sectionBody}>
           <View 
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowFirst,
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
               borderBottomWidth:0
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 Pause Profile
               </CustomText>
               <View style={styles.rowSpacer} />
@@ -201,49 +190,55 @@ export default function ProfileScreen({ navigation }) {
                 ios_backgroundColor={colors.tertiary}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
+                style={{ 
+                  marginRight:moderateScale(-8),
+                  transform:[
+                    { scaleX: .9 }, 
+                    { scaleY: .9 }
+                  ]
+                }}
               />
             </View>
           </View>
           <CustomButton 
-            onClick={() => setShowHow(true)}
+            onClick={() => console.log('how to find a roommate')}
             style={{ 
               ...styles.rowWrapper, 
-              // ...styles.rowLast,
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
               borderTopWidth:0,
               borderRadius:0,
               borderBottomWidth:0
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 How to find a roommate?
               </CustomText>
               <View style={styles.rowSpacer} />
               <FontAwesomeIcon icon="question-circle" size={verticalScale(20)} color={colors.tertiary} />
             </View>
           </CustomButton>
-          <View 
+          <CustomButton 
+            onClick={() => console.log('terms and privacy')}
             style={{ 
               ...styles.rowWrapper, 
               ...styles.rowLast,
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
-              borderTopWidth:0
+              borderTopWidth:0,
+              borderTopLeftRadius:0,
+              borderTopRightRadius:0,
+              marginTop:verticalScale(-.23)
             }}
           >
             <View style={styles.row}>
-              <CustomText style={{ ...styles.rowLabel, color:colors.tint, fontWeight:'500' }}>
+              <CustomText fontSize="medium" style={styles.rowLabel}>
                 Terms and Privacy
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🕵️‍♀️</CustomText>
+              <CustomText fontSize="large">🕵️‍♀️</CustomText>
             </View>
-          </View>
+          </CustomButton>
         </View>
 
-        <View style={{ ...styles.sectionBody, marginHorizontal:moderateScale(25), marginTop:verticalScale(15) }}>
+        <View style={styles.sectionBody}>
           <CustomButton 
             onClick={() => {
               alert(
@@ -257,18 +252,21 @@ export default function ProfileScreen({ navigation }) {
               ...styles.rowWrapper, 
               ...styles.rowFirst,
               ...styles.rowLast, 
-              backgroundColor:colors.secondary, 
-              borderColor:colors.tint,
             }}
           >
             <View style={styles.row}>
               <CustomText 
+                fontSize="medium"
                 style={{ 
-                  ...styles.rowLabel, color:colors.accent, fontWeight:'600' }}>
+                  ...styles.rowLabel, 
+                  color:colors.accent, 
+                  fontWeight:'600' 
+                }}
+              >
                 Delete Account
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText style={{ fontSize:verticalScale(18) }}>🚨</CustomText>
+              <CustomText fontSize="medium">🚨</CustomText>
             </View>
           </CustomButton>
         </View>
@@ -276,7 +274,7 @@ export default function ProfileScreen({ navigation }) {
       </ScrollView>
     </View>
   )
-} 
+}
 
 
 const styles = StyleSheet.create({
@@ -296,68 +294,57 @@ const styles = StyleSheet.create({
   name: {
     textAlign:'center',
     color:colors.tint,
-    fontSize:verticalScale(16),
     fontWeight:'600',
-    marginBottom:verticalScale(3),
+    marginBottom:verticalScale(5),
   },
   // content
-  contentWrapper: {
-    // marginTop:verticalScale(-20),
-    marginBottom:verticalScale(120)
-  },
-
-
-
-
-  // navigation options
+  contentWrapper: { marginBottom:verticalScale(120) },
+  // Navigation Options
   sectionBody: { 
-    borderRadius: 12,
-    shadowColor: '#000',
+    borderRadius:12,
+    backgroundColor:colors.primary,
+    marginHorizontal:moderateScale(25), 
+    marginTop:verticalScale(15),
+    shadowColor:'#000',
+    shadowOpacity:.7,
+    shadowRadius:.6,
     shadowOffset: {
-      width: 0,
-      height: 1.5,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
-    backgroundColor:colors.primary
+      width:1.5,
+      height:2
+    }
   },
   // Row
   row: {
-    height: verticalScale(38),
+    height:verticalScale(30),
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingRight: moderateScale(8),
+    alignItems:'center',
   },
   rowWrapper: {
-    height:verticalScale(40),
-    paddingLeft: moderateScale(12),
-    borderWidth: 2,  
+    borderWidth:2,  
+    borderColor:colors.tint,
+    paddingVertical:verticalScale(5),
+    paddingHorizontal:moderateScale(10),
+    backgroundColor:colors.secondary,
   },
   rowFirst: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    borderTopLeftRadius:12,
+    borderTopRightRadius:12,
   },
   rowLabel: {
-    fontSize: verticalScale(13),
-    letterSpacing: 0.24,
+    color:colors.tint,
+    fontWeight:'500',
+    letterSpacing:0.24,
+  },
+  rowLast: {
+    borderBottomLeftRadius:12,
+    borderBottomRightRadius:12,
   },
   rowSpacer: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
-  },
-  rowLast: {
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-  },
-  rowLabelLogout: {
-    width: '100%',
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize:verticalScale(14)
-  },
-
+  }
 })
