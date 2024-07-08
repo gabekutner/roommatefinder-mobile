@@ -15,7 +15,7 @@ import CustomButton from '../../components/UI/Custom/CustomButton';
 
 import { colors } from '../../constants/colors';
 import utils from '../../core/utils';
-import { dormsData, interestsData } from '../../assets/Dictionary';
+import { dormsData, interestsData, prompts } from '../../assets/Dictionary';
 
 
 export default function ProfileDetail({ route, navigation }) {
@@ -138,7 +138,7 @@ export default function ProfileDetail({ route, navigation }) {
                 key={`${item.id}1`}
                 style={{
                   width:'100%',
-                  height:verticalScale(250),
+                  height:verticalScale(300),
                   alignItems:'flex-end',
                   flexDirection:'row',
                   borderRadius:12
@@ -208,7 +208,7 @@ export default function ProfileDetail({ route, navigation }) {
                 key={`${item.id}2`}
                 style={{
                   width:'100%',
-                  height:verticalScale(250),
+                  height:verticalScale(300),
                   alignItems:'flex-end',
                   flexDirection:'row',
                   borderRadius:12
@@ -220,9 +220,107 @@ export default function ProfileDetail({ route, navigation }) {
           : null
         }
 
-        {/* quotes, prompts */}
+        {/* quotes */}
+        {item.quotes.length !== 0
+          ? 
+            <View style={styles.wrapper}>
+              <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
+                <FontAwesomeIcon icon="quote-left" size={verticalScale(20)} color={colors.tertiary} />
+                <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.tint }}>Quotes</CustomText>
+              </View>
+              <View
+                style={{ 
+                  flexDirection: 'column',
+                  flexWrap: 'wrap',
+                  alignItems: 'center', // Adjust as needed
+                  justifyContent: 'flex-start', // Adjust as needed
+                }}
+              >
+                {item.quotes.map((quote, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      width:'100%',
+                      backgroundColor:colors.secondary,
+                      paddingHorizontal:moderateScale(15),
+                      paddingVertical:verticalScale(10),
+                      borderRadius:12,
+                      margin:verticalScale(2), // Adjust spacing between items 
+                    }}
+                  >
+                    <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
+                      "{quote.quote}"
+                    </CustomText>
+                    <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500', marginTop:verticalScale(5) }}>
+                      - {quote.cited}
+                    </CustomText>
+                  </View>
+                ))}
+              </View>
+            </View>
+          : null
+        }
+
+        {/* prompts */}
+        {item.prompts.length !== 0
+          ? 
+            <View style={styles.wrapper}>
+              <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
+                <FontAwesomeIcon icon="message" size={verticalScale(20)} color={colors.tertiary} />
+                <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.tint }}>Prompts</CustomText>
+              </View>
+              <View
+                style={{ 
+                  flexDirection: 'column',
+                  flexWrap: 'wrap',
+                  alignItems: 'center', // Adjust as needed
+                  justifyContent: 'flex-start', // Adjust as needed
+                }}
+              >
+                {item.prompts.map((prompt, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      width:'100%',
+                      backgroundColor:colors.secondary,
+                      paddingHorizontal:moderateScale(15),
+                      paddingVertical:verticalScale(10),
+                      borderRadius:12,
+                      margin:verticalScale(2), // Adjust spacing between items 
+                    }}
+                  >
+                    <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
+                      {prompts[prompt.question-1].prompt}
+                    </CustomText>
+                    <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500', marginTop:verticalScale(5) }}>
+                      {prompt.answer}
+                    </CustomText>
+                  </View>
+                ))}
+              </View>
+            </View>
+          : null
+        }
 
         {/* other photos, possible : 1 */}
+        { item.photos[2] 
+          ?
+            <View style={styles.wrapper}>
+              <FastImage
+                key={`${item.id}3`}
+                style={{
+                  width:'100%',
+                  height:verticalScale(300),
+                  alignItems:'flex-end',
+                  flexDirection:'row',
+                  borderRadius:12
+                }}
+                source={{ uri:item.photos[2].image }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            </View>
+          : null
+        }
 
         <View style={{ marginVertical:verticalScale(20) }} />
       </ScrollView>
@@ -241,7 +339,7 @@ const styles = StyleSheet.create({
     left:0,
     right:0,
     position:'absolute',
-    height:'55%',
+    height:'50%',
     borderTopWidth:2,
   },
   wrapper: {
