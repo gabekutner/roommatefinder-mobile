@@ -1,13 +1,15 @@
 import React from "react";
 import { View, StyleSheet } from 'react-native';
 
-import { verticalScale } from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import CustomButton from "./UI/Custom/CustomButton";
 import CustomText from "./UI/Custom/CustomText";
 
+import { colors } from "../constants/colors";
 
-export default function DropDownMenu({ navigation, colors }) {
+
+export default function DropDownMenu({ navigation }) {
   function DropDownItem({
     onPress,
     icon,
@@ -22,10 +24,10 @@ export default function DropDownMenu({ navigation, colors }) {
           justifyContent:'flex-start',
         }}
       >
-        <CustomText style={{ ...styles.itemText }}>
+        <CustomText fontSize="medium" style={styles.itemText}>
           {icon}
         </CustomText>
-        <CustomText style={{ ...styles.itemText, color:colors.tint }}>
+        <CustomText fontSize="medium" style={styles.itemText}>
           {text}
         </CustomText>
       </CustomButton>
@@ -33,7 +35,7 @@ export default function DropDownMenu({ navigation, colors }) {
   }
 
   return (
-    <View style={{ ...styles.dropDown, backgroundColor:colors.secondary }}>
+    <View style={styles.dropDown}>
       <DropDownItem  
         onPress={() => navigation.navigate('requests')}
         icon="👋"
@@ -54,25 +56,26 @@ const styles = StyleSheet.create({
   dropDown: {
     position:'absolute',
     top:verticalScale(40),
-    right:5,
+    right:moderateScale(5),
     width:'auto',
     borderRadius:10,
-    padding:5,
+    padding:verticalScale(5),
     overflow:'hidden',
     borderWidth:2,
+    backgroundColor:colors.secondary
   },
   dropDownItem: {
     borderRadius:10,
     textAlign:'center',
     alignItems:'center',
-    paddingVertical:10,
-    paddingHorizontal:15,
+    paddingVertical:verticalScale(8),
+    paddingHorizontal:moderateScale(10),
     flexDirection:'row',
-    gap:10,
+    gap:verticalScale(10),
   },
   itemText: {
-    fontSize:verticalScale(13),
-    fontWeight:'bold',
+    color:colors.tint, 
+    fontWeight:'600' 
   },
   divider: {
     borderWidth:.5,

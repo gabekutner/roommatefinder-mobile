@@ -30,23 +30,23 @@ export default function CardItem({
         url={item.thumbnail}
       >
         <View style={{ ...styles.infoCard, backgroundColor:colors.primary }}>
-          
           <View style={{ ...styles.box, width:'80%' }}>
-            <CustomText style={styles.name}>
+            <CustomText fontSize="large" style={styles.name}>
               {item.name}{', '}
-              <CustomText style={styles.age}>{item.age}</CustomText>
+              <CustomText fontSize="medium" style={styles.extra}>{item.age}</CustomText>
             </CustomText>
-            <CustomText style={{ ...styles.extra, marginBottom:verticalScale(5) }}>🏡 {dormsData[item.dorm_building-1].dorm}</CustomText>
-            <CustomText style={{ ...styles.extra, marginBottom:verticalScale(6) }}>📍 {item.city}, {item.state}</CustomText>
+            <CustomText fontSize="medium" style={{ ...styles.extra, marginBottom:verticalScale(8) }}>🏡  {dormsData[item.dorm_building-1].dorm}</CustomText>
+            <CustomText fontSize="medium" style={{ ...styles.extra, marginBottom:verticalScale(8) }}>📍 {item.city}, {item.state}</CustomText>
           </View>
           <View style={{ ...styles.box, width:'20%' }}>
             <CustomButton
+              shadow
               onClick={() => navigation.navigate('profile-detail', { item:item })}
               style={{ ...styles.action, backgroundColor:colors.accent }}
             >
               <FontAwesomeIcon 
                 icon="arrow-up"   
-                size={verticalScale(20)}
+                size={verticalScale(22)}
                 color={colors.white}
               />
             </CustomButton>
@@ -89,12 +89,12 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     shadowColor: '#000',
+    shadowOpacity: .7,
+    shadowRadius: .6,
     shadowOffset: {
-      width: 0,
-      height: 1,
+      width: 1.5,
+      height: 2,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
     elevation: 2,
     borderRadius: 12,
     paddingHorizontal: moderateScale(12),
@@ -107,33 +107,16 @@ const styles = StyleSheet.create({
     borderWidth:2,
     flexDirection:'row'
   },
-  box: {
-    // alignItems:'center',
-    justifyContent:'center'
-  },
+  box: { justifyContent:'center' },
   action: {
-    // borderRadius:50,
     width:scale(50),
     height:scale(50),
     borderRadius:scale(60),
     borderWidth:2,
-    shadowColor: '#222',
-    shadowOffset: { width:2, height:1 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
-    borderWidth:3,
   },  
   name: {
-    fontSize:verticalScale(18),
     fontWeight:'600',
-    marginBottom:verticalScale(5)
+    marginBottom:verticalScale(10)
   },
-  extra: {
-    fontSize:verticalScale(15),
-    fontWeight:'500'
-  },
-  age: {
-    fontSize:verticalScale(16),
-    fontWeight:'500'
-  }
+  extra: { fontWeight:'500' }
 })

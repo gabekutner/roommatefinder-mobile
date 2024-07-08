@@ -13,7 +13,6 @@ import { verticalScale } from 'react-native-size-matters';
 import Empty from '../components/Empty';
 import CardItem from '../components/Card';
 
-// import useGlobal from '../core/global';
 import useStore from '../zustand/store';
 import { colors } from '../constants/colors';
 
@@ -34,7 +33,7 @@ export default function Swipe({ navigation }) {
     fetchData(page)
   }, [page])
 
-  const fetchData = async(page) => {
+  const fetchData = async (page) => {
     try {
       const response = await getSwipe(user, page)
       if (response === 404) {
@@ -45,7 +44,7 @@ export default function Swipe({ navigation }) {
         const userData = await response.data.results
         setData(userData)
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   }
@@ -64,7 +63,15 @@ export default function Swipe({ navigation }) {
     })
   }
 
-  if (data.length === 0) return <Empty icon='hourglass' message='You ran out of people.' colors={colors} />
+  if (data.length === 0) {
+    return (
+      <Empty 
+        icon='hourglass' 
+        message='You ran out of people.' 
+        colors={colors} 
+      />
+    )
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: colors.primary }]}>

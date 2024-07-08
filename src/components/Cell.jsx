@@ -1,18 +1,19 @@
 import React from "react";
-import { 
-  View,
- } from "react-native";
+import { View } from "react-native";
+
+import { moderateScale, verticalScale } from 'react-native-size-matters';
+
 
 export default function Cell({ children, colors }) {
 	return (
 		<View
 			style={{
-				paddingHorizontal: 20,
+				paddingHorizontal: moderateScale(20),
 				flexDirection: 'row',
 				alignItems: 'center',
 				borderBottomWidth: .3,
 				borderColor: colors.tertiary,
-				height: 106
+				height: verticalScale(90)
 			}}
 		>
 			{children}

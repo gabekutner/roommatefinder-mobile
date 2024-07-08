@@ -43,18 +43,22 @@ export default function SplashScreen() {
 			style={styles.container}
 		>
 			<StatusBar barStyle='light-content' />
-			<Animated.View style={{ marginBottom:verticalScale(200), transform: [{ translateY }] }}>
+			<Animated.View 
+				style={{ 
+					marginBottom:verticalScale(200), 
+					transform: [{ translateY }] 
+				}}
+			>
 				<View style={styles.title}>
 					<Title 
 						title='roommatefinder'
 						color={colors.tint}
-						fontSize={verticalScale(30)}
 						style={{ textAlign:'center' }}
 					/>
 				</View>
 			</Animated.View>
 			<View style={styles.version}>
-				<CustomText style={styles.text}>
+				<CustomText fontSize="large" style={styles.text}>
 					v. 1.0.0
 				</CustomText>
 			</View>
@@ -92,6 +96,5 @@ const styles = StyleSheet.create({
 		color:colors.tint,
 		textAlign:'center',
 		fontWeight:'600',
-		fontSize:verticalScale(16),
 	}
 })
