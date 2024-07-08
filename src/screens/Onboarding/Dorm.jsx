@@ -61,10 +61,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:verticalScale(10),
     borderColor: colors.tint,
-    shadowColor:'#222',
-    shadowOffset:{ width: 7, height: 5 },
-    shadowOpacity:1,
-    shadowRadius:1, 
+    
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2 
+    },
+    shadowRadius: 0.6,
   },
   text: { 
     fontSize:verticalScale(14),

@@ -31,11 +31,18 @@ export default function MajorScreen({ navigation }) {
         height:verticalScale(45),
         marginBottom:verticalScale(14),
         backgroundColor:colors.secondary,
-        borderRadius:0,
+        borderRadius:12,
         borderWidth:2,
         borderColor:colors.tint,
         width:'90%',
-        paddingRight:moderateScale(45)
+        paddingRight:moderateScale(45),
+        shadowColor: '#000',
+        shadowOpacity: 0.7,
+        shadowOffset: { 
+          width: 1.5, 
+          height: 2 
+        },
+        shadowRadius: 0.6,
       }}
       inputStyle={{
         fontSize:verticalScale(14),

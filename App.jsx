@@ -14,9 +14,12 @@ import useStore from './src/zustand/store';
 
 export default function App() {
 
-  const initialized = useStore(state => state.initialized)
-  const authenticated = useStore(state => state.authenticated)
-  const profileCreated = useStore(state => state.profileCreated)
+  // const initialized = useStore(state => state.initialized)
+  // const authenticated = useStore(state => state.authenticated)
+  // const profileCreated = useStore(state => state.profileCreated)
+  const initialized = true
+  const authenticated = true
+  const profileCreated = false
   const init = useStore(state => state.init)
 
   useEffect(() => {

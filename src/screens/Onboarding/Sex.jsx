@@ -48,10 +48,15 @@ const styles = StyleSheet.create({
     paddingVertical:verticalScale(10),
     paddingHorizontal:moderateScale(50),
     borderWidth:2,
-    shadowColor: '#222',
-    shadowOffset: { width: 7, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
+
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2 
+    },
+    shadowRadius: 0.6,
+
     borderColor: colors.tint,
     marginVertical:verticalScale(5)
   },

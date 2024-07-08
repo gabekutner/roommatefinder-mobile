@@ -25,20 +25,12 @@ export default function HomeTownScreen() {
         icon={'location-dot'}
         iconColor={colors.tertiary}
         iconSize={verticalScale(13)}
-        containerStyle={{
-          height:verticalScale(45),
-          marginBottom:verticalScale(14),
-          backgroundColor:colors.secondary,
-          borderRadius:0,
-          borderWidth:2,
-          borderColor:colors.tint,
+        containerStyle={{ 
+          ...styles.inputContainer, 
           width:'80%',
-          paddingRight:moderateScale(45)
+          paddingRight:moderateScale(45) 
         }}
-        inputStyle={{
-          fontSize:verticalScale(14),
-          color:colors.tint,
-        }}
+        inputStyle={styles.text}
       />  
       <CustomTextInput 
         autoCorrect={false}
@@ -47,21 +39,12 @@ export default function HomeTownScreen() {
         onChangeText={value => setForm({ ...form, state:value })}
         colors={colors}
         containerStyle={{
-          height:verticalScale(45),
-          marginBottom:verticalScale(14),
-          backgroundColor:colors.secondary,
-          borderRadius:0,
-          borderWidth:2,
-          borderColor:colors.tint,
+          ...styles.inputContainer,
           width:'21%',
-          paddingLeft:moderateScale(4)
+          paddingLeft:moderateScale(8)
         }}
-        inputStyle={{
-          fontSize:verticalScale(14),
-          color:colors.tint,
-        }}
+        inputStyle={styles.text}
       />  
-
     </View>
     
   )
@@ -71,6 +54,25 @@ const styles = StyleSheet.create({
   container: {
     flexDirection:'row',
     gap:moderateScale(8),
-
+  },
+  inputContainer: {
+    height:verticalScale(45),
+    marginBottom:verticalScale(14),
+    backgroundColor:colors.secondary,
+    borderRadius:12,
+    borderWidth:2,
+    borderColor:colors.tint,
+    
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2 
+    },
+    shadowRadius: 0.6,
+  },
+  text: {
+    fontSize:verticalScale(14),
+    color:colors.tint
   }
 })
