@@ -28,11 +28,21 @@ export default function Requests({ navigation }) {
   }, [])
 
 	if (requestList === null) {
-		return <ActivityIndicator style={{ flex:1, backgroundColor:colors.primary }} />
+		return <ActivityIndicator 
+			style={{ 
+				flex:1, 
+				backgroundColor:colors.primary 
+			}} 
+		/>
 	}
 
 	if (requestList.length === 0) {
-		return <Empty emoji={'😶‍🌫️'} message='Nothing yet... Keep swiping and check back later!' colors={colors} refresh={onRefresh} />
+		return <Empty 
+			emoji={'😶‍🌫️'} 
+			colors={colors} 
+			refresh={onRefresh} 
+			message='Nothing yet... Keep swiping and check back later!'
+		/>
 	}
 
 	return (

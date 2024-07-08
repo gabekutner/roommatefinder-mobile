@@ -13,8 +13,12 @@ import { colors } from "../../../constants/colors";
 export default function RequestAccept({ item }) {
 	const requestAccept = useStore(state => state.requestAccept)
 	return (
-		<CustomButton onClick={() => requestAccept(item.sender.id)} style={styles.button}>
-			<CustomText style={styles.text}>
+		<CustomButton 
+      shadow
+      onClick={() => requestAccept(item.sender.id)} 
+      style={styles.button}
+    >
+			<CustomText fontSize="medium" style={styles.text}>
 				Accept
 			</CustomText>
 		</CustomButton>
@@ -29,14 +33,9 @@ const styles = StyleSheet.create({
     borderColor:colors.tint,
     backgroundColor:colors.accent,
     paddingHorizontal:moderateScale(16),
-    shadowColor: '#222',
-    shadowOffset: { width: 3, height: 1.75 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
   },
   text: {
     fontWeight:'600', 
-    fontSize:verticalScale(12),
     color:colors.white,
   }
 })

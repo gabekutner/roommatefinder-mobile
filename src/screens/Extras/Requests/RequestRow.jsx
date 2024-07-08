@@ -33,7 +33,11 @@ export default function RequestRow({ navigation, item }) {
 
 	return (
 		<Cell colors={colors}>
-			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
+			<CustomButton 
+				shadow
+				style={{ borderWidth:0 }} 
+				onClick={() => navigation.navigate('profile-detail', { item:profile })}
+			>
 				<Thumbnail
 					url={item.sender.thumbnail}
 					size={verticalScale(60)}
@@ -41,11 +45,19 @@ export default function RequestRow({ navigation, item }) {
 				/>
 			</CustomButton>
 			<View style={styles.textContainer} >
-				<CustomText style={styles.text}>
+				<CustomText fontSize="medium" style={styles.text}>
 					{item.sender.name}
 				</CustomText>
-				<CustomText style={{ color:colors.tint }}>
-					{message} <CustomText style={{ ...styles.text, color:colors.tertiary, fontWeight:'500' }}>
+				<CustomText fontSize="small" style={{ color:colors.tint }}>
+					{message}{' '}
+					<CustomText 
+						fontSize="small" 
+						style={{ 
+							...styles.text, 
+							color:colors.tertiary, 
+							fontWeight:'500',
+						}}
+					>
 						{utils.formatTime(item.created)}
 					</CustomText>
 				</CustomText>
@@ -62,7 +74,6 @@ const styles = StyleSheet.create({
   },
 	text: {
 		fontWeight:'600', 
-    fontSize:verticalScale(14), 
     color:colors.tint, 
     marginBottom:verticalScale(4)
 	}
