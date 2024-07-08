@@ -35,7 +35,7 @@ export default function PromptsScreen({ navigation }) {
   const handleForm = () => {
     if (selected != -1 && prompt.answer) {
       const arr = [...form.prompts]
-      arr.push({ question:prompts[selected-1].prompt, answer:prompt.answer })
+      arr.push({ question:selected, answer:prompt.answer })
       setForm({ ...form, prompts:arr })
       setPrompt({ ...prompt, question:'', answer:'' })
     } else {

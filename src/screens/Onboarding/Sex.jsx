@@ -36,7 +36,7 @@ export default function SexScreen() {
         style={{ ...styles.option, backgroundColor: selected === "F" ? colors.accent : colors.secondary }}
       >
         <CustomText style={{ ...styles.text, color: selected === "F" ? colors.white : colors.tint }}>
-          Guy
+          Girl
         </CustomText>
       </CustomButton>
     </>

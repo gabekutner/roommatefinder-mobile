@@ -57,8 +57,8 @@ export const profileSlice = (set) => ({
             user:response.data,
           }))
         }
-      } catch(error) {
-        console.log('zustand.profile.createProfile: ', error)
+      } catch (error) {
+        console.log('zustand.profile.createProfile: ', error.response)
       }
     } else {
       console.log('zustand.profile.createProfile : not authenticated')
