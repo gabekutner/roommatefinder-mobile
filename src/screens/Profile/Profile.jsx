@@ -137,8 +137,9 @@ export default function ProfileScreen({ navigation }) {
           <View 
             style={{ 
               ...styles.rowWrapper, 
-              ...styles.rowLast, 
-              borderTopWidth:0
+              borderBottomWidth:0,
+              borderTopWidth:0,
+              marginTop:verticalScale(-.23)
             }}
           >
             <View style={styles.row}>
@@ -146,18 +147,18 @@ export default function ProfileScreen({ navigation }) {
                 Edit Widgets
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText fontSize="large">🤿</CustomText>
+              <CustomText fontSize="large">🍿</CustomText>
             </View>
           </View>
-        </View>
-
-        <View style={styles.sectionBody}>
           <CustomButton 
             onClick={() => navigation.navigate('matching')}
             style={{ 
               ...styles.rowWrapper, 
-              ...styles.rowFirst,
-              ...styles.rowLast, 
+              ...styles.rowLast,
+              borderTopLeftRadius:0,
+              borderTopRightRadius:0 ,
+              borderTopWidth:0,
+              marginTop:verticalScale(-.24)
             }}
           >
             <View style={styles.row}>
@@ -165,7 +166,7 @@ export default function ProfileScreen({ navigation }) {
                 Roommate Matching Quiz
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText fontSize="large">💥</CustomText>
+              <CustomText fontSize="large">🧪</CustomText>
             </View>
           </CustomButton>
         </View>
