@@ -46,11 +46,15 @@ export default function SearchButton({ user }) {
 
 	return (
 		<CustomButton
+			shadow
 			onClick={data.onPress}
 			disabled={data.disabled}
-			style={{ ...styles.button, backgroundColor: data.disabled ? '#708E99' : colors.accent }}
+			style={{ 
+				...styles.button, 
+				backgroundColor: data.disabled ? '#708E99' : colors.accent 
+			}}
 		>
-			<CustomText style={styles.text}>
+			<CustomText fontSize="medium" style={styles.text}>
 				{data.text}
 			</CustomText>
 		</CustomButton>
@@ -63,15 +67,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     borderColor:colors.tint,
-    paddingHorizontal:moderateScale(16),
-    shadowColor: '#222',
-    shadowOffset: { width: 3, height: 1.75 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
+    paddingHorizontal:moderateScale(16), 
   },
   text: {
     fontWeight:'600', 
-    fontSize:verticalScale(12),
     color:colors.white,
   }
 })

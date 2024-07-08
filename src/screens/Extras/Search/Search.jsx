@@ -30,7 +30,7 @@ export default function Search({ navigation }) {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View  style={styles.wrapper}>
+			<View style={styles.wrapper}>
 				<CustomButton 
 					onClick={() => navigation.goBack()}
 					style={{ paddingLeft:moderateScale(16), borderWidth:0 }}
@@ -50,7 +50,6 @@ export default function Search({ navigation }) {
 						onChangeText={setQuery}
 						icon="magnifying-glass"
 						iconColor={colors.tertiary}
-						iconSize={20}
 						iconStyle={{ marginHorizontal:moderateScale(8) }}
 						containerStyle={styles.inputContainer}
 						inputStyle={styles.inputTextContainer}

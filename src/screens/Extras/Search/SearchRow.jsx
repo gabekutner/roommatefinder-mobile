@@ -30,7 +30,11 @@ export default function SearchRow({ navigation, item }) {
 
 	return (
 		<Cell colors={colors}>
-			<CustomButton style={{ borderWidth:0 }} onClick={() => navigation.navigate('profile-detail', { item:profile })}>
+			<CustomButton 
+				shadow
+				style={{ borderWidth:0 }} 
+				onClick={() => navigation.navigate('profile-detail', { item:profile })}
+			>
 				<Thumbnail
 					url={item.thumbnail}
 					size={verticalScale(60)}
@@ -38,7 +42,7 @@ export default function SearchRow({ navigation, item }) {
 				/>
 			</CustomButton>
 			<View style={styles.textContainer}>
-				<CustomText style={styles.text}>
+				<CustomText fontSize="medium" style={styles.text}>
 					{item.name}
 				</CustomText>	
 			</View>
@@ -54,7 +58,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight:'600', 
-    fontSize:verticalScale(15), 
     color:colors.tint, 
     marginBottom:verticalScale(4)
   }
