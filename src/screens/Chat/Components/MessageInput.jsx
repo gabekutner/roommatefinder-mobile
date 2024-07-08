@@ -7,6 +7,7 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 import CustomTextInput from "../../../components/UI/Custom/CustomInput";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 
+import { colors } from "../../../constants/colors";
 
 export default function MessageInput({ 
 	message, 
@@ -23,15 +24,8 @@ export default function MessageInput({
 				onChangeText={setMessage}
 				autoComplete={false}
 				colors={colors}
-				containerStyle={{
-					...styles.inputContainer,
-					borderColor:colors.tint,
-					backgroundColor:colors.secondary,
-				}}
-				inputStyle={{
-					color:colors.tint,
-					fontSize:verticalScale(14)
-				}}
+				containerStyle={styles.inputContainer}
+				inputStyle={{ color:colors.tint }}
 			/>
 			<CustomButton 
         onClick={onSend}
@@ -59,10 +53,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   inputContainer: {
-    paddingLeft:moderateScale(8),
-    borderRadius:12,
-    height:verticalScale(45),
-    borderWidth:2,
+    // paddingLeft:moderateScale(8),
+    // borderRadius:12,
+    // height:verticalScale(45),
+    // borderWidth:2,
     flex:1,
+		marginBottom:verticalScale(14),
+    backgroundColor:colors.secondary,
+    borderWidth:2,
+    borderColor:colors.tint,
   }
 })

@@ -13,7 +13,7 @@ export default function MessageBubbleMe({ text }) {
 		<View style={styles.container}>
 			<View style={{ flex:1 }} />
 			<View style={styles.bubble}>
-				<CustomText style={styles.text}>
+				<CustomText fontSize="medium" style={styles.text}>
 					{text}
 				</CustomText>
 			</View>
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color:'white',
-    fontSize:verticalScale(16),
     lineHeight:18,
     fontSize:verticalScale(13)
   }

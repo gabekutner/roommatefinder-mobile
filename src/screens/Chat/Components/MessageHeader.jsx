@@ -30,7 +30,7 @@ export default function MessageHeader({
 				url={friend.thumbnail}
 				size={verticalScale(27)}
 			/>
-			<CustomText style={{ ...styles.name, color:colors.tint }}>
+			<CustomText fontSize="large" style={{ ...styles.name, color:colors.tint }}>
 				{friend.name}
 			</CustomText>			
 		</View>
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   },
   name: {
     marginLeft:10,
-    fontSize:verticalScale(15),
     fontWeight:'600',
   }
 })
