@@ -68,7 +68,6 @@ export const authSlice = (set) => ({
       authenticated:false,
       user:{},
       profileCreated:false,
-      theme:'light',
     }))
   },
 })

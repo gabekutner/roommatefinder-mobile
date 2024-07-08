@@ -31,7 +31,6 @@ export default function SignUp({ navigation }) {
     status: false,
     message: ""
   })
-
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -105,12 +104,11 @@ export default function SignUp({ navigation }) {
 
               <View style={{ marginVertical:'10%' }}>
                 <Title 
-                  title='RoommateFinder'
+                  title='roommatefinder'
                   color={colors.tint}
-                  fontSize={verticalScale(28)}
                   style={{ textAlign:'center' }}
                 />
-                <CustomText style={styles.subtitle}>
+                <CustomText fontSize="medium" style={styles.subtitle}>
                   Sign up to find your future roommate!
                 </CustomText>
               </View>
@@ -119,9 +117,7 @@ export default function SignUp({ navigation }) {
                   <Snackbar 
                     message={showError.message}
                     actionText="Dismiss"
-                    onActionPress={() => {
-                      setShowError(false)
-                    }}
+                    onActionPress={() => setShowError(false)}
                     duration={5000} // customize duration
                     position="top" // change the position to 'top'/'bottom'
                     backgroundColor={colors.secondary} // customize background color
@@ -189,19 +185,19 @@ export default function SignUp({ navigation }) {
                   inputStyle={styles.inputText}
                 />
 
-                <CustomButton onClick={() => onSignUp()} style={styles.buttonStyle}>
-                  <CustomText style={styles.buttonText}>
+                <CustomButton onClick={() => onSignUp()} shadow style={styles.buttonStyle}>
+                  <CustomText fontSize="large" style={styles.buttonText}>
                     Sign up
                   </CustomText>
                 </CustomButton>
 
                 <Pressable onPress={() => navigation.navigate('signin')} style={styles.pressableStyle}>
-                  <CustomText style={{ ...styles.text, color:colors.tint }}>
+                  <CustomText fontSize="medium" style={styles.text}>
                     Already have an account?{' '}
                     <CustomText 
+                      fontSize="medium"
                       style={{
-                        ...styles.text, 
-                        color:colors.tint,
+                        ...styles.text,
                         textDecorationLine:'underline' 
                       }}
                     >
@@ -239,48 +235,35 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: colors.tint,
-    marginVertical:10,
-    fontSize:verticalScale(12),
+    marginVertical:verticalScale(5),
     fontWeight:'600', 
     textAlign:'center',
   },
   inputContainer: {
-    height:verticalScale(45),
     marginBottom:verticalScale(14),
     backgroundColor:colors.secondary,
-    borderRadius:0,
     borderWidth:2,
     borderColor:colors.tint,
-    paddingRight:moderateScale(45)
   },
-  inputText: {
-    fontSize:verticalScale(14),
-    color:colors.tint,
-  },
+  inputText: { color:colors.tint },
   buttonStyle: {
     borderWidth:2,
-    borderColor:colors.tint,
     backgroundColor:colors.accent,
-    shadowColor: '#222',
-    shadowOffset: { width: 7, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
   },
   buttonText: {
-    fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
   },
   pressableStyle: {
     flexDirection:'row',
     gap:5,
-    marginTop:20,
+    marginTop:verticalScale(20),
     justifyContent:'center'
   },
   text: {
-    fontSize:verticalScale(14), 
     fontWeight:'600',
     textAlign:'center',
     letterSpacing:0.15,
+    color:colors.tint
   }
 })

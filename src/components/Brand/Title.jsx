@@ -14,7 +14,7 @@ export default function Title({
       style={{
         fontFamily:'LuckiestGuy-Regular',
         color:color,
-        fontSize:fontSize ? fontSize : verticalScale(30),
+        fontSize:fontSize ? fontSize : verticalScale(28),
         ...style
       }}
     >

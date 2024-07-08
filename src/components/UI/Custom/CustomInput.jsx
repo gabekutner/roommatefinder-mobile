@@ -1,12 +1,12 @@
 // Custom TextInput component
 import React from "react";
-import { 
-  TextInput,
-  View
-} from "react-native";
-import CustomText from "./CustomText";
+import { TextInput, View } from "react-native";
+
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+import CustomText from "./CustomText";
+
 
 
 export default function CustomTextInput({
@@ -42,19 +42,24 @@ export default function CustomTextInput({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: colors.secondary,
-        shadowColor: '#222',
-        shadowOffset: { width: 7, height: 5 },
-        shadowOpacity: 1,
-        shadowRadius: 1, 
-        height:verticalScale(55),
+        shadowColor: '#000',
+        shadowOffset: { 
+          width: 1.5, 
+          height: 2 
+        },
+        shadowOpacity: .7,
+        shadowRadius: .6, 
+        height:verticalScale(50),
         borderWidth:2,
+        borderRadius:12,
         marginBottom:verticalScale(20),
+        paddingRight:moderateScale(45),
         ...containerStyle,
       }}
     >
       { emoji 
-        ? <CustomText style={{ paddingHorizontal:15, fontSize:verticalScale(18) }}>{emoji}</CustomText>
-        : icon ? <FontAwesomeIcon icon={icon} size={verticalScale(iconSize)} color={iconColor} style={{ marginHorizontal:moderateScale(12), ...iconStyle }} /> : null
+        ? <CustomText style={{ paddingHorizontal:moderateScale(15), fontSize:verticalScale(18) }}>{emoji}</CustomText>
+        : icon ? <FontAwesomeIcon icon={icon} size={iconSize ? verticalScale(iconSize) : verticalScale(16)} color={iconColor} style={{ marginHorizontal:moderateScale(12), ...iconStyle }} /> : null
       }
       
       <TextInput 
@@ -76,15 +81,13 @@ export default function CustomTextInput({
         textAlign="left"
         value={value}
         style={{
-          fontSize:verticalScale(18),
           fontWeight:'500',
           width:'100%',
           borderColor:colors.tint,
-          paddingTop: 10,
-          paddingRight: 20,
-          paddingBottom: 10,
-          paddingLeft: 10,
+          paddingRight: moderateScale(10),
+          paddingLeft: moderateScale(5),
           color: colors.tint,
+          fontSize:verticalScale(14),
           ...inputStyle
         }}
       />

@@ -8,13 +8,16 @@ import {
 
 import { verticalScale } from 'react-native-size-matters';
 
+import { colors } from '../../../constants/colors';
+
 
 export default function CustomButton({
   children,
   onClick,
   style,
   disabled,
-  onLayout
+  onLayout,
+  shadow, // bool
 }) {
   
   const [scaleValue] = useState(new Animated.Value(1)); // Initial scale value
@@ -64,6 +67,7 @@ export default function CustomButton({
         gap:'0.5rem',
         borderWidth:.75,
         borderRadius:12,
+        borderColor:colors.tint,
         paddingVertical:verticalScale(15),
         flexDirection:'row',
         alignItems:'center',
@@ -74,6 +78,13 @@ export default function CustomButton({
           }
         ],
         ...style,
+        shadowColor: shadow ? '#000' : null,
+        shadowOpacity: shadow ? .7 : null,
+        shadowRadius: shadow ? .6 : null,
+        shadowOffset: {
+          width: shadow ? 1.5 : 0,
+          height: shadow ? 2 : 0
+        }
       }}
       onPress={() => {
         onClick()
