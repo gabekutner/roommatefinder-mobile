@@ -20,11 +20,7 @@ export default function StartupScreen({ navigation }) {
   return (
     <ImageBackground 
       source={require('../assets/images/image_part_001.png')}
-      imageStyle={{ 
-        height: '83%',
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-      }}
+      imageStyle={{ height: '79%' }}
       resizeMode='cover'
       style={styles.container}
     >
@@ -39,7 +35,6 @@ export default function StartupScreen({ navigation }) {
         <Title 
           title="RoommateFinder"
           color={colors.accent}
-          fontSize={verticalScale(28)}
           style={{ alignSelf:'center' }}
         />
       </View>
@@ -49,7 +44,7 @@ export default function StartupScreen({ navigation }) {
           onClick={() => navigation.navigate('signin')}
           style={styles.actionButton}
         >
-          <CustomText style={styles.actionText}>
+          <CustomText fontSize='large' style={styles.actionText}>
             Sign in
           </CustomText>
         </CustomButton>
@@ -57,7 +52,7 @@ export default function StartupScreen({ navigation }) {
           onClick={() => navigation.navigate('signup')}
           style={styles.actionButton}
         >
-          <CustomText style={styles.actionText}>
+          <CustomText fontSize='large' style={styles.actionText}>
             Get Started
           </CustomText>
         </CustomButton>
@@ -82,7 +77,7 @@ const styles = StyleSheet.create({
   },
   universityOfUtah: {
     fontFamily:'GideonRoman-Regular',
-    fontSize:verticalScale(15),
+    fontSize:verticalScale(14),
     alignSelf:'center',
     marginVertical:verticalScale(10),
   },
@@ -92,22 +87,28 @@ const styles = StyleSheet.create({
     left:0,
     right:0,
     paddingTop:verticalScale(15),
-    paddingBottom:verticalScale(35),
+    paddingBottom:verticalScale(20),
     flexDirection:'column',
     gap:verticalScale(14),
     paddingHorizontal:moderateScale(35),
+    backgroundColor:colors.secondary,
+    borderTopRightRadius:12,
+    borderTopLeftRadius:12,
+    borderWidth:2,
   },
   actionButton: {
     borderWidth:2,
     borderColor:colors.tint,
     backgroundColor:colors.accent,
-    shadowColor: '#222',
-    shadowOffset: { width: 7, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
+    shadowColor: '#000',
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 0.6,  
   },
   actionText: {
-    fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
   }

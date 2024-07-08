@@ -6,6 +6,8 @@ import {
   Easing,
 } from 'react-native';
 
+import { verticalScale } from 'react-native-size-matters';
+
 
 export default function CustomButton({
   children,
@@ -61,8 +63,8 @@ export default function CustomButton({
       style={{
         gap:'0.5rem',
         borderWidth:.75,
-        borderRadius:8,
-        paddingVertical:15,
+        borderRadius:12,
+        paddingVertical:verticalScale(15),
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
