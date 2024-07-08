@@ -30,10 +30,12 @@ export default function PromptsScreen({ navigation }) {
     answer:"",
   })
 
+  const [selected, setSelected] = useState(-1)
+  
   const handleForm = () => {
-    if (prompt.question && prompt.answer) {
+    if (selected != -1 && prompt.answer) {
       const arr = [...form.prompts]
-      arr.push({ question:prompt.question, answer:prompt.answer })
+      arr.push({ question:prompts[selected-1].prompt, answer:prompt.answer })
       setForm({ ...form, prompts:arr })
       setPrompt({ ...prompt, question:'', answer:'' })
     } else {
@@ -59,14 +61,32 @@ export default function PromptsScreen({ navigation }) {
 
                 {/* flatlist */}
                 <FlatList 
-                  showsVerticalScrollIndicator={true}
+                  showsVerticalScrollIndicator={false}
                   data={prompts}
                   renderItem={({ item }) => {
                     return (
-                      <CustomText>{item.id}</CustomText>
+                      <CustomButton 
+                        onClick={() => setSelected(item.id)} 
+                        style={{ 
+                          ...styles.flatlistItem,
+                          backgroundColor:selected === item.id ? colors.accent : colors.primary
+                        }}
+                      >
+                        <CustomText 
+                          style={{ 
+                            ...styles.text, 
+                            fontSize:verticalScale(12), 
+                            marginHorizontal:moderateScale(10),
+                            fontWeight:'500',
+                            color:selected === item.id ? colors.white : colors.tint
+                          }}
+                        >
+                          {item.prompt}
+                        </CustomText>
+                      </CustomButton>
                     )
                   }}
-                  style={{ height:50 }}
+                  style={styles.flatlist}
                 />
                 
                 <CustomTextInput 
@@ -164,4 +184,28 @@ const styles = StyleSheet.create({
     fontWeight:'600', 
     color:colors.white,
   },
+  flatlist: {
+    backgroundColor:colors.secondary,
+    width:'100%',
+    height:'50%',
+    paddingHorizontal:moderateScale(10),
+    paddingVertical:verticalScale(10),
+    marginBottom:verticalScale(15),
+    borderRadius:12,
+    borderWidth:2,
+  },
+  flatlistItem: {
+    marginBottom:verticalScale(10),
+    borderWidth:2,
+    backgroundColor:colors.primary,
+        
+    shadowColor:'#000',
+    shadowOpacity:0.7,
+    shadowOffset: {
+      width:1.5,
+      height:2
+    },
+    shadowRadius:0.6
+  },
+
 })
