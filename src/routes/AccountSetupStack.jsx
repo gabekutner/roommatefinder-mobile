@@ -6,6 +6,8 @@ const Stack = createNativeStackNavigator();
 import PromptScreen from "../screens/Onboarding/Prompt";
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
 import LinkTreeScreen from "../screens/Onboarding/Widgets/LinkTree";
+import QuotesScreen from "../screens/Onboarding/Widgets/Quotes";
+import PromptsScreen from "../screens/Onboarding/Widgets/Prompts";
 
 
 export default function AccountSetupStack() {
@@ -46,6 +48,22 @@ export default function AccountSetupStack() {
       <Stack.Screen
         name='linktree'
         component={LinkTreeScreen}
+        options={{
+          presentation:'modal',
+          headerShown:false
+        }}
+      /> 
+      <Stack.Screen
+        name='quotes'
+        component={QuotesScreen}
+        options={{
+          presentation:'modal',
+          headerShown:false
+        }}
+      /> 
+      <Stack.Screen
+        name='prompts'
+        component={PromptsScreen}
         options={{
           presentation:'modal',
           headerShown:false

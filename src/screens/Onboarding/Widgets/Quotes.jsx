@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  FlatList,
+  Keyboard,
   KeyboardAvoidingView,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  ImageBackground
 } from 'react-native';
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
-import Label from "../Components/Label";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomTextInput from "../../../components/UI/Custom/CustomInput";
+import CustomTextInput from '../../../components/UI/Custom/CustomInput'
 
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
@@ -40,174 +41,128 @@ export default function QuotesScreen({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <>  
-        <View 
-          style={{ 
-            alignItems:'center',
-            flexDirection:'column',
-            gap:10,
-            marginVertical:verticalScale(30)
-          }}
-        >
-          <Label text="Add your favorite quotes!" style={{ marginVertical:verticalScale(20) }} />
+    <ImageBackground 
+      source={require('../../../assets/images/image_part_003.png')}
+      style={{ flex:1, backgroundColor:colors.primary }}
+      imageStyle={{ opacity:0.5 }}
+    >
+      <KeyboardAvoidingView behavior="padding" style={{ flex:1 }}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.container}>
+            <View style={styles.wrapper}>
+              <View style={{ marginBottom:verticalScale(20), alignItems:'center' }}>
 
-          <Label 
-            text="Quote" 
-            style={{ 
-              fontSize:verticalScale(14), 
-              alignSelf:'flex-start',
-              marginLeft:moderateScale(42)
-            }} 
-          />
-          <CustomTextInput 
-            autoCorrect={false}
-            autoCapitalize={false}
-            multiline={true}
-            placeholder={'Ex. If you want to make the world a better place, take a look at yourself and make a change. Hooo'}
-            value={quote.quote}
-            onChangeText={input => setQuote({ ...quote, quote:input })}
-            colors={colors}
-            emoji={'🥸'}
-            containerStyle={{
-              height:verticalScale(75),
-              marginBottom:verticalScale(14),
-              backgroundColor:colors.secondary,
-              borderRadius:0,
-              borderWidth:2,
-              borderColor:colors.tint,
-              width:'90%',
-              paddingRight:moderateScale(45)
-            }}
-            inputStyle={{
-              fontSize:verticalScale(14),
-              color:colors.tint,
-            }}
-          />
+                <CustomText style={styles.title}>
+                  Add a quote!
+                </CustomText>
 
-          <Label 
-            text="Always cite your sources ;)" 
-            style={{ 
-              fontSize:verticalScale(14), 
-              alignSelf:'flex-start',
-              marginLeft:moderateScale(42)
-            }} 
-          />
-          <CustomTextInput 
-            autoCorrect={false}
-            autoCapitalize={false}
-            placeholder={'Ex. Lego Batman'}
-            value={quote.cited}
-            onChangeText={input => setQuote({ ...quote, cited:input })}
-            colors={colors}
-            emoji={'🏇'}
-            containerStyle={{
-              height:verticalScale(45),
-              marginBottom:verticalScale(14),
-              backgroundColor:colors.secondary,
-              borderRadius:0,
-              borderWidth:2,
-              borderColor:colors.tint,
-              width:'90%',
-              paddingRight:moderateScale(45)
-            }}
-            inputStyle={{
-              fontSize:verticalScale(14),
-              color:colors.tint,
-            }}
-          />
+                <CustomTextInput 
+                  autoCapitalize={'none'}
+                  autoCorrect={false}
+                  multiline={true}
+                  placeholder={"I'm a night-stalking, crime-fighting vigilante, and a heavy metal rapping machine."}
+                  value={quote.quote}
+                  onChangeText={value => setQuote({ ...quote, quote:value })}
+                  icon="quote-left"
+                  iconColor={colors.tertiary}
+                  colors={colors}
+                  containerStyle={{ ...styles.inputContainer, height:verticalScale(100) }}
+                  inputStyle={styles.text}
+                />
+                
+                <CustomTextInput 
+                  autoCapitalize={'none'}
+                  autoCorrect={false}
+                  placeholder={'Lego Batman'}
+                  value={quote.cited}
+                  onChangeText={value => setQuote({ ...quote, cited:value })}
+                  icon="at"
+                  iconColor={colors.tertiary}
+                  colors={colors}
+                  containerStyle={styles.inputContainer}
+                  inputStyle={styles.text}
+                />
 
-          <CustomButton 
-            onClick={() => handleForm()}
-            style={{ 
-              ...styles.addLink, 
-              borderColor:colors.tint,
-              backgroundColor:colors.accent,
-              shadowColor:'#222',
-              shadowOffset: { width:5, height:3 },
-              shadowOpacity:1,
-              shadowRadius:1, 
-              borderRadius:0,
-              borderWidth:2
-            }}
-          >
-            <CustomText style={[styles.linkedText, { color:colors.white }]}>+ Add a quote</CustomText>
-          </CustomButton>
-          
-          { form.quotes
-            ?
-              <FlatList 
-                showsVerticalScrollIndicator={false}
-                data={form.quotes}
-                keyExtractor={item => item.quote}
-                style={{ marginBottom:verticalScale(360) }}
-                renderItem={({ item }) => (
-                  <View 
-                    style={{
-                      ...styles.linked, 
-                      borderColor: colors.tint,
-                      backgroundColor: colors.secondary,
-                    }}
-                  >
-                    <View style={{ ...styles.quoteBox, flexDirection:'column', gap:4 }}>
-                      <FontAwesomeIcon 
-                        icon="quote-left"
-                        size={22}
-                        color={colors.tint}
-                      />
-                      <CustomText style={{ ...styles.quote, color:colors.tint }}>{item.quote}</CustomText>
-                    </View>
-                    <CustomText style={{ ...styles.person, color:colors.tint }}>
-                      - {item.cited}
-                    </CustomText>
-                  </View>
-                )}
-              />
-            : null
-          }
-          
-        </View>
-      </>
-    </KeyboardAvoidingView>
+                <CustomButton 
+                  onClick={() => {
+                    handleForm()
+                    navigation.goBack()
+                  }} 
+                  style={styles.buttonStyle}
+                >
+                  <CustomText style={styles.buttonText}>
+                    Submit
+                  </CustomText>
+                </CustomButton>
+
+              </View>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   )
 }
-
+  
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    flex:1, 
+    justifyContent:'center',
+    width:'95%',
+    alignSelf:'center',        
   },
-  linked: {
-    borderWidth:1,
-    borderRadius:0,
-    marginBottom:verticalScale(10),
+  wrapper: {
+    backgroundColor:colors.primary, 
+    paddingVertical:verticalScale(10), 
+    paddingHorizontal:moderateScale(25),
+    borderRadius:12,
+    borderWidth:2,
+    shadowColor: '#000',
+    shadowOffset: { width: 1.5, height: 2 },
+    shadowOpacity: .7,
+    shadowRadius: .6,  
+  },
+  title: {
+    fontSize:verticalScale(20),
+    fontWeight:'600',
+    marginVertical:verticalScale(15),
+  },
+
+  inputContainer: {
+    height:verticalScale(45),
+    marginBottom:verticalScale(14),
+    backgroundColor:colors.secondary,
+    borderRadius:12,
+    borderWidth:2,
+    borderColor:colors.tint,
+    
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2 
+    },
+    shadowRadius: 0.6,
+
+    marginHorizontal:moderateScale(20)
+  },
+  text: {
+    fontSize:verticalScale(14),
+    color:colors.tint
+  },
+  buttonStyle: {
+    borderWidth:2,
+    borderColor:colors.tint,
+    backgroundColor:colors.accent,
     shadowColor: '#222',
     shadowOffset: { width: 7, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,  
+    width:'90%'
   },
-  linkedText: {
-    fontSize:verticalScale(12),
-    fontWeight:'500',
+  buttonText: {
+    fontSize:verticalScale(16), 
+    fontWeight:'600', 
+    color:colors.white,
   },
-  addLink: {
-    padding:verticalScale(15),
-    marginBottom:verticalScale(10)
-  },
-  quoteBox: {
-    width:'100%',
-    padding:verticalScale(15),
-    paddingBottom:verticalScale(8),
-    paddingLeft:verticalScale(8),
-    paddingTop:verticalScale(8),
-  },
-  quote: {
-    fontSize:verticalScale(14),
-    fontWeight:'600',
-  },
-  person: {
-    fontSize:verticalScale(12),
-    fontWeight:'500',
-    padding:verticalScale(10),
-  }
 })

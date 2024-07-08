@@ -30,8 +30,8 @@ export default function BaseWidgetsScreen({ navigation }) {
   return (
     <View style={{ flexDirection:'column' }}>
       <View style={{ flexDirection: "row", gap:moderateScale(8) }}>
-        <Square onClick={() => {}} text="Prompts"/>
-        <Square onClick={() => {}} text="Quotes"/>
+        <Square onClick={() => navigation.navigate('prompts')} text="Prompts"/>
+        <Square onClick={() => navigation.navigate('quotes')} text="Quotes"/>
         <Square onClick={() => navigation.navigate('linktree')} text="Links"/>
       </View>
     </View>
@@ -45,10 +45,13 @@ const styles = StyleSheet.create({
     backgroundColor:colors.secondary,
     height:scale(90),
     width:scale(90),
-    shadowColor: '#222',
-    shadowOffset: { width: 5, height: 3 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
+    shadowColor: '#000',
+    shadowOpacity: 0.7,
+    shadowOffset: { 
+      width: 1.5, 
+      height: 2 
+    },
+    shadowRadius: 0.6, 
   },
   optionText: {
     fontSize:verticalScale(15),
