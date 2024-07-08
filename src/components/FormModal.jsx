@@ -7,12 +7,12 @@ import {
 
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
+import CustomLabel from "./UI/Label";
+import CustomTextInput from "./UI/Custom/CustomInput";
 import CustomButton from "./UI/Custom/CustomButton";
 import CustomText from "./UI/Custom/CustomText";
 
 import { colors } from "../constants/colors";
-import CustomLabel from "./UI/Label";
-import CustomTextInput from "./UI/Custom/CustomInput";
 
 
 export default function FormModal({
@@ -85,16 +85,13 @@ export default function FormModal({
                 borderColor:colors.tint,
                 paddingRight:moderateScale(30)
               }}
-              inputStyle={{
-                fontSize:verticalScale(12),
-                color:colors.tint,
-              }}
+              inputStyle={{ color:colors.tint }}
             />
           </View>
 
           <CustomButton
+            shadow
             onClick={() => {
-              console.log(form)
               setIsVisible(false)
             }}
             style={{ 
@@ -102,16 +99,12 @@ export default function FormModal({
                 borderColor:colors.tint,
                 backgroundColor:colors.accent,
                 borderRadius:0,
-                shadowColor: '#222',
-                shadowOffset: { width: 7, height: 5 },
-                shadowOpacity: 1,
-                shadowRadius: 1,  
                 paddingHorizontal:moderateScale(20)
               }}
             >
             <CustomText 
+              fontSize="medium"
               style={{ 
-                fontSize:verticalScale(14), 
                 fontWeight:'600', 
                 color:colors.white,
               }}

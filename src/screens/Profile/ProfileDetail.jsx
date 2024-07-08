@@ -26,7 +26,7 @@ export default function ProfileDetail({ route, navigation }) {
     return (
       <View style={{ flexDirection:'row', gap:moderateScale(10), alignItems:"center" }}>
         <FontAwesomeIcon icon={icon} size={verticalScale(20)} color={colors.tertiary} />
-        <CustomText style={{ fontSize:verticalScale(15), fontWeight:'500', color:colors.tertiary }}>{text}</CustomText>
+        <CustomText fontSize="medium" style={{ fontWeight:'500', color:colors.tertiary }}>{text}</CustomText>
       </View>
     )
   }
@@ -61,8 +61,12 @@ export default function ProfileDetail({ route, navigation }) {
         {/* title */}
         <View style={styles.wrapper}>
           <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
-            <CustomText style={styles.title}>{item.name}, {item.age}</CustomText>
-            <CustomButton style={styles.button} onClick={() => navigation.goBack()}>
+            <CustomText fontSize="x-large" style={styles.title}>{item.name}, {item.age}</CustomText>
+            <CustomButton 
+              shadow
+              style={styles.button} 
+              onClick={() => navigation.goBack()}
+            >
               <FontAwesomeIcon 
                 icon="arrow-down" 
                 size={verticalScale(20)} 
@@ -93,13 +97,14 @@ export default function ProfileDetail({ route, navigation }) {
                 style={{ 
                   flexDirection: 'row',
                   flexWrap: 'wrap',
-                  alignItems: 'center', // Adjust as needed
-                  justifyContent: 'flex-start', // Adjust as needed
+                  alignItems: 'center', 
+                  justifyContent: 'flex-start',
                 }}
               >
                 
                 {item.links.map(( link ) => (
                   <CustomButton 
+                    shadow
                     key={link.link}
                     onClick={() => {
                       const url = utils.testUrl(link.link)
@@ -115,7 +120,7 @@ export default function ProfileDetail({ route, navigation }) {
                       margin:verticalScale(2), // Adjust spacing between items 
                     }}
                   >
-                    <CustomText style={{ fontSize:verticalScale(14), color:colors.white, fontWeight:'600' }}>
+                    <CustomText fontSize="medium" style={{ color:colors.white, fontWeight:'600' }}>
                       {link.title}
                     </CustomText>
                   </CustomButton>
@@ -151,9 +156,9 @@ export default function ProfileDetail({ route, navigation }) {
             <View style={styles.wrapper}>
               <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
                 <FontAwesomeIcon icon="quote-left" size={verticalScale(14)} color={colors.tertiary} />
-                <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600', color:colors.tint }}>About me</CustomText>
+                <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.tint }}>About me</CustomText>
               </View>
-              <CustomText style={{ fontSize:verticalScale(13), fontWeight:'500', color:colors.tertiary }}>{item.description}</CustomText>
+              <CustomText fontSize="medium" style={{ fontWeight:'500', color:colors.tertiary }}>{item.description}</CustomText>
             </View>
           : null
         }
@@ -164,7 +169,7 @@ export default function ProfileDetail({ route, navigation }) {
           <View style={styles.wrapper}>
             <View style={{ flexDirection:'row', gap:moderateScale(10), marginBottom:verticalScale(8) }}>
               <FontAwesomeIcon icon="person-hiking" size={verticalScale(20)} color={colors.tertiary} />
-              <CustomText style={{ fontSize:verticalScale(16), fontWeight:'600', color:colors.tint }}>Interests</CustomText>
+              <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.tint }}>Interests</CustomText>
             </View>
             <View 
               style={{ 
@@ -178,14 +183,14 @@ export default function ProfileDetail({ route, navigation }) {
                 <View 
                   key={index} 
                   style={{ 
-                    backgroundColor:colors.accent,
+                    backgroundColor:colors.secondary,
                     paddingHorizontal:moderateScale(12),
                     paddingVertical:verticalScale(6),
                     borderRadius:12,
                     margin:verticalScale(2), // Adjust spacing between items 
                   }}
                 >
-                  <CustomText style={{ color:colors.white, fontSize:verticalScale(14), fontWeight:'600' }}>
+                  <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
                     {interestsData[interest - 1].interest}
                   </CustomText>
                 </View>
@@ -247,7 +252,6 @@ const styles = StyleSheet.create({
     marginBottom:verticalScale(10)
   },
   title: {
-    fontSize:verticalScale(18),
     fontWeight:'600',
     color:colors.tint
   },
@@ -255,7 +259,7 @@ const styles = StyleSheet.create({
     height:scale(45),
     width:scale(45),
     backgroundColor:colors.accent,
-    borderRadius:6,
+    borderRadius:60,
     borderWidth:2,
   }
 })
