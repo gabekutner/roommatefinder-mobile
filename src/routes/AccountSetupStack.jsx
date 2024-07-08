@@ -113,29 +113,6 @@ export default function AccountSetupStack() {
           screen2:''
         }}
       />
-      {/* 
-      
-      <Stack.Screen
-        name='prompts'
-        component={PromptsScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      <Stack.Screen
-        name='quotes'
-        component={QuotesScreen}
-        options={({ navigation }) => ({
-          headerLeft: () => <Header nav={() => navigation.goBack()} icon="arrow-left" />,
-          title: '',
-          headerStyle: { backgroundColor:colors.primary },
-          headerShadowVisible: false, // border bottom invisible
-        })}
-      /> 
-      */}
     </Stack.Navigator>
   )
 }

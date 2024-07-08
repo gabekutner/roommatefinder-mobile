@@ -76,7 +76,7 @@ export default function AppStack() {
           name="swipe" 
           component={Swipe} 
           options={({ navigation }) => ({
-            headerTitle: () => <Title title="RoommateFinder" color={colors.tint} fontSize={verticalScale(20)} />,
+            headerTitle: () => <Title title="roommatefinder" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
             headerRight: () => (
               <CustomButton 
@@ -190,7 +190,12 @@ export default function AppStack() {
           headerLeft: () => (
             <CustomButton 
               onClick={() => navigation.goBack()}
-              style={{top:verticalScale(-5), borderWidth:0 }}
+              style={{ 
+                borderWidth:0, 
+                position:'absolute',
+                top:verticalScale(-28),
+                left:moderateScale(5),
+              }}
             >
               <FontAwesomeIcon 
                 icon='arrow-left'
@@ -206,6 +211,8 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
+
+
       <Stack.Screen 
         name='edit-basics' 
         component={EditBasicsScreen} 
@@ -213,7 +220,12 @@ export default function AppStack() {
           headerLeft: () => (
             <CustomButton 
               onClick={() => navigation.goBack()}
-              style={{ top:verticalScale(-5), borderWidth:0 }}
+              style={{ 
+                borderWidth:0, 
+                position:'absolute',
+                top:verticalScale(-28),
+                left:moderateScale(5),
+              }}
             >
               <FontAwesomeIcon 
                 icon='arrow-left'
@@ -222,7 +234,7 @@ export default function AppStack() {
               />
             </CustomButton>
           ), 
-          headerTitle: () => <Title title="Edit Profile" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerTitle: () => <Title title="Edit profile" color={colors.tint} fontSize={verticalScale(20)} />,
           headerStyle: {
             backgroundColor:colors.primary,
           },
