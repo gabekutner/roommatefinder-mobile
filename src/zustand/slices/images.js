@@ -156,7 +156,28 @@ export const imageSlice = (set) => ({
     } else {
       console.log('zustand.images.updatePhoto : not authenticated')
     }
-  }
+  },
+
+  deletePhoto: async (id, user) => {
+    if (user.token) {
+      try {
+        // make api request
+        const response = await api({
+          method: 'delete',
+          url: `/api/v1/photos/${id}/`,
+          headers: { 'Authorization': `Bearer ${user.token}` },
+        })
+        // check status
+        if (response.status !== 200) {
+          throw new Error('delete-photo error')
+        } else {
+          console.log('delete photo success')
+        }
+      } catch (error) {
+        console.log('zustand.images.deletePhoto ', error)
+      }
+    }
+  },
 
 
 })

@@ -17,11 +17,12 @@ import { colors } from "../../constants/colors";
 import utils from "../../core/utils";
 
 
-export default function PhotosScreen() {
+export default function PhotosScreen({ del }) {
 
   const user = useStore(state => state.user)
   const photos = useStore(state => state.photos)
   const setPhotos = useStore(state => state.setPhotos)
+  const deletePhoto = useStore(state => state.deletePhoto)
 
   const [photo, setPhoto] = useState({
     thumbnail: user.thumbnail ? utils.thumbnail(user.thumbnail) : null,
@@ -50,6 +51,31 @@ export default function PhotosScreen() {
     })
   }
 
+  const _deletePhoto = (id) => {
+    if (id === 'photo_1') {
+      if (photo.photo_1 != null) {
+        const photoId = utils.thumbnailOpposite(photo.photo_1.uri)
+        setPhoto({ ...photo, photo_1:null })
+        const obj = user.photos.find(obj => obj.image === photoId)
+        deletePhoto(obj.id, user)
+      }  
+    } else if (id === 'photo_2') {
+      if (photo.photo_2 != null) {
+        const photoId = utils.thumbnailOpposite(photo.photo_2.uri)
+        setPhoto({ ...photo, photo_2:null })
+        const obj = user.photos.find(obj => obj.image === photoId)
+        deletePhoto(obj.id, user)
+      } 
+    } else if (id === 'photo_3') {
+      if (photo.photo_3 != null) {
+        const photoId = utils.thumbnailOpposite(photo.photo_3.uri)
+        setPhoto({ ...photo, photo_3:null })
+        const obj = user.photos.find(obj => obj.image === photoId)
+        deletePhoto(obj.id, user)
+      } 
+    }
+  }
+
   return (
     <>
       <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>Add at least 2 photos.</CustomText>
@@ -70,6 +96,12 @@ export default function PhotosScreen() {
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
+          {del 
+            ? <CustomButton shadow onClick={() => _deletePhoto('photo_1')} style={styles.deleteContainer}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(20)} color={colors.accent} />
+              </CustomButton>
+            : null
+          }
         </View>
       </View>
 
@@ -81,6 +113,12 @@ export default function PhotosScreen() {
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
+          {del 
+            ? <CustomButton shadow onClick={() => _deletePhoto('photo_2')} style={styles.deleteContainer}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(20)} color={colors.accent} />
+              </CustomButton>
+            : null
+          }
         </View>
 
         <View style={styles.wrapper}>
@@ -90,6 +128,12 @@ export default function PhotosScreen() {
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
+          {del 
+            ? <CustomButton shadow onClick={() => _deletePhoto('photo_3')} style={styles.deleteContainer}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(20)} color={colors.accent} />
+              </CustomButton>
+            : null
+          }
         </View>
       </View>
     </>
@@ -117,6 +161,16 @@ const styles = StyleSheet.create({
     height:scale(130),
     width:scale(130),
     borderRadius:10,
+    borderWidth:2
+  },
+  deleteContainer: {
+    backgroundColor:colors.primary, 
+    position:'absolute',
+    top:0,
+    left:0,
+    borderRadius:12,
+    padding:verticalScale(6),
+    paddingVertical:verticalScale(6),
     borderWidth:2
   }
 })

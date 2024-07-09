@@ -21,34 +21,18 @@ export default function EditPhotoScreen({ navigation }) {
   const updatePhoto = useStore(state => state.updatePhoto)
   
   const submit = () => {
-
-    console.log(user.photos)
-    for (const [index, [key, value]] of Object.entries(Object.entries(photos))) {
-      if (value !== null) {
-        if (user.photos[index]) {
-          if (index === '0') {
-            // update thumbnail
-            staticUploadThumbnail(photos, user)
-          } else {
-            // update photo
-            console.log('update photo' , user.photos[index].id)
-            // updatePhoto(user.photos[index], , user)
-          }
-        } else {
-          console.log(user.id, ' create photo')
-        }
-      }
-    }
+    console.log('submit')
+    console.log(photos)
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <PhotosScreen />
+        <PhotosScreen del={true} />
         {/* submit button */}
         <CustomButton shadow onClick={submit} style={styles.button}>
           <CustomText fontSize="medium" style={{ fontWeight:"500", color:colors.white }}>
-            Submit
+            Save
           </CustomText>
         </CustomButton>
       </View>

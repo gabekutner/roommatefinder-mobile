@@ -11,6 +11,10 @@ function thumbnail(url) {
 	}
 }
 
+function thumbnailOpposite(url) {
+	return url.replace(`http://${ADDRESS}`, '')
+}
+
 function testUrl(url) {
 	// made for opening links
 	if (url.includes('https://')) {
@@ -57,6 +61,7 @@ function formatTime(date) {
 
 export default {
   thumbnail,
+	thumbnailOpposite,
 	testUrl,
 	formatTime,
 }
