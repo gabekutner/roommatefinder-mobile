@@ -238,6 +238,21 @@ export default function EditBasicsScreen({ navigation }) {
 
                 <CustomButton 
                   shadow
+                  onClick={() => {'photos'}} 
+                  style={styles.goto}
+                >
+                  <CustomText style={styles.gotoText}>
+                    Upload Photos
+                  </CustomText>
+                  <FontAwesomeIcon 
+                    icon="arrow-right"
+                    size={verticalScale(20)}
+                    color={colors.tertiary}
+                  />
+                </CustomButton>
+
+                <CustomButton 
+                  shadow
                   onClick={() => submit()} 
                   style={styles.buttonStyle}
                 >

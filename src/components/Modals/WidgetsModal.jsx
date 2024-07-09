@@ -58,23 +58,38 @@ export default function WidgetsModal({
             <View
               key={index}
               style={{
-                ...styles.item,
-                backgroundColor:colors.secondary,
-                marginTop:verticalScale(20)
+                width:'100%',
+                marginTop:verticalScale(20),
               }}
             >
-              <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
-                "{quote.quote}"
-              </CustomText>
-              <View 
-                style={{ 
-                  ...styles.answer,
-                  backgroundColor:colors.primary,
-                  marginTop:verticalScale(5),
+              <View
+                style={{
+                  marginHorizontal:moderateScale(10),
+                  backgroundColor:colors.secondary,
+                  padding:verticalScale(15),
+                  borderRadius:12,
                 }}
               >
-                <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500' }}>
-                  - {quote.cited}
+                <CustomText 
+                  fontSize="medium" 
+                  style={{ 
+                    color:colors.tint, 
+                    textAlign:'center',
+                    fontWeight:'500'
+                  }}
+                >
+                  "{quote.quote}"
+                </CustomText>
+                <CustomText
+                  fontSize="large"
+                  style={{
+                    marginTop:verticalScale(10),
+                    color:colors.tint,
+                    textAlign:'center',
+                    fontWeight:'600',
+                  }}
+                >
+                  {quote.cited}
                 </CustomText>
               </View>
             </View>
@@ -114,7 +129,10 @@ export default function WidgetsModal({
     }
   }
 
-  
+  const edit = () => {
+    console.log('edit')
+  }
+
   return (
     <Modal
       animationType="slide"
@@ -124,6 +142,18 @@ export default function WidgetsModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <CustomButton
+            onClick={() => edit()}
+            style={{ 
+              position:'absolute', 
+              left:moderateScale(10), 
+              top:verticalScale(10), 
+              borderWidth:0, 
+              paddingVertical:0 
+            }}
+          >
+            <FontAwesomeIcon icon="pen-to-square" size={verticalScale(22)} color={colors.tertiary} />
+          </CustomButton>
           <CustomButton
             onClick={() => setIsVisible(false)}
             style={{ 
