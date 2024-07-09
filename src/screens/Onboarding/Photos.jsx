@@ -52,7 +52,7 @@ export default function PhotosScreen() {
 
   return (
     <>
-      <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>Add least 2 photos.</CustomText>
+      <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>Add at least 2 photos.</CustomText>
       <View style={styles.rowWrapper}>
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('0')} style={{ ...styles.upload, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}>
