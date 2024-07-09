@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Keyboard,
   KeyboardAvoidingView,
-  SafeAreaView,
   TouchableWithoutFeedback,
   ImageBackground
 } from 'react-native';
@@ -13,7 +12,8 @@ import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomTextInput from '../../../components/UI/Custom/CustomInput'
+import CustomTextInput from '../../../components/UI/Custom/CustomInput';
+import WidgetsModal from "../../../components/Modals/WidgetsModal";
 
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
@@ -24,6 +24,7 @@ export default function QuotesScreen({ navigation }) {
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 
+  const [showQuote, setShowQuote] = useState(false)
   const [quote, setQuote] = useState({
     quote:"",
     cited:"",
@@ -92,6 +93,16 @@ export default function QuotesScreen({ navigation }) {
                 >
                   <CustomText style={styles.buttonText}>
                     Submit
+                  </CustomText>
+                </CustomButton>
+
+                <CustomButton onClick={() => setShowQuote(true)} style={styles.pressableStyle}>
+                  {showQuote 
+                    ? <WidgetsModal isVisible={showQuote} setIsVisible={setShowQuote} text={'quotes'} />
+                    : null
+                  }
+                  <CustomText fontSize='medium' style={styles.pressableText}>
+                    Preview Quotes
                   </CustomText>
                 </CustomButton>
 
@@ -164,5 +175,18 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
+  },
+  pressableStyle: {
+    flexDirection:'row',
+    gap:5,
+    justifyContent:'center',
+    borderWidth:0
+  },
+  pressableText: {
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
+    color:colors.tint,
+    textDecorationLine:'underline'
   },
 })

@@ -58,20 +58,25 @@ export default function WidgetsModal({
             <View
               key={index}
               style={{
-                width:'100%',
+                ...styles.item,
                 backgroundColor:colors.secondary,
-                paddingHorizontal:moderateScale(15),
-                paddingVertical:verticalScale(10),
-                borderRadius:12,
-                margin:verticalScale(2), // Adjust spacing between items 
+                marginTop:verticalScale(20)
               }}
             >
               <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
                 "{quote.quote}"
               </CustomText>
-              <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500', marginTop:verticalScale(5) }}>
-                - {quote.cited}
-              </CustomText>
+              <View 
+                style={{ 
+                  ...styles.answer,
+                  backgroundColor:colors.primary,
+                  marginTop:verticalScale(5),
+                }}
+              >
+                <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500' }}>
+                  - {quote.cited}
+                </CustomText>
+              </View>
             </View>
           ))}
         </>
@@ -82,13 +87,10 @@ export default function WidgetsModal({
           {user.prompts.map((prompt, index) => (
             <View
               key={index}
-              style={{ ...styles.item,
-                // width:'100%',
+              style={{ 
+                ...styles.item,
                 backgroundColor:colors.secondary,
-                // paddingHorizontal:moderateScale(15),
-                // paddingVertical:verticalScale(10),
-                // borderRadius:12,
-                // margin:verticalScale(6), // Adjust spacing between items 
+                marginTop:verticalScale(20)
               }}
             >
               <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
@@ -96,9 +98,9 @@ export default function WidgetsModal({
               </CustomText>
               <View 
                 style={{ 
+                  ...styles.answer,
                   backgroundColor:colors.primary,
                   marginTop:verticalScale(5),
-                  
                 }}
               >
                 <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500' }}>
@@ -174,5 +176,12 @@ const styles = StyleSheet.create({
     paddingVertical:verticalScale(10),
     borderRadius:12,
     margin:verticalScale(6), // Adjust spacing between items 
+  },
+  // prompt
+  answer: {
+    backgroundColor:colors.primary,
+    padding:verticalScale(10),
+    marginTop:verticalScale(5),
+    borderRadius:12
   }
 })
