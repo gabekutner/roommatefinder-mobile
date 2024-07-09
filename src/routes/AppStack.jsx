@@ -19,6 +19,9 @@ import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
 import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
+import LinkTreeScreen from "../screens/Onboarding/Widgets/LinkTree";
+import PromptsScreen from "../screens/Onboarding/Widgets/Prompts";
+import QuotesScreen from "../screens/Onboarding/Widgets/Quotes";
 
 // matching quiz
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
@@ -212,7 +215,7 @@ export default function AppStack() {
         })}
       />
 
-
+      {/* edit profile */}
       <Stack.Screen 
         name='edit-basics' 
         component={EditBasicsScreen} 
@@ -241,8 +244,33 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
+      {/* edit widgets */}
+      <Stack.Screen
+        name='linktree'
+        component={LinkTreeScreen}
+        options={{
+          presentation:'modal',
+          headerShown:false
+        }}
+      /> 
+      <Stack.Screen
+        name='quotes'
+        component={QuotesScreen}
+        options={{
+          presentation:'modal',
+          headerShown:false
+        }}
+      /> 
+      <Stack.Screen
+        name='prompts'
+        component={PromptsScreen}
+        options={{
+          presentation:'modal',
+          headerShown:false
+        }}
+      /> 
 
-      {/* matching quiz */}
+      {/* edit matching quiz */}
       <Stack.Screen
         name='matching'
         component={BaseOnboardingCard}

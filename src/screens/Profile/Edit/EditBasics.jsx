@@ -192,6 +192,51 @@ export default function EditBasicsScreen({ navigation }) {
 
                 <CustomButton 
                   shadow
+                  onClick={() => navigation.navigate('linktree')} 
+                  style={styles.goto}
+                >
+                  <CustomText style={styles.gotoText}>
+                    Links
+                  </CustomText>
+                  <FontAwesomeIcon 
+                    icon="arrow-right"
+                    size={verticalScale(20)}
+                    color={colors.tertiary}
+                  />
+                </CustomButton>
+
+                <CustomButton 
+                  shadow
+                  onClick={() => navigation.navigate('quotes')} 
+                  style={styles.goto}
+                >
+                  <CustomText style={styles.gotoText}>
+                    Quotes
+                  </CustomText>
+                  <FontAwesomeIcon 
+                    icon="arrow-right"
+                    size={verticalScale(20)}
+                    color={colors.tertiary}
+                  />
+                </CustomButton>
+
+                <CustomButton 
+                  shadow
+                  onClick={() => navigation.navigate('prompts')} 
+                  style={styles.goto}
+                >
+                  <CustomText style={styles.gotoText}>
+                    Prompts
+                  </CustomText>
+                  <FontAwesomeIcon 
+                    icon="arrow-right"
+                    size={verticalScale(20)}
+                    color={colors.tertiary}
+                  />
+                </CustomButton>
+
+                <CustomButton 
+                  shadow
                   onClick={() => submit()} 
                   style={styles.buttonStyle}
                 >

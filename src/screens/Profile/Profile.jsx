@@ -134,8 +134,8 @@ export default function ProfileScreen({ navigation }) {
               <CustomText fontSize="large">✍️</CustomText>
             </View>
           </CustomButton>
-          <CustomButton 
-            onClick={() => console.log('edit widgets')}
+          {/* <CustomButton 
+            onClick={() => console.log('widgets')}
             style={{ 
               ...styles.rowWrapper, 
               borderBottomWidth:0,
@@ -151,7 +151,7 @@ export default function ProfileScreen({ navigation }) {
               <View style={styles.rowSpacer} />
               <CustomText fontSize="large">🍿</CustomText>
             </View>
-          </CustomButton>
+          </CustomButton> */}
           <CustomButton 
             onClick={() => navigation.navigate('matching')}
             style={{ 
