@@ -30,6 +30,7 @@ import PromptScreen from "../screens/Onboarding/Prompt";
 
 import useStore from "../zustand/store";
 import { colors } from "../constants/colors";
+import EditPhotoScreen from "../screens/Profile/Edit/EditPhotos";
 
 
 export default function AppStack() {
@@ -273,8 +274,31 @@ export default function AppStack() {
 
       <Stack.Screen
         name='photos'
-        component={PhotosScreen}
-        options={{ headerShown:false }}
+        component={EditPhotoScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <CustomButton 
+              onClick={() => navigation.goBack()}
+              style={{ 
+                borderWidth:0, 
+                position:'absolute',
+                top:verticalScale(-28),
+                left:moderateScale(5),
+              }}
+            >
+              <FontAwesomeIcon 
+                icon='arrow-left'
+                size={verticalScale(20)}
+                color={colors.tint}
+              />
+            </CustomButton>
+          ), 
+          headerTitle: () => <Title title="Upload Photos" color={colors.tint} fontSize={verticalScale(20)} />,
+          headerStyle: {
+            backgroundColor:colors.primary,
+          },
+          headerShadowVisible: false, // border bottom invisible
+        })}
       /> 
 
       {/* edit matching quiz */}

@@ -2,11 +2,11 @@ import React, { useRef, useState} from "react";
 import { 
   View, 
   Animated,
-  ImageBackground,
 } from "react-native";
 
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 
+import Background from "./Base/Background";
 import Header from "./Base/Header";
 import Carousel from "./Base/Carousel";
 import CustomText from "../../../components/UI/Custom/CustomText";
@@ -49,11 +49,7 @@ export default function BaseOnboardingCard({ navigation, route }) {
   }
 
   return (
-    <ImageBackground 
-      source={require('../../../assets/images/image_part_002.png')}
-      style={{ flex:1, backgroundColor:colors.primary }}
-      imageStyle={{ opacity:0.5 }}
-    >
+    <Background>
       <Header 
         scrollBack={scrollBack} 
         scrollNext={scrollNext}
@@ -94,6 +90,6 @@ export default function BaseOnboardingCard({ navigation, route }) {
           No information about your account is shared with the University of Utah.
         </CustomText>
       </View>
-    </ImageBackground>      
+    </Background>      
   )
 }
