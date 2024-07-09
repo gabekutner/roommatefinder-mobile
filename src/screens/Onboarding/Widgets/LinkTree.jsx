@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Keyboard,
   KeyboardAvoidingView,
-  SafeAreaView,
+  Pressable,
   TouchableWithoutFeedback,
   ImageBackground
 } from 'react-native';
@@ -13,7 +13,8 @@ import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
-import CustomTextInput from '../../../components/UI/Custom/CustomInput'
+import CustomTextInput from '../../../components/UI/Custom/CustomInput';
+import WidgetsModal from "../../../components/Modals/WidgetsModal";
 
 import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
@@ -24,6 +25,7 @@ export default function LinkTreeScreen({ navigation }) {
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 
+  const [showLinks, setShowLinks] = useState(false)
   const [link, setLink] = useState({
     title:"",
     link:"",
@@ -94,6 +96,16 @@ export default function LinkTreeScreen({ navigation }) {
                   </CustomText>
                 </CustomButton>
 
+                <CustomButton onClick={() => setShowLinks(true)} style={styles.pressableStyle}>
+                  {showLinks 
+                    ? <WidgetsModal isVisible={showLinks} setIsVisible={setShowLinks} text={'links'} />
+                    : null
+                  }
+                  <CustomText fontSize='medium' style={styles.pressableText}>
+                    Preview Links
+                  </CustomText>
+                </CustomButton>
+
               </View>
             </View>
           </View>
@@ -133,7 +145,7 @@ const styles = StyleSheet.create({
     borderRadius:12,
     borderWidth:2,
     borderColor:colors.tint,
-    
+    marginHorizontal:moderateScale(20),
     shadowColor: '#000',
     shadowOpacity: 0.7,
     shadowOffset: { 
@@ -141,8 +153,6 @@ const styles = StyleSheet.create({
       height: 2 
     },
     shadowRadius: 0.6,
-
-    marginHorizontal:moderateScale(20)
   },
   text: {
     fontSize:verticalScale(14),
@@ -162,5 +172,19 @@ const styles = StyleSheet.create({
     fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
+  },
+  pressableStyle: {
+    flexDirection:'row',
+    gap:5,
+    marginTop:verticalScale(20),
+    justifyContent:'center',
+    borderWidth:0
+  },
+  pressableText: {
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
+    color:colors.tint,
+    textDecorationLine:'underline'
   },
 })

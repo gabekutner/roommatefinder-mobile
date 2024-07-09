@@ -5,12 +5,12 @@ import {
   StyleSheet
 } from 'react-native';
 
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
 import CustomButton from "../UI/Custom/CustomButton";
 
 import { colors } from "../../constants/colors";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 export default function BasicModal({

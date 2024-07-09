@@ -131,27 +131,9 @@ export default function ProfileScreen({ navigation }) {
                 Edit Profile
               </CustomText>
               <View style={styles.rowSpacer} />
-              <CustomText fontSize="large">✍️</CustomText>
-            </View>
-          </CustomButton>
-          {/* <CustomButton 
-            onClick={() => console.log('widgets')}
-            style={{ 
-              ...styles.rowWrapper, 
-              borderBottomWidth:0,
-              borderTopWidth:0,
-              borderRadius:0,
-              marginTop:verticalScale(-.23)
-            }}
-          >
-            <View style={styles.row}>
-              <CustomText fontSize="medium" style={styles.rowLabel}>
-                Edit Widgets
-              </CustomText>
-              <View style={styles.rowSpacer} />
               <CustomText fontSize="large">🍿</CustomText>
             </View>
-          </CustomButton> */}
+          </CustomButton>
           <CustomButton 
             onClick={() => navigation.navigate('matching')}
             style={{ 

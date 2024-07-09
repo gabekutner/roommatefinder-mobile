@@ -11,6 +11,7 @@ import {
 
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
+import WidgetsModal from "../../../components/Modals/WidgetsModal";
 import CustomButton from "../../../components/UI/Custom/CustomButton";
 import CustomText from "../../../components/UI/Custom/CustomText";
 import CustomTextInput from '../../../components/UI/Custom/CustomInput'
@@ -25,6 +26,7 @@ export default function PromptsScreen({ navigation }) {
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 
+  const [showPrompts, setShowPrompts] = useState(false)
   const [prompt, setPrompt] = useState({
     question:"",
     answer:"",
@@ -73,9 +75,9 @@ export default function PromptsScreen({ navigation }) {
                         }}
                       >
                         <CustomText 
+                          fontSize="medium"
                           style={{ 
                             ...styles.text, 
-                            fontSize:verticalScale(12), 
                             marginHorizontal:moderateScale(10),
                             fontWeight:'500',
                             color:selected === item.id ? colors.white : colors.tint
@@ -111,6 +113,16 @@ export default function PromptsScreen({ navigation }) {
                 >
                   <CustomText style={styles.buttonText}>
                     Submit
+                  </CustomText>
+                </CustomButton>
+
+                <CustomButton onClick={() => setShowPrompts(true)} style={styles.pressableStyle}>
+                  {showPrompts 
+                    ? <WidgetsModal isVisible={showPrompts} setIsVisible={setShowPrompts} text={'prompts'} />
+                    : null
+                  }
+                  <CustomText fontSize='medium' style={styles.pressableText}>
+                    Preview Prompts
                   </CustomText>
                 </CustomButton>
 
@@ -206,6 +218,20 @@ const styles = StyleSheet.create({
       height:2
     },
     shadowRadius:0.6
+  },
+  pressableStyle: {
+    flexDirection:'row',
+    gap:5,
+    // marginTop:verticalScale(20),
+    justifyContent:'center',
+    borderWidth:0
+  },
+  pressableText: {
+    fontWeight:'600',
+    textAlign:'center',
+    letterSpacing:0.15,
+    color:colors.tint,
+    textDecorationLine:'underline'
   },
 
 })

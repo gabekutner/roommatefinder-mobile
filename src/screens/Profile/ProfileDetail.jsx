@@ -101,7 +101,6 @@ export default function ProfileDetail({ route, navigation }) {
                   justifyContent: 'flex-start',
                 }}
               >
-                
                 {item.links.map(( link ) => (
                   <CustomButton 
                     shadow
