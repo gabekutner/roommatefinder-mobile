@@ -22,6 +22,7 @@ import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 import LinkTreeScreen from "../screens/Onboarding/Widgets/LinkTree";
 import PromptsScreen from "../screens/Onboarding/Widgets/Prompts";
 import QuotesScreen from "../screens/Onboarding/Widgets/Quotes";
+import PhotosScreen from "../screens/Onboarding/Photos";
 
 // matching quiz
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
@@ -268,6 +269,12 @@ export default function AppStack() {
           presentation:'modal',
           headerShown:false
         }}
+      /> 
+
+      <Stack.Screen
+        name='photos'
+        component={PhotosScreen}
+        options={{ headerShown:false }}
       /> 
 
       {/* edit matching quiz */}

@@ -238,7 +238,7 @@ export default function EditBasicsScreen({ navigation }) {
 
                 <CustomButton 
                   shadow
-                  onClick={() => {'photos'}} 
+                  onClick={() => navigation.navigate('photos')} 
                   style={styles.goto}
                 >
                   <CustomText style={styles.gotoText}>

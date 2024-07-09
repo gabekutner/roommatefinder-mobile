@@ -14,18 +14,20 @@ import CustomText from "../../components/UI/Custom/CustomText";
 
 import useStore from "../../zustand/store";
 import { colors } from "../../constants/colors";
+import utils from "../../core/utils";
 
 
 export default function PhotosScreen() {
 
+  const user = useStore(state => state.user)
   const photos = useStore(state => state.photos)
   const setPhotos = useStore(state => state.setPhotos)
 
   const [photo, setPhoto] = useState({
-    thumbnail: null,
-    photo_1: null,
-    photo_2: null,
-    photo_3: null,
+    thumbnail: user.thumbnail ? utils.thumbnail(user.thumbnail) : null,
+    photo_1: user.photos[0] ? utils.thumbnail(user.photos[0].image) : null,
+    photo_2: user.photos[1] ? utils.thumbnail(user.photos[1].image) : null,
+    photo_3: user.photos[2] ? utils.thumbnail(user.photos[2].image) : null, 
   })
 
   const launchLibrary = (key) => {
