@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import api from '../../core/api';
 
 // image state management
@@ -107,6 +108,8 @@ export const imageSlice = (set) => ({
           })
           if (response.status !== 201) {
             throw new Error('static-upload-thumbnail error')
+          } else {
+            console.log('static upload thumbnail success')
           }
         }
       } catch (error) {
@@ -114,4 +117,46 @@ export const imageSlice = (set) => ({
       }
     }
   },
+
+  updatePhoto: async (obj, id, user) => {
+    if (user.token) {
+      try {
+        // format dataform
+        const dataForm = new FormData()
+        const imageUri = obj.uri
+        const fileName = imageUri.split('/').pop()
+        const fileType = fileName.split('.')[1]
+        dataForm.append('image', {
+          name: fileName,
+          type: Platform.OS === 'ios' ? obj.type : 'image/' + fileType,
+          uri:
+            Platform.OS === 'android'
+              ? obj.uri
+              : obj.uri.replace('file://', ''),
+        })
+        // make api request
+        const response = await api({
+          method: 'put',
+          url: `/api/v1/photos/${id}/`,
+          data: dataForm,
+          headers: {
+            'Authorization': `Bearer ${user.token}`,
+            'Content-Type' : 'multipart/form-data',
+          },
+        })
+        if (response.status !== 200) {
+          throw new Error('update-photo error')
+        } else {
+          console.log('update photo success')
+        }
+      } catch (error) {
+        console.log('zustand.images.updatePhoto ', error)
+      }
+
+    } else {
+      console.log('zustand.images.updatePhoto : not authenticated')
+    }
+  }
+
+
 })

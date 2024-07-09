@@ -16,23 +16,23 @@ export default function EditPhotoScreen({ navigation }) {
 
   const user = useStore(state => state.user)
   const photos = useStore(state => state.photos)
-  const [initialState, setInitialState] = useState({
-    thumbnail: user.thumbnail ? utils.thumbnail(user.thumbnail) : null,
-    photo_1: user.photos[0] ? utils.thumbnail(user.photos[0].image) : null,
-    photo_2: user.photos[1] ? utils.thumbnail(user.photos[1].image) : null,
-    photo_3: user.photos[2] ? utils.thumbnail(user.photos[2].image) : null, 
-  })
+
+  const staticUploadThumbnail = useStore(state => state.staticUploadThumbnail)
+  const updatePhoto = useStore(state => state.updatePhoto)
   
   const submit = () => {
+
+    console.log(user.photos)
     for (const [index, [key, value]] of Object.entries(Object.entries(photos))) {
       if (value !== null) {
         if (user.photos[index]) {
           if (index === '0') {
             // update thumbnail
-            console.log(user.id, ' update thumbnail')
+            staticUploadThumbnail(photos, user)
           } else {
             // update photo
-            console.log(user.photos[index].id, ' update photo')
+            console.log('update photo' , user.photos[index].id)
+            // updatePhoto(user.photos[index], , user)
           }
         } else {
           console.log(user.id, ' create photo')
