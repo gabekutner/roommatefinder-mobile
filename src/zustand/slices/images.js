@@ -3,7 +3,6 @@ import api from '../../core/api';
 
 // image state management
 export const imageSlice = (set) => ({
-  
   photos: {
     thumbnail:null,
     photo_1:null,
@@ -15,6 +14,7 @@ export const imageSlice = (set) => ({
       photos: form
     }))
   },
+
   uploadPhotos: async (form, user) => {
     if (user.token) {
       try {
@@ -152,7 +152,6 @@ export const imageSlice = (set) => ({
       } catch (error) {
         console.log('zustand.images.updatePhoto ', error)
       }
-
     } else {
       console.log('zustand.images.updatePhoto : not authenticated')
     }
@@ -178,6 +177,45 @@ export const imageSlice = (set) => ({
       }
     }
   },
+
+  uploadOnePhoto: async (obj, user) => {
+    if (user.token) {
+      try {
+        // format dataform
+        const dataForm = new FormData()
+        const imageUri = obj.uri
+        const fileName = imageUri.split('/').pop()
+        const fileType = fileName.split('.')[1]
+        dataForm.append('image', {
+          name: fileName,
+          type: Platform.OS === 'ios' ? obj.type : 'image/' + fileType,
+          uri:
+            Platform.OS === 'android'
+              ? obj.uri
+              : obj.uri.replace('file://', ''),
+        })
+        // make api request
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/photos/',
+          data: dataForm,
+          headers: {
+            'Authorization': `Bearer ${user.token}`,
+            'Content-Type' : 'multipart/form-data',
+          },
+        })
+        if (response.status !== 201) {
+          throw new Error('upload-one-photo error')
+        } else {
+          console.log('upload one photo success')
+        }
+      } catch (error) {
+        console.log('zustand.images.uploadOnePhoto ', error)
+      }
+    } else {
+      console.log('zustand.images.uploadOnePhoto : not authenticated')
+    }
+  }
 
 
 })

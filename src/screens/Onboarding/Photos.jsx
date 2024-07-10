@@ -22,7 +22,7 @@ export default function PhotosScreen({ del }) {
   const user = useStore(state => state.user)
   const photos = useStore(state => state.photos)
   const setPhotos = useStore(state => state.setPhotos)
-  const deletePhoto = useStore(state => state.deletePhoto)
+  // const deletePhoto = useStore(state => state.deletePhoto)
 
   const [photo, setPhoto] = useState({
     thumbnail: user.thumbnail ? utils.thumbnail(user.thumbnail) : null,
@@ -52,16 +52,26 @@ export default function PhotosScreen({ del }) {
   }
 
   const _deletePhoto = (id) => {
+    // to delete a photo on submit
+    // set photos.[photo] to null
+    // in EditPhotoScreen, check if user.[photo] exists
+    // if exists, delete photo on submit
     if (id === 'photo_1') {
       if (photo.photo_1 != null) {
+        setPhotos({ ...photos, photo_1:null })
+        // displayed photos
         setPhoto({ ...photo, photo_1:null })
       }  
     } else if (id === 'photo_2') {
       if (photo.photo_2 != null) {
+        setPhotos({ ...photos, photo_2:null })
+        // displayed photos
         setPhoto({ ...photo, photo_2:null })
       } 
     } else if (id === 'photo_3') {
       if (photo.photo_3 != null) {
+        setPhotos({ ...photos, photo_3:null })
+        // displayed photos
         setPhoto({ ...photo, photo_3:null })
       } 
     }
