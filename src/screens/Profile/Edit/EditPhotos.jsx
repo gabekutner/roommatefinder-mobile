@@ -21,8 +21,13 @@ export default function EditPhotoScreen({ navigation }) {
   const updatePhoto = useStore(state => state.updatePhoto)
   
   const submit = () => {
-    console.log('submit')
-    console.log(photos)
+    // console.log('submit')
+    // console.log(photos)
+    for (const [key, value] of Object.entries(photos)) {
+      if (value != null) {
+        console.log(key)
+      }
+    }
   }
 
   return (

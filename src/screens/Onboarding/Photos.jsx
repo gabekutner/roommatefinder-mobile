@@ -54,24 +54,15 @@ export default function PhotosScreen({ del }) {
   const _deletePhoto = (id) => {
     if (id === 'photo_1') {
       if (photo.photo_1 != null) {
-        const photoId = utils.thumbnailOpposite(photo.photo_1.uri)
         setPhoto({ ...photo, photo_1:null })
-        const obj = user.photos.find(obj => obj.image === photoId)
-        deletePhoto(obj.id, user)
       }  
     } else if (id === 'photo_2') {
       if (photo.photo_2 != null) {
-        const photoId = utils.thumbnailOpposite(photo.photo_2.uri)
         setPhoto({ ...photo, photo_2:null })
-        const obj = user.photos.find(obj => obj.image === photoId)
-        deletePhoto(obj.id, user)
       } 
     } else if (id === 'photo_3') {
       if (photo.photo_3 != null) {
-        const photoId = utils.thumbnailOpposite(photo.photo_3.uri)
         setPhoto({ ...photo, photo_3:null })
-        const obj = user.photos.find(obj => obj.image === photoId)
-        deletePhoto(obj.id, user)
       } 
     }
   }
