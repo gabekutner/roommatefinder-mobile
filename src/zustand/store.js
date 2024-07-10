@@ -8,6 +8,7 @@ import { authSlice } from './slices/auth';
 import { quizSlice } from './slices/quiz';
 import { swipeSlice } from './slices/swipe';
 import { imageSlice } from './slices/images';
+import { widgetsSlice } from './slices/widgets';
 
 
 //-------------------------------------
@@ -172,6 +173,7 @@ const useStore = create((set, get) => ({
   ...quizSlice(set),
   ...swipeSlice(set),
   ...imageSlice(set),
+  ...widgetsSlice(set),
 
   //---------------------
   //      Websocket

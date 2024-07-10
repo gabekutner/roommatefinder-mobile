@@ -13,7 +13,6 @@ import CustomButton from "../UI/Custom/CustomButton";
 import CustomText from "../UI/Custom/CustomText";
 
 import useStore from "../../zustand/store";
-import utils from "../../core/utils";
 import { prompts } from "../../assets/Dictionary";
 import { colors } from "../../constants/colors";
 
@@ -25,31 +24,38 @@ export default function WidgetsModal({
 }) {
 
   const user = useStore(state => state.user)
+  const deleteLink = useStore(state => state.deleteLink)
 
   const whatToRender = () => {
     if (text === 'links') {
       return (
-        <>
+        <View style={{ marginTop:verticalScale(10) }}>
           {user.links.map((link, index) => {
             return (
-              <CustomButton 
-                shadow
-                key={index}
-                style={styles.item}
-                onClick={() => {
-                  const url = utils.testUrl(link.link)
-                  Linking.openURL(url).catch((err) =>
-                    console.error('openlink err: ', err)
-                  )
-                }} 
-              >
-                <CustomText fontSize="medium" style={{ color:colors.white, fontWeight:'600' }}>
-                  {link.title}
-                </CustomText>
-              </CustomButton>
+              <View key={index}>
+                <View style={styles.item}>
+                  <CustomText fontSize="medium" style={{ color:colors.white, fontWeight:'600' }}>
+                    {link.title}
+                  </CustomText>
+                  <CustomButton 
+                    onClick={() => _deleteItem(link)}
+                    style={{
+                      position:'absolute', 
+                      top:verticalScale(-2),
+                      left:moderateScale(-50), 
+                      borderWidth:0,
+                      paddingHorizontal:moderateScale(10),
+                      paddingVertical:verticalScale(10),
+                      backgroundColor:colors.secondary,
+                    }}
+                  >
+                    <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
+                  </CustomButton>
+                </View>
+              </View>
             ) 
           })}
-        </>
+        </View>
       )
     } else if (text === 'quotes') {
       return (
@@ -129,8 +135,9 @@ export default function WidgetsModal({
     }
   }
 
-  const edit = () => {
-    console.log('edit')
+  const _deleteItem = (link) => {
+    // delete 
+    deleteLink(link.id, user)
   }
 
   return (
@@ -142,32 +149,32 @@ export default function WidgetsModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <CustomButton
-            onClick={() => edit()}
-            style={{ 
-              position:'absolute', 
-              left:moderateScale(10), 
-              top:verticalScale(10), 
-              borderWidth:0, 
-              paddingVertical:0 
-            }}
-          >
-            <FontAwesomeIcon icon="pen-to-square" size={verticalScale(22)} color={colors.tertiary} />
-          </CustomButton>
-          <CustomButton
-            onClick={() => setIsVisible(false)}
+          <View 
             style={{ 
               position:'absolute', 
               right:moderateScale(10), 
               top:verticalScale(10), 
-              borderWidth:0, 
-              paddingVertical:0 
+              borderBottomWidth:1, 
+              width:'90%',
             }}
           >
-            <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
-          </CustomButton>
+            <CustomButton
+              onClick={() => setIsVisible(false)}
+              style={{ 
+                paddingVertical:verticalScale(10),
+                borderWidth:0,
+                marginBottom:verticalScale(5),
+                backgroundColor:colors.accent,
+              }}
+            >
+              {/* <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} /> */}
+              <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.white }}>Close</CustomText>
+            </CustomButton>
+          </View>
 
-          {whatToRender()}
+          <View style={{ marginTop:verticalScale(35) }}>
+            {whatToRender()}
+          </View>
           
         </View>
       </View>
