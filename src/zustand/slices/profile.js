@@ -83,7 +83,7 @@ export const profileSlice = (set) => ({
         if (form.interests.length !== 0) {
           cleanedForm['interests'] = form.interests
         }
-        if (form.links.length != 0) {
+        if (form.links.length !== 0) {
           cleanedForm['links'] = form.links
         }
         // make api request
@@ -103,7 +103,7 @@ export const profileSlice = (set) => ({
           }))
         }
       } catch (error) {
-        console.log('zustand.profile.editProfile ', error)
+        console.log('zustand.profile.editProfile ', error.response)
       }
     } else {
       console.log('zustand.profile.editProfile : not authenticated')
