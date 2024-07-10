@@ -21,7 +21,9 @@ import { colors } from "../../../constants/colors";
 import { prompts } from "../../../assets/Dictionary";
 
 
-export default function PromptsScreen({ navigation }) {
+export default function PromptsScreen({ navigation, route }) {
+
+  const { preview } = route.params
 
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
@@ -117,17 +119,20 @@ export default function PromptsScreen({ navigation }) {
                     Submit
                   </CustomText>
                 </CustomButton>
-
-                <CustomButton onClick={() => setShowPrompts(true)} style={styles.pressableStyle}>
-                  {showPrompts 
-                    ? <WidgetsModal isVisible={showPrompts} setIsVisible={setShowPrompts} text={'prompts'} />
-                    : null
-                  }
-                  <CustomText fontSize='medium' style={styles.pressableText}>
-                    Preview Prompts
-                  </CustomText>
-                </CustomButton>
-
+                
+                {preview
+                  ? <CustomButton onClick={() => setShowPrompts(true)} style={styles.pressableStyle}>
+                      {showPrompts 
+                        ? <WidgetsModal isVisible={showPrompts} setIsVisible={setShowPrompts} text={'prompts'} />
+                        : null
+                      }
+                      <CustomText fontSize='medium' style={styles.pressableText}>
+                        Preview Prompts
+                      </CustomText>
+                    </CustomButton>
+                  : null
+                }
+  
               </View>
             </View>
           </View>

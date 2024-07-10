@@ -50,7 +50,10 @@ export default function AccountSetupStack() {
         component={LinkTreeScreen}
         options={{
           presentation:'modal',
-          headerShown:false
+          headerShown:false,
+        }}
+        initialParams={{
+          preview: false
         }}
       /> 
       <Stack.Screen
@@ -60,6 +63,9 @@ export default function AccountSetupStack() {
           presentation:'modal',
           headerShown:false
         }}
+        initialParams={{
+          preview: false
+        }}
       /> 
       <Stack.Screen
         name='prompts'
@@ -67,6 +73,9 @@ export default function AccountSetupStack() {
         options={{
           presentation:'modal',
           headerShown:false
+        }}
+        initialParams={{
+          preview: false
         }}
       /> 
       

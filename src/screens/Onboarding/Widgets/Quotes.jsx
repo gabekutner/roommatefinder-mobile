@@ -19,7 +19,9 @@ import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
-export default function QuotesScreen({ navigation }) {
+export default function QuotesScreen({ navigation, route }) {
+
+  const { preview } = route.params
 
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
@@ -97,16 +99,18 @@ export default function QuotesScreen({ navigation }) {
                   </CustomText>
                 </CustomButton>
 
-                <CustomButton onClick={() => setShowQuote(true)} style={styles.pressableStyle}>
-                  {showQuote 
-                    ? <WidgetsModal isVisible={showQuote} setIsVisible={setShowQuote} text={'quotes'} />
-                    : null
-                  }
-                  <CustomText fontSize='medium' style={styles.pressableText}>
-                    Preview Quotes
-                  </CustomText>
-                </CustomButton>
-
+                {preview
+                  ? <CustomButton onClick={() => setShowQuote(true)} style={styles.pressableStyle}>
+                      {showQuote 
+                        ? <WidgetsModal isVisible={showQuote} setIsVisible={setShowQuote} text={'quotes'} />
+                        : null
+                      }
+                      <CustomText fontSize='medium' style={styles.pressableText}>
+                        Preview Quotes
+                      </CustomText>
+                    </CustomButton>
+                  : null
+                }
               </View>
             </View>
           </View>

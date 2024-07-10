@@ -254,6 +254,9 @@ export default function AppStack() {
           presentation:'modal',
           headerShown:false
         }}
+        initialParams={{
+          preview: true
+        }}
       /> 
       <Stack.Screen
         name='quotes'
@@ -262,6 +265,9 @@ export default function AppStack() {
           presentation:'modal',
           headerShown:false
         }}
+        initialParams={{
+          preview: true
+        }}
       /> 
       <Stack.Screen
         name='prompts'
@@ -269,6 +275,9 @@ export default function AppStack() {
         options={{
           presentation:'modal',
           headerShown:false
+        }}
+        initialParams={{
+          preview: true
         }}
       /> 
 

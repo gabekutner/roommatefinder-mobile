@@ -20,7 +20,9 @@ import useStore from "../../../zustand/store";
 import { colors } from "../../../constants/colors";
 
 
-export default function LinkTreeScreen({ navigation }) {
+export default function LinkTreeScreen({ navigation, route }) {
+
+  const { preview } = route.params
 
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
@@ -97,15 +99,18 @@ export default function LinkTreeScreen({ navigation }) {
                   </CustomText>
                 </CustomButton>
 
-                <CustomButton onClick={() => setShowLinks(true)} style={styles.pressableStyle}>
-                  {showLinks 
-                    ? <WidgetsModal isVisible={showLinks} setIsVisible={setShowLinks} text={'links'} />
-                    : null
-                  }
-                  <CustomText fontSize='medium' style={styles.pressableText}>
-                    Preview Links
-                  </CustomText>
-                </CustomButton>
+                {preview
+                  ? <CustomButton onClick={() => setShowLinks(true)} style={styles.pressableStyle}>
+                      {showLinks 
+                        ? <WidgetsModal isVisible={showLinks} setIsVisible={setShowLinks} text={'links'} />
+                        : null
+                      }
+                      <CustomText fontSize='medium' style={styles.pressableText}>
+                        Preview Links
+                      </CustomText>
+                    </CustomButton>
+                  : null
+                }
 
               </View>
             </View>
