@@ -172,8 +172,10 @@ export const imageSlice = (set) => ({
         } else {
           console.log('delete photo success')
         }
+        return response.status
       } catch (error) {
         console.log('zustand.images.deletePhoto ', error)
+        return error.response.status
       }
     }
   },
