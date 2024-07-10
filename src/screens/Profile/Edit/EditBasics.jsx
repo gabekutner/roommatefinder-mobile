@@ -45,9 +45,8 @@ export default function EditBasicsScreen({ navigation }) {
   })
 
   const submit = () => {
-    // editProfile(_form, form, user)
-    // navigation.goBack()
-    console.log(form)
+    editProfile(_form, form, user)
+    navigation.goBack()
   }
 
   return (

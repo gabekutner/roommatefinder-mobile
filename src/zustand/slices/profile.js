@@ -83,6 +83,9 @@ export const profileSlice = (set) => ({
         if (form.interests.length !== 0) {
           cleanedForm['interests'] = form.interests
         }
+        if (form.links.length != 0) {
+          cleanedForm['links'] = form.links
+        }
         // make api request
         const response = await api({
           method: 'put',
