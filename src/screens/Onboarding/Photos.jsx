@@ -22,7 +22,6 @@ export default function PhotosScreen({ del }) {
   const user = useStore(state => state.user)
   const photos = useStore(state => state.photos)
   const setPhotos = useStore(state => state.setPhotos)
-  // const deletePhoto = useStore(state => state.deletePhoto)
 
   const [photo, setPhoto] = useState({
     thumbnail: user.thumbnail ? utils.thumbnail(user.thumbnail) : null,
@@ -79,7 +78,7 @@ export default function PhotosScreen({ del }) {
 
   return (
     <>
-      <CustomText style={{ fontSize:verticalScale(14), fontWeight:'500' }}>Add at least 2 photos.</CustomText>
+      <CustomText fontSize="medium" style={{ marginTop:verticalScale(-18), fontWeight:'500' }}>Add at least 2 photos.</CustomText>
       <View style={styles.rowWrapper}>
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('0')} style={{ ...styles.upload, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}>

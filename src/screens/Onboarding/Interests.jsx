@@ -38,6 +38,7 @@ export default function InterestsScreen() {
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <CustomButton
+          shadow
           onClick={() => handleOnClick(item.id, form, setForm)}
           style={{
             ...styles.option, 
@@ -45,6 +46,7 @@ export default function InterestsScreen() {
           }}
         >
           <CustomText 
+            fontSize="medium"
             style={{
               ...styles.text, 
               color:Object.values(form.interests).includes(item.id) ? colors.white : colors.tint
@@ -67,17 +69,16 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:verticalScale(10),
     borderColor: colors.tint,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.7,
-    shadowOffset: { 
-      width: 1.5, 
-      height: 2 
-    },
-    shadowRadius: 0.6,
+    // shadowColor: '#000',
+    // shadowOpacity: 0.7,
+    // shadowOffset: { 
+    //   width: 1.5, 
+    //   height: 2 
+    // },
+    // shadowRadius: 0.6,
   },
   text: { 
-    fontSize:verticalScale(14),
+    // fontSize:verticalScale(14),
     fontWeight:'bold',
   },
   flatlist: {

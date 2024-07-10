@@ -24,18 +24,38 @@ export default function SexScreen() {
   return (
     <>
       <CustomButton 
+        shadow
         onClick={() => toggleSelected("M")}
-        style={{ ...styles.option, backgroundColor: selected === "M" ? colors.accent : colors.secondary }}
+        style={{ 
+          ...styles.option, 
+          backgroundColor: selected === "M" ? colors.accent : colors.secondary 
+        }}
       >
-        <CustomText style={{ ...styles.text, color: selected === "M" ? colors.white : colors.tint }}>
+        <CustomText 
+          fontSize="medium" 
+          style={{
+            ...styles.text, 
+            color: selected === "M" ? colors.white : colors.tint 
+          }}
+        >
           Guy
         </CustomText>
       </CustomButton>
       <CustomButton 
+        shadow
         onClick={() => toggleSelected("F")}
-        style={{ ...styles.option, backgroundColor: selected === "F" ? colors.accent : colors.secondary }}
+        style={{ 
+          ...styles.option, 
+          backgroundColor: selected === "F" ? colors.accent : colors.secondary 
+        }}
       >
-        <CustomText style={{ ...styles.text, color: selected === "F" ? colors.white : colors.tint }}>
+        <CustomText 
+          fontSize="medium" 
+          style={{ 
+            ...styles.text, 
+            color: selected === "F" ? colors.white : colors.tint 
+          }}
+        >
           Girl
         </CustomText>
       </CustomButton>
@@ -48,20 +68,8 @@ const styles = StyleSheet.create({
     paddingVertical:verticalScale(10),
     paddingHorizontal:moderateScale(50),
     borderWidth:2,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.7,
-    shadowOffset: { 
-      width: 1.5, 
-      height: 2 
-    },
-    shadowRadius: 0.6,
-
     borderColor: colors.tint,
     marginVertical:verticalScale(5)
   },
-  text: { 
-    fontSize:verticalScale(14),
-    fontWeight:'600',
-  },
+  text: { fontWeight:'600' },
 })

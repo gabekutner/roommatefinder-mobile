@@ -40,13 +40,13 @@ export default function HomeTownScreen() {
         colors={colors}
         containerStyle={{
           ...styles.inputContainer,
-          width:'21%',
-          paddingLeft:moderateScale(8)
+          width:'18%',
+          paddingLeft:moderateScale(8),
+          paddingRight:0
         }}
         inputStyle={styles.text}
       />  
     </View>
-    
   )
 }
 
@@ -62,17 +62,6 @@ const styles = StyleSheet.create({
     borderRadius:12,
     borderWidth:2,
     borderColor:colors.tint,
-    
-    shadowColor: '#000',
-    shadowOpacity: 0.7,
-    shadowOffset: { 
-      width: 1.5, 
-      height: 2 
-    },
-    shadowRadius: 0.6,
   },
-  text: {
-    fontSize:verticalScale(14),
-    color:colors.tint
-  }
+  text: { color:colors.tint }
 })

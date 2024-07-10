@@ -28,6 +28,7 @@ export default function DormScreen() {
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <CustomButton
+          shadow
           onClick={() => toggleSelected(item.id)}
           style={{
             ...styles.option, 
@@ -35,6 +36,7 @@ export default function DormScreen() {
           }}
         >
           <CustomText 
+            fontSize="medium"
             style={{
               ...styles.text, 
               color: selected === item.id ? colors.white : colors.tint,
@@ -61,17 +63,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginBottom:verticalScale(10),
     borderColor: colors.tint,
-    
-    shadowColor: '#000',
-    shadowOpacity: 0.7,
-    shadowOffset: { 
-      width: 1.5, 
-      height: 2 
-    },
-    shadowRadius: 0.6,
   },
-  text: { 
-    fontSize:verticalScale(14),
-    fontWeight:'bold',
-  },
+  text: { fontWeight:'bold' },
 })

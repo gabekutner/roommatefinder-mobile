@@ -57,7 +57,7 @@ export default function PromptsScreen({ navigation }) {
             <View style={styles.wrapper}>
               <View style={{ marginBottom:verticalScale(20), alignItems:'center' }}>
 
-                <CustomText style={styles.title}>
+                <CustomText fontSize="xx-large" style={styles.title}>
                   Answer a question!
                 </CustomText>
 
@@ -68,6 +68,7 @@ export default function PromptsScreen({ navigation }) {
                   renderItem={({ item }) => {
                     return (
                       <CustomButton 
+                        shadow
                         onClick={() => setSelected(item.id)} 
                         style={{ 
                           ...styles.flatlistItem,
@@ -105,13 +106,14 @@ export default function PromptsScreen({ navigation }) {
                 />
 
                 <CustomButton 
+                  shadow
                   onClick={() => {
                     handleForm()
                     navigation.goBack()
                   }} 
                   style={styles.buttonStyle}
                 >
-                  <CustomText style={styles.buttonText}>
+                  <CustomText fontSize="large" style={styles.buttonText}>
                     Submit
                   </CustomText>
                 </CustomButton>
@@ -154,7 +156,6 @@ const styles = StyleSheet.create({
     shadowRadius: .6,  
   },
   title: {
-    fontSize:verticalScale(20),
     fontWeight:'600',
     marginVertical:verticalScale(15),
   },
@@ -166,21 +167,9 @@ const styles = StyleSheet.create({
     borderRadius:12,
     borderWidth:2,
     borderColor:colors.tint,
-    
-    shadowColor: '#000',
-    shadowOpacity: 0.7,
-    shadowOffset: { 
-      width: 1.5, 
-      height: 2 
-    },
-    shadowRadius: 0.6,
-
     marginHorizontal:moderateScale(20)
   },
-  text: {
-    fontSize:verticalScale(14),
-    color:colors.tint
-  },
+  text: { color:colors.tint },
   buttonStyle: {
     borderWidth:2,
     borderColor:colors.tint,
@@ -192,7 +181,6 @@ const styles = StyleSheet.create({
     width:'90%'
   },
   buttonText: {
-    fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
   },
@@ -210,19 +198,10 @@ const styles = StyleSheet.create({
     marginBottom:verticalScale(10),
     borderWidth:2,
     backgroundColor:colors.primary,
-        
-    shadowColor:'#000',
-    shadowOpacity:0.7,
-    shadowOffset: {
-      width:1.5,
-      height:2
-    },
-    shadowRadius:0.6
   },
   pressableStyle: {
     flexDirection:'row',
     gap:5,
-    // marginTop:verticalScale(20),
     justifyContent:'center',
     borderWidth:0
   },

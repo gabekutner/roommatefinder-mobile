@@ -44,10 +44,7 @@ export default function MajorScreen({ navigation }) {
         },
         shadowRadius: 0.6,
       }}
-      inputStyle={{
-        fontSize:verticalScale(14),
-        color:colors.tint,
-      }}
+      inputStyle={{ color:colors.tint }}
     />
   )
 }

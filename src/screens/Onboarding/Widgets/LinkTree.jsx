@@ -54,7 +54,7 @@ export default function LinkTreeScreen({ navigation }) {
             <View style={styles.wrapper}>
               <View style={{ marginBottom:verticalScale(20), alignItems:'center' }}>
 
-                <CustomText style={styles.title}>
+                <CustomText fontSize="xx-large" style={styles.title}>
                   Add your social media!
                 </CustomText>
 
@@ -85,13 +85,14 @@ export default function LinkTreeScreen({ navigation }) {
                 />
 
                 <CustomButton 
+                  shadow
                   onClick={() => {
                     handleForm()
                     navigation.goBack()
                   }} 
                   style={styles.buttonStyle}
                 >
-                  <CustomText style={styles.buttonText}>
+                  <CustomText fontSize="large" style={styles.buttonText}>
                     Submit
                   </CustomText>
                 </CustomButton>
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     shadowRadius: .6,  
   },
   title: {
-    fontSize:verticalScale(20),
+    // fontSize:verticalScale(20),
     fontWeight:'600',
     marginVertical:verticalScale(15),
   },
@@ -154,22 +155,14 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 0.6,
   },
-  text: {
-    fontSize:verticalScale(14),
-    color:colors.tint
-  },
+  text: { color:colors.tint },
   buttonStyle: {
     borderWidth:2,
     borderColor:colors.tint,
     backgroundColor:colors.accent,
-    shadowColor: '#222',
-    shadowOffset: { width: 7, height: 5 },
-    shadowOpacity: 1,
-    shadowRadius: 1,  
     width:'90%'
   },
   buttonText: {
-    fontSize:verticalScale(16), 
     fontWeight:'600', 
     color:colors.white,
   },

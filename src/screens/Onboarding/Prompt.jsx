@@ -99,7 +99,6 @@ export default function PromptScreen({ route, navigation }) {
               : null
             }
           </CustomButton>
-
         </View>
       </View> 
     </ImageBackground>

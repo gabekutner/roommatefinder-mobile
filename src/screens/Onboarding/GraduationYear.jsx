@@ -4,8 +4,8 @@ import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
 
-import { colors } from "../../constants/colors";
 import useStore from "../../zustand/store";
+import { colors } from "../../constants/colors";
 
 
 export default function GraduationYearScreen() {
@@ -44,10 +44,7 @@ export default function GraduationYearScreen() {
         },
         shadowRadius: 0.6,
       }}
-      inputStyle={{
-        fontSize:verticalScale(14),
-        color:colors.tint,
-      }}
+      inputStyle={{ color:colors.tint }}
     />
   )
 }
