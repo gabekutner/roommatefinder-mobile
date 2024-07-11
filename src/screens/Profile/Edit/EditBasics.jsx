@@ -48,7 +48,7 @@ export default function EditBasicsScreen({ navigation }) {
   const submit = () => {
     editProfile(_form, form, user)
     if (form.links.length != 0) {
-      uploadLinks(form.links, user)
+      uploadLinks(form.links[0], user)
     }
     navigation.goBack()
   }

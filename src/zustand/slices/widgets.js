@@ -51,7 +51,7 @@ export const widgetsSlice = (set) => ({
           console.log('upload link success')
         }
       } catch (error) {
-        console.log('zustand.widgets.uploadWidgets ', error)
+        console.log('zustand.widgets.uploadWidgets ', error.response)
       }
     } else {
       console.log('zustand.widgets.uploadWidgets : not authenticated')
