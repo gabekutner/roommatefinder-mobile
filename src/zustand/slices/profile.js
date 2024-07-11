@@ -83,9 +83,6 @@ export const profileSlice = (set) => ({
         if (form.interests.length !== 0) {
           cleanedForm['interests'] = form.interests
         }
-        if (form.links.length !== 0) {
-          cleanedForm['links'] = form.links
-        }
         // make api request
         const response = await api({
           method: 'put',
@@ -139,9 +136,7 @@ export const profileSlice = (set) => ({
       console.log('zustand.profile.deleteProfile : not authenticated')
     }
   },
-  //---------------------
-  //    Pause Profile
-  //---------------------
+  
   pauseProfile: async (user) => {  
     if (user.token) {
       try {
