@@ -29,33 +29,31 @@ export default function WidgetsModal({
   const whatToRender = () => {
     if (text === 'links') {
       return (
-        <View style={{ marginTop:verticalScale(10) }}>
-          {user.links.map((link, index) => {
-            return (
-              <View key={index}>
-                <View style={styles.item}>
-                  <CustomText fontSize="medium" style={{ color:colors.white, fontWeight:'600' }}>
-                    {link.title}
-                  </CustomText>
-                  <CustomButton 
-                    onClick={() => _deleteItem(link)}
-                    style={{
-                      position:'absolute', 
-                      top:verticalScale(-2),
-                      left:moderateScale(-50), 
-                      borderWidth:0,
-                      paddingHorizontal:moderateScale(10),
-                      paddingVertical:verticalScale(10),
-                      backgroundColor:colors.secondary,
-                    }}
-                  >
-                    <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
-                  </CustomButton>
-                </View>
+        <>
+          {user.links.map((link, index) => (
+            <View 
+              key={index}
+              style={{ 
+                backgroundColor:colors.secondary, 
+                flexDirection:'row', 
+                gap:moderateScale(10), 
+                alignItems:'center',
+                padding:verticalScale(10),
+                borderRadius:12,
+                margin:verticalScale(5)
+              }}
+            >
+              <CustomButton onClick={() => {}} style={{ borderWidth:0, paddingVertical:0 }}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
+              </CustomButton>
+              <View style={styles.item}>
+                <CustomText fontSize="medium" style={{ color:colors.white, fontWeight:'600' }}>
+                  {link.title}
+                </CustomText>
               </View>
-            ) 
-          })}
-        </View>
+            </View>
+          ))}
+        </>
       )
     } else if (text === 'quotes') {
       return (
@@ -135,9 +133,15 @@ export default function WidgetsModal({
     }
   }
 
-  const _deleteItem = (link) => {
+  const _deleteLink = (link) => {
     // delete 
     deleteLink(link.id, user)
+  }
+  const _deleteQuote = (quote) => {
+    // _deleteQuote(quote.id, user)
+  }
+  const _deletePrompt = (prompt) => {
+    // _deletePrompt(prompt.id, user)
   }
 
   return (
@@ -149,26 +153,9 @@ export default function WidgetsModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <View 
-            style={{ 
-              position:'absolute', 
-              right:moderateScale(10), 
-              top:verticalScale(10), 
-              borderBottomWidth:1, 
-              width:'90%',
-            }}
-          >
-            <CustomButton
-              onClick={() => setIsVisible(false)}
-              style={{ 
-                paddingVertical:verticalScale(10),
-                borderWidth:0,
-                marginBottom:verticalScale(5),
-                backgroundColor:colors.accent,
-              }}
-            >
-              {/* <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} /> */}
-              <CustomText fontSize="large" style={{ fontWeight:'600', color:colors.white }}>Close</CustomText>
+          <View style={{ width:'90%', borderBottomWidth:2, borderColor:colors.tertiary, paddingBottom:verticalScale(5) }}>
+            <CustomButton onClick={() => setIsVisible(false)} style={{ alignItems:'flex-end', borderWidth:0, paddingVertical:0, justifyContent:'flex-end' }}>
+              <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
             </CustomButton>
           </View>
 
@@ -194,7 +181,7 @@ const styles = StyleSheet.create({
     paddingBottom:verticalScale(20),
     margin:verticalScale(20),
     backgroundColor:colors.primary,
-    borderRadius: 20,
+    borderRadius: 12,
     alignItems: 'center',
     borderWidth:2,
     shadowColor: '#000',
