@@ -24,6 +24,8 @@ export default function WidgetsModal({
 
   const user = useStore(state => state.user)
   const deleteLink = useStore(state => state.deleteLink)
+  const deletePrompt = useStore(state => state.deletePrompt)
+  const deleteQuote = useStore(state => state.deleteQuote)
 
   const whatToRender = () => {
     if (text === 'links') {
@@ -150,31 +152,6 @@ export default function WidgetsModal({
               </View>
             </View>
           ))}
-          {/* {user.prompts.map((prompt, index) => (
-            <View
-              key={index}
-              style={{ 
-                ...styles.item,
-                backgroundColor:colors.secondary,
-                marginTop:verticalScale(20)
-              }}
-            >
-              <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
-                {prompts[prompt.question-1].prompt}
-              </CustomText>
-              <View 
-                style={{ 
-                  ...styles.answer,
-                  backgroundColor:colors.primary,
-                  marginTop:verticalScale(5),
-                }}
-              >
-                <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500' }}>
-                  {prompt.answer}
-                </CustomText>
-              </View>
-            </View>
-          ))} */}
         </View>
       )
     }
@@ -184,10 +161,10 @@ export default function WidgetsModal({
     deleteLink(link.id, user)
   }
   const _deleteQuote = (quote) => {
-    // _deleteQuote(quote.id, user)
+    deleteQuote(quote.id, user)
   }
   const _deletePrompt = (prompt) => {
-    // _deletePrompt(prompt.id, user)
+    deletePrompt(prompt.id, user)
   }
 
   return (
