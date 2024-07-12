@@ -3,7 +3,6 @@ import {
   Modal,
   View,
   StyleSheet,
-  Linking
 } from 'react-native';
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -43,7 +42,7 @@ export default function WidgetsModal({
                 margin:verticalScale(5)
               }}
             >
-              <CustomButton onClick={() => {}} style={{ borderWidth:0, paddingVertical:0 }}>
+              <CustomButton onClick={() => _deleteLink(link)} style={{ borderWidth:0, paddingVertical:0 }}>
                 <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
               </CustomButton>
               <View style={styles.item}>
@@ -57,19 +56,27 @@ export default function WidgetsModal({
       )
     } else if (text === 'quotes') {
       return (
-        <>
+        <View>
           {user.quotes.map((quote, index) => (
             <View
               key={index}
-              style={{
-                width:'100%',
-                marginTop:verticalScale(20),
+              style={{ 
+                backgroundColor:colors.secondary, 
+                flexDirection:'row', 
+                gap:moderateScale(10), 
+                alignItems:'center',
+                padding:verticalScale(10),
+                borderRadius:12,
+                margin:verticalScale(5)
               }}
             >
+              <CustomButton onClick={() => _deleteQuote(quote)} style={{ borderWidth:0, paddingVertical:0 }}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
+              </CustomButton>
               <View
                 style={{
                   marginHorizontal:moderateScale(10),
-                  backgroundColor:colors.secondary,
+                  backgroundColor:colors.primary,
                   padding:verticalScale(15),
                   borderRadius:12,
                 }}
@@ -98,12 +105,52 @@ export default function WidgetsModal({
               </View>
             </View>
           ))}
-        </>
+        </View>
       )
     } else if (text === 'prompts') {
       return (
-        <>
+        <View>
           {user.prompts.map((prompt, index) => (
+            <View
+              key={index}
+              style={{ 
+                backgroundColor:colors.secondary, 
+                flexDirection:'row', 
+                gap:moderateScale(10), 
+                alignItems:'center',
+                padding:verticalScale(10),
+                borderRadius:12,
+                margin:verticalScale(5)
+              }}
+            >
+              <CustomButton onClick={() => _deletePrompt(prompt)} style={{ borderWidth:0, paddingVertical:0 }}>
+                <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
+              </CustomButton>
+              <View
+                style={{ 
+                  ...styles.item,
+                  backgroundColor:colors.secondary,
+                  marginTop:verticalScale(20)
+                }}
+              >
+                <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'600' }}>
+                  {prompts[prompt.question-1].prompt}
+                </CustomText>
+                <View 
+                  style={{ 
+                    ...styles.answer,
+                    backgroundColor:colors.primary,
+                    marginTop:verticalScale(5),
+                  }}
+                >
+                  <CustomText fontSize="medium" style={{ color:colors.tint, fontWeight:'500' }}>
+                    {prompt.answer}
+                  </CustomText>
+                </View>
+              </View>
+            </View>
+          ))}
+          {/* {user.prompts.map((prompt, index) => (
             <View
               key={index}
               style={{ 
@@ -127,14 +174,13 @@ export default function WidgetsModal({
                 </CustomText>
               </View>
             </View>
-          ))}
-        </>
+          ))} */}
+        </View>
       )
     }
   }
 
   const _deleteLink = (link) => {
-    // delete 
     deleteLink(link.id, user)
   }
   const _deleteQuote = (quote) => {
@@ -153,13 +199,16 @@ export default function WidgetsModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <View style={{ width:'90%', borderBottomWidth:2, borderColor:colors.tertiary, paddingBottom:verticalScale(5) }}>
+          <View style={{ width:'90%', borderBottomWidth:2, borderColor:colors.tertiary, paddingBottom:verticalScale(5), flexDirection:'row', justifyContent:'space-between' }}>
+            <CustomText fontSize="large" style={{ fontWeight:'600' }}>
+               {text}
+            </CustomText>
             <CustomButton onClick={() => setIsVisible(false)} style={{ alignItems:'flex-end', borderWidth:0, paddingVertical:0, justifyContent:'flex-end' }}>
               <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
             </CustomButton>
           </View>
 
-          <View style={{ marginTop:verticalScale(35) }}>
+          <View style={{ marginTop:verticalScale(20) }}>
             {whatToRender()}
           </View>
           

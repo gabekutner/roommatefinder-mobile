@@ -174,7 +174,6 @@ const styles = StyleSheet.create({
   pressableStyle: {
     flexDirection:'row',
     gap:5,
-    marginTop:verticalScale(20),
     justifyContent:'center',
     borderWidth:0
   },
