@@ -1,6 +1,5 @@
-name: Bug Report
-description: File a bug report.
-title: "[Bug]: "
+name: Standard issue template
+description: A standard template to follow when creating a new issue in this repository
 labels: ["Bug"]
 projects: []
 assignees:
