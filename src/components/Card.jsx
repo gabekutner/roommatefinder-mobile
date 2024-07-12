@@ -1,25 +1,20 @@
 import React from 'react';
-import { 
-  View, 
-  StyleSheet,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { LinearGradient } from 'react-native-linear-gradient';
 import { verticalScale, moderateScale, scale } from 'react-native-size-matters';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import FastImageBackground from './UI/FastImageBackground';
 import CustomText from './UI/Custom/CustomText';
 import CustomButton from './UI/Custom/CustomButton';
+
 import { dormsData } from '../assets/Dictionary';
+import { colors } from '../constants/colors';
 
 
-export default function CardItem({ 
-  navigation, 
-  item, 
-  colors, 
-}) {
+export default function CardItem({ navigation, item }) {
   return (
     <View style={styles.container}>
       <FastImageBackground

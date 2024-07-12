@@ -1,44 +1,14 @@
 export const dormsData = [
-  {
-    "id": "1",
-    "dorm": "Chapel Glen"
-  },
-  {
-    "id": "2",
-    "dorm": "Gateway Heights"
-  },
-  {
-    "id": "3",
-    "dorm": "Impact and Prosperity Epicenter"
-  },
-  {
-    "id": "4",
-    "dorm": "Kahlert Village"
-  },
-  {
-    "id": "5",
-    "dorm": "Lassonde Studios"
-  },
-  {
-    "id": "6",
-    "dorm": "Officers Circle"
-  },
-  {
-    "id": "7",
-    "dorm": "Sage Point"
-  },
-  {
-    "id": "8",
-    "dorm": "Marriott Honors Community"
-  },
-  {
-    "id": "9",
-    "dorm": "Guest House"
-  },
-  {
-    "id": "10",
-    "dorm": "I don't know 🤷‍♂️"
-  },
+  {"id": "1", "dorm": "Chapel Glen"},
+  {"id": "2", "dorm": "Gateway Heights"},
+  {"id": "3", "dorm": "Impact and Prosperity Epicenter"},
+  {"id": "4", "dorm": "Kahlert Village"},
+  {"id": "5", "dorm": "Lassonde Studios"},
+  {"id": "6", "dorm": "Officers Circle"},
+  {"id": "7", "dorm": "Sage Point"},
+  {"id": "8", "dorm": "Marriott Honors Community"},
+  {"id": "9", "dorm": "Guest House"},
+  {"id": "10", "dorm": "I don't know 🤷‍♂️"},
 ]
 
 export const interestsData = [
@@ -92,49 +62,6 @@ export const interestsData = [
   {"id": "48", "interest": "Mountain Biking"},
   {"id": "49", "interest": "Rock Climbing"},
   {"id": "50", "interest": "Nature"},
-]
-
-export default slides = [
-  {
-    id: "1",
-    title: "Birthday",
-    label: "My birthday is",
-    keyboardType: "numeric",
-    placeholder: "MM-DD-YYYY",
-    nonInput:false,
-  },
-  {
-    id: "2",
-    title: "Sex",
-    label: "I am a",
-    keyboardType: "default",
-    placeholder: "Guy",
-    nonInput:true,
-  },
-  {
-    id: "3",
-    title: "Dorm",
-    label: "I'm staying at",
-    keyboardType: "default",
-    placeholder: "Kahlert Village",
-    nonInput:false,
-  },
-  {
-    id: "4",
-    title: "Interests",
-    label: "Interests",
-    keyboardType: "default",
-    placeholder: "",
-    nonInput:true,
-  },
-  {
-    id: "5",
-    title: "Thumbnail",
-    label: "Add your first photo",
-    keyboardType: "default",
-    placeholder: "",
-    nonInput:true,
-  }
 ]
 
 export const quiz = [
@@ -295,106 +222,30 @@ export const quiz = [
 ]
 
 export const prompts = [
-  {
-    id: "1",
-    prompt: "In one word, my friends would describe me as ..."
-  },
-  {
-    id: "2",
-    prompt: "My ideal roommate is ..."
-  },
-  {
-    id: "3",
-    prompt: "Hot take:"
-  },
-  {
-    id: "4",
-    prompt: "The biggest red flag a roommate could have is ..."
-  },
-  {
-    id: "5",
-    prompt: "The biggest green flag a roommate could have is ..."
-  },
-  {
-    id: "6",
-    prompt: "A boundary of mine is ..."
-  },
-  {
-    id: "7",
-    prompt: "All I ask of you is ..."
-  },
-  {
-    id: "8",
-    prompt: "My dream career ..."
-  },
-  {
-    id: "9",
-    prompt: "If loving this is wrong, I don't want to be right ..."
-  },
-  {
-    id: "10",
-    prompt: "My guilty pleasure is ..."
-  },
-  {
-    id: "11",
-    prompt: "If someone broke into our dorm, my plan would be ..."
-  },
-  {
-    id: "12",
-    prompt: "Uh oh! Roommate's vape charger lit the room on fire, the first thing I'm grabbing is ..."
-  },
-  {
-    id: "13",
-    prompt: "My parents would kill me if they found out I ..."
-  },
-  {
-    id: "14",
-    prompt: "What would be the scariest sound to hear in your dorm room?"
-  },
-  {
-    id: "15",
-    prompt: "The most embarrassing moment of my life was when ..."
-  },
-  {
-    id: "16",
-    prompt: "My late night drive home along song is ..."
-  },
-  {
-    id: "17",
-    prompt: "My ideal college day in the life looks like ..."
-  },
-  {
-    id: "18",
-    prompt: "Don't tell the RA ..."
-  },
-  {
-    id: "19",
-    prompt: "My craziest side quest:"
-  },{
-    id: "20",
-    prompt: "My strange addiction:"
-  },
-  {
-    id: "21",
-    prompt: "I'm looking for a roommate who ..."
-  },{
-    id: "22",
-    prompt: "Weird flex:"
-  },
-  {
-    id: "23",
-    prompt: "If I won the lottery, my first purchase would be ..."
-  },
-  {
-    id: "24",
-    prompt: "Celebrity crush:"
-  },
-  {
-    id: "25",
-    prompt: "If I'm not in class, catch me ..."
-  },
-  {
-    id: "26",
-    prompt: "If you take my toothpaste I'll ..."
-  },
+  {id: "1", prompt: "In one word, my friends would describe me as ..."},
+  {id: "2", prompt: "My ideal roommate is ..."},
+  {id: "3", prompt: "Hot take:"},
+  {id: "4", prompt: "The biggest red flag a roommate could have is ..."},
+  {id: "5", prompt: "The biggest green flag a roommate could have is ..."},
+  {id: "6", prompt: "A boundary of mine is ..."},
+  {id: "7", prompt: "All I ask of you is ..."},
+  {id: "8", prompt: "My dream career ..."},
+  {id: "9", prompt: "If loving this is wrong, I don't want to be right ..."},
+  {id: "10", prompt: "My guilty pleasure is ..."},
+  {id: "11", prompt: "If someone broke into our dorm, my plan would be ..."},
+  {id: "12", prompt: "Uh oh! Roommate's vape charger lit the room on fire, the first thing I'm grabbing is ..."},
+  {id: "13", prompt: "My parents would kill me if they found out I ..."},
+  {id: "14", prompt: "What would be the scariest sound to hear in your dorm room?"},
+  {id: "15", prompt: "The most embarrassing moment of my life was when ..."},
+  {id: "16", prompt: "My late night drive home along song is ..."},
+  {id: "17", prompt: "My ideal college day in the life looks like ..."},
+  {id: "18", prompt: "Don't tell the RA ..."},
+  {id: "19", prompt: "My craziest side quest:"},
+  {id: "20", prompt: "My strange addiction:"},
+  {id: "21", prompt: "I'm looking for a roommate who ..."},
+  {id: "22", prompt: "Weird flex:"},
+  {id: "23", prompt: "If I won the lottery, my first purchase would be ..."},
+  {id: "24", prompt: "Celebrity crush:"},
+  {id: "25", prompt: "If I'm not in class, catch me ..."},
+  {id: "26", prompt: "If you take my toothpaste I'll ..."},
 ]

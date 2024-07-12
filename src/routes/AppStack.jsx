@@ -13,7 +13,7 @@ import CustomButton from "../components/UI/Custom/CustomButton";
 
 import Friends from "../screens/Extras/Friends/Friends";
 import Profile from "../screens/Profile/Profile";
-import Swipe from "../screens/SwipeScreen";
+import SwipeScreen from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
 import Message from "../screens/Chat/Message";
@@ -22,7 +22,7 @@ import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 import LinkTreeScreen from "../screens/Onboarding/Widgets/LinkTree";
 import PromptsScreen from "../screens/Onboarding/Widgets/Prompts";
 import QuotesScreen from "../screens/Onboarding/Widgets/Quotes";
-import PhotosScreen from "../screens/Onboarding/Photos";
+import EditPhotoScreen from "../screens/Profile/Edit/EditPhotos";
 
 // matching quiz
 import BaseOnboardingCard from "../screens/Onboarding/Components/Card";
@@ -30,7 +30,6 @@ import PromptScreen from "../screens/Onboarding/Prompt";
 
 import useStore from "../zustand/store";
 import { colors } from "../constants/colors";
-import EditPhotoScreen from "../screens/Profile/Edit/EditPhotos";
 
 
 export default function AppStack() {
@@ -79,7 +78,7 @@ export default function AppStack() {
       >
         <Tab.Screen 
           name="swipe" 
-          component={Swipe} 
+          component={SwipeScreen} 
           options={({ navigation }) => ({
             headerTitle: () => <Title title="roommatefinder" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',

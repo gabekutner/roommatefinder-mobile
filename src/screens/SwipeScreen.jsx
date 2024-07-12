@@ -20,11 +20,10 @@ const { width } = Dimensions.get('window')
 const offset = width / 5
 
 
-export default function Swipe({ navigation }) {
+export default function SwipeScreen({ navigation }) {
 
   const user = useStore(state => state.user)
   const getSwipe = useStore(state => state.getSwipe)
-
   const opacity = useRef(new Animated.Value(0)).current
   const [data, setData] = useState([])
   const [page, setPage] = useState(1)
@@ -102,7 +101,14 @@ export default function Swipe({ navigation }) {
   )
 }
 
-const Card = ({ item, data, index, colors, removeItem, navigation}) => {
+const Card = ({ 
+  item, 
+  data, 
+  index, 
+  colors, 
+  removeItem, 
+  navigation
+}) => {
 
   const requestConnect = useStore(state => state.requestConnect)
 

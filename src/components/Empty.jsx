@@ -1,16 +1,13 @@
 import React from "react";
-import { 
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  verticalScale,
-  moderateScale
-} from 'react-native-size-matters';
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
 import CustomText from "./UI/Custom/CustomText";
 import CustomButton from "./UI/Custom/CustomButton";
+
+import { colors } from "../constants/colors";
 
 
 export default function Empty({ 
@@ -18,17 +15,14 @@ export default function Empty({
   emoji,
   message, 
   centered=true, 
-  colors, 
+  // colors, 
   refresh,
 }) {
   return (
     <View
       style={{
-        flex:1,
-        justifyContent:centered?'center' : 'flex-start',
-        alignItems:'center',
-        paddingVertical:verticalScale(120),
-        backgroundColor:colors.primary,
+        ...styles.container,
+        justifyContent:centered?'center' : 'flex-start'
       }}
     >
       {icon
@@ -40,12 +34,7 @@ export default function Empty({
             style={{ marginBottom:verticalScale(14) }}
           />
         : 
-          <CustomText
-            style={{
-              fontSize:verticalScale(80),
-              marginBottom:verticalScale(14),
-            }}
-          >
+          <CustomText style={{ fontSize:verticalScale(80), marginBottom:verticalScale(14) }}>
             {emoji}
           </CustomText>
       }
@@ -65,13 +54,7 @@ export default function Empty({
           <CustomButton
             shadow
             onClick={() => refresh()}
-            style={{
-              marginTop:verticalScale(14),        
-              width:moderateScale(150),
-              borderWidth:2,
-              borderColor:colors.tint,
-              backgroundColor:colors.accent, 
-            }}
+            style={styles.button}
           >
             <CustomText
               fontSize="medium"
@@ -88,3 +71,20 @@ export default function Empty({
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    alignItems:'center',
+    paddingVertical:verticalScale(120),
+    backgroundColor:colors.primary,
+  },
+  button: {
+    marginTop:verticalScale(14),        
+    width:moderateScale(150),
+    borderWidth:2,
+    borderColor:colors.tint,
+    backgroundColor:colors.accent, 
+  },
+
+})
