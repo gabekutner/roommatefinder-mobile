@@ -101,10 +101,56 @@ export const widgetsSlice = (set) => ({
           console.log('upload link success')
         }
       } catch (error) {
-        console.log('zustand.widgets.uploadWidgets ', error.response)
+        console.log('zustand.widgets.uploadLink ', error.response)
       }
     } else {
-      console.log('zustand.widgets.uploadWidgets : not authenticated')
+      console.log('zustand.widgets.uploadLink : not authenticated')
+    }
+  },
+  uploadPrompt: async (prompts, user) => {
+    if (user.token) {
+      try {
+        // make api request
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/prompts/',
+          data: prompts,
+          headers: {"Authorization": `Bearer ${user.token}`}
+        })
+        // check response status 
+        if (response.status != 201) {
+          throw new Error('upload-prompts error')
+        } else {
+          console.log('upload prompt success')
+        }
+      } catch (error) {
+        console.log('zustand.widgets.uploadPrompt ', error.response)
+      }
+    } else {
+      console.log('zustand.widgets.uploadPrompt : not authenticated')
+    }
+  },
+  uploadQuote: async (quotes, user) => {
+    if (user.token) {
+      try {
+        // make api request
+        const response = await api({
+          method: 'post',
+          url: '/api/v1/quotes/',
+          data: quotes,
+          headers: {"Authorization": `Bearer ${user.token}`}
+        })
+        // check response status 
+        if (response.status != 201) {
+          throw new Error('upload-quotes error')
+        } else {
+          console.log('upload quotes success')
+        }
+      } catch (error) {
+        console.log('zustand.widgets.uploadQuotes ', error.response)
+      }
+    } else {
+      console.log('zustand.widgets.uploadQuotes : not authenticated')
     }
   }
 

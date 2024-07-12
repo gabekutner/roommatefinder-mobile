@@ -31,6 +31,8 @@ export default function EditBasicsScreen({ navigation }) {
   const editProfile = useStore(state => state.editProfile)
 
   const uploadLink = useStore(state => state.uploadLinks)
+  const uploadQuote = useStore(state => state.uploadQuote)
+  const uploadPrompt = useStore(state => state.uploadPrompt)
 
   const [interestsVisible, setInterestsVisible] = useState(false)
   const [dormVisible, setDormVisible] = useState(false)
@@ -50,6 +52,12 @@ export default function EditBasicsScreen({ navigation }) {
     editProfile(_form, form, user)
     if (form.links.length != 0) {
       uploadLink(form.links[0], user)
+    }
+    if (form.quotes.length != 0) {
+      uploadQuote(form.quotes[0], user)
+    }
+    if (form.prompts.length != 0) {
+      uploadPrompt(form.prompts[0], user)
     }
     navigation.goBack()
   }
