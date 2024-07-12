@@ -1,4 +1,24 @@
-[**Roommatefinder**](https://github.com/gabekutner/roommatefinder-mobile) is a mobile app for finding college dorm roommates.
+<h1 align="center">RoommateFinder</h1>
+
+<a href="https://reactnative.dev/">
+  <img src="https://img.shields.io/badge/React Native-0.74.1-blue.svg?style=flat-square" alt="rn version">
+</a>
+<a href="https://www.djangoproject.com/">
+  <img src="https://img.shields.io/badge/Django-3.0.3-green.svg?style=flat-square" alt="django version">
+</a>
+<a href="https://redis.io/">
+  <img src="https://img.shields.io/badge/Redis-7.2.4-red.svg?style=flat-square" alt="redis version">
+</a>
+
+<br />
+<br />
+
+## Introduction
+
+[**Roommatefinder**](https://github.com/gabekutner/roommatefinder-mobile) - Find a College Roommate
+
+<!-- some app description here -->
+
 
 Built using: 
 - [**React Native**](https://reactnative.dev)
@@ -22,7 +42,7 @@ This is the React Native frontend repository. Here's the link for the [**backend
  
 ## Initialization
 
->NOTE: Some initialization requirements are still hardcoded: (ip address). The IP address is configured in `src/core/api`, simply edit the ADDRESS variable.
+>NOTE: Some initialization requirements are still hardcoded: (ip address). The IP address is configured in `src/core/api`.
 
 Clone repository
 
