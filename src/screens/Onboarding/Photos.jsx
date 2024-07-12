@@ -83,7 +83,7 @@ export default function PhotosScreen({ del }) {
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('0')} style={{ ...styles.upload, borderStyle:photo.thumbnail ? 'solid' : 'dashed' }}>
             { photo.thumbnail 
-              ? <Image source={{uri:photo.thumbnail.uri}} style={styles.imageStyle} resizeMode="cover" />
+              ? <Image source={photo.thumbnail} style={styles.imageStyle} resizeMode="cover" />
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
@@ -92,7 +92,7 @@ export default function PhotosScreen({ del }) {
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('photo_1')} style={{ ...styles.upload, borderStyle:photo.photo_1 ? 'solid' : 'dashed' }}>
             { photo.photo_1
-              ? <Image source={{uri:photo.photo_1.uri}} style={styles.imageStyle} resizeMode="cover" />
+              ? <Image source={photo.photo_1} style={styles.imageStyle} resizeMode="cover" />
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
@@ -109,7 +109,7 @@ export default function PhotosScreen({ del }) {
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('photo_2')} style={{ ...styles.upload, borderStyle:photo.photo_2 ? 'solid' : 'dashed' }}>
             { photo.photo_2
-              ? <Image source={{uri:photo.photo_2.uri}} style={styles.imageStyle} resizeMode="cover" />
+              ? <Image source={photo.photo_2} style={styles.imageStyle} resizeMode="cover" />
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
@@ -124,7 +124,7 @@ export default function PhotosScreen({ del }) {
         <View style={styles.wrapper}>
           <CustomButton onClick={() => launchLibrary('photo_3')} style={{ ...styles.upload, borderStyle:photo.photo_3 ? 'solid' : 'dashed' }}>
             { photo.photo_3
-              ? <Image source={{uri:photo.photo_3.uri}} style={styles.imageStyle} resizeMode="cover" />
+              ? <Image source={photo.photo_3} style={styles.imageStyle} resizeMode="cover" />
               : <FontAwesomeIcon icon="image" size={verticalScale(18)} color={colors.tint} />
             }
           </CustomButton>
