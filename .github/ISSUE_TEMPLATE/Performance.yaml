@@ -1,0 +1,60 @@
+name: Report a performance issue
+description: Use to report an issue or propose a solution related to app performance 
+labels: ["Engineering"]
+title: "[Performance] "
+projects: []
+assignees:
+  - gabekutner
+body:
+
+  - type: textarea
+    id: what-issue
+    attributes:
+      label: What performance issue do we need to solve?
+      description: e.g. memory consumption, storage read/write times, inefficient React component rendering, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-impact
+    attributes:
+      label: What is the impact of this on end-users?
+      description: List specific user experiences that will be improved by solving this problem e.g. app boot time, time to for some interaction to complete, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: benchmarks
+    attributes:
+      label: List any benchmarks that show the severity of the issue
+      description: Please also provide exact steps taken to collect metrics above if any so we can independently verify the results.
+    validations:
+      required: false
+  
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution (if any)
+      description: Please list out the steps you think we should take to solve this issue.
+    validations:
+      required: true
+  
+  - type: textarea
+    id: benchmarks-changes
+    attributes:
+      label: List any benchmarks after implementing the changes to show impacts of the proposed solution (if any)
+      description: These should be the same as the benchmarks collected before any changes.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platforms
+      description: Which platforms is this issue occurring on?
+      options:
+        - IOS
+        - Android
+      default: 0
+    validations:
+      required: true
