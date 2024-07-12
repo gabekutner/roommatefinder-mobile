@@ -55,7 +55,6 @@ body:
     attributes:
       label: Work Around
       description: Can the user still use roommatefinder without this being fixed?
-      value: ""
     validations:
       required: false
   
