@@ -16,7 +16,8 @@ import CustomButton from '../components/UI/Custom/CustomButton';
 import CustomButtonComponent from '../components/Button/CustomButtonComponent';
 
 import { colors } from '../constants/colors';
-import { Global, Card } from '../styles';
+/** styles */
+import { Flex } from '../styles';
 
 
 export default function StartupScreen({ navigation }) {
@@ -26,36 +27,34 @@ export default function StartupScreen({ navigation }) {
       source={require('../assets/images/image_part_001.png')}
       imageStyle={{ height: '100%' }}
       resizeMode='cover'
-      style={Global.container}
+      style={Flex.flex1}
     >
       <StatusBar 
         networkActivityIndicatorVisible={true}
         showHideTransition={'slide'}
       />
       <View 
-        style={[
-          Global.container,
-          Global.justifyCenter
+        style={[ 
+          Flex.flex1, 
+          Flex.justifyContentCenter
         ]}
       >
         <View 
           style={[
-            // Card.borderWidth,
-            Global.justifyCenter,
-            Global.itemsCenter,
+            Flex.justifyContentCenter,
+            Flex.alignItemsCenter,
             { backgroundColor:colors.primary }
           ]}
         >
-
           <Title 
             title="roommatefinder"
             color={colors.accent}
           />
         </View>
       </View>
-      <View style={Global.container}>
 
-      </View>
+      <View style={Flex.flex1}></View>
+      
     </ImageBackground>
 
     

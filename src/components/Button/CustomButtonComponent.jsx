@@ -5,7 +5,7 @@ import {
   TouchableOpacity 
 } from "react-native";
 
-import { Buttons } from "../../styles";
+// import { Buttons } from "../../styles";
 
 
 const withCustomProps = WrappedComponent => {
@@ -23,7 +23,6 @@ const withCustomProps = WrappedComponent => {
   const WithCustomProps = ({ 
     onClick,
     disabled,
-    
 
     /** styles */
     animated, 
