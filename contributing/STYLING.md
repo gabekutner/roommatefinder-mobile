@@ -6,7 +6,7 @@
 
 Styles can either be theme-related or not. "Theme-related" means that a style contains some sort of color attributes (backgroundColor, color, borderColor). "Non-theme-related" styles may not contain no color attributes.
 
-All non-theme-related styles must be defined in the `/styles` directory and `src/styles/exportStyles.js` contains the final export after gathering all appropriate styles. Unlike some React Native applications, we are not using `StyleSheet.create()` and instead store styles as plain JS objects. There are also many helper styles available for direct use in components.
+All non-theme-related styles must be defined in the `/styles` directory and `src/styles/index.js` contains the final export after gathering all appropriate styles. Unlike some React Native applications, we are not using `StyleSheet.create()` and instead store styles as plain JS objects. There are also many helper styles available for direct use in components.
 
 
 ## When to Create a New Style
@@ -54,7 +54,7 @@ Any array of styles associated with a single type of React element that has at l
 
 ## Inline Styles
 
-**Inline styles are forbidden.** If we run into a case where we feel it's necessary to conditionally render some styles, we should create a helper function then pass any modifying parameters to that function. Small helper functions can be written directly in `exportStyles.js`, but larger, more complex methods should be put in their own modules and imported into `exportStyles.js`.
+**Inline styles are forbidden.** If we run into a case where we feel it's necessary to conditionally render some styles, we should create a helper function then pass any modifying parameters to that function. Small helper functions can be written directly in `index.js`, but larger, more complex methods should be put in their own modules and imported into `index.js`.
 
 ```jsx
 // Bad - Do not use inline styles

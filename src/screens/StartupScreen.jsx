@@ -5,6 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
 
 import { moderateScale, verticalScale } from 'react-native-size-matters';
@@ -12,22 +13,54 @@ import { moderateScale, verticalScale } from 'react-native-size-matters';
 import Title from '../components/Brand/Title';
 import CustomText from '../components/UI/Custom/CustomText';
 import CustomButton from '../components/UI/Custom/CustomButton';
+import CustomButtonComponent from '../components/Button/CustomButtonComponent';
 
 import { colors } from '../constants/colors';
+import { Global, Card } from '../styles';
 
 
 export default function StartupScreen({ navigation }) {
   return (
+      
     <ImageBackground 
       source={require('../assets/images/image_part_001.png')}
-      imageStyle={{ height: '79%' }}
+      imageStyle={{ height: '100%' }}
       resizeMode='cover'
-      style={styles.container}
+      style={Global.container}
     >
       <StatusBar 
         networkActivityIndicatorVisible={true}
         showHideTransition={'slide'}
       />
+      <View 
+        style={[
+          Global.container,
+          Global.justifyCenter
+        ]}
+      >
+        <View 
+          style={[
+            // Card.borderWidth,
+            Global.justifyCenter,
+            Global.itemsCenter,
+            { backgroundColor:colors.primary }
+          ]}
+        >
+
+          <Title 
+            title="roommatefinder"
+            color={colors.accent}
+          />
+        </View>
+      </View>
+      <View style={Global.container}>
+
+      </View>
+    </ImageBackground>
+
+    
+
+/* 
       <View style={styles.titleWrapper}>
         <Text style={styles.universityOfUtah}>
           THE UNIVERSITY OF UTAH'S
@@ -58,16 +91,15 @@ export default function StartupScreen({ navigation }) {
             Get Started
           </CustomText>
         </CustomButton>
-      </View>
-    </ImageBackground>
+      </View> */
   )
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex:1, 
-    backgroundColor:colors.secondary,
-  },
+  // container: { 
+  //   flex:1, 
+  //   backgroundColor:colors.secondary,
+  // },
   titleWrapper: {
     position:'absolute', 
     left:0, 
