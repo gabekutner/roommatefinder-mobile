@@ -63,8 +63,11 @@ export default function StartupScreen({ navigation }) {
         </CustomButtonComponent>
         <CustomButtonComponent 
           animated 
-          // some error here ... 
-          style={{ marginBottom:25, marginHorizontal:25, backgroundColor:'rgba(0,0,0,.6)' }}
+          style={{
+            ...spacing.mb5,
+            ...spacing.mh5,
+            backgroundColor:'rgba(0,0,0,.6)'
+          }}
           onClick={() => navigation.navigate('signin')}
         >
           <CustomText fontSize="large" style={{ fontWeight:'bold', color:colors.white }}>Already have an account? Log In</CustomText>

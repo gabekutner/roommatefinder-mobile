@@ -15,7 +15,6 @@ import { borders, spacing } from '../../styles/styles';
 
 
 export default function SignUp({ navigation }) {
-
   const login = useStore(state => state.login)
 
   const [showError, setShowError] = useState({
@@ -180,26 +179,6 @@ export default function SignUp({ navigation }) {
           inputStyle={{ color:colors.tint }}
         />
 
-        {/* <CustomButton onClick={() => onSignUp()} shadow style={styles.buttonStyle}>
-          <CustomText fontSize="large" style={styles.buttonText}>
-            Sign up
-          </CustomText>
-        </CustomButton>
-
-        <Pressable onPress={() => navigation.navigate('signin')} style={styles.pressableStyle}>
-          <CustomText fontSize="medium" style={styles.text}>
-            Already have an account?{' '}
-            <CustomText 
-              fontSize="medium"
-              style={{
-                ...styles.text,
-                textDecorationLine:'underline' 
-              }}
-            >
-              Sign in
-            </CustomText>
-          </CustomText>
-        </Pressable> */}
         <CustomButtonComponent
           variant='standard'
           animated

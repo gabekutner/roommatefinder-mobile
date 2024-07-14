@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
-import { verticalScale } from 'react-native-size-matters';
-
 import Snackbar from '../../components/UI/SnackBar';
 import CustomText from '../../components/UI/Custom/CustomText';
 import CustomTextInput from '../../components/UI/Custom/CustomInput';
