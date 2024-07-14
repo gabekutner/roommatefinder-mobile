@@ -10,7 +10,6 @@ import { colors } from "../../constants/colors";
 
 
 export default function HomeTownScreen() {
-
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 

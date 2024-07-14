@@ -6,7 +6,6 @@ import {
   Dimensions
 } from "react-native";
 
-
 import Label from "../Label";
 import SexScreen from "../../Sex";
 import AgeScreen from "../../Age";

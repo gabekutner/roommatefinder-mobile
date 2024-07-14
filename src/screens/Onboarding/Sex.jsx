@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet } from 'react-native';
-
-import { moderateScale, verticalScale } from "react-native-size-matters";
 
 import CustomText from "../../components/UI/Custom/CustomText";
-import CustomButton from "../../components/UI/Custom/CustomButton";
+import CustomButtonComponent from "../../components/Button/CustomButtonComponent";
 
 import useStore from "../../zustand/store";
 import { colors } from "../../constants/colors";
+import { spacing, borders } from "../../styles/styles";
 
 
 export default function SexScreen() {
-
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 
@@ -23,53 +20,54 @@ export default function SexScreen() {
 
   return (
     <>
-      <CustomButton 
+      <CustomButtonComponent
+        variant=""
+        animated
         shadow
         onClick={() => toggleSelected("M")}
         style={{ 
-          ...styles.option, 
-          backgroundColor: selected === "M" ? colors.accent : colors.secondary 
+          backgroundColor: selected === "M" ? colors.accent : colors.secondary,
+          borderColor: colors.tint,
+          ...spacing.pv4,
+          ...spacing.ph15,
+          ...borders.bw2,
+          ...spacing.mv1,
         }}
       >
         <CustomText 
           fontSize="medium" 
           style={{
-            ...styles.text, 
+            fontWeight:'bold',
             color: selected === "M" ? colors.white : colors.tint 
           }}
         >
           Guy
         </CustomText>
-      </CustomButton>
-      <CustomButton 
+      </CustomButtonComponent>
+      <CustomButtonComponent
+        variant=""
+        animated
         shadow
         onClick={() => toggleSelected("F")}
-        style={{ 
-          ...styles.option, 
-          backgroundColor: selected === "F" ? colors.accent : colors.secondary 
+        style={{
+          backgroundColor: selected === "F" ? colors.accent : colors.secondary,
+          borderColor: colors.tint,
+          ...spacing.pv4,
+          ...spacing.ph15,
+          ...borders.bw2,
+          ...spacing.mv1,
         }}
       >
         <CustomText 
           fontSize="medium" 
           style={{ 
-            ...styles.text, 
+            fontWeight:'bold',
             color: selected === "F" ? colors.white : colors.tint 
           }}
         >
           Girl
         </CustomText>
-      </CustomButton>
+      </CustomButtonComponent>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  option: {
-    paddingVertical:verticalScale(10),
-    paddingHorizontal:moderateScale(50),
-    borderWidth:2,
-    borderColor: colors.tint,
-    marginVertical:verticalScale(5)
-  },
-  text: { fontWeight:'600' },
-})

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { verticalScale } from "react-native-size-matters";
 
 import Paginator from "./Paginator";
-import CustomButton from "../../../../components/UI/Custom/CustomButton";
+import CustomButtonComponent from "../../../../components/Button/CustomButtonComponent";
 
 import { colors } from "../../../../constants/colors";
 import { flex, spacing, adjustMarginTop, borders } from "../../../../styles/styles";
@@ -53,20 +53,30 @@ export default function Header({
           ...spacing.mb1,
         }}
       >
-        <CustomButton onClick={scrollBack} style={borders.bw0}>
+        <CustomButtonComponent 
+          variant=""
+          animated
+          onClick={scrollBack}
+          style={borders.bw0}
+        >
           <FontAwesomeIcon
             icon='arrow-left'
             size={verticalScale(20)}
             color={colors.tint}
           />
-        </CustomButton>
-        <CustomButton onClick={scrollNext} style={borders.bw0}>
+        </CustomButtonComponent>
+        <CustomButtonComponent 
+          variant=""
+          animated
+          onClick={scrollNext}
+          style={borders.bw0}
+        >
           <FontAwesomeIcon
             icon='arrow-right'
             size={verticalScale(20)}
             color={colors.tint}
           />
-        </CustomButton>
+        </CustomButtonComponent>
       </View>
     </View>
   )
