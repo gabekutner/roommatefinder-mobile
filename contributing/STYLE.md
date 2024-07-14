@@ -20,6 +20,19 @@ So far, we write our component with its business logic, UI, style, and types in 
   
 - [component].styles.jsx: The styles file contains the React Native StyleSheet or the styled-components, depending on which approach you chose. Refer to the `contributing/STYLING.md` file.
 
+Example folder component structure:
+```bash
+├── component
+│   ├── components│   
+│   │  ├── component
+│   │  │  ├── component
+│   │  │  └── index.js
+│   │  │  └── component.view.js
+│   ├── index.js
+│   └── component.styles.js
+│   └── component.view.js
+```
+
 With this separation, we enable two things. First, it is much easier to have one developer work on the business logic and one on the UI, without creating merge conflicts or other problems. Second, our components now have much better support for automated testing.
 
 We can use any component testing framework to render and test the views without having to mock our global state or our component state. And in addition to that, it’s much easier to integrate tools such as Storybook with this approach.
