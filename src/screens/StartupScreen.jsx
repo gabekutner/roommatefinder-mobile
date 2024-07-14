@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+import { LinearGradient } from 'react-native-linear-gradient';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 import Title from '../components/Brand/Title';
@@ -16,44 +17,43 @@ import CustomButton from '../components/UI/Custom/CustomButton';
 import CustomButtonComponent from '../components/Button/CustomButtonComponent';
 
 import { colors } from '../constants/colors';
-/** styles */
-import { Flex } from '../styles';
+import { flex } from '../styles/styles';
 
 
 export default function StartupScreen({ navigation }) {
   return (
-      
+
     <ImageBackground 
       source={require('../assets/images/image_part_001.png')}
-      imageStyle={{ height: '100%' }}
+      imageStyle={{ flex:1, opacity:.6, position:'absolute', top:-100 }}
       resizeMode='cover'
-      style={Flex.flex1}
+      style={{ flex:1, backgroundColor:'rgba(0,0,0,.6)' }}
     >
-      <StatusBar 
+      <StatusBar
         networkActivityIndicatorVisible={true}
         showHideTransition={'slide'}
       />
-      <View 
-        style={[ 
-          Flex.flex1, 
-          Flex.justifyContentCenter
-        ]}
-      >
-        <View 
-          style={[
-            Flex.justifyContentCenter,
-            Flex.alignItemsCenter,
-            { backgroundColor:colors.primary }
-          ]}
-        >
-          <Title 
-            title="roommatefinder"
-            color={colors.accent}
-          />
+      <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
+        <Title 
+          title="roommatefinder"
+          color={colors.accent}
+        />
+      </View>
+      <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
+        <CustomText fontSize="large" style={{ color:colors.white }}>
+          Find a roommate
+        </CustomText>
+      </View>
+      <View style={{ flex:1, justifyContent:'flex-end' }}>
+        <View style={{ height:55, borderRadius:5, backgroundColor:colors.accent, justifyContent:'center', alignItems:'center' }}>
+          <CustomText fontSize="large">Get Started</CustomText>
         </View>
+
+        {/* <View style={{ height:55, borderRadius:5, backgroundColor:colors.accent, justifyContent:'center', alignItems:'center' }}>
+          <CustomText fontSize="large">Login</CustomText>
+        </View> */}
       </View>
 
-      <View style={Flex.flex1}></View>
       
     </ImageBackground>
 
@@ -90,7 +90,40 @@ export default function StartupScreen({ navigation }) {
             Get Started
           </CustomText>
         </CustomButton>
+      </View> 
+      
+      
+      {/* <View 
+        style={[ 
+          flex.flex1, 
+          flex.justifyContentCenter,
+        ]}
+      >
+        <View 
+          style={[
+            flex.justifyContentCenter,
+            flex.alignItemsCenter,
+            { backgroundColor: colors.primary }
+          ]}
+        >
+          <Title 
+            title="roommatefinder"
+            color={colors.accent}
+          />
+        </View>
       </View> */
+      /* <View style={{ flex:1, justifyContent:'flex-end' }}>
+        <View style={{ flexDirection:'row', gap:10, marginBottom:verticalScale(20), marginHorizontal:moderateScale(15) }}>
+          <View style={{ flex:1, height:55, borderRadius:5, backgroundColor:colors.accent, justifyContent:'center', alignItems:'center' }}>
+            <CustomText fontSize="large">Login</CustomText>
+          </View>
+          <View style={{ flex:1, height:55, borderRadius:5, backgroundColor:colors.accent, justifyContent:'center', alignItems:'center' }}>
+            <CustomText fontSize="large" style={{ fontWeight:'bold', color:colors.white }}>Get Started</CustomText>
+          </View>
+        </View>
+      </View> */
+      
+      
   )
 }
 
