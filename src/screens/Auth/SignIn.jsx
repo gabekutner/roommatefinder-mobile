@@ -10,6 +10,7 @@ import CustomButtonComponent from '../../components/Button/CustomButtonComponent
 
 import useStore from '../../zustand/store';
 import api from '../../core/api';
+import utils from '../../core/utils';
 import { colors } from '../../constants/colors';
 import { borders, spacing } from '../../styles/styles';
 
@@ -32,20 +33,13 @@ export default function SignIn({ navigation }) {
     color:colors.tint
   }
 
-  /** move outside */
-  function validEmail(email) {
-    // Regular expression pattern for validating email addresses
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailPattern.test(email)
-  }
-
   function onSignIn() {
     // Form validation
     if (!form.email || !form.password) {
       setShowError({ ...showError, status:true, message:"Missing credentials."})
       return
     }
-    if (!validEmail(form.email)) {
+    if (!utils.validEmail(form.email)) {
       setShowError({ ...showError, status:true, message:"Invalid email address."})
       return
     }
@@ -57,23 +51,23 @@ export default function SignIn({ navigation }) {
         password: form.password,
       },
     })
-      .then(response => {
-        const credentials = {
-          email: form.email,
-          password: form.password,
-        }
-        login(
-          credentials,
-          response.data,
-          { access: response.data.access, refresh: response.data.refresh }
-        )
-      })
-      .catch(error => {
-        // Handle error
-        if (error.response.status) {
-          setShowError({ ...showError, status:true, message:"Invalid credentails or this email is already in use." })
-        }
-      })
+    .then(response => {
+      const credentials = {
+        email: form.email,
+        password: form.password,
+      }
+      login(
+        credentials,
+        response.data,
+        { access: response.data.access, refresh: response.data.refresh }
+      )
+    })
+    .catch(error => {
+      // Handle error
+      if (error.response.status) {
+        setShowError({ ...showError, status:true, message:"Invalid credentails or this email is already in use." })
+      }
+    })
   }
 
   return (

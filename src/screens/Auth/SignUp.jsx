@@ -10,6 +10,7 @@ import CustomButtonComponent from '../../components/Button/CustomButtonComponent
 
 import useStore from '../../zustand/store';
 import api from '../../core/api';
+import utils from '../../core/utils';
 import { colors } from '../../constants/colors';
 import { borders, spacing } from '../../styles/styles';
 
@@ -34,12 +35,6 @@ export default function SignUp({ navigation }) {
     letterSpacing:0.15,
     color:colors.tint
   }
-
-  function validEmail(email) {
-    // Regular expression pattern for validating email addresses
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailPattern.test(email)
-  }
   
   function onSignUp() {
     // form validation here
@@ -48,7 +43,7 @@ export default function SignUp({ navigation }) {
       return
     }
      
-    if (!validEmail(form.email)) {
+    if (!utils.validEmail(form.email)) {
       setShowError({ ...showError, status:true, message:"Invalid email address."})
       return
     }
@@ -105,7 +100,6 @@ export default function SignUp({ navigation }) {
       }
 
       <View>
-
         <CustomLabel color={colors.tint} label={'Name'} />
         <CustomTextInput 
           placeholder={''}

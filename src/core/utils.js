@@ -24,6 +24,12 @@ function testUrl(url) {
 	}
 }
 
+function validEmail(email) {
+	// Regular expression pattern for validating email addresses
+	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	return emailPattern.test(email)
+}
+
 function formatTime(date) {
 	if (date === null)  {
 		return '-'
@@ -63,5 +69,6 @@ export default {
   thumbnail,
 	thumbnailOpposite,
 	testUrl,
+	validEmail,
 	formatTime,
 }
