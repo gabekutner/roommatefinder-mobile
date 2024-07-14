@@ -11,7 +11,6 @@ export default {
     alignItems:'center',
     justifyContent:'center'
   },
-
   standard: {
     backgroundColor:colors.accent,
     borderColor:colors.tint
@@ -20,14 +19,4 @@ export default {
     backgroundColor:colors.white,
     borderColor:colors.accent
   },
-
-  shadow: {
-    shadowColor: '#000',
-    shadowOpacity: .7,
-    shadowRadius: .6,
-    shadowOffset: {
-      width: 1.5,
-      height: 2
-    }
-  }
 }

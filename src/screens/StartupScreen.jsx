@@ -15,18 +15,17 @@ import { flex, position, spacing } from '../styles/styles';
 
 export default function StartupScreen({ navigation }) {
   return (
-
     <ImageBackground 
       source={require('../assets/images/image_part_001.png')}
       imageStyle={[
         flex.flex1,
         position.pAbsolute,
-        { opacity:.4, top:-100 }
+        { opacity:.6, top:-100 }
       ]}
       resizeMode='cover'
       style={[
         flex.flex1,
-        { backgroundColor:'rgba(0,0,0,.6)' }
+        { backgroundColor:'rgba(0,0,0,.45)' }
       ]}
     >
       <StatusBar
@@ -64,6 +63,7 @@ export default function StartupScreen({ navigation }) {
         </CustomButtonComponent>
         <CustomButtonComponent 
           animated 
+          // some error here ... 
           style={{ marginBottom:25, marginHorizontal:25, backgroundColor:'rgba(0,0,0,.6)' }}
           onClick={() => navigation.navigate('signin')}
         >

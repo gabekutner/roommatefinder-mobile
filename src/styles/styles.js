@@ -5,6 +5,7 @@ import overflow from './utils/overflow';
 import position from './utils/position';
 import sizing from './utils/sizing';
 import spacing from './utils/spacing';
+import shadow from './utils/shadow';
 /**ui */
 import buttons from './utils/ui/buttons';
 
@@ -16,6 +17,6 @@ export {
   position,
   sizing,
   spacing,
-  
+  shadow,
   buttons,
 }

@@ -5,7 +5,7 @@ import {
   TouchableOpacity 
 } from "react-native";
 
-import { buttons } from "../../styles/styles";
+import { buttons, shadow as sh } from "../../styles/styles";
 
 
 const withCustomProps = WrappedComponent => {
@@ -75,7 +75,7 @@ const withCustomProps = WrappedComponent => {
     const mergedStyles = {
       ...buttons.base,
       ...(variant === 'standard' ? buttons.standard : variant === 'outline' ? buttons.outline : {}),
-      ...(shadow && buttons.shadow),
+      ...(shadow && sh.shadow),
       // ...(size === 'small' ? Buttons.small : size === 'large' ? Buttons.large : Buttons.medium),
       // ...(circle && Buttons.circle),
       // ...(iconPosition === 'end' ? Buttons.iconAtEnd : iconPosition === 'start' ? Buttons.iconAtStart : Buttons.none),
