@@ -8,6 +8,7 @@ import spacing from './utils/spacing';
 import shadow from './utils/shadow';
 /**ui */
 import buttons from './utils/ui/buttons';
+import { adjustMarginTop } from './utils/adjustments/unitAdjustments';
 
 export { 
   borders,
@@ -19,4 +20,6 @@ export {
   spacing,
   shadow,
   buttons,
+  /**functions */
+  adjustMarginTop
 }

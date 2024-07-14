@@ -1,12 +1,9 @@
 import React from "react";
-
 import DatePicker from 'react-native-date-picker';
-
 import useStore from "../../zustand/store";
 
 
 export default function AgeScreen() {
-
   const form = useStore(state => state.form)
   const setForm = useStore(state => state.setForm)
 

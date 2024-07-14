@@ -54,7 +54,7 @@ Any array of styles associated with a single type of React element that has at l
 
 ## Inline Styles
 
-**Inline styles are forbidden.** If we run into a case where we feel it's necessary to conditionally render some styles, we should create a helper function then pass any modifying parameters to that function. Small helper functions can be written directly in `index.js`, but larger, more complex methods should be put in their own modules and imported into `index.js`.
+**Inline styles are mostly forbidden.** If we run into a case where we feel it's necessary to conditionally render some styles,  we should either create a helper function then pass any modifying parameters to that function or if the styles to be added are theme related we put them in as inline styles. Small helper functions can be written directly in `index.js`, but larger, more complex methods should be put in their own modules and imported into `index.js`.
 
 ```jsx
 // Bad - Do not use inline styles

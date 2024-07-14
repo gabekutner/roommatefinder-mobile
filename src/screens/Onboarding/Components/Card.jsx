@@ -4,7 +4,7 @@ import {
   Animated,
 } from "react-native";
 
-import { verticalScale, moderateScale } from 'react-native-size-matters';
+import { verticalScale } from 'react-native-size-matters';
 
 import Background from "./Base/Background";
 import Header from "./Base/Header";
@@ -12,21 +12,19 @@ import Carousel from "./Base/Carousel";
 import CustomText from "../../../components/UI/Custom/CustomText";
 
 import { colors } from "../../../constants/colors";
+import { flex, position, spacing, borders } from "../../../styles/styles";
 
 
 export default function BaseOnboardingCard({ navigation, route }) {
-
   const { data, next, back  } = route.params
-
   const scrollX = useRef(new Animated.Value(0)).current
   const [currentIndex, setCurrentIndex] = useState(0)
   const dataRef = useRef(null)
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index)
   }).current
-
-  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current
 
   const scrollNext = () => {
     if (currentIndex < data.length - 1) {
@@ -35,11 +33,11 @@ export default function BaseOnboardingCard({ navigation, route }) {
       navigation.navigate(next)
     }
   }
+
   const scrollBack = () => {
     if (currentIndex < data.length && currentIndex != 0) {
       dataRef.current.scrollToIndex({ index: currentIndex - 1 })
     } else {
-      // here, 
       if (back) {
         navigation.navigate(back)
       } else {
@@ -66,22 +64,23 @@ export default function BaseOnboardingCard({ navigation, route }) {
       />
       <View 
         style={{ 
-          position:'absolute',
-          left:0,
-          right:0,
+          ...position.pAbsolute,
+          ...position.l0,
+          ...position.r0,
+          ...flex.alignItemsCenter,
+          ...spacing.mh8,
+          ...spacing.pv4,
+          ...spacing.ph2,
+          ...borders.br3,
+          ...borders.bw2,
+          /**rewrite as function */
           bottom:verticalScale(35),
-          alignItems:'center',
-          backgroundColor:colors.primary,
-          marginHorizontal:moderateScale(25),
-          paddingVertical:verticalScale(12),
-          paddingHorizontal:6,
-          borderRadius:12,
-          borderWidth:2,
+          backgroundColor:colors.primary
         }}
       >
         <CustomText 
+          fontSize="medium"
           style={{ 
-            fontSize:verticalScale(11),
             fontWeight:'500',
             textAlign:'center',
             color:colors.tertiary

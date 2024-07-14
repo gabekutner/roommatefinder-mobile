@@ -1,13 +1,14 @@
 import React from "react";
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { verticalScale, moderateScale } from "react-native-size-matters";
+import { verticalScale } from "react-native-size-matters";
 
 import Paginator from "./Paginator";
 import CustomButton from "../../../../components/UI/Custom/CustomButton";
 
 import { colors } from "../../../../constants/colors";
+import { flex, spacing, adjustMarginTop, borders } from "../../../../styles/styles";
 
 
 export default function Header({ 
@@ -17,32 +18,49 @@ export default function Header({
   scrollX
 }) {
   return (
-    <View style={styles.container}>
+    <View 
+      style={{
+        ...flex.alignItemsCenter,
+        ...spacing.mh8,
+        ...(adjustMarginTop(50))
+      }}
+    >
       <View 
         style={{ 
-          ...styles.wrapper, 
-          justifyContent:'center', 
-          paddingVertical:verticalScale(10),
-          marginBottom:verticalScale(5),
+          backgroundColor:colors.primary,
+          ...flex.flexRow,
+          ...flex.alignItemsCenter,
+          ...borders.bw2,
+          ...borders.br3,
+          ...spacing.ph1,
+          ...flex.justifyContentCenter,
+          ...spacing.pv3,
+          ...spacing.mb1,
         }}
       >
         <Paginator data={data} scrollX={scrollX} />
       </View>
       <View 
         style={{ 
-          ...styles.wrapper, 
-          justifyContent:'space-between', 
+          backgroundColor:colors.primary,
           width:'65%',
+          ...flex.flexRow,
+          ...flex.alignItemsCenter,
+          ...borders.bw2,
+          ...borders.br3,
+          ...spacing.ph4,
+          ...flex.justifyContentBetween,
+          ...spacing.mb1,
         }}
       >
-        <CustomButton onClick={scrollBack} style={{ borderWidth:0 }}>
+        <CustomButton onClick={scrollBack} style={borders.bw0}>
           <FontAwesomeIcon
             icon='arrow-left'
             size={verticalScale(20)}
             color={colors.tint}
           />
         </CustomButton>
-        <CustomButton onClick={scrollNext} style={{ borderWidth:0 }}>
+        <CustomButton onClick={scrollNext} style={borders.bw0}>
           <FontAwesomeIcon
             icon='arrow-right'
             size={verticalScale(20)}
@@ -53,20 +71,3 @@ export default function Header({
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems:'center',
-    marginTop:verticalScale(50), 
-    marginHorizontal:moderateScale(50),
-  },
-  wrapper: {
-    alignItems:"center",
-    flexDirection:'row',
-    backgroundColor:colors.primary,
-    width:'100%',
-    paddingHorizontal:6,
-    borderRadius:12,
-    borderWidth:2,
-  } 
-})
