@@ -5,13 +5,14 @@ import {
   TouchableOpacity 
 } from "react-native";
 
-// import { Buttons } from "../../styles";
+import { buttons } from "../../styles/styles";
 
 
 const withCustomProps = WrappedComponent => {
   /** Props for WrappedComponent:
    * onClick: function
    * disabled: bool
+   * style : object
    * 
    * animated: bool
    * shadow: bool
@@ -23,15 +24,14 @@ const withCustomProps = WrappedComponent => {
   const WithCustomProps = ({ 
     onClick,
     disabled,
+    style,
 
     /** styles */
     animated, 
     shadow, 
-    scaleY,
-    scaleX,
+    circle,
     variant = 'standard', 
     size = 'medium', 
-    shape = 'square', 
     iconPosition = 'none', 
     ...props 
   }) => {
@@ -73,15 +73,14 @@ const withCustomProps = WrappedComponent => {
     }
     
     const mergedStyles = {
-      ...Buttons.base,
-      ...(variant === 'standard' ? Buttons.standard : Buttons.outline),
-      ...(scaleY && Buttons.scaleY),
-      ...(scaleX && Buttons.scaleX),
-      ...(shadow && Buttons.shadow),
-      ...(size === 'small' ? Buttons.small : size === 'large' ? Buttons.large : Buttons.medium),
-      ...(shape === 'circle' ? Buttons.circle : Buttons.square),
-      ...(iconPosition === 'end' ? Buttons.iconAtEnd : iconPosition === 'start' ? Buttons.iconAtStart : Buttons.none),
-      ...(animated ? {transform: [{ scale: scaleValue }]} : null )
+      ...buttons.base,
+      ...(variant === 'standard' ? buttons.standard : variant === 'outline' ? buttons.outline : {}),
+      ...(shadow && buttons.shadow),
+      // ...(size === 'small' ? Buttons.small : size === 'large' ? Buttons.large : Buttons.medium),
+      // ...(circle && Buttons.circle),
+      // ...(iconPosition === 'end' ? Buttons.iconAtEnd : iconPosition === 'start' ? Buttons.iconAtStart : Buttons.none),
+      ...(animated ? {transform: [{ scale: scaleValue }]} : null ),
+      ...style
     }
     return (
       <WrappedComponent 
