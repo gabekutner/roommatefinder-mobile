@@ -1,3 +1,5 @@
+/** deprecated after navigation moves to Auth/index.js */
+
 import React, { useState } from 'react';
 import { View } from 'react-native';
 

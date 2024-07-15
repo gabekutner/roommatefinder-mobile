@@ -1,8 +1,42 @@
 # React Native Styling Guidelines
 
-> Styling guide not yet implemented everywhere 
-
 ## Where to Define Styles
+
+Styles are defined in component folders with the `<component>.styles.js` name. Create them using `StyleSheet.create()`. 
+
+**StyleSheet benefits**:
+
+1. More readable code
+2. Persists between rerenders, so better in terms of performance and memory usage
+3. `StyleSheet.create` will create errors in the Simulator when styles can't be interpreted. This is useful for catching bugs.
+
+> The problem with StyleSheets is that they don't rerender so if styles depend on user input, those styles get defined in the inline styles. See the Themed Styles section to see how that works.
+
+## Themed Styles
+
+Themed styles are styles with colors in them. Ex. backgroundColor, borderColor, color, etc. These go in the inline styles like this ...
+
+```jsx
+import styles from './<component>.styles.js';
+
+function Component() {
+    return (
+        <Text 
+            style={[
+                styles.componentStyle,
+                { color: colors.tint }
+            ]}
+        >
+            Styled Component
+        </Text>
+    );
+};
+```
+
+
+<!-- ## Where to Define Styles
+
+
 
 Styles can either be theme-related or not. "Theme-related" means that a style contains some sort of color attributes (backgroundColor, color, borderColor). "Non-theme-related" styles may not contain no color attributes.
 
@@ -218,4 +252,4 @@ const CustomText = props => {
 )
 ```
 
-In that last example, there is just one simple element and no ambiguity about what `props.style` refers to. The component is used in many places and has some default styles, therefore we must add custom style handling behavior.
+In that last example, there is just one simple element and no ambiguity about what `props.style` refers to. The component is used in many places and has some default styles, therefore we must add custom style handling behavior. -->

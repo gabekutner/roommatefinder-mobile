@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Component Folders](#components)
 
 ## Introduction
 
@@ -10,7 +11,7 @@ For almost all of our code style rules, refer to the [Airbnb JavaScript Style Gu
 
 When writing ES6 or React code, please also refer to the [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react).
 
-## Component Folders
+## Components
 
 So far, we write our component with its business logic, UI, style, and types in one file. This will change now. We’ll split our components into the following:
 
@@ -36,5 +37,3 @@ Example folder component structure:
 With this separation, we enable two things. First, it is much easier to have one developer work on the business logic and one on the UI, without creating merge conflicts or other problems. Second, our components now have much better support for automated testing.
 
 We can use any component testing framework to render and test the views without having to mock our global state or our component state. And in addition to that, it’s much easier to integrate tools such as Storybook with this approach.
-
-
