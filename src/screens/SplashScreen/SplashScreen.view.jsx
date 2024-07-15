@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Animated, 
-  ImageBackground
-} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 
 import Title from '../../components/Brand/Title';
 import CustomText from '../../components/UI/Custom/CustomText';
@@ -15,43 +12,59 @@ const Container = props => {
   return (
     <ImageBackground
       source={require('../../assets/images/image_part_003.png')}
-      style={styles.container}
+      imageStyle={{ opacity: 0.6 }}
+      style={[styles.container, {backgroundColor: 'rgba(0,0,0,.6)' }]}
     >
-      {...props}
+      {props.children}
     </ImageBackground>
   );
 };
 
-const Title = props => {
+const HeaderTitle = () => {
   return (
-    <View style={styles.wrapper}>
-      <Animated.View style={{transform: [{ translateY: props.translateY }]}}>
-        <View style={[styles.title, { backgroundColor: colors.primary }]}>
+    <View style={styles.container}>
+      <View>
+        <View 
+          style={[
+            styles.wrapper, 
+            styles.title,
+            {backgroundColor: colors.primary}
+          ]}
+        >
           <Title 
             title='roommatefinder'
             color={colors.tint}
             style={{textAlign:'center'}}
           />
         </View>
-      </Animated.View>
+      </View>
     </View>
   );
 };
 
 const Version = props => {
   return (
-    <View style={styles.wrapper}>
+    <View 
+      style={[
+        styles.container, 
+        {
+          justifyContent: 'flex-end',
+          marginBottom:25
+        }
+      ]}
+    >
       <View 
-        styles={[
-          styles.versionContainer, 
-          { backgroundColor:colors.primary }
+        style={[
+          styles.wrapper, 
+          styles.version,
+          {backgroundColor: colors.primary}
         ]}
       >
         <CustomText 
           fontSize="large" 
           style={[
-            styles.versionText,
-            { color: colors.tint }
+            styles.text,
+            {color: colors.tint}
           ]}
         >
           {props.version}
@@ -62,4 +75,4 @@ const Version = props => {
 };
 
 
-export default {Container, Title, Version}
+export {Container, HeaderTitle, Version}

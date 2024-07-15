@@ -1,11 +1,11 @@
 export default {
-  familyTitle: 'LuckiestGuy-Regular',
-  familyRegular: 'NotoSans_Condensed-Regular',
+  familyTitle: {fontFamily: 'LuckiestGuy-Regular'},
+  familyRegular: {fontFamily: 'NotoSans_Condensed-Regular'},
 
-  sizeTitle: 18,
-  sizeRegular: 14,
+  sizeTitle: {fontSize: 18},
+  sizeRegular: {fontSize: 14},
 
-  fontBold: '600',
-  fontSemiBold: '500',
-  fontRegular: '400'
+  fontBold: {fontWeight: '600'},
+  fontSemiBold: {fontWeight: '500'},
+  fontRegular: {fontWeight: '400'}
 }

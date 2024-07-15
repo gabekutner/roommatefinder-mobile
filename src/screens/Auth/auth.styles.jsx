@@ -1,6 +1,3 @@
-/**
- * auth styles
- */
 import { StyleSheet } from "react-native";
 import {colors} from "../../constants/colors";
 import {shadow} from "../../styles/styles";

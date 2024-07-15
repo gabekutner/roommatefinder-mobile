@@ -1,16 +1,16 @@
 import {StatusBar} from "react-native";
-import {Container, Title, Version} from "./SplashScreen.view";
+import {Container, HeaderTitle, Version} from "./SplashScreen.view";
 
 
-function SplashScreen({ props }) {
+function SplashScreen() {
   return (
     <Container>
       {/* StatusBar deprecated after custom statusbar  */}
       <StatusBar barStyle='light-content' />
-      <Title />
-      <Version />
+      <HeaderTitle />
+      <Version version="1.0.0." />
     </Container>
-  ); 
+  );
 };
 
 export default SplashScreen;
