@@ -18,7 +18,7 @@ import {colors} from "../../../constants/colors";
 function Container(props) {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} style={{width:'100%'}}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {props.children}
       </ScrollView>
     </SafeAreaView>

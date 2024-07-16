@@ -16,7 +16,8 @@ function Row(props) {
         ...(
           props.pos === 'first' ? styles.rowFirst 
           : props.pos === 'last' ? styles.rowLast
-          : styles.rowMiddle
+          : props.pos === 'middle' ? styles.rowMiddle
+          : {borderRadius: 12}
         )
       }}
     >
@@ -25,9 +26,7 @@ function Row(props) {
           {props.text}
         </CustomText>
         <View style={styles.spacer} />
-        <CustomText fontSize="large">
-          {props.emoji}
-        </CustomText>
+        {props.children}
       </View>
     </CustomButton>
   );
