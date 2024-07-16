@@ -31,6 +31,9 @@ import PromptScreen from "../screens/Onboarding/Prompt";
 import useStore from "../zustand/store";
 import { colors } from "../constants/colors";
 
+/** new views */
+import {ProfileView} from "../views/Profile/Profile";
+
 
 export default function AppStack() {
 
@@ -134,7 +137,7 @@ export default function AppStack() {
         />
         <Tab.Screen 
           name="profile" 
-          component={Profile} 
+          component={ProfileView} 
           options={({ navigation }) => ({
             headerTitle: () => <Title title="Profile" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
@@ -152,7 +155,6 @@ export default function AppStack() {
             ),
             headerStyle: { backgroundColor:colors.secondary },
             headerShadowVisible: false, // border bottom invisible
-            
           })}
         />
       </Tab.Navigator>
