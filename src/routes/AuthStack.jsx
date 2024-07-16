@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import StartupScreen from "../screens/StartupScreen";
-import AuthScreen from "../screens/Auth";
+import SignIn from "../screens/Auth/SignIn";
+import SignUp from "../screens/Auth/SignUp"
 
 
 export default function AuthStack() {
@@ -17,21 +18,13 @@ export default function AuthStack() {
       />
       <Stack.Screen 
         name="signin"
-        component={AuthScreen}
+        component={SignIn}
         options={{headerShown: false}}
-        initialParams={{
-          page: 'signin',
-          title: 'Welcome back!'
-        }}
       />
       <Stack.Screen 
         name="signup"
-        component={AuthScreen}
+        component={SignUp}
         options={{headerShown: false}}
-        initialParams={{
-          page: 'signup',
-          title: 'Sign up to find your future roommate!'
-        }}
       />
     </Stack.Navigator>
   )
