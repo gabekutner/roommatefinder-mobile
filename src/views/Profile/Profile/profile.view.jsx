@@ -27,11 +27,6 @@ function Container(props) {
 
 
 function Title(props) {
-  /**props
-   * user.thumbnail
-   * user.name
-   * launchLibrary
-   */
   return (
     <View style={styles.titleWrapper}>
       <CustomButton
@@ -66,8 +61,6 @@ function Title(props) {
     </View>
   );
 };
-
-
 
 
 export {Container, Title};

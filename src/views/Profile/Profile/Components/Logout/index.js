@@ -1,18 +1,23 @@
 import React, {useState} from "react";
-import {Button} from 'react-native-paper';
 
+import {Button} from 'react-native-paper';
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
-import {colors} from "../../../../../constants/colors";
 import CustomText from "../../../../../components/UI/Custom/CustomText";
 
+import useStore from "../../../../../zustand/store";
+import {colors} from "../../../../../constants/colors";
+import {styles} from "./logout.styles";
 
-function Logout(props) {
+
+function Logout() {
+
+  const logout = useStore(state => state.logout);
 
   const [loading, setLoading] = useState(false);
   const onClick = () => {
     setLoading(true);
-    props.onClick();
+    logout();
     setLoading(false);
   };
 
@@ -27,7 +32,7 @@ function Logout(props) {
       textColor={colors.white}
       buttonColor={colors.accent}
       contentStyle={{height: 50}}
-      style={{borderRadius: 12}}
+      style={styles.button}
     >
       <CustomText fontSize="large" style={{fontWeight: '600'}}>
         Logout

@@ -136,7 +136,7 @@ function ProfileView({ navigation }) {
 
       {/* logout */}
       <View style={styles.section}>
-        <Logout onClick={() => console.log('logout')} />
+        <Logout />
       </View>
       
       <View style={{marginVertical: 50}} />
