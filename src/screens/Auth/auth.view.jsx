@@ -1,7 +1,3 @@
-/**
- * UI for auth
- * state is imported from ./index.js
- */
 import React from "react";
 import {
   Keyboard,
@@ -19,7 +15,6 @@ import {AuthAction} from "./Components/AuthAction";
 
 import {styles} from "./auth.styles";
 import {colors} from "../../constants/colors";
-import useStore from "../../zustand/store";
 
 
 function SignIn(props) {

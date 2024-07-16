@@ -4,7 +4,6 @@ import useStore from "../../../../zustand/store";
 import utils from "../../../../core/utils";
 
 
-
 const signin = props => {
   /** props
    * form : object
@@ -51,7 +50,7 @@ const signup = props => {
     // setShowError({ ...showError, status:true, message:"Missing credentials."})
     return;
   };
-  if (!utils.validEmail(form.email)) {
+  if (!utils.validEmail(props.form.email)) {
     // setShowError({ ...showError, status:true, message:"Invalid email address."})
     return;
   };
@@ -96,7 +95,7 @@ function AuthAction(props) {
   };
   if (props.text1 === 'Sign up') {
     return (
-      <Action onClick={() => console.log('nigg')} {...props} />
+      <Action onClick={() => signup({form: props.form, login})} {...props} />
     );
   };
 };

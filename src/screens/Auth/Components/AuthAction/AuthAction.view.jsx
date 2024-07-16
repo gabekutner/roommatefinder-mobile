@@ -8,15 +8,6 @@ import {styles} from "./AuthAction.styles";
 
 
 const Action = props => {
-  /** props
-   * 
-   * navigation : function : where to nav to
-   * onClick : function : what to do on button click 
-   * text1 : str : button text
-   * text2 : str : nav to text question
-   * text3 : str : nav to text 
-   * 
-   */
   return (
     <View>
       <CustomButtonComponent
