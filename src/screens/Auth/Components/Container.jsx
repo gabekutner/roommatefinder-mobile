@@ -10,7 +10,7 @@ import {
 import CustomText from "../../../components/UI/Custom/CustomText";
 import Title from "../../../components/Brand/Title";
 
-import { colors } from "../../../constants/colors";
+import {colors} from "../../../constants/colors";
 import { flex, shadow, spacing, borders } from "../../../styles/styles";
 
 

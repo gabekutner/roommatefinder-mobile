@@ -8,17 +8,21 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   ImageBackground,
+  View,
 } from "react-native";
 
-import CustomButtonComponent from '../../components/Button/CustomButtonComponent';
+import CustomLabel from "../../components/UI/Label";
+import Title from "../../components/Brand/Title";
+// import CustomButtonComponent from '../../components/Button/CustomButtonComponent';
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
+import {AuthAction} from "./Components/AuthAction";
 
 import {styles} from "./auth.styles";
 import {colors} from "../../constants/colors";
 
 
-function SignIn({ props }) {
+function SignIn(props) {
   return (
     <View>
       <CustomLabel color={colors.tint} label={'Email Address'} />
@@ -33,7 +37,7 @@ function SignIn({ props }) {
         iconColor={colors.tertiary}
         colors={colors}
         containerStyle={styles.inputContainer}
-        inputStyle={styles.inputText}
+        inputStyle={styles.text}
       />
 
       <CustomLabel color={colors.tint} label={'Password'} />
@@ -46,79 +50,114 @@ function SignIn({ props }) {
         icon='lock'
         iconColor={colors.tertiary}
         containerStyle={styles.inputContainer}
-        inputStyle={styles.inputText}
+        inputStyle={styles.text}
       />
 
-      {/* <CustomButtonComponent
-        variant='standard'
-        animated
-        shadow
-        onClick={() => onSignIn()}
-      >
-        <CustomText fontSize='large' style={{ fontWeight:'600', color:colors.white }}>
-          Log in
-        </CustomText>
-      </CustomButtonComponent>
-
-      <CustomButtonComponent
-        variant=''
-        animated
-        style={{ 
-          ...borders.bw0,
-          ...spacing.mt1
-        }}
-        onClick={() => navigation.navigate('signup')}
-      >  
-        <CustomText fontSize='medium' style={text}>
-          Don't have an account?{' '}
-          <CustomText 
-            fontSize='medium'
-            style={{ 
-              ...text, 
-              textDecorationLine:'underline' 
-            }}
-          >
-            Sign up
-          </CustomText>
-        </CustomText>
-      </CustomButtonComponent> */}
+      <AuthAction 
+        navigation={() => props.navigation.navigate('signup')} 
+        // onClick={props.submit}
+        onClick={() => console.log('submit')}
+        text1="Log in"
+        text2="Don't have an account? "
+        text3="Sign up"
+      />
     </View>
   );
 };
-function SignUp() {};
 
-function Auth({ props }) {
-  /** props
-   * 
-   * title: ''
-   * page: 'SignIn' | 'SignUp'
-   */
+function SignUp(props) {
+  return (
+    <View>
+      <CustomLabel color={colors.tint} label={'Name'} />
+      <CustomTextInput 
+        placeholder={''}
+        value={props.form.name}
+        onChangeText={name => props.setForm({ ...props.form, name })}
+        colors={colors}
+        icon="signature"
+        iconColor={colors.tertiary}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.text}
+      />
+
+      <CustomLabel color={colors.tint} label={'Email Address'} />
+      <CustomTextInput 
+        autoCapitalize={'none'}
+        autoCorrect={false}
+        keyboardType={'email-address'}
+        placeholder={'gabe@example.com'}
+        value={props.form.email}
+        onChangeText={email => props.setForm({ ...props.form, email })}
+        colors={colors}
+        icon="envelope"
+        iconColor={colors.tertiary}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.text}
+      />
+
+      <CustomLabel color={colors.tint} label={'Password'} />
+      <CustomTextInput 
+        secureTextEntry={true}
+        placeholder={'********'}
+        value={props.form.password}
+        onChangeText={password => props.setForm({ ...props.form, password })}
+        colors={colors}
+        icon="lock"
+        iconColor={colors.tertiary}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.text}
+      />
+      
+      <CustomLabel color={colors.tint} label={'Confirm Password'} />
+      <CustomTextInput 
+        secureTextEntry={true}
+        placeholder={'********'}
+        value={props.form.rpassword}
+        onChangeText={rpassword => props.setForm({ ...props.form, rpassword })}
+        colors={colors}
+        icon="lock"
+        iconColor={colors.tertiary}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.text}
+      />
+
+      <AuthAction 
+        navigation={() => props.navigation.navigate('signin')} 
+        onClick={() => console.log('submit')}
+        text1="Sign up"
+        text2="Already have an account? "
+        text3="Sign in"
+      />
+    </View>
+  );
+};
+
+function Auth(props) {
   return (
     <ImageBackground 
       source={require('../../assets/images/image_part_001.png')} 
-      style={styles.containerStyle}
+      style={[styles.container, {backgroundColor: 'rgba(0,0,0,.45)'}]}
       imageStyle={styles.containerImageStyle}
     > 
-      <KeyboardAvoidingView behavior="padding" style={{ flex:1 }}>
+      <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={styles.wrapper}>
+          <View style={styles.container}>
             <View style={styles.card}>
-              <View style={{marginVertical:20}}>
+              <View style={{ alignItems:'center', marginTop:15 }}>
                 <Title 
                   title='roommatefinder'
                   color={colors.tint}
-                  style={{textAlign:'center'}}
                 />
                 <CustomText 
                   fontSize="medium" 
-                  style={styles.title}
+                  style={[styles.title, styles.text]}
                 >
                   {/* Welcome back! */}
                   {/* Sign up to find your future roommate! */}
                   {props.title}
                 </CustomText>
               </View>
-              {...props.children}
+              {props.children}
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -127,4 +166,4 @@ function Auth({ props }) {
   );
 };
 
-export default {SignIn, SignUp, Auth};
+export {SignIn, SignUp, Auth};

@@ -1,46 +1,39 @@
 import { StyleSheet } from "react-native";
+
 import {colors} from "../../constants/colors";
 import {shadow} from "../../styles/styles";
+import sizes from "../../constants/sizes";
+import fonts from "../../constants/fonts";
 
 export const styles = StyleSheet.create({
-  containerStyle: {
-    flex:1,
-    backgroundColor:'rgba(0,0,0,.45)' 
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  containerImageStyle: {
-    opacity:0.6
-  },
+  containerImageStyle: {opacity: 0.6},
 
-  wrapper: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    width:'95%'
-  },
   card: {
-    paddingVertical:8,
-    paddingHorizontal:24,
-    borderRadius:12,
-    borderWidth:2,
+    paddingVertical: 8,
+    paddingHorizontal: 24,
+    ...(sizes.borderRadius),
+    ...(sizes.borderWidth),
+    marginHorizontal:65,
     backgroundColor:colors.primary,
-    ...shadow.shadow,
+    ...(shadow.shadow),
   },
+  
   title: {
     marginVertical:4,
-    color: colors.tint,
-    fontWeight:'bold', 
-    textAlign:'center',
+    ...(fonts.fontBold),
   },
 
   inputContainer: {
-    marginBottom:20,
-    borderWidth:2,
+    ...(sizes.borderWidth),
     backgroundColor:colors.secondary,
     borderColor:colors.tint   
   },
-  inputText: { 
-    color:colors.tint 
-  },
 
+  text: {color: colors.tint},
 
 });
