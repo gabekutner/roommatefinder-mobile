@@ -13,13 +13,13 @@ import {
 
 import CustomLabel from "../../components/UI/Label";
 import Title from "../../components/Brand/Title";
-// import CustomButtonComponent from '../../components/Button/CustomButtonComponent';
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
 import {AuthAction} from "./Components/AuthAction";
 
 import {styles} from "./auth.styles";
 import {colors} from "../../constants/colors";
+import useStore from "../../zustand/store";
 
 
 function SignIn(props) {
@@ -32,7 +32,7 @@ function SignIn(props) {
         keyboardType={'email-address'}
         placeholder={'gabe@example.com'}
         value={props.form.email}
-        onChangeText={email => props.setForm({ ...form, email })}
+        onChangeText={email => props.setForm({ ...props.form, email })}
         icon="envelope"
         iconColor={colors.tertiary}
         colors={colors}
@@ -45,7 +45,7 @@ function SignIn(props) {
         secureTextEntry={true}
         placeholder={'********'}
         value={props.form.password}
-        onChangeText={password => props.setForm({ ...form, password })}
+        onChangeText={password => props.setForm({ ...props.form, password })}
         colors={colors}
         icon='lock'
         iconColor={colors.tertiary}
@@ -55,11 +55,10 @@ function SignIn(props) {
 
       <AuthAction 
         navigation={() => props.navigation.navigate('signup')} 
-        // onClick={props.submit}
-        onClick={() => console.log('submit')}
         text1="Log in"
         text2="Don't have an account? "
         text3="Sign up"
+        form={props.form}
       />
     </View>
   );
@@ -123,10 +122,10 @@ function SignUp(props) {
 
       <AuthAction 
         navigation={() => props.navigation.navigate('signin')} 
-        onClick={() => console.log('submit')}
         text1="Sign up"
         text2="Already have an account? "
         text3="Sign in"
+        form={props.form}
       />
     </View>
   );

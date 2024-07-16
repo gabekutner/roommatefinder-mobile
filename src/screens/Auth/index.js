@@ -11,12 +11,11 @@ import useStore from '../../zustand/store';
 import api from '../../core/api';
 
 
-const login = useStore(state => state.login)
-
 const signin = props => {
   /** props
    * form : object
    */
+  // const login = useStore(state => state.login)
   if (!props.form.email || !props.form.password) {
     // setShowError({ ...showError, status:true, message:"Missing credentials."})
     return;
@@ -37,7 +36,7 @@ const signin = props => {
       email: props.form.email,
       password: props.form.password,
     };
-    login(
+    props.login(
       credentials,
       response.data,
       {
@@ -54,6 +53,7 @@ const signup = props => {
   /** props
    * form : object
    */
+  // const login = useStore(state => state.login)
   if (!props.form.name || !props.form.email || !props.form.password || !props.form.rpassword) {
     // setShowError({ ...showError, status:true, message:"Missing credentials."})
     return;
@@ -66,7 +66,6 @@ const signup = props => {
     // setShowError({ ...showError, status:true, message:"Your passwords don't match." })
     return;
   };
-
   api({
     method: 'post',
     url: '/api/v1/profiles/',
@@ -108,7 +107,7 @@ function AuthScreen({ route, navigation }) {
         <SignIn 
           navigation={navigation} 
           form={form} 
-          setForm={setForm} 
+          setForm={setForm}
         />
       </Auth>
     );
