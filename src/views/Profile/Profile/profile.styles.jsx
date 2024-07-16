@@ -33,6 +33,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
   },
-  
+
+  section: {
+    borderWidth:0,
+    borderRadius: 12,
+    backgroundColor: colors.primary,
+    marginHorizontal: 25, 
+    marginTop: 15,
+  },
 
 });
