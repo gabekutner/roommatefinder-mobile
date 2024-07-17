@@ -23,6 +23,18 @@ const normalizedStories = [
       /^\.(?:(?:^|\/|(?:(?:(?!(?:^|\/)\.).)*?)\/)(?!\.)(?=.)[^/]*?\.stories\.(?:ts|tsx|js|jsx)?)$/
     ),
   },
+  {
+    titlePrefix: "",
+    directory: "./src/views/Profile/Profile/Components/Logout",
+    files: "logout.stories.js",
+    importPathMatcher: /^\.[\\/](?:logout\.stories\.js)$/,
+    // @ts-ignore
+    req: require.context(
+      "../src/views/Profile/Profile/Components/Logout",
+      false,
+      /^\.[\\/](?:logout\.stories\.js)$/
+    ),
+  },
 ];
 
 declare global {
