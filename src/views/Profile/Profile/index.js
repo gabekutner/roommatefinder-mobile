@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {
+  Alert,
   View, 
   Switch
 } from "react-native";
@@ -25,6 +26,26 @@ const launchLibrary = props => {
   });
 };
 
+const DeleteProfile = props => {
+  return (
+    Alert.alert(
+      'Delete Account', 
+      "Are you sure you want to delete your account? You'll have to create an account again to come back 😒", 
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: "Yep, I'm sure", 
+          onPress: () => props.onPress(),
+          style: 'destructive'
+        },
+      ]
+    )
+  );
+};
 
 function ProfileView({ navigation }) {
 
@@ -32,6 +53,8 @@ function ProfileView({ navigation }) {
   const uploadThumbnail = useStore(state => state.uploadThumbnail);
   const getSwipeProfile = useStore(state => state.getSwipeProfile);
   const pauseProfile = useStore(state => state.pauseProfile);
+  const deleteProfile = useStore(state => state.deleteProfile);
+  const logout = useStore(state => state.logout);
 
   const [item, setItem] = useState()
   useEffect(() => {
@@ -46,6 +69,11 @@ function ProfileView({ navigation }) {
   const toggleSwitch = () =>{
     setIsEnabled(previousState => !previousState);
     pauseProfile(user);
+  };
+
+  const deleteProfileFunction = () => {
+    deleteProfile(user);
+    logout();
   };
 
   return (
@@ -127,14 +155,13 @@ function ProfileView({ navigation }) {
 
       <View style={styles.section}>
         <Row
-          onClick={() => console.log('alert')}
+          onClick={() => DeleteProfile({onPress: deleteProfileFunction})}
           text="Delete Account?"
         >
           <CustomText fontSize="medium">🚨</CustomText>
         </Row>
       </View>
 
-      {/* logout */}
       <View style={styles.section}>
         <Logout />
       </View>
