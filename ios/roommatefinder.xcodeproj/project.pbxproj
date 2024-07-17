@@ -18,7 +18,9 @@
 		24372078855F480E8025E554 /* pnghut_halftone-art-pattern-area-technology.png in Resources */ = {isa = PBXBuildFile; fileRef = A3701DE90F15431E99AA49D6 /* pnghut_halftone-art-pattern-area-technology.png */; };
 		3D718D807E624C1B86B79828 /* image_part_002.png in Resources */ = {isa = PBXBuildFile; fileRef = 291EED564C414B3A9A8406D4 /* image_part_002.png */; };
 		42E60AEBDD204284A2AF12DA /* Acme-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 426E976268124640A83CF511 /* Acme-Regular.ttf */; };
+		54440F5FE29B4D5BA4C58FBB /* base_uofu-removebg-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = D21ABFC47AF74FF9B3014603 /* base_uofu-removebg-preview.png */; };
 		651514B587E146F8A35E80B8 /* font info.txt in Resources */ = {isa = PBXBuildFile; fileRef = D1769E8B30F243EAB3A93A89 /* font info.txt */; };
+		6E5C4823A5A7419984027A83 /* SuezOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7C00213339346C18656659E /* SuezOne-Regular.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-roommatefinder-roommatefinderTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-roommatefinder-roommatefinderTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B52AF85E02542099F9F712D /* blambotcustom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */; };
@@ -74,8 +76,10 @@
 		A3701DE90F15431E99AA49D6 /* pnghut_halftone-art-pattern-area-technology.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "pnghut_halftone-art-pattern-area-technology.png"; path = "../src/assets/images/pnghut_halftone-art-pattern-area-technology.png"; sourceTree = "<group>"; };
 		A43A84D9141E4B498D78AF35 /* Glegoo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Glegoo-Regular.ttf"; path = "../src/assets/fonts/Glegoo-Regular.ttf"; sourceTree = "<group>"; };
 		B0949059BA7D4CCBB7EE554F /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "LuckiestGuy-Regular.ttf"; path = "../src/assets/fonts/LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
+		C7C00213339346C18656659E /* SuezOne-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SuezOne-Regular.ttf"; path = "../src/assets/fonts/SuezOne-Regular.ttf"; sourceTree = "<group>"; };
 		D1769E8B30F243EAB3A93A89 /* font info.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "font info.txt"; path = "../src/assets/fonts/blambot-custom/font info.txt"; sourceTree = "<group>"; };
 		D1B7E02CEF494DA5A7615A14 /* profile.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = profile.png; path = ../src/assets/images/profile.png; sourceTree = "<group>"; };
+		D21ABFC47AF74FF9B3014603 /* base_uofu-removebg-preview.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "base_uofu-removebg-preview.png"; path = "../src/assets/images/base_uofu-removebg-preview.png"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -149,6 +153,8 @@
 				74615B02772A4F4DA31F6FC4 /* blambotcustom.ttf */,
 				B0949059BA7D4CCBB7EE554F /* LuckiestGuy-Regular.ttf */,
 				43A65889328C493A8A9CA98F /* GideonRoman-Regular.ttf */,
+				C7C00213339346C18656659E /* SuezOne-Regular.ttf */,
+				D21ABFC47AF74FF9B3014603 /* base_uofu-removebg-preview.png */,
 			);
 			name = Resources;
 			path = "";
@@ -318,6 +324,8 @@
 				8B52AF85E02542099F9F712D /* blambotcustom.ttf in Resources */,
 				A4A562685317409D97A5A03F /* LuckiestGuy-Regular.ttf in Resources */,
 				9B1212B5673F4691BEEB01F1 /* GideonRoman-Regular.ttf in Resources */,
+				6E5C4823A5A7419984027A83 /* SuezOne-Regular.ttf in Resources */,
+				54440F5FE29B4D5BA4C58FBB /* base_uofu-removebg-preview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

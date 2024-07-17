@@ -26,12 +26,20 @@
       "sha1": "e8da78b2c0105dfe4d76bba6baf2f298746eaaf9"
     },
     {
+      "path": "src/assets/fonts/SuezOne-Regular.ttf",
+      "sha1": "8578ca6ddd359b5bd8963e897004fe306356dc13"
+    },
+    {
       "path": "src/assets/fonts/blambot-custom/font info.txt",
       "sha1": "2580fe6212390fbb3ce806f675a1f3dcad0d8cf1"
     },
     {
       "path": "src/assets/fonts/blambotcustom.ttf",
       "sha1": "bc64d264e2f9e8aee1421a12c1e9422a10e52871"
+    },
+    {
+      "path": "src/assets/images/base_uofu-removebg-preview.png",
+      "sha1": "1a07d0ab058c1ff50a2c667e12b32e37cdd8ddd6"
     },
     {
       "path": "src/assets/images/image_part_001.png",

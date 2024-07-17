@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import SplashScreen from "../screens/SplashScreen";
+import {MessagingMock} from "../mockups/messaging.mock";
+import { OnboardingMock } from "../mockups/onboarding.mock";
 
 
 export default function SplashStack() {
@@ -11,7 +13,7 @@ export default function SplashStack() {
     <Stack.Navigator>
       <Stack.Screen 
         name='splash' 
-        component={SplashScreen} 
+        component={OnboardingMock} 
         options={{ headerShown:false }} 
       />
     </Stack.Navigator>
