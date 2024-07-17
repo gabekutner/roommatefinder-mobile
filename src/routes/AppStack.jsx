@@ -33,6 +33,7 @@ import { colors } from "../constants/colors";
 
 /** new views */
 import {ProfileView} from "../views/Profile/Profile";
+import {EditProfileView} from "../views/Profile/EditProfile";
 
 
 export default function AppStack() {
@@ -221,7 +222,7 @@ export default function AppStack() {
       {/* edit profile */}
       <Stack.Screen 
         name='edit-basics' 
-        component={EditBasicsScreen} 
+        component={EditProfileView} 
         options={({ navigation }) => ({
           headerLeft: () => (
             <CustomButton 
