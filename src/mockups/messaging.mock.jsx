@@ -45,8 +45,8 @@ function MessagingMock(props) {
             <Text style={{ fontSize:14, color:theme.accent }}>Online</Text>
           </View>
         </View>
-        <View style={{ flex:1 }}>
-          <FontAwesomeIcon icon="ellipsis-vertical"/>
+        <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>
+          <FontAwesomeIcon icon="ellipsis-vertical" size={30} color={theme.black} />
         </View>
       </View>
       <View style={{ flex:1 }}></View>
