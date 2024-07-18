@@ -8,14 +8,33 @@ import App from './App';
 import {name as appName} from './app.json';
 
 /** edit theme here ... */
-const theme = {}
+const customTheme = {
+  // ...DefaultTheme,
+  dark: false,
+  roundness: 4,
+  colors: {
+    primary: '#132331', // key components
+    secondary: '#FFFFFF', // less prominent components
+    tertiary: '#BE0000', // contrasting accents
+    background: '#F2F1E2', 
 
-export default function Main() {
+    error: '#',
+    surfaceVariant: '#D9DBCE', // medium emphasis on background
+    surfaceDisabled: '#', // disabled state
+
+    // custom
+    _tint_primary: '#5A6773',
+    _tint_secondary: '#B8BBBD'
+  },
+
+};
+
+function Main() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={customTheme}>
       <App />
     </PaperProvider>
-  )
-}
+  );
+};
 
 AppRegistry.registerComponent(appName, () => Main);

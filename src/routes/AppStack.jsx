@@ -16,7 +16,7 @@ import Profile from "../screens/Profile/Profile";
 import SwipeScreen from "../screens/SwipeScreen";
 import Search from "../screens/Extras/Search/Search";
 import Requests from '../screens/Extras/Requests/Requests';
-import Message from "../screens/Chat/Message";
+// import Message from "../screens/Chat/Message";
 import ProfileDetail from '../screens/Profile/ProfileDetail';
 import EditBasicsScreen from "../screens/Profile/Edit/EditBasics";
 import LinkTreeScreen from "../screens/Onboarding/Widgets/LinkTree";
@@ -34,6 +34,7 @@ import { colors } from "../constants/colors";
 /** new views */
 import {ProfileView} from "../views/Profile/Profile";
 import {EditProfileView} from "../views/Profile/EditProfile";
+import {Message} from "../views/Chat/Message";
 
 
 export default function AppStack() {
@@ -186,9 +187,7 @@ export default function AppStack() {
       <Stack.Screen 
         name='messages' 
         component={Message}
-        options={{
-          headerShadowVisible: false, // border bottom invisible
-        }}
+        options={{headerShown: false}}
       />
       <Stack.Screen 
         name='requests' 
