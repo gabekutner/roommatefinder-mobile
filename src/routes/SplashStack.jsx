@@ -13,7 +13,7 @@ export default function SplashStack() {
     <Stack.Navigator>
       <Stack.Screen 
         name='splash' 
-        component={OnboardingMock} 
+        component={MessagingMock} 
         options={{ headerShown:false }} 
       />
     </Stack.Navigator>

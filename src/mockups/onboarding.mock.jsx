@@ -32,10 +32,10 @@ function OnboardingMock(props) {
       <View style={{ flex:.2, justifyContent:'center', paddingLeft:15 }}>
         <Text style={{ fontSize:verticalScale(20), fontFamily:'SuezOne-Regular', color:theme.black }}>RoommateFinder®</Text>
       </View>
-      <View style={{ flex:1, backgroundColor: 'green' }}></View>
+      <View style={{ flex:1, backgroundColor: theme._tertiary_text_on_black }}></View>
       <View style={{ paddingHorizontal:20, flex:.7, flexDirection:'row', flexWrap:'wrap' }}>
         <Text style={{ fontSize:verticalScale(35), fontFamily:'SuezOne-Regular', color:theme.black }}>
-          WITH{' '}
+          LOREM{' '}
           <View style={{ borderRadius:12, backgroundColor:theme.accent, }}>
             <Text 
               style={{ 
@@ -45,10 +45,10 @@ function OnboardingMock(props) {
                 marginHorizontal:5
               }}
             >
-              PEOPLE
+              IPSUM
             </Text>
           </View>
-          {' '}ALL OVER THE WORLD
+          {' '}DOLOR SIT AMET
         </Text>
         <Text
           style={{  
@@ -57,7 +57,8 @@ function OnboardingMock(props) {
             fontWeight:'600',
           }}
         >
-          Talk to strangers about my candid remarks that I've never told anyone.</Text>
+          Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+        </Text>
       </View>
       <View style={{ flex:.3, flexDirection:'row', alignItems:'center', paddingHorizontal:scale(20), gap:scale(7) }}>
         <View style={{ width:scale(55), height:scale(55), backgroundColor:theme.black, borderRadius:18, justifyContent:'center', alignItems:'center' }}>
