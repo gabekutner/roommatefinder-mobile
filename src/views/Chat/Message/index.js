@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import {Platform, InputAccessoryView, View} from "react-native";
+import {Platform, InputAccessoryView} from "react-native";
 
 import {useTheme} from "react-native-paper";
 import useStore from "../../../zustand/store";
 
 import {Container, MessagesWrapper} from "./message.view";
 import {MessageHeader} from "./Components/MessageHeader";
+import {MessageInput} from "./Components/MessageInput";
 
 
 function Message({ navigation, route }) {
@@ -51,23 +52,23 @@ function Message({ navigation, route }) {
         connectionId={connectionId}
         friend={friend}        
       />
-      {/* {Platform.OS === 'ios' ? (
+      {Platform.OS === 'ios' ? (
 				<InputAccessoryView>
 					<MessageInput 
 						message={message}
 						setMessage={onType}
 						onSend={onSend}
-						colors={colors}
+						theme={theme}
 					/>
 				</InputAccessoryView>
 			) : (
-				<MessageInput 
+				<MessageInput
 					message={message}
 					setMessage={onType}
 					onSend={onSend}
-					colors={colors}
+					theme={theme}
 				/>
-			)} */}
+			)}
     </Container>
   );
 };
