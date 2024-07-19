@@ -13,7 +13,6 @@ function Message({ navigation, route }) {
   const theme = useTheme();
 
   const [message, setMessage] = useState('');
-
 	const messagesList = useStore(state => state.messagesList);
 	const messagesNext = useStore(state => state.messagesNext);
 	const messageList = useStore(state => state.messageList);
@@ -50,7 +49,8 @@ function Message({ navigation, route }) {
         messagesList={messagesList}
         messagesNext={messagesNext}
         connectionId={connectionId}
-        friend={friend}        
+        friend={friend}   
+				theme={theme}     
       />
       {Platform.OS === 'ios' ? (
 				<InputAccessoryView>
