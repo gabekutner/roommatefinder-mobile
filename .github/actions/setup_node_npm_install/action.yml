@@ -1,0 +1,20 @@
+# 🔗 Links:
+# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/actions/setup-node-npm-install/action.yml
+
+name: "Setup Node + NPM + Install Dependencies"
+description: "Setup Node + NPM + Install Dependencies"
+
+# The workflow runs using a composite run steps strategy
+runs:
+  using: "composite"
+  # Steps to be executed in the workflow
+  steps:
+    # Step 1: Setup Node.js version 18
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: "npm"
+    # Step 2: Install project dependencies using npm
+    - name: 📦 Install Project Dependencies
+      run: npm install
+      shell: bash
