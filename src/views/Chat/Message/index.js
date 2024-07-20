@@ -9,7 +9,7 @@ import {MessageHeader} from "./Components/MessageHeader";
 import {MessageInput} from "./Components/MessageInput";
 
 
-function Message({ navigation, route }) {
+function MessageView({ navigation, route }) {
   const theme = useTheme();
 
   const [message, setMessage] = useState('');
@@ -73,4 +73,4 @@ function Message({ navigation, route }) {
   );
 };
 
-export {Message};
+export {MessageView};

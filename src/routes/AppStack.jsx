@@ -35,7 +35,7 @@ import { colors } from "../constants/colors";
 import {ProfileView} from "../views/Profile/Profile";
 import {EditProfileView} from "../views/Profile/EditProfile";
 /**change name to MessageView */
-import {Message} from "../views/Chat/Message";
+import {MessageView} from "../views/Chat/Message";
 import {FriendsView} from "../views/Chat/Friends";
 import { useTheme } from "react-native-paper";
 
@@ -191,7 +191,7 @@ export default function AppStack() {
       />
       <Stack.Screen 
         name='messages' 
-        component={Message}
+        component={MessageView}
         options={{headerShown: false}}
       />
       <Stack.Screen 
