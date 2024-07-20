@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import SplashScreen from "../screens/SplashScreen";
+import { MockCard } from "../../__mocks__/mock.card";
 
 
 export default function SplashStack() {
@@ -11,7 +12,7 @@ export default function SplashStack() {
     <Stack.Navigator>
       <Stack.Screen 
         name='splash' 
-        component={SplashScreen} 
+        component={MockCard} 
         options={{ headerShown:false }} 
       />
     </Stack.Navigator>
