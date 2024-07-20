@@ -36,6 +36,13 @@
       #     prettier: true
 name: "Nothing, just nothing"
 description: "Literally does nothing"
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
 branding:
     icon: "slash"
     color: "gray-dark"
