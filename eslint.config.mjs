@@ -36,5 +36,8 @@ export default [...fixupConfigRules(compat.extends(
 
     rules: {
         "jsx-quotes": ["error", "prefer-double"],
+        "react/prop-types": 0, // not a typescript project
+        
+        // Remove any other rules related to type checking if present
     },
 }];

@@ -40,7 +40,7 @@ function FriendsView({ navigation }) {
       <Empty 
         emoji={'💬'} 
         refresh={onRefresh}
-        message='Nothing yet... Match with roommates and check back later!' 
+        message="Nothing yet... Match with roommates and check back later!" 
       />
     );
 	};

@@ -6,7 +6,7 @@ function SplashScreen() {
   return (
     <Container>
       {/* StatusBar deprecated after custom statusbar  */}
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle="light-content" />
       <HeaderTitle />
       <Version version="1.0.0." />
     </Container>
