@@ -45,7 +45,7 @@ function MessageTypingAnimation(props) {
 				height: 8,
 				marginHorizontal: 1.5,
 				borderRadius: 4,
-				backgroundColor: '#606060',
+				backgroundColor: props.theme.colors.tertiary,
 				transform: [{ translateY }]
 			}}
 		/>
