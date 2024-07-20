@@ -1,33 +1,35 @@
-name: Lint JSX (eslint, prettier)
+name: Lint
 
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  lint:
-    name: Lint JSX (eslint, prettier)
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout project repo
+      - name: Check out Git repository
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          fetch-depth: 0
+          node-version: 12
 
-      - name: 📦 Setup Node + NPM + install deps
-        uses: ./.github/actions/setup-node-npm-install
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm ci
 
-      - name: 🏃‍♂️ Run ESLint PR
-        if: github.event_name == 'pull_request'
-        uses: reviewdog/action-eslint@v1
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          eslint_flags: ". --ext .js,.jsx,.ts,.tsx"
-
-      - name: 🏃‍♂️ Run ESLint PR
-        if: github.event_name != 'pull_request'
-        run: npm run lint
+          eslint: true
+          prettier: true
