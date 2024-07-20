@@ -25,6 +25,8 @@ const customTheme = {
     // custom
     _tint_primary: '#5A6773',
     _tint_secondary: '#B8BBBD'
+
+    // 454A58
   },
 
 };

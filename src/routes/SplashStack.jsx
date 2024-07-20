@@ -4,15 +4,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import SplashScreen from "../screens/SplashScreen";
-import { MockCard } from "../../__mocks__/mock.card";
-
+import { MockFriend } from "../../__mocks__/mock.friends";
 
 export default function SplashStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
         name='splash' 
-        component={MockCard} 
+        component={MockFriend} 
         options={{ headerShown:false }} 
       />
     </Stack.Navigator>
