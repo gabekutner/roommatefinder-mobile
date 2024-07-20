@@ -14,12 +14,12 @@ import useStore from './src/zustand/store';
 
 // export {default} from './.storybook';
 export default function App() {
-  // const initialized = useStore(state => state.initialized)
-  // const authenticated = useStore(state => state.authenticated)
-  // const profileCreated = useStore(state => state.profileCreated)
-  const initialized = false
-  const authenticated = false
-  const profileCreated = false
+  const initialized = useStore(state => state.initialized)
+  const authenticated = useStore(state => state.authenticated)
+  const profileCreated = useStore(state => state.profileCreated)
+  // const initialized = false
+  // const authenticated = false
+  // const profileCreated = false
   const init = useStore(state => state.init)
 
   useEffect(() => {
