@@ -12,7 +12,12 @@ import {colors} from "../../../constants/colors";
 
 function Container(props) {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView 
+      style={[
+        styles.container, 
+        {backgroundColor: props.theme.colors.background}
+      ]}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
         {props.children}
       </ScrollView>

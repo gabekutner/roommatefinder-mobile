@@ -163,7 +163,7 @@ export default function AppStack() {
           options={({navigation}) => ({
             headerTitle: () => (
               <Title
-                title="Profile"
+                title="Your Profile"
                 color={colors.tint}
                 fontSize={verticalScale(20)}
               />
@@ -181,7 +181,7 @@ export default function AppStack() {
                 />
               </CustomButton>
             ),
-            headerStyle: {backgroundColor: colors.secondary},
+            headerStyle: {backgroundColor: theme.colors.background},
             headerShadowVisible: false, // border bottom invisible
           })}
         />
