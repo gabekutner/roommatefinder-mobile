@@ -1,4 +1,4 @@
-name: Standard Issue
+name: Basic Issue
 description: Use this when no other templates work for you
 labels: []
 projects: []
@@ -6,14 +6,8 @@ assignees:
   - gabekutner
 
 body:
-  - type: input
-    id: title
-    attributes:
-      label: Title here ..
-
   - type: textarea
     id: what
     attributes:
-      label: Description here ..
-
-  
+      label: What's the problem?
+      description: Description here ..
