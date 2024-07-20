@@ -34,10 +34,15 @@ import { colors } from "../constants/colors";
 /** new views */
 import {ProfileView} from "../views/Profile/Profile";
 import {EditProfileView} from "../views/Profile/EditProfile";
+/**change name to MessageView */
 import {Message} from "../views/Chat/Message";
+import {FriendsView} from "../views/Chat/Friends";
+import { useTheme } from "react-native-paper";
 
 
 export default function AppStack() {
+
+  const theme = useTheme();
 
   const socketConnect = useStore(state => state.socketConnect)
   const socketDisconnect = useStore(state => state.socketDisconnect)
@@ -114,7 +119,7 @@ export default function AppStack() {
         />
         <Tab.Screen 
           name="friends" 
-          component={Friends} 
+          component={FriendsView} 
           options={({ navigation }) => ({
             headerTitle: () => <Title title="Friends" color={colors.tint} fontSize={verticalScale(20)} />,
             headerTitleAlign:'left',
@@ -133,7 +138,7 @@ export default function AppStack() {
                 />
               </CustomButton>
             ),
-            headerStyle: { backgroundColor:colors.primary },
+            headerStyle: { backgroundColor: theme.colors.background },
             headerShadowVisible: false, // border bottom invisible
           })}
         />

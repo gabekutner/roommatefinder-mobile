@@ -15,7 +15,6 @@ export default function Empty({
   emoji,
   message, 
   centered=true, 
-  // colors, 
   refresh,
 }) {
   return (

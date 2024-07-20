@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 
-export default function Cell({ children, colors }) {
+export default function Cell({ children }) {
 	return (
 		<View
 			style={{
@@ -11,7 +11,6 @@ export default function Cell({ children, colors }) {
 				flexDirection: 'row',
 				alignItems: 'center',
 				borderBottomWidth: .3,
-				borderColor: colors.tertiary,
 				height: verticalScale(90)
 			}}
 		>
