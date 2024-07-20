@@ -1,12 +1,11 @@
 name: Report a performance issue
-description: Use to report an issue or propose a solution related to app performance 
+description: Use to report an issue or propose a solution related to app performance
 labels: ["Engineering"]
 title: "[Performance] "
 projects: []
 assignees:
   - gabekutner
 body:
-
   - type: textarea
     id: what-issue
     attributes:
@@ -30,7 +29,7 @@ body:
       description: Please also provide exact steps taken to collect metrics above if any so we can independently verify the results.
     validations:
       required: false
-  
+
   - type: textarea
     id: solution
     attributes:
@@ -38,7 +37,7 @@ body:
       description: Please list out the steps you think we should take to solve this issue.
     validations:
       required: true
-  
+
   - type: textarea
     id: benchmarks-changes
     attributes:

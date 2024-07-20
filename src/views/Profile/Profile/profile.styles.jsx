@@ -4,13 +4,13 @@ import {colors} from "../../../constants/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.primary
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.primary,
   },
 
   titleWrapper: {
-    alignItems: 'center',
+    alignItems: "center",
     backgroundColor: colors.secondary,
     paddingVertical: 15,
     borderBottomLeftRadius: 65,
@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
   },
   name: {
     color: colors.tint,
-    fontWeight: '600',
-    marginVertical: 15
+    fontWeight: "600",
+    marginVertical: 15,
   },
 
   iconWrapper: {
@@ -29,17 +29,16 @@ export const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 2,
   },
 
   section: {
-    borderWidth:0,
+    borderWidth: 0,
     borderRadius: 12,
     backgroundColor: colors.primary,
-    marginHorizontal: 25, 
+    marginHorizontal: 25,
     marginTop: 15,
   },
-
 });

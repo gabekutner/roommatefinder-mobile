@@ -1,13 +1,12 @@
 import {StyleSheet} from "react-native";
 
-
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: "100%",
     height: 100,
 
-    flexDirection: 'row', 
-    borderBottomLeftRadius: 35, 
+    flexDirection: "row",
+    borderBottomLeftRadius: 35,
     borderBottomRightRadius: 35,
 
     shadowColor: "#000",
@@ -17,12 +16,12 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
   },
   mt: {marginTop: 20},
   wrapper: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-  }
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

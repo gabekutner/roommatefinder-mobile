@@ -1,66 +1,65 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import {View, StyleSheet} from "react-native";
 
-import { moderateScale, verticalScale } from "react-native-size-matters";
+import {moderateScale, verticalScale} from "react-native-size-matters";
 
 import CustomTextInput from "../../components/UI/Custom/CustomInput";
 
 import useStore from "../../zustand/store";
-import { colors } from "../../constants/colors";
-
+import {colors} from "../../constants/colors";
 
 export default function HomeTownScreen() {
-  const form = useStore(state => state.form)
-  const setForm = useStore(state => state.setForm)
+  const form = useStore((state) => state.form);
+  const setForm = useStore((state) => state.setForm);
 
   return (
     <View style={styles.container}>
-      <CustomTextInput 
+      <CustomTextInput
         autoCorrect={false}
-        placeholder={'Ex. San Francisco'}
+        placeholder={"Ex. San Francisco"}
         value={form.city}
-        onChangeText={value => setForm({ ...form, city:value })}
+        onChangeText={(value) => setForm({...form, city: value})}
         colors={colors}
-        icon={'location-dot'}
+        icon={"location-dot"}
         iconColor={colors.tertiary}
         iconSize={verticalScale(13)}
-        containerStyle={{ 
-          ...styles.inputContainer, 
-          width:'80%',
-          paddingRight:moderateScale(45) 
+        containerStyle={{
+          ...styles.inputContainer,
+          width: "80%",
+          paddingRight: moderateScale(45),
         }}
         inputStyle={styles.text}
-      />  
-      <CustomTextInput 
+      />
+      <CustomTextInput
         autoCorrect={false}
-        placeholder={'CA'}
+        placeholder={"CA"}
         value={form.state}
-        onChangeText={value => setForm({ ...form, state:value })}
+        onChangeText={(value) => setForm({...form, state: value})}
         colors={colors}
         containerStyle={{
           ...styles.inputContainer,
-          width:'18%',
-          paddingLeft:moderateScale(8),
-          paddingRight:0
+          width: "18%",
+          paddingLeft: moderateScale(8),
+          paddingRight: 0,
         }}
         inputStyle={styles.text}
-      />  
+      />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection:'row',
-    gap:moderateScale(8),
+    flexDirection: "row",
+    gap: moderateScale(8),
   },
   inputContainer: {
-    height:verticalScale(45),
-    marginBottom:verticalScale(14),
-    backgroundColor:colors.secondary,
-    borderRadius:12,
-    borderWidth:2,
-    borderColor:colors.tint,
+    height: verticalScale(45),
+    marginBottom: verticalScale(14),
+    backgroundColor: colors.secondary,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: colors.tint,
   },
-  text: { color:colors.tint }
-})
+  text: {color: colors.tint},
+});

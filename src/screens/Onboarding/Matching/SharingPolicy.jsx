@@ -1,13 +1,7 @@
-import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, {useState} from "react";
+import {View, StyleSheet} from "react-native";
 
-import {
-  moderateScale,
-  verticalScale
-} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from "react-native-size-matters";
 
 // import Base from "../Components/Base";
 import Label from "../Components/Label";
@@ -17,16 +11,14 @@ import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
 // import useGlobal from "../../../core/global";
 import useStore from "../../../zustand/store";
-import { colors } from "../../../constants/colors";
+import {colors} from "../../../constants/colors";
 
-
-export default function SharingPolicyScreen({ route, navigation }) {
-
+export default function SharingPolicyScreen({route, navigation}) {
   // const { navTo, action } = route.params
 
-  const user = useStore(state => state.user)
-  const matchingForm = useStore(state => state.matchingForm)
-  const setMatchingForm = useStore(state => state.setMatchingForm)
+  const user = useStore((state) => state.user);
+  const matchingForm = useStore((state) => state.matchingForm);
+  const setMatchingForm = useStore((state) => state.setMatchingForm);
   // const submitMatchingForm = useGlobal(state => state.submitMatchingForm)
   // const editMatchingForm = useGlobal(state => state.editMatchingForm)
 
@@ -40,28 +32,51 @@ export default function SharingPolicyScreen({ route, navigation }) {
 
   return (
     <View style={styles.optionsContainer}>
-      <MultipleChoiceOption 
+      <MultipleChoiceOption
         text="I'm cool with sharing everything - food, clothes, you name it … just maybe not my underwear."
         selected={matchingForm.sharing_policy}
-        setSelected={() => setMatchingForm({ ...matchingForm, sharing_policy:"I'm cool with sharing everything - food, clothes, you name it … just maybe not my underwear." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            sharing_policy:
+              "I'm cool with sharing everything - food, clothes, you name it … just maybe not my underwear.",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="I'm open to sharing some things, but not everything." 
+      <MultipleChoiceOption
+        text="I'm open to sharing some things, but not everything."
         selected={matchingForm.sharing_policy}
-        setSelected={() => setMatchingForm({ ...matchingForm, sharing_policy:"I'm open to sharing some things, but not everything." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            sharing_policy:
+              "I'm open to sharing some things, but not everything.",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="Occasional sharing is chill, but not all the time." 
+      <MultipleChoiceOption
+        text="Occasional sharing is chill, but not all the time."
         selected={matchingForm.sharing_policy}
-        setSelected={() => setMatchingForm({ ...matchingForm, sharing_policy:"Occasional sharing is chill, but not all the time." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            sharing_policy:
+              "Occasional sharing is chill, but not all the time.",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="I'm not big on sharing - my stuff is my stuff." 
+      <MultipleChoiceOption
+        text="I'm not big on sharing - my stuff is my stuff."
         selected={matchingForm.sharing_policy}
-        setSelected={() => setMatchingForm({ ...matchingForm, sharing_policy:"I'm not big on sharing - my stuff is my stuff." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            sharing_policy: "I'm not big on sharing - my stuff is my stuff.",
+          })
+        }
       />
     </View>
-        
+
     //     <CustomText
     //       style={{
     //         marginTop:verticalScale(25),
@@ -86,7 +101,7 @@ export default function SharingPolicyScreen({ route, navigation }) {
     //         shadowColor:'#222',
     //         shadowOffset: { width:5, height:3 },
     //         shadowOpacity:1,
-    //         shadowRadius:1, 
+    //         shadowRadius:1,
     //         borderRadius:0,
     //         borderWidth:2
     //       }}
@@ -103,18 +118,18 @@ export default function SharingPolicyScreen({ route, navigation }) {
     //     </CustomButton>
     //   </View>
     // </>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   optionsContainer: {
-    flexDirection:'column',
-    gap:verticalScale(20),
-    backgroundColor:colors.secondary,
-    padding:verticalScale(20),
-    borderRadius:12,
-    borderWidth:2,
-    width:'100%',
-    alignItems:'flex-start'
-  }
-})
+    flexDirection: "column",
+    gap: verticalScale(20),
+    backgroundColor: colors.secondary,
+    padding: verticalScale(20),
+    borderRadius: 12,
+    borderWidth: 2,
+    width: "100%",
+    alignItems: "flex-start",
+  },
+});

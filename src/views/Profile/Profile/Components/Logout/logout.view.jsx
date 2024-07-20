@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Button} from 'react-native-paper';
+import {Button} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
 import CustomText from "../../../../../components/UI/Custom/CustomText";
@@ -12,20 +12,24 @@ function LogoutButton(props) {
     <Button
       loading={props.loading}
       icon={() => (
-        <FontAwesomeIcon icon="right-from-bracket" size={20} color={colors.white} />
+        <FontAwesomeIcon
+          icon="right-from-bracket"
+          size={20}
+          color={colors.white}
+        />
       )}
-      mode="elevated" 
+      mode="elevated"
       onPress={props.onClick}
       textColor={colors.white}
       buttonColor={colors.accent}
       contentStyle={{height: 50}}
       style={styles.button}
     >
-      <CustomText fontSize="large" style={{fontWeight: '600'}}>
+      <CustomText fontSize="large" style={{fontWeight: "600"}}>
         Logout
       </CustomText>
     </Button>
   );
-};
+}
 
 export {LogoutButton};

@@ -1,4 +1,5 @@
 # React Performance Tips
+
 > copied from [New Expensify](https://github.com/Expensify/App/blob/main/contributingGuides/PERFORMANCE.md?plain=1)
 
 - Always test performance with the production build as development mode is not optimized.
@@ -31,12 +32,14 @@ In order to profile with Hermes, follow these steps:
 - This should create a json file in the directory where we typed the previous command that we can load up into Chrome Dev Tools "Performance" tab via the "Load Profile" option and inspect further.
 
 ### React DevTools Profiler
+
 - The React DevTools Profiler can also be used to detect similar information to Chrome Dev Tools, but is a little more streamlined. There is also an options cog where you can filter events by cutting at a specified millisecond (length it took for the thing to happen)
 - Try checking the option to "Record why each component rendered while profiling". This may provide insights into why the component rendered unnecessarily.
 
 **Suggested:** [Deep Dive with the React DevTools creator](https://www.youtube.com/watch?v=nySib7ipZdk)
 
 ### Why Did You Render?
+
 - Why Did You Render (WDYR) sends console notifications about potentially avoidable component re-renders.
 - It can also help to simply track when and why a certain component re-renders.
 - To enable it, set `USE_WDYR=true` in your `.env` file.
@@ -70,6 +73,7 @@ signingConfigs {
         }
 }
 ```
+
 - Delete any existing apps off emulator or device
 - Run `react-native run-android --variant release`
 
@@ -81,7 +85,7 @@ Re-rendering can be expensive at times and when dealing with nested props or sta
 
 In this example, the most preferable solution would be to **only pass the properties that the object needs to know about** to the component in the first place.
 
-Another option would be to use `shouldComponentUpdate` or `React.memo()` to add more specific rules comparing `props` to **explicitly  tell React not to perform a re-render**.
+Another option would be to use `shouldComponentUpdate` or `React.memo()` to add more specific rules comparing `props` to **explicitly tell React not to perform a re-render**.
 
 React might still take some time to re-render a component when its parent component renders. If it takes a long time to re-render the child even though we have no props changing, then we can use `PureComponent` or `React.memo()` (without a callback) which will "shallow compare" the `props` to see if a component should re-render.
 

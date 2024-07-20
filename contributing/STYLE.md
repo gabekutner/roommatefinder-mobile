@@ -16,15 +16,14 @@ When writing ES6 or React code, please also refer to the [Airbnb React/JSX Style
 So far, we write our component with its business logic, UI, style, and types in one file. This will change now. We’ll split our components into the following:
 
 - index.js: The index file contains the business logic of the component such as data fetching, as well as the connection to the global application state. It only renders the following .view component.
-  
 - [component].view.jsx: The view file contains the UI. It doesn’t hold its own state nor does it connect directly to the global application state. It only renders the props it gets from the index file.
-  
 - [component].styles.jsx: The styles file contains the React Native StyleSheet or the styled-components, depending on which approach you chose. Refer to the `contributing/STYLING.md` file.
 
 Example folder component structure:
+
 ```bash
 ├── component
-│   ├── components│   
+│   ├── components│
 │   │  ├── component
 │   │  │  ├── component
 │   │  │  └── index.js

@@ -21,7 +21,7 @@ body:
     attributes:
       label: Commit Number
       description: What version of the app were you working with?
-      placeholder: '99'
+      placeholder: "99"
     validations:
       required: true
 
@@ -32,7 +32,7 @@ body:
       description: Break down in number of steps
     validations:
       required: true
-  
+
   - type: textarea
     id: shoulda-happened
     attributes:
@@ -56,7 +56,7 @@ body:
       description: Can the user still use roommatefinder without this being fixed?
     validations:
       required: false
-  
+
   - type: dropdown
     id: platform
     attributes:

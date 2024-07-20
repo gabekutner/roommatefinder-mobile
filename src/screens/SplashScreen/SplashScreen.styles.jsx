@@ -3,18 +3,17 @@ import {StyleSheet} from "react-native";
 import sizes from "../../constants/sizes";
 import fonts from "../../constants/fonts";
 
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   wrapper: {
     paddingHorizontal: 12,
-    ...(sizes.borderWidth),
-    ...(sizes.borderRadius),
+    ...sizes.borderWidth,
+    ...sizes.borderRadius,
   },
   title: {
     paddingTop: 15,
@@ -23,7 +22,7 @@ export const styles = StyleSheet.create({
   version: {paddingVertical: 10},
 
   text: {
-		textAlign:'center',
-    ...(fonts.fontBold)
-  }
-})
+    textAlign: "center",
+    ...fonts.fontBold,
+  },
+});

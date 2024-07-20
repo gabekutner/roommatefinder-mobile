@@ -6,7 +6,6 @@
 // import CustomText from "../../../../../components/UI/Custom/CustomText";
 // import CustomButton from "../../../../../components/UI/Custom/CustomButton";
 
-
 // function Row(props) {
 //   /** props
 //    * onClick
@@ -18,12 +17,12 @@
 //     <CustomButton onClick={props.onClick} style={props.style}>
 //       <View style={styles.row}>
 //         <CustomText
-//           fontSize="medium" 
+//           fontSize="medium"
 //           style={[
-//             styles.rowLabel, 
+//             styles.rowLabel,
 //             {
-//               color:colors.white, 
-//               fontWeight:'600' 
+//               color:colors.white,
+//               fontWeight:'600'
 //             }
 //           ]}
 //         >

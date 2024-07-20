@@ -5,22 +5,46 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
 import {styles} from "./messageHeader.styles";
 
-
 function MessageHeader(props) {
   return (
-    <View 
+    <View
       style={[
         styles.container,
-        {backgroundColor: props.theme.colors.secondary}
+        {backgroundColor: props.theme.colors.secondary},
       ]}
     >
-      <TouchableOpacity onPress={() => props.navigation.goBack()} style={[styles.wrapper, styles.mt]}>
-        <FontAwesomeIcon icon="arrow-left" size={22} color={props.theme.colors.primary} />
+      <TouchableOpacity
+        onPress={() => props.navigation.goBack()}
+        style={[styles.wrapper, styles.mt]}
+      >
+        <FontAwesomeIcon
+          icon="arrow-left"
+          size={22}
+          color={props.theme.colors.primary}
+        />
       </TouchableOpacity>
-      <View style={[styles.mt, { flex:4, alignItems:'center', flexDirection:'row', gap:10}]}>
-        <View style={{height:50, width:50, backgroundColor:props.theme.colors.primary, borderRadius:60}} />
+      <View
+        style={[
+          styles.mt,
+          {flex: 4, alignItems: "center", flexDirection: "row", gap: 10},
+        ]}
+      >
+        <View
+          style={{
+            height: 50,
+            width: 50,
+            backgroundColor: props.theme.colors.primary,
+            borderRadius: 60,
+          }}
+        />
         <View>
-          <Text style={{fontSize: 20, fontFamily: 'SuezOne-Regular', color: props.theme.colors.primary}}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontFamily: "SuezOne-Regular",
+              color: props.theme.colors.primary,
+            }}
+          >
             {props.friend.name}
           </Text>
           <Text style={{fontSize: 14, color: props.theme.colors.tertiary}}>
@@ -31,6 +55,6 @@ function MessageHeader(props) {
       </View>
     </View>
   );
-};
+}
 
-export {MessageHeader}
+export {MessageHeader};

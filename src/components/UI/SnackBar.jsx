@@ -1,15 +1,7 @@
-import React, { 
-  useState, 
-  useEffect 
-} from "react";
-import {
-  View, 
-  TouchableOpacity, 
-  StyleSheet 
-} from "react-native";
+import React, {useState, useEffect} from "react";
+import {View, TouchableOpacity, StyleSheet} from "react-native";
 
 import CustomText from "./Custom/CustomText";
-
 
 export default function Snackbar({
   message,
@@ -24,16 +16,16 @@ export default function Snackbar({
   textColor,
   actionTextColor,
 }) {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(true);
   useEffect(() => {
     if (isVisible) {
       const timeout = setTimeout(() => {
-        setIsVisible(false)
-      }, duration)
+        setIsVisible(false);
+      }, duration);
 
-      return () => clearTimeout(timeout)
+      return () => clearTimeout(timeout);
     }
-  }, [isVisible, duration])
+  }, [isVisible, duration]);
 
   return isVisible ? (
     <View
@@ -41,10 +33,12 @@ export default function Snackbar({
         styles.container,
         position === "top" ? styles.topContainer : styles.bottomContainer,
         containerStyle,
-        { backgroundColor:backgroundColor },
+        {backgroundColor: backgroundColor},
       ]}
     >
-      <CustomText style={[styles.messageText, messageStyle, { color: textColor }]}>
+      <CustomText
+        style={[styles.messageText, messageStyle, {color: textColor}]}
+      >
         {message}
       </CustomText>
       {actionText && (
@@ -53,7 +47,7 @@ export default function Snackbar({
             style={[
               styles.actionText,
               actionTextStyle,
-              { color: actionTextColor },
+              {color: actionTextColor},
             ]}
           >
             {actionText}
@@ -61,28 +55,28 @@ export default function Snackbar({
         </TouchableOpacity>
       )}
     </View>
-  ) : null
+  ) : null;
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding:16,
-    borderRadius:4,
-    flexDirection:"row",
-    alignItems:"center",
-    justifyContent:"space-between",
-    position:"absolute",
-    left:0,
-    right:0,
+    padding: 16,
+    borderRadius: 4,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    position: "absolute",
+    left: 0,
+    right: 0,
   },
-  topContainer: { top:15 },
-  bottomContainer: { bottom:15 },
-  messageText: { 
-    fontSize:16,
-    maxWidth:'80%',
+  topContainer: {top: 15},
+  bottomContainer: {bottom: 15},
+  messageText: {
+    fontSize: 16,
+    maxWidth: "80%",
   },
   actionText: {
-    marginLeft:8,
-    fontSize:14,
+    marginLeft: 8,
+    fontSize: 14,
   },
-})
+});

@@ -4,10 +4,8 @@ import {LogoutButton} from "./logout.view";
 
 import useStore from "../../../../../zustand/store";
 
-
 function Logout() {
-
-  const logout = useStore(state => state.logout);
+  const logout = useStore((state) => state.logout);
 
   const [loading, setLoading] = useState(false);
   const onClick = () => {
@@ -16,12 +14,7 @@ function Logout() {
     setLoading(false);
   };
 
-  return (
-    <LogoutButton 
-      loading={loading}
-      onClick={onClick}
-    />
-  );
-}; 
+  return <LogoutButton loading={loading} onClick={onClick} />;
+}
 
 export {Logout};

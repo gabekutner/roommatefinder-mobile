@@ -7,38 +7,32 @@ import {TextInput} from "react-native-paper";
 
 import {styles} from "./messageInput.styles";
 
-
 function MessageInput(props) {
   return (
     <View style={styles.container}>
-			<TextInput
+      <TextInput
         mode="outlined"
         value={props.message}
         onChangeText={props.setMessage}
-      
         placeholder="Write a message"
         placeholderTextColor={props.theme.colors.surfaceVariant}
         outlineColor={props.theme.colors.surfaceVariant}
         activeOutlineColor={props.theme.colors.primary}
         textColor={props.theme.colors.primary}
-
         style={{flex: 1, paddingRight: 50}}
       />
-      <TouchableOpacity 
+      <TouchableOpacity
         onPress={props.onSend}
-        style={[
-          styles.button,
-          {backgroundColor: props.theme.colors.tertiary}
-        ]} 
+        style={[styles.button, {backgroundColor: props.theme.colors.tertiary}]}
       >
-        <FontAwesomeIcon 
-          icon={"paper-plane"} 
-          size={25} 
-          color={props.theme.colors.secondary} 
+        <FontAwesomeIcon
+          icon={"paper-plane"}
+          size={25}
+          color={props.theme.colors.secondary}
         />
       </TouchableOpacity>
-		</View>
+    </View>
   );
-};
+}
 
 export {MessageInput};

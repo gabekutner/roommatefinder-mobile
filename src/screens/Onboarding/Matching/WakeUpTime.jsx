@@ -1,54 +1,60 @@
 import React from "react";
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from "react-native";
 
-import { verticalScale } from 'react-native-size-matters';
+import {verticalScale} from "react-native-size-matters";
 
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
 import useStore from "../../../zustand/store";
-import { colors } from "../../../constants/colors";
-
+import {colors} from "../../../constants/colors";
 
 export default function WakeUpScreen() {
-
-  const matchingForm = useStore(state => state.matchingForm)
-  const setMatchingForm = useStore(state => state.setMatchingForm)
+  const matchingForm = useStore((state) => state.matchingForm);
+  const setMatchingForm = useStore((state) => state.setMatchingForm);
 
   return (
     <View style={styles.optionsContainer}>
-      <MultipleChoiceOption 
+      <MultipleChoiceOption
         text="5am"
         selected={matchingForm.wake_up_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"5am" })}
+        setSelected={() =>
+          setMatchingForm({...matchingForm, wake_up_time: "5am"})
+        }
       />
-      <MultipleChoiceOption 
-        text="6am" 
+      <MultipleChoiceOption
+        text="6am"
         selected={matchingForm.wake_up_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"6am" })}
+        setSelected={() =>
+          setMatchingForm({...matchingForm, wake_up_time: "6am"})
+        }
       />
-      <MultipleChoiceOption 
-        text="8am" 
+      <MultipleChoiceOption
+        text="8am"
         selected={matchingForm.wake_up_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"8am" })}
+        setSelected={() =>
+          setMatchingForm({...matchingForm, wake_up_time: "8am"})
+        }
       />
-      <MultipleChoiceOption 
-        text="10am" 
+      <MultipleChoiceOption
+        text="10am"
         selected={matchingForm.wake_up_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, wake_up_time:"10am" })}
+        setSelected={() =>
+          setMatchingForm({...matchingForm, wake_up_time: "10am"})
+        }
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   optionsContainer: {
-    flexDirection:'column',
-    gap:verticalScale(20),
-    backgroundColor:colors.secondary,
-    padding:verticalScale(20),
-    borderRadius:12,
-    borderWidth:2,
-    width:'100%',
-    alignItems:'flex-start'
-  }
-})
+    flexDirection: "column",
+    gap: verticalScale(20),
+    backgroundColor: colors.secondary,
+    padding: verticalScale(20),
+    borderRadius: 12,
+    borderWidth: 2,
+    width: "100%",
+    alignItems: "flex-start",
+  },
+});

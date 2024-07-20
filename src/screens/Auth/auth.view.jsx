@@ -16,18 +16,17 @@ import {AuthAction} from "./Components/AuthAction";
 import {styles} from "./auth.styles";
 import {colors} from "../../constants/colors";
 
-
 function SignIn(props) {
   return (
     <View>
-      <CustomLabel color={colors.tint} label={'Email Address'} />
-      <CustomTextInput 
-        autoCapitalize={'none'}
+      <CustomLabel color={colors.tint} label={"Email Address"} />
+      <CustomTextInput
+        autoCapitalize={"none"}
         autoCorrect={false}
-        keyboardType={'email-address'}
-        placeholder={'gabe@example.com'}
+        keyboardType={"email-address"}
+        placeholder={"gabe@example.com"}
         value={props.form.email}
-        onChangeText={email => props.setForm({ ...props.form, email })}
+        onChangeText={(email) => props.setForm({...props.form, email})}
         icon="envelope"
         iconColor={colors.tertiary}
         colors={colors}
@@ -35,21 +34,21 @@ function SignIn(props) {
         inputStyle={styles.text}
       />
 
-      <CustomLabel color={colors.tint} label={'Password'} />
-      <CustomTextInput 
+      <CustomLabel color={colors.tint} label={"Password"} />
+      <CustomTextInput
         secureTextEntry={true}
-        placeholder={'********'}
+        placeholder={"********"}
         value={props.form.password}
-        onChangeText={password => props.setForm({ ...props.form, password })}
+        onChangeText={(password) => props.setForm({...props.form, password})}
         colors={colors}
-        icon='lock'
+        icon="lock"
         iconColor={colors.tertiary}
         containerStyle={styles.inputContainer}
         inputStyle={styles.text}
       />
 
-      <AuthAction 
-        navigation={() => props.navigation.navigate('signup')} 
+      <AuthAction
+        navigation={() => props.navigation.navigate("signup")}
         text1="Log in"
         text2="Don't have an account? "
         text3="Sign up"
@@ -57,16 +56,16 @@ function SignIn(props) {
       />
     </View>
   );
-};
+}
 
 function SignUp(props) {
   return (
     <View>
-      <CustomLabel color={colors.tint} label={'Name'} />
-      <CustomTextInput 
-        placeholder={''}
+      <CustomLabel color={colors.tint} label={"Name"} />
+      <CustomTextInput
+        placeholder={""}
         value={props.form.name}
-        onChangeText={name => props.setForm({ ...props.form, name })}
+        onChangeText={(name) => props.setForm({...props.form, name})}
         colors={colors}
         icon="signature"
         iconColor={colors.tertiary}
@@ -74,14 +73,14 @@ function SignUp(props) {
         inputStyle={styles.text}
       />
 
-      <CustomLabel color={colors.tint} label={'Email Address'} />
-      <CustomTextInput 
-        autoCapitalize={'none'}
+      <CustomLabel color={colors.tint} label={"Email Address"} />
+      <CustomTextInput
+        autoCapitalize={"none"}
         autoCorrect={false}
-        keyboardType={'email-address'}
-        placeholder={'gabe@example.com'}
+        keyboardType={"email-address"}
+        placeholder={"gabe@example.com"}
         value={props.form.email}
-        onChangeText={email => props.setForm({ ...props.form, email })}
+        onChangeText={(email) => props.setForm({...props.form, email})}
         colors={colors}
         icon="envelope"
         iconColor={colors.tertiary}
@@ -89,25 +88,12 @@ function SignUp(props) {
         inputStyle={styles.text}
       />
 
-      <CustomLabel color={colors.tint} label={'Password'} />
-      <CustomTextInput 
+      <CustomLabel color={colors.tint} label={"Password"} />
+      <CustomTextInput
         secureTextEntry={true}
-        placeholder={'********'}
+        placeholder={"********"}
         value={props.form.password}
-        onChangeText={password => props.setForm({ ...props.form, password })}
-        colors={colors}
-        icon="lock"
-        iconColor={colors.tertiary}
-        containerStyle={styles.inputContainer}
-        inputStyle={styles.text}
-      />
-      
-      <CustomLabel color={colors.tint} label={'Confirm Password'} />
-      <CustomTextInput 
-        secureTextEntry={true}
-        placeholder={'********'}
-        value={props.form.rpassword}
-        onChangeText={rpassword => props.setForm({ ...props.form, rpassword })}
+        onChangeText={(password) => props.setForm({...props.form, password})}
         colors={colors}
         icon="lock"
         iconColor={colors.tertiary}
@@ -115,8 +101,21 @@ function SignUp(props) {
         inputStyle={styles.text}
       />
 
-      <AuthAction 
-        navigation={() => props.navigation.navigate('signin')} 
+      <CustomLabel color={colors.tint} label={"Confirm Password"} />
+      <CustomTextInput
+        secureTextEntry={true}
+        placeholder={"********"}
+        value={props.form.rpassword}
+        onChangeText={(rpassword) => props.setForm({...props.form, rpassword})}
+        colors={colors}
+        icon="lock"
+        iconColor={colors.tertiary}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.text}
+      />
+
+      <AuthAction
+        navigation={() => props.navigation.navigate("signin")}
         text1="Sign up"
         text2="Already have an account? "
         text3="Sign in"
@@ -124,26 +123,23 @@ function SignUp(props) {
       />
     </View>
   );
-};
+}
 
 function Auth(props) {
   return (
-    <ImageBackground 
-      source={require('../../assets/images/image_part_001.png')} 
-      style={[styles.container, {backgroundColor: 'rgba(0,0,0,.45)'}]}
+    <ImageBackground
+      source={require("../../assets/images/image_part_001.png")}
+      style={[styles.container, {backgroundColor: "rgba(0,0,0,.45)"}]}
       imageStyle={styles.containerImageStyle}
-    > 
-      <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
+    >
+      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={styles.container}>
             <View style={styles.card}>
-              <View style={{ alignItems:'center', marginTop:15 }}>
-                <Title 
-                  title='roommatefinder'
-                  color={colors.tint}
-                />
-                <CustomText 
-                  fontSize="medium" 
+              <View style={{alignItems: "center", marginTop: 15}}>
+                <Title title="roommatefinder" color={colors.tint} />
+                <CustomText
+                  fontSize="medium"
                   style={[styles.title, styles.text]}
                 >
                   {/* Welcome back! */}
@@ -158,6 +154,6 @@ function Auth(props) {
       </KeyboardAvoidingView>
     </ImageBackground>
   );
-};
+}
 
 export {SignIn, SignUp, Auth};

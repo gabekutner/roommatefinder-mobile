@@ -9,8 +9,6 @@
 
 ## Introduction
 
-
-
 ## Workflow
 
 1. **Single point of information**: (Github issue tracker) - all app changes show up here as an issue.

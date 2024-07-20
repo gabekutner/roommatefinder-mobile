@@ -2,7 +2,7 @@
 
 > not yet implemented
 
-### Base Components 
+### Base Components
 
 - **GenericPressable**: A basic pressable component with generic functionality. It should generally only be used to creating a new, custom pressable components. Avoid using it directly.
 
@@ -12,11 +12,12 @@
 
 - **PressableWithoutFocus**: A pressable component without visible efect of focus.
 
-- **PressableWithDelayToggle**:  A pressable component that briefly disables then re-enables after a short delay upon pressing.
+- **PressableWithDelayToggle**: A pressable component that briefly disables then re-enables after a short delay upon pressing.
 
 Accessibility props are unified across all platforms.
 
 ### Creating accessible flows
+
 When implementing pressable components, it's essential to create accessible flows to ensure that users with disabilities can efficiently interact with the app.
 
 - ensure that after performing press focus is set on the correct next element - this is especially important for keyboard users who rely on focus to navigate the app. All Pressable components have a `nextFocusRef` prop that can be used to set the next focusable element after the pressable component. This prop accepts a ref to the next focusable element. For example, if you have a button that opens a modal, you can set the next focus to the first focusable element in the modal. This way, when the user presses the button, focus will be set on the first focusable element in the modal, and the user can continue navigating the modal using the keyboard.
@@ -30,20 +31,21 @@ When implementing pressable components, it's essential to create accessible flow
 - ensure that the pressable component has a role. This is especially important for users with visual disabilities who rely on screen readers to navigate the app. All Pressable components have a `accessibilityRole` prop that can be used to set the role of the pressable component.
 
 ### Testing for accessibility
+
 It's important to test for accessibility to ensure that the created component has accessibility properties set correctly. This can be done using the following tools:
 
 - **iOS**  
-For iOS, you can use the `accessibility inspector` app to test for accessibility. You can find it in the Xcode menu under `Xcode > Open Developer Tool > Accessibility Inspector`. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as VoiceOver, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set/passed correctly.
+  For iOS, you can use the `accessibility inspector` app to test for accessibility. You can find it in the Xcode menu under `Xcode > Open Developer Tool > Accessibility Inspector`. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as VoiceOver, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set/passed correctly.
 
 - **Android**  
-For Android, you can use the [accessibility scanner](https://support.google.com/accessibility/android/answer/6376570) app to test for accessibility. You can find it in the Google Play Store. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as TalkBack, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set correctly. The [result of the accessibility scanner](https://support.google.com/accessibility/android/answer/6376559) app has information about content labeling, implementation, touch target size and low contrast
-This tool requires an installed APK to test on. 
+  For Android, you can use the [accessibility scanner](https://support.google.com/accessibility/android/answer/6376570) app to test for accessibility. You can find it in the Google Play Store. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as TalkBack, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set correctly. The [result of the accessibility scanner](https://support.google.com/accessibility/android/answer/6376559) app has information about content labeling, implementation, touch target size and low contrast
+  This tool requires an installed APK to test on.
 
 - **Web/Desktop**  
-On Mac, you can use the [VoiceOver](https://www.apple.com/accessibility/mac/vision/) app to test for accessibility. You can find it in the Mac menu under `System Preferences > Accessibility > VoiceOver` or by pressing `Cmd + F5`. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as VoiceOver, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set correctly. 
-
+  On Mac, you can use the [VoiceOver](https://www.apple.com/accessibility/mac/vision/) app to test for accessibility. You can find it in the Mac menu under `System Preferences > Accessibility > VoiceOver` or by pressing `Cmd + F5`. This app allows you to inspect the accessibility properties of any element on the screen. You can also use it to simulate different accessibility settings, such as VoiceOver, color blindness, and more. It's a great tool for testing whether created component has accessibility properties set correctly.
 
 ### Valuable resources
+
 - [Apple accessibility guidelines](https://developer.apple.com/design/human-interface-guidelines/accessibility/overview/introduction/)
 - [Google accessibility guidelines](https://developer.android.com/guide/topics/ui/accessibility)
 - [Web accessibility guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)

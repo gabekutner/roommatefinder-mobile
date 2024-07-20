@@ -8,46 +8,47 @@ import Empty from "../../../components/Empty";
 
 import useStore from "../../../zustand/store";
 
-
-function FriendsView({ navigation }) {
+function FriendsView({navigation}) {
   const theme = useTheme();
 
-  const friendList = useStore(state => state.friendList);
-	const refreshFriendList = useStore(state => state.refreshFriendList);
-	const [refreshing, setRefreshing] = useState(false);
+  const friendList = useStore((state) => state.friendList);
+  const refreshFriendList = useStore((state) => state.refreshFriendList);
+  const [refreshing, setRefreshing] = useState(false);
 
-	const onRefresh = useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
-		refreshFriendList();
+    refreshFriendList();
     setTimeout(() => {
       setRefreshing(false);
     }, 700);
   }, []);
 
-	if (friendList === null) {
-		return <ActivityIndicator 
-			style={{ 
-				flex: 1, 
-				justifyContent: 'center', 
-				alignItems: 'center', 
-				backgroundColor: theme.colors.background
-			}} 
-		/>
-	}
-
-	if (friendList.length === 0) {
-		return (
-      <Empty 
-        emoji={'💬'} 
-        refresh={onRefresh}
-        message="Nothing yet... Match with roommates and check back later!" 
+  if (friendList === null) {
+    return (
+      <ActivityIndicator
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: theme.colors.background,
+        }}
       />
     );
-	};
+  }
+
+  if (friendList.length === 0) {
+    return (
+      <Empty
+        emoji={"💬"}
+        refresh={onRefresh}
+        message="Nothing yet... Match with roommates and check back later!"
+      />
+    );
+  }
 
   return (
     <Container theme={theme}>
-      <Content 
+      <Content
         theme={theme}
         navigation={navigation}
         friendList={friendList}
@@ -56,6 +57,6 @@ function FriendsView({ navigation }) {
       />
     </Container>
   );
-};
+}
 
 export {FriendsView};

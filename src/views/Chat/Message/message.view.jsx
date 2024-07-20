@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  FlatList,
-  Platform, 
-  View
-} from "react-native";
+import {FlatList, Platform, View} from "react-native";
 
 import {MessageBubble} from "./Components/MessageBubble";
-
 
 function Container(props) {
   return (
@@ -14,23 +9,23 @@ function Container(props) {
       {props.children}
     </View>
   );
-};
+}
 
 function MessagesWrapper(props) {
   return (
-    <View style={{flex: 1, marginBottom: Platform.OS === 'ios' ? 60 : 0}} >
+    <View style={{flex: 1, marginBottom: Platform.OS === "ios" ? 60 : 0}}>
       <FlatList
         automaticallyAdjustKeyboardInsets={true}
         contentContainerStyle={{paddingTop: 20}}
         data={[{id: -1}, ...props.messagesList]}
         inverted={true}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         onEndReached={() => {
           if (props.messagesNext) {
             messageList(props.connectionId, props.messagesNext);
-          };
+          }
         }}
-        renderItem={({ item, index}) => (
+        renderItem={({item, index}) => (
           <MessageBubble
             index={index}
             message={item}
@@ -41,6 +36,6 @@ function MessagesWrapper(props) {
       />
     </View>
   );
-};
+}
 
 export {Container, MessagesWrapper};

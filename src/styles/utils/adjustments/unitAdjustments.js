@@ -1,5 +1,3 @@
-
-
-export const adjustMarginTop = value => {
-  return { marginTop:value }
-}
+export const adjustMarginTop = (value) => {
+  return {marginTop: value};
+};

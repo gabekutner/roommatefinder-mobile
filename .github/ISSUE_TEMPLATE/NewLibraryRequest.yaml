@@ -1,11 +1,10 @@
 name: New Library Request
-description: Use this when you want to propose adding a new library to package.json 
+description: Use this when you want to propose adding a new library to package.json
 labels: ["AddLibrary"]
 projects: []
 assignees:
   - gabekutner
 body:
-
   - type: input
     id: library-name
     attributes:
@@ -40,7 +39,7 @@ body:
       label: Number of monthly downloads
     validations:
       required: false
-  
+
   - type: input
     id: releases
     attributes:
@@ -54,7 +53,7 @@ body:
       label: Level of activity in the repo
     validations:
       required: false
-  
+
   - type: input
     id: alternatives
     attributes:

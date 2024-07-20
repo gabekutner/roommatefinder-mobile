@@ -1,28 +1,27 @@
-import api from '../../core/api';
+import api from "../../core/api";
 
 // swipe state management
 export const swipeSlice = (set) => ({
-
   getSwipe: async (user, page) => {
     if (user.token) {
       try {
         // make api request
         const response = await api({
-          method: 'get',
+          method: "get",
           url: `/api/v1/swipe/?page=${page}`,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
+          headers: {Authorization: `Bearer ${user.token}`},
+        });
         // check response status
         if (response.status !== 200) {
-          throw new Error('get-swipe error')
+          throw new Error("get-swipe error");
         } else {
-          return response
+          return response;
         }
-      } catch(error) {
+      } catch (error) {
         if (error.response.status === 404) {
-          return 404
+          return 404;
         } else {
-          console.log('zustand.swipe.getSwipe ', error)
+          console.log("zustand.swipe.getSwipe ", error);
         }
       }
     }
@@ -33,23 +32,23 @@ export const swipeSlice = (set) => ({
       try {
         // make api request
         const response = await api({
-          method: 'get',
+          method: "get",
           url: `/api/v1/swipe/${id}/`,
-          headers: {"Authorization": `Bearer ${user.token}`},
-        })
+          headers: {Authorization: `Bearer ${user.token}`},
+        });
         // check response status
         if (response.status !== 200) {
-          throw 'get-swipe-profile error'
+          throw "get-swipe-profile error";
         } else {
-          return response
+          return response;
         }
       } catch (error) {
         if (error.response.status === 404) {
-          return 404
+          return 404;
         } else {
-          console.log('zustand.swipe.getSwipeProfile ', error)
+          console.log("zustand.swipe.getSwipeProfile ", error);
         }
       }
     }
   },
-})
+});

@@ -6,19 +6,19 @@ import CustomButton from "../../../../../components/UI/Custom/CustomButton";
 
 import {styles} from "./row.styles";
 
-
 function Row(props) {
   return (
-    <CustomButton 
-      onClick={props.onClick} 
+    <CustomButton
+      onClick={props.onClick}
       style={{
         ...styles.rowWrapper,
-        ...(
-          props.pos === 'first' ? styles.rowFirst 
-          : props.pos === 'last' ? styles.rowLast
-          : props.pos === 'middle' ? styles.rowMiddle
-          : {borderRadius: 12}
-        )
+        ...(props.pos === "first"
+          ? styles.rowFirst
+          : props.pos === "last"
+          ? styles.rowLast
+          : props.pos === "middle"
+          ? styles.rowMiddle
+          : {borderRadius: 12}),
       }}
     >
       <View style={styles.row}>
@@ -30,6 +30,6 @@ function Row(props) {
       </View>
     </CustomButton>
   );
-};
+}
 
 export {Row};

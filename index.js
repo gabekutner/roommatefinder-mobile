@@ -1,11 +1,11 @@
 /**
  * @format
  */
-import React from 'react';
-import {AppRegistry} from 'react-native';
-import {PaperProvider} from 'react-native-paper';
-import App from './App';
-import {name as appName} from './app.json';
+import React from "react";
+import {AppRegistry} from "react-native";
+import {PaperProvider} from "react-native-paper";
+import App from "./App";
+import {name as appName} from "./app.json";
 
 /** edit theme here ... */
 const customTheme = {
@@ -13,22 +13,21 @@ const customTheme = {
   dark: false,
   roundness: 4,
   colors: {
-    primary: '#132331', // key components
-    secondary: '#FFFFFF', // less prominent components
-    tertiary: '#BE0000', // contrasting accents
-    background: '#F2F1E2', 
+    primary: "#132331", // key components
+    secondary: "#FFFFFF", // less prominent components
+    tertiary: "#BE0000", // contrasting accents
+    background: "#F2F1E2",
 
-    error: '#',
-    surfaceVariant: '#D9DBCE', // medium emphasis on background
-    surfaceDisabled: '#', // disabled state
+    error: "#",
+    surfaceVariant: "#D9DBCE", // medium emphasis on background
+    surfaceDisabled: "#", // disabled state
 
     // custom
-    _tint_primary: '#5A6773',
-    _tint_secondary: '#B8BBBD'
+    _tint_primary: "#5A6773",
+    _tint_secondary: "#B8BBBD",
 
     // 454A58
   },
-
 };
 
 function Main() {
@@ -37,6 +36,6 @@ function Main() {
       <App />
     </PaperProvider>
   );
-};
+}
 
 AppRegistry.registerComponent(appName, () => Main);

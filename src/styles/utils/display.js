@@ -1,4 +1,4 @@
 export default {
-  dFlex: { display: 'flex' },
-  dNone: { display: 'none' }
-}
+  dFlex: {display: "flex"},
+  dNone: {display: "none"},
+};

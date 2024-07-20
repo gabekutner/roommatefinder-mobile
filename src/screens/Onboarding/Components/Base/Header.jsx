@@ -1,33 +1,32 @@
 import React from "react";
-import { View } from 'react-native';
+import {View} from "react-native";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { verticalScale } from "react-native-size-matters";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {verticalScale} from "react-native-size-matters";
 
 import Paginator from "./Paginator";
 import CustomButtonComponent from "../../../../components/Button/CustomButtonComponent";
 
-import { colors } from "../../../../constants/colors";
-import { flex, spacing, adjustMarginTop, borders } from "../../../../styles/styles";
+import {colors} from "../../../../constants/colors";
+import {
+  flex,
+  spacing,
+  adjustMarginTop,
+  borders,
+} from "../../../../styles/styles";
 
-
-export default function Header({ 
-  scrollNext, 
-  scrollBack,
-  data,
-  scrollX
-}) {
+export default function Header({scrollNext, scrollBack, data, scrollX}) {
   return (
-    <View 
+    <View
       style={{
         ...flex.alignItemsCenter,
         ...spacing.mh8,
-        ...(adjustMarginTop(50))
+        ...adjustMarginTop(50),
       }}
     >
-      <View 
-        style={{ 
-          backgroundColor:colors.primary,
+      <View
+        style={{
+          backgroundColor: colors.primary,
           ...flex.flexRow,
           ...flex.alignItemsCenter,
           ...borders.bw2,
@@ -40,10 +39,10 @@ export default function Header({
       >
         <Paginator data={data} scrollX={scrollX} />
       </View>
-      <View 
-        style={{ 
-          backgroundColor:colors.primary,
-          width:'65%',
+      <View
+        style={{
+          backgroundColor: colors.primary,
+          width: "65%",
           ...flex.flexRow,
           ...flex.alignItemsCenter,
           ...borders.bw2,
@@ -53,31 +52,31 @@ export default function Header({
           ...spacing.mb1,
         }}
       >
-        <CustomButtonComponent 
+        <CustomButtonComponent
           variant=""
           animated
           onClick={scrollBack}
           style={borders.bw0}
         >
           <FontAwesomeIcon
-            icon='arrow-left'
+            icon="arrow-left"
             size={verticalScale(20)}
             color={colors.tint}
           />
         </CustomButtonComponent>
-        <CustomButtonComponent 
+        <CustomButtonComponent
           variant=""
           animated
           onClick={scrollNext}
           style={borders.bw0}
         >
           <FontAwesomeIcon
-            icon='arrow-right'
+            icon="arrow-right"
             size={verticalScale(20)}
             color={colors.tint}
           />
         </CustomButtonComponent>
       </View>
     </View>
-  )
+  );
 }

@@ -1,54 +1,69 @@
 import React from "react";
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from "react-native";
 
-import { verticalScale } from 'react-native-size-matters';
+import {verticalScale} from "react-native-size-matters";
 
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
 import useStore from "../../../zustand/store";
-import { colors } from "../../../constants/colors";
-
+import {colors} from "../../../constants/colors";
 
 export default function CleanRoomScreen() {
+  const matchingForm = useStore((state) => state.matchingForm);
+  const setMatchingForm = useStore((state) => state.setMatchingForm);
 
-  const matchingForm = useStore(state => state.matchingForm)
-  const setMatchingForm = useStore(state => state.setMatchingForm)
-  
   return (
     <View style={styles.optionsContainer}>
-      <MultipleChoiceOption 
+      <MultipleChoiceOption
         text="I'm the master of cleanliness and order. 🤹"
         selected={matchingForm.clean_room}
-        setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"I'm the master of cleanliness and order. 🤹" })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            clean_room: "I'm the master of cleanliness and order. 🤹",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="Mostly tidy, with a stray sock or two." 
+      <MultipleChoiceOption
+        text="Mostly tidy, with a stray sock or two."
         selected={matchingForm.clean_room}
-        setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"Mostly tidy, with a stray sock or two." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            clean_room: "Mostly tidy, with a stray sock or two.",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="A bit cluttered, but I know where everything is." 
+      <MultipleChoiceOption
+        text="A bit cluttered, but I know where everything is."
         selected={matchingForm.clean_room}
-        setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"A bit cluttered, but I know where everything is." })}
+        setSelected={() =>
+          setMatchingForm({
+            ...matchingForm,
+            clean_room: "A bit cluttered, but I know where everything is.",
+          })
+        }
       />
-      <MultipleChoiceOption 
-        text="Organized Chaos 😈" 
+      <MultipleChoiceOption
+        text="Organized Chaos 😈"
         selected={matchingForm.clean_room}
-        setSelected={() => setMatchingForm({ ...matchingForm, clean_room:"Organized Chaos 😈" })}
+        setSelected={() =>
+          setMatchingForm({...matchingForm, clean_room: "Organized Chaos 😈"})
+        }
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   optionsContainer: {
-    flexDirection:'column',
-    gap:verticalScale(20),
-    backgroundColor:colors.secondary,
-    padding:verticalScale(20),
-    borderRadius:12,
-    borderWidth:2,
-    width:'100%',
-    alignItems:'flex-start'
-  }
-})
+    flexDirection: "column",
+    gap: verticalScale(20),
+    backgroundColor: colors.secondary,
+    padding: verticalScale(20),
+    borderRadius: 12,
+    borderWidth: 2,
+    width: "100%",
+    alignItems: "flex-start",
+  },
+});

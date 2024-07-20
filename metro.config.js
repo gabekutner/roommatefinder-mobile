@@ -9,12 +9,12 @@
 // const config = {};
 
 // module.exports = mergeConfig(getDefaultConfig(__dirname), config);
-const path = require('path');
-const { generate } = require('@storybook/react-native/scripts/generate');
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const path = require("path");
+const {generate} = require("@storybook/react-native/scripts/generate");
+const {getDefaultConfig, mergeConfig} = require("@react-native/metro-config");
 
 generate({
-  configPath: path.resolve(__dirname, './.storybook'),
+  configPath: path.resolve(__dirname, "./.storybook"),
 });
 
 const metroConfig = getDefaultConfig(__dirname);
@@ -24,6 +24,6 @@ module.exports = mergeConfig(metroConfig, {
     unstable_allowRequireContext: true,
   },
   resolver: {
-    sourceExts: [...metroConfig.resolver.sourceExts, 'mjs'],
+    sourceExts: [...metroConfig.resolver.sourceExts, "mjs"],
   },
 });

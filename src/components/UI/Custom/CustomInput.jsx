@@ -1,13 +1,11 @@
 // Custom TextInput component
 import React from "react";
-import { TextInput, View } from "react-native";
+import {TextInput, View} from "react-native";
 
-import { moderateScale, verticalScale } from "react-native-size-matters";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {moderateScale, verticalScale} from "react-native-size-matters";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
 import CustomText from "./CustomText";
-
-
 
 export default function CustomTextInput({
   colors,
@@ -26,43 +24,56 @@ export default function CustomTextInput({
   placeholder, // str
   placeholderTextColor = colors.tertiary, // str
   secureTextEntry, // bool
-  value, 
+  value,
   emoji,
   icon,
   iconColor,
   iconSize,
   iconStyle,
   containerStyle,
-  inputStyle
+  inputStyle,
 }) {
   return (
     <View
       style={{
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
         backgroundColor: colors.secondary,
-        shadowColor: '#000',
-        shadowOffset: { 
-          width: 1.5, 
-          height: 2 
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 1.5,
+          height: 2,
         },
-        shadowOpacity: .7,
-        shadowRadius: .6, 
-        height:verticalScale(50),
-        borderWidth:2,
-        borderRadius:12,
-        marginBottom:verticalScale(20),
-        paddingRight:moderateScale(45),
+        shadowOpacity: 0.7,
+        shadowRadius: 0.6,
+        height: verticalScale(50),
+        borderWidth: 2,
+        borderRadius: 12,
+        marginBottom: verticalScale(20),
+        paddingRight: moderateScale(45),
         ...containerStyle,
       }}
     >
-      { emoji 
-        ? <CustomText style={{ paddingHorizontal:moderateScale(15), fontSize:verticalScale(18) }}>{emoji}</CustomText>
-        : icon ? <FontAwesomeIcon icon={icon} size={iconSize ? verticalScale(iconSize) : verticalScale(16)} color={iconColor} style={{ marginHorizontal:moderateScale(12), ...iconStyle }} /> : null
-      }
-      
-      <TextInput 
+      {emoji ? (
+        <CustomText
+          style={{
+            paddingHorizontal: moderateScale(15),
+            fontSize: verticalScale(18),
+          }}
+        >
+          {emoji}
+        </CustomText>
+      ) : icon ? (
+        <FontAwesomeIcon
+          icon={icon}
+          size={iconSize ? verticalScale(iconSize) : verticalScale(16)}
+          color={iconColor}
+          style={{marginHorizontal: moderateScale(12), ...iconStyle}}
+        />
+      ) : null}
+
+      <TextInput
         autoCapitalize={autoCapitalize}
         autoComplete={autoComplete}
         autoCorrect={autoCorrect}
@@ -81,16 +92,16 @@ export default function CustomTextInput({
         textAlign="left"
         value={value}
         style={{
-          fontWeight:'500',
-          width:'100%',
-          borderColor:colors.tint,
+          fontWeight: "500",
+          width: "100%",
+          borderColor: colors.tint,
           paddingRight: moderateScale(10),
           paddingLeft: moderateScale(5),
           color: colors.tint,
-          fontSize:verticalScale(14),
-          ...inputStyle
+          fontSize: verticalScale(14),
+          ...inputStyle,
         }}
       />
     </View>
-  )
+  );
 }

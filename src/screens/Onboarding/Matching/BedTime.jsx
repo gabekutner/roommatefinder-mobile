@@ -1,54 +1,52 @@
 import React from "react";
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from "react-native";
 
-import { verticalScale } from 'react-native-size-matters';
+import {verticalScale} from "react-native-size-matters";
 
 import MultipleChoiceOption from "./Components/MultipleChoiceOption";
 
 import useStore from "../../../zustand/store";
-import { colors } from "../../../constants/colors";
-
+import {colors} from "../../../constants/colors";
 
 export default function BedTimeScreen() {
-
-  const matchingForm = useStore(state => state.matchingForm)
-  const setMatchingForm = useStore(state => state.setMatchingForm)
+  const matchingForm = useStore((state) => state.matchingForm);
+  const setMatchingForm = useStore((state) => state.setMatchingForm);
 
   return (
     <View style={styles.optionsContainer}>
-      <MultipleChoiceOption 
+      <MultipleChoiceOption
         text="9pm"
         selected={matchingForm.bed_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"9pm" })}
+        setSelected={() => setMatchingForm({...matchingForm, bed_time: "9pm"})}
       />
-      <MultipleChoiceOption 
-        text="11pm" 
+      <MultipleChoiceOption
+        text="11pm"
         selected={matchingForm.bed_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"11pm" })}
+        setSelected={() => setMatchingForm({...matchingForm, bed_time: "11pm"})}
       />
-      <MultipleChoiceOption 
-        text="1am" 
+      <MultipleChoiceOption
+        text="1am"
         selected={matchingForm.bed_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"1am" })}
+        setSelected={() => setMatchingForm({...matchingForm, bed_time: "1am"})}
       />
-      <MultipleChoiceOption 
-        text="3am" 
+      <MultipleChoiceOption
+        text="3am"
         selected={matchingForm.bed_time}
-        setSelected={() => setMatchingForm({ ...matchingForm, bed_time:"3am" })}
+        setSelected={() => setMatchingForm({...matchingForm, bed_time: "3am"})}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   optionsContainer: {
-    flexDirection:'column',
-    gap:verticalScale(20),
-    backgroundColor:colors.secondary,
-    padding:verticalScale(20),
-    borderRadius:12,
-    borderWidth:2,
-    width:'100%',
-    alignItems:'flex-start'
-  }
-})
+    flexDirection: "column",
+    gap: verticalScale(20),
+    backgroundColor: colors.secondary,
+    padding: verticalScale(20),
+    borderRadius: 12,
+    borderWidth: 2,
+    width: "100%",
+    alignItems: "flex-start",
+  },
+});

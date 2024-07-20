@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import React, {useState, useEffect} from "react";
+import {StyleSheet, View} from "react-native";
 
-import { verticalScale, moderateScale } from "react-native-size-matters";
+import {verticalScale, moderateScale} from "react-native-size-matters";
 
 import Cell from "../../../components/Cell";
 import Thumbnail from "../../../components/Thumbnail";
@@ -11,70 +11,68 @@ import CustomText from "../../../components/UI/Custom/CustomText";
 
 import useStore from "../../../zustand/store";
 import utils from "../../../core/utils";
-import { colors } from "../../../constants/colors";
+import {colors} from "../../../constants/colors";
 
+export default function RequestRow({navigation, item}) {
+  const user = useStore((state) => state.user);
+  const getSwipeProfile = useStore((state) => state.getSwipeProfile);
+  const [profile, setProfile] = useState();
 
-export default function RequestRow({ navigation, item }) {
+  useEffect(() => {
+    async function fetchData() {
+      const profile = await getSwipeProfile(user, item.sender.id);
+      const userData = await profile.data;
+      setProfile(userData);
+    }
+    fetchData();
+  }, [getSwipeProfile, user, item]);
 
-	const user = useStore(state => state.user)
-	const getSwipeProfile = useStore(state => state.getSwipeProfile)
-	const [profile, setProfile] = useState()
+  const message = "Requested to connect with you";
 
-	useEffect(() => {
-		async function fetchData() {
-			const profile = await getSwipeProfile(user, item.sender.id)
-			const userData = await profile.data
-			setProfile(userData)
-		}
-		fetchData()
-	}, [getSwipeProfile, user, item])
-
-	const message = 'Requested to connect with you'
-
-	return (
-		<Cell colors={colors}>
-			<CustomButton 
-				shadow
-				style={{ borderWidth:0 }} 
-				onClick={() => navigation.navigate('profile-detail', { item:profile })}
-			>
-				<Thumbnail
-					url={item.sender.thumbnail}
-					size={verticalScale(60)}
-					borderColor={colors.tint}
-				/>
-			</CustomButton>
-			<View style={styles.textContainer} >
-				<CustomText fontSize="medium" style={styles.text}>
-					{item.sender.name}
-				</CustomText>
-				<CustomText fontSize="small" style={{ color:colors.tint }}>
-					{message}{' '}
-					<CustomText 
-						fontSize="small" 
-						style={{ 
-							...styles.text, 
-							color:colors.tertiary, 
-							fontWeight:'500',
-						}}
-					>
-						{utils.formatTime(item.created)}
-					</CustomText>
-				</CustomText>
-			</View>
-			<RequestAccept item={item} colors={colors} />
-		</Cell>
-	)
+  return (
+    <Cell colors={colors}>
+      <CustomButton
+        shadow
+        style={{borderWidth: 0}}
+        onClick={() => navigation.navigate("profile-detail", {item: profile})}
+      >
+        <Thumbnail
+          url={item.sender.thumbnail}
+          size={verticalScale(60)}
+          borderColor={colors.tint}
+        />
+      </CustomButton>
+      <View style={styles.textContainer}>
+        <CustomText fontSize="medium" style={styles.text}>
+          {item.sender.name}
+        </CustomText>
+        <CustomText fontSize="small" style={{color: colors.tint}}>
+          {message}{" "}
+          <CustomText
+            fontSize="small"
+            style={{
+              ...styles.text,
+              color: colors.tertiary,
+              fontWeight: "500",
+            }}
+          >
+            {utils.formatTime(item.created)}
+          </CustomText>
+        </CustomText>
+      </View>
+      <RequestAccept item={item} colors={colors} />
+    </Cell>
+  );
 }
 
 const styles = StyleSheet.create({
-	textContainer: {
-    flex:1, 
-    paddingHorizontal:moderateScale(16)
+  textContainer: {
+    flex: 1,
+    paddingHorizontal: moderateScale(16),
   },
-	text: {
-		fontWeight:'600', 
-    color:colors.tint, 
-    marginBottom:verticalScale(4)
-	}
-})
+  text: {
+    fontWeight: "600",
+    color: colors.tint,
+    marginBottom: verticalScale(4),
+  },
+});

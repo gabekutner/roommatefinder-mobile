@@ -1,23 +1,14 @@
 import React from "react";
-import {
-  Modal,
-  View,
-  StyleSheet
-} from 'react-native';
+import {Modal, View, StyleSheet} from "react-native";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { verticalScale, moderateScale } from "react-native-size-matters";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {verticalScale, moderateScale} from "react-native-size-matters";
 
 import CustomButton from "../UI/Custom/CustomButton";
 
-import { colors } from "../../constants/colors";
+import {colors} from "../../constants/colors";
 
-
-export default function BasicModal({
-  isVisible,
-  setIsVisible,
-  children
-}) {
+export default function BasicModal({isVisible, setIsVisible, children}) {
   return (
     <Modal
       animationType="slide"
@@ -29,41 +20,43 @@ export default function BasicModal({
         <View style={styles.modalView}>
           <CustomButton
             onClick={() => setIsVisible(false)}
-            style={{ 
-              position:'absolute', 
-              right:moderateScale(10), 
-              top:verticalScale(10), 
-              borderWidth:0, 
-              paddingVertical:0 
+            style={{
+              position: "absolute",
+              right: moderateScale(10),
+              top: verticalScale(10),
+              borderWidth: 0,
+              paddingVertical: 0,
             }}
           >
-            <FontAwesomeIcon icon="xmark" size={verticalScale(22)} color={colors.tertiary} />
+            <FontAwesomeIcon
+              icon="xmark"
+              size={verticalScale(22)}
+              color={colors.tertiary}
+            />
           </CustomButton>
-          <View style={{ marginTop:verticalScale(20) }}>
-            {children}
-          </View>
+          <View style={{marginTop: verticalScale(20)}}>{children}</View>
         </View>
       </View>
     </Modal>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: verticalScale(22),
   },
   modalView: {
-    paddingTop:verticalScale(20),
-    height:'85%',
-    margin:verticalScale(20),
-    backgroundColor:colors.primary,
+    paddingTop: verticalScale(20),
+    height: "85%",
+    margin: verticalScale(20),
+    backgroundColor: colors.primary,
     borderRadius: 20,
-    alignItems: 'center',
-    borderWidth:2,
-    shadowColor: '#000',
+    alignItems: "center",
+    borderWidth: 2,
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -72,4 +65,4 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-})
+});

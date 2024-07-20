@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 import CustomText from "../../components/UI/Custom/CustomText";
 import CustomButtonComponent from "../../components/Button/CustomButtonComponent";
 
 import useStore from "../../zustand/store";
-import { colors } from "../../constants/colors";
-import { spacing, borders } from "../../styles/styles";
-
+import {colors} from "../../constants/colors";
+import {spacing, borders} from "../../styles/styles";
 
 export default function SexScreen() {
-  const form = useStore(state => state.form)
-  const setForm = useStore(state => state.setForm)
+  const form = useStore((state) => state.form);
+  const setForm = useStore((state) => state.setForm);
 
-  const [selected, setSelected] = useState("")
+  const [selected, setSelected] = useState("");
   function toggleSelected(key) {
-    setSelected(key)
-    setForm({ ...form, sex:key })
+    setSelected(key);
+    setForm({...form, sex: key});
   }
 
   return (
@@ -25,7 +24,7 @@ export default function SexScreen() {
         animated
         shadow
         onClick={() => toggleSelected("M")}
-        style={{ 
+        style={{
           backgroundColor: selected === "M" ? colors.accent : colors.secondary,
           borderColor: colors.tint,
           ...spacing.pv4,
@@ -34,11 +33,11 @@ export default function SexScreen() {
           ...spacing.mv1,
         }}
       >
-        <CustomText 
-          fontSize="medium" 
+        <CustomText
+          fontSize="medium"
           style={{
-            fontWeight:'bold',
-            color: selected === "M" ? colors.white : colors.tint 
+            fontWeight: "bold",
+            color: selected === "M" ? colors.white : colors.tint,
           }}
         >
           Guy
@@ -58,16 +57,16 @@ export default function SexScreen() {
           ...spacing.mv1,
         }}
       >
-        <CustomText 
-          fontSize="medium" 
-          style={{ 
-            fontWeight:'bold',
-            color: selected === "F" ? colors.white : colors.tint 
+        <CustomText
+          fontSize="medium"
+          style={{
+            fontWeight: "bold",
+            color: selected === "F" ? colors.white : colors.tint,
           }}
         >
           Girl
         </CustomText>
       </CustomButtonComponent>
     </>
-  )
+  );
 }

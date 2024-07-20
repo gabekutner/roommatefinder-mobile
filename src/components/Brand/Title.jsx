@@ -1,24 +1,18 @@
 import React from "react";
-import { Text } from 'react-native';
-import { verticalScale } from "react-native-size-matters";
+import {Text} from "react-native";
+import {verticalScale} from "react-native-size-matters";
 
-
-export default function Title({
-  title,
-  color,
-  fontSize,
-  style
-}) {
+export default function Title({title, color, fontSize, style}) {
   return (
     <Text
       style={{
-        fontFamily:'LuckiestGuy-Regular',
-        color:color,
-        fontSize:fontSize ? fontSize : verticalScale(28),
-        ...style
+        fontFamily: "LuckiestGuy-Regular",
+        color: color,
+        fontSize: fontSize ? fontSize : verticalScale(28),
+        ...style,
       }}
     >
       {title}
     </Text>
-  )
+  );
 }

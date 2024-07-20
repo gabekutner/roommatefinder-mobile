@@ -3,7 +3,7 @@ import {colors} from "../../../../../constants/colors";
 
 export const styles = StyleSheet.create({
   rowWrapper: {
-    borderWidth: 2,  
+    borderWidth: 2,
     borderColor: colors.tint,
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -20,28 +20,28 @@ export const styles = StyleSheet.create({
   rowMiddle: {
     borderRadius: 0,
     borderTopWidth: 0,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
   },
   rowLast: {
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
-    borderTopWidth: 1
+    borderTopWidth: 1,
   },
 
   row: {
     height: 30,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 
   rowLabel: {
     color: colors.tint,
-    fontWeight: '500',
+    fontWeight: "500",
     letterSpacing: 0.24,
   },
   spacer: {
@@ -49,6 +49,4 @@ export const styles = StyleSheet.create({
     flexShrink: 1,
     flexBasis: 0,
   },
-
-
 });

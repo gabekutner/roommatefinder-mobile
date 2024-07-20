@@ -2,7 +2,7 @@
 
 ## Where to Define Styles
 
-Styles are defined in component folders with the `<component>.styles.js` name. Create them using `StyleSheet.create()`. 
+Styles are defined in component folders with the `<component>.styles.js` name. Create them using `StyleSheet.create()`.
 
 **StyleSheet benefits**:
 
@@ -17,22 +17,16 @@ Styles are defined in component folders with the `<component>.styles.js` name. C
 Themed styles are styles with colors in them. Ex. backgroundColor, borderColor, color, etc. These go in the inline styles like this ...
 
 ```jsx
-import styles from './<component>.styles.js';
+import styles from "./<component>.styles.js";
 
 function Component() {
-    return (
-        <Text 
-            style={[
-                styles.componentStyle,
-                { color: colors.tint }
-            ]}
-        >
-            Styled Component
-        </Text>
-    );
-};
+  return (
+    <Text style={[styles.componentStyle, {color: colors.tint}]}>
+      Styled Component
+    </Text>
+  );
+}
 ```
-
 
 <!-- ## Where to Define Styles
 
