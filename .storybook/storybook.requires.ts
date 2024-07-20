@@ -59,7 +59,7 @@ if (!global.view) {
     storyEntries: normalizedStories,
   });
 } else {
-  const {importMap} = prepareStories({storyEntries: normalizedStories});
+  const { importMap } = prepareStories({ storyEntries: normalizedStories });
 
   global.view._preview.onStoriesChanged({
     importFn: async (importPath: string) => importMap[importPath],
