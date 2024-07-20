@@ -40,9 +40,6 @@ on:
   push:
     branches: 
       - main
-  pull_request:
-    branches:
-      - main
 branding:
     icon: "slash"
     color: "gray-dark"
