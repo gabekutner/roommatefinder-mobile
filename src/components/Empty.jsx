@@ -16,6 +16,7 @@ export default function Empty({
   centered = true,
   refresh,
 }) {
+// function Empty(props) {
   return (
     <View
       style={{
@@ -26,7 +27,6 @@ export default function Empty({
       {icon ? (
         <FontAwesomeIcon
           icon={icon}
-          color={colors.tint}
           size={verticalScale(70)}
           style={{marginBottom: verticalScale(14)}}
         />
@@ -44,7 +44,7 @@ export default function Empty({
       <CustomText
         fontSize="medium"
         style={{
-          color: colors.tint,
+          // color: colors.tint,
           maxWidth: moderateScale(200),
           textAlign: "center",
         }}
@@ -57,7 +57,7 @@ export default function Empty({
             fontSize="medium"
             style={{
               fontWeight: "600",
-              color: colors.white,
+              // color: colors.white,
             }}
           >
             Refresh

@@ -7,7 +7,8 @@ const Stack = createNativeStackNavigator();
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {moderateScale, verticalScale} from "react-native-size-matters";
 
-import Title from "../components/Brand/Title";
+// import Title from "../components/Brand/Title";
+import {Title} from "../components/Text/Title";
 import DropDownMenu from "../components/DropDownMenu";
 import CustomButton from "../components/UI/Custom/CustomButton";
 
@@ -38,6 +39,7 @@ import {EditProfileView} from "../views/Profile/EditProfile";
 import {MessageView} from "../views/Chat/Message";
 import {FriendsView} from "../views/Chat/Friends";
 import { DeckView } from "../views/Deck/Deck";
+import { SearchView } from "../views/Search";
 import {useTheme} from "react-native-paper";
 
 export default function AppStack() {
@@ -75,7 +77,7 @@ export default function AppStack() {
               />
             );
           },
-          tabBarActiveTintColor: colors.accent,
+          tabBarActiveTintColor: theme.colors.tertiary,
           headerShadowVisible: false, // border bottom invisible
           tabBarShowLabel: false,
           tabBarHideOnKeyboard: true,
@@ -87,7 +89,7 @@ export default function AppStack() {
             left: 0,
             elevation: 0,
             height: verticalScale(80),
-            backgroundColor: colors.primary,
+            backgroundColor: theme.colors.background,
           },
         })}
       >
@@ -97,9 +99,8 @@ export default function AppStack() {
           options={({navigation}) => ({
             headerTitle: () => (
               <Title
-                title="roommatefinder"
-                color={colors.tint}
-                fontSize={verticalScale(20)}
+                text="RoommateFinder®"
+                color={theme.colors.primary}
               />
             ),
             headerTitleAlign: "left",
@@ -133,9 +134,8 @@ export default function AppStack() {
           options={({navigation}) => ({
             headerTitle: () => (
               <Title
-                title="Friends"
-                color={colors.tint}
-                fontSize={verticalScale(20)}
+                text="Your Friends"
+                color={theme.colors.primary}
               />
             ),
             headerTitleAlign: "left",
@@ -164,9 +164,8 @@ export default function AppStack() {
           options={({navigation}) => ({
             headerTitle: () => (
               <Title
-                title="Your Profile"
+                text="Your Profile"
                 color={colors.tint}
-                fontSize={verticalScale(20)}
               />
             ),
             headerTitleAlign: "left",
@@ -199,7 +198,7 @@ export default function AppStack() {
       />
       <Stack.Screen
         name="search"
-        component={Search}
+        component={SearchView}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -239,14 +238,11 @@ export default function AppStack() {
           ),
           headerTitle: () => (
             <Title
-              title="Roommate Matches"
-              color={colors.tint}
-              fontSize={verticalScale(20)}
+              text="Roommate Matches"
+              color={theme.colors.primary}
             />
           ),
-          headerStyle: {
-            backgroundColor: colors.primary,
-          },
+          headerStyle: {backgroundColor: theme.colors.background},
           headerShadowVisible: false, // border bottom invisible
         })}
       />
@@ -275,14 +271,11 @@ export default function AppStack() {
           ),
           headerTitle: () => (
             <Title
-              title="Edit profile"
-              color={colors.tint}
-              fontSize={verticalScale(20)}
+              text="Edit Profile"
+              color={theme.colors.primary}
             />
           ),
-          headerStyle: {
-            backgroundColor: colors.primary,
-          },
+          headerStyle: {backgroundColor: theme.colors.background},
           headerShadowVisible: false, // border bottom invisible
         })}
       />
