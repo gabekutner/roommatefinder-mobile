@@ -6,13 +6,14 @@ const Stack = createNativeStackNavigator();
 import StartupScreen from "../screens/StartupScreen";
 import SignIn from "../screens/Auth/SignIn";
 import SignUp from "../screens/Auth/SignUp";
+import { OnboardingView } from "../views/Onboarding";
 
 export default function AuthStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="startup"
-        component={StartupScreen}
+        component={OnboardingView}
         options={{headerShown: false}}
       />
       <Stack.Screen
