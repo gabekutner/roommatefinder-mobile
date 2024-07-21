@@ -37,6 +37,7 @@ import {EditProfileView} from "../views/Profile/EditProfile";
 /**change name to MessageView */
 import {MessageView} from "../views/Chat/Message";
 import {FriendsView} from "../views/Chat/Friends";
+import { DeckView } from "../views/Deck/Deck";
 import {useTheme} from "react-native-paper";
 
 export default function AppStack() {
@@ -92,7 +93,7 @@ export default function AppStack() {
       >
         <Tab.Screen
           name="swipe"
-          component={SwipeScreen}
+          component={DeckView}
           options={({navigation}) => ({
             headerTitle: () => (
               <Title

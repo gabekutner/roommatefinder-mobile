@@ -12,8 +12,8 @@ import {Logout} from "./Components/Logout";
 import useStore from "../../../zustand/store";
 import {styles} from "./profile.styles";
 import {colors} from "../../../constants/colors";
-import { Header } from "../../../components/Header";
-import { useTheme, Avatar, Button, Card, Text } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+
 
 const launchLibrary = (props) => {
   launchImageLibrary({includeBase64: true}, (response) => {
@@ -73,15 +73,7 @@ function ProfileView({navigation}) {
 
   return (
     <Container theme={theme}>
-
-      <Card
-        mode="elevated"
-        style={{backgroundColor:theme.colors.tertiary}}
-      >
-        
-        
-      </Card>
-      {/* <Title
+      <Title
         name="Gabe Kutner"
         thumbnail={user.thumbnail}
         launchLibrary={() => launchLibrary({uploadThumbnail: uploadThumbnail})}
@@ -161,7 +153,7 @@ function ProfileView({navigation}) {
         <Logout />
       </View>
 
-      <View style={{marginVertical: 50}} /> */}
+      <View style={{marginVertical: 50}} />
     </Container>
   );
 }
