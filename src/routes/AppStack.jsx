@@ -123,7 +123,7 @@ export default function AppStack() {
               </CustomButton>
             ),
             headerRightContainerStyle: {paddingRight: moderateScale(10)},
-            headerStyle: {backgroundColor: colors.primary},
+            headerStyle: {backgroundColor: theme.colors.background},
             headerShadowVisible: false, // border bottom invisible
           })}
         />

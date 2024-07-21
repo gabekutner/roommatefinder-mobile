@@ -5,7 +5,7 @@ import {
   PanResponder,
 } from "react-native";
 import useStore from "../../../zustand/store";
-import { CardSwiper } from "./CardSwiper";
+import {CardSwiper} from "./CardSwiper";
 
 const {width} = Dimensions.get("window");
 const offset = width / 5;
@@ -75,9 +75,8 @@ function CardSwipeContainer(props) {
       rotate={rotate}
       index={props.index}
       theme={props.theme}
-    >
-
-    </CardSwiper>
+      item={props.item}
+    />
   );
 };
 
