@@ -1,3 +1,4 @@
+import React from "react";
 import {LogoutButton} from "./logout.view";
 
 export default {

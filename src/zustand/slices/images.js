@@ -1,6 +1,9 @@
 import {Platform} from "react-native";
 import api from "../../core/api";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // image state management
 export const imageSlice = (set) => ({
   photos: {
@@ -10,7 +13,7 @@ export const imageSlice = (set) => ({
     photo_3: null,
   },
   setPhotos: (form) => {
-    set((state) => ({
+    set(() => ({
       photos: form,
     }));
   },
@@ -18,7 +21,8 @@ export const imageSlice = (set) => ({
   uploadPhotos: async (form, user) => {
     if (user.token) {
       try {
-        // format dataForm
+        /*global FormData */
+        /*eslint no-undef: "error"*/
         const dataForm = new FormData();
         if (form.photo_1 !== null) {
           const imageUri = form.photo_1.uri;

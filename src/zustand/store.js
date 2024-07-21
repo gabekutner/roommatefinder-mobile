@@ -168,7 +168,7 @@ const useStore = create((set, get) => ({
   ...profileSlice(set),
   ...authSlice(set),
   ...quizSlice(set),
-  ...swipeSlice(set),
+  ...swipeSlice(),
   ...imageSlice(set),
   ...widgetsSlice(set),
 

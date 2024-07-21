@@ -37,12 +37,11 @@ export default [
         ...reactNative.environments["react-native"]["react-native"],
       },
     },
-
     rules: {
       "jsx-quotes": ["error", "prefer-double"],
-      "react/prop-types": 0, // not a typescript project
-
-      // Remove any other rules related to type checking if present
+      "react/prop-types": 0, // not a typescript project, remove type checking
+      "react-native/no-raw-text": 0, // check back later
+      "react-native/no-inline-styles": 0, // remove inline styles formatting (for now)
     },
   },
 ];

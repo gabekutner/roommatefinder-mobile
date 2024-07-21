@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from "react";
-import {Animated, Easing, View} from "react-native";
+import React from "react";
+import {View} from "react-native";
 import {styles} from "./fastImageBackground.styles";
 import {LoadingIndicator} from "./LoadingIndicator";
 // react-native-image-progress is a bridge between the image component,

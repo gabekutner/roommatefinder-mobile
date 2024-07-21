@@ -5,6 +5,10 @@ import {MessageBubbleFriend} from "./MessageBubbleFriend";
 
 import useStore from "../../../../../zustand/store";
 
+/*global setInterval */
+/* global clearInterval */
+/*eslint no-undef: "error"*/
+
 function MessageBubble(props) {
   const messagesTyping = useStore((state) => state.messagesTyping);
   const [showTyping, setShowTyping] = useState(false);

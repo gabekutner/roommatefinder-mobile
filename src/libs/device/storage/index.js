@@ -2,6 +2,8 @@
  * @description device storage
  */
 import EncryptedStorage from "react-native-encrypted-storage";
+/*global console */
+/*eslint no-undef: "error"*/
 
 async function set(key, object) {
   try {

@@ -8,6 +8,9 @@ import Empty from "../../../components/Empty";
 
 import useStore from "../../../zustand/store";
 
+/*global setTimeout */
+/*eslint no-undef: "error"*/
+
 function FriendsView({navigation}) {
   const theme = useTheme();
 

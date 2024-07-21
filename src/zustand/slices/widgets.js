@@ -1,5 +1,8 @@
 import api from "../../core/api";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // widgets state management
 export const widgetsSlice = (set) => ({
   //---------------------
@@ -19,16 +22,16 @@ export const widgetsSlice = (set) => ({
           throw new Error("delete-link error");
         } else {
           console.log("delete link ", id);
-          set((state) => ({
+          set(() => ({
             user: response.data,
           }));
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.deleteLink ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.deleteLink : unauthenticated");
-    }
+    };
   },
   deleteQuote: async (id, user) => {
     if (user.token) {
@@ -44,16 +47,16 @@ export const widgetsSlice = (set) => ({
           throw new Error("delete-quote error");
         } else {
           console.log("delete quote ", id);
-          set((state) => ({
+          set(() => ({
             user: response.data,
           }));
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.deleteQuote ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.deleteQuote : unauthenticated");
-    }
+    };
   },
   deletePrompt: async (id, user) => {
     if (user.token) {
@@ -69,16 +72,16 @@ export const widgetsSlice = (set) => ({
           throw new Error("delete-prompt error");
         } else {
           console.log("delete prompt ", id);
-          set((state) => ({
+          set(() => ({
             user: response.data,
           }));
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.deletePrompt ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.deletePrompt : unauthenticated");
-    }
+    };
   },
 
   //---------------------
@@ -99,13 +102,13 @@ export const widgetsSlice = (set) => ({
           throw new Error("upload-link error");
         } else {
           console.log("upload link success");
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.uploadLink ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.uploadLink : not authenticated");
-    }
+    };
   },
   uploadPrompt: async (prompts, user) => {
     if (user.token) {
@@ -122,13 +125,13 @@ export const widgetsSlice = (set) => ({
           throw new Error("upload-prompts error");
         } else {
           console.log("upload prompt success");
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.uploadPrompt ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.uploadPrompt : not authenticated");
-    }
+    };
   },
   uploadQuote: async (quotes, user) => {
     if (user.token) {
@@ -145,12 +148,12 @@ export const widgetsSlice = (set) => ({
           throw new Error("upload-quotes error");
         } else {
           console.log("upload quotes success");
-        }
+        };
       } catch (error) {
         console.log("zustand.widgets.uploadQuotes ", error.response);
-      }
+      };
     } else {
       console.log("zustand.widgets.uploadQuotes : not authenticated");
-    }
+    };
   },
 });

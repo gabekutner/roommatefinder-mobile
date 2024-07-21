@@ -1,6 +1,9 @@
 import api from "../../core/api";
 import secure from "../../core/secure";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // profile state management
 export const profileSlice = (set) => ({
   //---------------------
@@ -21,7 +24,7 @@ export const profileSlice = (set) => ({
     dorm_building: "",
   },
   setForm: (form) => {
-    set((state) => ({
+    set(() => ({
       form: form,
     }));
   },
@@ -57,7 +60,7 @@ export const profileSlice = (set) => ({
             refresh: response.data.refresh_token,
           };
           await secure.set("tokens", tokens);
-          set((state) => ({
+          set(() => ({
             profileCreated: true,
             user: response.data,
           }));
@@ -77,7 +80,7 @@ export const profileSlice = (set) => ({
       try {
         // take out empty fields
         const cleanedForm = Object.fromEntries(
-          Object.entries(_form).filter(([_, v]) => (v != "") | null | [])
+          Object.entries(_form).filter(([v]) => (v != "") | null | [])
         );
         // add dorm_building & interests to cleanedForm
         if (form.dorm_building !== "") {
@@ -98,7 +101,7 @@ export const profileSlice = (set) => ({
           throw new Error("edit-profile error");
         } else {
           // set user data
-          set((state) => ({
+          set(() => ({
             user: response.data,
           }));
         }
@@ -154,7 +157,7 @@ export const profileSlice = (set) => ({
           throw new Error("pause-profile error");
         } else {
           // reset user state
-          set((state) => ({
+          set(() => ({
             user: response.data,
           }));
         }

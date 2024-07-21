@@ -9,6 +9,9 @@ import useStore from "../../../zustand/store";
 import { DeckSwiper } from "./deck.view";
 import { CardSwipeContainer } from "../Card";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 function DeckView() {
   const theme = useTheme()
 

@@ -10,6 +10,9 @@ import {CardSwiper} from "./CardSwiper";
 const {width} = Dimensions.get("window");
 const offset = width / 5;
 
+/*global setTimeout */
+/*eslint no-undef: "error"*/
+
 
 function CardSwipeContainer(props) {
   const requestConnect = useStore((state) => state.requestConnect);

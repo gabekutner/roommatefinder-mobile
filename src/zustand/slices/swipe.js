@@ -1,7 +1,10 @@
 import api from "../../core/api";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // swipe state management
-export const swipeSlice = (set) => ({
+export const swipeSlice = () => ({
   getSwipe: async (user, page) => {
     if (user.token) {
       try {
@@ -16,15 +19,15 @@ export const swipeSlice = (set) => ({
           throw new Error("get-swipe error");
         } else {
           return response;
-        }
+        };
       } catch (error) {
         if (error.response.status === 404) {
           return 404;
         } else {
           console.log("zustand.swipe.getSwipe ", error);
-        }
-      }
-    }
+        };
+      };
+    };
   },
 
   getSwipeProfile: async (user, id) => {
@@ -41,14 +44,14 @@ export const swipeSlice = (set) => ({
           throw "get-swipe-profile error";
         } else {
           return response;
-        }
+        };
       } catch (error) {
         if (error.response.status === 404) {
           return 404;
         } else {
           console.log("zustand.swipe.getSwipeProfile ", error);
-        }
-      }
-    }
+        };
+      };
+    };
   },
 });

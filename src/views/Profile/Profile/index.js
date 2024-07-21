@@ -14,6 +14,8 @@ import {styles} from "./profile.styles";
 import {colors} from "../../../constants/colors";
 import { useTheme } from 'react-native-paper';
 
+/*global console */
+/*eslint no-undef: "error"*/
 
 const launchLibrary = (props) => {
   launchImageLibrary({includeBase64: true}, (response) => {

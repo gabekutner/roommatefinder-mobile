@@ -1,6 +1,9 @@
 import api from "../../core/api";
 import secure from "../../core/secure";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // auth state management
 export const authSlice = (set) => ({
   //---------------------
@@ -31,7 +34,7 @@ export const authSlice = (set) => ({
             refresh: response.data.refresh,
           };
           secure.set("tokens", tokens);
-          set((state) => ({
+          set(() => ({
             initialized: true,
             authenticated: true,
             profileCreated: created,
@@ -45,7 +48,7 @@ export const authSlice = (set) => ({
     } else {
       console.log("zustand.auth.init : not authenticated");
     }
-    set((state) => ({
+    set(() => ({
       initialized: true,
     }));
   },
@@ -58,7 +61,7 @@ export const authSlice = (set) => ({
   login: (credentials, user, tokens) => {
     secure.set("credentials", credentials);
     secure.set("tokens", tokens);
-    set((state) => ({
+    set(() => ({
       authenticated: true,
       user: user,
       profileCreated: user.has_account,
@@ -67,7 +70,7 @@ export const authSlice = (set) => ({
 
   logout: () => {
     secure.wipe();
-    set((state) => ({
+    set(() => ({
       authenticated: false,
       user: {},
       profileCreated: false,

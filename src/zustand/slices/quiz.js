@@ -1,5 +1,8 @@
 import api from "../../core/api";
 
+/*global console */
+/*eslint no-undef: "error"*/
+
 // quiz state management
 export const quizSlice = (set) => ({
   //---------------------
@@ -17,7 +20,7 @@ export const quizSlice = (set) => ({
     sharing_policy: "",
   },
   setMatchingForm: (form) => {
-    set((state) => ({
+    set(() => ({
       matchingForm: form,
     }));
   },
@@ -51,7 +54,7 @@ export const quizSlice = (set) => ({
             }
           } catch (error) {
             console.log("zustand.quiz.submitMatchingForm ", error);
-          }
+          };
         } else {
           // update a matching quiz
           try {
@@ -71,7 +74,7 @@ export const quizSlice = (set) => ({
             if (response.status !== 200) {
               throw new Error("update-matching-form error");
             } else {
-              set((state) => ({
+              set(() => ({
                 matchingForm: response.data,
               }));
             }
