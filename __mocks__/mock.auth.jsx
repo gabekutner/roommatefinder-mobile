@@ -1,20 +1,13 @@
-import React from "react"
-import {Modal, SafeAreaView, Text, View} from "react-native"
-import { Button, useTheme } from "react-native-paper"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
+import React from "react";
+import {SafeAreaView, Text, View, StyleSheet} from "react-native";
+import {Button, useTheme} from "react-native-paper";
 import {fab} from "@fortawesome/free-brands-svg-icons";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import {library} from "@fortawesome/fontawesome-svg-core";
 library.add(fab)
 
 
-function MockAuth() {
-  const theme = {
-    background: '#FFFFFF',
-    thirdPartyBg: '#EFEFEC',
-    tertiaryDark: '#2D4219',
-    
-  }
-  const customTheme = useTheme()
+function MockAuth({ navigation }) {
+  const customTheme = useTheme();
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background, alignItems: 'center'}}>
       <View style={{marginTop:50}}>
@@ -29,64 +22,96 @@ function MockAuth() {
         </View>
         {/* content */}
         <View style={{gap:15}}>
-          
-          <Button
-            mode="contained" // changed to "contained" to use the elevated style
-            buttonColor={customTheme.colors.primary} // changed to color instead of buttonColor
-            contentStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%' }} // added flexDirection and alignItems
-            labelStyle={{ fontSize: 16, fontWeight: '700', color: customTheme.colors.secondary }}
-          >
-            <FontAwesomeIcon
-              icon={['fab', 'apple']}
-              size={18}
-              color={customTheme.colors.secondary}
-              style={{ marginLeft: 16, marginRight: 8 }} // Adjust margin as needed
-            />
-            <Text>Continue with Apple</Text>
-          </Button>
 
           <Button
-            icon={() => <FontAwesomeIcon icon={['fab', 'google']} size={18} color={customTheme.colors.secondary}/>}
+            onPress={() => navigation.navigate('next')}
             mode="elevated"
             buttonColor={customTheme.colors.primary} 
             labelStyle={{ fontSize: 16, fontWeight: '700', color: customTheme.colors.secondary }}
           >
-            <Text>Continue with Google</Text>
+            <Text>Continue with email</Text>
           </Button>
 
-          <View style={{ height:.5, backgroundColor:customTheme.colors.primary }}/>
+          <Button
+            onPress={() => console.log('phone')}
+            mode="elevated"
+            buttonColor={customTheme.colors.primary} 
+            labelStyle={{ fontSize: 16, fontWeight: '700', color: customTheme.colors.secondary }}
+          >
+            <Text>Continue with phone number</Text>
+          </Button>
+
+          {/* spacer */}
+          <View style={{flexDirection:'row', gap: 10, alignItems:'center', justifyContent:'center'}}>
+            <View style={{ height:.5, width:100, backgroundColor:customTheme.colors.primary}}/>
+            <Text style={{fontSize: 12, color: customTheme.colors.primary, fontWeight: '500'}}>or</Text>
+            <View style={{ height:.5, width:100, backgroundColor:customTheme.colors.primary}}/>
+          </View>
 
           <Button
             mode="elevated"
             buttonColor={'#890000'}
-            contentStyle={{
-              width: '100%',
-            }}
           >
-            <Text style={{fontSize:16, color:customTheme.colors.secondary, fontWeight:'700'}}>Continue with email</Text>
+            <Text style={{fontSize:16, color:customTheme.colors.secondary, fontWeight:'700'}}>Continue with uid</Text>
           </Button>
+
         </View>
       </View>
 
 
-
-
-
       {/* footer */}
-      <View style={{position:'absolute', right:10, left:10, bottom:15 }}>
-        <Text style={{fontSize: 11, color: customTheme.colors.primary, textAlign:'center'}}>
+      <View style={{position:'absolute', right:50, left:50, bottom:35 }}>
+        <Text 
+          style={[
+            styles.text,
+            styles.smallText,
+            {
+              textAlign: 'center',
+              color: customTheme.colors.primary,
+            }
+          ]}
+        >
           By continuing to use DormParty, you agree to our
           {' '}
-          <Text style={{fontSize: 11, color:customTheme.colors.primary, textDecorationLine:'underline'}}>Terms of Service</Text>
+          <Text 
+            style={[
+              styles.text,
+              styles.smallText,
+              {color: customTheme.colors.primary}
+            ]}
+          >
+            Terms of Service
+          </Text>
           {' '}
           and
           {' '}
-          <Text style={{fontSize: 11, color:customTheme.colors.primary, textDecorationLine:'underline'}}>Privacy Policy</Text>
-          . Personal data added to DormParty is public by default -- refer to our Privacy FAQ to make changes.
+          <Text 
+            style={[
+              styles.text,
+              styles.smallText,
+              {color: customTheme.colors.primary}
+            ]}
+          >
+            Privacy Policy
+          </Text>
+          .
         </Text>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export {MockAuth}
+export {MockAuth};
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'NotoSans_Condensed-Regular',
+  },
+  
+  // footer
+  smallText: {
+    fontSize: 11, 
+    textDecorationLine:'underline'
+  },
+
+});
