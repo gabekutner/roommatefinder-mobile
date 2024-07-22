@@ -1,18 +1,16 @@
 import React from "react";
 import {SafeAreaView, Text, View, StyleSheet} from "react-native";
 import {Button, useTheme} from "react-native-paper";
-import {fab} from "@fortawesome/free-brands-svg-icons";
-import {library} from "@fortawesome/fontawesome-svg-core";
-library.add(fab)
 
 
 function MockAuth({ navigation }) {
   const customTheme = useTheme();
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background, alignItems: 'center'}}>
-      <View style={{marginTop:50}}>
+      <View>
         {/* header */}
-        <View style={{justifyContent:'center', alignItems:'center', marginBottom:35}}>
+        <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
+          {/* logo */}
           <View style={{height:50, width:50, backgroundColor:'#890000', marginBottom:25}}></View>
           <View style={{height:20, width:20, backgroundColor:'#be0000', marginTop:-50, marginBottom:25}}></View>
 
@@ -24,35 +22,59 @@ function MockAuth({ navigation }) {
         <View style={{gap:15}}>
 
           <Button
-            onPress={() => navigation.navigate('next')}
+            onPress={() => navigation.navigate('identifier', {id: 'Email'})}
             mode="elevated"
             buttonColor={customTheme.colors.primary} 
-            labelStyle={{ fontSize: 16, fontWeight: '700', color: customTheme.colors.secondary }}
+            labelStyle={[
+              styles.fontFamily,
+              styles.buttonText,
+              {color: customTheme.colors.secondary}
+            ]}
           >
             <Text>Continue with email</Text>
           </Button>
 
           <Button
-            onPress={() => console.log('phone')}
+            onPress={() => navigation.navigate('identifier', {id: 'Phone Number'})}
             mode="elevated"
             buttonColor={customTheme.colors.primary} 
-            labelStyle={{ fontSize: 16, fontWeight: '700', color: customTheme.colors.secondary }}
+            labelStyle={[
+              styles.fontFamily,
+              styles.buttonText,
+              {color: customTheme.colors.secondary}
+            ]}
           >
             <Text>Continue with phone number</Text>
           </Button>
 
           {/* spacer */}
           <View style={{flexDirection:'row', gap: 10, alignItems:'center', justifyContent:'center'}}>
-            <View style={{ height:.5, width:100, backgroundColor:customTheme.colors.primary}}/>
+            <View 
+              style={[
+                styles.spacer,
+                {backgroundColor:customTheme.colors.primary}
+              ]}
+            />
             <Text style={{fontSize: 12, color: customTheme.colors.primary, fontWeight: '500'}}>or</Text>
-            <View style={{ height:.5, width:100, backgroundColor:customTheme.colors.primary}}/>
+            <View 
+              style={[
+                styles.spacer,
+                {backgroundColor:customTheme.colors.primary}
+              ]}
+            />
           </View>
 
           <Button
+            onPress={() => navigation.navigate('identifier', {id: 'UID'})}
             mode="elevated"
             buttonColor={'#890000'}
+            labelStyle={[
+              styles.fontFamily,
+              styles.buttonText,
+              {color: customTheme.colors.secondary}
+            ]}
           >
-            <Text style={{fontSize:16, color:customTheme.colors.secondary, fontWeight:'700'}}>Continue with uid</Text>
+            <Text>Continue with UID</Text>
           </Button>
 
         </View>
@@ -108,10 +130,18 @@ const styles = StyleSheet.create({
     fontFamily: 'NotoSans_Condensed-Regular',
   },
   
-  // footer
   smallText: {
     fontSize: 11, 
     textDecorationLine:'underline'
   },
+  buttonText: {
+    fontSize: 16, 
+    fontWeight: '700'
+  },
+
+  spacer: {
+    height: .5, 
+    width: 100,
+  }
 
 });

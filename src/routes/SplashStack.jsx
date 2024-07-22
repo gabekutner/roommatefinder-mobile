@@ -7,6 +7,7 @@ const Stack = createNativeStackNavigator();
 import SplashScreen from "../screens/SplashScreen";
 // import {MockProfile} from "../../__mocks__/mock.profile";
 import { MockAuth } from "../../__mocks__/mock.auth";
+import { MockIdentifier } from "../../__mocks__/mock.identifier";
 import { useTheme } from "react-native-paper";
 
 const Base = ({ navigation }) => {
@@ -30,17 +31,16 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
-
         }}
       />
-      {/* <Stack.Screen
-        name="next"
-        component={MockAuth}
+      <Stack.Screen
+        name="identifier"
+        component={MockIdentifier}
         options={{
           headerShown: false, 
           presentation:"modal",
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
