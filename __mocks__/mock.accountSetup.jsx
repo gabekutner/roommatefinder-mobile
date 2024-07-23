@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView} from "react-native";
-import {Button, useTheme, TextInput, HelperText, Chip} from "react-native-paper";
+import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData} from "../src/assets/Dictionary"
 
@@ -8,21 +8,23 @@ import {interestsData, dormsData} from "../src/assets/Dictionary"
 function MockAccountSetup({ navigation }) {
   const customTheme = useTheme();
 
-  const buttonClick = () => {
-    // form validation
-    // create profile
-    // navigate to app stack!
-  }
-
+  const [visible, setVisible] = useState({
+    status: false,
+    missing: []
+  });
+  const onDismissSnackBar = () => setVisible({...visible, status:false});
+  
   // temporary
   const [form, setForm] = useState({
     name: "",
-    age: 0,
+    age: "",
     sex: "",
     dorm: "",
     major: "",
-    home: "",
+    city: "",
+    state: "",
     about: "",
+    thumbnail: "",
     interests: [],
     photos: [],
     links: [],
@@ -30,33 +32,68 @@ function MockAccountSetup({ navigation }) {
     prompts: []
   })
 
-  const hasErrors = () => {
-    return form.age < 16 && form.age != 0
-  };
+  const handleInterests = (i) => {
+    const interests = [...form.interests]
+    if (interests.includes(i)) {
+      // remove
+      const index = interests.indexOf(i);
+      interests.splice(index, 1)
+      // console.log('here')
+      setForm({...form, interests:interests})
+    } else {
+      // add
+      if (interests.length != 5) {
+        // add
+        interests.push(i)
+        setForm({...form, interests:interests})
+      } else { 
+        //nothing 
+      }
+    }
+  }
+
+  const buttonClick = () => {
+    // form validation
+    const missing = []
+    if (form.name === "" ) {missing.push('name')}
+    if (form.age === "") {missing.push('age')} 
+    if (form.sex === "") {missing.push('sex')}
+    if (form.dorm === "") {missing.push('dorm')}
+
+    if (missing.length != 0) {
+      setVisible({...visible, status:true, missing:missing})
+    } else {
+      console.log('submit')
+      // create profile
+      // navigate to app stack!
+    }    
+  }
+  
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:50}}>
             
             <View style={{ width:200, alignItems:'center', justifyContent:'center', marginVertical:25 }}>
               <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
-                Setup your account
+                Create your profile
               </Text>
             </View>
 
             {/* photos - grid 4x4 */}
-            <View 
+            <View
               style={{
                 height:300, 
-                flexDirection:'row',
                 gap:10, 
+                flexDirection:'row',
                 paddingHorizontal:25, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                // backgroundColor:customTheme.colors.primary,
+                backgroundColor:customTheme.colors.background,
                 borderRadius:12,
+                borderWidth:1,
 
                 shadowColor: "#000",
                 shadowOffset: {
@@ -65,8 +102,6 @@ function MockAccountSetup({ navigation }) {
                 },
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
-
-                elevation: 5,
               }}
             >
               <View style={{flex:1, flexDirection:'column', gap:10}}>
@@ -116,13 +151,9 @@ function MockAccountSetup({ navigation }) {
               style={{width:'100%'}}
               maxLength={2}
             />
-            {/* need error theme styling */}
-            {/* <HelperText type="error" visible={hasErrors()}>
-              You must be 16+ to use DormParty.
-            </HelperText> */}
 
             {/* sex */}
-            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:10}}>
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
               Sex
               <Text style={{color:'red'}}>*</Text>
             </Text>
@@ -156,7 +187,7 @@ function MockAccountSetup({ navigation }) {
             </View>
 
             {/* dorm */}
-            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:10}}>
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
               What dorm are you living in?
               <Text style={{color:'red'}}>*</Text>
             </Text>
@@ -171,7 +202,7 @@ function MockAccountSetup({ navigation }) {
                   showSelectedCheck={false}
                   style={{
                     margin:4,
-                    backgroundColor:form.dorm === _.dorm ? customTheme.colors.tertiary : customTheme.colors.background,
+                    backgroundColor:form.dorm === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
                   }}
                 >
                   {_.dorm}
@@ -181,20 +212,18 @@ function MockAccountSetup({ navigation }) {
 
             {/* interests */}
             <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
-              Pick 1 to 5 interests
-              <Text style={{color:customTheme.colors.tertiary}}>*</Text>
+              Pick up to 5 interests
             </Text>
             <View
               style={{
                 height:300, 
-                width:'100%',
-                flexDirection:'row',
                 gap:10, 
                 paddingHorizontal:25, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.secondary,
+                backgroundColor:customTheme.colors.background,
                 borderRadius:12,
+                borderWidth:1,
 
                 shadowColor: "#000",
                 shadowOffset: {
@@ -203,37 +232,59 @@ function MockAccountSetup({ navigation }) {
                 },
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
-
-                elevation: 5,
               }}
             >
-              <ScrollView showsVerticalScrollIndicator={false} style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
                 {interestsData.map((_, index) => (
                   <Chip 
                     key={index}
                     mode="outlined"
-                    style={{margin:4}}
-                    onPress={() => console.log(index)}
+                    style={{
+                      margin:4,
+                      backgroundColor: form.interests.includes(_.id) ? customTheme.colors.tertiary : customTheme.colors.background,
+                    }}
+                    selected={form.interests.includes(_.id) ? true : false}
+                    onPress={() => handleInterests(_.id)}
+                    selectedColor={form.interests.includes(_.id) ? customTheme.colors.secondary : customTheme.colors.primary}
+                    showSelectedCheck={false}
                   >
                     {_.interest}
                   </Chip>
                 ))}
+                </View>
               </ScrollView>
             </View>
 
             {/* hometown */}
-            <TextInput 
-              mode="outlined"
-              label='Hometown'
-              value={form.home}
-              onChangeText={text => setForm({...form, home:text})}
-              placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
-              keyboardType="default"
-              autoCapitalize={true}
-              style={{width:'100%'}}
-            />
+            <View style={{flexDirection:'row', gap:5}}>
+
+              <TextInput 
+                mode="outlined"
+                label='Hometown'
+                value={form.city}
+                onChangeText={text => setForm({...form, city:text})}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'70%'}}
+              />
+              <TextInput 
+                mode="outlined"
+                label='State'
+                value={form.state}
+                onChangeText={text => setForm({...form, state:text})}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'30%'}}
+              />
+            </View>
+            
 
             {/* major */}
             <TextInput 
@@ -252,7 +303,7 @@ function MockAccountSetup({ navigation }) {
             {/* about */}
             <TextInput 
               mode="outlined"
-              label='About'
+              label='About Me'
               value={form.about}
               onChangeText={text => setForm({...form, about:text})}
               placeholder=""
@@ -271,7 +322,6 @@ function MockAccountSetup({ navigation }) {
             {/* quotes */}
 
             <Button
-              // disabled={code === "" ? true : false}
               onPress={buttonClick}
               mode="elevated"
               buttonColor={'#890000'}
@@ -286,6 +336,27 @@ function MockAccountSetup({ navigation }) {
               <Text>Continue</Text>
             </Button>
           </View>
+          <Snackbar
+            visible={visible.status}
+            onDismiss={onDismissSnackBar}
+            action={{
+              label: 'Got it',
+              labelStyle: {color: customTheme.colors.secondary}
+            }}
+            wrapperStyle={{backgroundColor: '#890000'}}
+          >
+            <Text 
+              style={{fontSize:14, color:customTheme.colors.secondary}}>
+                Missing{' '}
+                {visible.missing.map((_, index) => {
+                  if (visible.missing.length != index+1) {
+                    return `${_}, `
+                  } else {
+                    return `${_}.`
+                  }
+                })}
+            </Text>
+          </Snackbar>
         </ScrollView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
