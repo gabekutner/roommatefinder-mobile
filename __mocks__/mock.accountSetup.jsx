@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView} from "react-native";
 import {Button, useTheme, TextInput, HelperText, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import {interestsData} from "../src/assets/Dictionary"
+import {interestsData, dormsData} from "../src/assets/Dictionary"
 
 
 function MockAccountSetup({ navigation }) {
@@ -18,7 +18,7 @@ function MockAccountSetup({ navigation }) {
   const [form, setForm] = useState({
     name: "",
     age: 0,
-    sex: "guy",
+    sex: "",
     dorm: "",
     major: "",
     home: "",
@@ -33,26 +33,6 @@ function MockAccountSetup({ navigation }) {
   const hasErrors = () => {
     return form.age < 16 && form.age != 0
   };
-
-  // useEffect(() => {
-  //   if (selected) {
-  //       setTextColor(`white`);
-  //       setStyle({ borderColor: `#FBA200`, backgroundColor: `#FBA200` });
-  //   } else {
-  //       setTextColor(`#FBA200`);
-  //       setStyle({ borderColor: `#FBA200`, backgroundColor: `transparent` });
-  //   }
-  // }, [selected]);
-
-  // const handlePress = () => {
-      // setSelected(!selected);
-      // if (chipPressed) {
-      //     chipPressed(selected);
-      // }
-  // };
-
-
-
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
@@ -75,7 +55,7 @@ function MockAccountSetup({ navigation }) {
                 paddingHorizontal:25, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.primary,
+                // backgroundColor:customTheme.colors.primary,
                 borderRadius:12,
 
                 shadowColor: "#000",
@@ -90,19 +70,19 @@ function MockAccountSetup({ navigation }) {
               }}
             >
               <View style={{flex:1, flexDirection:'column', gap:10}}>
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.secondary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.secondary} />
+                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                 </View>
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.secondary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.secondary}/>
+                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
                 </View>
               </View>
               <View style={{flex:1, flexDirection:'column', gap:10}}>
-              <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed', borderColor:customTheme.colors.secondary, justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.secondary}/>
+              <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed', borderColor:customTheme.colors.primary, justifyContent: 'center', alignItems:'center' }}>
+                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
                 </View>
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed',borderColor:customTheme.colors.secondary, justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.secondary}/>
+                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed',borderColor:customTheme.colors.primary, justifyContent: 'center', alignItems:'center' }}>
+                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
                 </View>
               </View>
             </View>
@@ -137,13 +117,67 @@ function MockAccountSetup({ navigation }) {
               maxLength={2}
             />
             {/* need error theme styling */}
-            <HelperText type="error" visible={hasErrors()}>
+            {/* <HelperText type="error" visible={hasErrors()}>
               You must be 16+ to use DormParty.
-            </HelperText>
+            </HelperText> */}
 
             {/* sex */}
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:10}}>
+              Sex
+              <Text style={{color:'red'}}>*</Text>
+            </Text>
+            <View style={{flexDirection:'row', gap:10}}>
+              <Chip
+                mode="outlined"
+                selected={form.sex === 'guy' ? true : false}
+                onPress={() => setForm({...form, sex:'guy'})}
+                selectedColor={form.sex === 'guy' ? customTheme.colors.secondary : customTheme.colors.primary}
+                showSelectedCheck={false}
+                style={{ 
+                  backgroundColor:form.sex === 'guy' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  width:'50%',
+                }}
+              >
+                Guy
+              </Chip>
+              <Chip
+                mode="outlined"
+                selected={form.sex === 'girl' ? true : false}
+                onPress={() => setForm({...form, sex:'girl'})}
+                selectedColor={form.sex === 'girl' ? customTheme.colors.secondary : customTheme.colors.primary}
+                showSelectedCheck={false}
+                style={{ 
+                  backgroundColor:form.sex === 'girl' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  width:'50%',
+                }}
+              >
+                Girl
+              </Chip>
+            </View>
 
             {/* dorm */}
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:10}}>
+              What dorm are you living in?
+              <Text style={{color:'red'}}>*</Text>
+            </Text>
+            <View style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
+              {dormsData.map((_, index) => (
+                <Chip
+                  key={index}
+                  mode="outlined"
+                  onPress={() => setForm({...form, dorm:_.id})}
+                  selected={form.dorm === _.id ? true : false}
+                  selectedColor={form.dorm === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                  showSelectedCheck={false}
+                  style={{
+                    margin:4,
+                    backgroundColor:form.dorm === _.dorm ? customTheme.colors.tertiary : customTheme.colors.background,
+                  }}
+                >
+                  {_.dorm}
+                </Chip>
+              ))}
+            </View>
 
             {/* interests */}
             <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
@@ -173,16 +207,12 @@ function MockAccountSetup({ navigation }) {
                 elevation: 5,
               }}
             >
-              <ScrollView showsVerticalScrollIndicator={false}>
+              <ScrollView showsVerticalScrollIndicator={false} style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
                 {interestsData.map((_, index) => (
                   <Chip 
                     key={index}
                     mode="outlined"
                     style={{margin:4}}
-                    // selected
-                    // elevated
-                    // selectedColor={customTheme.colors.tertiary}
-                    // background={customTheme.colors.tertiary}
                     onPress={() => console.log(index)}
                   >
                     {_.interest}
