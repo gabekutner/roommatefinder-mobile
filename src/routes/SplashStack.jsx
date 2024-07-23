@@ -8,7 +8,9 @@ import SplashScreen from "../screens/SplashScreen";
 // import {MockProfile} from "../../__mocks__/mock.profile";
 import { MockAuth } from "../../__mocks__/mock.auth";
 import { MockIdentifier } from "../../__mocks__/mock.identifier";
+import { MockVerificationCode } from "../../__mocks__/mock.verificationCode";
 import { useTheme } from "react-native-paper";
+import { MockAccountSetup } from "../../__mocks__/mock.accountSetup";
 
 const Base = ({ navigation }) => {
   const theme = useTheme()
@@ -42,6 +44,22 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
+        }}
+      />
+      <Stack.Screen
+        name="code"
+        component={MockVerificationCode}
+        options={{
+          headerShown: false, 
+          presentation:"modal",
+        }}
+      />
+      <Stack.Screen
+        name="setup"
+        component={MockAccountSetup}
+        options={{
+          headerShown: false, 
+          presentation:"fullScreenModal",
         }}
       />
     </Stack.Navigator>

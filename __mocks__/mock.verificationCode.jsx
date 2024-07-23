@@ -4,22 +4,19 @@ import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
 
-function MockIdentifier({ route, navigation }) {
+function MockVerificationCode({ navigation }) {
   // on press
-  // 1 create an account via email address,
-  // 2 send verification code
-  // 3 navigate to verification code page
-  // button shows loading during steps 1 and 2
-  const {id} = route.params
+  // 1 verify code
+  // 2 navigate to account setup
   const customTheme = useTheme();
 
-  const [identifier, setIdentifier] = useState("");
+  const [code, setCode] = useState("");
 
   const buttonClick = () => {
     // identifier validation
     // create an account
     // send verification code (part of create an account)
-    navigation.navigate('code')
+    navigation.navigate('setup')
   }
 
   return (
@@ -43,15 +40,15 @@ function MockIdentifier({ route, navigation }) {
 
               <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
                 <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
-                  Let's start with your {id !== 'UID' ? id.toLowerCase() : id}
+                  Enter the 5 digit verification code
                 </Text>
               </View>
             </View>
             {/* content */}
             <View style={{gap: 35}}>
-              <TextInput 
+              {/* <TextInput 
                 mode="outlined"
-                label={id}
+                // label={id}
                 value={identifier}
                 onChangeText={text => setIdentifier(text)}
                 placeholder={id === 'UID' ? "u1234567" : ""}
@@ -61,9 +58,9 @@ function MockIdentifier({ route, navigation }) {
                 keyboardType={id === 'phone number' ? "phone-pad" : "email-address"}
                 autoCapitalize={false}
                 maxLength={id === 'phone number' ? 10 : null}
-              />
+              /> */}
               <Button
-                disabled={identifier === "" ? true : false}
+                // disabled={code === "" ? true : false}
                 onPress={buttonClick}
                 mode="elevated"
                 buttonColor={'#890000'}
@@ -76,7 +73,6 @@ function MockIdentifier({ route, navigation }) {
               >
                 <Text>Continue</Text>
               </Button>
-
             </View>
           </View>
         </View>
@@ -85,4 +81,4 @@ function MockIdentifier({ route, navigation }) {
   )
 }
 
-export {MockIdentifier}
+export {MockVerificationCode}
