@@ -9,7 +9,6 @@ function MockAccountSetup({ navigation }) {
   const customTheme = useTheme();
 
   const buttonClick = () => {
-    // create an account
     // form validation
     // create profile
     // navigate to app stack!
