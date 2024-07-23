@@ -44,10 +44,8 @@ function MockVerificationCode({ navigation }) {
   };
 
   const buttonClick = () => {
-    // identifier validation
-    // create an account
-    // send verification code (part of create an account)
-    navigation.navigate('setup')
+    // validate verification code
+    navigation.navigate('password')
   }
 
   return (

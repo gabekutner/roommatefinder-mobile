@@ -11,11 +11,12 @@ import { MockIdentifier } from "../../__mocks__/mock.identifier";
 import { MockVerificationCode } from "../../__mocks__/mock.verificationCode";
 import { useTheme } from "react-native-paper";
 import { MockAccountSetup } from "../../__mocks__/mock.accountSetup";
+import { MockPassword } from "../../__mocks__/mock.password";
 
 const Base = ({ navigation }) => {
   const theme = useTheme()
   useEffect(() => {
-    navigation.navigate('splash')
+    navigation.navigate('auth')
   }), []
   return (
     <View style={{flex:1, backgroundColor: theme.colors.background}} />
@@ -31,7 +32,7 @@ export default function SplashStack() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="splash"
+        name="auth"
         component={MockAuth}
         options={{
           headerShown: false, 
@@ -52,6 +53,14 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
+        }}
+      />
+      <Stack.Screen
+        name="password"
+        component={MockPassword}
+        options={{
+          headerShown: false, 
+          presentation:"fullScreenModal",
         }}
       />
       <Stack.Screen
