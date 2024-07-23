@@ -18,6 +18,7 @@ function MockIdentifier({ route, navigation }) {
   const buttonClick = () => {
     // identifier validation
     // create an account
+    // save user response object in global state
     // send verification code (part of create an account)
     navigation.navigate('code')
   }

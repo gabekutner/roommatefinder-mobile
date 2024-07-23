@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
@@ -10,7 +10,38 @@ function MockVerificationCode({ navigation }) {
   // 2 navigate to account setup
   const customTheme = useTheme();
 
-  const [code, setCode] = useState("");
+  // const [code, setCode] = useState("");
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  const inputRef3 = useRef(null);
+  const inputRef4 = useRef(null);
+
+  const [input1, setInput1] = useState("")
+  const [input2, setInput2] = useState("")
+  const [input3, setInput3] = useState("")
+  const [input4, setInput4] = useState("")
+
+  const handleTextChange = (text, inputRef, setInput) => {
+    setInput(text)
+    // Check if maxLength is reached
+    if (text.length === 1) {
+      // Focus on the next TextInput
+      switch (inputRef) {
+        case inputRef1:
+          inputRef2.current.focus();
+          break;
+        case inputRef2:
+          inputRef3.current.focus();
+          break;
+        case inputRef3:
+          inputRef4.current.focus();
+          break;
+        // Add more cases if you have more TextInput components
+        default:
+          break;
+      }
+    }
+  };
 
   const buttonClick = () => {
     // identifier validation
@@ -40,25 +71,61 @@ function MockVerificationCode({ navigation }) {
 
               <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
                 <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
-                  Enter the 5 digit verification code
+                  Type the verification code sent to **phone**
                 </Text>
               </View>
             </View>
             {/* content */}
             <View style={{gap: 35}}>
-              {/* <TextInput 
-                mode="outlined"
-                // label={id}
-                value={identifier}
-                onChangeText={text => setIdentifier(text)}
-                placeholder={id === 'UID' ? "u1234567" : ""}
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
-                contentStyle={{width: 300}}
-                keyboardType={id === 'phone number' ? "phone-pad" : "email-address"}
-                autoCapitalize={false}
-                maxLength={id === 'phone number' ? 10 : null}
-              /> */}
+
+              <View style={{flexDirection:'row',gap:5}}>
+                <TextInput 
+                  mode="outlined"
+                  outlineColor={customTheme.colors.primary}
+                  textColor={customTheme.colors.primary}
+                  // contentStyle={{width: 300}}
+                  autoCapitalize={false}
+                  ref={inputRef1}
+                  maxLength={1}  // Example maxLength
+                  onChangeText={(text) => handleTextChange(text, inputRef1, setInput1)}
+                  value={input1}
+                />
+                <TextInput 
+                  mode="outlined"
+                  outlineColor={customTheme.colors.primary}
+                  textColor={customTheme.colors.primary}
+                  // contentStyle={{width: 300}}
+                  autoCapitalize={false}
+                  ref={inputRef2}
+                  maxLength={1}
+                  onChangeText={(text) => handleTextChange(text, inputRef2, setInput2)}
+                  value={input2}
+                />
+                <TextInput 
+                  mode="outlined"
+                  outlineColor={customTheme.colors.primary}
+                  textColor={customTheme.colors.primary}
+                  // contentStyle={{width: 300}}
+                  autoCapitalize={false}
+                  ref={inputRef3}
+                  maxLength={1}
+                  onChangeText={(text) => handleTextChange(text, inputRef3, setInput3)}
+                  value={input3}
+                />
+                <TextInput 
+                  mode="outlined"
+                  outlineColor={customTheme.colors.primary}
+                  textColor={customTheme.colors.primary}
+                  // contentStyle={{width: 300}}
+                  autoCapitalize={false}
+                  ref={inputRef4}
+                  maxLength={1} 
+                  onChangeText={(text) => handleTextChange(text, inputRef4, setInput4)}
+                  value={input4}
+                />
+
+              </View>
+              
               <Button
                 // disabled={code === "" ? true : false}
                 onPress={buttonClick}
