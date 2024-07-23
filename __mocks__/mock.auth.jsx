@@ -1,5 +1,5 @@
 import React from "react";
-import {SafeAreaView, Text, View, StyleSheet} from "react-native";
+import {SafeAreaView, Text, View, StyleSheet, Modal} from "react-native";
 import {Button, useTheme} from "react-native-paper";
 
 
@@ -90,6 +90,7 @@ function MockAuth({ navigation }) {
             {
               textAlign: 'center',
               color: customTheme.colors.primary,
+              textDecorationLine: 'none'
             }
           ]}
         >

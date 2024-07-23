@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Pressable } from "react-native";
+import React, { useEffect } from "react";
+import { View } from "react-native";
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
@@ -12,8 +12,11 @@ import { useTheme } from "react-native-paper";
 
 const Base = ({ navigation }) => {
   const theme = useTheme()
+  useEffect(() => {
+    navigation.navigate('splash')
+  }), []
   return (
-    <Pressable onPress={navigation.navigate('splash')} style={{flex:1, backgroundColor: theme.colors.background}} />
+    <View style={{flex:1, backgroundColor: theme.colors.background}} />
   )
 }
 

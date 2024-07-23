@@ -1,10 +1,7 @@
 import React, {useState} from "react";
-import {SafeAreaView, Text, View, TextInput as NativeTextInput} from "react-native";
+import {SafeAreaView, Text, View} from "react-native";
 import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-// import {fab} from "@fortawesome/free-brands-svg-icons";
-// import {library} from "@fortawesome/fontawesome-svg-core";
-// library.add(fab)
 
 
 function MockIdentifier({ route, navigation }) {
@@ -12,23 +9,6 @@ function MockIdentifier({ route, navigation }) {
   const customTheme = useTheme();
 
   const [identifier, setIdentifier] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
-
-  // Function to handle input change and format phone number
-  function fNumber(value) {
-    if (!value) return value
-    const num = value.replace(/[^\d]/g, "")
-    const numL = num.length
-    if (numL < 4) return num
-    
-  }
-
-  const handleInput = e => {
-    const f = fNumber(e.target.value)
-    setIdentifier(f)
-  }
-  
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
@@ -59,19 +39,8 @@ function MockIdentifier({ route, navigation }) {
             mode="outlined"
             label={id}
             value={identifier}
-            // onChangeText={{text => setIdentifier(text)}}
-            onChangeText={e => {
-              if (id === 'Phone Number') {
-                handleInput(e)
-              } else {
-                setIdentifier(e)
-              }
-            }}
-            placeholder={
-              id === 'Phone Number' ? "(xxx) xxx-xxxx" : 
-              id === 'UID' ? "u1234567" : 
-              id === 'Email' ? "email@example.com" : ""
-            }
+            onChangeText={text => setIdentifier(text)}
+            placeholder={id === 'UID' ? "u1234567" : ""}
             outlineColor={customTheme.colors.primary}
             textColor={customTheme.colors.primary}
             contentStyle={{width: 300}}
