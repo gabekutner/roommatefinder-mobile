@@ -47,6 +47,19 @@ function MockAuth({ navigation }) {
             <Text>Continue with phone number</Text>
           </Button>
 
+          <Button
+            onPress={() => navigation.navigate('identifier', {id: 'UID'})}
+            mode="elevated"
+            buttonColor={customTheme.colors.primary} 
+            labelStyle={[
+              styles.fontFamily,
+              styles.buttonText,
+              {color: customTheme.colors.secondary}
+            ]}
+          >
+            <Text>Continue with UID</Text>
+          </Button>
+
           {/* spacer */}
           <View style={{flexDirection:'row', gap: 10, alignItems:'center', justifyContent:'center'}}>
             <View 
@@ -65,7 +78,7 @@ function MockAuth({ navigation }) {
           </View>
 
           <Button
-            onPress={() => navigation.navigate('identifier', {id: 'UID'})}
+            onPress={() => navigation.navigate('login')}
             mode="elevated"
             buttonColor={'#890000'}
             labelStyle={[
@@ -74,7 +87,7 @@ function MockAuth({ navigation }) {
               {color: customTheme.colors.secondary}
             ]}
           >
-            <Text>Continue with UID</Text>
+            <Text>Log in</Text>
           </Button>
 
         </View>

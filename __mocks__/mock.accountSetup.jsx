@@ -336,7 +336,7 @@ function MockAccountSetup({ navigation }) {
             />
 
             {/* links */}
-
+            
             {/* prompts */}
 
             {/* quotes */}
