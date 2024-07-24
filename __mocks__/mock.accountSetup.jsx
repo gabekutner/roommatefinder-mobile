@@ -191,23 +191,45 @@ function MockAccountSetup({ navigation }) {
               What dorm are you living in?
               <Text style={{color:'red'}}>*</Text>
             </Text>
-            <View style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
-              {dormsData.map((_, index) => (
-                <Chip
-                  key={index}
-                  mode="outlined"
-                  onPress={() => setForm({...form, dorm:_.id})}
-                  selected={form.dorm === _.id ? true : false}
-                  selectedColor={form.dorm === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
-                  showSelectedCheck={false}
-                  style={{
-                    margin:4,
-                    backgroundColor:form.dorm === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
-                  }}
-                >
-                  {_.dorm}
-                </Chip>
-              ))}
+            <View
+              style={{
+                height:300, 
+                gap:10, 
+                paddingHorizontal:25, 
+                paddingVertical:15, 
+                backgroundColor:customTheme.colors.background,
+                borderRadius:12,
+                borderWidth:1,
+
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+              }}
+            >
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{flexDirection:'row', overflow:'hidden', flexWrap:'wrap'}}>
+                  {dormsData.map((_, index) => (
+                    <Chip
+                      key={index}
+                      mode="outlined"
+                      onPress={() => setForm({...form, dorm:_.id})}
+                      selected={form.dorm === _.id ? true : false}
+                      selectedColor={form.dorm === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                      showSelectedCheck={false}
+                      style={{
+                        margin:4,
+                        backgroundColor:form.dorm === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                      }}
+                    >
+                      {_.dorm}
+                    </Chip>
+                  ))}
+                </View>
+              </ScrollView>
             </View>
 
             {/* interests */}
@@ -258,7 +280,6 @@ function MockAccountSetup({ navigation }) {
 
             {/* hometown */}
             <View style={{flexDirection:'row', gap:5}}>
-
               <TextInput 
                 mode="outlined"
                 label='Hometown'
@@ -285,7 +306,6 @@ function MockAccountSetup({ navigation }) {
               />
             </View>
             
-
             {/* major */}
             <TextInput 
               mode="outlined"
