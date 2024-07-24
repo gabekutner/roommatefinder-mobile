@@ -54,15 +54,15 @@ function MockAccountSetup({ navigation }) {
     setForm({...form, links:links})
   }
 
-  const [addQuote, setAddQuote] = useState({
-    quote: '',
-    cited: ''
+  const [addPrompt, setAddPrompt] = useState({
+    question: '',
+    answer: ''
   })
-  const handleQuote = (q, c) => {
-    const quotes = [...form.quotes]
-    quotes.push({quote: q, cited: c})
-    setAddQuote({...addQuote, quote:'', cited:''})
-    setForm({...form, quotes:quotes})
+  const handlePrompt = (q, a) => {
+    const prompts = [...form.prompts]
+    prompts.push({question: q, answer: a})
+    setAddPrompt({...addPrompt, question:'', answer:''})
+    setForm({...form, prompts:prompts})
   }
 
   const handleInterests = (i) => {
@@ -467,7 +467,6 @@ function MockAccountSetup({ navigation }) {
                   </View>
                 </View>
               ))}
-            
             </View>
             
             {/* prompts */}
@@ -497,26 +496,27 @@ function MockAccountSetup({ navigation }) {
             >
               <ScrollView style={{height:150}}>
                 {prompts.map((_, index) => (
-                  <View 
+                  <Chip 
                     key={index}
+                    mode="outlined"
                     style={{
-                      paddingHorizontal:10,
-                      paddingVertical:5,
-                      borderWidth:1,
-                      borderRadius:12,
-                      backgroundColor:customTheme.colors.background,
-                      margin:4
-                    }}  
+                      margin:4,
+                      backgroundColor: addPrompt.question === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                    }}
+                    selected={addPrompt.question === _.id ? true : false}
+                    onPress={() => setAddPrompt({...addPrompt, question:_.id })}
+                    selectedColor={addPrompt.question === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                    showSelectedCheck={false}
                   >
-                    <Text>{_.prompt}</Text>
-                  </View>
+                    {_.prompt}
+                  </Chip>
                 ))}
               </ScrollView>
               <TextInput 
                 mode="outlined"
                 label='Answer'
-                value={form.about}
-                onChangeText={text => setForm({...form, about:text})}
+                value={addPrompt.answer}
+                onChangeText={() => handlePrompt(addPrompt.question, addPrompt.answer)}
                 placeholder=""
                 outlineColor={customTheme.colors.primary}
                 textColor={customTheme.colors.primary}
