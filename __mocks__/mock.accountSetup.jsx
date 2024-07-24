@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView} from "react-native";
-import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
+import {Button, useTheme, TextInput, Snackbar, Chip, IconButton} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData} from "../src/assets/Dictionary"
 
@@ -31,6 +31,18 @@ function MockAccountSetup({ navigation }) {
     quotes: [],
     prompts: []
   })
+
+  const [addLink, setAddLink] = useState({
+    title: '',
+    link: ''
+  })
+
+  const handleLink = (t, l) => {
+    const links = [...form.links]
+    links.push({title: t, link: l})
+    setAddLink({...addLink, title:'', link:''})
+    setForm({...form, links:links})
+  }
 
   const handleInterests = (i) => {
     const interests = [...form.interests]
@@ -336,8 +348,142 @@ function MockAccountSetup({ navigation }) {
             />
 
             {/* links */}
+            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+              Add a link to your socials!
+            </Text>
+            <View
+              style={{
+                gap:10, 
+                width:'100%',
+                paddingHorizontal:25, 
+                paddingVertical:15, 
+                marginBottom:15, 
+                backgroundColor:customTheme.colors.background,
+                borderRadius:12,
+                borderWidth:1,
+                alignItems:'center',
+
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+              }}
+            >
+              <TextInput 
+                mode="outlined"
+                label="Where's this link go?"
+                value={addLink.title}
+                onChangeText={text => setAddLink({ ...addLink, title:text })}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'100%'}}
+                multiline={true}
+              />
+              <TextInput 
+                mode="outlined"
+                label='Link here!'
+                value={addLink.link}
+                onChangeText={text => setAddLink({ ...addLink, link:text })}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'100%'}}
+                multiline={true}
+              />
+              <IconButton
+                mode="outlined"
+                icon={() => <FontAwesomeIcon icon={"plus"}/>}
+                onPress={() => handleLink(addLink.title, addLink.link)}
+              />
+            </View>
+            {form.links.map((_, index) => (
+              <View style={{flexDirection:'row', gap:5, alignItems:'center'}}>
+                <FontAwesomeIcon icon={"xmark"} />
+                <View 
+                  key={index}
+                  style={{
+                    margin:4,
+                    paddingHorizontal:10,
+                    paddingVertical:5,
+                    backgroundColor: customTheme.colors.background,
+                    borderRadius:12,
+                    borderWidth:1,
+                    flexDirection:'row',
+                    gap:15,
+
+                    justifyContent:'space-between'
+                  }}
+                >
+                  <FontAwesomeIcon icon={"link"}/>
+                  <Text>{_.title}</Text>
+                </View>
+              </View>
+            ))}
             
             {/* prompts */}
+            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+              Answer a prompt!
+            </Text>
+            <View
+              style={{
+                gap:10, 
+                width:'100%',
+                paddingHorizontal:25, 
+                paddingVertical:15, 
+                marginBottom:15, 
+                backgroundColor:customTheme.colors.background,
+                borderRadius:12,
+                borderWidth:1,
+                alignItems:'center',
+
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+              }}
+            >
+              {/* <TextInput 
+                mode="outlined"
+                label="Where's this link go?"
+                value={form.about}
+                onChangeText={text => setForm({...form, about:text})}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'100%'}}
+                multiline={true}
+              /> */}
+              <TextInput 
+                mode="outlined"
+                label='Answer'
+                value={form.about}
+                onChangeText={text => setForm({...form, about:text})}
+                placeholder=""
+                outlineColor={customTheme.colors.primary}
+                textColor={customTheme.colors.primary}
+                keyboardType="default"
+                autoCapitalize={true}
+                style={{width:'100%'}}
+                multiline={true}
+              />
+              <IconButton
+                mode="outlined"
+                icon={() => <FontAwesomeIcon icon={"plus"}/>}
+              />
+            </View>
 
             {/* quotes */}
 
