@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView} from "react-native";
-import {Button, useTheme, TextInput, Snackbar, Chip, IconButton} from "react-native-paper";
+import {SafeAreaView, Platform, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView} from "react-native";
+import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData, prompts} from "../src/assets/Dictionary"
 
@@ -24,46 +24,13 @@ function MockAccountSetup({ navigation }) {
     city: "",
     state: "",
     about: "",
-    thumbnail: "",
+    thumbnail: null,
     interests: [],
     photos: [],
-    links: [],
-    quotes: [],
-    prompts: []
+    // links: [],
+    // quotes: [],
+    // prompts: []
   })
-
-  const [addLink, setAddLink] = useState({
-    title: '',
-    link: ''
-  })
-  const handleLink = (t, l) => {
-    const links = [...form.links]
-    if (links.length < 3) {
-      links.push({title: t, link: l})
-      setAddLink({...addLink, title:'', link:''})
-      setForm({...form, links:links})
-    }
-  }
-  const removeLink = (t, l) => {
-    const links = [...form.links]
-    for (var i in links) {
-      if (links[i].title === t && links[i].link === l) {
-        links.splice(i, 1)
-      }
-    }
-    setForm({...form, links:links})
-  }
-
-  const [addPrompt, setAddPrompt] = useState({
-    question: '',
-    answer: ''
-  })
-  const handlePrompt = (q, a) => {
-    const prompts = [...form.prompts]
-    prompts.push({question: q, answer: a})
-    setAddPrompt({...addPrompt, question:'', answer:''})
-    setForm({...form, prompts:prompts})
-  }
 
   const handleInterests = (i) => {
     const interests = [...form.interests]
@@ -105,8 +72,14 @@ function MockAccountSetup({ navigation }) {
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0} // Adjust the value as needed
+      >
+      <TouchableWithoutFeedback style={{flex:1}} onPress={() => Keyboard.dismiss()}> 
+      
+        <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
           <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:50}}>
             
             <View style={{ width:200, alignItems:'center', justifyContent:'center', marginVertical:25 }}>
@@ -366,172 +339,8 @@ function MockAccountSetup({ navigation }) {
               autoCapitalize={true}
               style={{width:'100%'}}
               multiline={true}
+              scrollEnabled={false}
             />
-
-            {/* links */}
-            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
-              Add a link to your socials!
-            </Text>
-            <View
-              style={{
-                gap:10, 
-                width:'100%',
-                paddingHorizontal:25, 
-                paddingVertical:15, 
-                backgroundColor:customTheme.colors.background,
-                borderRadius:12,
-                borderWidth:1,
-                alignItems:'center',
-
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-              }}
-            >
-              <TextInput 
-                mode="outlined"
-                label="Where's this link go?"
-                value={addLink.title}
-                onChangeText={text => setAddLink({ ...addLink, title:text })}
-                placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
-                keyboardType="default"
-                autoCapitalize={true}
-                style={{width:'100%'}}
-                multiline={true}
-              />
-              <TextInput 
-                mode="outlined"
-                label='Link here!'
-                value={addLink.link}
-                onChangeText={text => setAddLink({ ...addLink, link:text })}
-                placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
-                keyboardType="default"
-                autoCapitalize={true}
-                style={{width:'100%'}}
-                multiline={true}
-              />
-              <IconButton
-                mode="outlined"
-                icon={() => <FontAwesomeIcon icon={"plus"}/>}
-                onPress={() => handleLink(addLink.title, addLink.link)}
-              />
-            </View>
-            <View 
-              style={{
-                gap:10, 
-                width:'100%',
-                paddingHorizontal:25, 
-                paddingVertical:15, 
-                backgroundColor:customTheme.colors.background,
-                borderRadius:12,
-                borderWidth:1,
-                alignItems:'center',
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-              }}
-            >
-              {form.links.map((_, index) => (
-                <View key={index} style={{flexDirection:'row', gap:5, alignItems:'center'}}>
-                  <IconButton
-                    icon={() => <FontAwesomeIcon icon={"xmark"}/>}
-                    onPress={() => removeLink(_.title, _.link)}
-                  />
-                  <View 
-                    style={{
-                      margin:4,
-                      paddingHorizontal:10,
-                      paddingVertical:5,
-                      backgroundColor: customTheme.colors.background,
-                      borderRadius:12,
-                      borderWidth:1,
-                      flexDirection:'row',
-                      gap:15,
-                      justifyContent:'space-between'
-                    }}
-                  >
-                    <FontAwesomeIcon icon={"link"}/>
-                    <Text>{_.title}</Text>
-                  </View>
-                </View>
-              ))}
-            </View>
-            
-            {/* prompts */}
-            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
-              Answer a prompt!
-            </Text>
-            <View
-              style={{
-                gap:10, 
-                width:'100%',
-                paddingHorizontal:25, 
-                paddingVertical:15, 
-                marginBottom:15, 
-                backgroundColor:customTheme.colors.background,
-                borderRadius:12,
-                borderWidth:1,
-                alignItems:'center',
-
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-              }}
-            >
-              <ScrollView style={{height:150}}>
-                {prompts.map((_, index) => (
-                  <Chip 
-                    key={index}
-                    mode="outlined"
-                    style={{
-                      margin:4,
-                      backgroundColor: addPrompt.question === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
-                    }}
-                    selected={addPrompt.question === _.id ? true : false}
-                    onPress={() => setAddPrompt({...addPrompt, question:_.id })}
-                    selectedColor={addPrompt.question === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
-                    showSelectedCheck={false}
-                  >
-                    {_.prompt}
-                  </Chip>
-                ))}
-              </ScrollView>
-              <TextInput 
-                mode="outlined"
-                label='Answer'
-                value={addPrompt.answer}
-                onChangeText={() => handlePrompt(addPrompt.question, addPrompt.answer)}
-                placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
-                keyboardType="default"
-                autoCapitalize={true}
-                style={{width:'100%'}}
-                multiline={true}
-              />
-              <IconButton
-                mode="outlined"
-                icon={() => <FontAwesomeIcon icon={"plus"}/>}
-              />
-            </View>
-
-            {/* quotes */}
 
             <Button
               onPress={buttonClick}
@@ -543,7 +352,7 @@ function MockAccountSetup({ navigation }) {
                 fontWeight: '700',
                 color: customTheme.colors.secondary
               }}
-              style={{marginBottom:50}}
+              style={{marginBottom:100}}
             >
               <Text>Continue</Text>
             </Button>
@@ -570,7 +379,9 @@ function MockAccountSetup({ navigation }) {
             </Text>
           </Snackbar>
         </ScrollView>
+        
       </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }

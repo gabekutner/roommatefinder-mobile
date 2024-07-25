@@ -55,6 +55,7 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
+          gestureEnabled: false
         }}
       />
       <Stack.Screen
@@ -63,6 +64,7 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
+          gestureEnabled: false
         }}
       />
       <Stack.Screen
@@ -71,6 +73,7 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"fullScreenModal",
+          gestureEnabled: false
         }}
       />
       <Stack.Screen
@@ -79,6 +82,7 @@ export default function SplashStack() {
         options={{
           headerShown: false, 
           presentation:"fullScreenModal",
+          gestureEnabled: false
         }}
       />
     </Stack.Navigator>
