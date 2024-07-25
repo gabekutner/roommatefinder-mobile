@@ -9,25 +9,25 @@ import SplashScreen from "../screens/SplashScreen";
 import { MockAuth } from "../../__mocks__/mock.auth";
 import { MockIdentifier } from "../../__mocks__/mock.identifier";
 import { MockVerificationCode } from "../../__mocks__/mock.verificationCode";
-import { useTheme } from "react-native-paper";
+// import { useTheme } from "react-native-paper";
 import { MockAccountSetup } from "../../__mocks__/mock.accountSetup";
 import { MockPassword } from "../../__mocks__/mock.password";
 import { MockLogin } from "../../__mocks__/mock.login";
 
-const Base = ({ navigation }) => {
-  const theme = useTheme()
-  useEffect(() => {
-    navigation.navigate('auth')
-  }), []
-  return (
-    <View style={{flex:1, backgroundColor: theme.colors.background}} />
-  )
-}
+// const Base = ({ navigation }) => {
+//   const theme = useTheme()
+//   useEffect(() => {
+//     navigation.navigate('auth')
+//   }), []
+//   return (
+//     <View style={{flex:1, backgroundColor: theme.colors.background}} />
+//   )
+// }
 
 export default function SplashStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen 
+      {/* <Stack.Screen 
         name="base"
         component={Base}
         options={{headerShown: false}}
@@ -84,6 +84,11 @@ export default function SplashStack() {
           presentation:"fullScreenModal",
           gestureEnabled: false
         }}
+      /> */}
+      <Stack.Screen 
+        name="splash"
+        component={SplashScreen}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
