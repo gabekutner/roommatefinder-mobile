@@ -10,13 +10,14 @@ import AppStack from "./routes/AppStack";
 import AccountSetupStack from "./routes/AccountSetupStack";
 
 import useStore from "./zustand/store";
+import useBearStore from "./libs/store";
 // import { print } from "~/components/i";
 
 // export {default} from './.storybook';
 export default function App() {
   const initialized = useStore((state) => state.initialized);
-  const authenticated = useStore((state) => state.authenticated);
-  const profileCreated = useStore((state) => state.profileCreated);
+  const authenticated = useBearStore((state) => state.authenticated);
+  // const profileCreated = useStore((state) => state.profileCreated);
   // const initialized = false
   // const authenticated = false
   // const profileCreated = false
@@ -38,12 +39,12 @@ export default function App() {
         <AuthStack />
       </NavigationContainer>
     );
-  } else if (!profileCreated) {
-    return (
-      <NavigationContainer>
-        <AccountSetupStack />
-      </NavigationContainer>
-    );
+  // } else if (!profileCreated) {
+  //   return (
+  //     <NavigationContainer>
+  //       <AccountSetupStack />
+  //     </NavigationContainer>
+  //   );
   } else {
     return (
       <NavigationContainer>

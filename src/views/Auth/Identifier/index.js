@@ -2,6 +2,7 @@ import React, {useState, useRef} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import useBearStore from "../../../libs/store";
 
 
 function IdentifierView({ route, navigation }) {
@@ -12,10 +13,12 @@ function IdentifierView({ route, navigation }) {
   const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState()
 
+  const sendIdentifier = useBearStore((state) => state.sendIdentifier)
+
   const buttonClick = () => {
     setLoading(true)
     // 1 create an account via identifier
-    // 2 send verification code
+    sendIdentifier(identifier)
     setLoading(false)
     // 3 navigate to verification code page
     navigation.navigate('code')

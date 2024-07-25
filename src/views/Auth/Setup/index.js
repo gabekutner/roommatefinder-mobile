@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import {SafeAreaView, Platform, Text, View, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView} from "react-native";
+import {SafeAreaView, Platform, Text, View, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView} from "react-native";
 import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
+import useBearStore from "../../../libs/store"
+import {launchImageLibrary} from "react-native-image-picker";
+
 
 
 function SetupView({ navigation }) {
@@ -13,6 +16,8 @@ function SetupView({ navigation }) {
     missing: []
   });
   const onDismissSnackBar = () => setVisible({...visible, status:false});
+
+  const sendProfile = useBearStore((state) => state.sendProfile)
   
   // temporary
   const [form, setForm] = useState({
@@ -26,10 +31,7 @@ function SetupView({ navigation }) {
     about: "",
     thumbnail: null,
     interests: [],
-    photos: [],
-    // links: [],
-    // quotes: [],
-    // prompts: []
+    // photos: [],
   })
 
   const handleInterests = (i) => {
@@ -52,6 +54,27 @@ function SetupView({ navigation }) {
     }
   }
 
+  const setThumbnail = () => {
+    launchImageLibrary({includeBase64: true}, (response) => {
+      if (response.didCancel) return;
+      const file = response.assets[0];
+      setForm({...form, thumbnail:file})
+      // if (key === "0") {
+      //   setPhoto({...photo, thumbnail: file});
+      //   setPhotos({...photos, thumbnail: file});
+      // } else if (key === "photo_1") {
+      //   setPhoto({...photo, photo_1: file});
+      //   setPhotos({...photos, photo_1: file});
+      // } else if (key === "photo_2") {
+      //   setPhoto({...photo, photo_2: file});
+      //   setPhotos({...photos, photo_2: file});
+      // } else if (key === "photo_3") {
+      //   setPhoto({...photo, photo_3: file});
+      //   setPhotos({...photos, photo_3: file});
+      // }
+    });
+  };
+
   const buttonClick = () => {
     // form validation
     const missing = []
@@ -63,8 +86,11 @@ function SetupView({ navigation }) {
     if (missing.length != 0) {
       setVisible({...visible, status:true, missing:missing})
     } else {
-      console.log('submit')
+      // console.log('submit')
       // create profile
+      sendProfile(form)
+      // console.log(form.interests)
+      // console.log(form.sex)
       // navigate to app stack!
     }    
   }
@@ -111,9 +137,9 @@ function SetupView({ navigation }) {
               }}
             >
               <View style={{flex:1, flexDirection:'column', gap:10}}>
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                <TouchableOpacity onPress={setThumbnail} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
                   <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
-                </View>
+                </TouchableOpacity>
                 <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
                   <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
                 </View>
@@ -166,12 +192,12 @@ function SetupView({ navigation }) {
             <View style={{flexDirection:'row', gap:10}}>
               <Chip
                 mode="outlined"
-                selected={form.sex === 'guy' ? true : false}
-                onPress={() => setForm({...form, sex:'guy'})}
-                selectedColor={form.sex === 'guy' ? customTheme.colors.secondary : customTheme.colors.primary}
+                selected={form.sex === 'M' ? true : false}
+                onPress={() => setForm({...form, sex:'M'})}
+                selectedColor={form.sex === 'M' ? customTheme.colors.secondary : customTheme.colors.primary}
                 showSelectedCheck={false}
                 style={{ 
-                  backgroundColor:form.sex === 'guy' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  backgroundColor:form.sex === 'M' ? customTheme.colors.tertiary : customTheme.colors.background,
                   width:'50%',
                 }}
               >
@@ -179,12 +205,12 @@ function SetupView({ navigation }) {
               </Chip>
               <Chip
                 mode="outlined"
-                selected={form.sex === 'girl' ? true : false}
-                onPress={() => setForm({...form, sex:'girl'})}
-                selectedColor={form.sex === 'girl' ? customTheme.colors.secondary : customTheme.colors.primary}
+                selected={form.sex === 'F' ? true : false}
+                onPress={() => setForm({...form, sex:'F'})}
+                selectedColor={form.sex === 'F' ? customTheme.colors.secondary : customTheme.colors.primary}
                 showSelectedCheck={false}
                 style={{ 
-                  backgroundColor:form.sex === 'girl' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  backgroundColor:form.sex === 'F' ? customTheme.colors.tertiary : customTheme.colors.background,
                   width:'50%',
                 }}
               >

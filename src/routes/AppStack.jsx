@@ -41,6 +41,7 @@ import {FriendsView} from "../views/Chat/Friends";
 import { DeckView } from "../views/Deck/Deck";
 import { SearchView } from "../views/Search";
 import {useTheme} from "react-native-paper";
+import { View } from "react-native";
 
 export default function AppStack() {
   const theme = useTheme();
@@ -189,9 +190,19 @@ export default function AppStack() {
     );
   };
 
+  const Base = () => {
+    return (
+      <View style={{flex:1, backgroundColor:'red'}}></View>
+    )
+  }
+
   return (
     <Stack.Navigator initialRouteName="home">
-      <Stack.Screen
+      <Stack.Screen 
+        name="base"
+        component={Base}
+      />
+      {/* <Stack.Screen
         name="home"
         component={Tabs}
         options={{headerShown: false}}
@@ -247,7 +258,7 @@ export default function AppStack() {
         })}
       />
 
-      {/* edit profile */}
+
       <Stack.Screen
         name="edit-basics"
         component={EditProfileView}
@@ -279,7 +290,7 @@ export default function AppStack() {
           headerShadowVisible: false, // border bottom invisible
         })}
       />
-      {/* edit widgets */}
+
       <Stack.Screen
         name="linktree"
         component={LinkTreeScreen}
@@ -349,7 +360,6 @@ export default function AppStack() {
         })}
       />
 
-      {/* edit matching quiz */}
       <Stack.Screen
         name="matching"
         component={BaseOnboardingCard}
@@ -413,7 +423,7 @@ export default function AppStack() {
           screen: "update",
           screen2: "",
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

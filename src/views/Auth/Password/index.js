@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
 import {Button, useTheme, TextInput, HelperText} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import useBearStore from "../../../libs/store";
 
 
 function PasswordView({ navigation }) {
@@ -11,6 +12,8 @@ function PasswordView({ navigation }) {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [valid, setValid] = useState("");
 
+  const sendPassword = useBearStore((state) => state.sendPassword);
+
   const buttonClick = () => {
     // check password similarity
     if (password != repeatPassword) {
@@ -18,6 +21,7 @@ function PasswordView({ navigation }) {
       setValid(true)
     } else {
       // update profile with password
+      sendPassword(password, repeatPassword)
       // save user response object in global state
       navigation.navigate('setup')
     }

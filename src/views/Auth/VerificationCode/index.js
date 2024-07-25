@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import useBearStore from "../../../libs/store";
 
 
 function VerificationCodeView({ navigation }) {
@@ -9,8 +10,8 @@ function VerificationCodeView({ navigation }) {
   // 1 verify code
   // 2 navigate to account setup
   const customTheme = useTheme();
+  const [loading, setLoading] = useState(false);
 
-  // const [code, setCode] = useState("");
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
   const inputRef3 = useRef(null);
@@ -20,6 +21,8 @@ function VerificationCodeView({ navigation }) {
   const [input2, setInput2] = useState("")
   const [input3, setInput3] = useState("")
   const [input4, setInput4] = useState("")
+
+  const sendOTP = useBearStore((state) => state.sendOTP);
 
   const handleTextChange = (text, inputRef, setInput) => {
     setInput(text)
@@ -43,9 +46,18 @@ function VerificationCodeView({ navigation }) {
     }
   };
 
-  const buttonClick = () => {
-    // validate verification code
-    navigation.navigate('password')
+  const buttonClick = async () => {
+    setLoading(true)
+    // combine all inputs 
+    const otp = `${input1}${input2}${input3}${input4}`;
+    const res = await sendOTP(otp)
+    setLoading(false)
+
+    if (res.otp_verified) {
+      navigation.navigate('password')
+    } else {
+      // snackbar error
+    }
   }
 
   return (
@@ -125,7 +137,8 @@ function VerificationCodeView({ navigation }) {
               </View>
               
               <Button
-                // disabled={code === "" ? true : false}
+                // disabled={}
+                loading={loading}
                 onPress={buttonClick}
                 mode="elevated"
                 buttonColor={'#890000'}
