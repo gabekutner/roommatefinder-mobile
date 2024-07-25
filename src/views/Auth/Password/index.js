@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, TouchableO
 import {Button, useTheme, TextInput, HelperText} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
+import api from "../../../core/api";
 
 
 function PasswordView({ navigation }) {
@@ -12,18 +13,42 @@ function PasswordView({ navigation }) {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [valid, setValid] = useState("");
 
+  const login = useBearStore((state) => state.login)
+  const user = useBearStore((state) => state.user)
   const sendPassword = useBearStore((state) => state.sendPassword);
 
-  const buttonClick = () => {
-    // check password similarity
+  const buttonClick = async () => {
+    // 1. check password similarity
     if (password != repeatPassword) {
       // opposites : true = show error, false = don't
       setValid(true)
     } else {
-      // update profile with password
-      sendPassword(password, repeatPassword)
-      // save user response object in global state
-      navigation.navigate('setup')
+      // 2. update profile with password
+      const res = await sendPassword(password, repeatPassword)
+      if (res === 200) {
+        // 3. login user
+        api({
+          method: "post",
+          url: "/api/v1/users/login/",
+          data: {
+            identifier: user.identifier,
+            password: password,
+          },
+        }).then((response) => {
+          const credentials = {
+            identifier: user.identifier,
+            password: password,
+          };
+          login(credentials, response.data, {
+            access: response.data.access,
+            refresh: response.data.refresh,
+          });
+        })
+
+        // 4. navigation.navigate('setup')
+      } else {
+        // show error
+      }      
     }
   }
 

@@ -23,6 +23,8 @@ const createProfileSlice = (set, get) => ({
         }));
       };
 
+      return response.status
+
     } catch(e) {
       console.log("[error-external] sendIdentifier");
     };
@@ -80,6 +82,7 @@ const createProfileSlice = (set, get) => ({
           user: response.data,
         }));
       };
+      return response.status;
 
     } catch(e) {
       console.log("[error-external] sendPassword")
@@ -129,7 +132,6 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendProfile");
       } else {
         console.log("[success] sendProfile");
-        get().login()
         set(() => ({
           user: response.data,
         }));

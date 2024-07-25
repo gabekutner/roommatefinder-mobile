@@ -59,19 +59,6 @@ function SetupView({ navigation }) {
       if (response.didCancel) return;
       const file = response.assets[0];
       setForm({...form, thumbnail:file})
-      // if (key === "0") {
-      //   setPhoto({...photo, thumbnail: file});
-      //   setPhotos({...photos, thumbnail: file});
-      // } else if (key === "photo_1") {
-      //   setPhoto({...photo, photo_1: file});
-      //   setPhotos({...photos, photo_1: file});
-      // } else if (key === "photo_2") {
-      //   setPhoto({...photo, photo_2: file});
-      //   setPhotos({...photos, photo_2: file});
-      // } else if (key === "photo_3") {
-      //   setPhoto({...photo, photo_3: file});
-      //   setPhotos({...photos, photo_3: file});
-      // }
     });
   };
 

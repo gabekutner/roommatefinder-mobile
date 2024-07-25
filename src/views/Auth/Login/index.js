@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {SafeAreaView, Text, View, StyleSheet, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {Button, TextInput, useTheme} from "react-native-paper";
+import useBearStore from "../../../libs/store";
+import api from "../../../core/api";
 
 
 function LoginView({ navigation }) {
@@ -9,6 +11,26 @@ function LoginView({ navigation }) {
     identifier: "",
     password: ""
   })
+
+  const login = useBearStore((state) => state.login)
+
+  const buttonClick = () => {
+    const auth = {
+      identifier: form.identifier,
+      password: form.password
+    }
+    api({
+      method: "post",
+      url: "/api/v1/users/login/",
+      data: auth,
+    }).then((response) => {
+      console.log(response.data)
+      login(auth, response.data, {
+        access: response.data.access,
+        refresh: response.data.refresh,
+      });
+    });
+  }
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background, alignItems: 'center'}}>
@@ -56,7 +78,7 @@ function LoginView({ navigation }) {
               />
 
               <Button
-                // onPress={() => navigation.navigate('identifier', {id: 'UID'})}
+                onPress={buttonClick}
                 mode="elevated"
                 buttonColor={'#890000'}
                 labelStyle={[

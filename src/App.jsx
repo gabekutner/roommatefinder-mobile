@@ -15,13 +15,14 @@ import useBearStore from "./libs/store";
 
 // export {default} from './.storybook';
 export default function App() {
-  const initialized = useStore((state) => state.initialized);
+  // const initialized = useStore((state) => state.initialized);
+  const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
   // const profileCreated = useStore((state) => state.profileCreated);
   // const initialized = false
   // const authenticated = false
   // const profileCreated = false
-  const init = useStore((state) => state.init);
+  const init = useBearStore((state) => state.init);
 
   useEffect(() => {
     init();

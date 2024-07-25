@@ -1,28 +1,16 @@
 import React, {useState, useRef} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
-import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
+import {Button, IconButton, useTheme, TextInput, Snackbar} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
 
 
 function IdentifierView({ route, navigation }) {
-
   const {id} = route.params
   const customTheme = useTheme();
 
   const [identifier, setIdentifier] = useState("");
   const [loading, setLoading] = useState()
-
-  const sendIdentifier = useBearStore((state) => state.sendIdentifier)
-
-  const buttonClick = () => {
-    setLoading(true)
-    // 1 create an account via identifier
-    sendIdentifier(identifier)
-    setLoading(false)
-    // 3 navigate to verification code page
-    navigation.navigate('code')
-  }
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
@@ -32,8 +20,43 @@ function IdentifierView({ route, navigation }) {
   const [input2, setInput2] = useState("")
   const [input3, setInput3] = useState("")
 
+  const [visible, setVisible] = useState({
+    status: false,
+    missing: []
+  });
+
+  const onDismissSnackBar = () => setVisible({...visible, status:false});
+
+  const sendIdentifier = useBearStore((state) => state.sendIdentifier)
+
+  const buttonClick = async () => {
+    setLoading(true)
+    // 1. valid identifier
+    if (identifier === "") {
+      // 2. create an account via identifier
+      const res = await sendIdentifier(`${input1}${input2}${input3}`);
+      setLoading(false);
+      // 3. navigate to verification code page
+      if (res === 200) {
+        navigation.navigate('code');
+      } else {
+        setVisible({...visible, status:true})
+      }
+    } else {
+      // 2. create an account via identifier
+      const res = await sendIdentifier(identifier);
+      setLoading(false);
+      // 3. navigate to verification code page
+      if (res === 200) {
+        navigation.navigate('code');
+      } else {
+        setVisible({...visible, status:true})
+      }
+    };
+  }
+  
   const handleTextChange = (text, inputRef, setInput) => {
-    setInput(text)
+    setInput(text);
     // Check if maxLength is reached
     if (text.length === 3) {
       // Focus on the next TextInput
@@ -47,25 +70,25 @@ function IdentifierView({ route, navigation }) {
         // Add more cases if you have more TextInput components
         default:
           break;
-      }
-    }
+      };
+    };
   };
 
   const handleDisabled = () => {
     if (id === 'Phone Number') {
       if (input1 === "" || input2 === "" || input3 === "") {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     } else {
       if (identifier === "") {
-        return true
+        return true;
       } else {
-        return false
-      }
-    }
-  }
+        return false;
+      };
+    };
+  };
 
   const phoneInput = () => {
     return (
@@ -110,7 +133,7 @@ function IdentifierView({ route, navigation }) {
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View>
+        <View style={{flex:1}}>
           <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:15 }}>
             <IconButton 
               onPress={() => navigation.goBack()}
@@ -170,6 +193,19 @@ function IdentifierView({ route, navigation }) {
 
             </View>
           </View>
+          <Snackbar
+            visible={visible.status}
+            onDismiss={onDismissSnackBar}
+            action={{
+              label: 'Got it',
+              labelStyle: {color: customTheme.colors.secondary}
+            }}
+            wrapperStyle={{backgroundColor: '#890000'}}
+          >
+            <Text style={{fontSize:14, color:customTheme.colors.secondary}}>
+              The {id.toLowerCase()}, {identifier}, is already in use.
+            </Text>
+          </Snackbar>
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>

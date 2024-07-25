@@ -12,6 +12,8 @@ function VerificationCodeView({ navigation }) {
   const customTheme = useTheme();
   const [loading, setLoading] = useState(false);
 
+  const user = useBearStore((state) => state.user)
+
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
   const inputRef3 = useRef(null);
@@ -81,7 +83,7 @@ function VerificationCodeView({ navigation }) {
 
               <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
                 <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
-                  Type the verification code sent to **phone**
+                  Type the verification code sent to `{user.identifier}`
                 </Text>
               </View>
             </View>
