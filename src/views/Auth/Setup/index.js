@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {SafeAreaView, Platform, Text, View, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView, Image} from "react-native";
+import {SafeAreaView, Platform, Text, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView, Image} from "react-native";
 import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
@@ -77,6 +77,7 @@ function SetupView({ navigation }) {
     if (form.age === "") {missing.push('age')} 
     if (form.sex === "") {missing.push('sex')}
     if (form.dorm === "") {missing.push('dorm')}
+    if (form.thumbnail === null) {missing.push('one photo')}
 
     if (missing.length != 0) {
       setVisible({...visible, status:true, missing:missing})
@@ -139,77 +140,173 @@ function SetupView({ navigation }) {
               }}
             >
               <View style={{flex:1, flexDirection:'column', gap:8}}>
+
                 {form.thumbnail ? 
-                  <Image 
-                    source={{uri: form.thumbnail.uri}} 
-                    style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'solid', justifyContent: 'center', alignItems:'center' }} 
-                  />
+                  <TouchableOpacity 
+                    onPress={setThumbnail} 
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
+                    <Image 
+                      source={{uri: form.thumbnail.uri}} 
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
+                    />
+                  </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={setThumbnail} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={setThumbnail} 
+                    style={[
+                      styles.image,
+                      styles.imageEmpty,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
+
                 {form.photos.one ? 
-                  <TouchableOpacity onPress={() => setPhoto('one')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('one')}
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <Image 
                       source={{uri: form.photos.one.uri}} 
-                      style={{ height:'100%', width:'100%' }}
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={() => setPhoto('one')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('one')} 
+                    style={[
+                      styles.image,
+                      styles.imageEmpty,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
+
               </View>
+
               <View style={{flex:1, flexDirection:'column', gap:8}}>
+
                 {form.photos.two ? 
-                  <TouchableOpacity onPress={() => setPhoto('two')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('two')} 
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <Image 
                       source={{uri: form.photos.two.uri}} 
-                      style={{ height:'100%', width:'100%' }}
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={() => setPhoto('two')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('two')} 
+                    style={[
+                      styles.image,
+                      styles.imageEmpty,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
+
                 {form.photos.three ? 
-                  <TouchableOpacity onPress={() => setPhoto('three')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('three')} 
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <Image 
                       source={{uri: form.photos.three.uri}} 
-                      style={{ height:'100%', width:'100%' }}
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={() => setPhoto('three')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                <TouchableOpacity 
+                  onPress={() => setPhoto('three')} 
+                  style={[
+                    styles.image,
+                    styles.imageEmpty,
+                    {borderColor:customTheme.colors.primary}
+                  ]}
+                >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
+
               </View>
+
               <View style={{flex:1, flexDirection:'column', gap:8}}>
+
                 {form.photos.four ? 
-                  <TouchableOpacity onPress={() => setPhoto('four')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('four')} 
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <Image 
                       source={{uri: form.photos.four.uri}} 
-                      style={{ height:'100%', width:'100%' }}
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={() => setPhoto('four')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('four')} 
+                    style={[
+                      styles.image,
+                      styles.imageEmpty,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
+
                 {form.photos.five ? 
-                  <TouchableOpacity onPress={() => setPhoto('five')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('five')} 
+                    style={[
+                      styles.image,
+                      styles.imageFull,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <Image 
                       source={{uri: form.photos.five.uri}} 
-                      style={{ height:'100%', width:'100%' }}
+                      style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
                 : 
-                  <TouchableOpacity onPress={() => setPhoto('five')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                  <TouchableOpacity 
+                    onPress={() => setPhoto('five')} 
+                    style={[
+                      styles.image,
+                      styles.imageEmpty,
+                      {borderColor:customTheme.colors.primary}
+                    ]}
+                  >
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
@@ -476,3 +573,21 @@ function SetupView({ navigation }) {
 }
 
 export {SetupView}
+
+
+const styles = StyleSheet.create({
+  // image
+  image: {
+    flex:1, 
+    borderWidth:2, 
+    borderRadius:12, 
+    justifyContent: 'center', 
+    alignItems:'center'
+  },
+  imageEmpty: {
+    borderStyle:'dashed', 
+  },
+  imageFull: {
+    borderStyle:'solid', 
+  }
+})
