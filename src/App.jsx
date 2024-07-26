@@ -1,45 +1,11 @@
 import "react-native-gesture-handler";
-import React, {useEffect} from "react";
-
 import "./core/fontawesome";
-import {NavigationContainer} from "@react-navigation/native";
+import React from "react";
+import { DormParty } from "./DormParty";
 
-import SplashStack from "./routes/SplashStack";
-import AuthStack from "./routes/AuthStack";
-import AppStack from "./routes/AppStack";
-import AccountSetupStack from "./routes/AccountSetupStack";
-
-// ~deprecated
-// import useStore from "./zustand/store";
-import useBearStore from "./libs/store";
-
+// ~for storybook comment out App
 // export {default} from './.storybook';
+
 export default function App() {
-  const initialized = useBearStore((state) => state.initialized)
-  const authenticated = useBearStore((state) => state.authenticated);
-  const init = useBearStore((state) => state.init);
-
-  useEffect(() => {
-    init();
-  }, []);
-
-  if (!initialized) {
-    return (
-      <NavigationContainer>
-        <SplashStack />
-      </NavigationContainer>
-    );
-  } else if (!authenticated) {
-    return (
-      <NavigationContainer>
-        <AuthStack />
-      </NavigationContainer>
-    );
-  } else {
-    return (
-      <NavigationContainer>
-        <AppStack />
-      </NavigationContainer>
-    );
-  };
+  return <DormParty />
 };
