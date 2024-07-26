@@ -428,7 +428,7 @@ function SetupView({ navigation }) {
             <Button
               onPress={buttonClick}
               mode="elevated"
-              buttonColor={'#890000'}
+              buttonColor={customTheme.colors.tertiaryDark}
               labelStyle={{
                 fontFamily: 'NotoSans_Condensed-Regular',
                 fontSize: 16, 
@@ -447,7 +447,7 @@ function SetupView({ navigation }) {
               label: 'Got it',
               labelStyle: {color: customTheme.colors.secondary}
             }}
-            wrapperStyle={{backgroundColor: '#890000'}}
+            wrapperStyle={{backgroundColor: customTheme.colors.tertiaryDark}}
           >
             <Text 
               style={{fontSize:14, color:customTheme.colors.secondary}}>

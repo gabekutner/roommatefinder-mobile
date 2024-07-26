@@ -16,6 +16,7 @@ const customTheme = {
     primary: "#132331", // key components
     secondary: "#FFFFFF", // less prominent components
     tertiary: "#BE0000", // contrasting accents
+    tertiaryDark: "#890000",
     background: "#F2F1E2",
 
     error: "#",
@@ -25,8 +26,6 @@ const customTheme = {
     // custom
     _tint_primary: "#5A6773",
     _tint_secondary: "#B8BBBD",
-
-    // 454A58
   },
 };
 

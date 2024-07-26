@@ -11,8 +11,8 @@ function StartUpView({ navigation }) {
         {/* header */}
         <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
           {/* logo */}
-          <View style={{height:50, width:50, backgroundColor:'#890000', marginBottom:25}}></View>
-          <View style={{height:20, width:20, backgroundColor:'#be0000', marginTop:-50, marginBottom:25}}></View>
+          <View style={{height:50, width:50, backgroundColor:customTheme.colors.tertiaryDark, marginBottom:25}}></View>
+          <View style={{height:20, width:20, backgroundColor:customTheme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
 
           <View style={{ width:150, alignItems:'center', justifyContent:'center' }}>
             <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>Sign up or log in to start college</Text>
@@ -80,7 +80,7 @@ function StartUpView({ navigation }) {
           <Button
             onPress={() => navigation.navigate('login')}
             mode="elevated"
-            buttonColor={'#890000'}
+            buttonColor={customTheme.colors.tertiaryDark}
             labelStyle={[
               styles.fontFamily,
               styles.buttonText,
