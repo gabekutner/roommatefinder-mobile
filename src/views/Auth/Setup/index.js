@@ -353,7 +353,8 @@ function SetupView({ navigation }) {
               outlineColor={customTheme.colors.primary}
               textColor={customTheme.colors.primary}
               keyboardType="default"
-              autoCapitalize={true}
+              autoCapitalize={false}
+              autoCorrect={false}
               style={{width:'100%'}}
               multiline={true}
               scrollEnabled={false}

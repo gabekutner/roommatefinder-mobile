@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {SafeAreaView, Text, View, StyleSheet, TouchableWithoutFeedback, Keyboard} from "react-native";
+import {SafeAreaView, Text, View, StyleSheet, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
 import {Button, TextInput, useTheme} from "react-native-paper";
 import useBearStore from "../../../libs/store";
 import api from "../../../core/api";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 function LoginView() {
@@ -32,6 +33,9 @@ function LoginView() {
       });
     });
   }
+
+  const [eye, setEye] = useState(true)
+  const eyeClick = () => setEye(!eye)
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background, alignItems: 'center'}}>
@@ -65,18 +69,27 @@ function LoginView() {
                 keyboardType={"email-address"}
                 autoCapitalize={false}
               />
-              <TextInput 
-                mode="outlined"
-                label={'Password'}
-                value={form.password}
-                onChangeText={text => setForm({...form, password:text})}
-                placeholder={""}
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
-                contentStyle={{width: 300}}
-                keyboardType={"default"}
-                autoCapitalize={false}
-              />
+              <View>
+                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'flex-end'}}>
+                  <TouchableOpacity onPress={eyeClick}>
+                    <FontAwesomeIcon icon={"eye"} />
+                  </TouchableOpacity>
+                </View>
+                <TextInput 
+                  mode="outlined"
+                  label={'Password'}
+                  value={form.password}
+                  onChangeText={text => setForm({...form, password:text})}
+                  placeholder={""}
+                  outlineColor={customTheme.colors.primary}
+                  textColor={customTheme.colors.primary}
+                  contentStyle={{width: 300}}
+                  keyboardType={"default"}
+                  autoCapitalize={false}
+                  secureTextEntry={eye}
+                />
+              </View>
+              
 
               <Button
                 onPress={buttonClick}

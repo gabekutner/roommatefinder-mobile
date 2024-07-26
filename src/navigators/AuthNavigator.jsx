@@ -11,28 +11,28 @@ import { PasswordView } from "../views/Auth/Password";
 import { SetupView } from "../views/Auth/Setup";
 
 
-const AuthNavigatorBackground = ({ navigation }) => {
-  const theme = useTheme();
+// const AuthNavigatorBackground = ({ navigation }) => {
+//   const theme = useTheme();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate('auth');
-    }, 500); // Delay to ensure component is fully mounted
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       navigation.navigate('auth');
+//     }, 200); // Delay to ensure component is fully mounted
 
-    return () => clearTimeout(timer); // Clean up timer if component unmounts
-  }, [navigation]);
+//     return () => clearTimeout(timer); // Clean up timer if component unmounts
+//   }, [navigation]);
       
-  return <View style={{flex:1, backgroundColor: theme.colors.background}} />
-};
+//   return <View style={{flex:1, backgroundColor: theme.colors.background}} />
+// };
 
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="auth-navigator-background">
-      <Stack.Screen 
+    <Stack.Navigator initialRouteName="auth">
+      {/* <Stack.Screen 
         name="auth-navigator-background"
         component={AuthNavigatorBackground}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="auth"
         component={StartUpView}

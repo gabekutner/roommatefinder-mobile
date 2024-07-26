@@ -192,8 +192,8 @@ const AppNavigator = () => {
     );
   };
 
-  const Home = () => {
-    const logout = useBearStore(state => state.logout)
+  const Home = ({navigation}) => {
+    const logout = useBearStore(state => state.logout)  
     return (
       <View style={{flex:1, backgroundColor:'red'}}>
         <Button onPress={logout}>
@@ -208,6 +208,9 @@ const AppNavigator = () => {
       <Stack.Screen 
         name="home"
         component={Home}
+        options={{
+          
+        }}
       />
       {/* <Stack.Screen
         name="home"
