@@ -139,8 +139,49 @@ const createProfileSlice = (set, get) => ({
 
     } catch(e) {
       console.log("[error-external] sendProfile")
+    };
+  },
+
+  sendPhotos: async (form) => {
+    try {
+      const dataForm = new FormData();
+      for (const [key, value] of Object.entries(form.photos)) {
+        const imageUri = value.uri;
+        const fileName = imageUri.split("/").pop();
+        const fileType = fileName.split(".")[1];
+        dataForm.append("image", {
+          name: fileName,
+          type: Platform.OS === "ios" ? value.type : "image/" + fileType,
+          uri:
+            Platform.OS === "android"
+              ? value.uri
+              : value.uri.replace("file://", ""),
+        });
+      };
+        
+      const response = await api({
+        method: "post",
+        url: "/api/v1/photos/",
+        data: dataForm,
+        headers: {
+          Authorization: `Bearer ${get().user.token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status !== 201) {
+        throw new Error("[error-internal] sendPhotos");
+      } else {
+        console.log("[success] sendPhotos");
+        // set(() => ({
+        //   user: response.data,
+        // }));
+      };
+
+    } catch(e) {
+      console.log("[error-external] sendPhotos")
       console.log(e)
-    }
+    };
   }
 }); 
 

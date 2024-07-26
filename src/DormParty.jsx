@@ -8,19 +8,22 @@ import { AuthNavigator } from "./navigators/AuthNavigator";
 
 
 const DormParty = () => {
+
   const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
+  // const initialized = true
+  // const authenticated = false
   const init = useBearStore((state) => state.init);
 
   useEffect(() => {
     init();
   }, []);
-
+  
   return (
     <NavigationContainer>
       {authenticated && initialized && <AppNavigator />}
       {!authenticated && initialized && <AuthNavigator />}
-      {!authenticated && !initialized &&<SplashScreen />}
+      {!initialized && <SplashScreen />}
     </NavigationContainer>
   );
 };

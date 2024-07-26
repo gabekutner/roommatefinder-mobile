@@ -7,7 +7,6 @@ import useBearStore from "../../../libs/store"
 import {launchImageLibrary} from "react-native-image-picker";
 
 
-
 function SetupView({ navigation }) {
   const customTheme = useTheme();
 
@@ -17,6 +16,7 @@ function SetupView({ navigation }) {
   });
   const onDismissSnackBar = () => setVisible({...visible, status:false});
 
+  const sendPhotos = useBearStore((state) => state.sendPhotos);
   const sendProfile = useBearStore((state) => state.sendProfile);
 
   const [form, setForm] = useState({
@@ -30,6 +30,7 @@ function SetupView({ navigation }) {
     about: "",
     thumbnail: null,
     interests: [],
+    photos: {},
   });
 
   const handleInterests = (i) => {
@@ -60,6 +61,16 @@ function SetupView({ navigation }) {
     });
   };
 
+  const setPhoto = (num) => {
+    launchImageLibrary({includeBase64: true}, (response) => {
+      if (response.didCancel) return;
+      const file = response.assets[0];
+      const photos = {...form.photos};
+      photos[num] = file;
+      setForm({ ...form, photos:photos });
+    });
+  };
+
   const buttonClick = async () => {
     // 1. form validation
     const missing = []
@@ -73,11 +84,13 @@ function SetupView({ navigation }) {
     } else {
       // 1. send profile
       await sendProfile(form);
-      // 2. navigate to password 
+      // 2. send photos
+      await sendPhotos(form);
+      // 3. navigate to password 
       navigation.navigate('password')
     };
   };
-  
+
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
@@ -89,7 +102,7 @@ function SetupView({ navigation }) {
       <TouchableWithoutFeedback style={{flex:1}} onPress={() => Keyboard.dismiss()}> 
       
         <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
-          <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:50}}>
+          <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:25}}>
             
             <View style={{ width:200, alignItems:'center', justifyContent:'center', marginVertical:25 }}>
               <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
@@ -97,13 +110,13 @@ function SetupView({ navigation }) {
               </Text>
             </View>
 
-            {/* photos - grid 4x4 */}
+            {/* photos - grid 2x3 */}
             <View
               style={{
                 height:300, 
                 gap:10, 
                 flexDirection:'row',
-                paddingHorizontal:25, 
+                paddingHorizontal:15, 
                 paddingVertical:15, 
                 marginBottom:15, 
                 backgroundColor:customTheme.colors.background,
@@ -119,29 +132,81 @@ function SetupView({ navigation }) {
                 shadowRadius: 3.84,
               }}
             >
-              <View style={{flex:1, flexDirection:'column', gap:10}}>
+              <View style={{flex:1, flexDirection:'column', gap:8}}>
                 {form.thumbnail ? 
                   <Image 
                     source={{uri: form.thumbnail.uri}} 
-                    style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'solid', justifyContent: 'center', alignItems:'center' }} />
-                  
+                    style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'solid', justifyContent: 'center', alignItems:'center' }} 
+                  />
                 : 
                   <TouchableOpacity onPress={setThumbnail} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
                     <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
                   </TouchableOpacity>
                 }
-                
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
-                </View>
+                {form.photos.one ? 
+                  <TouchableOpacity onPress={() => setPhoto('one')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <Image 
+                      source={{uri: form.photos.one.uri}} 
+                      style={{ height:'100%', width:'100%' }}
+                    />
+                  </TouchableOpacity>
+                : 
+                  <TouchableOpacity onPress={() => setPhoto('one')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
               </View>
-              <View style={{flex:1, flexDirection:'column', gap:10}}>
-              <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed', borderColor:customTheme.colors.primary, justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
-                </View>
-                <View style={{ flex:1, borderWidth:2, borderRadius:12, borderStyle:'dashed',borderColor:customTheme.colors.primary, justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
-                </View>
+              <View style={{flex:1, flexDirection:'column', gap:8}}>
+                {form.photos.two ? 
+                  <TouchableOpacity onPress={() => setPhoto('two')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <Image 
+                      source={{uri: form.photos.two.uri}} 
+                      style={{ height:'100%', width:'100%' }}
+                    />
+                  </TouchableOpacity>
+                : 
+                  <TouchableOpacity onPress={() => setPhoto('two')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
+                {form.photos.three ? 
+                  <TouchableOpacity onPress={() => setPhoto('three')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <Image 
+                      source={{uri: form.photos.three.uri}} 
+                      style={{ height:'100%', width:'100%' }}
+                    />
+                  </TouchableOpacity>
+                : 
+                  <TouchableOpacity onPress={() => setPhoto('three')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
+              </View>
+              <View style={{flex:1, flexDirection:'column', gap:8}}>
+                {form.photos.four ? 
+                  <TouchableOpacity onPress={() => setPhoto('four')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <Image 
+                      source={{uri: form.photos.four.uri}} 
+                      style={{ height:'100%', width:'100%' }}
+                    />
+                  </TouchableOpacity>
+                : 
+                  <TouchableOpacity onPress={() => setPhoto('four')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
+                {form.photos.five ? 
+                  <TouchableOpacity onPress={() => setPhoto('five')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <Image 
+                      source={{uri: form.photos.five.uri}} 
+                      style={{ height:'100%', width:'100%' }}
+                    />
+                  </TouchableOpacity>
+                : 
+                  <TouchableOpacity onPress={() => setPhoto('five')} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
               </View>
             </View>
 

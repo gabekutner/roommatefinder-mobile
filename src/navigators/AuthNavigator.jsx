@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
-import { useTheme } from "react-native-paper";
+// import { View } from "react-native";
+// import { useTheme } from "react-native-paper";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 import { StartUpView } from "../views/Auth/StartUp";
