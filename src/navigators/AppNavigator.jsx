@@ -42,8 +42,10 @@ import {FriendsView} from "../views/Chat/Friends";
 import { DeckView } from "../views/Deck/Deck";
 import { SearchView } from "../views/Search";
 import {useTheme} from "react-native-paper";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import useBearStore from "../libs/store";
+
+import { TabNavigator } from "./TabNavigator";
 
 const AppNavigator = () => {
   const theme = useTheme();
@@ -59,164 +61,14 @@ const AppNavigator = () => {
     };
   }, []);
 
-  const Tabs = () => {
-    const [open, setOpen] = useState(false);
-    return (
-      <Tab.Navigator
-        initialRouteName="swipe"
-        screenOptions={({route}) => ({
-          tabBarIcon: ({color}) => {
-            const icons = {
-              swipe: "home",
-              friends: "inbox",
-              profile: "user",
-            };
-            const icon = icons[route.name];
-            return (
-              <FontAwesomeIcon
-                icon={icon}
-                size={verticalScale(24)}
-                color={color}
-              />
-            );
-          },
-          tabBarActiveTintColor: theme.colors.tertiary,
-          headerShadowVisible: false, // border bottom invisible
-          tabBarShowLabel: false,
-          tabBarHideOnKeyboard: true,
-          tabBarStyle: {
-            borderTopWidth: 0,
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            left: 0,
-            elevation: 0,
-            height: verticalScale(80),
-            backgroundColor: theme.colors.background,
-          },
-        })}
-      >
-        <Tab.Screen
-          name="swipe"
-          component={DeckView}
-          options={({navigation}) => ({
-            headerTitle: () => (
-              <Title
-                text="RoommateFinder®"
-                color={theme.colors.primary}
-              />
-            ),
-            headerTitleAlign: "left",
-            headerRight: () => (
-              <CustomButton
-                onClick={() => setOpen(!open)}
-                style={{
-                  marginRight: moderateScale(10),
-                  marginBottom: verticalScale(5),
-                  borderWidth: 0,
-                }}
-              >
-                <FontAwesomeIcon
-                  icon="ellipsis-vertical"
-                  size={verticalScale(20)}
-                  color={colors.tint}
-                />
-                {open ? (
-                  <DropDownMenu navigation={navigation} colors={colors} />
-                ) : null}
-              </CustomButton>
-            ),
-            headerRightContainerStyle: {paddingRight: moderateScale(10)},
-            headerStyle: {backgroundColor: theme.colors.background},
-            headerShadowVisible: false, // border bottom invisible
-          })}
-        />
-        <Tab.Screen
-          name="friends"
-          component={FriendsView}
-          options={({navigation}) => ({
-            headerTitle: () => (
-              <Title
-                text="Your Friends"
-                color={theme.colors.primary}
-              />
-            ),
-            headerTitleAlign: "left",
-            headerRight: () => (
-              <CustomButton
-                onClick={() => navigation.navigate("search")}
-                style={{
-                  marginRight: moderateScale(20),
-                  borderWidth: 0,
-                }}
-              >
-                <FontAwesomeIcon
-                  icon="magnifying-glass"
-                  size={verticalScale(20)}
-                  color={colors.tint}
-                />
-              </CustomButton>
-            ),
-            headerStyle: {backgroundColor: theme.colors.background},
-            headerShadowVisible: false, // border bottom invisible
-          })}
-        />
-        <Tab.Screen
-          name="profile"
-          component={ProfileView}
-          options={({navigation}) => ({
-            headerTitle: () => (
-              <Title
-                text="Your Profile"
-                color={colors.tint}
-              />
-            ),
-            headerTitleAlign: "left",
-            headerRight: () => (
-              <CustomButton
-                onClick={() => navigation.navigate("edit-basics")}
-                style={{marginRight: moderateScale(20), borderWidth: 0}}
-              >
-                <FontAwesomeIcon
-                  icon="user-pen"
-                  size={verticalScale(20)}
-                  color={colors.tint}
-                />
-              </CustomButton>
-            ),
-            headerStyle: {backgroundColor: theme.colors.background},
-            headerShadowVisible: false, // border bottom invisible
-          })}
-        />
-      </Tab.Navigator>
-    );
-  };
-
-  const Home = ({navigation}) => {
-    const logout = useBearStore(state => state.logout)  
-    return (
-      <View style={{flex:1, backgroundColor:'red'}}>
-        <Button onPress={logout}>
-          <Text>logout</Text>
-        </Button>
-      </View>
-    )
-  }
-
   return (
     <Stack.Navigator initialRouteName="home">
-      <Stack.Screen 
+      <Stack.Screen
         name="home"
-        component={Home}
-        options={{
-          
-        }}
-      />
-      {/* <Stack.Screen
-        name="home"
-        component={Tabs}
+        component={TabNavigator}
         options={{headerShown: false}}
       />
+      {/* 
       <Stack.Screen
         name="search"
         component={SearchView}

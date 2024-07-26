@@ -78,7 +78,7 @@ function StartUpView({ navigation }) {
           </View>
 
           <Button
-            onPress={() => navigation.navigate('login')}
+            onPress={() => navigation.reset({index: 0, routes: [{ name: 'login' }], })}
             mode="elevated"
             buttonColor={customTheme.colors.tertiaryDark}
             labelStyle={[

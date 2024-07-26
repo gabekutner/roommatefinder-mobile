@@ -9,7 +9,7 @@ function Title(props) {
       style={{
         fontFamily: "SuezOne-Regular",
         color: props.color,
-        fontSize: vs(28),
+        fontSize: vs(24),
       }}
     >
       {props.text}
