@@ -45,7 +45,7 @@ import {useTheme} from "react-native-paper";
 import { View, Text } from "react-native";
 import useBearStore from "../libs/store";
 
-export default function AppStack() {
+const AppNavigator = () => {
   const theme = useTheme();
 
   const socketConnect = useStore((state) => state.socketConnect);
@@ -433,4 +433,6 @@ export default function AppStack() {
       /> */}
     </Stack.Navigator>
   );
-}
+};
+
+export {AppNavigator};

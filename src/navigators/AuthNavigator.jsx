@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
-
 import { useTheme } from "react-native-paper";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
-
 import { StartUpView } from "../views/Auth/StartUp";
 import { LoginView } from "../views/Auth/Login";
 import {IdentifierView} from "../views/Auth/Identifier";
@@ -13,7 +11,7 @@ import { PasswordView } from "../views/Auth/Password";
 import { SetupView } from "../views/Auth/Setup";
 
 
-const Base = ({ route, navigation }) => {
+const AuthNavigatorBackground = ({ navigation }) => {
   const theme = useTheme();
 
   useEffect(() => {
@@ -24,17 +22,15 @@ const Base = ({ route, navigation }) => {
     return () => clearTimeout(timer); // Clean up timer if component unmounts
   }, [navigation]);
       
-  return (
-    <View style={{flex:1, backgroundColor: theme.colors.background}} />
-  );
+  return <View style={{flex:1, backgroundColor: theme.colors.background}} />
 };
 
-export default function AuthStack() {
+const AuthNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="base">
+    <Stack.Navigator initialRouteName="auth-navigator-background">
       <Stack.Screen 
-        name="base"
-        component={Base}
+        name="auth-navigator-background"
+        component={AuthNavigatorBackground}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -92,3 +88,5 @@ export default function AuthStack() {
     </Stack.Navigator>
   );
 };
+
+export {AuthNavigator};

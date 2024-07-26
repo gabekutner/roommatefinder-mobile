@@ -5,14 +5,16 @@ import useBearStore from "../../../libs/store";
 import api from "../../../core/api";
 
 
-function LoginView({ navigation }) {
+function LoginView() {
+
   const customTheme = useTheme();
+
+  const login = useBearStore((state) => state.login)
+
   const [form, setForm] = useState({
     identifier: "",
     password: ""
   })
-
-  const login = useBearStore((state) => state.login)
 
   const buttonClick = () => {
     const auth = {
@@ -24,7 +26,6 @@ function LoginView({ navigation }) {
       url: "/api/v1/users/login/",
       data: auth,
     }).then((response) => {
-      console.log(response.data)
       login(auth, response.data, {
         access: response.data.access,
         refresh: response.data.refresh,
