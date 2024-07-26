@@ -8,6 +8,8 @@ const Tab = createBottomTabNavigator();
 
 import { Title } from "../components/Text/Title";
 
+import { NewProfileView } from "../views/NewProfile";
+
 // temp
 import useBearStore from "../libs/store";
 
@@ -98,15 +100,16 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="profile"
-        component={Home}
-        options={({navigation}) => ({
-          headerTitleAlign: "left",
-          headerTitle: () => <Title text="Your Profile" color={customTheme.colors.primary} />,
-          headerRight: () => HeaderRight("user-pen"),
-          headerRightContainerStyle: {paddingRight: 15},
-          headerStyle: {backgroundColor: customTheme.colors.background},
-          headerShadowVisible: false, // border bottom invisible
-        })}
+        component={NewProfileView}
+        options={{headerShown: false}}
+        // options={({navigation}) => ({
+        //   headerTitleAlign: "left",
+        //   headerTitle: () => <Title text="Your Profile" color={customTheme.colors.primary} />,
+        //   headerRight: () => HeaderRight("user-pen"),
+        //   headerRightContainerStyle: {paddingRight: 15},
+        //   headerStyle: {backgroundColor: customTheme.colors.background},
+        //   headerShadowVisible: false, // border bottom invisible
+        // })}
       />
     </Tab.Navigator>
   );
