@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
-import {Button, useTheme, TextInput, HelperText} from "react-native-paper";
+import {Button, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
 import api from "../../../core/api";
@@ -11,7 +11,7 @@ function PasswordView({ navigation }) {
 
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [valid, setValid] = useState("");
+  const [disabled, setDisabled] = useState(true)
 
   const login = useBearStore((state) => state.login)
   const user = useBearStore((state) => state.user)
@@ -19,10 +19,7 @@ function PasswordView({ navigation }) {
 
   const buttonClick = async () => {
     // 1. check password similarity
-    if (password != repeatPassword) {
-      // opposites : true = show error, false = don't
-      setValid(true)
-    } else {
+    if (password != repeatPassword) {} else {
       // 2. update profile with password
       const res = await sendPassword(password, repeatPassword)
       if (res === 200) {
@@ -44,19 +41,21 @@ function PasswordView({ navigation }) {
             refresh: response.data.refresh,
           });
         });
-        
       } else {
-        // show error
-      }      
-    }
-  }
+        // error setting passwords, 500 
+      };
+    };
+  };
+
+  useEffect(() => {
+    if (password !== "" && repeatPassword !== "" && password === repeatPassword) {
+      setDisabled(false);
+    };
+  }, [password, repeatPassword]);
+  
 
   const [eye, setEye] = useState(true)
-
-  const eyeClick = () => {
-    console.log(eye)
-    setEye(!eye)
-  }
+  const eyeClick = () => setEye(!eye)
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
@@ -79,10 +78,7 @@ function PasswordView({ navigation }) {
             {/* content */}
             <View style={{gap: 35}}>
               <View>
-                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-                  <HelperText type="info" visible={eye}>
-                    {password}
-                  </HelperText>
+                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'flex-end'}}>
                   <TouchableOpacity onPress={eyeClick}>
                     <FontAwesomeIcon icon={"eye"} />
                   </TouchableOpacity>
@@ -97,7 +93,7 @@ function PasswordView({ navigation }) {
                   contentStyle={{width: 300}}
                   keyboardType={"default"}
                   autoCapitalize={false}
-                  secureTextEntry
+                  secureTextEntry={eye}
                 />
               </View>
 
@@ -111,14 +107,11 @@ function PasswordView({ navigation }) {
                 contentStyle={{width: 300}}
                 keyboardType={"default"}
                 autoCapitalize={false}
-                secureTextEntry
+                secureTextEntry={eye}
               />
 
-              <HelperText type="error" visible={valid}>
-                Passwords don't match!
-              </HelperText>
               <Button
-                disabled={password === "" || repeatPassword === ""  ? true : false}
+                disabled={disabled}
                 onPress={buttonClick}
                 mode="elevated"
                 buttonColor={'#890000'}
@@ -137,7 +130,7 @@ function PasswordView({ navigation }) {
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export {PasswordView}
+export {PasswordView};

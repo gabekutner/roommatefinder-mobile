@@ -17,9 +17,6 @@ import useBearStore from "./libs/store";
 export default function App() {
   const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
-  // const initialized = false
-  // const authenticated = false
-  // const profileCreated = false
   const init = useBearStore((state) => state.init);
 
   useEffect(() => {
@@ -44,5 +41,5 @@ export default function App() {
         <AppStack />
       </NavigationContainer>
     );
-  }
-}
+  };
+};
