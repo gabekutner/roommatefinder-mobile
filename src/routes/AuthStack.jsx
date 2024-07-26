@@ -13,17 +13,17 @@ import { PasswordView } from "../views/Auth/Password";
 import { SetupView } from "../views/Auth/Setup";
 
 
-const Base = ({ navigation }) => {
+const Base = ({ route, navigation }) => {
   const theme = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('auth');
-    }, 100); // Delay to ensure component is fully mounted
+    }, 500); // Delay to ensure component is fully mounted
 
     return () => clearTimeout(timer); // Clean up timer if component unmounts
   }, [navigation]);
-
+      
   return (
     <View style={{flex:1, backgroundColor: theme.colors.background}} />
   );

@@ -192,7 +192,7 @@ export default function AppStack() {
     );
   };
 
-  const Base = () => {
+  const Home = () => {
     const logout = useBearStore(state => state.logout)
     return (
       <View style={{flex:1, backgroundColor:'red'}}>
@@ -206,8 +206,8 @@ export default function AppStack() {
   return (
     <Stack.Navigator initialRouteName="home">
       <Stack.Screen 
-        name="base"
-        component={Base}
+        name="home"
+        component={Home}
       />
       {/* <Stack.Screen
         name="home"

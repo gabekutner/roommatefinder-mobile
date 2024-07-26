@@ -60,7 +60,7 @@ function SetupView({ navigation }) {
     });
   };
 
-  const buttonClick = () => {
+  const buttonClick = async () => {
     // 1. form validation
     const missing = []
     if (form.name === "" ) {missing.push('name')}
@@ -72,7 +72,7 @@ function SetupView({ navigation }) {
       setVisible({...visible, status:true, missing:missing})
     } else {
       // 1. send profile
-      sendProfile(form)
+      await sendProfile(form);
       // 2. navigate to password 
       navigation.navigate('password')
     };

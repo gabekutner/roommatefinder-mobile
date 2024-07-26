@@ -17,7 +17,6 @@ import useBearStore from "./libs/store";
 export default function App() {
   const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
-  // const profileCreated = useStore((state) => state.profileCreated);
   // const initialized = false
   // const authenticated = false
   // const profileCreated = false
