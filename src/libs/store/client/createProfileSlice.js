@@ -139,6 +139,8 @@ const createProfileSlice = (set, get) => ({
 
     } catch(e) {
       console.log("[error-external] sendProfile")
+      console.log(e)
+      console.log(e.response)
     };
   },
 
@@ -173,9 +175,6 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendPhotos");
       } else {
         console.log("[success] sendPhotos");
-        // set(() => ({
-        //   user: response.data,
-        // }));
       };
 
     } catch(e) {

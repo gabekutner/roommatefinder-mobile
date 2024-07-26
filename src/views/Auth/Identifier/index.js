@@ -35,6 +35,10 @@ function IdentifierView({ route, navigation }) {
     if (identifier === "") {
       // 2. create an account via identifier
       const res = await sendIdentifier(`${input1}${input2}${input3}`);
+      setInput1("")
+      setInput2("")
+      setInput3("")
+      inputRef1.current.focus();
       setLoading(false);
       // 3. navigate to verification code page
       if (res === 200) {
@@ -45,6 +49,7 @@ function IdentifierView({ route, navigation }) {
     } else {
       // 2. create an account via identifier
       const res = await sendIdentifier(identifier);
+      setIdentifier("");
       setLoading(false);
       // 3. navigate to verification code page
       if (res === 200) {
@@ -53,7 +58,7 @@ function IdentifierView({ route, navigation }) {
         setVisible({...visible, status:true})
       }
     };
-  }
+  };
   
   const handleTextChange = (text, inputRef, setInput) => {
     setInput(text);

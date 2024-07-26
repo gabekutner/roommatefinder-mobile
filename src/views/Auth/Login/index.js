@@ -90,7 +90,6 @@ function LoginView() {
                 />
               </View>
               
-
               <Button
                 onPress={buttonClick}
                 mode="elevated"

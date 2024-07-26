@@ -36,15 +36,14 @@ function SetupView({ navigation }) {
   const handleInterests = (i) => {
     const interests = [...form.interests];
     if (interests.includes(i)) {
-      // remove
+      // remove item
       const index = interests.indexOf(i);
       interests.splice(index, 1);
-      // console.log('here')
       setForm({...form, interests:interests});
     } else {
-      // add
+      // add item if max length not reached
       if (interests.length != 5) {
-        // add
+        // add item
         interests.push(i);
         setForm({...form, interests:interests});
       } else { 
@@ -85,9 +84,16 @@ function SetupView({ navigation }) {
       // 1. send profile
       await sendProfile(form);
       // 2. send photos
-      await sendPhotos(form);
+      if (Object.keys(form.photos).length !== 0) await sendPhotos(form);
       // 3. navigate to password 
-      navigation.navigate('password')
+      /**
+       * @routing fixes modal for stacks 
+       * https://stackoverflow.com/questions/70707367/how-can-i-close-a-modally-opened-window-with-its-own-navigation-stack
+      */
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'password' }],
+      })
     };
   };
 
