@@ -6,9 +6,7 @@ import useBearStore from "../../../libs/store";
 
 
 function VerificationCodeView({ navigation }) {
-  // on press
-  // 1 verify code
-  // 2 navigate to account setup
+  
   const customTheme = useTheme();
   const [loading, setLoading] = useState(false);
 
@@ -56,7 +54,7 @@ function VerificationCodeView({ navigation }) {
     setLoading(false)
 
     if (res.otp_verified) {
-      navigation.navigate('password')
+      navigation.navigate('setup')
     } else {
       // snackbar error
     }

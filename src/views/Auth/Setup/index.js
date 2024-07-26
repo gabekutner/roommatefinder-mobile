@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {SafeAreaView, Platform, Text, View, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView} from "react-native";
+import {SafeAreaView, Platform, Text, View, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView, Image} from "react-native";
 import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
@@ -17,9 +17,8 @@ function SetupView({ navigation }) {
   });
   const onDismissSnackBar = () => setVisible({...visible, status:false});
 
-  const sendProfile = useBearStore((state) => state.sendProfile)
-  
-  // temporary
+  const sendProfile = useBearStore((state) => state.sendProfile);
+
   const [form, setForm] = useState({
     name: "",
     age: "",
@@ -31,28 +30,27 @@ function SetupView({ navigation }) {
     about: "",
     thumbnail: null,
     interests: [],
-    // photos: [],
-  })
+  });
 
   const handleInterests = (i) => {
-    const interests = [...form.interests]
+    const interests = [...form.interests];
     if (interests.includes(i)) {
       // remove
       const index = interests.indexOf(i);
-      interests.splice(index, 1)
+      interests.splice(index, 1);
       // console.log('here')
-      setForm({...form, interests:interests})
+      setForm({...form, interests:interests});
     } else {
       // add
       if (interests.length != 5) {
         // add
-        interests.push(i)
-        setForm({...form, interests:interests})
+        interests.push(i);
+        setForm({...form, interests:interests});
       } else { 
         //nothing 
-      }
-    }
-  }
+      };
+    };
+  };
 
   const setThumbnail = () => {
     launchImageLibrary({includeBase64: true}, (response) => {
@@ -63,7 +61,7 @@ function SetupView({ navigation }) {
   };
 
   const buttonClick = () => {
-    // form validation
+    // 1. form validation
     const missing = []
     if (form.name === "" ) {missing.push('name')}
     if (form.age === "") {missing.push('age')} 
@@ -73,14 +71,12 @@ function SetupView({ navigation }) {
     if (missing.length != 0) {
       setVisible({...visible, status:true, missing:missing})
     } else {
-      // console.log('submit')
-      // create profile
+      // 1. send profile
       sendProfile(form)
-      // console.log(form.interests)
-      // console.log(form.sex)
-      // navigate to app stack!
-    }    
-  }
+      // 2. navigate to password 
+      navigation.navigate('password')
+    };
+  };
   
 
   return (
@@ -124,9 +120,17 @@ function SetupView({ navigation }) {
               }}
             >
               <View style={{flex:1, flexDirection:'column', gap:10}}>
-                <TouchableOpacity onPress={setThumbnail} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
-                  <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
-                </TouchableOpacity>
+                {form.thumbnail ? 
+                  <Image 
+                    source={{uri: form.thumbnail.uri}} 
+                    style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'solid', justifyContent: 'center', alignItems:'center' }} />
+                  
+                : 
+                  <TouchableOpacity onPress={setThumbnail} style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
+                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                  </TouchableOpacity>
+                }
+                
                 <View style={{ flex:1, borderWidth:2, borderRadius:12, borderColor:customTheme.colors.primary, borderStyle:'dashed', justifyContent: 'center', alignItems:'center' }}>
                   <FontAwesomeIcon icon="image" color={customTheme.colors.primary}/>
                 </View>

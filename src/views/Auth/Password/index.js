@@ -43,9 +43,8 @@ function PasswordView({ navigation }) {
             access: response.data.access,
             refresh: response.data.refresh,
           });
-        })
-
-        // 4. navigation.navigate('setup')
+        });
+        
       } else {
         // show error
       }      

@@ -19,7 +19,6 @@ const useBearStore = create((set, get) => ({
     const credentials = await secure.get("credentials");
     if (credentials) {
       try {
-        // make api request
         const response = await api({
           method: "post",
           url: "/api/v1/users/login/",
@@ -28,29 +27,27 @@ const useBearStore = create((set, get) => ({
             password: credentials.password,
           },
         });
-        // check response status
         if (response.status !== 200) {
-          throw new Error("Authentication error");
+          throw new Error("[error-internal] init");
         } else {
-          // set tokens
           const tokens = {
             access: response.data.access,
             refresh: response.data.refresh,
           };
           secure.set("tokens", tokens);
           set(() => ({
+            user: response.data,
             initialized: true,
             authenticated: true,
-            user: response.data,
           }));
-          return;
-        }
-      } catch (error) {
-        console.log("zustand.auth.init ", error.response);
-      }
+        };
+      } catch (e) {
+        console.log("[error-external] init")
+      };
     } else {
-      console.log("zustand.auth.init : not authenticated");
-    }
+      console.log("[not authenticated]");
+    };
+    // initialize either way
     set(() => ({
       initialized: true,
     }));
@@ -60,11 +57,18 @@ const useBearStore = create((set, get) => ({
     secure.set("credentials", credentials);
     secure.set("tokens", tokens);
     set(() => ({
-      authenticated: true,
       user: user,
+      authenticated: true,
     }));
   },
 
+  logout: () => {
+    secure.wipe();
+    set(() => ({
+      user: {},
+      authenticated: false,
+    }));
+  }
 }));
 
 export default useBearStore;

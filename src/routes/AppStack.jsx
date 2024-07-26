@@ -32,6 +32,7 @@ import PromptScreen from "../screens/Onboarding/Prompt";
 import useStore from "../zustand/store";
 import {colors} from "../constants/colors";
 
+import { Button } from "react-native-paper";
 /** new views */
 import {ProfileView} from "../views/Profile/Profile";
 import {EditProfileView} from "../views/Profile/EditProfile";
@@ -41,7 +42,8 @@ import {FriendsView} from "../views/Chat/Friends";
 import { DeckView } from "../views/Deck/Deck";
 import { SearchView } from "../views/Search";
 import {useTheme} from "react-native-paper";
-import { View } from "react-native";
+import { View, Text } from "react-native";
+import useBearStore from "../libs/store";
 
 export default function AppStack() {
   const theme = useTheme();
@@ -191,8 +193,13 @@ export default function AppStack() {
   };
 
   const Base = () => {
+    const logout = useBearStore(state => state.logout)
     return (
-      <View style={{flex:1, backgroundColor:'red'}}></View>
+      <View style={{flex:1, backgroundColor:'red'}}>
+        <Button onPress={logout}>
+          <Text>logout</Text>
+        </Button>
+      </View>
     )
   }
 

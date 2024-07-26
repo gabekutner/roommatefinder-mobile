@@ -13,24 +13,30 @@ import { PasswordView } from "../views/Auth/Password";
 import { SetupView } from "../views/Auth/Setup";
 
 
-// const Base = ({ navigation }) => {
-//   const theme = useTheme();
-//   useEffect(() => {
-//     navigation.navigate('auth')
-//   }, [navigation])
-//   return (
-//     <View style={{flex:1, backgroundColor: theme.colors.background}} />
-//   )
-// }
+const Base = ({ navigation }) => {
+  const theme = useTheme();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('auth');
+    }, 100); // Delay to ensure component is fully mounted
+
+    return () => clearTimeout(timer); // Clean up timer if component unmounts
+  }, [navigation]);
+
+  return (
+    <View style={{flex:1, backgroundColor: theme.colors.background}} />
+  );
+};
 
 export default function AuthStack() {
   return (
-    <Stack.Navigator initialRouteName="auth">
-      {/* <Stack.Screen 
+    <Stack.Navigator initialRouteName="base">
+      <Stack.Screen 
         name="base"
         component={Base}
         options={{headerShown: false}}
-      /> */}
+      />
       <Stack.Screen
         name="auth"
         component={StartUpView}
@@ -54,7 +60,6 @@ export default function AuthStack() {
         options={{
           headerShown: false, 
           presentation:"modal",
-          // gestureEnabled: false
         }}
       />
       <Stack.Screen
