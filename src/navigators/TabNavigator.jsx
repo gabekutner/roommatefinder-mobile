@@ -9,6 +9,7 @@ const Tab = createBottomTabNavigator();
 import { Title } from "../components/Text/Title";
 
 import { NewProfileView } from "../views/NewProfile";
+import { DeckView } from "../views/Deck/Deck";
 
 // temp
 import useBearStore from "../libs/store";
@@ -41,11 +42,11 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="swipe"
+      initialRouteName="deck"
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => {
           const icons = {
-            swipe: "home",
+            deck: "home",
             friends: "inbox",
             profile: "user",
           };
@@ -75,8 +76,8 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen
-        name="swipe"
-        component={Home}
+        name="deck"
+        component={DeckView}
         options={({navigation}) => ({
           headerTitleAlign: "left",
           headerTitle: () => <Title text="DormParty®" color={customTheme.colors.primary} />,

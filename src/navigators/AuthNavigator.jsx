@@ -33,7 +33,7 @@ const AuthNavigator = () => {
         component={AuthNavigatorBackground}
         options={{headerShown: false}}
       />
-      <Stack.Group screenOptions={{presentation:'modal'}}>
+      <Stack.Group screenOptions={{presentation:"fullScreenModal"}}>
         <Stack.Screen
           name="auth"
           component={StartUpView}

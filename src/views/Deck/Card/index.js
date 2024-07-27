@@ -37,7 +37,7 @@ function CardSwipeContainer(props) {
         lastSwipeValue = gestureState.dx;
         if (lastSwipeValue > 0) {
           // send friend request
-          requestConnect(props.item.id);
+          // requestConnect(props.item.id);
         };
         // No need to handle left swipe
         if (

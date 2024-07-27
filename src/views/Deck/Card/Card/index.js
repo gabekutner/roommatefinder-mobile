@@ -1,28 +1,76 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, Pressable} from "react-native";
 import FastImage from "react-native-fast-image";
 import { FastImageBackground } from "../FastImageBackground";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import LinearGradient from "react-native-linear-gradient";
+import {appendFullUrl} from "../../../../libs/utils/appendFullUrl";
+
+
+const HeaderBar = props => {
+
+  // const photos = 
+  console.log(props.item.thumbnail)
+  console.log(props.item.photos)
+
+  return (
+    <View 
+      style={{ 
+        backgroundColor:props.theme.colors.primary,
+        position:'absolute',
+        top:0,
+        left:0,
+        right:0,
+        height:8,
+        flexDirection:'row'
+      }}
+    >
+      <View style={{flex:1,backgroundColor:'green' }} />
+      {/* <View style={{flex:1,backgroundColor:'blue' }}/>
+      <View style={{flex:1,backgroundColor:'red' }}/>
+      <View style={{flex:1,backgroundColor:'green' }}/>
+      <View style={{flex:1,backgroundColor:'yellow' }}/>
+      <View style={{flex:1,backgroundColor:'purple' }}/> */}
+
+    </View>
+  )
+}
 
 
 function Card(props) {
   return (
     <FastImageBackground
       key={props.item.id}
+      item={props.item}
       containerStyle={{
-        flex: 1,
-        width: "100%",
-        height: "100%",
+        // flex: 1,
+        // width: "100%",
+        // height: "100%",
         alignItems: "flex-end",
         flexDirection: "row",
         justifyContent: "center",
+        padding:50,
+        // shadowColor: "#000",
+        // shadowOffset: {
+        //   width: 0,
+        //   height: 2,
+        // },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 3.84,
+        backgroundColor: props.theme.colors.background
       }}
       imageStyle={{height: "100%"}}
       resizeMode={FastImage.resizeMode.cover}
-      url={props.item.thumbnail}
+      // url={appendFullUrl(props.item.thumbnail)}
     >
-      <LinearGradient
+      <HeaderBar theme={props.theme} item={props.item} />
+      <Pressable onPress={() => console.log('left')} style={{height:'100%', width:"50%"}}>
+        
+      </Pressable>
+      <Pressable onPress={() => console.log('right')} style={{height:'100%', width:"50%"}}>
+
+      </Pressable>
+      {/* <LinearGradient
         colors={["rgba(0,0,0,0.7)", "transparent"]} // Adjust gradient colors as needed
         start={{x: 0.5, y: 0.7}}
         end={{x: 0.5, y: 0}}
@@ -120,7 +168,7 @@ function Card(props) {
             <Text style={{color: props.theme.colors.secondary, fontSize:14, fontWeight:'500'}}>Outdoors</Text>
           </View>
         </View>
-      </LinearGradient>
+      </LinearGradient> */}
     </FastImageBackground>
   );
 };

@@ -54,6 +54,10 @@ function VerificationCodeView({ navigation }) {
     setLoading(false)
 
     if (res.otp_verified) {
+      // navigation.reset({
+      //   index: 0,
+      //   routes: [{ name: 'setup' }],
+      // })
       navigation.navigate('setup')
     } else {
       // snackbar error

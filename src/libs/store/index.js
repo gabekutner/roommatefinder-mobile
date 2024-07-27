@@ -1,5 +1,8 @@
 import { create } from 'zustand';
+
 import { createProfileSlice } from './client/createProfileSlice';
+import { getDeckCards } from './client/getDeckCards';
+
 import secure from "../../core/secure";
 
 
@@ -13,6 +16,7 @@ const initialState = {
 const useBearStore = create((set, get) => ({
   ...initialState,
   ...createProfileSlice(set, get),
+  ...getDeckCards(set, get),
 
   // try login on app startup
   init: async () => {

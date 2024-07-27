@@ -14,7 +14,7 @@ const createProfileSlice = (set, get) => ({
         }
       });
 
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         throw new Error("[error-internal] sendIdentifier");
       } else {
         console.log("[success] sendIdentifier");

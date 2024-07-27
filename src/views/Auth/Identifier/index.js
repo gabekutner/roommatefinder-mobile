@@ -41,8 +41,8 @@ function IdentifierView({ route, navigation }) {
       inputRef1.current.focus();
       setLoading(false);
       // 3. navigate to verification code page
-      if (res === 200) {
-        navigation.navigate('code');
+      if (res === 201) {
+        navigation.navigate('code')
       } else {
         setVisible({...visible, status:true})
       }
@@ -52,8 +52,8 @@ function IdentifierView({ route, navigation }) {
       setIdentifier("");
       setLoading(false);
       // 3. navigate to verification code page
-      if (res === 200) {
-        navigation.navigate('code');
+      if (res === 201) {
+        navigation.navigate('code')
       } else {
         setVisible({...visible, status:true})
       }

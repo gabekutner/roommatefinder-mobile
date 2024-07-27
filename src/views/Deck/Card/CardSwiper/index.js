@@ -19,6 +19,7 @@ function CardSwiper(props) {
           styles.wrapper,
           {
             backgroundColor: props.theme.colors.background,
+            borderWidth:1,
             transform: [
               {translateX: props.pan.x}, 
               {rotate: props.rotate}

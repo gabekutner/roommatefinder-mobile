@@ -7,19 +7,21 @@ import {useTheme} from "react-native-paper";
 import Empty from "../../../components/Empty";
 import useStore from "../../../zustand/store";
 import { DeckSwiper } from "./deck.view";
+import useBearStore from "../../../libs/store";
 import { CardSwipeContainer } from "../Card";
 
 /*global console */
 /*eslint no-undef: "error"*/
 
 function DeckView() {
-  const theme = useTheme()
 
-  const user = useStore((state) => state.user);
-  const getSwipe = useStore((state) => state.getSwipe);
+  const theme = useTheme();
+
   const opacity = useRef(new Animated.Value(0)).current;
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+
+  const swipeProfiles = useBearStore((state) => state.swipeProfiles)
 
   useEffect(() => {
     fetchData(page);
@@ -27,9 +29,9 @@ function DeckView() {
 
   const fetchData = async (page) => {
     try {
-      const response = await getSwipe(user, page);
-      if (response === 404) {
-        const response = await getSwipe(user, 1);
+      const response = await swipeProfiles(page);
+      if (response.status === 404) {
+        const response = await swipeProfiles(1);
         const userData = await response.data.results;
         setData(userData);
       } else {
