@@ -175,11 +175,16 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendPhotos");
       } else {
         console.log("[success] sendPhotos");
+        // should be a ProfileSerializer
+        // set(() => ({
+          // user: response.data,
+        // }));
       };
 
     } catch(e) {
       console.log("[error-external] sendPhotos")
       console.log(e)
+      console.log(e.response)
     };
   }
 }); 

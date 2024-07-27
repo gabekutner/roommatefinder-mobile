@@ -18,7 +18,16 @@ function NewProfileView({ navigation }) {
     console.log('quiz')
   }
 
-  console.log(appendFullUrl(user.thumbnail))
+
+  const getThumbnail = () => {
+    if (user.thumbnail !== null) {
+      return appendFullUrl(user.thumbnail)
+    } else {
+      // return whatever the default is?
+      return {}
+    }
+  }
+
 
   return (
     <View style={{flex:1}}>
@@ -58,7 +67,7 @@ function NewProfileView({ navigation }) {
               <View style={{flex:1}}></View>
               <View style={{flex:2, justifyContent:'center', alignItems:'center'}}>
                 <ImageBackground 
-                  source={appendFullUrl(user.thumbnail)}
+                  source={getThumbnail()}
                   imageStyle={{borderRadius:12}}
                   style={{ 
                     height:150,
