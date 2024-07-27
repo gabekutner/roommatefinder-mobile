@@ -1,2 +1,11 @@
-# Ignore assets
-assets
+assets/
+android
+ios
+package.json
+package-lock.json
+*.html
+*.yml
+*.yaml
+*.css
+*.scss
+*.md
