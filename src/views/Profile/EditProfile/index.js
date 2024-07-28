@@ -50,7 +50,7 @@ function EditProfileView({ navigation }) {
     launchImageLibrary({includeBase64: true}, (response) => {
       if (response.didCancel) return;
       const file = response.assets[0];
-      setForm({...form, thumbnail:file})
+      setUpdateProfileForm({...updateProfileForm, thumbnail:file})
     });
   };
 
@@ -58,9 +58,9 @@ function EditProfileView({ navigation }) {
     launchImageLibrary({includeBase64: true}, (response) => {
       if (response.didCancel) return;
       const file = response.assets[0];
-      const photos = {...form.photos};
-      photos[num] = file;
-      setForm({ ...form, photos:photos });
+      // const photos = {...form.photos};
+      // photos[num] = file;
+      // setForm({ ...form, photos:photos });
     });
   };
 
@@ -133,7 +133,7 @@ function EditProfileView({ navigation }) {
             >
               <View style={{flex:1, flexDirection:'column', gap:8}}>
 
-                {form.thumbnail ? 
+                {updateProfileForm.thumbnail ? 
                   <TouchableOpacity 
                     onPress={setThumbnail} 
                     style={[
@@ -143,7 +143,7 @@ function EditProfileView({ navigation }) {
                     ]}
                   >
                     <Image 
-                      source={{uri: form.thumbnail.uri}} 
+                      source={{uri: updateProfileForm.thumbnail.uri}} 
                       style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
@@ -308,9 +308,9 @@ function EditProfileView({ navigation }) {
             {/* name */}
             <TextInput 
               mode="outlined"
-              label={<Text>Name<Text style={{color:customTheme.colors.tertiary}}>*</Text></Text>}
-              value={form.name}
-              onChangeText={text => setForm({...form, name:text})}
+              label={"Name"}
+              value={updateProfileForm.name}
+              onChangeText={text => setUpdateProfileForm({...updateProfileForm, name:text})}
               placeholder=""
               outlineColor={customTheme.colors.primary}
               textColor={customTheme.colors.primary}
@@ -350,13 +350,13 @@ function EditProfileView({ navigation }) {
                     <Chip
                       key={index}
                       mode="outlined"
-                      onPress={() => setForm({...form, dorm:_.id})}
-                      selected={form.dorm === _.id ? true : false}
-                      selectedColor={form.dorm === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                      onPress={() => setUpdateProfileForm({...updateProfileForm, dorm_building:_.id})}
+                      selected={updateProfileForm.dorm_building === _.id ? true : false}
+                      selectedColor={updateProfileForm.dorm_building === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
                       showSelectedCheck={false}
                       style={{
                         margin:4,
-                        backgroundColor:form.dorm === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                        backgroundColor:updateProfileForm.dorm_building === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
                       }}
                     >
                       {_.dorm}
