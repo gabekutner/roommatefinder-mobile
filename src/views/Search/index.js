@@ -20,6 +20,19 @@ function SearchView({navigation}) {
     searchUsers(query);
   }, [query]);
 
+  const getStatus = (status) => {
+    switch (status) {
+      case "no-connection":
+        return 'plus'
+      case "pending-them":
+        return 'clock'
+      case "pending-me":
+        return 'plus'
+      default:
+        break;
+    }
+  }
+
   return (
     <SafeAreaView style={{flex:1, backgroundColor:customTheme.colors.background}}>
       <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:5 }}>
@@ -95,24 +108,28 @@ function SearchView({navigation}) {
                       resizeMode={FastImage.resizeMode.cover}
                     />
                   </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={{
-                      flex: 1,
-                      paddingHorizontal: 15,
-                      justifyContent: "center",
-                    }}>
-                      <Text 
-                        style={{
-                          fontSize:16,
-                          fontWeight: "600",
-                          marginBottom: 4,
-                          color: customTheme.colors.primary
-                        }}
-                      >
-                        {item.name}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
+                  {/* <TouchableOpacity> */}
+                  <View style={{
+                    flex: 1,
+                    paddingHorizontal: 15,
+                    justifyContent: "center",
+                  }}>
+                    <Text 
+                      style={{
+                        fontSize:16,
+                        fontWeight: "600",
+                        marginBottom: 4,
+                        color: customTheme.colors.primary
+                      }}
+                    >
+                      {item.name}
+                    </Text>
+                  </View>
+                  <IconButton 
+                    icon={() => <FontAwesomeIcon icon={getStatus(item.status)} color={customTheme.colors.primary} />}
+                    size={22}
+                    mode="contained"
+                  />
                 </Cell>
               )}
             />
