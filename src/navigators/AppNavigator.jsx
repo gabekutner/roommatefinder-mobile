@@ -93,6 +93,12 @@ const AppNavigator = () => {
           options={{headerShown: false}}
         />
       </Stack.Group>
+
+      <Stack.Screen 
+        name="edit-profile"
+        component={EditProfileView}
+        options={{headerShown: false}}
+      />
       
       {/* 
       <Stack.Screen

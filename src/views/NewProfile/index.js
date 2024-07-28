@@ -134,7 +134,7 @@ function NewProfileView({ navigation }) {
                   color: customTheme.colors.primary
                 }}>Your Profile</Text>
                 <Button 
-                  //  onPress={logout}
+                   onPress={() => navigation.navigate('edit-profile')}
                   mode="elevated"
                   buttonColor={customTheme.colors.primary}
                   labelStyle={{
