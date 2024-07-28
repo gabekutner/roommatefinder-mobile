@@ -38,6 +38,7 @@ function Content(props) {
           onRefresh={props.onRefresh}
         />
       }
+      style={{marginHorizontal:25}}
     />
   );
 }

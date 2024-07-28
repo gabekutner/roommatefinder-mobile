@@ -50,7 +50,6 @@ function FriendsView({navigation}) {
       //   message="Nothing yet... Match with roommates and check back later!"
       // />
       <View>
-
         <Button onPress={onRefresh}>
           refresh
         </Button>

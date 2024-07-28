@@ -6,9 +6,11 @@ import useStore from "../../../../zustand/store";
 import useBearStore from "../../../../libs/store";
 
 function FriendRow(props) {
-  const user = useBearStore((state) => state.user);
+
+  // used for getting swipe profile for preview 
+  // const user = useBearStore((state) => state.user);
   // const getSwipeProfile = useStore((state) => state.getSwipeProfile);
-  const [profile, setProfile] = useState();
+  // const [profile, setProfile] = useState();
 
   // useEffect(() => {
   //   async function fetchData() {
@@ -23,7 +25,7 @@ function FriendRow(props) {
     <Row
       // navigation={props.navigation}
       // profile={profile}
-      // item={props.item}
+      item={props.item}
       theme={props.theme}
     />
   );
