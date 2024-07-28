@@ -44,6 +44,7 @@ import { SearchView } from "../views/Search";
 import {useTheme} from "react-native-paper";
 import { View, Text, TouchableOpacity } from "react-native";
 import useBearStore from "../libs/store";
+import { PrivacyPolicy } from "../views/PrivacyPolicy";
 
 import { TabNavigator } from "./TabNavigator";
 
@@ -66,6 +67,11 @@ const AppNavigator = () => {
       <Stack.Screen
         name="home"
         component={TabNavigator}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen 
+        name="privacy-policy"
+        component={PrivacyPolicy}
         options={{headerShown: false}}
       />
       {/* 

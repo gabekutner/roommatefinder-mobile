@@ -251,7 +251,7 @@ function NewProfileView({ navigation }) {
                   <Text>How can I find a roommate?</Text>
                 </Button>
                 <Button 
-                  //  onPress={logout}
+                   onPress={() => navigation.navigate('privacy-policy')}
                   mode="elevated"
                   buttonColor={customTheme.colors.primary}
                   labelStyle={{
