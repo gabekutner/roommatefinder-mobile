@@ -1,4 +1,4 @@
-function responseSearch(set, data) {
+function responseSearch(set, get, data) {
   set(() => ({
     searchList: data,
   }));

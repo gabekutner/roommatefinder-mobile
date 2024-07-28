@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {Text, View} from "react-native";
 
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 
@@ -9,7 +9,6 @@ export default function Empty({
   emoji,
   message,
   theme,
-  centered = true,
   refresh,
 }) {
   return (
@@ -19,38 +18,56 @@ export default function Empty({
         backgroundColor:theme.colors.background,
         alignItems: "center",
         paddingVertical:120,
-        justifyContent: centered ? "center" : "flex-start",
       }}
     >
-      {icon ? (
-        <FontAwesomeIcon
-          icon={icon}
-          size={70}
-          style={{marginBottom: 14}}
-        />
-      ) : (
-        <Text
-          style={{
-            fontWeight:'500',
-            fontSize: 80,
-            marginBottom: 14,
-            color: theme.colors.primary
-          }}
-        >
-          {emoji}
-        </Text>
-      )}
-
-      <Text
+      <View 
         style={{
-          fontSize:14,
-          fontWeight:'500',
-          maxWidth: 200,
-          textAlign: "center",
+          alignItems:'center',
+          padding:20,
+          borderRadius:12,
+          backgroundColor:theme.colors.background,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}
       >
-        {message}
-      </Text>
+        {icon ? 
+          <FontAwesomeIcon
+            icon={icon}
+            size={70}
+            style={{marginBottom: 14}}
+          />
+        : null }
+
+        {emoji !== null ? 
+          <Text
+            style={{
+              fontWeight:'500',
+              fontSize: 80,
+              marginBottom: 14,
+              color: theme.colors.primary
+            }}
+          >
+            {emoji}
+          </Text>
+        : null }
+
+        <Text
+          style={{
+            fontSize:14,
+            fontWeight:'500',
+            maxWidth: 200,
+            textAlign: "center",
+          }}
+        >
+          {message}
+        </Text>
+      </View>
+      
       {/* {refresh ? (
         <CustomButton shadow onClick={() => refresh()} style={styles.button}>
           <Text

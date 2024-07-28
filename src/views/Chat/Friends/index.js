@@ -1,12 +1,10 @@
 import React, {useState, useCallback} from "react";
-import {ActivityIndicator, View} from "react-native";
+import {ActivityIndicator} from "react-native";
 
-import {Button, useTheme} from "react-native-paper";
+import {useTheme} from "react-native-paper";
 
 import {Container, Content} from "./friends.view";
 import Empty from "../../../components/Empty";
-
-// import useStore from "../../../zustand/store";
 import useBearStore from "../../../libs/store";
 
 /*global setTimeout */

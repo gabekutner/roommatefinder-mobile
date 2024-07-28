@@ -1,23 +1,24 @@
 import React, {useEffect, useState} from "react";
-import {FlatList, SafeAreaView, StyleSheet, View} from "react-native";
+import {FlatList, SafeAreaView, Text, View, TouchableOpacity} from "react-native";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-
-import { useTheme, IconButton } from "react-native-paper";
-// import useStore from "../../zustand/store";
-// import { styles } from "./search.styles";
+import FastImage from "react-native-fast-image"
+import { useTheme, IconButton, TextInput } from "react-native-paper";
+import Empty from "../../components/Empty";
+import Cell from "../../components/Cell";
 import useBearStore from "../../libs/store";
+import {appendFullUrl} from "../../libs/utils/appendFullUrl";
 
 
 function SearchView({navigation}) {
   const customTheme = useTheme()
   
   const [query, setQuery] = useState("")
-  // const searchList = useStore((state) => state.searchList);
-  // const searchUsers = useStore((state) => state.searchUsers);
+  const searchList = useBearStore((state) => state.searchList);
+  const searchUsers = useBearStore((state) => state.searchUsers);
 
-  // useEffect(() => {
-  //   searchUsers(query);
-  // }, [query]);
+  useEffect(() => {
+    searchUsers(query);
+  }, [query]);
 
   return (
     <SafeAreaView style={{flex:1, backgroundColor:customTheme.colors.background}}>
@@ -29,55 +30,95 @@ function SearchView({navigation}) {
           mode="contained"
         />
       </View>
-      {/* <View style={styles.wrapper}>
-        <CustomButton
-          onClick={() => navigation.goBack()}
-          style={{paddingLeft: moderateScale(16), borderWidth: 0}}
+      <View style={{ alignItems:'center', marginHorizontal:25 }}>
+        {/* input */}
+        <View 
+          style={{
+            flexDirection:'row',
+            marginTop:10,
+          }}
         >
-          <FontAwesomeIcon
-            icon="arrow-left"
-            size={verticalScale(24)}
-            color={colors.tint}
-          />
-        </CustomButton>
-        <View style={{width: moderateScale(290)}}>
-          <CustomTextInput
-            placeholder={"Search ..."}
-            placeholderTextColor={colors.tertiary}
-            colors={colors}
+          <TextInput 
+            mode="outlined"
+            label={"Search"}
             value={query}
-            onChangeText={setQuery}
-            icon="magnifying-glass"
-            iconColor={colors.tertiary}
-            iconStyle={{marginHorizontal: moderateScale(8)}}
-            containerStyle={styles.inputContainer}
-            inputStyle={styles.inputTextContainer}
+            onChangeText={text => setQuery(text)}
+            outlineColor={customTheme.colors.primary}
+            textColor={customTheme.colors.primary}
+            keyboardType={"default"}
+            autoCapitalize={false}
+            style={{flex:1}}
           />
         </View>
-      </View>
-      {searchList === null ? (
-        <Empty
-          icon="magnifying-glass"
-          message="Search for friends"
-          centered={false}
-          colors={colors}
+        <View 
+          style={{ 
+            height:1.5, 
+            borderRadius:12,
+            marginVertical:15, 
+            backgroundColor:customTheme.colors.primary, 
+            width:"100%"
+          }} 
         />
-      ) : searchList.length === 0 ? (
-        <Empty
-          emoji="🤷‍♂️"
-          message={"Hmmm... couldn't find anything for '" + query + "'"}
-          centered={false}
-          colors={colors}
-        />
-      ) : (
-        <FlatList
-          data={searchList}
-          renderItem={({item}) => (
-            <SearchRow navigation={navigation} item={item} />
+
+        <View style={{width:'100%', height:'100%'}}> 
+          {searchList.length === 0 && query === "" ? (
+            <Empty
+              emoji="🔎"
+              message="Search for friends"
+              theme={customTheme}
+            />
+          ) : searchList.length === 0 && query !== "" ?
+              <Empty
+                emoji="🤔"
+                message={`Can't find anything for ${query}.`}
+                theme={customTheme}
+              />
+          :(
+            <FlatList
+              data={searchList}
+              keyExtractor={(item) => item.id}
+              style={{width:'100%'}}
+              renderItem={({item}) => (
+                <Cell>
+                  <TouchableOpacity>
+                    <FastImage
+                      key={item.id}
+                      style={{
+                        width: 70,
+                        height: 70,
+                        borderRadius: 70 / 2,
+                        backgroundColor: customTheme.colors.background,
+                        borderWidth: 1,
+                        borderColor: customTheme.colors.primary,
+                      }}
+                      source={appendFullUrl(item.thumbnail)}
+                      resizeMode={FastImage.resizeMode.cover}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={{
+                      flex: 1,
+                      paddingHorizontal: 15,
+                      justifyContent: "center",
+                    }}>
+                      <Text 
+                        style={{
+                          fontSize:16,
+                          fontWeight: "600",
+                          marginBottom: 4,
+                          color: customTheme.colors.primary
+                        }}
+                      >
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </Cell>
+              )}
+            />
           )}
-          keyExtractor={(item) => item.id}
-        />
-      )} */}
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

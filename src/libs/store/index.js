@@ -28,7 +28,7 @@ const initialState = {
   friendList: [],
   requestList: [],
   messagesList: [],
-  searchList: [],
+  searchList: [], 
   
   messagesNext: null,
   messagesTyping: null,
@@ -144,7 +144,7 @@ const useBearStore = create((set, get) => ({
         "request.accept": responseRequestAccept,
         "request.connect": responseRequestConnect,
         "request.list": responseRequestList,
-        search: responseSearch,
+        "search": responseSearch,
         // thumbnail: responseThumbnail,
       };
       const resp = responses[parsed.source];
