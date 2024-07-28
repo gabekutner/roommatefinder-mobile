@@ -35,6 +35,7 @@ function NewProfileView({ navigation }) {
       <ImageBackground 
         source={require('../../assets/images/image_part_001.png')}
         style={{flex:1,bottom:470}}
+        imageStyle={{opacity:.9}}
       />
       <View 
         style={{
@@ -51,7 +52,7 @@ function NewProfileView({ navigation }) {
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
-            height: 2,
+            height: -5,
           },
           shadowOpacity: 0.25,
           shadowRadius: 3.84,

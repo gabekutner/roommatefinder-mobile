@@ -82,7 +82,7 @@ function Card(props) {
           </View>
           <View>
             <IconButton 
-              onPress={() => console.log('nigga')}
+              onPress={() => console.log('test')}
               icon={() => <FontAwesomeIcon icon="arrow-left" color={props.theme.colors.primary} />}
               size={22}
               mode="contained"

@@ -5,7 +5,6 @@ import {
 } from "react-native";
 import {useTheme} from "react-native-paper";
 import Empty from "../../../components/Empty";
-import useStore from "../../../zustand/store";
 import { DeckSwiper } from "./deck.view";
 import useBearStore from "../../../libs/store";
 import { CardSwipeContainer } from "../Card";
@@ -62,6 +61,7 @@ function DeckView() {
       <Empty
         icon="hourglass"
         message="You ran out of people."
+        theme={theme}
       />
     );
   };
