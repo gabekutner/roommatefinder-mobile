@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {SafeAreaView, Platform, Text, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView, Image} from "react-native";
-import {Button, useTheme, TextInput, Chip} from "react-native-paper";
+import {Button, useTheme, TextInput, Chip, IconButton} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
 import useBearStore from "../../../libs/store";
@@ -22,6 +22,10 @@ function EditProfileView({ navigation }) {
     thumbnail: null,
     photos: {},
   });
+
+  const updateProfileForm = useBearStore((state) => state.updateProfileForm)
+  const setUpdateProfileForm = useBearStore((state) => state.setUpdateProfileForm)
+  const updateProfile = useBearStore((state) => state.updateProfile)
 
   const handleInterests = (i) => {
     const interests = [...form.interests];
@@ -61,6 +65,7 @@ function EditProfileView({ navigation }) {
   };
 
   const buttonClick = async () => {
+    await updateProfile(updateProfileForm)
     // 1. send profile
     // await sendProfile(form);
     // 2. send photos
@@ -74,12 +79,20 @@ function EditProfileView({ navigation }) {
     //   index: 0,
     //   routes: [{ name: 'password' }],
     // })
-    console.log('submit')
+    // console.log(/'submit')
   };
 
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
+      <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:5 }}>
+        <IconButton 
+          onPress={() => navigation.goBack()}
+          icon={() => <FontAwesomeIcon icon="arrow-left" color={customTheme.colors.primary} />}
+          size={22}
+          mode="contained"
+        />
+      </View>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -90,7 +103,7 @@ function EditProfileView({ navigation }) {
         <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
           <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:25}}>
             
-            <View style={{ width:200, alignItems:'center', justifyContent:'center', marginVertical:25 }}>
+            <View style={{ width:200, alignItems:'center', justifyContent:'center', marginBottom:25 }}>
               <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
                 Edit your profile
               </Text>
@@ -486,7 +499,7 @@ function EditProfileView({ navigation }) {
               }}
               style={{marginBottom:100}}
             >
-              <Text>Continue</Text>
+              <Text>Done</Text>
             </Button>
           </View>
         </ScrollView>
