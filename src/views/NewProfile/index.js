@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { ImageBackground, ScrollView, StatusBar, Text, TouchableOpacity, View, Image } from "react-native";
 import {Button, Switch, useTheme} from "react-native-paper";
 import useBearStore from "../../libs/store";
@@ -13,20 +13,26 @@ function NewProfileView({ navigation }) {
 
   const user = useBearStore((state) => state.user)
   const logout = useBearStore((state) => state.logout)
+  const pauseProfile = useBearStore((state) => state.pauseProfile)
 
   const quizClick = () => {
-    console.log('quiz')
-  }
-
+    console.log('quiz');
+  };
 
   const getThumbnail = () => {
     if (user.thumbnail !== null) {
       return appendFullUrl(user.thumbnail)
     } else {
       // return whatever the default is?
-      return {}
-    }
-  }
+      return {};
+    };
+  };
+
+  const [pauseEnabled, setPauseEnabled] = useState(user.pause_profile);
+  const togglePaused = () => {
+    setPauseEnabled((previousState) => !previousState);
+    pauseProfile()
+  };
 
 
   return (
@@ -189,7 +195,7 @@ function NewProfileView({ navigation }) {
                   color: customTheme.colors.primary
                 }}>Take our roommate matching quiz!</Text>
                 <Button 
-                  //  onPress={logout}
+                   onPress={quizClick}
                   mode="elevated"
                   buttonColor={customTheme.colors.primary}
                   labelStyle={{
@@ -235,7 +241,16 @@ function NewProfileView({ navigation }) {
                     fontWeight: '500',
                     color: customTheme.colors.primary
                   }}>Pause Profile</Text>
-                  <Switch />
+                  <Switch 
+                    trackColor={{true: customTheme.colors.tertiary}}
+                    thumbColor={customTheme.colors.secondary}
+                    ios_backgroundColor={customTheme.colors._tint_secondary}
+                    onValueChange={togglePaused}
+                    value={pauseEnabled}
+                    style={{
+                      transform: [{scaleX: 0.9}, {scaleY: 0.9}],
+                    }}
+                  />
                 </View>
                 <Button 
                    onPress={() => navigation.navigate('how-to')}

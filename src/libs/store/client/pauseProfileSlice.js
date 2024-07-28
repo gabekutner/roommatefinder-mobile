@@ -1,4 +1,6 @@
-import api from "../../api/def";
+// import api from "../../api/def";
+import api from "../../../core/api";
+
 
 
 const pauseProfileSlice = (set, get) => ({
