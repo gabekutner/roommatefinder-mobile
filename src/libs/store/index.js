@@ -6,6 +6,7 @@ import { getDeckCards } from './client/getDeckCards';
 import { friendsSlice } from './client/friendsSlice';
 import { requestSlice } from './client/requestSlice';
 import { messageSlice } from './client/messageSlice';
+import { pauseProfileSlice } from './client/pauseProfileSlice';
 // handlers
 import {responseFriendList, responseFriendNew} from "./handlers/responseFriend";
 import { responseRequestAccept, responseRequestConnect, responseRequestList } from './handlers/responseRequest';
@@ -28,6 +29,8 @@ const initialState = {
   messagesNext: null,
   messagesTyping: null,
   messagesId: null,
+
+  paused: false,
 };
 
 const useBearStore = create((set, get) => ({
@@ -37,6 +40,7 @@ const useBearStore = create((set, get) => ({
   ...friendsSlice(get),
   ...requestSlice(set, get),
   ...messageSlice(set, get),
+  ...pauseProfileSlice(set, get),
 
   init: async () => {
     const credentials = await secure.get("credentials");
