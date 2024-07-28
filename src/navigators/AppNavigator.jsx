@@ -47,6 +47,7 @@ import useBearStore from "../libs/store";
 import { PrivacyPolicy } from "../views/PrivacyPolicy";
 
 import { TabNavigator } from "./TabNavigator";
+import { HowToFindARoommate } from "../views/HowToFindARoommate";
 
 const AppNavigator = () => {
   const theme = useTheme();
@@ -72,6 +73,11 @@ const AppNavigator = () => {
       <Stack.Screen 
         name="privacy-policy"
         component={PrivacyPolicy}
+        options={{headerShown: false}}
+      />
+       <Stack.Screen 
+        name="how-to"
+        component={HowToFindARoommate}
         options={{headerShown: false}}
       />
       {/* 

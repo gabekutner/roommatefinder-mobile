@@ -1,76 +1,31 @@
 import React from "react";
-import {View, Text, Pressable} from "react-native";
+import {View, Text} from "react-native";
 import FastImage from "react-native-fast-image";
 import { FastImageBackground } from "../FastImageBackground";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import LinearGradient from "react-native-linear-gradient";
 import {appendFullUrl} from "../../../../libs/utils/appendFullUrl";
-
-
-const HeaderBar = props => {
-
-  // const photos = 
-  console.log(props.item.thumbnail)
-  console.log(props.item.photos)
-
-  return (
-    <View 
-      style={{ 
-        backgroundColor:props.theme.colors.primary,
-        position:'absolute',
-        top:0,
-        left:0,
-        right:0,
-        height:8,
-        flexDirection:'row'
-      }}
-    >
-      <View style={{flex:1,backgroundColor:'green' }} />
-      {/* <View style={{flex:1,backgroundColor:'blue' }}/>
-      <View style={{flex:1,backgroundColor:'red' }}/>
-      <View style={{flex:1,backgroundColor:'green' }}/>
-      <View style={{flex:1,backgroundColor:'yellow' }}/>
-      <View style={{flex:1,backgroundColor:'purple' }}/> */}
-
-    </View>
-  )
-}
+import {interestsData} from "../../../../assets/Dictionary"
+import {IconButton} from "react-native-paper"
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
 function Card(props) {
   return (
     <FastImageBackground
       key={props.item.id}
-      item={props.item}
       containerStyle={{
-        // flex: 1,
-        // width: "100%",
-        // height: "100%",
+        flex: 1,
+        width: "100%",
+        height: "100%",
         alignItems: "flex-end",
         flexDirection: "row",
         justifyContent: "center",
-        padding:50,
-        // shadowColor: "#000",
-        // shadowOffset: {
-        //   width: 0,
-        //   height: 2,
-        // },
-        // shadowOpacity: 0.25,
-        // shadowRadius: 3.84,
-        backgroundColor: props.theme.colors.background
       }}
       imageStyle={{height: "100%"}}
       resizeMode={FastImage.resizeMode.cover}
-      // url={appendFullUrl(props.item.thumbnail)}
+      uri={appendFullUrl(props.item.thumbnail)}
     >
-      <HeaderBar theme={props.theme} item={props.item} />
-      <Pressable onPress={() => console.log('left')} style={{height:'100%', width:"50%"}}>
-        
-      </Pressable>
-      <Pressable onPress={() => console.log('right')} style={{height:'100%', width:"50%"}}>
-
-      </Pressable>
-      {/* <LinearGradient
+      <LinearGradient
         colors={["rgba(0,0,0,0.7)", "transparent"]} // Adjust gradient colors as needed
         start={{x: 0.5, y: 0.7}}
         end={{x: 0.5, y: 0}}
@@ -84,31 +39,63 @@ function Card(props) {
           overflow: "hidden",
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 5,
-            paddingHorizontal: 10,
-            alignItems: "center",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: props.theme.colors.tertiary,
-              height: 15,
-              width: 15,
-              borderRadius: 60,
-            }}
-          />
-          <Text style={{fontSize: 16, color: props.theme.colors.secondary, fontWeight: '600'}}>
-            Offline
-          </Text>
+        <View style={{width:'80%', backgroundColor:'red', flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+          {/* name */}
+          <View>
+            <View style={{marginHorizontal:12}}>
+              <Text
+                style={{
+                  fontFamily: 'SuezOne-Regular',
+                  fontSize:35, 
+                  color: props.theme.colors.secondary,
+                  fontWeight:'500'
+                }}
+              >
+                {props.item.name}
+              </Text>
+            </View>
+            {/* dorm */}
+            {/* interests */}
+            <View style={{marginHorizontal:10, marginVertical:5, flexDirection:'row', gap:4, overflow:'hidden', flexWrap:'wrap'}}>
+              {props.item.interests.slice(0,3).map((item) => (
+                <View 
+                  key={item} 
+                  style={{
+                    padding: 8,
+                    borderRadius: 12,
+                    backgroundColor: 'rgba(255,255,255,0.7)'
+                  }}
+                >
+                  <Text 
+                    style={{
+                      fontFamily: 'NotoSans_Condensed-Regular',
+                      fontSize:14, 
+                      color: props.theme.colors.primary,
+                      fontWeight:'500'
+                    }}
+                  >
+                    {interestsData[item-1].interest}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+          <View>
+            <IconButton 
+              onPress={() => console.log('nigga')}
+              icon={() => <FontAwesomeIcon icon="arrow-left" color={props.theme.colors.primary} />}
+              size={22}
+              mode="contained"
+            />
+          </View>
         </View>
-        <View
+        
+        {/* <View
           style={{
             flexDirection: "row",
             gap: 5,
-            justifyContent: "center",
+            justifyContent: "space-between",
+            marginHorizontal:10
           }}
         >
           <Text
@@ -128,7 +115,7 @@ function Card(props) {
               opacity: 0.8,
             }}
           >
-            20
+            {props.item.age}
           </Text>
         </View>
         <View
@@ -167,8 +154,8 @@ function Card(props) {
           >
             <Text style={{color: props.theme.colors.secondary, fontSize:14, fontWeight:'500'}}>Outdoors</Text>
           </View>
-        </View>
-      </LinearGradient> */}
+        </View> */}
+      </LinearGradient>
     </FastImageBackground>
   );
 };

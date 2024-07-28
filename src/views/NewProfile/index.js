@@ -190,7 +190,7 @@ function NewProfileView({ navigation }) {
                 <Button 
                   //  onPress={logout}
                   mode="elevated"
-                  buttonColor={customTheme.colors.tertiary}
+                  buttonColor={customTheme.colors.primary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
@@ -237,7 +237,7 @@ function NewProfileView({ navigation }) {
                   <Switch />
                 </View>
                 <Button 
-                  //  onPress={logout}
+                   onPress={() => navigation.navigate('how-to')}
                   mode="elevated"
                   buttonColor={customTheme.colors.primary}
                   labelStyle={{
