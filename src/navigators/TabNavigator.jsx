@@ -1,8 +1,8 @@
 import React from "react";
-import { TouchableOpacity, View, Text } from "react-native";
+import {TouchableOpacity} from "react-native";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { useTheme, Button } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 const Tab = createBottomTabNavigator();
 
@@ -12,29 +12,14 @@ import { NewProfileView } from "../views/NewProfile";
 import { DeckView } from "../views/Deck/Deck";
 import {FriendsView} from "../views/Chat/Friends";
 
-// temp
-import useBearStore from "../libs/store";
-
-
-const Home = () => {
-  const customTheme = useTheme();
-  const logout = useBearStore(state => state.logout)  
-  return (
-    <View style={{flex:1, backgroundColor:customTheme.colors.backdrop}}>
-      <Button onPress={logout}>
-        <Text>logout</Text>
-      </Button>
-    </View>
-  );
-};
 
 const TabNavigator = () => {
   const customTheme = useTheme();
 
-  const HeaderRight = icon => (
-    <TouchableOpacity>
+  const HeaderRight = props => (
+    <TouchableOpacity onPress={props.onPress}>
       <FontAwesomeIcon
-        icon={icon}
+        icon={props.icon}
         size={20}
         color={customTheme.colors.primary}
       />
@@ -79,10 +64,10 @@ const TabNavigator = () => {
       <Tab.Screen
         name="deck"
         component={DeckView}
-        options={({navigation}) => ({
+        options={() => ({
           headerTitleAlign: "left",
           headerTitle: () => <Title text="DormParty®" color={customTheme.colors.primary} />,
-          headerRight: () => HeaderRight("ellipsis-vertical"),
+          headerRight: () => <HeaderRight icon="ellipsis-vertical" />,
           headerRightContainerStyle: {paddingRight: 15},
           headerStyle: {backgroundColor: customTheme.colors.background},
           headerShadowVisible: false, // border bottom invisible
@@ -94,7 +79,7 @@ const TabNavigator = () => {
         options={({navigation}) => ({
           headerTitleAlign: "left",
           headerTitle: () => <Title text="Your Friends" color={customTheme.colors.primary} />,
-          headerRight: () => HeaderRight("magnifying-glass"),
+          headerRight: () => <HeaderRight icon="magnifying-glass" onPress={() => navigation.navigate('search')} />,
           headerRightContainerStyle: {paddingRight: 15},
           headerStyle: {backgroundColor: customTheme.colors.background},
           headerShadowVisible: false, // border bottom invisible

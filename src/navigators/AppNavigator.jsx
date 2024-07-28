@@ -71,16 +71,29 @@ const AppNavigator = () => {
         component={TabNavigator}
         options={{headerShown: false}}
       />
-      <Stack.Screen 
-        name="privacy-policy"
-        component={PrivacyPolicy}
-        options={{headerShown: false}}
-      />
-       <Stack.Screen 
-        name="how-to"
-        component={HowToFindARoommate}
-        options={{headerShown: false}}
-      />
+
+
+      <Stack.Group>
+        <Stack.Screen 
+          name="privacy-policy"
+          component={PrivacyPolicy}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="how-to"
+          component={HowToFindARoommate}
+          options={{headerShown: false}}
+        />
+      </Stack.Group>
+
+      <Stack.Group>
+        <Stack.Screen 
+          name="search"
+          component={SearchView}
+          options={{headerShown: false}}
+        />
+      </Stack.Group>
+      
       {/* 
       <Stack.Screen
         name="search"

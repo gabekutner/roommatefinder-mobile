@@ -1,31 +1,34 @@
 import React, {useEffect, useState} from "react";
 import {FlatList, SafeAreaView, StyleSheet, View} from "react-native";
-import {useTheme} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import { moderateScale, verticalScale } from "../../libs/react-native-size-matters";
 
-import useStore from "../../zustand/store";
-import { styles } from "./search.styles";
+import { useTheme, IconButton } from "react-native-paper";
+// import useStore from "../../zustand/store";
+// import { styles } from "./search.styles";
+import useBearStore from "../../libs/store";
 
 
 function SearchView({navigation}) {
-  const theme = useTheme();
+  const customTheme = useTheme()
   
-  const [query, setQuery] = useState("");
-  const searchList = useStore((state) => state.searchList);
-  const searchUsers = useStore((state) => state.searchUsers);
+  const [query, setQuery] = useState("")
+  // const searchList = useStore((state) => state.searchList);
+  // const searchUsers = useStore((state) => state.searchUsers);
 
-  useEffect(() => {
-    searchUsers(query);
-  }, [query]);
+  // useEffect(() => {
+  //   searchUsers(query);
+  // }, [query]);
 
   return (
-    <SafeAreaView 
-      style={[
-        styles.container,
-        {backgroundColor: theme.colors.background}
-      ]}
-    >
+    <SafeAreaView style={{flex:1, backgroundColor:customTheme.colors.background}}>
+      <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:5 }}>
+        <IconButton 
+          onPress={() => navigation.goBack()}
+          icon={() => <FontAwesomeIcon icon="arrow-left" color={customTheme.colors.primary} />}
+          size={22}
+          mode="contained"
+        />
+      </View>
       {/* <View style={styles.wrapper}>
         <CustomButton
           onClick={() => navigation.goBack()}

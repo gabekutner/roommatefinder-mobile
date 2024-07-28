@@ -7,10 +7,12 @@ import { friendsSlice } from './client/friendsSlice';
 import { requestSlice } from './client/requestSlice';
 import { messageSlice } from './client/messageSlice';
 import { pauseProfileSlice } from './client/pauseProfileSlice';
+import { searchSlice } from './client/searchSlice';
 // handlers
 import {responseFriendList, responseFriendNew} from "./handlers/responseFriend";
 import { responseRequestAccept, responseRequestConnect, responseRequestList } from './handlers/responseRequest';
-import {responseMessageList, responseMessageSend, responseMessageType} from "./handlers/responseMessage"
+import {responseMessageList, responseMessageSend, responseMessageType} from "./handlers/responseMessage";
+import { responseSearch } from './handlers/responseSearch';
 
 import secure from "../../libs/device/storage";
 import { ADDRESS } from '../../libs/api/def';
@@ -22,10 +24,12 @@ const initialState = {
   initialized: false,
 
   socket: null,
-  friendList: [],
-  requestList: null,
 
+  friendList: [],
+  requestList: [],
   messagesList: [],
+  searchList: [],
+  
   messagesNext: null,
   messagesTyping: null,
   messagesId: null,
@@ -41,6 +45,7 @@ const useBearStore = create((set, get) => ({
   ...requestSlice(set, get),
   ...messageSlice(set, get),
   ...pauseProfileSlice(set, get),
+  ...searchSlice(set, get),
 
   init: async () => {
     const credentials = await secure.get("credentials");
@@ -139,7 +144,7 @@ const useBearStore = create((set, get) => ({
         "request.accept": responseRequestAccept,
         "request.connect": responseRequestConnect,
         "request.list": responseRequestList,
-        // search: responseSearch,
+        search: responseSearch,
         // thumbnail: responseThumbnail,
       };
       const resp = responses[parsed.source];
