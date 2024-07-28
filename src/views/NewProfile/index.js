@@ -1,6 +1,6 @@
 import React from "react";
-import { ImageBackground, ScrollView, StatusBar, Text, TouchableOpacity, View } from "react-native";
-import {Button, useTheme} from "react-native-paper";
+import { ImageBackground, ScrollView, StatusBar, Text, TouchableOpacity, View, Image } from "react-native";
+import {Button, Switch, useTheme} from "react-native-paper";
 import useBearStore from "../../libs/store";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {dormsData} from "../../assets/Dictionary";
@@ -60,18 +60,20 @@ function NewProfileView({ navigation }) {
           paddingTop:25,
         }}
       >
-        <ScrollView showsVerticalScrollIndicator={false} style={{flex:1, width:'100%', marginBottom:200}}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{flex:1, width:'100%'}}>
           <View style={{alignItems:'center', overflow:'visible'}}>
             {/* top bar */}
             <View style={{ flexDirection:'row' }}>
               <View style={{flex:1}}></View>
               <View style={{flex:2, justifyContent:'center', alignItems:'center'}}>
-                <ImageBackground 
+                <Image 
                   source={getThumbnail()}
                   imageStyle={{borderRadius:12}}
                   style={{ 
                     height:150,
-                    width:100,
+                    width:150,
+                    borderRadius:100,
+                    borderWidth:1,
                     shadowColor: "#000",
                     shadowOffset: {
                       width: 0,
@@ -86,11 +88,6 @@ function NewProfileView({ navigation }) {
                     {user.name}
                   </Text>
                 </View>
-                {/* <View style={{marginTop:5, width:'100%', justifyContent:'center', alignItems:'center', backgroundColor:customTheme.colors.primary}}>
-                  <Text style={{fontFamily:'NotoSans_Condensed-Regular', color:customTheme.colors._tint_secondary, fontSize:18, fontWeight:'500'}}>
-                    {dormsData[user.dorm_building-1].dorm}
-                  </Text>
-                </View> */}
               </View>
               <View style={{flex:1, alignItems:'center', paddingTop:10}}>
                 <TouchableOpacity>
@@ -103,57 +100,13 @@ function NewProfileView({ navigation }) {
               </View>
             </View>
 
-            {/* <View style={{height:1, backgroundColor:customTheme.colors.primary, width:'80%', marginVertical:15}} /> */}
-
-            {/* promos go here */}
-            <View 
-              style={{
-                marginTop:20,
-                backgroundColor:customTheme.colors.secondary,
-                height:125,
-                width:'80%',
-                borderRadius:12,
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                flexDirection:'row',
-                // stop of items from flowing out
-                overflow:'visible'
-              }}
-            >
-              <View style={{flex:.6, paddingVertical:10, paddingHorizontal:15,}}>
-                <Text style={{flex:1, fontFamily:'NotoSans_Condensed-Regular', fontSize:15, fontWeight:'600', color:customTheme.colors.primary}} >
-                  Take Our Roommate Matching Quiz
-                </Text>
-                <View style={{flex:1}}>
-                  <Button
-                    onPress={quizClick}
-                    mode="elevated"
-                    buttonColor={customTheme.colors.tertiaryDark}
-                    labelStyle={{
-                      fontFamily: 'NotoSans_Condensed-Regular',
-                      fontSize: 14, 
-                      fontWeight: '700',
-                      color: customTheme.colors.secondary
-                    }}
-                    style={{width:'70%'}}
-                  >
-                    <Text>Sure</Text>
-                  </Button>
-                </View>
-              </View>
+            <View style={{marginTop:15, paddingHorizontal:25, width:'100%', gap:15, marginBottom:200, alignItems:'center'}}>
+              
               <View 
                 style={{
-                  flex:.4, 
-                  backgroundColor:customTheme.colors.primary, 
-                  borderTopLeftRadius:20,
-                  borderBottomLeftRadius:20,
-                  borderTopRightRadius:12,
-                  borderBottomRightRadius:12,
+                  gap:10,
+                  width:'90%', 
+                  backgroundColor:customTheme.colors.background, 
                   shadowColor: "#000",
                   shadowOffset: {
                     width: 0,
@@ -161,50 +114,159 @@ function NewProfileView({ navigation }) {
                   },
                   shadowOpacity: 0.25,
                   shadowRadius: 3.84,
-                  overflow:'visible',
+                  paddingVertical:10,
+                  paddingHorizontal:15,
+                  borderRadius:12
+                  
                 }}
               >
-                <Text
-                  style={{ 
-                    fontSize:110, 
-                    position:'absolute', 
-                    right:25,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
+                <Text style={{
+                  fontFamily: 'NotoSans_Condensed-Regular',
+                  fontSize: 18, 
+                  fontWeight: '700',
+                  color: customTheme.colors.primary
+                }}>Your Profile</Text>
+                <Button 
+                  //  onPress={logout}
+                  mode="elevated"
+                  buttonColor={customTheme.colors.primary}
+                  labelStyle={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 14, 
+                    fontWeight: '700',
+                    color: customTheme.colors.secondary
                   }}
+                  style={{borderRadius:12}}
                 >
-                  🧪
-                </Text>
+                  <Text>Edit Profile</Text>
+                </Button>
+
+                <Button 
+                  //  onPress={logout}
+                  mode="elevated"
+                  buttonColor={customTheme.colors.tertiary}
+                  labelStyle={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 14, 
+                    fontWeight: '700',
+                    color: customTheme.colors.secondary
+                  }}
+                  style={{borderRadius:12}}
+                >
+                  <Text>Preview Profile</Text>
+                </Button>
+               </View>
+
+               <View 
+                style={{
+                  gap:10,
+                  width:'90%', 
+                  backgroundColor:customTheme.colors.background, 
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3.84,
+                  paddingVertical:10,
+                  paddingHorizontal:15,
+                  borderRadius:12
+                  
+                }}
+              >
+                <Text style={{
+                  fontFamily: 'NotoSans_Condensed-Regular',
+                  fontSize: 18, 
+                  fontWeight: '700',
+                  color: customTheme.colors.primary
+                }}>Matching Quiz 🧪</Text>
+                <Text style={{
+                  fontFamily: 'NotoSans_Condensed-Regular',
+                  fontSize: 16, 
+                  fontWeight: '500',
+                  color: customTheme.colors.primary
+                }}>Take our roommate matching quiz!</Text>
+                <Button 
+                  //  onPress={logout}
+                  mode="elevated"
+                  buttonColor={customTheme.colors.tertiary}
+                  labelStyle={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 14, 
+                    fontWeight: '700',
+                    color: customTheme.colors.secondary
+                  }}
+                  style={{borderRadius:12}}
+                >
+                  <Text>Let's do it!</Text>
+                </Button>
               </View>
-            </View>
 
-            <View style={{height:1, backgroundColor:customTheme.colors.primary, width:'80%', marginVertical:15}} />
+              <View 
+                style={{
+                  gap:10,
+                  width:'90%', 
+                  backgroundColor:customTheme.colors.background, 
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3.84,
+                  paddingVertical:10,
+                  paddingHorizontal:15,
+                  borderRadius:12
+                  
+                }}
+              >
+                <Text style={{
+                  fontFamily: 'NotoSans_Condensed-Regular',
+                  fontSize: 18, 
+                  fontWeight: '700',
+                  color: customTheme.colors.primary
+                }}>Preferences</Text>
+                <View style={{flexDirection:'row', justifyContent:"space-between", alignItems:'center'}}>
+                  <Text style={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 16, 
+                    fontWeight: '500',
+                    color: customTheme.colors.primary
+                  }}>Pause Profile</Text>
+                  <Switch />
+                </View>
+                <Button 
+                  //  onPress={logout}
+                  mode="elevated"
+                  buttonColor={customTheme.colors.primary}
+                  labelStyle={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 14, 
+                    fontWeight: '700',
+                    color: customTheme.colors.secondary
+                  }}
+                  style={{borderRadius:12}}
+                >
+                  <Text>How can I find a roommate?</Text>
+                </Button>
+                <Button 
+                  //  onPress={logout}
+                  mode="elevated"
+                  buttonColor={customTheme.colors.primary}
+                  labelStyle={{
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize: 14, 
+                    fontWeight: '700',
+                    color: customTheme.colors.secondary
+                  }}
+                  style={{borderRadius:12}}
+                >
+                  <Text>Terms and Privacy</Text>
+                </Button>
 
-            <View 
-              style={{
-                height:300,
-                width:'80%',
-                backgroundColor:customTheme.colors.background,
-                shadowColor: "#000",
-                borderWidth:2,
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-              }}
-            >
 
-            </View>
-            
-            {/* logout */}
-            <View style={{marginVertical:20, width:"80%"}}>
+              </View>
               <Button
                 onPress={logout}
                 mode="elevated"
@@ -215,12 +277,12 @@ function NewProfileView({ navigation }) {
                   fontWeight: '700',
                   color: customTheme.colors.secondary
                 }}
-                style={{width:'100%'}}
+                style={{width:'90%', borderRadius:12}}
               >
                 <Text>Logout</Text>
               </Button>
-            </View>
 
+            </View>
           </View>
         </ScrollView>
       </View>
