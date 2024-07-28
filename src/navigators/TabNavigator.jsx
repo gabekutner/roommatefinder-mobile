@@ -10,6 +10,7 @@ import { Title } from "../components/Text/Title";
 
 import { NewProfileView } from "../views/NewProfile";
 import { DeckView } from "../views/Deck/Deck";
+import {FriendsView} from "../views/Chat/Friends";
 
 // temp
 import useBearStore from "../libs/store";
@@ -89,7 +90,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="friends"
-        component={Home}
+        component={FriendsView}
         options={({navigation}) => ({
           headerTitleAlign: "left",
           headerTitle: () => <Title text="Your Friends" color={customTheme.colors.primary} />,

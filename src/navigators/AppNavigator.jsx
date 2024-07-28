@@ -49,6 +49,7 @@ import { PrivacyPolicy } from "../views/PrivacyPolicy";
 import { TabNavigator } from "./TabNavigator";
 import { HowToFindARoommate } from "../views/HowToFindARoommate";
 
+
 const AppNavigator = () => {
   const theme = useTheme();
 

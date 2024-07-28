@@ -7,16 +7,18 @@ import {Container, Content} from "./friends.view";
 import Empty from "../../../components/Empty";
 
 import useStore from "../../../zustand/store";
+import useBearStore from "../../../libs/store";
 
 /*global setTimeout */
 /*eslint no-undef: "error"*/
 
 function FriendsView({navigation}) {
-  const theme = useTheme();
 
-  const friendList = useStore((state) => state.friendList);
-  const refreshFriendList = useStore((state) => state.refreshFriendList);
+  const theme = useTheme();
   const [refreshing, setRefreshing] = useState(false);
+
+  const friendList = useBearStore((state) => state.friendList);
+  const refreshFriendList = useBearStore((state) => state.refreshFriendList);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
