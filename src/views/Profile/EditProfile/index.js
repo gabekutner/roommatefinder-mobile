@@ -66,9 +66,9 @@ function EditProfileView({ navigation }) {
     launchImageLibrary({includeBase64: true}, (response) => {
       if (response.didCancel) return;
       const file = response.assets[0];
-      // const photos = {...form.photos};
-      // photos[num] = file;
-      // setForm({ ...form, photos:photos });
+      const photos = {...form.photos};
+      photos[num] = file;
+      setForm({ ...form, photos:photos });
     });
   };
 
