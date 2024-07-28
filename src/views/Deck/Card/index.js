@@ -15,7 +15,8 @@ const offset = width / 5;
 
 
 function CardSwipeContainer(props) {
-  const requestConnect = useStore((state) => state.requestConnect);
+  // move to bear store
+  // const requestConnect = useStore((state) => state.requestConnect);
 
   const pan = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
   const rotate = pan.x.interpolate({

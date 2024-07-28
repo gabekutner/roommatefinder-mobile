@@ -53,8 +53,8 @@ import { HowToFindARoommate } from "../views/HowToFindARoommate";
 const AppNavigator = () => {
   const theme = useTheme();
 
-  const socketConnect = useStore((state) => state.socketConnect);
-  const socketDisconnect = useStore((state) => state.socketDisconnect);
+  const socketConnect = useBearStore((state) => state.socketConnect);
+  const socketDisconnect = useBearStore((state) => state.socketDisconnect);
 
   // Connect to backend socket
   useEffect(() => {

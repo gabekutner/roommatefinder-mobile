@@ -1,8 +1,4 @@
-
-
-
-const friendsSlice = (set, get) => ({
-  // friendList: null,
+const friendsSlice = (get) => ({
   refreshFriendList: () => {
     const socket = get().socket;
     socket.send(
@@ -11,7 +7,6 @@ const friendsSlice = (set, get) => ({
       })
     );
   },
-  
 })
 
 export {friendsSlice};

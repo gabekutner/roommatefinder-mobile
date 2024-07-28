@@ -1,12 +1,18 @@
 import { create } from 'zustand';
 
+//client
 import { createProfileSlice } from './client/createProfileSlice';
 import { getDeckCards } from './client/getDeckCards';
 import { friendsSlice } from './client/friendsSlice';
-
-import secure from "../../core/secure";
-
+import { requestSlice } from './client/requestSlice';
+import { messageSlice } from './client/messageSlice';
+// handlers
 import {responseFriendList, responseFriendNew} from "./handlers/responseFriend";
+import { responseRequestAccept, responseRequestConnect, responseRequestList } from './handlers/responseRequest';
+import {responseMessageList, responseMessageSend, responseMessageType} from "./handlers/responseMessage"
+
+import secure from "../../libs/device/storage";
+import { ADDRESS } from '../../libs/api/def';
 
 
 const initialState = {
@@ -14,16 +20,23 @@ const initialState = {
   authenticated: false,
   initialized: false,
 
-  friendList: null,
+  socket: null,
+  friendList: [],
+  requestList: null,
 
+  messagesList: [],
+  messagesNext: null,
+  messagesTyping: null,
+  messagesId: null,
 };
-
 
 const useBearStore = create((set, get) => ({
   ...initialState,
   ...createProfileSlice(set, get),
   ...getDeckCards(set, get),
-  ...friendsSlice(set, get),
+  ...friendsSlice(get),
+  ...requestSlice(set, get),
+  ...messageSlice(set, get),
 
   init: async () => {
     const credentials = await secure.get("credentials");
@@ -82,8 +95,9 @@ const useBearStore = create((set, get) => ({
     }));
   },
 
-  socket: null,
-
+  //------------------
+  //    WebSocket
+  //------------------
   socketConnect: async () => {
     const tokens = await secure.get("tokens");
     /*global WebSocket */
@@ -115,12 +129,12 @@ const useBearStore = create((set, get) => ({
       const responses = {
         "friend.list": responseFriendList,
         "friend.new": responseFriendNew,
-        // "message.list": responseMessageList,
-        // "message.send": responseMessageSend,
-        // "message.type": responseMessageType,
-        // "request.accept": responseRequestAccept,
-        // "request.connect": responseRequestConnect,
-        // "request.list": responseRequestList,
+        "message.list": responseMessageList,
+        "message.send": responseMessageSend,
+        "message.type": responseMessageType,
+        "request.accept": responseRequestAccept,
+        "request.connect": responseRequestConnect,
+        "request.list": responseRequestList,
         // search: responseSearch,
         // thumbnail: responseThumbnail,
       };

@@ -1,4 +1,4 @@
-function responseFriendList(set, friendList) {
+function responseFriendList(set, get, friendList) {
   set(() => ({
     friendList: friendList,
   }));

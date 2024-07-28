@@ -1,12 +1,12 @@
 import React, {useState, useCallback} from "react";
-import {ActivityIndicator} from "react-native";
+import {ActivityIndicator, View} from "react-native";
 
-import {useTheme} from "react-native-paper";
+import {Button, useTheme} from "react-native-paper";
 
 import {Container, Content} from "./friends.view";
-import Empty from "../../../components/Empty";
+// import Empty from "../../../components/Empty";
 
-import useStore from "../../../zustand/store";
+// import useStore from "../../../zustand/store";
 import useBearStore from "../../../libs/store";
 
 /*global setTimeout */
@@ -41,13 +41,20 @@ function FriendsView({navigation}) {
     );
   }
 
+
   if (friendList.length === 0) {
     return (
-      <Empty
-        emoji={"💬"}
-        refresh={onRefresh}
-        message="Nothing yet... Match with roommates and check back later!"
-      />
+      // <Empty
+      //   emoji={"💬"}
+      //   refresh={onRefresh}
+      //   message="Nothing yet... Match with roommates and check back later!"
+      // />
+      <View>
+
+        <Button onPress={onRefresh}>
+          refresh
+        </Button>
+      </View>
     );
   }
 
