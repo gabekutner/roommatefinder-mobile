@@ -1,22 +1,4 @@
 const updateProfileSlice = (set, get) => ({
-
-  updateProfileForm: {
-    name: null,
-    city: null,
-    state: null,
-    graduation_year: null,
-    major: null,
-    description: null,
-    interests: [],
-    dorm_building: null,
-    thumbnail: null,
-  },
-  setUpdateProfileForm: (form) => {
-    set(() => ({
-      updateProfileForm: form,
-    }));
-  },
-
   updateProfile: async (form) => {
     const user = get().user;
     if (user.token) {
@@ -33,17 +15,49 @@ const updateProfileSlice = (set, get) => ({
         thumbnail: user.thumbnail,
       }
       const dataForm = new FormData();
+      let i = 0;
       for (const [key, value] of Object.entries(form)) {
-        if (value === null || value.length === 0) {
-          console.log('empty value')
+        if (value === initialValues[key] || JSON.stringify(value) === JSON.stringify(initialValues[key])) {
+          i++
         } else {
-          dataForm.append(key, value)
-        }
+          if (key === "interests") {
+            value.forEach((item, index) => {
+              dataForm.append('interests', item); 
+            });
+          } else {
+            if (key !== 'photos') dataForm.append(key, value);
+          };
+        };
+      };
+      if (i < 9) {
+        // 2. submit 
+        try {
+          const response = await api({
+            method: "put",
+            url: `/api/v1/profiles/${user.id}/`,
+            data: dataForm,
+            headers: {
+              Authorization: `Bearer ${get().user.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          if (response.status !== 200) {
+            throw new Error("[error-internal] updateProfile");
+          } else {
+            console.log("[success] updateProfile");
+            set(() => ({
+              user: response.data,
+            }));
+          };
+        } catch (e) {
+          console.log("[error-external] updateProfile");
+          console.log(e);
+          console.log(e.response);
+        };
       }
-      console.log(dataForm)
     } else {
-      console.log('[error] no auth')
-    }
+      console.log('[error] no auth');
+    };
   },
 })
 

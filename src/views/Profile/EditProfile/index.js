@@ -9,9 +9,11 @@ import {appendFullUrl} from "../../../libs/utils/appendFullUrl"
 
 
 function EditProfileView({ navigation }) {
-  const customTheme = useTheme();
 
+  const customTheme = useTheme();
   const user = useBearStore((state) => state.user)
+  const updateProfile = useBearStore((state) => state.updateProfile)
+
   const [form, setForm] = useState({
     name: user.name,
     city: user.city,
@@ -24,10 +26,6 @@ function EditProfileView({ navigation }) {
     thumbnail: user.thumbnail,
     photos: {},
   });
-  
-  const updateProfileForm = useBearStore((state) => state.updateProfileForm)
-  const setUpdateProfileForm = useBearStore((state) => state.setUpdateProfileForm)
-  const updateProfile = useBearStore((state) => state.updateProfile)
 
   const handleInterests = (i) => {
     const interests = [...form.interests];
@@ -56,6 +54,14 @@ function EditProfileView({ navigation }) {
     });
   };
 
+  const sourceThumbnail = () => {
+    if (typeof form.thumbnail === "string") {
+      return appendFullUrl(form.thumbnail)
+    } else {
+      return {uri: form.thumbnail.uri}
+    }
+  }
+
   const setPhoto = (num) => {
     launchImageLibrary({includeBase64: true}, (response) => {
       if (response.didCancel) return;
@@ -67,21 +73,10 @@ function EditProfileView({ navigation }) {
   };
 
   const buttonClick = async () => {
-    await updateProfile(updateProfileForm)
-    // 1. send profile
-    // await sendProfile(form);
-    // 2. send photos
-    // if (Object.keys(form.photos).length !== 0) await sendPhotos(form);
-    // 3. navigate to password 
-    /**
-     * @routing fixes modal for stacks 
-     * https://stackoverflow.com/questions/70707367/how-can-i-close-a-modally-opened-window-with-its-own-navigation-stack
-    */
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: 'password' }],
-    // })
-    // console.log(/'submit')
+    // 1. update profile
+    await updateProfile(form)
+    // 2. update photos
+    // 3. show feedback
   };
 
 
@@ -145,7 +140,7 @@ function EditProfileView({ navigation }) {
                     ]}
                   >
                     <Image 
-                      source={appendFullUrl(form.thumbnail)} 
+                      source={sourceThumbnail()} 
                       style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
@@ -476,7 +471,7 @@ function EditProfileView({ navigation }) {
             <TextInput 
               mode="outlined"
               label='Graduation Year'
-              value={form.graduation_year}
+              value={form.graduation_year.toString()}
               onChangeText={text => setForm({...form, graduation_year:text})}
               placeholder=""
               outlineColor={customTheme.colors.primary}
