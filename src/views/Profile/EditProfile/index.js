@@ -5,24 +5,26 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
 import useBearStore from "../../../libs/store";
 import {launchImageLibrary} from "react-native-image-picker";
+import {appendFullUrl} from "../../../libs/utils/appendFullUrl"
 
 
 function EditProfileView({ navigation }) {
   const customTheme = useTheme();
 
+  const user = useBearStore((state) => state.user)
   const [form, setForm] = useState({
-    name: "",
-    city: "",
-    state: "",
-    graduation_year: "",
-    major: "",
-    about: "",
-    interests: [],
-    dorm: "",
-    thumbnail: null,
+    name: user.name,
+    city: user.city,
+    state: user.state,
+    graduation_year: user.graduation_year,
+    major: user.major,
+    description: user.description,
+    interests: [...user.interests],
+    dorm_building: user.dorm_building,
+    thumbnail: user.thumbnail,
     photos: {},
   });
-
+  
   const updateProfileForm = useBearStore((state) => state.updateProfileForm)
   const setUpdateProfileForm = useBearStore((state) => state.setUpdateProfileForm)
   const updateProfile = useBearStore((state) => state.updateProfile)
@@ -50,7 +52,7 @@ function EditProfileView({ navigation }) {
     launchImageLibrary({includeBase64: true}, (response) => {
       if (response.didCancel) return;
       const file = response.assets[0];
-      setUpdateProfileForm({...updateProfileForm, thumbnail:file})
+      setForm({...form, thumbnail:file})
     });
   };
 
@@ -133,7 +135,7 @@ function EditProfileView({ navigation }) {
             >
               <View style={{flex:1, flexDirection:'column', gap:8}}>
 
-                {updateProfileForm.thumbnail ? 
+                {form.thumbnail ? 
                   <TouchableOpacity 
                     onPress={setThumbnail} 
                     style={[
@@ -143,7 +145,7 @@ function EditProfileView({ navigation }) {
                     ]}
                   >
                     <Image 
-                      source={{uri: updateProfileForm.thumbnail.uri}} 
+                      source={appendFullUrl(form.thumbnail)} 
                       style={{ height:'100%', width:'100%', borderRadius:10 }}
                     />
                   </TouchableOpacity>
@@ -309,8 +311,8 @@ function EditProfileView({ navigation }) {
             <TextInput 
               mode="outlined"
               label={"Name"}
-              value={updateProfileForm.name}
-              onChangeText={text => setUpdateProfileForm({...updateProfileForm, name:text})}
+              value={form.name}
+              onChangeText={text => setForm({...form, name:text})}
               placeholder=""
               outlineColor={customTheme.colors.primary}
               textColor={customTheme.colors.primary}
@@ -323,7 +325,6 @@ function EditProfileView({ navigation }) {
             {/* dorm */}
             <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
               What dorm are you living in?
-              <Text style={{color:'red'}}>*</Text>
             </Text>
             <View
               style={{
@@ -350,13 +351,13 @@ function EditProfileView({ navigation }) {
                     <Chip
                       key={index}
                       mode="outlined"
-                      onPress={() => setUpdateProfileForm({...updateProfileForm, dorm_building:_.id})}
-                      selected={updateProfileForm.dorm_building === _.id ? true : false}
-                      selectedColor={updateProfileForm.dorm_building === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                      onPress={() => setForm({...form, dorm_building:_.id})}
+                      selected={form.dorm_building === _.id ? true : false}
+                      selectedColor={form.dorm_building === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
                       showSelectedCheck={false}
                       style={{
                         margin:4,
-                        backgroundColor:updateProfileForm.dorm_building === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                        backgroundColor:form.dorm_building === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
                       }}
                     >
                       {_.dorm}
@@ -458,8 +459,8 @@ function EditProfileView({ navigation }) {
             <TextInput 
               mode="outlined"
               label='About Me'
-              value={form.about}
-              onChangeText={text => setForm({...form, about:text})}
+              value={form.description}
+              onChangeText={text => setForm({...form, description:text})}
               placeholder=""
               outlineColor={customTheme.colors.primary}
               textColor={customTheme.colors.primary}

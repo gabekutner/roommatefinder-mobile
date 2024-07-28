@@ -8,7 +8,7 @@ import { requestSlice } from './client/requestSlice';
 import { messageSlice } from './client/messageSlice';
 import { pauseProfileSlice } from './client/pauseProfileSlice';
 import { searchSlice } from './client/searchSlice';
-import { udpateProfileSlice } from './client/updateProfileSlice';
+import { updateProfileSlice } from './client/updateProfileSlice';
 // handlers
 import {responseFriendList, responseFriendNew} from "./handlers/responseFriend";
 import { responseRequestAccept, responseRequestConnect, responseRequestList } from './handlers/responseRequest';
@@ -47,7 +47,7 @@ const useBearStore = create((set, get) => ({
   ...messageSlice(set, get),
   ...pauseProfileSlice(set, get),
   ...searchSlice(set, get),
-  ...udpateProfileSlice(set, get),
+  ...updateProfileSlice(set, get),
 
   init: async () => {
     const credentials = await secure.get("credentials");

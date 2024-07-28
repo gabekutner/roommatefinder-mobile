@@ -1,4 +1,4 @@
-const udpateProfileSlice = (set, get) => ({
+const updateProfileSlice = (set, get) => ({
 
   updateProfileForm: {
     name: null,
@@ -21,6 +21,17 @@ const udpateProfileSlice = (set, get) => ({
     const user = get().user;
     if (user.token) {
       // 1. remove untouched values
+      const initialValues = {
+        name: user.name,
+        city: user.city,
+        state: user.state,
+        graduation_year: user.graduation_year,
+        major: user.major,
+        description: user.description,
+        interests: [...user.interests],
+        dorm_building: user.dorm_building,
+        thumbnail: user.thumbnail,
+      }
       const dataForm = new FormData();
       for (const [key, value] of Object.entries(form)) {
         if (value === null || value.length === 0) {
@@ -36,4 +47,4 @@ const udpateProfileSlice = (set, get) => ({
   },
 })
 
-export {udpateProfileSlice};
+export {updateProfileSlice};
