@@ -4,13 +4,14 @@ import {MessageBubbleMe} from "./MessageBubbleMe";
 import {MessageBubbleFriend} from "./MessageBubbleFriend";
 
 import useStore from "../../../../../zustand/store";
+import useBearStore from "../../../../../libs/store";
 
 /*global setInterval */
 /* global clearInterval */
 /*eslint no-undef: "error"*/
 
 function MessageBubble(props) {
-  const messagesTyping = useStore((state) => state.messagesTyping);
+  const messagesTyping = useBearStore((state) => state.messagesTyping);
   const [showTyping, setShowTyping] = useState(false);
 
   useEffect(() => {

@@ -88,9 +88,15 @@ const AppNavigator = () => {
       </Stack.Group>
 
       <Stack.Group>
+
         <Stack.Screen 
           name="search"
           component={SearchView}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="message"
+          component={MessageView}
           options={{headerShown: false}}
         />
       </Stack.Group>

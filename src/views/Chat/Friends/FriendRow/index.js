@@ -23,7 +23,7 @@ function FriendRow(props) {
 
   return (
     <Row
-      // navigation={props.navigation}
+      navigation={props.navigation}
       // profile={profile}
       item={props.item}
       theme={props.theme}

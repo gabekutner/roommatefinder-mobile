@@ -2,21 +2,23 @@ import React, {useState, useEffect} from "react";
 import {Platform, InputAccessoryView} from "react-native";
 
 import {useTheme} from "react-native-paper";
-import useStore from "../../../zustand/store";
+// import useStore from "../../../zustand/store";
 
 import {Container, MessagesWrapper} from "./message.view";
 import {MessageHeader} from "./Components/MessageHeader";
 import {MessageInput} from "./Components/MessageInput";
+import useBearStore from "../../../libs/store";
+
 
 function MessageView({navigation, route}) {
   const theme = useTheme();
 
   const [message, setMessage] = useState("");
-  const messagesList = useStore((state) => state.messagesList);
-  const messagesNext = useStore((state) => state.messagesNext);
-  const messageList = useStore((state) => state.messageList);
-  const messageSend = useStore((state) => state.messageSend);
-  const messageType = useStore((state) => state.messageType);
+  const messagesList = useBearStore((state) => state.messagesList);
+  const messagesNext = useBearStore((state) => state.messagesNext);
+  const messageList = useBearStore((state) => state.messageList);
+  const messageSend = useBearStore((state) => state.messageSend);
+  const messageType = useBearStore((state) => state.messageType);
 
   const connectionId = route.params.id;
   const friend = route.params.friend;

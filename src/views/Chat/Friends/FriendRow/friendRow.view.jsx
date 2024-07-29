@@ -26,10 +26,7 @@ function Row(props) {
           resizeMode={FastImage.resizeMode.cover}
         />
       </TouchableOpacity>
-      <TouchableOpacity
-        // onPress={() => props.navigation.navigate("messages", props.item)}
-        onPress={() => {}}
-      >
+      <TouchableOpacity onPress={() => props.navigation.navigate("message", props.item)}>
         <View style={styles.container}>
           <Text 
             style={{
