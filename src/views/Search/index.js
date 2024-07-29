@@ -13,6 +13,8 @@ function SearchView({navigation}) {
   const customTheme = useTheme()
   
   const [query, setQuery] = useState("")
+
+  const requestConnect = useBearStore((state) => state.requestConnect);
   const searchList = useBearStore((state) => state.searchList);
   const searchUsers = useBearStore((state) => state.searchUsers);
 
@@ -25,11 +27,41 @@ function SearchView({navigation}) {
       case "no-connection":
         return 'plus'
       case "pending-them":
-        return 'plus'
+        return 'hourglass-start'
       case "pending-me":
         return 'plus'
       case "connected":
         return 'check'
+      default:
+        break;
+    }
+  }
+
+  const setDisabled = (status) => {
+    switch (status) {
+      case "no-connection":
+        return false
+      case "pending-them":
+        return true
+      case "pending-me":
+        return true
+      case "connected":
+        return true
+      default:
+        break;
+    }
+  }
+
+  const setPress = (status) => {
+    switch (status) {
+      case "no-connection":
+        return true
+      case "pending-them":
+        return true
+      case "pending-me":
+        return true
+      case "connected":
+        return true
       default:
         break;
     }
@@ -130,6 +162,9 @@ function SearchView({navigation}) {
                         </Text>
                       </View>
                       <IconButton 
+                        // error here some reason ....
+                        onPress={() => requestConnect(item.id)}
+                        disabled={setDisabled(item.status)}
                         icon={() => <FontAwesomeIcon icon={getStatus(item.status)} color={customTheme.colors.primary} />}
                         size={22}
                         mode="contained"

@@ -42,7 +42,7 @@ const useBearStore = create((set, get) => ({
   ...initialState,
   ...createProfileSlice(set, get),
   ...getDeckCards(set, get),
-  ...friendsSlice(get),
+  ...friendsSlice(set, get),
   ...requestSlice(set, get),
   ...messageSlice(set, get),
   ...pauseProfileSlice(set, get),

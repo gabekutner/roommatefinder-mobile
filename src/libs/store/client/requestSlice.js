@@ -1,4 +1,4 @@
-const requestSlice = (get) => ({
+const requestSlice = (set, get) => ({
   refreshRequestList: () => {
     const socket = get().socket;
     socket.send(
