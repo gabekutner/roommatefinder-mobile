@@ -97,7 +97,7 @@ function NewProfileView({ navigation }) {
                 </View>
               </View>
               <View style={{flex:1, alignItems:'center', paddingTop:10}}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('edit-profile')}>
                   <FontAwesomeIcon 
                     icon="pen-to-square"
                     size={20}

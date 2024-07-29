@@ -493,7 +493,7 @@ function EditProfileView({ navigation }) {
                 fontWeight: '700',
                 color: customTheme.colors.secondary
               }}
-              style={{marginBottom:100}}
+              style={{marginBottom:50}}
             >
               <Text>Done</Text>
             </Button>
