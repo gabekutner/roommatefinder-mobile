@@ -73,7 +73,6 @@ const AppNavigator = () => {
         options={{headerShown: false}}
       />
 
-
       <Stack.Group>
         <Stack.Screen 
           name="privacy-policy"
@@ -88,7 +87,6 @@ const AppNavigator = () => {
       </Stack.Group>
 
       <Stack.Group>
-
         <Stack.Screen 
           name="search"
           component={SearchView}

@@ -25,9 +25,11 @@ function SearchView({navigation}) {
       case "no-connection":
         return 'plus'
       case "pending-them":
-        return 'clock'
+        return 'plus'
       case "pending-me":
         return 'plus'
+      case "connected":
+        return 'check'
       default:
         break;
     }

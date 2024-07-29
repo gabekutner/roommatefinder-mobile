@@ -1,12 +1,12 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {View, Text, TouchableOpacity} from "react-native";
 import FastImage from "react-native-fast-image";
 import { FastImageBackground } from "../FastImageBackground";
 import LinearGradient from "react-native-linear-gradient";
 import {appendFullUrl} from "../../../../libs/utils/appendFullUrl";
 import {interestsData} from "../../../../assets/Dictionary"
-import {IconButton} from "react-native-paper"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { dormsData } from "../../../../assets/Dictionary";
 
 
 function Card(props) {
@@ -39,122 +39,83 @@ function Card(props) {
           overflow: "hidden",
         }}
       >
-        <View style={{width:'80%', backgroundColor:'red', flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+        <View style={{width:'100%', flexDirection:'column', alignItems:'flex-start', justifyContent:'center', gap:4}}>
           {/* name */}
-          <View>
-            <View style={{marginHorizontal:12}}>
-              <Text
+          <View style={{marginHorizontal:12}}>
+            <Text
+              style={{
+                fontFamily: 'SuezOne-Regular',
+                fontSize:35, 
+                color: props.theme.colors.secondary,
+                fontWeight:'500'
+              }}
+            >
+              {props.item.name}
+            </Text>
+          </View>
+          {/* dorm */}
+          <View style={{marginHorizontal:12, flexDirection:"row", justifyContent:'center', alignItems:'center', gap:4, padding: 8,
+                  borderRadius: 12,
+                  backgroundColor: 'rgba(255,255,255,0.7)'}}>
+            <Text
+              style={{
+                fontSize:18, 
+                color: props.theme.colors.primary,
+                fontWeight:'500'
+              }}
+            >
+              🏠
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'NotoSans_Condensed-Regular',
+                fontSize:18, 
+                color: props.theme.colors.primary,
+                fontWeight:'500'
+              }}
+            >
+              {dormsData[props.item.dorm_building-1].dorm}
+            </Text>
+          </View>
+          {/* interests */}
+          <View style={{marginHorizontal:10, marginVertical:5, flexDirection:'row', gap:4, overflow:'hidden', flexWrap:'wrap'}}>
+            {props.item.interests.slice(0,3).map((item) => (
+              <View 
+                key={item} 
                 style={{
-                  fontFamily: 'SuezOne-Regular',
-                  fontSize:35, 
-                  color: props.theme.colors.secondary,
-                  fontWeight:'500'
+                  padding: 8,
+                  borderRadius: 12,
+                  backgroundColor: 'rgba(255,255,255,0.7)'
                 }}
               >
-                {props.item.name}
-              </Text>
-            </View>
-            {/* dorm */}
-            {/* interests */}
-            <View style={{marginHorizontal:10, marginVertical:5, flexDirection:'row', gap:4, overflow:'hidden', flexWrap:'wrap'}}>
-              {props.item.interests.slice(0,3).map((item) => (
-                <View 
-                  key={item} 
+                <Text 
                   style={{
-                    padding: 8,
-                    borderRadius: 12,
-                    backgroundColor: 'rgba(255,255,255,0.7)'
+                    fontFamily: 'NotoSans_Condensed-Regular',
+                    fontSize:14, 
+                    color: props.theme.colors.primary,
+                    fontWeight:'500'
                   }}
                 >
-                  <Text 
-                    style={{
-                      fontFamily: 'NotoSans_Condensed-Regular',
-                      fontSize:14, 
-                      color: props.theme.colors.primary,
-                      fontWeight:'500'
-                    }}
-                  >
-                    {interestsData[item-1].interest}
-                  </Text>
-                </View>
-              ))}
-            </View>
+                  {interestsData[item-1].interest}
+                </Text>
+              </View>
+            ))}
           </View>
-          <View>
-            <IconButton 
-              onPress={() => console.log('test')}
-              icon={() => <FontAwesomeIcon icon="arrow-left" color={props.theme.colors.primary} />}
-              size={22}
-              mode="contained"
-            />
-          </View>
+          <TouchableOpacity 
+            style={{
+              width:'90%',
+              marginVertical:10,
+              alignSelf:'center',
+              justifyContent:'center',
+              alignItems:'center', 
+              padding: 8, 
+              backgroundColor:props.theme.colors.tertiary,
+              borderRadius:12
+            }}
+          >
+            <FontAwesomeIcon icon="arrow-up" size={22} color={props.theme.colors.secondary} />
+          </TouchableOpacity>
         </View>
-        
-        {/* <View
-          style={{
-            flexDirection: "row",
-            gap: 5,
-            justifyContent: "space-between",
-            marginHorizontal:10
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "SuezOne-Regular",
-              fontSize: 42,
-              color: props.theme.colors.secondary,
-            }}
-          >
-            Gabe Kutner
-          </Text>
-          <Text
-            style={{
-              fontFamily: "SuezOne-Regular",
-              fontSize: 42,
-              color: props.theme.colors.secondary,
-              opacity: 0.8,
-            }}
-          >
-            {props.item.age}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 10,
-            paddingHorizontal: 15,
-            marginVertical: 8,
-            marginBottom:10
-          }}
-        >
-          <View
-            style={{
-              padding: 5,
-              borderRadius: 12,
-              backgroundColor: `rgba(255,255,255, 0.2)`,
-            }}
-          >
-            <Text style={{ color: props.theme.colors.secondary }}>Euro Football</Text>
-          </View>
-          <View
-            style={{
-              padding: 5,
-              borderRadius: 12,
-              backgroundColor: `rgba(255,255,255, 0.2)`,
-            }}
-          >
-            <Text style={{color: props.theme.colors.secondary}}>Baseball</Text>
-          </View>
-          <View
-            style={{
-              padding: 5,
-              borderRadius: 12,
-              backgroundColor: `rgba(255,255,255, 0.2)`,
-            }}
-          >
-            <Text style={{color: props.theme.colors.secondary, fontSize:14, fontWeight:'500'}}>Outdoors</Text>
-          </View>
-        </View> */}
       </LinearGradient>
     </FastImageBackground>
   );
