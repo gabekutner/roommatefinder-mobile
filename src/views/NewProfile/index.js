@@ -15,10 +15,6 @@ function NewProfileView({ navigation }) {
   const logout = useBearStore((state) => state.logout)
   const pauseProfile = useBearStore((state) => state.pauseProfile)
 
-  const quizClick = () => {
-    console.log('quiz');
-  };
-
   const getThumbnail = () => {
     if (user.thumbnail !== null) {
       return appendFullUrl(user.thumbnail)
@@ -195,7 +191,7 @@ function NewProfileView({ navigation }) {
                   color: customTheme.colors.primary
                 }}>Take our roommate matching quiz!</Text>
                 <Button 
-                   onPress={quizClick}
+                  onPress={() => navigation.navigate('quiz')}
                   mode="elevated"
                   buttonColor={customTheme.colors.primary}
                   labelStyle={{

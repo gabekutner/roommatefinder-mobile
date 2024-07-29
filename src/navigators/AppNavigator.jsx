@@ -48,6 +48,7 @@ import { PrivacyPolicy } from "../views/PrivacyPolicy";
 
 import { TabNavigator } from "./TabNavigator";
 import { HowToFindARoommate } from "../views/HowToFindARoommate";
+import { QuizView } from "../views/Quiz";
 
 
 const AppNavigator = () => {
@@ -97,6 +98,11 @@ const AppNavigator = () => {
       <Stack.Screen 
         name="edit-profile"
         component={EditProfileView}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen 
+        name="quiz"
+        component={QuizView}
         options={{headerShown: false}}
       />
       

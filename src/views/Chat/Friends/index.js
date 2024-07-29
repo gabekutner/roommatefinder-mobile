@@ -37,8 +37,7 @@ function FriendsView({navigation}) {
         }}
       />
     );
-  }
-
+  };
 
   if (friendList.length === 0) {
     return (
