@@ -145,7 +145,7 @@ function NewProfileView({ navigation }) {
                 </Button>
 
                 <Button 
-                  //  onPress={logout}
+                  onPress={() => navigation.navigate('preview')}
                   mode="elevated"
                   buttonColor={customTheme.colors.tertiary}
                   labelStyle={{
