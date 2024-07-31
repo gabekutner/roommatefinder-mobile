@@ -6,7 +6,7 @@ import api from "../../../core/api";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 
-function LoginView() {
+function LoginView({ navigation }) {
 
   const customTheme = useTheme();
 
@@ -102,6 +102,18 @@ function LoginView() {
               >
                 <Text>Continue</Text>
               </Button>
+
+              <View style={{width:'100%', flexDirection:'row', justifyContent:'center'}}>
+                <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+                  Don't have an account?
+                  {" "}
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('auth')}>
+                  <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:customTheme.colors.primary, textDecorationLine:'underline' }}>
+                    Sign up
+                  </Text>
+                </TouchableOpacity>
+              </View>
 
             </View>
           </View>

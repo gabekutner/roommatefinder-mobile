@@ -10,15 +10,15 @@ function IdentifierView({ route, navigation }) {
   const customTheme = useTheme();
 
   const [identifier, setIdentifier] = useState("");
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState();
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
   const inputRef3 = useRef(null);
 
-  const [input1, setInput1] = useState("")
-  const [input2, setInput2] = useState("")
-  const [input3, setInput3] = useState("")
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
+  const [input3, setInput3] = useState("");
 
   const [visible, setVisible] = useState({
     status: false,
@@ -31,33 +31,57 @@ function IdentifierView({ route, navigation }) {
 
   const buttonClick = async () => {
     setLoading(true)
+
+    const status_code = await sendIdentifier(identifier)
+    if (status_code === 400) {
+      
+    }
+
+    setLoading(false)
     // 1. valid identifier
-    if (identifier === "") {
-      // 2. create an account via identifier
-      const res = await sendIdentifier(`${input1}${input2}${input3}`);
-      setInput1("")
-      setInput2("")
-      setInput3("")
-      inputRef1.current.focus();
-      setLoading(false);
-      // 3. navigate to verification code page
-      if (res === 201) {
-        navigation.navigate('code')
-      } else {
-        setVisible({...visible, status:true})
-      }
-    } else {
-      // 2. create an account via identifier
-      const res = await sendIdentifier(identifier);
-      setIdentifier("");
-      setLoading(false);
-      // 3. navigate to verification code page
-      if (res === 201) {
-        navigation.navigate('code')
-      } else {
-        setVisible({...visible, status:true})
-      }
-    };
+    // if (identifier === "") {
+    //   // 2. create an account via phone number
+    //   const res = await sendIdentifier(`${input1}${input2}${input3}`);
+    //   console.log(res)
+
+    //   setInput1("")
+    //   setInput2("")
+    //   setInput3("")
+    //   inputRef1.current.focus();
+    //   setLoading(false);
+    //   // 3. navigate to verification code page
+    //   if (res === 201) {
+    //     navigation.navigate('code')
+    //   } else if (res === 400) {
+    //     // means some sort of error with formatting
+    //     setVisible({...visible, status:true, message:'Phone numbers must be xxx xxx xxxx'})
+    //   } else {
+    //     // means a profile already exists
+    //     setVisible({...visible, status:true, message:'A profile already exists with this phone number.'})
+    //   }
+    // } else {
+    //   // 2. create an account via identifier
+    //   const res = await sendIdentifier(identifier);
+    //   console.log(res)
+
+    //   setIdentifier("");
+    //   setLoading(false);
+    //   // 3. navigate to verification code page
+    //   if (res === 201) {
+    //     navigation.navigate('code')
+    //   } else if (res === 400) {
+    //     // means some sort of error with formatting
+    //     if (id==="Email") {
+    //       setVisible({...visible, status:true, message:'Emails must end in an @something.com'})
+    //     } else {
+    //       setVisible({...visible, status:true, message:'UIDs must start with the u and end with 7 digits.'})
+    //     }
+    //   } else {
+    //     // means a profile already exists
+    //     setVisible({...visible, status:true, message:`A profile already exists with this ${id}.`})
+    //   }
+    // };
+
   };
   
   const handleTextChange = (text, inputRef, setInput) => {
@@ -208,7 +232,7 @@ function IdentifierView({ route, navigation }) {
             wrapperStyle={{backgroundColor: customTheme.colors.tertiaryDark}}
           >
             <Text style={{fontSize:14, color:customTheme.colors.secondary}}>
-              The {id.toLowerCase()}, {identifier}, is already in use.
+              {visible.message}
             </Text>
           </Snackbar>
         </View>

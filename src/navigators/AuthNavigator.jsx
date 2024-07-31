@@ -39,7 +39,6 @@ const AuthNavigator = () => {
           component={StartUpView}
           options={{
             headerShown: false, 
-            // presentation:"modal",
             gestureEnabled: false
           }}
         />
