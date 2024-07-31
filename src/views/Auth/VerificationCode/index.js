@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
-import {Button, IconButton, useTheme, TextInput} from "react-native-paper";
+import {Button, IconButton, useTheme, TextInput, Snackbar} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
 
@@ -21,6 +21,13 @@ function VerificationCodeView({ navigation }) {
   const [input2, setInput2] = useState("")
   const [input3, setInput3] = useState("")
   const [input4, setInput4] = useState("")
+
+  const [visible, setVisible] = useState({
+    status: false,
+    missing: []
+  });
+
+  const onDismissSnackBar = () => setVisible({...visible, status:false});
 
   const sendOTP = useBearStore((state) => state.sendOTP);
 
@@ -50,24 +57,34 @@ function VerificationCodeView({ navigation }) {
     setLoading(true)
     // combine all inputs 
     const otp = `${input1}${input2}${input3}${input4}`;
-    const res = await sendOTP(otp)
-    setLoading(false)
+    const response = await sendOTP(otp)
 
-    if (res.otp_verified) {
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [{ name: 'setup' }],
-      // })
-      navigation.navigate('setup')
+    // e.response.status object
+    if (response === 400) {
+      setVisible({ ...visible, status:true, message:'Incorrect validation code' })
+    } else if (response === 404) {
+      // 404 - profile not found, check sendIdentifier function
+      setVisible({ ...visible, status:true, message:'Server error, close the app and try again' })
     } else {
-      // snackbar error
+      if (response.data.otp_verified) {
+        // good
+        navigation.navigate('setup')
+      }
     }
+
+    // if (response.data.otp_verified) {
+    //   // good
+    //   navigation.navigate('setup')
+    // } else {
+      
+    // }
+    setLoading(false)
   }
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View>
+        <View style={{flex:1}}>
           <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:15 }}>
             <IconButton 
               onPress={() => navigation.goBack()}
@@ -157,6 +174,19 @@ function VerificationCodeView({ navigation }) {
               </Button>
             </View>
           </View>
+          <Snackbar
+            visible={visible.status}
+            onDismiss={onDismissSnackBar}
+            action={{
+              label: 'Got it',
+              labelStyle: {color: customTheme.colors.secondary}
+            }}
+            wrapperStyle={{backgroundColor: customTheme.colors.tertiaryDark}}
+          >
+            <Text style={{fontSize:14, color:customTheme.colors.secondary}}>
+              {visible.message}
+            </Text>
+          </Snackbar>
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>

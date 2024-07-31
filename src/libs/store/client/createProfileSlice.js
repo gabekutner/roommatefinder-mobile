@@ -18,12 +18,13 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendIdentifier");
       } else {
         console.log("[success] sendIdentifier");
+        // set user, so that sendOTP functon has a user.token to grab
         set(() => ({
           user: response.data,
         }));
       };
       // possible status codes: 400, 201, 403
-      return response.status
+      return response.status;
 
     } catch(e) {
       console.log("[error-external] sendIdentifier");
@@ -53,10 +54,12 @@ const createProfileSlice = (set, get) => ({
           user: response.data,
         }));
       };
-      return response.data;
+      // expected status codes - 400, 404, 200
+      return response
 
     } catch(e) {
       console.log("[error-external] sendOTP")
+      return e.response.status
     };
   },
 
