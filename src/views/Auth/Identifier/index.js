@@ -1,8 +1,8 @@
 import React, {useState, useRef} from "react";
-import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard} from "react-native";
-import {Button, IconButton, useTheme, TextInput, Snackbar} from "react-native-paper";
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import { View } from "react-native";
+import { useTheme, TextInput, } from "react-native-paper";
 import useBearStore from "../../../libs/store";
+import { Content } from "./identifier.view";
 
 
 function IdentifierView({ route, navigation }) {
@@ -31,57 +31,32 @@ function IdentifierView({ route, navigation }) {
 
   const buttonClick = async () => {
     setLoading(true)
-
-    const status_code = await sendIdentifier(identifier)
-    if (status_code === 400) {
-      
+    // possible status code - 400 (bad req), 201, 403 (identifier already exists)
+    if (identifier === "") {
+      const status_code = await sendIdentifier(`${input1}${input2}${input3}`)
+      if (status_code === 400) {
+        // bad request
+        setVisible({ ...visible, status:true, message:'Please provide a real phone number.' })
+      } else if (status_code === 403) {
+        // identifier already exists
+        setVisible({ ...visible, status:true, message:'A profile with this phone number already exists, try logging in.' })
+      } else if (status_code === 201) {
+        /// move on 
+        navigation.navigate('code')      }
+    } else {
+      const status_code = await sendIdentifier(identifier)
+      if (status_code === 400) {
+        // bad request
+        setVisible({ ...visible, status:true, message:`Please provide a real ${id}.` })
+      } else if (status_code === 403) {
+        // identifier already exists
+        setVisible({ ...visible, status:true, message:`A profile with this ${id} already exists, try logging in.` })
+      } else if (status_code === 201) {
+        /// move on 
+        navigation.navigate('code')
+      }
     }
-
     setLoading(false)
-    // 1. valid identifier
-    // if (identifier === "") {
-    //   // 2. create an account via phone number
-    //   const res = await sendIdentifier(`${input1}${input2}${input3}`);
-    //   console.log(res)
-
-    //   setInput1("")
-    //   setInput2("")
-    //   setInput3("")
-    //   inputRef1.current.focus();
-    //   setLoading(false);
-    //   // 3. navigate to verification code page
-    //   if (res === 201) {
-    //     navigation.navigate('code')
-    //   } else if (res === 400) {
-    //     // means some sort of error with formatting
-    //     setVisible({...visible, status:true, message:'Phone numbers must be xxx xxx xxxx'})
-    //   } else {
-    //     // means a profile already exists
-    //     setVisible({...visible, status:true, message:'A profile already exists with this phone number.'})
-    //   }
-    // } else {
-    //   // 2. create an account via identifier
-    //   const res = await sendIdentifier(identifier);
-    //   console.log(res)
-
-    //   setIdentifier("");
-    //   setLoading(false);
-    //   // 3. navigate to verification code page
-    //   if (res === 201) {
-    //     navigation.navigate('code')
-    //   } else if (res === 400) {
-    //     // means some sort of error with formatting
-    //     if (id==="Email") {
-    //       setVisible({...visible, status:true, message:'Emails must end in an @something.com'})
-    //     } else {
-    //       setVisible({...visible, status:true, message:'UIDs must start with the u and end with 7 digits.'})
-    //     }
-    //   } else {
-    //     // means a profile already exists
-    //     setVisible({...visible, status:true, message:`A profile already exists with this ${id}.`})
-    //   }
-    // };
-
   };
   
   const handleTextChange = (text, inputRef, setInput) => {
@@ -160,84 +135,19 @@ function IdentifierView({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={{flex:1}}>
-          <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:15 }}>
-            <IconButton 
-              onPress={() => navigation.goBack()}
-              icon={() => <FontAwesomeIcon icon="arrow-left" color={customTheme.colors.primary} />}
-              size={22}
-              mode="contained"
-            />
-          </View>
-          <View style={{ justifyContent:'center', alignItems: 'center' }}>
-            {/* header */}
-            <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
-              {/* logo */}
-              <View style={{height:50, width:50, backgroundColor:customTheme.colors.tertiaryDark, marginBottom:25}}></View>
-              <View style={{height:20, width:20, backgroundColor:customTheme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
-
-              <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
-                <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
-                  Let's start with your {id !== 'UID' ? id.toLowerCase() : id}
-                </Text>
-              </View>
-            </View>
-            {/* content */}
-            <View style={{gap: 35}}>
-              {id === 'Phone Number' ? (
-                phoneInput()
-              ) : (
-                <TextInput 
-                  mode="outlined"
-                  label={id}
-                  value={identifier}
-                  onChangeText={text => setIdentifier(text)}
-                  placeholder={id === 'UID' ? "u1234567" : ""}
-                  outlineColor={customTheme.colors.primary}
-                  textColor={customTheme.colors.primary}
-                  contentStyle={{width: 300}}
-                  keyboardType={id === 'phone number' ? "phone-pad" : "email-address"}
-                  autoCapitalize={false}
-                  maxLength={id === 'phone number' ? 10 : null}
-                />
-              )}
-              
-              <Button
-                loading={loading}
-                disabled={handleDisabled()}
-                onPress={buttonClick}
-                mode="elevated"
-                buttonColor={customTheme.colors.tertiaryDark}
-                labelStyle={{
-                  fontFamily: 'NotoSans_Condensed-Regular',
-                  fontSize: 16, 
-                  fontWeight: '700',
-                  color: customTheme.colors.secondary
-                }}
-              >
-                <Text>Continue</Text>
-              </Button>
-
-            </View>
-          </View>
-          <Snackbar
-            visible={visible.status}
-            onDismiss={onDismissSnackBar}
-            action={{
-              label: 'Got it',
-              labelStyle: {color: customTheme.colors.secondary}
-            }}
-            wrapperStyle={{backgroundColor: customTheme.colors.tertiaryDark}}
-          >
-            <Text style={{fontSize:14, color:customTheme.colors.secondary}}>
-              {visible.message}
-            </Text>
-          </Snackbar>
-        </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+    <Content 
+      customTheme={customTheme}
+      navigation={navigation}
+      id={id}
+      phoneInput={phoneInput}
+      identifier={identifier}
+      setIdentifier={setIdentifier}
+      loading={loading}
+      handleDisabled={handleDisabled}
+      buttonClick={buttonClick}
+      visible={visible}
+      onDismissSnackBar={onDismissSnackBar}
+    />
   )
 }
 

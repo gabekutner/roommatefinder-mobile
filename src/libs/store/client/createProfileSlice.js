@@ -23,7 +23,7 @@ const createProfileSlice = (set, get) => ({
         }));
       };
       // possible status codes: 400, 201, 403
-      // return response.status
+      return response.status
 
     } catch(e) {
       console.log("[error-external] sendIdentifier");
