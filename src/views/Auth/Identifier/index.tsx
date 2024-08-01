@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { View, ViewStyle, TextInput as RNTextInput } from "react-native";
-import { useTheme, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import useBearStore from "../../../libs/store";
 import { Content } from "./identifier.view";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AuthStackParamList } from "types/StackParamList";
+import {theme} from "assets/theme";
 
 // Types for navigation and route props
 type IdentifierViewNavigationProp = StackNavigationProp<AuthStackParamList, 'identifier'>;
@@ -20,7 +21,6 @@ interface VisibleState {
   /** Types for component state */
   status: boolean;
   message?: string;
-  missing?: any[];
 };
 
 const IdentifierView: React.FC<IdentifierViewProps> = ({ 
@@ -28,7 +28,7 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
   navigation 
 }) => {  
   const { id } = route.params;
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const [identifier, setIdentifier] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,10 +43,10 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
 
   const [visible, setVisible] = useState<VisibleState>({
     status: false,
-    missing: [],
+    message: "",
   });
 
-  const onDismissSnackBar = () => setVisible({ ...visible, status: false });
+  const onDismissSnackBar = () => setVisible({ ...visible, status:false });
 
   const sendIdentifier = useBearStore((state) => state.sendIdentifier)
 
@@ -59,8 +59,8 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
         // bad request
         setVisible({
           ...visible,
-          status: true,
-          message: 'Please provide a real phone number.',
+          status:true,
+          message:'Please provide a real phone number.',
         });
       } else if (status_code === 403) {
         // identifier already exists
@@ -166,7 +166,7 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
 
   return (
     <Content 
-      customTheme={theme}
+      theme={theme}
       navigation={navigation}
       id={id}
       phoneInput={phoneInput}
