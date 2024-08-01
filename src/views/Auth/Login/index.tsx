@@ -16,15 +16,20 @@ interface LoginViewProps {
   navigation: LoginViewNavigationProp;
 };
 
+interface FormState {
+  identifier: string;
+  password: string;
+};
+
 const LoginView: React.FC<LoginViewProps> = ({
   navigation
 }) => {
-  const login = useBearStore((state) => state.login)
+  const login = useBearStore((state) => state.login);
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     identifier: "",
     password: ""
-  })
+  });
 
   const buttonClick = () => {
     const auth = {
@@ -41,10 +46,10 @@ const LoginView: React.FC<LoginViewProps> = ({
         refresh: response.data.refresh,
       });
     });
-  }
+  };
 
-  const [eye, setEye] = useState(true)
-  const eyeClick = () => setEye(!eye)
+  const [eye, setEye] = useState<boolean>(true);
+  const eyeClick = () => setEye(!eye);
 
   return (
     <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background, alignItems: 'center'}}>
