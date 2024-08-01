@@ -5,8 +5,7 @@ import FastImage from "react-native-fast-image";
 import useBearStore from "../../../libs/store";
 import { appendFullUrl } from "../../../libs/utils/appendFullUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {dormsData} from "../../../assets/Dictionary";
-
+import {dormsData, interestsData} from "../../../assets/Dictionary";
 
 
 function PreviewProfileView({ route, navigation }) {
@@ -34,7 +33,25 @@ function PreviewProfileView({ route, navigation }) {
             gap:10
           }}
         >
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+          <View 
+            style={{
+              width:'100%', 
+              backgroundColor:customTheme.colors.background, 
+              borderRadius:12, 
+              paddingHorizontal:15, 
+              paddingVertical:10,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              flexDirection:'row',
+              justifyContent:'space-between',
+              alignItems:'center'
+            }}
+          >
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.name}</Text>
             <IconButton 
               mode="contained"
@@ -42,21 +59,47 @@ function PreviewProfileView({ route, navigation }) {
               icon={() => <FontAwesomeIcon icon="arrow-down" size={20} />}
             />
           </View>
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background, shadowColor:0}]}>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
-
-            {/* <IconButton 
-              mode="contained"
-              onPress={() => navigation.goBack()}
-              icon={() => <FontAwesomeIcon icon="arrow-down" size={20} />}
-            /> */}
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
+          </View>
+          <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
+          <View 
+            style={[
+              styles.box, 
+              {
+                flexDirection:'row', 
+                justifyContent:'flex-start', 
+                gap:8, 
+                flexWrap:'wrap', 
+                backgroundColor:customTheme.colors.background,
+              }
+            ]}
+          >
+            {user.interests.map((item) => (
+              <View 
+                key={item} 
+                style={{
+                  padding: 8,
+                  borderRadius: 12,
+                  backgroundColor:customTheme.colors.tertiary
+                }}
+              >
+                <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:customTheme.colors.secondary, fontWeight:'500' }}>
+                  {interestsData[item-1].interest}
+                </Text>
+              </View>
+            ))}
           </View>
 
-
-
-
-
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.city}, {user.state}</Text>
+          </View>
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
+          </View>
        
       </View>
       </ScrollView>
@@ -69,6 +112,7 @@ export {PreviewProfileView}
 const styles = StyleSheet.create({
   box: {
     width:'100%', 
+        // backgroundColor:customTheme.colors.background, 
     borderRadius:12, 
     paddingHorizontal:15, 
     paddingVertical:10,
