@@ -6,8 +6,6 @@ import { DormParty } from "./DormParty";
 // ~for storybook comment out App
 // export {default} from './.storybook';
 
-// test github
+const App: React.FC = () => <DormParty />;
 
-export default function App() {
-  return <DormParty />
-};
+export default App;
