@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { View, Animated } from 'react-native';
-
+import React, { useEffect, useRef, ReactNode } from "react";
+import { View, Animated, ViewStyle, StyleProp } from 'react-native';
 import useBearStore from "./libs/store";
 import { NavigationContainer } from '@react-navigation/native';
 import { SplashView } from "./views/Splash";
@@ -8,21 +7,36 @@ import { AppNavigator } from "./navigators/AppNavigator";
 import { AuthNavigator } from "./navigators/AuthNavigator";
 
 
-const DormParty = () => {
+// Define props type for AnimatedNavigatorContainer
+interface AnimatedNavigatorContainerProps {
+  authenticated: boolean;
+  initialized: boolean;
+  children: ReactNode;
+}
 
+const DormParty: React.FC = () => {
+  /**
+   * DormParty App Config
+   * @props
+   *    None
+   */
+  const init = useBearStore((state) => state.init);
   const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
-  // const initialized = true
-  // const authenticated = false
-  const init = useBearStore((state) => state.init);
 
   useEffect(() => {
     init();
-  }, []);
+  }, [init]);
+
+  const fill = {flex: 1}
 
   const AnimatedView = Animated.createAnimatedComponent(View);
 
-  const AnimatedNavigatorContainer = ({ authenticated, initialized, children }) => {
+  const AnimatedNavigatorContainer: React.FC<AnimatedNavigatorContainerProps> = ({ 
+    authenticated, 
+    initialized, 
+    children,
+  }) => {
     const opacity = useRef(new Animated.Value(0)).current;
     const translateY = useRef(new Animated.Value(50)).current;
 
@@ -38,14 +52,14 @@ const DormParty = () => {
         duration: 300,
         useNativeDriver: true,
       }).start();
-    }, [authenticated, initialized]);
+    }, [authenticated, initialized, opacity, translateY]);
 
-    const animatedStyle = {
+    const animatedStyle: StyleProp<ViewStyle> = {
       opacity,
       transform: [{ translateY }],
     };
 
-    return <AnimatedView style={[{flex:1}, animatedStyle]}>{children}</AnimatedView>;
+    return <AnimatedView style={[fill, animatedStyle]}>{children}</AnimatedView>;
   };
   
   return (
@@ -59,4 +73,4 @@ const DormParty = () => {
   );
 };
 
-export {DormParty};
+export { DormParty };

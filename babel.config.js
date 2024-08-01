@@ -1,31 +1,23 @@
 module.exports = {
   presets: ["module:@react-native/babel-preset"],
+  plugins: [  
+    "react-native-paper/babel",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "extensions": ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+        alias: {
+          "@views": "./src/views",
+          "@components": "./src/components",
+        }
+      }
+    ]
+  ],
   env: {
     production: {
       plugins: [
-        "react-native-paper/babel",
-        [
-          'module-resolver',
-          {
-            root: ['./'],
-            alias: {
-              /**
-               * Regular expression is used to match all files inside `./src` directory and map each `.src/folder/[..]` to `~folder/[..]` path
-               */
-              '^~(.+)': './src/\\1',
-            },
-            extensions: [
-              '.ios.js',
-              '.android.js',
-              '.js',
-              '.jsx',
-              '.json',
-              '.tsx',
-              '.ts',
-              '.native.js',
-            ],
-          },
-        ],
+        "react-native-paper/babel"
       ]
     }
   }

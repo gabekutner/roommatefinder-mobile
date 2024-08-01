@@ -5,7 +5,6 @@ import {
   Keyboard,
   View,
   Text
-
 } from "react-native"
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -40,7 +39,7 @@ function Content(props) {
               </View>
             </View>
             {/* content */}
-            <View style={{gap: 35}}>
+            <View style={{gap: 35, height:50}}>
               {props.id === 'Phone Number' ? (
                 props.phoneInput()
               ) : (

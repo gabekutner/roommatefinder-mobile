@@ -108,7 +108,7 @@ function LoginView({ navigation }) {
                   Don't have an account?
                   {" "}
                 </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('auth')}>
+                <TouchableOpacity onPress={() => navigation.navigate('startup')}>
                   <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:customTheme.colors.primary, textDecorationLine:'underline' }}>
                     Sign up
                   </Text>
