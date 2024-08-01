@@ -16,7 +16,10 @@ const customTheme = {
     primary: "#132331", // key components
     secondary: "#FFFFFF", // less prominent components
     tertiary: "#BE0000", // contrasting accents
-    tertiaryDark: "#890000",
+    onTertiary: "#890000",
+
+    // tertiaryDark: "#890000",
+
     background: "#F2F1E2",
 
     error: "#",

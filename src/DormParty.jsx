@@ -12,7 +12,7 @@ const DormParty = () => {
 
   const initialized = useBearStore((state) => state.initialized)
   const authenticated = useBearStore((state) => state.authenticated);
-  // const initialized = true
+  // const initialized = false
   // const authenticated = false
   const init = useBearStore((state) => state.init);
 

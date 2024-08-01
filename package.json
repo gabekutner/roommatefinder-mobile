@@ -62,8 +62,10 @@
     "@storybook/addon-ondevice-actions": "^7.6.20",
     "@storybook/addon-ondevice-controls": "^7.6.20",
     "@storybook/react-native": "^7.6.20",
-    "@types/react": "^18.2.6",
-    "@types/react-test-renderer": "^18.0.0",
+    "@tsconfig/react-native": "^3.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-test-renderer": "^18.3.0",
     "babel-jest": "^29.6.3",
     "babel-loader": "^8.3.0",
     "babel-plugin-module-resolver": "^5.0.2",
@@ -76,7 +78,7 @@
     "prettier": "2.8.8",
     "react-dom": "18.2.0",
     "react-test-renderer": "18.2.0",
-    "typescript": "5.0.4"
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=18"
