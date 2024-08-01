@@ -1,15 +1,11 @@
 import React from "react";
-import { View, ScrollView, Dimensions, Text } from "react-native";
+import { View, ScrollView, Dimensions, Text, StyleSheet } from "react-native";
 import { useTheme, IconButton, Icon} from "react-native-paper";
 import FastImage from "react-native-fast-image";
 import useBearStore from "../../../libs/store";
 import { appendFullUrl } from "../../../libs/utils/appendFullUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-<<<<<<< Updated upstream
-=======
 import {dormsData, interestsData} from "../../../assets/Dictionary";
->>>>>>> Stashed changes
-
 
 
 function PreviewProfileView({ route, navigation }) {
@@ -63,13 +59,8 @@ function PreviewProfileView({ route, navigation }) {
               icon={() => <FontAwesomeIcon icon="arrow-down" size={20} />}
             />
           </View>
-<<<<<<< Updated upstream
-          <View style={{width:'100%', backgroundColor:customTheme.colors.tertiary, borderRadius:12, paddingHorizontal:15, paddingVertical:10}}>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.name}</Text>
-=======
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background, shadowColor:0}]}>
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
-            {/* <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Dorm</Text> */}
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
           </View>
           <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
@@ -108,7 +99,6 @@ function PreviewProfileView({ route, navigation }) {
           <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
->>>>>>> Stashed changes
           </View>
        
       </View>
@@ -118,3 +108,23 @@ function PreviewProfileView({ route, navigation }) {
 }
 
 export {PreviewProfileView}
+
+const styles = StyleSheet.create({
+  box: {
+    width:'100%', 
+        // backgroundColor:customTheme.colors.background, 
+    borderRadius:12, 
+    paddingHorizontal:15, 
+    paddingVertical:10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
+  }
+})
