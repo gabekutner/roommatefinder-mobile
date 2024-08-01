@@ -5,7 +5,6 @@ import {
   Keyboard,
   View,
   Text,
-  StyleSheet
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { IconButton, Button, TextInput, Snackbar } from "react-native-paper";

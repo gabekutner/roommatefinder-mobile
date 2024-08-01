@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import {SafeAreaView, Text, View, StyleSheet, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
-import {Button, TextInput, useTheme} from "react-native-paper";
-import useBearStore from "../../../libs/store";
-import api from "../../../core/api";
+import {Button, TextInput} from "react-native-paper";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import apiInstance from "constants/apiConstants";
+import useBearStore from "../../../libs/store";
+import { theme } from "assets/theme";
 
-function LoginView({ navigation }) {
+import { StackNavigationProp } from "@react-navigation/stack";
+import { AuthStackParamList } from "types/StackParamList";
 
-  const customTheme = useTheme();
+type LoginViewNavigationProp = StackNavigationProp<AuthStackParamList, 'identifier'>;
 
+interface LoginViewProps {
+  navigation: LoginViewNavigationProp;
+};
+
+const LoginView: React.FC<LoginViewProps> = ({
+  navigation
+}) => {
   const login = useBearStore((state) => state.login)
 
   const [form, setForm] = useState({
@@ -21,8 +30,8 @@ function LoginView({ navigation }) {
     const auth = {
       identifier: form.identifier,
       password: form.password
-    }
-    api({
+    };
+    apiInstance({
       method: "post",
       url: "/api/v1/users/login/",
       data: auth,
@@ -38,18 +47,18 @@ function LoginView({ navigation }) {
   const eyeClick = () => setEye(!eye)
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background, alignItems: 'center'}}>
+    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background, alignItems: 'center'}}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1}}>
         <View style={{flex:1}}>
           <View>
             {/* header */}
             <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
               {/* logo */}
-              <View style={{height:50, width:50, backgroundColor:customTheme.colors.tertiaryDark, marginBottom:25}}></View>
-              <View style={{height:20, width:20, backgroundColor:customTheme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
+              <View style={{height:50, width:50, backgroundColor:theme.colors.onTertiary, marginBottom:25}}></View>
+              <View style={{height:20, width:20, backgroundColor:theme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
 
               <View style={{ width:150, alignItems:'center', justifyContent:'center' }}>
-                <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
+                <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
                   Welcome back!
                 </Text>
               </View>
@@ -63,11 +72,12 @@ function LoginView({ navigation }) {
                 value={form.identifier}
                 onChangeText={text => setForm({...form, identifier:text})}
                 placeholder={""}
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                autoCapitalize={'none'}
+                textColor={theme.colors.primary}
                 contentStyle={{width: 300}}
                 keyboardType={"email-address"}
-                autoCapitalize={false}
+                
               />
               <View>
                 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'flex-end'}}>
@@ -81,11 +91,11 @@ function LoginView({ navigation }) {
                   value={form.password}
                   onChangeText={text => setForm({...form, password:text})}
                   placeholder={""}
-                  outlineColor={customTheme.colors.primary}
-                  textColor={customTheme.colors.primary}
+                  outlineColor={theme.colors.primary}
+                  textColor={theme.colors.primary}
                   contentStyle={{width: 300}}
                   keyboardType={"default"}
-                  autoCapitalize={false}
+                  autoCapitalize={'none'}
                   secureTextEntry={eye}
                 />
               </View>
@@ -93,23 +103,23 @@ function LoginView({ navigation }) {
               <Button
                 onPress={buttonClick}
                 mode="elevated"
-                buttonColor={customTheme.colors.tertiaryDark}
+                buttonColor={theme.colors.onTertiary}
                 labelStyle={[
-                  styles.fontFamily,
+                  styles.text,
                   styles.buttonText,
-                  {color: customTheme.colors.secondary}
+                  {color: theme.colors.secondary}
                 ]}
               >
                 <Text>Continue</Text>
               </Button>
 
               <View style={{width:'100%', flexDirection:'row', justifyContent:'center'}}>
-                <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+                <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:theme.colors.primary }}>
                   Don't have an account?
                   {" "}
                 </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('startup')}>
-                  <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:customTheme.colors.primary, textDecorationLine:'underline' }}>
+                  <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:theme.colors.primary, textDecorationLine:'underline' }}>
                     Sign up
                   </Text>
                 </TouchableOpacity>
@@ -126,7 +136,7 @@ function LoginView({ navigation }) {
                 styles.smallText,
                 {
                   textAlign: 'center',
-                  color: customTheme.colors.primary,
+                  color: theme.colors.primary,
                   textDecorationLine: 'none'
                 }
               ]}
@@ -137,7 +147,7 @@ function LoginView({ navigation }) {
                 style={[
                   styles.text,
                   styles.smallText,
-                  {color: customTheme.colors.primary}
+                  {color: theme.colors.primary}
                 ]}
               >
                 Terms of Service
@@ -149,7 +159,7 @@ function LoginView({ navigation }) {
                 style={[
                   styles.text,
                   styles.smallText,
-                  {color: customTheme.colors.primary}
+                  {color: theme.colors.primary}
                 ]}
               >
                 Privacy Policy

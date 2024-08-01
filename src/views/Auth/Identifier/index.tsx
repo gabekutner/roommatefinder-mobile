@@ -28,7 +28,6 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
   navigation 
 }) => {  
   const { id } = route.params;
-  // const theme = useTheme();
 
   const [identifier, setIdentifier] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
