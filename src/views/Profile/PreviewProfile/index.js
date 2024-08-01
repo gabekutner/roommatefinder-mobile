@@ -5,6 +5,10 @@ import FastImage from "react-native-fast-image";
 import useBearStore from "../../../libs/store";
 import { appendFullUrl } from "../../../libs/utils/appendFullUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+<<<<<<< Updated upstream
+=======
+import {dormsData, interestsData} from "../../../assets/Dictionary";
+>>>>>>> Stashed changes
 
 
 
@@ -59,8 +63,52 @@ function PreviewProfileView({ route, navigation }) {
               icon={() => <FontAwesomeIcon icon="arrow-down" size={20} />}
             />
           </View>
+<<<<<<< Updated upstream
           <View style={{width:'100%', backgroundColor:customTheme.colors.tertiary, borderRadius:12, paddingHorizontal:15, paddingVertical:10}}>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.name}</Text>
+=======
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background, shadowColor:0}]}>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            {/* <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Dorm</Text> */}
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
+          </View>
+          <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
+          <View 
+            style={[
+              styles.box, 
+              {
+                flexDirection:'row', 
+                justifyContent:'flex-start', 
+                gap:8, 
+                flexWrap:'wrap', 
+                backgroundColor:customTheme.colors.background,
+              }
+            ]}
+          >
+            {user.interests.map((item) => (
+              <View 
+                key={item} 
+                style={{
+                  padding: 8,
+                  borderRadius: 12,
+                  backgroundColor:customTheme.colors.tertiary
+                }}
+              >
+                <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:customTheme.colors.secondary, fontWeight:'500' }}>
+                  {interestsData[item-1].interest}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.city}, {user.state}</Text>
+          </View>
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
+>>>>>>> Stashed changes
           </View>
        
       </View>
