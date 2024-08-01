@@ -60,7 +60,9 @@ function PreviewProfileView({ route, navigation }) {
             />
           </View>
           <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
           </View>
           <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
@@ -93,13 +95,41 @@ function PreviewProfileView({ route, navigation }) {
           </View>
 
           <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📍</Text>
+            </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.city}, {user.state}</Text>
           </View>
           <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
+            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🎓</Text>
+            </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
           </View>
+
+          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
+            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📆</Text>
+            </View>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.graduation_year}</Text>
+          </View>
+          
+          <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>About me</Text>
+          <View 
+            style={[
+              styles.box, 
+              {
+                flexWrap:'wrap', 
+                backgroundColor:customTheme.colors.background,
+              }
+            ]}
+          >
+            <Text style={{fontFamily:'NotoSans_Condensed-Regular', fontSize:14}}>{user.description}</Text>
+          </View>
+
+          {/* photos */}
+
+
        
       </View>
       </ScrollView>
@@ -126,5 +156,20 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center'
+  },
+  iconBubble: {
+    width:45,
+    height:45,
+    borderRadius:60,
+    justifyContent:'center',
+    alignItems:'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
   }
 })
