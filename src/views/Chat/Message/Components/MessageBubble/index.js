@@ -3,7 +3,6 @@ import React, {useState, useEffect} from "react";
 import {MessageBubbleMe} from "./MessageBubbleMe";
 import {MessageBubbleFriend} from "./MessageBubbleFriend";
 
-import useStore from "../../../../../zustand/store";
 import useBearStore from "../../../../../libs/store";
 
 /*global setInterval */

@@ -17,36 +17,42 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 const AuthNavigator: React.FC = () => {
   return (
     <Stack.Navigator 
-      initialRouteName="password"
+      initialRouteName="startup"
       screenOptions={{
         headerShown: false,
         presentation: 'fullScreenModal'
       }}
     >
-      {/* <Stack.Screen
+      <Stack.Screen
         name="startup"
         component={StartUpView}
       />
       <Stack.Screen
         name="login"
         component={LoginView}
+        screenOptions={{
+          presentation: 'card'
+        }}
       />
       <Stack.Screen
         name="identifier"
         component={IdentifierView}
+        screenOptions={{
+          presentation: 'card'
+        }}
       />
       <Stack.Screen
         name="code"
         component={VerificationCodeView}
-      /> */}
+      />
       <Stack.Screen
         name="password"
         component={PasswordView}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="setup"
         component={SetupView}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };
