@@ -99,6 +99,12 @@ type Profile = {
 
   /** The profile picture of the current profile */
   thumbnail?: File;
+
+  token?: string;
+
+  access?: string;
+
+  refresh_token?:string;
 };
 
 export default Profile;

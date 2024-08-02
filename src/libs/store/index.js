@@ -15,8 +15,8 @@ import { responseRequestAccept, responseRequestConnect, responseRequestList } fr
 import {responseMessageList, responseMessageSend, responseMessageType} from "./handlers/responseMessage";
 import { responseSearch } from './handlers/responseSearch';
 
-import secure from "../../libs/device/storage";
-import { ADDRESS } from '../../libs/api/def';
+import secure from "../device/storage";
+import { ADDRESS } from '../api/def';
 
 
 const initialState = {
