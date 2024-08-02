@@ -4,7 +4,6 @@ import {
   Dimensions,
   PanResponder,
 } from "react-native";
-import useStore from "../../../zustand/store";
 import {CardSwiper} from "./CardSwiper";
 
 const {width} = Dimensions.get("window");
