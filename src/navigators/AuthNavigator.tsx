@@ -20,38 +20,49 @@ const AuthNavigator: React.FC = () => {
       initialRouteName="startup"
       screenOptions={{
         headerShown: false,
-        presentation: 'fullScreenModal'
       }}
     >
       <Stack.Screen
         name="startup"
         component={StartUpView}
+        options={{
+          presentation: 'fullScreenModal'
+        }}
       />
       <Stack.Screen
         name="login"
         component={LoginView}
-        screenOptions={{
+        options={{
           presentation: 'card'
         }}
       />
       <Stack.Screen
         name="identifier"
         component={IdentifierView}
-        screenOptions={{
+        options={{
           presentation: 'card'
         }}
       />
       <Stack.Screen
         name="code"
         component={VerificationCodeView}
-      />
-      <Stack.Screen
-        name="password"
-        component={PasswordView}
+        options={{
+          presentation: 'card'
+        }}
       />
       <Stack.Screen
         name="setup"
         component={SetupView}
+        options={{
+          presentation: 'card'
+        }}
+      />
+      <Stack.Screen
+        name="password"
+        component={PasswordView}
+        options={{
+          presentation: 'card'
+        }}
       />
     </Stack.Navigator>
   );

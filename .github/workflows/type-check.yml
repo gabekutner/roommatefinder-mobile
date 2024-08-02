@@ -1,0 +1,23 @@
+name: Type Checking
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  run-type-check:
+    name: Run type checking
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Type Check
+        run: npx tsc --noEmit
