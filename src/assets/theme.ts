@@ -24,11 +24,12 @@ export const theme = {
     error: "#FF0000", // Error color (default is red if empty)
 
     surfaceVariant: "#D9DBCE", // Medium emphasis on background
-    surfaceDisabled: "#E0E0E0", // Disabled state (default is gray if empty)
+    surfaceDisabled: "#CCC", // Disabled state (default is gray if empty)
 
     // Custom colors
     _tint_primary: "#5A6773", // Custom tint color for primary
     _tint_secondary: "#B8BBBD", // Custom tint color for secondary
+
   },
 };
 

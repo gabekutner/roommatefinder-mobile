@@ -7,6 +7,8 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AuthStackParamList } from "types/StackParamList";
 import {theme} from "assets/theme";
+import formatIdentifier from "@libs/utils/formatIdentifier";
+
 
 // Types for navigation and route props
 type IdentifierViewNavigationProp = StackNavigationProp<AuthStackParamList, 'identifier'>;
@@ -51,48 +53,26 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
 
   const buttonClick = async () => {
     setLoading(true);
-    // possible status code - 400 (bad req), 201, 403 (identifier already exists)
-    if (identifier === "") {
-      const status_code = await sendIdentifier(`${input1}${input2}${input3}`);
-      if (status_code === 400) {
-        // bad request
-        setVisible({
-          ...visible,
-          status:true,
-          message:'Please provide a real phone number.',
-        });
-      } else if (status_code === 403) {
-        // identifier already exists
-        setVisible({
-          ...visible,
-          status: true,
-          message: 'A profile with this phone number already exists, try logging in.',
-        });
-      } else if (status_code === 201) {
-        // move on
-        navigation.navigate('code');
-      }
-    } else {
-      const status_code = await sendIdentifier(identifier);
-      if (status_code === 400) {
-        // bad request
-        setVisible({
-          ...visible,
-          status: true,
-          message: `Please provide a real ${id}.`,
-        });
-      } else if (status_code === 403) {
-        // identifier already exists
-        setVisible({
-          ...visible,
-          status: true,
-          message: `A profile with this ${id} already exists, try logging in.`,
-        });
-      } else if (status_code === 201) {
-        // move on
-        navigation.navigate('code');
-      };
+
+    const _identifier = formatIdentifier(identifier, {input1, input2, input3})
+    const status_code = await sendIdentifier(_identifier);
+
+    if (status_code === 400) {
+      setVisible({
+        ...visible,
+        status:true,
+        message:`Please provide a real ${id.toLowerCase()}`,
+      });
+    } else if (status_code === 403) {
+      setVisible({
+        ...visible,
+        status: true,
+        message: 'A profile with this identifier exists, try logging in.',
+      });
+    } else if (status_code === 201) {
+      navigation.navigate('code');
     };
+
     setLoading(false);
   };
   

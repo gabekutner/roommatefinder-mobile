@@ -6,6 +6,7 @@
       "*": ["src/*"],
       "@views/*": ["src/views/*"],
       "@components/*": ["src/components/*"],
+      "@libs/*": ["src/libs/*"],
     },
   }
 }
