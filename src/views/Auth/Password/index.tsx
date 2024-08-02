@@ -1,28 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
-import {Button, useTheme, TextInput} from "react-native-paper";
+import {SafeAreaView, StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity} from "react-native";
+import {Button, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
-// import api from "../../../core/api";
 import apiInstance from "constants/apiConstants";
 import { theme } from "assets/theme";
 
-import { StackNavigationProp } from "@react-navigation/stack";
-import { AuthStackParamList } from "types/StackParamList";
 
-type PasswordViewNavigationProp = StackNavigationProp<AuthStackParamList, 'password'>;
-
-interface PasswordViewProps {
-  navigation: PasswordViewNavigationProp;
-};
-
-
-const PasswordView: React.FC<PasswordViewProps> = ({
-  navigation
-}) => {
+const PasswordView: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
-  const [disabled, setDisabled] = useState<boolean>(true)
+  const [disabled, setDisabled] = useState<boolean>(true);
+
+  const fill = {flex:1}
 
   const login = useBearStore((state) => state.login)
   const user = useBearStore((state) => state.user)
@@ -69,25 +59,24 @@ const PasswordView: React.FC<PasswordViewProps> = ({
   const eyeClick = () => setEye(!eye)
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background}}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View>
-
-          <View style={{ justifyContent:'center', alignItems: 'center' }}>
+    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background, alignItems: 'center'}}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={{flex:1}}>
+        <View style={{flex:1}}>
+          <View>
             {/* header */}
             <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
               {/* logo */}
               <View style={{height:50, width:50, backgroundColor:theme.colors.onTertiary, marginBottom:25}}></View>
               <View style={{height:20, width:20, backgroundColor:theme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
 
-              <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
+              <View style={{ width:150, alignItems:'center', justifyContent:'center' }}>
                 <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
-                  Set up your password
+                  Welcome back!
                 </Text>
               </View>
             </View>
             {/* content */}
-            <View style={{gap: 35}}>
+            <View style={{gap:15}}>
               <View>
                 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'flex-end'}}>
                   <TouchableOpacity onPress={eyeClick}>
@@ -97,14 +86,13 @@ const PasswordView: React.FC<PasswordViewProps> = ({
                 <TextInput 
                   mode="outlined"
                   label={'Password'}
-                  value={password}
                   onChangeText={text => setPassword(text)}
+                  value={password}
                   outlineColor={theme.colors.primary}
+                  autoCapitalize={'none'}
                   textColor={theme.colors.primary}
                   contentStyle={{width: 300}}
-                  keyboardType={"default"}
-                  autoCapitalize={'none'}
-                  secureTextEntry={eye}
+                  keyboardType={"email-address"}
                 />
               </View>
 
@@ -113,6 +101,7 @@ const PasswordView: React.FC<PasswordViewProps> = ({
                 label={'Confirm Password'}
                 value={repeatPassword}
                 onChangeText={text => setRepeatPassword(text)}
+                placeholder={""}
                 outlineColor={theme.colors.primary}
                 textColor={theme.colors.primary}
                 contentStyle={{width: 300}}
@@ -120,18 +109,17 @@ const PasswordView: React.FC<PasswordViewProps> = ({
                 autoCapitalize={'none'}
                 secureTextEntry={eye}
               />
-
+              
               <Button
                 disabled={disabled}
                 onPress={buttonClick}
                 mode="elevated"
                 buttonColor={theme.colors.onTertiary}
-                labelStyle={{
-                  fontFamily: 'NotoSans_Condensed-Regular',
-                  fontSize: 16, 
-                  fontWeight: '700',
-                  color: theme.colors.secondary
-                }}
+                labelStyle={[
+                  styles.text,
+                  styles.buttonText,
+                  {color: theme.colors.secondary}
+                ]}
               >
                 <Text>Continue</Text>
               </Button>
@@ -145,3 +133,24 @@ const PasswordView: React.FC<PasswordViewProps> = ({
 };
 
 export {PasswordView};
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'NotoSans_Condensed-Regular',
+  },
+  
+  smallText: {
+    fontSize: 11, 
+    textDecorationLine:'underline'
+  },
+  buttonText: {
+    fontSize: 16, 
+    fontWeight: '700'
+  },
+
+  spacer: {
+    height: .5, 
+    width: 100,
+  }
+
+});

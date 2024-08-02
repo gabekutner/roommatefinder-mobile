@@ -1,8 +1,9 @@
 import React from "react";
 import { SafeAreaView, Text, View, StyleSheet, ViewStyle } from "react-native";
-import { Button, useTheme } from "react-native-paper";
+import { Button } from "react-native-paper";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AuthStackParamList } from "types/StackParamList";
+import { theme, themeType } from "assets/theme";
 
 // Define navigation prop type
 type StartUpViewNavigationProp = StackNavigationProp<AuthStackParamList, 'startup'>;
@@ -10,7 +11,7 @@ type StartUpViewNavigationProp = StackNavigationProp<AuthStackParamList, 'startu
 // Define props type
 interface StartUpViewProps {
   navigation: StartUpViewNavigationProp;
-}
+};
 
 const StartUpView: React.FC<StartUpViewProps> = ({ 
   navigation 
@@ -20,15 +21,13 @@ const StartUpView: React.FC<StartUpViewProps> = ({
    * @props
    *  - navigation (StartUpViewNavigationProp)
    */
-  const theme = useTheme();
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background, alignItems: 'center' }}>
       <View>
         {/* header */}
         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 40 }}>
           {/* logo */}
-          <View style={{ height: 50, width: 50, backgroundColor: theme.colors.onSecondary, marginBottom: 25 }} />
+          <View style={{ height: 50, width: 50, backgroundColor: theme.colors.onTertiary, marginBottom: 25 }} />
           <View style={{ height: 20, width: 20, backgroundColor: theme.colors.tertiary, marginTop: -50, marginBottom: 25 }} />
 
           <View style={{ width: 150, alignItems: 'center', justifyContent: 'center' }}>

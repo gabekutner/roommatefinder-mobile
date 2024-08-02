@@ -91,10 +91,11 @@ function SetupView({ navigation }) {
        * @routing fixes modal for stacks 
        * https://stackoverflow.com/questions/70707367/how-can-i-close-a-modally-opened-window-with-its-own-navigation-stack
       */
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'password' }],
-      })
+      // navigation.reset({
+      //   index: 0,
+      //   routes: [{ name: 'password' }],
+      // })
+      navigation.navigate('password')
     };
   };
 
@@ -531,7 +532,7 @@ function SetupView({ navigation }) {
             <Button
               onPress={buttonClick}
               mode="elevated"
-              buttonColor={customTheme.colors.tertiaryDark}
+              buttonColor={customTheme.colors.primary}
               labelStyle={{
                 fontFamily: 'NotoSans_Condensed-Regular',
                 fontSize: 16, 
