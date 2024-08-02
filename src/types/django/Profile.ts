@@ -1,3 +1,16 @@
+/**
+ * @description
+ * Most /api/v1/profiles endpoints return a BaseProfileSerializer object
+ * with all the following fields. These endpoints are: 
+ *  - GET api/v1/profiles/
+ *  - GET api/v1/profiles/<id>/
+ *  - POST api/v1/profiles/
+ *  - POST api/v1/profiles/actions/verify-otp/
+ *  - POST api/v1/profiles/actions/create-password/
+ *  - PUT api/v1/profiles/<id>/
+ *  - POST api/v1/profiles/actions/create-profile/
+ */ 
+
 /** Model of user profile */
 type Profile = {
   /** UUID of the current profile */
