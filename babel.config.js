@@ -10,6 +10,7 @@ module.exports = {
         alias: {
           "@views": "./src/views",
           "@components": "./src/components",
+          "@libs": "./src/libs",
         }
       }
     ]
