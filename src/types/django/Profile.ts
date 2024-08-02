@@ -3,6 +3,18 @@ type Profile = {
   /** UUID of the current profile */
   id?: string;
 
+  /** The last login of the current profile. */
+  last_login?: Date;
+
+  /** If the current profile is a superuser. */
+  is_superuser?: boolean;
+
+  /** Creation date of the current profile. */
+  created?: Date;
+
+  /** Modified date of the current profile. */
+  modified?: Date;
+
   /** The identifier for the current profile - email, phone number, uid */
   identifier?: string;
 
@@ -42,8 +54,32 @@ type Profile = {
   /** The amount of times the current profile has tried to enter an invalid otp code */
   max_otp_try?: string;
 
+  /** When the otp code maxes out. */
+  otp_max_out?: Date;
+
   /** Whether the current profile has confirmed their otp code */
   otp_verified?: boolean;
+
+  /** Whether the current profile is a staff member. */
+  is_staff?: boolean;
+
+  /** Whether the current profile is online. */
+  is_active?: boolean;
+
+  /** Whether the current profile has finished setting up their profile and is on the swipe deck.  */
+  has_account?: boolean;
+
+  /** Whether the current profile is removed from the swipe deck.  */
+  pause_profile?: boolean;
+
+  /** What groups the current profile is in. */
+  groups?: string[];
+
+  /** The permissions for the current profile. */
+  user_permissions?: string[];
+
+  /** The profiles blocked by the current profile. */
+  block_profiles?: string[];
 
   /** The sex of the current profile */
   sex?: string;
