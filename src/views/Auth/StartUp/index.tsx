@@ -73,7 +73,7 @@ const StartUpView: React.FC<StartUpViewProps> = ({
           </View>
 
           <Button
-            onPress={() => navigation.reset({ index: 0, routes: [{ name: 'login' }] })}
+            onPress={() => navigation.navigate('login')}
             mode="elevated"
             buttonColor={theme.colors.onTertiary}
             labelStyle={[styles.text, styles.buttonText, {color: theme.colors.secondary}]} // Apply custom label color

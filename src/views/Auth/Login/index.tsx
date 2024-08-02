@@ -123,7 +123,7 @@ const LoginView: React.FC<LoginViewProps> = ({
                   Don't have an account?
                   {" "}
                 </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('startup')}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Text style={{ fontFamily:"NotoSans_Condensed-Regular", fontSize:14, fontWeight:'500', color:theme.colors.primary, textDecorationLine:'underline' }}>
                     Sign up
                   </Text>
