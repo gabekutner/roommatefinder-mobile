@@ -108,7 +108,6 @@ const IdentifierView: React.FC<IdentifierViewProps> = ({
         case inputRef2:
           inputRef3.current?.focus();
           break;
-        // Add more cases if you have more TextInput components
         default:
           break;
       };

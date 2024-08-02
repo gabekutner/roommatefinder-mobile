@@ -3,15 +3,26 @@ import {SafeAreaView, Text, View, TouchableWithoutFeedback, Keyboard, TouchableO
 import {Button, useTheme, TextInput} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import useBearStore from "../../../libs/store";
-import api from "../../../core/api";
+// import api from "../../../core/api";
+import apiInstance from "constants/apiConstants";
+import { theme } from "assets/theme";
+
+import { StackNavigationProp } from "@react-navigation/stack";
+import { AuthStackParamList } from "types/StackParamList";
+
+type PasswordViewNavigationProp = StackNavigationProp<AuthStackParamList, 'password'>;
+
+interface PasswordViewProps {
+  navigation: PasswordViewNavigationProp;
+};
 
 
-function PasswordView({ navigation }) {
-  const customTheme = useTheme();
-
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [disabled, setDisabled] = useState(true)
+const PasswordView: React.FC<PasswordViewProps> = ({
+  navigation
+}) => {
+  const [password, setPassword] = useState<string>("");
+  const [repeatPassword, setRepeatPassword] = useState<string>("");
+  const [disabled, setDisabled] = useState<boolean>(true)
 
   const login = useBearStore((state) => state.login)
   const user = useBearStore((state) => state.user)
@@ -24,7 +35,7 @@ function PasswordView({ navigation }) {
       const res = await sendPassword(password, repeatPassword)
       if (res === 200) {
         // 3. login user
-        api({
+        apiInstance({
           method: "post",
           url: "/api/v1/users/login/",
           data: {
@@ -58,7 +69,7 @@ function PasswordView({ navigation }) {
   const eyeClick = () => setEye(!eye)
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
+    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background}}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View>
 
@@ -66,11 +77,11 @@ function PasswordView({ navigation }) {
             {/* header */}
             <View style={{justifyContent:'center', alignItems:'center', marginVertical:40}}>
               {/* logo */}
-              <View style={{height:50, width:50, backgroundColor:customTheme.colors.tertiaryDark, marginBottom:25}}></View>
-              <View style={{height:20, width:20, backgroundColor:customTheme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
+              <View style={{height:50, width:50, backgroundColor:theme.colors.onTertiary, marginBottom:25}}></View>
+              <View style={{height:20, width:20, backgroundColor:theme.colors.tertiary, marginTop:-50, marginBottom:25}}></View>
 
               <View style={{ width:200, alignItems:'center', justifyContent:'center' }}>
-                <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
+                <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
                   Set up your password
                 </Text>
               </View>
@@ -88,11 +99,11 @@ function PasswordView({ navigation }) {
                   label={'Password'}
                   value={password}
                   onChangeText={text => setPassword(text)}
-                  outlineColor={customTheme.colors.primary}
-                  textColor={customTheme.colors.primary}
+                  outlineColor={theme.colors.primary}
+                  textColor={theme.colors.primary}
                   contentStyle={{width: 300}}
                   keyboardType={"default"}
-                  autoCapitalize={false}
+                  autoCapitalize={'none'}
                   secureTextEntry={eye}
                 />
               </View>
@@ -102,11 +113,11 @@ function PasswordView({ navigation }) {
                 label={'Confirm Password'}
                 value={repeatPassword}
                 onChangeText={text => setRepeatPassword(text)}
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                textColor={theme.colors.primary}
                 contentStyle={{width: 300}}
                 keyboardType={"default"}
-                autoCapitalize={false}
+                autoCapitalize={'none'}
                 secureTextEntry={eye}
               />
 
@@ -114,12 +125,12 @@ function PasswordView({ navigation }) {
                 disabled={disabled}
                 onPress={buttonClick}
                 mode="elevated"
-                buttonColor={customTheme.colors.tertiaryDark}
+                buttonColor={theme.colors.onTertiary}
                 labelStyle={{
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 16, 
                   fontWeight: '700',
-                  color: customTheme.colors.secondary
+                  color: theme.colors.secondary
                 }}
               >
                 <Text>Continue</Text>
