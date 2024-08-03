@@ -1,10 +1,43 @@
 import { Platform } from "react-native";
 import api from "../../../core/api";
+import { Profile } from "types/django";
 
+interface FormDataType {
+  thumbnail: {
+    uri: string;
+    type?: string;
+  };
+  name: string;
+  age: number;
+  sex: string;
+  dorm: string;
+  city: string;
+  state: string;
+  major: string;
+  about: string;
+  interests: string[];
+}
 
-const createProfileSlice = (set, get) => ({
+interface PhotosFormData {
+  photos: {
+    [key: string]: {
+      uri: string;
+      type?: string;
+    };
+  };
+}
+
+interface ProfileSlice {
+  sendIdentifier: (identifier: string) => Promise<number | undefined>;
+  sendOTP: (otp: string) => Promise<any>;
+  sendPassword: (password: string, repeatedPassword: string) => Promise<number | undefined>;
+  sendProfile: (form: FormDataType) => Promise<void>;
+  sendPhotos: (form: PhotosFormData) => Promise<void>;
+}
+
+const createProfileSlice = (set: (state: Partial<{ user: Profile }>) => void, get: () => { user: Profile }): ProfileSlice => ({
   // send identifier
-  sendIdentifier: async (identifier) => {
+  sendIdentifier: async (identifier: string) => {
     try {
       const response = await api({
         method: "post",
@@ -18,22 +51,21 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendIdentifier");
       } else {
         console.log("[success] sendIdentifier");
-        // set user, so that sendOTP functon has a user.token to grab
-        set(() => ({
+        set({
           user: response.data,
-        }));
-      };
+        });
+      }
       // possible status codes: 400, 201, 403
       return response.status;
 
-    } catch(e) {
+    } catch (e: any) {
       console.log("[error-external] sendIdentifier");
-      return e.response.status
-    };
+      return e.response?.status;
+    }
   },
 
   // send otp 
-  sendOTP: async (otp) => {
+  sendOTP: async (otp: string) => {
     try {
       const response = await api({
         method: "post",
@@ -50,21 +82,21 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendOTP");
       } else {
         console.log("[success] sendOTP");
-        set(() => ({
+        set({
           user: response.data,
-        }));
-      };
+        });
+      }
       // expected status codes - 400, 404, 200
-      return response
+      return response;
 
-    } catch(e) {
-      console.log("[error-external] sendOTP")
-      return e.response.status
-    };
+    } catch (e: any) {
+      console.log("[error-external] sendOTP");
+      return e.response?.status;
+    }
   },
 
   // send passwords
-  sendPassword: async (password, repeatedPassword) => {
+  sendPassword: async (password: string, repeatedPassword: string) => {
     try {
       const response = await api({
         method: "post",
@@ -82,35 +114,32 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendPassword");
       } else {
         console.log("[success] sendPassword");
-        set(() => ({
+        set({
           user: response.data,
-        }));
-      };
+        });
+      }
       return response.status;
 
-    } catch(e) {
-      console.log("[error-external] sendPassword")
-    };
+    } catch (e: any) {
+      console.log("[error-external] sendPassword");
+    }
   },
 
   // send profile
-  sendProfile: async (form) => {
+  sendProfile: async (form: FormDataType) => {
     try {
       const dataForm = new FormData();
       const imageUri = form.thumbnail.uri;
-      const fileName = imageUri.split("/").pop();
-      const fileType = fileName.split(".")[1];
+      const fileName = imageUri.split("/").pop() || "image";
+      const fileType = fileName.split(".")[1] || "jpeg";
       dataForm.append("thumbnail", {
         name: fileName,
-        type: Platform.OS === "ios" ? form.thumbnail.type : "image/" + fileType,
-        uri:
-          Platform.OS === "android"
-            ? form.thumbnail.uri
-            : form.thumbnail.uri.replace("file://", ""),
+        type: Platform.OS === "ios" ? form.thumbnail.type || "image/jpeg" : "image/" + fileType,
+        uri: Platform.OS === "android" ? form.thumbnail.uri : form.thumbnail.uri.replace("file://", ""),
       });
 
       dataForm.append("name", form.name);
-      dataForm.append("age", form.age);
+      dataForm.append("age", form.age.toString());
       dataForm.append("sex", form.sex);
       dataForm.append("dorm_building", form.dorm);
       dataForm.append("city", form.city);
@@ -118,9 +147,9 @@ const createProfileSlice = (set, get) => ({
       dataForm.append("major", form.major);
       dataForm.append("description", form.about);
 
-      for (let i in form.interests) {
-        dataForm.append("interests[]", i);
-      };
+      form.interests.forEach(interest => {
+        dataForm.append("interests[]", interest);
+      });
 
       const response = await api({
         method: "post",
@@ -136,34 +165,31 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendProfile");
       } else {
         console.log("[success] sendProfile");
-        set(() => ({
+        set({
           user: response.data,
-        }));
-      };
+        });
+      }
 
-    } catch(e) {
-      console.log("[error-external] sendProfile")
-      console.log(e)
-      console.log(e.response)
-    };
+    } catch (e: any) {
+      console.log("[error-external] sendProfile");
+      console.log(e);
+      console.log(e.response);
+    }
   },
 
-  sendPhotos: async (form) => {
+  sendPhotos: async (form: PhotosFormData) => {
     try {
       const dataForm = new FormData();
       for (const [key, value] of Object.entries(form.photos)) {
         const imageUri = value.uri;
-        const fileName = imageUri.split("/").pop();
-        const fileType = fileName.split(".")[1];
+        const fileName = imageUri.split("/").pop() || "image";
+        const fileType = fileName.split(".")[1] || "jpeg";
         dataForm.append("image", {
           name: fileName,
-          type: Platform.OS === "ios" ? value.type : "image/" + fileType,
-          uri:
-            Platform.OS === "android"
-              ? value.uri
-              : value.uri.replace("file://", ""),
+          type: Platform.OS === "ios" ? value.type || "image/jpeg" : "image/" + fileType,
+          uri: Platform.OS === "android" ? value.uri : value.uri.replace("file://", ""),
         });
-      };
+      }
         
       const response = await api({
         method: "post",
@@ -179,18 +205,16 @@ const createProfileSlice = (set, get) => ({
         throw new Error("[error-internal] sendPhotos");
       } else {
         console.log("[success] sendPhotos");
-        // should be a ProfileSerializer
-        // set(() => ({
-          // user: response.data,
-        // }));
-      };
+        // Uncomment and adjust if needed
+        // set({ user: response.data });
+      }
 
-    } catch(e) {
-      console.log("[error-external] sendPhotos")
-      console.log(e)
-      console.log(e.response)
-    };
+    } catch (e: any) {
+      console.log("[error-external] sendPhotos");
+      console.log(e);
+      console.log(e.response);
+    }
   }
-}); 
+});
 
-export {createProfileSlice};
+export { createProfileSlice };
