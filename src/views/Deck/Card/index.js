@@ -79,6 +79,7 @@ function CardSwipeContainer(props) {
       index={props.index}
       theme={props.theme}
       item={props.item}
+      navigation={props.navigation}
     />
   );
 };

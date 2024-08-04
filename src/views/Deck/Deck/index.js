@@ -8,13 +8,14 @@ import Empty from "../../../components/Empty";
 import { DeckSwiper } from "./deck.view";
 import useBearStore from "../../../libs/store";
 import { CardSwipeContainer } from "../Card";
+import {theme} from "../../../assets/theme";
 
 /*global console */
 /*eslint no-undef: "error"*/
 
-function DeckView() {
+function DeckView({ navigation }) {
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const opacity = useRef(new Animated.Value(0)).current;
   const [data, setData] = useState([]);
@@ -78,6 +79,7 @@ function DeckView() {
               data={data}
               index={index}
               removeItem={removeItem}
+              navigation={navigation}
             />
           ))}
         </>

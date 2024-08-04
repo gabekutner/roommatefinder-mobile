@@ -7,13 +7,14 @@ import FastImage from "react-native-fast-image";
 import Cell from "../../../components/Cell";
 import {appendFullUrl} from "../../../libs/utils/appendFullUrl";
 import {formatTime} from "../../../libs/utils/formatTime";
+import {theme} from "../../../assets/theme";
 
 /*global setTimeout */
 /*eslint no-undef: "error"*/
 
 function FriendsView({navigation}) {
 
-  const theme = useTheme();
+  // const theme = useTheme();
   const [refreshing, setRefreshing] = useState(false);
 
   const friendList = useBearStore((state) => state.friendList);
