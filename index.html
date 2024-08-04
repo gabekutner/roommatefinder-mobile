@@ -1,15 +1,53 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dorm Part Landing Page!</title>
+    <style>
+      body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: #132331;
+      }
+      .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
+          background-color: #132331;
+      }
+
+      .header .social-links a {
+          margin-left: 15px;
+          text-decoration: none;
+          color: #333;
+      }
+      .header .social-links a:hover {
+          color: #007bff; /* Adjust color on hover */
+      }
+    </style>
   </head>
-  <body style="background-color: #132331;">
-    <header>
-      <div>
-        <a>
-          <img src="https://github.com/gabekutner/roommatefinder-mobile/blob/main/.github/dormparty-red-app.png" alt="" />
+  <body>
+    <header class="header">
+      <!-- Logo Section -->
+      <div class="logo">
+        <a href="">
+          <img src="https://raw.githubusercontent.com/gabekutner/roommatefinder-backend/main/.github/dormparty-red-app.png" width="100" height="auto" alt="Your App Logo">
         </a>
-        <div></div>
+      </div>
+
+      <!-- Social Links Section -->
+      <div class="social-links">
+        <a href="https://github.com/your-profile" target="_blank" title="GitHub">
+          <img src="https://github.com/logos/blob/main/black/github-mark.svg" alt="GitHub" height="30">
+        </a>
+          <a href="https://instagram.com/your-profile" target="_blank" title="Instagram">
+              <img src="path/to/instagram-icon.png" alt="Instagram" height="30">
+          </a>
+          <a href="mailto:contact@yourapp.com" title="Contact">
+              <img src="path/to/contact-icon.png" alt="Contact" height="30">
+          </a>
       </div>
     </header>
   </body>

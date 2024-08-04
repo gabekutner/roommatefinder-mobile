@@ -6,11 +6,11 @@ import {interestsData, dormsData,} from "../../../assets/Dictionary";
 import useBearStore from "../../../libs/store";
 import {launchImageLibrary} from "react-native-image-picker";
 import {appendFullUrl} from "../../../libs/utils/appendFullUrl"
+import {theme} from "../../../assets/theme";
 
 
 function EditProfileView({ navigation }) {
 
-  const customTheme = useTheme();
   const user = useBearStore((state) => state.user)
   const updateProfile = useBearStore((state) => state.updateProfile)
 
@@ -18,7 +18,7 @@ function EditProfileView({ navigation }) {
     name: user.name,
     city: user.city,
     state: user.state,
-    graduation_year: user.graduation_year,
+    graduation_year: user.graduation_year === null ? "" : user.graduation_year,
     major: user.major,
     description: user.description,
     interests: [...user.interests],
@@ -81,11 +81,11 @@ function EditProfileView({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
+    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background}}>
       <View style={{ justifyContent:'center', alignItems:'flex-start', marginLeft:15, marginTop:5 }}>
         <IconButton 
           onPress={() => navigation.goBack()}
-          icon={() => <FontAwesomeIcon icon="arrow-left" color={customTheme.colors.primary} />}
+          icon={() => <FontAwesomeIcon icon="arrow-left" color={theme.colors.primary} />}
           size={22}
           mode="contained"
         />
@@ -101,7 +101,7 @@ function EditProfileView({ navigation }) {
           <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:25}}>
             
             <View style={{ width:200, alignItems:'center', justifyContent:'center', marginBottom:25 }}>
-              <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
+              <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
                 Edit your profile
               </Text>
             </View>
@@ -115,7 +115,7 @@ function EditProfileView({ navigation }) {
                 paddingHorizontal:15, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -136,7 +136,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -150,10 +150,10 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -163,7 +163,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -177,10 +177,10 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -194,7 +194,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -208,10 +208,10 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -221,7 +221,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -235,10 +235,10 @@ function EditProfileView({ navigation }) {
                   style={[
                     styles.image,
                     styles.imageEmpty,
-                    {borderColor:customTheme.colors.primary}
+                    {borderColor:theme.colors.primary}
                   ]}
                 >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -252,7 +252,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -266,10 +266,10 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -279,7 +279,7 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -293,10 +293,10 @@ function EditProfileView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
               </View>
@@ -309,8 +309,8 @@ function EditProfileView({ navigation }) {
               value={form.name}
               onChangeText={text => setForm({...form, name:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={true}
               style={{width:'100%'}}
@@ -318,7 +318,7 @@ function EditProfileView({ navigation }) {
             
 
             {/* dorm */}
-            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:theme.colors.primary }}>
               What dorm are you living in?
             </Text>
             <View
@@ -327,7 +327,7 @@ function EditProfileView({ navigation }) {
                 gap:10, 
                 paddingHorizontal:25, 
                 paddingVertical:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -348,11 +348,11 @@ function EditProfileView({ navigation }) {
                       mode="outlined"
                       onPress={() => setForm({...form, dorm_building:_.id})}
                       selected={form.dorm_building === _.id ? true : false}
-                      selectedColor={form.dorm_building === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                      selectedColor={form.dorm_building === _.id ? theme.colors.secondary : theme.colors.primary}
                       showSelectedCheck={false}
                       style={{
                         margin:4,
-                        backgroundColor:form.dorm_building === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                        backgroundColor:form.dorm_building === _.id ? theme.colors.tertiary : theme.colors.background,
                       }}
                     >
                       {_.dorm}
@@ -363,7 +363,7 @@ function EditProfileView({ navigation }) {
             </View>
 
             {/* interests */}
-            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:theme.colors.primary }}>
               Pick up to 5 interests
             </Text>
             <View
@@ -373,7 +373,7 @@ function EditProfileView({ navigation }) {
                 paddingHorizontal:25, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -394,11 +394,11 @@ function EditProfileView({ navigation }) {
                     mode="outlined"
                     style={{
                       margin:4,
-                      backgroundColor: form.interests.includes(_.id) ? customTheme.colors.tertiary : customTheme.colors.background,
+                      backgroundColor: form.interests.includes(_.id) ? theme.colors.tertiary : theme.colors.background,
                     }}
                     selected={form.interests.includes(_.id) ? true : false}
                     onPress={() => handleInterests(_.id)}
-                    selectedColor={form.interests.includes(_.id) ? customTheme.colors.secondary : customTheme.colors.primary}
+                    selectedColor={form.interests.includes(_.id) ? theme.colors.secondary : theme.colors.primary}
                     showSelectedCheck={false}
                   >
                     {_.interest}
@@ -416,8 +416,8 @@ function EditProfileView({ navigation }) {
                 value={form.city}
                 onChangeText={text => setForm({...form, city:text})}
                 placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                textColor={theme.colors.primary}
                 keyboardType="default"
                 autoCapitalize={true}
                 style={{width:'70%'}}
@@ -428,8 +428,8 @@ function EditProfileView({ navigation }) {
                 value={form.state}
                 onChangeText={text => setForm({...form, state:text})}
                 placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                textColor={theme.colors.primary}
                 keyboardType="default"
                 autoCapitalize={true}
                 style={{width:'30%'}}
@@ -443,8 +443,8 @@ function EditProfileView({ navigation }) {
               value={form.major}
               onChangeText={text => setForm({...form, major:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={true}
               style={{width:'100%'}}
@@ -457,8 +457,8 @@ function EditProfileView({ navigation }) {
               value={form.description}
               onChangeText={text => setForm({...form, description:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={false}
               autoCorrect={false}
@@ -474,8 +474,8 @@ function EditProfileView({ navigation }) {
               value={form.graduation_year.toString()}
               onChangeText={text => setForm({...form, graduation_year:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="numeric"
               autoCapitalize={false}
               autoCorrect={false}
@@ -486,12 +486,12 @@ function EditProfileView({ navigation }) {
             <Button
               onPress={buttonClick}
               mode="elevated"
-              buttonColor={customTheme.colors.tertiaryDark}
+              buttonColor={theme.colors.onTertiary}
               labelStyle={{
                 fontFamily: 'NotoSans_Condensed-Regular',
                 fontSize: 16, 
                 fontWeight: '700',
-                color: customTheme.colors.secondary
+                color: theme.colors.secondary
               }}
               style={{marginBottom:50}}
             >
