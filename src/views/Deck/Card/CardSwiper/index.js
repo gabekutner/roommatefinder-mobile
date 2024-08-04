@@ -28,7 +28,7 @@ function CardSwiper(props) {
           }
         ]}
       >
-        <Card item={props.item} theme={props.theme} />
+        <Card item={props.item} theme={props.theme} navigation={props.navigation} />
       </Animated.View>
     </Animated.View>
   );
