@@ -46,16 +46,10 @@ const AuthNavigator: React.FC = () => {
       <Stack.Screen
         name="code"
         component={VerificationCodeView}
-        options={{
-          presentation: 'card'
-        }}
       />
       <Stack.Screen
         name="setup"
         component={SetupView}
-        options={{
-          presentation: 'card'
-        }}
       />
       <Stack.Screen
         name="password"

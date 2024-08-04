@@ -6,16 +6,15 @@ import useBearStore from "../../../libs/store";
 import { appendFullUrl } from "../../../libs/utils/appendFullUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {dormsData, interestsData} from "../../../assets/Dictionary";
+import {theme} from "../../../assets/theme";
 
 
 function PreviewProfileView({ route, navigation }) {
-  const customTheme = useTheme()
-  // const {item} = route.params
-  // temp
-  const user = useBearStore((state) => state.user)
+  const {user} = route.params
+
   return (
-    <View style={{flex: 1, backgroundColor: customTheme.colors.background,}}>
-      <ScrollView>
+    <View style={{flex: 1, backgroundColor: theme.colors.background,}}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <FastImage
           key={user.id}
           style={{width: '100%', height: Dimensions.get('screen').height * 0.6}}
@@ -26,7 +25,7 @@ function PreviewProfileView({ route, navigation }) {
           style={{
             borderTopLeftRadius: 12,
             borderTopRightRadius: 12,
-            backgroundColor: customTheme.colors.background,
+            backgroundColor: theme.colors.background,
             flex: 1,
             padding: 15, // Optional: for spacing
             marginTop:-15,
@@ -36,7 +35,7 @@ function PreviewProfileView({ route, navigation }) {
           <View 
             style={{
               width:'100%', 
-              backgroundColor:customTheme.colors.background, 
+              backgroundColor:theme.colors.background, 
               borderRadius:12, 
               paddingHorizontal:15, 
               paddingVertical:10,
@@ -59,8 +58,8 @@ function PreviewProfileView({ route, navigation }) {
               icon={() => <FontAwesomeIcon icon="arrow-down" size={20} />}
             />
           </View>
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
               <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
             </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
@@ -74,7 +73,7 @@ function PreviewProfileView({ route, navigation }) {
                 justifyContent:'flex-start', 
                 gap:8, 
                 flexWrap:'wrap', 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
               }
             ]}
           >
@@ -84,31 +83,31 @@ function PreviewProfileView({ route, navigation }) {
                 style={{
                   padding: 8,
                   borderRadius: 12,
-                  backgroundColor:customTheme.colors.tertiary
+                  backgroundColor:theme.colors.tertiary
                 }}
               >
-                <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:customTheme.colors.secondary, fontWeight:'500' }}>
+                <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:theme.colors.secondary, fontWeight:'500' }}>
                   {interestsData[item-1].interest}
                 </Text>
               </View>
             ))}
           </View>
 
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
               <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📍</Text>
             </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.city}, {user.state}</Text>
           </View>
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
               <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🎓</Text>
             </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
           </View>
 
-          <View style={[styles.box, {backgroundColor:customTheme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:customTheme.colors.secondary}]}>           
+          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
               <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📆</Text>
             </View>
             <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.graduation_year}</Text>
@@ -120,7 +119,7 @@ function PreviewProfileView({ route, navigation }) {
               styles.box, 
               {
                 flexWrap:'wrap', 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
               }
             ]}
           >
@@ -142,7 +141,6 @@ export {PreviewProfileView}
 const styles = StyleSheet.create({
   box: {
     width:'100%', 
-        // backgroundColor:customTheme.colors.background, 
     borderRadius:12, 
     paddingHorizontal:15, 
     paddingVertical:10,

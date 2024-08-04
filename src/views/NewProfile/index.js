@@ -5,11 +5,10 @@ import useBearStore from "../../libs/store";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {dormsData} from "../../assets/Dictionary";
 import { appendFullUrl } from "../../libs/utils/appendFullUrl";
+import {theme} from "../../assets/theme";
 
 
 function NewProfileView({ navigation }) {
-
-  const customTheme = useTheme()
 
   const user = useBearStore((state) => state.user)
   const logout = useBearStore((state) => state.logout)
@@ -19,7 +18,7 @@ function NewProfileView({ navigation }) {
     if (user.thumbnail !== null) {
       return appendFullUrl(user.thumbnail)
     } else {
-      // return whatever the default is?
+      // return whatever the default is? assets/images/profile.png
       return {};
     };
   };
@@ -47,7 +46,7 @@ function NewProfileView({ navigation }) {
           top:100,
           left:0,
           right:0,
-          backgroundColor: customTheme.colors.background,  
+          backgroundColor: theme.colors.background,  
           borderTopLeftRadius:12,
           borderTopRightRadius: 12,
 
@@ -87,7 +86,7 @@ function NewProfileView({ navigation }) {
                   }} 
                 />
                 <View style={{marginTop: 10, width:'100%', justifyContent:'center', alignItems:'center'}}>
-                  <Text style={{fontFamily:'NotoSans_Condensed-Regular', color:customTheme.colors.primary, fontSize:18, fontWeight:'500'}}>
+                  <Text style={{fontFamily:'NotoSans_Condensed-Regular', color:theme.colors.primary, fontSize:18, fontWeight:'500'}}>
                     {user.name}
                   </Text>
                 </View>
@@ -97,7 +96,7 @@ function NewProfileView({ navigation }) {
                   <FontAwesomeIcon 
                     icon="pen-to-square"
                     size={20}
-                    color={customTheme.colors.primary}
+                    color={theme.colors.primary}
                   />
                 </TouchableOpacity>
               </View>
@@ -109,7 +108,7 @@ function NewProfileView({ navigation }) {
                 style={{
                   gap:10,
                   width:'90%', 
-                  backgroundColor:customTheme.colors.background, 
+                  backgroundColor:theme.colors.background, 
                   shadowColor: "#000",
                   shadowOffset: {
                     width: 0,
@@ -127,17 +126,17 @@ function NewProfileView({ navigation }) {
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 18, 
                   fontWeight: '700',
-                  color: customTheme.colors.primary
+                  color: theme.colors.primary
                 }}>Your Profile</Text>
                 <Button 
-                   onPress={() => navigation.navigate('edit-profile')}
+                  onPress={() => navigation.navigate('edit-profile')}
                   mode="elevated"
-                  buttonColor={customTheme.colors.primary}
+                  buttonColor={theme.colors.primary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
                     fontWeight: '700',
-                    color: customTheme.colors.secondary
+                    color: theme.colors.secondary
                   }}
                   style={{borderRadius:12}}
                 >
@@ -145,14 +144,14 @@ function NewProfileView({ navigation }) {
                 </Button>
 
                 <Button 
-                  onPress={() => navigation.navigate('preview')}
+                  onPress={() => navigation.navigate('preview', { user: user })}
                   mode="elevated"
-                  buttonColor={customTheme.colors.tertiary}
+                  buttonColor={theme.colors.tertiary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
                     fontWeight: '700',
-                    color: customTheme.colors.secondary
+                    color: theme.colors.secondary
                   }}
                   style={{borderRadius:12}}
                 >
@@ -164,7 +163,7 @@ function NewProfileView({ navigation }) {
                 style={{
                   gap:10,
                   width:'90%', 
-                  backgroundColor:customTheme.colors.background, 
+                  backgroundColor:theme.colors.background, 
                   shadowColor: "#000",
                   shadowOffset: {
                     width: 0,
@@ -182,23 +181,23 @@ function NewProfileView({ navigation }) {
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 18, 
                   fontWeight: '700',
-                  color: customTheme.colors.primary
+                  color: theme.colors.primary
                 }}>Matching Quiz 🧪</Text>
                 <Text style={{
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 16, 
                   fontWeight: '500',
-                  color: customTheme.colors.primary
+                  color: theme.colors.primary
                 }}>Take our roommate matching quiz!</Text>
                 <Button 
                   onPress={() => navigation.navigate('quiz')}
                   mode="elevated"
-                  buttonColor={customTheme.colors.primary}
+                  buttonColor={theme.colors.primary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
                     fontWeight: '700',
-                    color: customTheme.colors.secondary
+                    color: theme.colors.secondary
                   }}
                   style={{borderRadius:12}}
                 >
@@ -210,7 +209,7 @@ function NewProfileView({ navigation }) {
                 style={{
                   gap:10,
                   width:'90%', 
-                  backgroundColor:customTheme.colors.background, 
+                  backgroundColor:theme.colors.background, 
                   shadowColor: "#000",
                   shadowOffset: {
                     width: 0,
@@ -228,19 +227,19 @@ function NewProfileView({ navigation }) {
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 18, 
                   fontWeight: '700',
-                  color: customTheme.colors.primary
+                  color: theme.colors.primary
                 }}>Preferences</Text>
                 <View style={{flexDirection:'row', justifyContent:"space-between", alignItems:'center'}}>
                   <Text style={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 16, 
                     fontWeight: '500',
-                    color: customTheme.colors.primary
+                    color: theme.colors.primary
                   }}>Pause Profile</Text>
                   <Switch 
-                    trackColor={{true: customTheme.colors.tertiary}}
-                    thumbColor={customTheme.colors.secondary}
-                    ios_backgroundColor={customTheme.colors._tint_secondary}
+                    trackColor={{true: theme.colors.tertiary}}
+                    thumbColor={theme.colors.secondary}
+                    ios_backgroundColor={theme.colors._tint_secondary}
                     onValueChange={togglePaused}
                     value={pauseEnabled}
                     style={{
@@ -251,12 +250,12 @@ function NewProfileView({ navigation }) {
                 <Button 
                    onPress={() => navigation.navigate('how-to')}
                   mode="elevated"
-                  buttonColor={customTheme.colors.primary}
+                  buttonColor={theme.colors.primary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
                     fontWeight: '700',
-                    color: customTheme.colors.secondary
+                    color: theme.colors.secondary
                   }}
                   style={{borderRadius:12}}
                 >
@@ -265,12 +264,12 @@ function NewProfileView({ navigation }) {
                 <Button 
                    onPress={() => navigation.navigate('privacy-policy')}
                   mode="elevated"
-                  buttonColor={customTheme.colors.primary}
+                  buttonColor={theme.colors.primary}
                   labelStyle={{
                     fontFamily: 'NotoSans_Condensed-Regular',
                     fontSize: 14, 
                     fontWeight: '700',
-                    color: customTheme.colors.secondary
+                    color: theme.colors.secondary
                   }}
                   style={{borderRadius:12}}
                 >
@@ -282,12 +281,12 @@ function NewProfileView({ navigation }) {
               <Button
                 onPress={logout}
                 mode="elevated"
-                buttonColor={customTheme.colors.tertiaryDark}
+                buttonColor={theme.colors.onTertiary}
                 labelStyle={{
                   fontFamily: 'NotoSans_Condensed-Regular',
                   fontSize: 14, 
                   fontWeight: '700',
-                  color: customTheme.colors.secondary
+                  color: theme.colors.secondary
                 }}
                 style={{width:'90%', borderRadius:12}}
               >

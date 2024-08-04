@@ -1,3 +1,4 @@
+// not used currently
 export const questions = [
   {
     id: "1",
@@ -133,7 +134,7 @@ export const questions = [
   }, 
   {
     id: "7",
-    question: "You and your roommate just can't get in synch. You're hot, they're cold. You're awake, they're ready for bed. You just broke up with someone, they can't stop talking about how wonderful their relationship is. What's next?",
+    question: "You and your roommate just can't get in sync. You're hot, they're cold. You're awake, they're ready for bed. You just broke up with someone, they can't stop talking about how wonderful their relationship is. What's next?",
     answers: [
       {
         id: "1",

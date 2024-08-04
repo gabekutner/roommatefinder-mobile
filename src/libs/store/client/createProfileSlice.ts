@@ -148,8 +148,10 @@ const createProfileSlice = (set: (state: Partial<{ user: Profile }>) => void, ge
       dataForm.append("description", form.about);
 
       form.interests.forEach(interest => {
-        dataForm.append("interests[]", interest);
+        dataForm.append("interests", interest);
       });
+
+      console.log(dataForm)
 
       const response = await api({
         method: "post",

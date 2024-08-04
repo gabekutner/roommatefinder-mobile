@@ -11,6 +11,7 @@ const PasswordView: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [disabled, setDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fill = {flex:1}
 
@@ -19,6 +20,7 @@ const PasswordView: React.FC = () => {
   const sendPassword = useBearStore((state) => state.sendPassword);
 
   const buttonClick = async () => {
+    setLoading(true)
     // 1. check password similarity
     if (password != repeatPassword) {} else {
       // 2. update profile with password
@@ -46,6 +48,7 @@ const PasswordView: React.FC = () => {
         // error setting passwords, 500 
       };
     };
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -92,7 +95,8 @@ const PasswordView: React.FC = () => {
                   autoCapitalize={'none'}
                   textColor={theme.colors.primary}
                   contentStyle={{width: 300}}
-                  keyboardType={"email-address"}
+                  keyboardType={"default"}
+                  secureTextEntry={eye}
                 />
               </View>
 
