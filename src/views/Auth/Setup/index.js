@@ -9,6 +9,7 @@ import {launchImageLibrary} from "react-native-image-picker";
 
 function SetupView({ navigation }) {
   const customTheme = useTheme();
+  const [loading, setLoading] = useState(false)
 
   const [visible, setVisible] = useState({
     status: false,
@@ -71,6 +72,7 @@ function SetupView({ navigation }) {
   };
 
   const buttonClick = async () => {
+    setLoading(true)
     // 1. form validation
     const missing = []
     if (form.name === "" ) {missing.push('name')}
@@ -91,11 +93,12 @@ function SetupView({ navigation }) {
        * @routing fixes modal for stacks 
        * https://stackoverflow.com/questions/70707367/how-can-i-close-a-modally-opened-window-with-its-own-navigation-stack
       */
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [{ name: 'password' }],
-      // })
-      navigation.navigate('password')
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'password' }],
+      })
+      // navigation.navigate('password')
+      setLoading(false)
     };
   };
 
@@ -530,6 +533,7 @@ function SetupView({ navigation }) {
             />
 
             <Button
+              loading={loading}
               onPress={buttonClick}
               mode="elevated"
               buttonColor={customTheme.colors.primary}
