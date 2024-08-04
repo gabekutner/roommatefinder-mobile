@@ -30,14 +30,14 @@ const AuthNavigator: React.FC = () => {
       <Stack.Screen
         name="login"
         component={LoginView}
-        screenOptions={{
+        options={{
           presentation: 'card'
         }}
       />
       <Stack.Screen
         name="identifier"
         component={IdentifierView}
-        screenOptions={{
+        options={{
           presentation: 'card'
         }}
       />
@@ -46,15 +46,15 @@ const AuthNavigator: React.FC = () => {
         component={VerificationCodeView}
       />
       <Stack.Screen
-        name="password"
-        component={PasswordView}
-        screenOptions={{
-          presentation: 'card'
-        }}
-      />
-      <Stack.Screen
         name="setup"
         component={SetupView}
+      />
+      <Stack.Screen
+        name="password"
+        component={PasswordView}
+        options={{
+          presentation: 'card'
+        }}
       />
     </Stack.Navigator>
   );

@@ -96,7 +96,6 @@ const PasswordView: React.FC = () => {
                   textColor={theme.colors.primary}
                   contentStyle={{width: 300}}
                   keyboardType={"default"}
-                  autoCapitalize={'none'}
                   secureTextEntry={eye}
                 />
               </View>
