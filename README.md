@@ -8,6 +8,8 @@
 * [Directory Structure](#directory-structure)
 * [Contributing Workflows](#contributing)
 * [Contact](#contact)
+* [Important](#important)
+
 
 # Local Development
 These instructions should get you setup ready to work on DormParty 🚀
@@ -37,4 +39,7 @@ Find that here: https://github.com/gabekutner/roommatefinder-mobile/labels/First
 # Contact
 If you run into an issue, have a question, or anything else create a discussion or issue and @ me. I'm very active and will see your post the same day you post it.
 
+# Important
+The current repository has a lot of deprecated code in it. Most of the components in the src/components aren't being used and the src/core library is half moved to the libs folder. Nothing big but the repository is being cleaned while also being improved so make sure you don't delete anything that's being used or use something that isn't used anywhere else (going to be deleted). 
 
+If you're interested in helping out with this, contact me I will respond very quickly. Thank you!
