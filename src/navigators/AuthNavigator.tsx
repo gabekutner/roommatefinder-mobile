@@ -48,6 +48,9 @@ const AuthNavigator: React.FC = () => {
       <Stack.Screen
         name="password"
         component={PasswordView}
+        screenOptions={{
+          presentation: 'card'
+        }}
       />
       <Stack.Screen
         name="setup"

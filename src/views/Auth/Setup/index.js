@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {SafeAreaView, Platform, Text, View, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Keyboard, ScrollView, KeyboardAvoidingView, Image} from "react-native";
-import {Button, useTheme, TextInput, Snackbar, Chip} from "react-native-paper";
+import {Button, TextInput, Snackbar, Chip} from "react-native-paper";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {interestsData, dormsData,} from "../../../assets/Dictionary";
 import useBearStore from "../../../libs/store"
 import {launchImageLibrary} from "react-native-image-picker";
+import {theme} from "../../../assets/theme";
 
 
 function SetupView({ navigation }) {
-  const customTheme = useTheme();
   const [loading, setLoading] = useState(false)
 
   const [visible, setVisible] = useState({
@@ -104,7 +104,7 @@ function SetupView({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{flex:1 , backgroundColor: customTheme.colors.background}}>
+    <SafeAreaView style={{flex:1 , backgroundColor: theme.colors.background}}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -116,7 +116,7 @@ function SetupView({ navigation }) {
           <View style={{gap: 10, justifyContent:'center', alignItems: 'center', paddingHorizontal:25}}>
             
             <View style={{ width:200, alignItems:'center', justifyContent:'center', marginVertical:25 }}>
-              <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:customTheme.colors.primary, textAlign:'center'}}>
+              <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
                 Create your profile
               </Text>
             </View>
@@ -130,7 +130,7 @@ function SetupView({ navigation }) {
                 paddingHorizontal:15, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -151,7 +151,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -165,10 +165,10 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -178,7 +178,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -192,10 +192,10 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -209,7 +209,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -223,10 +223,10 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -236,7 +236,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -250,10 +250,10 @@ function SetupView({ navigation }) {
                   style={[
                     styles.image,
                     styles.imageEmpty,
-                    {borderColor:customTheme.colors.primary}
+                    {borderColor:theme.colors.primary}
                   ]}
                 >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -267,7 +267,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -281,10 +281,10 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
 
@@ -294,7 +294,7 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageFull,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
                     <Image 
@@ -308,10 +308,10 @@ function SetupView({ navigation }) {
                     style={[
                       styles.image,
                       styles.imageEmpty,
-                      {borderColor:customTheme.colors.primary}
+                      {borderColor:theme.colors.primary}
                     ]}
                   >
-                    <FontAwesomeIcon icon="image" color={customTheme.colors.primary} />
+                    <FontAwesomeIcon icon="image" color={theme.colors.primary} />
                   </TouchableOpacity>
                 }
               </View>
@@ -320,12 +320,12 @@ function SetupView({ navigation }) {
             {/* name */}
             <TextInput 
               mode="outlined"
-              label={<Text>Name<Text style={{color:customTheme.colors.tertiary}}>*</Text></Text>}
+              label={<Text>Name<Text style={{color:theme.colors.tertiary}}>*</Text></Text>}
               value={form.name}
               onChangeText={text => setForm({...form, name:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={true}
               style={{width:'100%'}}
@@ -335,12 +335,12 @@ function SetupView({ navigation }) {
             {/* requires a change in backend : birthday -> age */}
             <TextInput 
               mode="outlined"
-              label={<Text>Age<Text style={{color:customTheme.colors.tertiary}}>*</Text></Text>}
+              label={<Text>Age<Text style={{color:theme.colors.tertiary}}>*</Text></Text>}
               value={form.age}
               onChangeText={text => setForm({...form, age:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="number-pad"
               autoCapitalize={true}
               style={{width:'100%'}}
@@ -348,7 +348,7 @@ function SetupView({ navigation }) {
             />
 
             {/* sex */}
-            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:theme.colors.primary }}>
               Sex
               <Text style={{color:'red'}}>*</Text>
             </Text>
@@ -357,10 +357,10 @@ function SetupView({ navigation }) {
                 mode="outlined"
                 selected={form.sex === 'M' ? true : false}
                 onPress={() => setForm({...form, sex:'M'})}
-                selectedColor={form.sex === 'M' ? customTheme.colors.secondary : customTheme.colors.primary}
+                selectedColor={form.sex === 'M' ? theme.colors.secondary : theme.colors.primary}
                 showSelectedCheck={false}
                 style={{ 
-                  backgroundColor:form.sex === 'M' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  backgroundColor:form.sex === 'M' ? theme.colors.tertiary : theme.colors.background,
                   width:'50%',
                 }}
               >
@@ -370,10 +370,10 @@ function SetupView({ navigation }) {
                 mode="outlined"
                 selected={form.sex === 'F' ? true : false}
                 onPress={() => setForm({...form, sex:'F'})}
-                selectedColor={form.sex === 'F' ? customTheme.colors.secondary : customTheme.colors.primary}
+                selectedColor={form.sex === 'F' ? theme.colors.secondary : theme.colors.primary}
                 showSelectedCheck={false}
                 style={{ 
-                  backgroundColor:form.sex === 'F' ? customTheme.colors.tertiary : customTheme.colors.background,
+                  backgroundColor:form.sex === 'F' ? theme.colors.tertiary : theme.colors.background,
                   width:'50%',
                 }}
               >
@@ -382,7 +382,7 @@ function SetupView({ navigation }) {
             </View>
 
             {/* dorm */}
-            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:customTheme.colors.primary }}>
+            <Text style={{ alignSelf:'flex-start', fontSize:14, fontWeight:'500', fontFamily:'NotoSans_Condensed-Regular', marginTop:15, color:theme.colors.primary }}>
               What dorm are you living in?
               <Text style={{color:'red'}}>*</Text>
             </Text>
@@ -392,7 +392,7 @@ function SetupView({ navigation }) {
                 gap:10, 
                 paddingHorizontal:25, 
                 paddingVertical:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -413,11 +413,11 @@ function SetupView({ navigation }) {
                       mode="outlined"
                       onPress={() => setForm({...form, dorm:_.id})}
                       selected={form.dorm === _.id ? true : false}
-                      selectedColor={form.dorm === _.id ? customTheme.colors.secondary : customTheme.colors.primary}
+                      selectedColor={form.dorm === _.id ? theme.colors.secondary : theme.colors.primary}
                       showSelectedCheck={false}
                       style={{
                         margin:4,
-                        backgroundColor:form.dorm === _.id ? customTheme.colors.tertiary : customTheme.colors.background,
+                        backgroundColor:form.dorm === _.id ? theme.colors.tertiary : theme.colors.background,
                       }}
                     >
                       {_.dorm}
@@ -428,7 +428,7 @@ function SetupView({ navigation }) {
             </View>
 
             {/* interests */}
-            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:customTheme.colors.primary }}>
+            <Text style={{ alignSelf:'flex-start', marginTop:15, fontSize:14, fontWeight:'500', color:theme.colors.primary }}>
               Pick up to 5 interests
             </Text>
             <View
@@ -438,7 +438,7 @@ function SetupView({ navigation }) {
                 paddingHorizontal:25, 
                 paddingVertical:15, 
                 marginBottom:15, 
-                backgroundColor:customTheme.colors.background,
+                backgroundColor:theme.colors.background,
                 borderRadius:12,
                 borderWidth:1,
 
@@ -459,11 +459,11 @@ function SetupView({ navigation }) {
                     mode="outlined"
                     style={{
                       margin:4,
-                      backgroundColor: form.interests.includes(_.id) ? customTheme.colors.tertiary : customTheme.colors.background,
+                      backgroundColor: form.interests.includes(_.id) ? theme.colors.tertiary : theme.colors.background,
                     }}
                     selected={form.interests.includes(_.id) ? true : false}
                     onPress={() => handleInterests(_.id)}
-                    selectedColor={form.interests.includes(_.id) ? customTheme.colors.secondary : customTheme.colors.primary}
+                    selectedColor={form.interests.includes(_.id) ? theme.colors.secondary : theme.colors.primary}
                     showSelectedCheck={false}
                   >
                     {_.interest}
@@ -481,8 +481,8 @@ function SetupView({ navigation }) {
                 value={form.city}
                 onChangeText={text => setForm({...form, city:text})}
                 placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                textColor={theme.colors.primary}
                 keyboardType="default"
                 autoCapitalize={true}
                 style={{width:'70%'}}
@@ -493,8 +493,8 @@ function SetupView({ navigation }) {
                 value={form.state}
                 onChangeText={text => setForm({...form, state:text})}
                 placeholder=""
-                outlineColor={customTheme.colors.primary}
-                textColor={customTheme.colors.primary}
+                outlineColor={theme.colors.primary}
+                textColor={theme.colors.primary}
                 keyboardType="default"
                 autoCapitalize={true}
                 style={{width:'30%'}}
@@ -508,8 +508,8 @@ function SetupView({ navigation }) {
               value={form.major}
               onChangeText={text => setForm({...form, major:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={true}
               style={{width:'100%'}}
@@ -522,8 +522,8 @@ function SetupView({ navigation }) {
               value={form.about}
               onChangeText={text => setForm({...form, about:text})}
               placeholder=""
-              outlineColor={customTheme.colors.primary}
-              textColor={customTheme.colors.primary}
+              outlineColor={theme.colors.primary}
+              textColor={theme.colors.primary}
               keyboardType="default"
               autoCapitalize={false}
               autoCorrect={false}
@@ -536,14 +536,14 @@ function SetupView({ navigation }) {
               loading={loading}
               onPress={buttonClick}
               mode="elevated"
-              buttonColor={customTheme.colors.primary}
+              buttonColor={theme.colors.onTertiary}
               labelStyle={{
                 fontFamily: 'NotoSans_Condensed-Regular',
                 fontSize: 16, 
                 fontWeight: '700',
-                color: customTheme.colors.secondary
+                color: theme.colors.secondary
               }}
-              style={{marginBottom:100}}
+              style={{marginBottom:50}}
             >
               <Text>Continue</Text>
             </Button>
@@ -553,12 +553,12 @@ function SetupView({ navigation }) {
             onDismiss={onDismissSnackBar}
             action={{
               label: 'Got it',
-              labelStyle: {color: customTheme.colors.secondary}
+              labelStyle: {color: theme.colors.secondary}
             }}
-            wrapperStyle={{backgroundColor: customTheme.colors.tertiaryDark}}
+            wrapperStyle={{backgroundColor: theme.colors.onTertiary}}
           >
             <Text 
-              style={{fontSize:14, color:customTheme.colors.secondary}}>
+              style={{fontSize:14, color:theme.colors.secondary}}>
                 Missing{' '}
                 {visible.missing.map((_, index) => {
                   if (visible.missing.length != index+1) {
