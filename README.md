@@ -1,7 +1,6 @@
-<div align="center">
-  <h1> 
-    UofU RoommateFinder
-  </h1>
+<<div align="center">
+  <img src=".github/dormparty-red-app.png" height="200" alt="Dorm Party Icon">
+  <h1>Dorm Party</h1>
 </div>
 
 #### Table of Contents
@@ -11,7 +10,7 @@
 
 # Local Development
 
-These instructions should get you setup ready to work on RoommateFinder 🚀
+These instructions should get you setup ready to work on DormParty 🚀
 
 ## Getting Started
 
@@ -30,17 +29,3 @@ These instructions should get you setup ready to work on RoommateFinder 🚀
 - To run on a **Development Simulator**: `npm run ios`.
 
 > In development, I've been using the `iPhone SE` and/or `iPhone 15 Pro Max`. There's no difference between which one you choose other than size.
-
-## Directory Structure
-
-Almost all the code is inside the `src` folder, inside it there's some organization, we chose to name directories that are created to house a collection of items in plural form and using camelCase (eg: views, libs, etc), the main ones we have for now are:
-
-* components: React native components that are re-used in several places.
-* libs: Library classes/functions, these are not React native components (ie: they are not UI)
-* views: These are components that define screens in the app. The naming convention for views are `<name>View`.
-
-
-
-
-
-
