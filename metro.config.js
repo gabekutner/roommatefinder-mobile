@@ -20,8 +20,5 @@ module.exports = mergeConfig(metroConfig, {
   },
   resolver: {
     sourceExts: [...metroConfig.resolver.sourceExts, "mjs"],
-    extraNodeModules: {
-      '@libs': path.resolve(__dirname, 'src/libs'),
-    },
   },
 });

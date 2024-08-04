@@ -20,12 +20,14 @@ const AuthNavigator: React.FC = () => {
       initialRouteName="startup"
       screenOptions={{
         headerShown: false,
-        presentation: 'fullScreenModal'
       }}
     >
       <Stack.Screen
         name="startup"
         component={StartUpView}
+        options={{
+          presentation: 'fullScreenModal'
+        }}
       />
       <Stack.Screen
         name="login"
