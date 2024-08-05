@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import {View, Text, TouchableOpacity} from "react-native";
 import FastImage from "react-native-fast-image";
 import { FastImageBackground } from "../FastImageBackground";
@@ -28,8 +28,6 @@ function Card(props) {
       setCurrentPhotoIndex(prevIndex => prevIndex - 1);
     }
   };
-
-  console.log(photos)
 
   return (
     <FastImageBackground
@@ -63,12 +61,8 @@ function Card(props) {
             shadowRadius: 3.84,
           }}
         />
-        // <Text key={index} style={{marginRight: 10}}>{item}</Text>
       ))}
       </View>
-      {/* bar */}
-      {/* <View style={{height:25, width:'100%', backgroundColor:'white'}}></View> */}
-
       <View style={{height:"100%", width:'100%', flexDirection:'row'}}>
         <TouchableOpacity style={{flex:1}} onPress={showPreviousPhoto} disabled={currentPhotoIndex === 0}/>
         <TouchableOpacity style={{flex:1}} onPress={showNextPhoto} disabled={currentPhotoIndex === photoCount - 1} />
@@ -87,72 +81,86 @@ function Card(props) {
           overflow: "hidden",
         }}
       >
-        
-        <View style={{flex:1, flexDirection:'column', alignItems:'flex-start', justifyContent:'center', gap:4}}>
-          {/* name */}
-          <View style={{width:"95%", alignSelf:'center', flexDirection: 'row', justifyContent:'space-between', alignItems:"center"}}>
+        <View style={{flex:1, flexDirection:'row', alignItems:'center' }}>
+          <View 
+            style={{
+              flex:1, 
+              backgroundColor:props.theme.colors.primary, 
+              marginLeft:10, 
+              marginBottom:10, 
+              padding:10, 
+              borderRadius:12, 
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              gap:5,
+              maxWidth:'80%'
+            }}
+          >
             <Text
               style={{
                 fontFamily: 'SuezOne-Regular',
-                fontSize:35, 
+                fontSize:22,
                 color: props.theme.colors.secondary,
-                fontWeight:'500',
               }}
             >
               {props.item.name}
-            </Text>
-            <IconButton 
-              onPress={() => props.navigation.navigate('preview', { user:props.item })}
-              icon={() => <FontAwesomeIcon icon={"arrow-up"} size={22} color={props.theme.colors.secondary} /> }
-            />
-          </View>
-          {/* dorm */}
-          <View style={{marginHorizontal:12, flexDirection:"row", justifyContent:'center', alignItems:'center', gap:4, padding: 8,
-                  borderRadius: 12,
-                  backgroundColor: 'rgba(255,255,255,0.7)'}}>
-            <Text
-              style={{
-                fontSize:18, 
-                color: props.theme.colors.primary,
-                fontWeight:'500'
-              }}
-            >
-              🏠
             </Text>
             <Text
               style={{
                 fontFamily: 'NotoSans_Condensed-Regular',
                 fontSize:18, 
-                color: props.theme.colors.primary,
-                fontWeight:'500'
+                color: props.theme.colors.secondary,
               }}
             >
               {dormsData[props.item.dorm_building-1].dorm}
             </Text>
-          </View>
-          {/* interests */}
-          <View style={{marginHorizontal:10, marginVertical:5, marginBottom:10, flexDirection:'row', gap:4, overflow:'hidden', flexWrap:'wrap'}}>
-            {props.item.interests.slice(0,3).map((item) => (
-              <View 
-                key={item} 
-                style={{
-                  padding: 8,
-                  borderRadius: 12,
-                  backgroundColor: 'rgba(255,255,255,0.7)'
-                }}
-              >
-                <Text 
+            <View style={{flexDirection:'row', gap:4}}>
+              {props.item.interests.slice(0,3).map((item) => (
+                <View 
+                  key={item} 
                   style={{
-                    fontFamily: 'NotoSans_Condensed-Regular',
-                    fontSize:14, 
-                    color: props.theme.colors.primary,
-                    fontWeight:'500'
+                    padding: 8,
+                    borderRadius: 12,
+                    backgroundColor: 'rgba(225, 225, 225, 0.9)'
                   }}
                 >
-                  {interestsData[item-1].interest}
-                </Text>
-              </View>
-            ))}
+                  <Text 
+                    style={{
+                      fontFamily: 'NotoSans_Condensed-Regular',
+                      fontSize:14, 
+                      color: props.theme.colors.primary,
+                    }}
+                  >
+                    {interestsData[item-1].interest}
+                  </Text>
+                </View>
+              ))}
+            </View>
+
+          </View>
+          <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+            <IconButton
+              onPress={() => props.navigation.navigate('preview', { user:props.item })}
+              icon={() => <FontAwesomeIcon icon={"arrow-up"} size={22} color={props.theme.colors.primary} /> }
+              backgroundColor={props.theme.colors.secondary}
+              style={{
+                height:50,
+                width:50,
+                borderRadius:60,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+              }}
+            />
           </View>
         </View>
       </LinearGradient>
