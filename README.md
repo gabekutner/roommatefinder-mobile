@@ -4,6 +4,7 @@
 </div>
 
 #### Table of Contents
+* [Project Description](#project-description)
 * [Local Development](#local-development)
 * [Directory Structure](#directory-structure)
 * [Contributing Workflows](#contributing)
@@ -11,35 +12,49 @@
 * [Important](#important)
 
 
-# Local Development
-These instructions should get you setup ready to work on DormParty 🚀
+# Project Description
+This repository is the frontend repository for the Dorm Party mobile app. 
+> Here's the link to the frontend repository: https://github.com/gabekutner/roommatefinder-backend
 
-## Getting Started
+The Dorm Party app will be published in Spring 2025 for freshmen at the University of Utah. 
+
+# Local Development
+### 🍴 Fork and Clone the Repo
+
+First, yu need to fork the `roommatefinder-mobile` repo. You can do this by clicking the Fork button on the top right corner of the repo. If you are new to forking, please watch this [YouTube Guide](https://www.youtube.com/watch?v=h8suY-Osn8Q) to get started.
+
+Once forked, you can clone the repo by clicking the `Clone or Download` button on the top right corner of the forked repo. 
+
+Please change the directory after cloning the repository using the `cd <folder-name>` command.
+
+### ⬇️ Running the Development Server
+To run the development server, make sure you have to have the following dependencies set up on your machine:
+
 1. Install `nvm` then `node` & `npm`: `brew install nvm && nvm install`
 2. Install `watchman`: `brew install watchman`
-3. Install dependencies: `npm install`
-4. Run iOS Pod Install: `npx pod-install ios`
+* If you haven't already, install Xcode tools and make sure to install the optional "IOS-Platform" package as well. This could take awhile.
+  * After installation, check in System Settings that there's no update for Xcode. Otherwise, you may encounter vague issues.
+ 
+After, install package dependencies using `npm`.
+```bash
+npm i
+```
 
-> The current build is made for IOS, Android compatibility is being worked on.
+Then run the CocoaPods install.
+```bash
+npx pod-install
+```
 
-## Running the IOS app 📱
-- If you haven't already, install Xcode tools and make sure to install the optional "IOS-Platform" package as well. This could take awhile.
-  - After installation, check in System Settings that there's no update for Xcode. Otherwise, you may encounter vague issues.
-- To install the iOS dependencies, run: `npm install && npm run pod-install`.
-- To run on a **Development Simulator**: `npm run ios`.
+To connect to the backend api, which you should have running for easier development (see how [**here**](https://github.com/gabekutner/roommatefinder-backend/tree/main?tab=readme-ov-file#local-development), go to the `src/constants/apiConstants.ts` file and change the `const ADDRESS = "10.0.0.49:8000";` to whatever the address is of the api you're running.  
 
-> In development, I've been using the `iPhone SE` and/or `iPhone 15 Pro Max`. There's no difference between which one you choose other than size.
+Finally, run the project.
+```bash
+npm start
+```
 
+These instructions should get you set up ready to work on Dorm Party 🎉
 
 # Contributing
 Thanks for taking the time, first of all! Second, contributing is really simple. Follow the installation steps and create a pull request. As far as finding issues to work on, issues with the `FirstIssue` label are good for starters. 
 
 Find that here: https://github.com/gabekutner/roommatefinder-mobile/labels/FirstIssue
-
-# Contact
-If you run into an issue, have a question, or anything else create a discussion or issue and @ me. I'm very active and will see your post the same day you post it.
-
-# Important
-The current repository has a lot of deprecated code in it. Most of the components in the src/components aren't being used and the src/core library is half moved to the libs folder. Nothing big but the repository is being cleaned while also being improved so make sure you don't delete anything that's being used or use something that isn't used anywhere else (going to be deleted). 
-
-If you're interested in helping out with this, contact me I will respond very quickly. Thank you!
