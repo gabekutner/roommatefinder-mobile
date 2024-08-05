@@ -45,23 +45,23 @@ function Card(props) {
       uri={appendFullUrl(photos[currentPhotoIndex])}
     >
       <View style={{position:'absolute', top:10, left:10, right:10, height:5, flexDirection:'row', gap:10 }}>
-      {photos.map((item, index) => (
-        <View 
-          key={index}
-          style={{
-            flex:1, 
-            backgroundColor: index === currentPhotoIndex ? props.theme.colors.secondary : props.theme.colors.primary,
-            borderRadius:12,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-          }}
-        />
-      ))}
+        {photos.map((item, index) => (
+          <View 
+            key={index}
+            style={{
+              flex:1, 
+              backgroundColor: index === currentPhotoIndex ? props.theme.colors.secondary : props.theme.colors.primary,
+              borderRadius:12,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+            }}
+          />
+        ))}
       </View>
       <View style={{height:"100%", width:'100%', flexDirection:'row'}}>
         <TouchableOpacity style={{flex:1}} onPress={showPreviousPhoto} disabled={currentPhotoIndex === 0}/>
@@ -119,7 +119,7 @@ function Card(props) {
             >
               {dormsData[props.item.dorm_building-1].dorm}
             </Text>
-            <View style={{flexDirection:'row', gap:4}}>
+            <View style={{flexDirection:'row', gap:4, flexWrap:'wrap'}}>
               {props.item.interests.slice(0,3).map((item) => (
                 <View 
                   key={item} 
@@ -143,11 +143,11 @@ function Card(props) {
             </View>
 
           </View>
-          <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+          <View style={{flex:.5, alignItems:'center', justifyContent:'center'}}>
             <IconButton
               onPress={() => props.navigation.navigate('preview', { user:props.item })}
-              icon={() => <FontAwesomeIcon icon={"arrow-up"} size={22} color={props.theme.colors.primary} /> }
-              backgroundColor={props.theme.colors.secondary}
+              icon={() => <FontAwesomeIcon icon={"arrow-up"} size={22} color={props.theme.colors.secondary} /> }
+              backgroundColor={props.theme.colors.tertiary}
               style={{
                 height:50,
                 width:50,
