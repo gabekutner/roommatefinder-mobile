@@ -13,8 +13,6 @@ const PasswordView: React.FC = () => {
   const [disabled, setDisabled] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fill = {flex:1}
-
   const login = useBearStore((state) => state.login)
   const user = useBearStore((state) => state.user)
   const sendPassword = useBearStore((state) => state.sendPassword);
@@ -74,7 +72,7 @@ const PasswordView: React.FC = () => {
 
               <View style={{ width:150, alignItems:'center', justifyContent:'center' }}>
                 <Text style={{fontSize:18, fontFamily:'NotoSans_Condensed-Regular', fontWeight:'700', color:theme.colors.primary, textAlign:'center'}}>
-                  Welcome back!
+                  Set up your password
                 </Text>
               </View>
             </View>
@@ -115,6 +113,7 @@ const PasswordView: React.FC = () => {
               />
               
               <Button
+                loading={loading}
                 disabled={disabled}
                 onPress={buttonClick}
                 mode="elevated"

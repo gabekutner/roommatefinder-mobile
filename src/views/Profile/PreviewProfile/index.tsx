@@ -1,16 +1,37 @@
 import React from "react";
 import { View, ScrollView, Dimensions, Text, StyleSheet } from "react-native";
-import { useTheme, IconButton, Icon} from "react-native-paper";
+import { IconButton} from "react-native-paper";
 import FastImage from "react-native-fast-image";
-import useBearStore from "../../../libs/store";
+// import useBearStore from "../../../libs/store";
 import { appendFullUrl } from "../../../libs/utils/appendFullUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {dormsData, interestsData} from "../../../assets/Dictionary";
 import {theme} from "../../../assets/theme";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RouteProp } from "@react-navigation/native";
+import { AppStackParamList } from "types/StackParamList";
+import Profile from "types/django/Profile";
 
 
-function PreviewProfileView({ route, navigation }) {
-  const {user} = route.params
+// Types for navigation and route props
+type PreviewProfileViewNavigationProp = StackNavigationProp<AppStackParamList, 'preview'>;
+type PreviewProfileViewRouteProp = RouteProp<AppStackParamList, 'preview'>;
+
+interface PreviewProfileViewProps {
+  route: PreviewProfileViewRouteProp;
+  navigation: PreviewProfileViewNavigationProp;
+};
+
+const PreviewProfileView: React.FC<PreviewProfileViewProps> = ({ 
+  route, 
+  navigation 
+}) => {
+
+  const {user} = route.params;
+
+  // check what is defined and what's not
+  const dormBuildingNumber = user.dorm_building ? Number(user.dorm_building) : 0;
+  const dorm = dormsData[dormBuildingNumber - 1]?.dorm ?? 'Default Dorm'; // Provide a default value if `dorm` is und
 
   return (
     <View style={{flex: 1, backgroundColor: theme.colors.background,}}>
@@ -27,7 +48,7 @@ function PreviewProfileView({ route, navigation }) {
             borderTopRightRadius: 12,
             backgroundColor: theme.colors.background,
             flex: 1,
-            padding: 15, // Optional: for spacing
+            padding: 15,
             marginTop:-15,
             gap:10
           }}
@@ -62,49 +83,71 @@ function PreviewProfileView({ route, navigation }) {
             <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
               <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🏡</Text>
             </View>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dormsData[user.dorm_building-1].dorm}</Text>
+            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{dorm}</Text>
           </View>
-          <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
-          <View 
-            style={[
-              styles.box, 
-              {
-                flexDirection:'row', 
-                justifyContent:'flex-start', 
-                gap:8, 
-                flexWrap:'wrap', 
-                backgroundColor:theme.colors.background,
-              }
-            ]}
-          >
-            {user.interests.map((item) => (
+          
+          {user.interests?.length !== 0
+            ?
+            <>
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>Interests</Text>
               <View 
-                key={item} 
-                style={{
-                  padding: 8,
-                  borderRadius: 12,
-                  backgroundColor:theme.colors.tertiary
-                }}
+                style={[
+                  styles.box, 
+                  {
+                    flexDirection:'row', 
+                    justifyContent:'flex-start', 
+                    gap:8, 
+                    flexWrap:'wrap', 
+                    backgroundColor:theme.colors.background,
+                  }
+                ]}
               >
-                <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:theme.colors.secondary, fontWeight:'500' }}>
-                  {interestsData[item-1].interest}
-                </Text>
+                {user.interests?.map((item: string) => (
+                  <View 
+                    key={item} 
+                    style={{
+                      padding: 8,
+                      borderRadius: 12,
+                      backgroundColor:theme.colors.tertiary
+                    }}
+                  >
+                    <Text style={{ fontFamily:'NotoSans_Condensed-Regular', fontSize:16, color:theme.colors.secondary, fontWeight:'500' }}>
+                      {interestsData[Number(item)-1].interest}
+                    </Text>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
-
-          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
-              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📍</Text>
+            </>
+            : null
+          }
+         
+          {user.city !== null 
+            ? 
+            <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+              <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
+                <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📍</Text>
+              </View>
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>
+                {user.city}{', '}
+                {user.state !== null
+                  ? user.state
+                  : null
+                }
+              </Text>
             </View>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.city}, {user.state}</Text>
-          </View>
-          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
-              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🎓</Text>
+            : null
+          }
+          {user.major !== null
+            ?
+            <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+              <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
+                <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>🎓</Text>
+              </View>
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
             </View>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.major}</Text>
-          </View>
+            : null
+          }
+          
 
           <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
             <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           

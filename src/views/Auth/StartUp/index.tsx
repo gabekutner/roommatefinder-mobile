@@ -21,9 +21,10 @@ const StartUpView: React.FC<StartUpViewProps> = ({
    * @props
    *  - navigation (StartUpViewNavigationProp)
    */
+  const fill = {flex:1}
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background, alignItems: 'center' }}>
-      <View>
+    <SafeAreaView style={[fill, { backgroundColor: theme.colors.background, alignItems: 'center' }]}>
+      <View style={[fill, {marginTop:15}]}>
         {/* header */}
         <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: 40 }}>
           {/* logo */}

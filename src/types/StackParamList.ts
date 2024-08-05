@@ -1,3 +1,5 @@
+import Profile from "./django/Profile";
+
 export type AuthStackParamList = {
   startup: undefined;
   login: undefined;
@@ -14,6 +16,8 @@ export type AppStackParamList = {
   search: undefined;
   message: undefined;
   "edit-profile": undefined;
-  preview: undefined;
+  preview: {
+    user: Profile
+  };
   quiz: undefined;
 };

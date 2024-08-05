@@ -9,7 +9,6 @@ import { AuthStackParamList } from "types/StackParamList";
 import {theme} from "assets/theme";
 import formatIdentifier from "@libs/utils/formatIdentifier";
 
-
 // Types for navigation and route props
 type IdentifierViewNavigationProp = StackNavigationProp<AuthStackParamList, 'identifier'>;
 type IdentifierViewRouteProp = RouteProp<AuthStackParamList, 'identifier'>;
