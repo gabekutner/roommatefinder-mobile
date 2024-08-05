@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import {View, Text, TouchableOpacity} from "react-native";
 import FastImage from "react-native-fast-image";
 import { FastImageBackground } from "../FastImageBackground";
@@ -11,6 +11,26 @@ import {IconButton} from "react-native-paper";
 
 
 function Card(props) {
+
+  const photos = [props.item.thumbnail, ...props.item.photos.map(photo => photo.image)];
+  
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const photoCount = photos.length;
+
+  const showNextPhoto = () => {
+    if (currentPhotoIndex < photoCount - 1) {
+      setCurrentPhotoIndex(prevIndex => prevIndex + 1);
+    }
+  };
+
+  const showPreviousPhoto = () => {
+    if (currentPhotoIndex > 0) {
+      setCurrentPhotoIndex(prevIndex => prevIndex - 1);
+    }
+  };
+
+  console.log(photos)
+
   return (
     <FastImageBackground
       key={props.item.id}
@@ -24,8 +44,35 @@ function Card(props) {
       }}
       imageStyle={{height: "100%"}}
       resizeMode={FastImage.resizeMode.cover}
-      uri={appendFullUrl(props.item.thumbnail)}
+      uri={appendFullUrl(photos[currentPhotoIndex])}
     >
+      <View style={{position:'absolute', top:10, left:10, right:10, height:5, flexDirection:'row', gap:10 }}>
+      {photos.map((item, index) => (
+        <View 
+          key={index}
+          style={{
+            flex:1, 
+            backgroundColor: index === currentPhotoIndex ? props.theme.colors.secondary : props.theme.colors.primary,
+            borderRadius:12,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+          }}
+        />
+        // <Text key={index} style={{marginRight: 10}}>{item}</Text>
+      ))}
+      </View>
+      {/* bar */}
+      {/* <View style={{height:25, width:'100%', backgroundColor:'white'}}></View> */}
+
+      <View style={{height:"100%", width:'100%', flexDirection:'row'}}>
+        <TouchableOpacity style={{flex:1}} onPress={showPreviousPhoto} disabled={currentPhotoIndex === 0}/>
+        <TouchableOpacity style={{flex:1}} onPress={showNextPhoto} disabled={currentPhotoIndex === photoCount - 1} />
+      </View>
       <LinearGradient
         colors={["rgba(0,0,0,0.7)", "transparent"]} // Adjust gradient colors as needed
         start={{x: 0.5, y: 0.7}}
@@ -40,7 +87,8 @@ function Card(props) {
           overflow: "hidden",
         }}
       >
-        <View style={{width:'100%', flexDirection:'column', alignItems:'flex-start', justifyContent:'center', gap:4}}>
+        
+        <View style={{flex:1, flexDirection:'column', alignItems:'flex-start', justifyContent:'center', gap:4}}>
           {/* name */}
           <View style={{width:"95%", alignSelf:'center', flexDirection: 'row', justifyContent:'space-between', alignItems:"center"}}>
             <Text
