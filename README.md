@@ -1,4 +1,4 @@
-<<div align="center">
+<div align="center">
   <img src=".github/dormparty-red-app.png" height="200" alt="Dorm Party Icon">
   <h1>Dorm Party</h1>
 </div>
@@ -6,12 +6,17 @@
 #### Table of Contents
 * [Project Description](#project-description)
 * [Local Development](#local-development)
-* [Directory Structure](#directory-structure)
-* [Contributing Workflows](#contributing)
-<!-- * [Contact](#contact)
-* [Important](#important) -->
+<!-- * [Directory Structure](#directory-structure) -->
+<!-- * [Contributing Workflows](#contributing) -->
 
 # Project Description
+
+I had four roommates my first year in college. We all woke up and went to bed at different times. We could never decide who would clean the bathrooms, so they remained uncleaned... all semester. Nobody shared a major so nobody could help anybody with homework. And the chance of finding dirty socks lying around was always possible.
+
+Roommates are hit or miss. Sometimes you get along and other times you have to request a room change. You can try to find a roommate before you come to college on the university instagram pages or facebook groups, but you never know who's looking for a roommate and who just wanted to post a few pictures of themselves. This app is the solution. Students get on DormParty to find other kids who also want good roommates. Best part is you don't have to decide whether you like each other a semester into college.
+
+Sign up, create your profile, and start swiping on potential roommate options. When you match with someone, message them and decide if you have enough in common to become roommates.
+
 This repository is the frontend repository for the Dorm Party mobile app. 
 > Here's the link to the frontend repository: https://github.com/gabekutner/roommatefinder-backend
 
@@ -53,7 +58,7 @@ npm start
 
 These instructions should get you set up ready to work on Dorm Party 🎉
 
-# Contributing
+<!-- # Contributing
 Thanks for taking the time, first of all! Second, contributing is really simple. Follow the installation steps and create a pull request. As far as finding issues to work on, issues with the `FirstIssue` label are good for starters. 
 
-Find that here: https://github.com/gabekutner/roommatefinder-mobile/labels/FirstIssue
+Find that here: https://github.com/gabekutner/roommatefinder-mobile/labels/FirstIssue -->
