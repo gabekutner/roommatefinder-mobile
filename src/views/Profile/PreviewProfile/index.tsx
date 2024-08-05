@@ -147,33 +147,41 @@ const PreviewProfileView: React.FC<PreviewProfileViewProps> = ({
             </View>
             : null
           }
-          
 
-          <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
-            <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
-              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📆</Text>
+          {user.graduation_year !== null
+            ?
+            <View style={[styles.box, {backgroundColor:theme.colors.background}]}>
+              <View style={[styles.iconBubble, {backgroundColor:theme.colors.secondary}]}>           
+                <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>📆</Text>
+              </View>
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.graduation_year}</Text>
             </View>
-            <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>{user.graduation_year}</Text>
-          </View>
+            : null
+          }
           
-          <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>About me</Text>
-          <View 
-            style={[
-              styles.box, 
-              {
-                flexWrap:'wrap', 
-                backgroundColor:theme.colors.background,
-              }
-            ]}
-          >
-            <Text style={{fontFamily:'NotoSans_Condensed-Regular', fontSize:14}}>{user.description}</Text>
-          </View>
 
+          {user.description !== null
+            ? 
+            <>
+              <Text style={{fontFamily:'SuezOne-Regular', fontSize:20}}>About me</Text>
+            <View 
+              style={[
+                styles.box, 
+                {
+                  flexWrap:'wrap', 
+                  backgroundColor:theme.colors.background,
+                }
+              ]}
+            >
+              <Text style={{fontFamily:'NotoSans_Condensed-Regular', fontSize:14}}>{user.description}</Text>
+            </View>
+            </>
+            : null
+          }
+          
           {/* photos */}
 
-
-       
-      </View>
+        </View>
       </ScrollView>
     </View>
   )
