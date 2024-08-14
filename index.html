@@ -1,54 +1,157 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dorm Part Landing Page!</title>
+    <title>Dorm Party</title>
     <style>
-      body {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          background-color: #132331;
-      }
-      .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px 20px;
-          background-color: #132331;
-      }
+        /* Basic resets and box-sizing */
+        body, h2, p, ol {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .header .social-links a {
-          margin-left: 15px;
-          text-decoration: none;
-          color: #333;
-      }
-      .header .social-links a:hover {
-          color: #007bff; /* Adjust color on hover */
-      }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #132331;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #132331;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header .social-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .header .social-links a:hover {
+            color: #007bff;
+        }
+
+        .preview {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 10px;
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .box {
+            overflow: hidden;
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Styling for ordered list and list items */
+        ol {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            align-self: flex-start;
+            margin-left: 200px;
+            text-align: left; /* Align text inside list */
+        }
+
+        ol li {
+            margin: 8px 0; /* Vertical margin for list items */
+            padding: 0; /* Remove padding from list items */
+            text-align: left; /* Align text inside list item */
+        }
+
+        /* Heading and paragraph styles */
+        h2, p {
+            color: #fff;
+            margin-left: 100px; /* Align text with margin */
+        }
+
+        p {
+            margin-top: -10px; /* Adjust top margin for paragraph */
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header class="header">
-      <!-- Logo Section -->
-      <div class="logo">
-        <a href="">
-          <img src="https://raw.githubusercontent.com/gabekutner/roommatefinder-backend/main/.github/dormparty-red-app.png" width="100" height="auto" alt="Your App Logo">
-        </a>
-      </div>
+        <!-- Logo Section -->
+        <div class="logo">
+            <a href="">
+                <img src="https://raw.githubusercontent.com/gabekutner/roommatefinder-backend/main/.github/dormparty-red-app.png" width="100" height="auto" alt="Your App Logo">
+            </a>
+        </div>
 
-      <!-- Social Links Section -->
-      <div class="social-links">
-        <a href="https://github.com/your-profile" target="_blank" title="GitHub">
-          <img src="https://github.com/logos/blob/main/black/github-mark.svg" alt="GitHub" height="30">
-        </a>
-          <a href="https://instagram.com/your-profile" target="_blank" title="Instagram">
-              <img src="path/to/instagram-icon.png" alt="Instagram" height="30">
-          </a>
-          <a href="mailto:contact@yourapp.com" title="Contact">
-              <img src="path/to/contact-icon.png" alt="Contact" height="30">
-          </a>
-      </div>
+        <!-- Social Links Section -->
+        <!-- <div class="social-links">
+            <a href="https://github.com/your-profile" target="_blank" title="GitHub">
+                <img src="https://github.com/logos/blob/main/black/github-mark.svg" alt="GitHub" height="30">
+            </a>
+            <a href="https://instagram.com/your-profile" target="_blank" title="Instagram">
+                <img src="path/to/instagram-icon.png" alt="Instagram" height="30">
+            </a>
+            <a href="mailto:contact@yourapp.com" title="Contact">
+                <img src="path/to/contact-icon.png" alt="Contact" height="30">
+            </a>
+        </div> -->
     </header>
-  </body>
+    <h2 style="align-self: flex-start; ">
+        Unauthenticated Pages
+    </h2>
+    <p style="margin-top: 10px; margin-left: 150px; align-self: flex-start;">
+        These are the pages that the unauthenticated user sees. The app flow goes left to right. This example assumes the user signs up via their email.
+    </p>
+    <ol>
+        <li>[StartUp Page] Choose what identifier you want to sign up with. Options are email, phone, and University of Utah student id.</li>
+        <li>[Identifier Page] Enter your identifier (email, phone number, or student id).</li>
+        <li>[Verification Code Page] Enter the verification code sent to the identifier. NOTE: Student ID verification code functionality not yet working.</li>
+        <li>[Create Profile Page] The user creates their profile here. It's mandatory to add at least one photo, your name, age, and dorm building.</li>
+        <li>[Create Password Page] The user creates their password here and are then redirected to the app.</li>
+    </ol>
+    <div class="preview" style="margin-top: 15px;">
+        <div class="box"><img class="image" src="./screenshots/unauth/startup.png" alt="startup" /></div>
+        <div class="box"><img class="image" src="./screenshots/unauth/email.png" alt="email" /></div>
+        <div class="box"><img class="image" src="./screenshots/unauth/code.png" alt="code" /></div>
+        <div class="box"><img class="image" src="./screenshots/unauth/creat.png" alt="create-profile" /></div>
+        <div class="box"><img class="image" src="./screenshots/unauth/password.png" alt="password" /></div>
+    </div>
+
+    <h2 style="align-self: flex-start; margin-top: 15px; ">
+      Authenticated Pages
+    </h2>
+    <p style="margin-top: 10px; margin-left: 150px; align-self: flex-start;">
+        These are the pages that the authenticated user sees.
+    </p>
+    <ol>
+        <li>[StartUp Page] Choose what identifier you want to sign up with. Options are email, phone, and University of Utah student id.</li>
+        <!-- <li>[Identifier Page] Enter your identifier (email, phone number, or student id).</li>
+        <li>[Verification Code Page] Enter the verification code sent to the identifier. NOTE: Student ID verification code functionality not yet working.</li>
+        <li>[Create Profile Page] The user creates their profile here. It's mandatory to add at least one photo, your name, age, and dorm building.</li>
+        <li>[Create Password Page] The user creates their password here and are then redirected to the app.</li> -->
+    </ol>
+    <div class="preview" style="margin-top: 15px;">
+      <div class="box"><img class="image" src="./screenshots/unauth/startup.png" alt="startup" /></div>
+      <div class="box"><img class="image" src="./screenshots/unauth/email.png" alt="email" /></div>
+      <div class="box"><img class="image" src="./screenshots/unauth/code.png" alt="code" /></div>
+      <div class="box"><img class="image" src="./screenshots/unauth/creat.png" alt="create-profile" /></div>
+      <div class="box"><img class="image" src="./screenshots/unauth/password.png" alt="password" /></div>
+    </div>
+
+</body>
 </html>
