@@ -9,7 +9,8 @@ import {styles} from "./messageInput.styles";
 
 function MessageInput(props) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {alignItems:'center'}]}>
+
       <TextInput
         mode="outlined"
         value={props.message}
@@ -23,10 +24,34 @@ function MessageInput(props) {
       />
       <TouchableOpacity
         onPress={props.onSend}
-        style={[styles.button, {backgroundColor: props.theme.colors.tertiary}]}
+        style={{
+          height: 50,
+          width: 50,
+          borderRadius: 12,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: props.theme.colors.tertiary
+        }}
       >
         <FontAwesomeIcon
           icon={"paper-plane"}
+          size={25}
+          color={props.theme.colors.secondary}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        // onPress={props.onSend}
+        style={{
+          height: 50,
+          width: 50,
+          borderRadius: 12,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: props.theme.colors.onTertiary
+        }}
+      >
+        <FontAwesomeIcon
+          icon={"plus"}
           size={25}
           color={props.theme.colors.secondary}
         />

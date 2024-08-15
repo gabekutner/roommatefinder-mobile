@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Platform, View} from "react-native";
+import {FlatList, Platform, View, Modal} from "react-native";
 
 import {MessageBubble} from "./Components/MessageBubble";
 
@@ -38,4 +38,20 @@ function MessagesWrapper(props) {
   );
 }
 
-export {Container, MessagesWrapper};
+
+function GroupModal(props) {
+  return (
+    <Modal
+      animationType="slide"
+      visible={props.visible}
+      onRequestClose={() => {
+        props.setModalVisible(!props.modalVisible);
+      }}
+    >
+      <View style={{height:50, width:50, backgroundColor:'red'}}></View>
+    </Modal> 
+  )
+}
+
+
+export {Container, MessagesWrapper, GroupModal};
