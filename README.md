@@ -3,26 +3,31 @@
   <h1>Dorm Party</h1>
 </div>
 
+An app where incoming college freshmen can find dorm roommates.
+<br>
+<br>
+**This is just the frontend of the app, if you're looking for the backend: https://github.com/gabekutner/roommatefinder-backend**
+
 #### Table of Contents
-* [Project Description](#project-description)
-* [Local Development](#local-development)
-<!-- * [Directory Structure](#directory-structure) -->
-<!-- * [Contributing Workflows](#contributing) -->
+* [Technologies Used](#technologies-used)
+* [Local Development](#getting-started)
+* [Features](#features)
+* [Project Structure](#project-structure)
 
-# Project Description
+# Technologies Used
+* ⚛️ React Native CLI https://reactnative.dev/
+* 🐻 Zustand State Management https://github.com/pmndrs/zustand
+* ⚡ Fast Image https://github.com/DylanVann/react-native-fast-image
+* 🧭 React Navigation https://reactnavigation.org/
+* 🖥️ Axios https://github.com/axios/axios
+* 🚀 FontAwesome https://fontawesome.com/
+* 🌐 React Native Paper https://reactnativepaper.com/
+* 🖼️ React Native Image Picker https://www.npmjs.com/package/react-native-image-picker
+* 🔒 React Native Encrypted Storage https://www.npmjs.com/package/react-native-encrypted-storage
 
-I had four roommates my first year in college. We all woke up and went to bed at different times. We could never decide who would clean the bathrooms, so they remained uncleaned... all semester. Nobody shared a major so nobody could help anybody with homework. And the chance of finding dirty socks lying around was always possible.
+> Check out what the app looks like here! https://gabekutner.github.io/roommatefinder-mobile/
 
-Roommates are hit or miss. Sometimes you get along and other times you have to request a room change. You can try to find a roommate before you come to college on the university instagram pages or facebook groups, but you never know who's looking for a roommate and who just wanted to post a few pictures of themselves. This app is the solution. Students get on DormParty to find other kids who also want good roommates. Best part is you don't have to decide whether you like each other a semester into college.
-
-Sign up, create your profile, and start swiping on potential roommate options. When you match with someone, message them and decide if you have enough in common to become roommates.
-
-This repository is the frontend repository for the Dorm Party mobile app. 
-> Here's the link to the frontend repository: https://github.com/gabekutner/roommatefinder-backend
-
-The Dorm Party app will be published in Spring 2025 for freshmen at the University of Utah. 
-
-# Local Development
+# Getting Started
 ### 🍴 Fork and Clone the Repo
 
 First, you need to fork the `roommatefinder-mobile` repo. You can do this by clicking the Fork button on the top right corner of the repo. If you are new to forking, please watch this [YouTube Guide](https://www.youtube.com/watch?v=h8suY-Osn8Q) to get started.
@@ -32,7 +37,7 @@ Once forked, you can clone the repo by clicking the `Clone or Download` button o
 Please change the directory after cloning the repository using the `cd <folder-name>` command.
 
 ### ⬇️ Running the Development Server
-To run the development server, make sure you have to have the following dependencies set up on your machine:
+To run the development server, make sure you have the following dependencies set up on your computer:
 
 1. Install `nvm` then `node` & `npm`: `brew install nvm && nvm install`
 2. Install `watchman`: `brew install watchman`
@@ -49,16 +54,100 @@ Then run the CocoaPods install.
 npx pod-install
 ```
 
-To connect to the backend api, which you should have running for easier development (see how [**here**](https://github.com/gabekutner/roommatefinder-backend/tree/main?tab=readme-ov-file#local-development), go to the `src/constants/apiConstants.ts` file and change the `const ADDRESS = "10.0.0.49:8000";` to whatever the address is of the api you're running.  
+Before you run the `npm start` you have to configure and run the backend api. Don't worry this is super easy and requires no knowledge of Python or Django Rest to get this going. I've already wrote about how to do that in the backend's README, so here's that repo again: https://github.com/gabekutner/roommatefinder-backend.
 
-Finally, run the project.
+To connect to the backend api once you have it up and running go to the `src/constants/apiConstants.ts` file and change the `const ADDRESS = "10.0.0.49:8000";` to the ip address of you're computer. 
+
+And finally, run the project!
 ```bash
 npm start
 ```
 
 These instructions should get you set up ready to work on Dorm Party 🎉
 
-<!-- # Contributing
-Thanks for taking the time, first of all! Second, contributing is really simple. Follow the installation steps and create a pull request. As far as finding issues to work on, issues with the `FirstIssue` label are good for starters. 
+# Features
+### 👀 Basic
+- Login and registration with jwt token
+- Create profile
 
-Find that here: https://github.com/gabekutner/roommatefinder-mobile/labels/FirstIssue -->
+### 👤 Your profile
+- Update your personal information
+- Add photos
+
+### 💃 Swipe profiles
+- Send message requests
+- View profile details
+- View roommate matching quiz
+
+### 💬 Friends and chats
+- Chat with your friends
+
+### 🔗 Matchmaking algorithm
+List based on
+- Sex
+- Your dorm building
+- Common interests
+- Your major
+- State
+- More of the algorithm in the backend!
+
+# Project Structure
+Most of the code is located in the `src/` folder. Here's a brief overview: 
+* **assets** : Images, fonts, theme, and constant data.
+* **components** : Reusable UI components.
+* **constants** : Constants used throughout the app (mostly deprecated).
+* **core** : Core functionalities (mostly deprecated).
+* **libs** : Zustand state management (`store/`), util functions, api definition, device storage.
+* **navigators** : Navigation configuration (Auth and App Navigation).
+* **types** : Typescript types for the parts of the app that use typescript.
+* **views** : Screen components organized in folders, with each folder containing an `index.js` file used for navigation.
+
+# Contributing
+To contribute code changes, please follow these steps:
+
+1. **Fork the Repository:** Click the "Fork" button on the top right of this repository to create a copy under your GitHub account.
+
+2. **Clone Your Fork:** Clone your forked repository to your local machine:
+
+    ```bash
+    git clone https://github.com/gabekutner/roommatefinder-mobile.git
+    ```
+
+3. **Create a Branch:** Create a new branch for your changes:
+
+    ```bash
+    git checkout -b your-branch-name
+    ```
+
+4. **Make Changes:** Implement your changes on this branch.
+   
+7. **Commit Changes:** Commit your changes with commit message letting me know what you did:
+
+    ```bash
+    git add .
+    git commit -m "Add a descriptive message about the change"
+    ```
+
+8. **Push to Your Fork:** Push your branch to your forked repository:
+
+    ```bash
+    git push origin your-branch-name
+    ```
+
+9. **Create a Pull Request:** Open a pull request (PR) from your branch to the `main` branch of the original repository. Give a description of your changes and reference any related issues.
+
+    - **Title:** A beautiful title for your PR.
+    - **Description:** Explain what changes were made, why they were made, you get the gist.
+      
+11. **Celebrate:** Once your PR is merged, celebrate!! 🎉
+
+
+
+
+
+
+
+
+
+
+
