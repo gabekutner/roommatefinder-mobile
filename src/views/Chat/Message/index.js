@@ -4,7 +4,7 @@ import {Platform, InputAccessoryView} from "react-native";
 import {useTheme} from "react-native-paper";
 // import useStore from "../../../zustand/store";
 
-import {Container, MessagesWrapper} from "./message.view";
+import {Container, MessagesWrapper, GroupModal} from "./message.view";
 import {MessageHeader} from "./Components/MessageHeader";
 import {MessageInput} from "./Components/MessageInput";
 import useBearStore from "../../../libs/store";
